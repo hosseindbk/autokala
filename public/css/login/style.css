@@ -1,0 +1,410 @@
+/*------------------------------------------------------------------
+[Main Stylesheet]
+
+Project:    LOGDY
+Version:    1.1.0
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[Table of contents]
+    *. Login Layout 1 / .login-1
+    *. Login Layout 2 / .login-13
+    *. Login Layout 3 / .login-3
+    *. Login Layout 4 / .login-15
+    *. Login Layout 5 / .login-5
+    *. Login Layout 6 / .login-17
+    *. Login Layout 7 / .login-7
+    *. Login Layout 8 / .login-19
+    *. Login Layout 9 / .login-9
+    *. Login Layout 10 / .login-21
+    *. Login Layout 11 / .login-11
+    *. Login Layout 12 / .login-23
+    *. Login Layout 12 / .login-23
+    *. Login inner form / .login-inner-form
+    *. Login inner form details / .details
+-------------------------------------------------------------------*/
+/** GLOBAL CLASSES **/
+
+body {
+    font-family: 'IranSans', sans-serif;
+    color: #535353;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'IranSans', sans-serif;
+}
+
+/** Login 5 start **/
+.login-5 {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0;
+}
+
+.login-5 .login-box {
+    background: #fff;
+    max-width: 950px;
+    border-radius: 20px;
+    margin: 0 auto;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+}
+
+.login-5 .form-section {
+    text-align: center;
+    padding: 50px;
+    border-radius: 10px 0 0 10px;
+}
+
+.login-5 .bg-img {
+    background: rgba(0, 0, 0, 0.04) url(../../images/bg-image-9.jpg) top left repeat;
+    background-size: cover;
+    top: 0;
+    bottom: 0;
+    border-radius:0 20px 20px 0;
+    opacity: 1;
+    width: 100%;
+    z-index: 999;
+    min-height: 496px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-5-bg{
+    background: #f7f7f7;
+}
+
+.login-5 .pad-0{
+    padding: 0;
+}
+
+.login-5 .info{
+    padding: 30px;
+    text-align: center;
+    border: solid 5px #ffffff;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.login-5 .info h3{
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.login-5 .form-section p{
+    color: #fff;
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.login-5 .form-section p a{
+    color: #fff;
+    font-weight: 500;
+}
+
+.login-5 .form-section ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.login-5 .form-section .social-list li {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.login-5 .logo-2 img{
+    margin-bottom: 20px;
+    height: 120px;
+}
+
+.login-5 .form-section .thembo{
+    margin-left: 4px;
+}
+
+.login-5 .form-section h3 {
+    margin: 0 0 25px;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'IranSans', sans-serif;
+    color: #505050;
+}
+
+.login-5 .form-section .form-group {
+    margin-bottom: 25px;
+}
+
+.login-5 .form-section .form-box {
+    float: left;
+    width: 100%;
+    text-align: left;
+    position: relative;
+}
+
+.login-5 .form-section .form-box input {
+    float: left;
+    width: 100%;
+}
+
+.login-5 .form-section .input-text {
+    padding: 10px 20px;
+    font-size: 15px;
+    outline: none;
+    height: 50px;
+    background: rgba(23, 23, 23, 0.72);
+    color: #616161;
+    border-radius: 50px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-5 .form-section .checkbox .terms{
+    margin-left: 3px;
+}
+
+.login-5 .form-section .btn-md {
+    cursor: pointer;
+    padding: 13px 50px 15px 50px;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'IranSans', sans-serif;
+    border-radius: 50px;
+}
+
+.login-5 .form-section input[type=checkbox], input[type=radio] {
+    margin-right: 3px;
+}
+
+.login-5 .form-section button:focus {
+    outline: none;
+    outline: 0 auto -webkit-focus-ring-color;
+}
+
+.login-5 .form-section .btn-theme.focus, .btn-theme:focus {
+    box-shadow: none;
+}
+
+.login-5 .form-section .btn-theme {
+    background: #ff2f2f;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.login-5 .form-section .btn-theme:hover {
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
+    background: #ec2727;
+}
+
+.login-5 .none-2{
+    display: none;
+}
+
+.login-5 .logo{
+    top: 40px;
+    position: absolute;
+    left: 65px;
+}
+
+.login-5 .form-section .terms{
+    margin-left: 3px;
+}
+
+.login-5 .btn-section {
+    border-radius: 50px;
+    margin-bottom: 25px;
+    display: inline-block;
+
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-5 .btn-section .btn-1 {
+    border-radius: 50px 0 0 50px;
+    border-right: solid 2px #e6e6e6;
+}
+
+.login-5 .btn-section .link-btn {
+    font-size: 13px;
+    float: left;
+    background: transparent;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    text-decoration: blink;
+    line-height: 30px;
+    width: 90px;
+    color: #505050;
+}
+
+.login-5 .btn-section .active-bg {
+    color: #ff2f2f;
+}
+
+.login-5 .btn-section .btn-2 {
+    border-radius: 0 50px 50px 0;
+}
+
+.login-5 .form-section .checkbox {
+    font-size: 14px;
+}
+
+.login-5 .form-section .form-check{
+    float: left;
+    margin-bottom: 0;
+}
+
+.login-5 .form-section .form-check a {
+    color: #fff;
+    float: right;
+}
+
+.login-5 .form-section .form-check-input {
+    position: absolute;
+    margin-left: 0;
+}
+
+.login-5 .form-section .form-check label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    margin-left: -25px;
+    border: 1px solid #c5c3c3;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.login-5 .form-section .form-check-label {
+    padding-left: 25px;
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.login-5 .form-section .checkbox-theme input[type="checkbox"]:checked + label::before {
+    background-color: #ff2f2f;
+    border-color: #ff2f2f;
+}
+
+.login-5 .form-section input[type=checkbox]:checked + label:before {
+    font-weight: 300;
+    color: #f3f3f3;
+    line-height: 15px;
+    font-size: 14px;
+    content: "\2713";
+}
+
+.login-5 .form-section input[type=checkbox], input[type=radio] {
+    margin-top: 4px;
+}
+
+.login-5 .form-section a.forgot-password {
+    font-size: 15px;
+    color: #616161;
+    float: right;
+    line-height: 50px;
+}
+
+.login-5 .social-list a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: inline-block;
+    font-size: 17px;
+    margin: 2px;
+    border-radius: 5%;
+    background: #fff;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+}
+
+.login-5 .social-list a:hover{
+    color: #fff;
+}
+
+/** Social media **/
+.login-5 .facebook-bg{
+    color: #4867aa;
+}
+
+.login-5 .facebook-bg:hover {
+    background: #4867aa;
+}
+
+.login-5 .twitter-bg {
+    color: #33CCFF;
+}
+
+.login-5 .twitter-bg:hover {
+    background: #33CCFF;
+}
+
+.login-5 .google-bg {
+    color: #db4437;
+}
+
+.login-5 .google-bg:hover {
+    background: #db4437;
+}
+
+.login-5 .linkedin-bg {
+    color: #2392e0;
+}
+
+.login-5 .linkedin-bg:hover {
+    background: #1c82ca;
+}
+
+@media (max-width: 992px) {
+    .login-5 .form-section {
+        width: 100%;
+    }
+
+    .login-5 .bg-img {
+        min-height: 100%;
+        border-radius: 5px;
+    }
+
+    .none-992{
+        display: none!important;
+    }
+
+    .login-5 .login-box {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-5 .form-section{
+        padding: 30px;
+    }
+}
+/** Login 5 end **/

@@ -1,0 +1,202 @@
+<?php
+
+namespace App\Http\Controllers\Site;
+
+use App\Brand;
+use App\Car_brand;
+use App\Car_model;
+use App\City;
+use App\comment;
+use App\commentrate;
+use App\Http\Controllers\Controller;
+use App\Media;
+use App\Menu;
+use App\Product;
+use App\Product_group;
+use App\State;
+use App\Supplier;
+use App\Supplier_product_group;
+use App\Technical_unit;
+use Illuminate\Http\Request;
+
+class SupplierController extends Controller
+{
+    public function index(){
+        $menus              = Menu::whereStatus(4)->get();
+        $countState         = null;
+        $newsuppliers       = Supplier::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $clicksuppliers     = Supplier::whereStatus(4)->orderBy('click')->paginate(16);
+        $goodsuppliers      = Supplier::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $oldsuppliers       = Supplier::whereStatus(4)->orderBy('id')->paginate(16);
+        $productgroups      = Product_group::whereStatus(4)->get();
+        $carbrands          = Car_brand::whereStatus(4)->get();
+        $brands             = Brand::whereStatus(4)->get();
+        $carmodels             = Car_model::whereStatus(4)->get();
+        $states                 = State::all();
+        $cities                 = City::all();
+        $filter             = 0;
+
+
+        return view('Site.supplier')
+            ->with(compact('countState'))
+            ->with(compact('filter'))
+            ->with(compact('states'))
+            ->with(compact('carmodels'))
+            ->with(compact('cities'))
+            ->with(compact('brands'))
+            ->with(compact('carbrands'))
+            ->with(compact('productgroups'))
+            ->with(compact('menus'))
+            ->with(compact('newsuppliers'))
+            ->with(compact('clicksuppliers'))
+            ->with(compact('goodsuppliers'))
+            ->with(compact('oldsuppliers'));
+    }
+
+    public function indexstate(){
+        $menus              = Menu::whereStatus(4)->get();
+        $id                     = request('state_id');
+        if ($id == null){
+            $countState             = State::all();
+        }else{
+            $countState             = State::whereIn('id' , $id)->get();
+        }
+        $newsuppliers       = Supplier::state()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $clicksuppliers     = Supplier::state()->whereStatus(4)->orderBy('click')->paginate(16);
+        $goodsuppliers      = Supplier::state()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $oldsuppliers       = Supplier::state()->whereStatus(4)->orderBy('id')->paginate(16);
+        $productgroups      = Product_group::whereStatus(4)->get();
+        $carbrands          = Car_brand::whereStatus(4)->get();
+        $brands             = Brand::whereStatus(4)->get();
+        $carmodels             = Car_model::whereStatus(4)->get();
+        $states                 = State::all();
+        $cities                 = City::all();
+        $filter             = 0;
+
+
+        return view('Site.supplier')
+            ->with(compact('countState'))
+            ->with(compact('filter'))
+            ->with(compact('states'))
+            ->with(compact('carmodels'))
+            ->with(compact('cities'))
+            ->with(compact('brands'))
+            ->with(compact('carbrands'))
+            ->with(compact('productgroups'))
+            ->with(compact('menus'))
+            ->with(compact('newsuppliers'))
+            ->with(compact('clicksuppliers'))
+            ->with(compact('goodsuppliers'))
+            ->with(compact('oldsuppliers'));
+    }
+
+    public function supplierfilter(){
+
+        $productgroup = request('productgroup_id');
+        if(isset($productgroup)  && $productgroup != '') {
+            $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
+        }else{$productgroup_id = null;}
+
+        $city = request('city_id');
+        if(isset($city)  && $city != '') {
+            $city_id = City::whereIn('id', $city)->get();
+        }else{$city_id = null;}
+
+        $carmodel = request('car_model_id');
+        if(isset($carmodel)  && $carmodel != '') {
+            $carmodel_id = Car_model::whereIn('id', $carmodel)->get();
+        }else{$carmodel_id = null;}
+        $countState         = null;
+
+        $menus              = Menu::whereStatus(4)->get();
+        $count              = Supplier::filter()->whereStatus(4)->count();
+        $newsuppliers       = Supplier::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $clicksuppliers     = Supplier::filter()->whereStatus(4)->orderBy('click')->paginate(16);
+        $goodsuppliers      = Supplier::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $oldsuppliers       = Supplier::filter()->whereStatus(4)->orderBy('id')->paginate(16);
+        $productgroups      = Product_group::whereStatus(1)->get();
+        $carbrands          = Car_brand::whereStatus(1)->get();
+        $brands             = Brand::whereStatus(1)->get();
+        $carmodels          = Car_model::whereStatus(1)->get();
+         $states            = State::all();
+        $cities             = City::all();
+        $filter             = 1;
+
+        return view('Site.supplier')
+            ->with(compact('countState'))
+            ->with(compact('carmodel_id'))
+            ->with(compact('city_id'))
+            ->with(compact('productgroup_id'))
+            ->with(compact('count'))
+            ->with(compact('filter'))
+            ->with(compact('carmodels'))
+            ->with(compact('states'))
+            ->with(compact('cities'))
+            ->with(compact('brands'))
+            ->with(compact('carbrands'))
+            ->with(compact('productgroups'))
+            ->with(compact('menus'))
+            ->with(compact('newsuppliers'))
+            ->with(compact('clicksuppliers'))
+            ->with(compact('goodsuppliers'))
+            ->with(compact('oldsuppliers'));
+
+
+    }
+    public function subsupplier($slug){
+
+        $menus                  = Menu::whereStatus(4)->get();
+        $carbrands              = Car_brand::all();
+        $carmodels              = Car_model::all();
+        $cities                 = City::all();
+        $states                 = State::all();
+        $countState         = null;
+        $productgroups          = Product_group::all();
+        $suppliers              = Supplier::whereSlug($slug)->get();
+        $supplier_id            = Supplier::whereSlug($slug)->pluck('id');
+        $supplierproductgroups  = Supplier_product_group::whereSupplier_id($supplier_id)->get();
+        $medias                 = Media::whereSupplier_id($supplier_id)->get();
+        $comments               = comment::whereCommentable_id($supplier_id)->whereApproved(1)->latest()->get();
+        $commentrates           = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->latest()->get();
+        $commentratecount       = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->count();
+        $commentratequality     = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->avg('quality');
+        $commentratevalue       = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->avg('value');
+        $commentrateinnovation  = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->avg('innovation');
+        $commentrateability     = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->avg('ability');
+        $commentratedesign      = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->avg('design');
+        $commentratecomfort     = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->avg('comfort');
+
+        return view('Site.subsupplier')
+            ->with(compact('countState'))
+            ->with(compact('states'))
+            ->with(compact('cities'))
+            ->with(compact('carbrands'))
+            ->with(compact('carmodels'))
+            ->with(compact('menus'))
+            ->with(compact('commentrates'))
+            ->with(compact('commentratequality'))
+            ->with(compact('commentratevalue'))
+            ->with(compact('commentrateinnovation'))
+            ->with(compact('commentrateability'))
+            ->with(compact('commentratedesign'))
+            ->with(compact('commentratecomfort'))
+            ->with(compact('commentratecount'))
+            ->with(compact('productgroups'))
+            ->with(compact('supplierproductgroups'))
+            ->with(compact('medias'))
+            ->with(compact('comments'))
+            ->with(compact('suppliers'));
+    }
+
+    public function modeloption(Request $request){
+        $carmodels = Car_model::whereVehicle_brand_id($request->input('id'))->get();
+        $output = [];
+
+        foreach($carmodels as $Car_model )
+        {
+            $output[$Car_model->id] = $Car_model->title_fa;
+        }
+
+        return $output;
+    }
+}

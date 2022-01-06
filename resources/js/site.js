@@ -1,0 +1,9 @@
+require('site/plugins.min');
+require('site/some-plugins');
+require('site/swiper.min');
+require('site/vivus.min');
+require('site/wow.min');
+require('site/main');
+require('site/bootstrap.min');
+require('site/jquery-3.3.1.min');
+require('site/modernizr-2.8.3.min');

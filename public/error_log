@@ -1,0 +1,180 @@
+[05-Sep-2020 11:59:42 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[05-Sep-2020 12:00:00 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[05-Sep-2020 12:00:10 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[05-Sep-2020 12:00:21 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[06-Sep-2020 07:17:34 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[06-Sep-2020 07:17:57 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[06-Sep-2020 07:18:32 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[06-Sep-2020 07:18:55 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[11-Sep-2020 20:29:47 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[13-Sep-2020 11:21:06 UTC] PHP Fatal error:  Trait 'Cviebrock\EloquentSluggable\Sluggable' not found in /home/bestagro/app/Menu.php on line 10
+[13-Sep-2020 11:23:32 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:32 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:32 UTC] PHP Fatal error:  require(): Failed opening required '/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:34 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:34 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:34 UTC] PHP Fatal error:  require(): Failed opening required '/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:45 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:46 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:46 UTC] PHP Fatal error:  require(): Failed opening required '/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:48 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:48 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:23:48 UTC] PHP Fatal error:  require(): Failed opening required '/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:24:06 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:24:06 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:24:06 UTC] PHP Fatal error:  require(): Failed opening required '/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:25:04 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:25:04 UTC] PHP Warning:  require(/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php): failed to open stream: No such file or directory in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[13-Sep-2020 11:25:04 UTC] PHP Fatal error:  require(): Failed opening required '/home/bestagro/vendor/composer/../uxweb/sweet-alert/src/SweetAlert/functions.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/bestagro/vendor/composer/autoload_real.php on line 69
+[16-Sep-2020 09:58:45 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[16-Sep-2020 10:00:02 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[16-Sep-2020 10:00:49 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[16-Sep-2020 10:02:18 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 07:38:30 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 07:49:31 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 07:53:58 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 07:54:47 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 07:55:12 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 07:55:39 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 07:56:06 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:08:26 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:27:15 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:30:24 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:30:51 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:31:21 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:32:48 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:45:40 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:49:25 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:50:04 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 08:53:35 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[17-Sep-2020 09:10:48 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:04:08 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:08:59 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:10:02 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:11:00 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:12:17 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:13:30 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:14:38 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:17:48 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:25:50 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 13:28:56 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 15:07:29 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 15:07:51 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 15:08:25 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 15:09:12 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 15:09:32 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[19-Sep-2020 15:11:08 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 10:36:39 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 10:39:16 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 10:42:20 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 10:42:39 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 10:48:29 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 10:51:02 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:01:01 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:02:04 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:03:07 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:03:41 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:04:47 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:05:40 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:06:24 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:07:35 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:08:08 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:08:35 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:08:45 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:09:13 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:10:32 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:10:53 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:23:39 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:26:06 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:26:46 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:27:15 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:28:01 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:28:30 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[20-Sep-2020 11:30:31 UTC] PHP Warning:  File upload error - unable to create a temporary file in Unknown on line 0
+[11-Dec-2020 09:59:28 UTC] PHP Warning:  require(/home1/bestagro/public_html/../vendor/autoload.php): failed to open stream: No such file or directory in /home1/bestagro/public_html/index.php on line 24
+[11-Dec-2020 09:59:28 UTC] PHP Warning:  require(/home1/bestagro/public_html/../vendor/autoload.php): failed to open stream: No such file or directory in /home1/bestagro/public_html/index.php on line 24
+[11-Dec-2020 09:59:28 UTC] PHP Fatal error:  require(): Failed opening required '/home1/bestagro/public_html/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home1/bestagro/public_html/index.php on line 24
+[26-Jul-2021 12:39:43 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61041656 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[26-Jul-2021 12:40:07 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61074792 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[26-Jul-2021 12:40:42 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61041656 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[26-Jul-2021 12:41:27 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61041656 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[26-Jul-2021 12:42:05 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61041656 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[26-Jul-2021 12:45:04 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61074792 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[26-Jul-2021 12:52:57 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61041656 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[26-Jul-2021 21:38:03 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61041656 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[27-Jul-2021 10:11:43 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61045368 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[27-Jul-2021 10:12:06 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61071424 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[27-Jul-2021 10:23:36 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61045368 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[27-Jul-2021 10:33:04 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61045368 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[27-Jul-2021 12:40:51 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61045368 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[27-Jul-2021 12:41:42 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61071424 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[27-Jul-2021 14:31:12 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61045368 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[27-Jul-2021 17:41:24 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61041656 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[27-Jul-2021 18:45:47 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61041656 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[27-Jul-2021 18:46:33 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 59545560 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[28-Jul-2021 14:15:51 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61611416 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[28-Jul-2021 15:11:01 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61613328 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[28-Jul-2021 15:49:38 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 61611416 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 09:37:18 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42904584 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 09:37:40 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42904584 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 09:42:09 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42904584 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 09:43:39 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42904584 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 09:46:36 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42904584 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 09:47:39 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878680 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 09:48:01 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878680 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 09:48:34 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878680 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 10:36:51 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42904584 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 10:54:58 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42904584 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:49:22 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878008 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:50:08 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878008 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:52:55 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42705624 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:54:11 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42705624 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:54:29 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42705624 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:56:15 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42705968 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:56:35 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47208048 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:57:02 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47208048 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:57:38 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47397472 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 11:58:21 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47397472 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 12:12:32 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47423400 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 12:13:01 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47423400 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 12:13:52 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47423400 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 12:19:38 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47423400 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 12:43:16 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47423400 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 12:49:19 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47423400 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 19:39:32 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47397472 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 20:13:35 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878312 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 20:13:44 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878312 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 20:20:14 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878312 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 21:28:28 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878280 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[01-Aug-2021 21:31:15 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 42878280 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[18-Aug-2021 21:08:33 Asia/Tehran] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected '-', expecting '(' in /home/myautoka/vendor/laravel/ui/auth-backend/AuthenticatesUsers.php:65
+Stack trace:
+#0 /home/myautoka/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/myautoka/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/myautoka/app/Http/Controllers/Auth/LoginController.php(9): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/myautoka/vendor/composer/ClassLoader.php(444): include('/home/myautoka/...')
+#4 /home/myautoka/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/myautoka/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/myautoka/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('App\\Http\\Contro...')
+#8 /home/myautoka/vendor/laravel/framework/src/Illuminat in /home/myautoka/app/Http/Controllers/Auth/LoginController.php on line 9
+[29-Aug-2021 09:14:43 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/2768e3de8e5ebe5449a49c8e392e76ec8446b415.php on line 325
+[07-Sep-2021 11:26:00 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/2768e3de8e5ebe5449a49c8e392e76ec8446b415.php on line 341
+[18-Sep-2021 07:36:54 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 43081640 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[18-Sep-2021 07:37:04 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 43081640 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[18-Sep-2021 07:37:07 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 43081640 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[18-Sep-2021 07:37:21 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 43081640 bytes) in /home/myautoka/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php on line 46
+[18-Oct-2021 20:38:07 Asia/Tehran] PHP Fatal error:  Cannot declare class App\Http\Controllers\Site\MarketController, because the name is already in use in /home/myautoka/storage/framework/views/833acdc3fb960b397e243f64104ceaf2456e20f9.php on line 21
+[26-Oct-2021 07:50:43 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 381
+[26-Oct-2021 07:50:52 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 65028096 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 392
+[26-Oct-2021 07:51:20 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 386
+[26-Oct-2021 07:51:41 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 48250880 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 386
+[26-Oct-2021 07:52:46 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 48250880 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 386
+[26-Oct-2021 07:53:35 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 48250880 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 386
+[26-Oct-2021 08:16:42 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 375
+[26-Oct-2021 08:19:27 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 48250880 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 376
+[26-Oct-2021 08:19:37 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 376
+[26-Oct-2021 08:21:32 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 376
+[26-Oct-2021 08:27:04 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 383
+[26-Oct-2021 08:28:34 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 48250880 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 383
+[26-Oct-2021 08:28:40 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 65028096 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 375

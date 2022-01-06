@@ -1,0 +1,360 @@
+<?php
+
+namespace App\Http\Controllers\Site;
+
+use App\Brand;
+use App\Car_brand;
+use App\Car_model;
+use App\Car_offer;
+use App\Car_product;
+use App\Car_type;
+use App\City;
+use App\Country;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\offerrequest;
+use App\Media;
+use App\Menu;
+use App\Offer;
+use App\Product;
+use App\Product_brand_variety;
+use App\Product_group;
+use App\State;
+use App\Supplier;
+use App\Technical_unit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\Facades\Image;
+
+class OfferController extends Controller
+{
+    public function index(){
+        $menus                  = Menu::whereStatus(4)->get();
+        $suppliers              = Supplier::whereStatus(4)->get();
+        $carbrands              = Car_brand::all();
+        $countState         = null;
+        $products               = Product::whereStatus(4)->get();
+        $brands                 = Brand::whereStatus(4)->get();
+        $productgroups          = Product_group::all();
+        $cities                 = City::all();
+        $states                 = State::all();
+        $countries              = Country::all();
+        $caroffers              = Car_offer::all();
+        $productbrandvarieties  = Product_brand_variety::whereStatus(4)->get();
+        $offers                 = Offer::whereUser_id(Auth::user()->id)->get();
+
+        return view('Site.offer')
+            ->with(compact('countState'))
+            ->with(compact('caroffers'))
+            ->with(compact('countries'))
+            ->with(compact('cities'))
+            ->with(compact('productgroups'))
+            ->with(compact('states'))
+            ->with(compact('offers'))
+            ->with(compact('carbrands'))
+            ->with(compact('menus'))
+            ->with(compact('brands'))
+            ->with(compact('products'))
+            ->with(compact('suppliers'))
+            ->with(compact('productbrandvarieties'));
+    }
+
+    public function offerproduct($id){
+        $cities                 = City::all();
+        $states                 = State::all();
+        $carbrands              = Car_brand::all();
+        $carmodels              = Car_model::all();
+        $cartypes               = Car_type::all();
+        $car_offers             = Car_offer::all();
+        $menus                  = Menu::whereStatus(4)->get();
+        $suppliers              = Supplier::whereStatus(4)->get();
+        $products               = Product::whereStatus(4)->whereId($id)->get();
+        $product_id             = Product::whereStatus(4)->whereId($id)->pluck('id');
+        $kalagroup_id           = Product::whereStatus(4)->whereId($id)->pluck('kala_group_id');
+        $brand_id               = Product_brand_variety::whereProduct_id($product_id)->pluck('brand_id');
+        $productgroups          = Product_group::whereIn('id' , $kalagroup_id)->get();
+        $carproducts            = Car_product::whereIn('product_id' , $product_id)->get();
+        $brands                 = Brand::whereIn('id' , $brand_id)->get();
+        $offers                 = Offer::whereUser_id(Auth::user()->id)->get();
+
+        return view('Site.offerproduct')
+            ->with(compact('car_offers'))
+            ->with(compact('cartypes'))
+            ->with(compact('carproducts'))
+            ->with(compact('carmodels'))
+            ->with(compact('cities'))
+            ->with(compact('states'))
+            ->with(compact('carbrands'))
+            ->with(compact('productgroups'))
+            ->with(compact('offers'))
+            ->with(compact('menus'))
+            ->with(compact('brands'))
+            ->with(compact('products'))
+            ->with(compact('suppliers'));
+    }
+
+    public function offercreate(offerrequest $request)
+    {
+
+        $offers = new Offer();
+
+        $offers->title              = $request->input('title');
+        $offers->title_offer        = $request->input('title_offer');
+        $offers->product_group      = $request->input('product_group');
+        $offers->noe                = $request->input('noe');
+        $offers->state_id           = $request->input('state_id');
+        $offers->buyorsell          = $request->input('buyorsell');
+        $offers->unicode_product    = $request->input('unicode_product');
+        $offers->product_name       = $request->input('product_name');
+        if ($request->input('single_price')) {
+            $offers->single_price   = str_replace(',', '', $request->input('single_price'));
+        }
+        $offers->city_id            = $request->input('city_id');
+        $offers->mobile             = $request->input('mobile');
+        $offers->brand_id           = $request->input('brand_id');
+        $offers->brand_name         = $request->input('brand_name');
+        $offers->total              = $request->input('total');
+        $offers->description        = $request->input('description');
+        $offers->address            = $request->input('address');
+        $offers->phone              = $request->input('phone');
+        $offers->mobile             = $request->input('mobile');
+        $offers->image1             = $request->input('image1');
+        if (auth::user()->type_id == 4 || auth::user()->type_id == 3){
+            $offers->single = 1;
+        }elseif (auth::user()->type_id == 1) {
+            $offers->single         = $request->input('single');
+        }
+        if ($request->input('price')) {
+                $offers->price      = str_replace(',', '', $request->input('price'));
+        }
+        $offers->supplier_id        = $request->input('supplier_id');
+        $offers->permanent_supplier = $request->input('permanent_supplier');
+        $offers->slug               = 'OFFER-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
+        $offers->status             = '1';
+        $offers->user_id            = Auth::user()->id;
+
+        if ($request->file('image1') != null) {
+            $file = $request->file('image1');
+            $img = Image::make($file);
+            $imagePath = "images/offer";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $offers->image1 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath = "images/offer";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $offers->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath = "images/offer";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $offers->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+
+        $offers->save();
+
+        $offer_id = Offer::whereSlug($offers->slug)->get();
+
+        foreach($offer_id as $offer) {
+            $id = $offer->id;
+        }
+
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+        return redirect(route('offer-edit' , $id));
+    }
+
+    public function offermap(Request $request)
+    {
+        $offermap               = Offer::findOrfail($request->input('id'));
+        $offermap->lat          = $request->input('lat');
+        $offermap->lng          = $request->input('lng');
+
+        $offermap->update();
+    }
+    public function offeredit($id)
+    {
+        $menus                  = Menu::whereStatus(4)->get();
+        $suppliers              = Supplier::whereStatus(4)->get();
+        $unicode                = Offer::whereUser_id(Auth::user()->id)->whereId($id)->pluck('unicode_product');
+        $unicode_product        = Product::whereStatus(4)->whereUnicode($unicode)->get();
+        $products               = Product::whereStatus(4)->get();
+        $brands                 = Brand::whereStatus(4)->get();
+        $carbrands              = Car_brand::whereStatus(4)->get();
+        $carmodels              = Car_model::all();
+        $cartypes               = Car_type::all();
+        $car_offers             = Car_offer::all();
+        $states                 = State::all();
+        $cities                 = City::all();
+        $productgroups          = Product_group::all();
+        $productbrandvarieties  = Product_brand_variety::whereStatus(4)->get();
+        $offers                 = Offer::whereUser_id(Auth::user()->id)->whereId($id)->get();
+        $alloffers              = Offer::whereUser_id(Auth::user()->id)->get();
+
+        return view('Site.offeredit')
+            ->with(compact('carmodels'))
+            ->with(compact('cartypes'))
+            ->with(compact('car_offers'))
+            ->with(compact('unicode_product'))
+            ->with(compact('productgroups'))
+            ->with(compact('carbrands'))
+            ->with(compact('cities'))
+            ->with(compact('states'))
+            ->with(compact('offers'))
+            ->with(compact('alloffers'))
+            ->with(compact('menus'))
+            ->with(compact('brands'))
+            ->with(compact('products'))
+            ->with(compact('suppliers'))
+            ->with(compact('productbrandvarieties'));
+
+    }
+
+    public function update(Request $request , $id)
+    {
+        $offer = Offer::findOrfail($id);
+
+        $offer->title_offer        = $request->input('title_offer');
+        $offer->product_group      = $request->input('product_group');
+        $offer->noe                 = $request->input('noe');
+        $offer->state_id           = $request->input('state_id');
+        $offer->buyorsell          = $request->input('buyorsell');
+        $offer->unicode_product    = $request->input('unicode_product');
+        $offer->product_name       = $request->input('product_name');
+        if($request->input('single_price')) {
+            $offer->single_price = str_replace(',', '', $request->input('single_price'));
+        }
+        $offer->city_id            = $request->input('city_id');
+        $offer->mobile             = $request->input('mobile');
+        $offer->brand_id           = $request->input('brand_id');
+        $offer->brand_name         = $request->input('brand_name');
+        $offer->total              = $request->input('total');
+        $offer->description        = $request->input('description');
+        $offer->address            = $request->input('address');
+        $offer->phone              = $request->input('phone');
+
+        $offer->single             = $request->input('single');
+        if($request->input('price')) {
+            $offer->price = str_replace(',', '', $request->input('price'));
+        }
+        $offer->supplier_id        = $request->input('supplier_id');
+        $offer->permanent_supplier = $request->input('permanent_supplier');
+        $offer->status             = '1';
+        $offer->user_id            = Auth::user()->id;
+
+        if ($request->file('image1') != null) {
+            $file = $request->file('image1');
+            $img = Image::make($file);
+            $imagePath ="images/offer";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $offer->image1 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath ="images/offer";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $offer->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath ="images/offer";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $offer->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        $offer->update();
+
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+        return Redirect::back();
+    }
+
+    public function offerdelete($id)
+    {
+        $offer = Offer::findOrfail($id);
+        $offer->delete();
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+        return Redirect::back();
+    }
+
+    public function titleproduct(Request $request){
+        $product_id = Product::whereUnicode($request->input('id'))->pluck('id');
+        $kala_group_id = Product::whereUnicode($request->input('id'))->pluck('kala_group_id');
+        $productgroups = Product_group::whereId($kala_group_id)->get();
+        $brand_id = Product_brand_variety::whereProduct_id($product_id)->pluck('brand_id');
+        $brands = Brand::whereIn('id' , $brand_id)->get();
+        $output1 = [];
+
+
+        foreach($brands as $brand )
+        {
+            $output1[$brand->id] = $brand->title_fa;
+        }
+
+
+        return $output1;
+    }
+
+    public function caroffercreate(Request $request){
+
+        if($request->car_brand_id != null && $request->car_model_id != null) {
+            $offer_id = Offer::whereId($request->input('offer_id'))->get();
+            foreach($offer_id as $offer){
+                $x  = $offer->id;
+            }
+
+            for ($i = 0; $i < count($request->car_model_id); $i++) {
+                $carmodel[] = [
+                    'car_brand_id'  => $request->input('car_brand_id'),
+                    'offer_id'      => $x,
+                    'car_model_id' => $request->car_model_id[$i]
+                ];
+            }
+            Car_offer::insert($carmodel);
+
+        }elseif($request->car_brand_id != null && $request->car_model_id == null){
+
+            $offer_id = Offer::whereId($request->input('offer_id'))->get();
+            foreach($offer_id as $offer){
+                $x  = $offer->id;
+            }
+
+
+            $caroffers = new Car_offer();
+
+            $caroffers->car_brand_id       = $request->input('car_brand_id');
+            $caroffers->offer_id           = $x;
+
+            $caroffers->save();
+
+        }
+        return Redirect::back();
+
+    }
+    public function carofferdelete($id)
+    {
+        $caroffer = Car_offer::findOrfail($id);
+        $caroffer->delete();
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+        return Redirect::back();
+    }
+}
