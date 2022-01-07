@@ -72,7 +72,6 @@ class ProfiletechnicalunitController extends Controller
         $technical_units->date          = jdate()->format('Ymd ');
         $technical_units->date_handle   = jdate()->format('Ymd ');
         $technical_units->user_id       = Auth::user()->id;
-        $technical_units->user_handle   = Auth::user()->name;
 
         if ($request->file('image') != null) {
             $file = $request->file('image');

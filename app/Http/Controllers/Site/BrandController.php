@@ -142,8 +142,6 @@ class BrandController extends Controller
         $brand->address        = $request->input('address');
         $brand->date           = jdate()->format('Ymd ');
         $brand->date_handle    = jdate()->format('Ymd ');
-        $brand->user_id        = Auth::user()->id;
-        $brand->user_handle    = Auth::user()->id;
 
         if ($request->file('image') != null) {
             $file = $request->file('image');
@@ -180,7 +178,6 @@ class BrandController extends Controller
         $brands->date           = jdate()->format('Ymd ');
         $brands->date_handle    = jdate()->format('Ymd ');
         $brands->user_id        = Auth::user()->id;
-        $brands->user_handle    = Auth::user()->id;
 
         if ($request->file('image') != null) {
             $file = $request->file('image');

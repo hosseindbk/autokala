@@ -90,7 +90,6 @@ class ProfilesupplierController extends Controller
         $suppliers->description = $request->input('description');
         $suppliers->date        = jdate()->format('Ymd ');
         $suppliers->user_id     = Auth::user()->id;
-        $suppliers->user_handle = Auth::user()->id;
         $suppliers->date_handle = jdate()->format('Ymd ');
 
         if ($request->file('image') != null) {

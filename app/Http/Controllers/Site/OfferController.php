@@ -32,7 +32,7 @@ class OfferController extends Controller
         $menus                  = Menu::whereStatus(4)->get();
         $suppliers              = Supplier::whereStatus(4)->get();
         $carbrands              = Car_brand::all();
-        $countState         = null;
+        $countState             = null;
         $products               = Product::whereStatus(4)->get();
         $brands                 = Brand::whereStatus(4)->get();
         $productgroups          = Product_group::all();
@@ -132,6 +132,7 @@ class OfferController extends Controller
         $offers->slug               = 'OFFER-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
         $offers->status             = '1';
         $offers->user_id            = Auth::user()->id;
+
 
         if ($request->file('image1') != null) {
             $file = $request->file('image1');
@@ -251,7 +252,6 @@ class OfferController extends Controller
         $offer->supplier_id        = $request->input('supplier_id');
         $offer->permanent_supplier = $request->input('permanent_supplier');
         $offer->status             = '1';
-        $offer->user_id            = Auth::user()->id;
 
         if ($request->file('image1') != null) {
             $file = $request->file('image1');

@@ -198,6 +198,7 @@ class TechnicalunitController extends Controller
         $technical_unit->website        = $request->input('website');
         $technical_unit->address        = $request->input('address');
         $technical_unit->description    = $request->input('description');
+        $technical_unit->autokala       = $request->input('autokala');
         $technical_unit->date           = jdate()->format('Ymd ');
         $technical_unit->date_handle    = jdate()->format('Ymd ');
         $technical_unit->user_id       = $request->input('user_id');

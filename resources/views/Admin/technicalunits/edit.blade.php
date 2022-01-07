@@ -129,7 +129,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخاب استان</p>
-                                                    <select name="state_id" class="form-control select-lg select2" id="state_id">
+                                                    <select name="state_id" class="form-control select-lg select2">
                                                         <option value="">انتخاب استان</option>
                                                         @foreach($states as $state)
                                                             <option value="{{$state->id}}" {{$state->id == $Technical_unit->state_id ? 'selected' : ''}}>{{$state->title}}</option>
@@ -146,7 +146,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">کاربر واحد خدمات فنی</p>
-                                                    <select name="user_id" class="form-control select-lg select2" id="state_id">
+                                                    <select name="user_id" class="form-control select-lg select2" >
                                                         <option value="">انتخاب کاربر</option>
                                                         @foreach($users as $user)
                                                             <option value="{{$user->id}}" {{$user->id == $Technical_unit->user_id ? 'selected' : ''}}>{{$user->name}} - {{$user->phone}}</option>
@@ -170,6 +170,15 @@
                                                 <div class="form-group">
                                                     <p class="mg-b-10">واتس اپ</p>
                                                     <input type="text" name="whatsapp" data-required="1" value="{{$Technical_unit->whatsapp}}"  class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">نشان اتوکالا</p>
+                                                    <select name="autokala" class="form-control select-lg select2">
+                                                        <option value="">انتخاب نشان اتوکالا</option>
+                                                        <option value="1">نشان طلایی اتوکالا</option>
+                                                        <option value="2">نشان نقره ای اتوکالا</option>
+                                                        <option value="3">نشان برنزی اتوکالا</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">

@@ -187,7 +187,6 @@ class ProfilebusinessController extends Controller
         $suppliers->description = $request->input('description');
         $suppliers->date        = jdate()->format('Ymd ');
         $suppliers->user_id     = Auth::user()->id;
-        $suppliers->user_handle = Auth::user()->id;
         $suppliers->date_handle = jdate()->format('Ymd ');
 
         if ($request->file('image') != null) {
@@ -272,7 +271,6 @@ class ProfilebusinessController extends Controller
         $technical_units->date          = jdate()->format('Ymd ');
         $technical_units->date_handle   = jdate()->format('Ymd ');
         $technical_units->user_id       = Auth::user()->id;
-        $technical_units->user_handle   = Auth::user()->name;
 
         if ($request->file('image') != null) {
             $file = $request->file('image');
@@ -329,7 +327,6 @@ class ProfilebusinessController extends Controller
         $technical_unit->date           = jdate()->format('Ymd ');
         $technical_unit->date_handle    = jdate()->format('Ymd ');
         $technical_unit->user_id        = Auth::user()->id;
-        $technical_unit->user_handle    = Auth::user()->name;
 
         if ($request->file('image') != null) {
             $file = $request->file('image');
@@ -392,7 +389,6 @@ class ProfilebusinessController extends Controller
         $supplier->description  = $request->input('description');
         $supplier->date         = jdate()->format('Ymd ');
         $supplier->user_id      = Auth::user()->id;
-        $supplier->user_handle  = Auth::user()->id;
         $supplier->date_handle  = jdate()->format('Ymd ');
 
         if ($request->file('image') != null) {
@@ -422,7 +418,6 @@ class ProfilebusinessController extends Controller
                     'date'          => jdate()->format('Ymd '),
                     'date_handle'   => jdate()->format('Ymd '),
                     'user_id'       => Auth::user()->id,
-                    'user_handle'   => Auth::user()->id,
                     'car_model_id'  => $request->car_model_id[$i]
                 ];
             }
@@ -439,7 +434,6 @@ class ProfilebusinessController extends Controller
             $cartechnicalgroups->date               = jdate()->format('Ymd ');
             $cartechnicalgroups->date_handle        = jdate()->format('Ymd ');
             $cartechnicalgroups->user_id            = Auth::user()->id;
-            $cartechnicalgroups->user_handle        = Auth::user()->id;
 
             $cartechnicalgroups->save();
 
@@ -460,7 +454,6 @@ class ProfilebusinessController extends Controller
                     'date'          => jdate()->format('Ymd '),
                     'date_handle'   => jdate()->format('Ymd '),
                     'user_id'       => Auth::user()->id,
-                    'user_handle'   => Auth::user()->id,
                     'car_model_id'  => $request->car_model_id[$i]
                 ];
             }
@@ -477,7 +470,6 @@ class ProfilebusinessController extends Controller
             $cartechnicalgroups->date = jdate()->format('Ymd ');
             $cartechnicalgroups->date_handle = jdate()->format('Ymd ');
             $cartechnicalgroups->user_id = Auth::user()->id;
-            $cartechnicalgroups->user_handle = Auth::user()->id;
 
             $cartechnicalgroups->save();
 
