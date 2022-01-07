@@ -8,6 +8,7 @@
 @endsection
 @section('main')
     <div class="container-main">
+        @include('sweet::alert')
         <div class="d-block">
             <section class="profile-home">
                 <div class="col-lg">

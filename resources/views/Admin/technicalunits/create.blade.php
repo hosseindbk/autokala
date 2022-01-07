@@ -62,7 +62,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <p class="mg-b-10">کاربر واحد خدمات فنی</p>
-                                                <select name="user_id" class="form-control select-lg select2" id="state_id">
+                                                <select name="user_id" class="form-control select2">
                                                     <option value="">انتخاب کاربر</option>
                                                     @foreach($users as $user)
                                                         <option value="{{$user->id}}" {{$user->id == Auth::user()->id ? 'selected' : ''}}>{{$user->name}} - {{$user->phone}}</option>
@@ -115,10 +115,22 @@
                                                 <input type="text" name="whatsapp" data-required="1" placeholder="شماره واتس اپ را وارد کنید" class="form-control" />
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <p class="mg-b-10">تصویر اصلی واحد خدمات فنی</p>
                                                 <input type="file" name="image" class="dropify" data-height="200">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">تصویر دوم واحد خدمات فنی</p>
+                                                <input type="file" name="image2" class="dropify" data-height="200">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">تصویر سوم واحد خدمات فنی</p>
+                                                <input type="file" name="image3" class="dropify" data-height="200">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

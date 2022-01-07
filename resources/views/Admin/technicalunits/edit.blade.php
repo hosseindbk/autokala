@@ -172,10 +172,28 @@
                                                     <input type="text" name="whatsapp" data-required="1" value="{{$Technical_unit->whatsapp}}"  class="form-control" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تصویر اصلی واحد خدمات فنی</p>
                                                     <input type="file" name="image" class="dropify" data-height="200">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">تصویر دوم واحد خدمات فنی</p>
+                                                    <input type="file" name="image2" class="dropify" data-height="200">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">تصویر سوم واحد خدمات فنی</p>
+                                                    <input type="file" name="image3" class="dropify" data-height="200">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">ادرس</p>
+                                                    <textarea name="address" id="" cols="30" data-required="1" rows="5" class="form-control" >{{$Technical_unit->address}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -253,7 +271,6 @@
                                             <th class="wd-10p"> گروه کالا </th>
                                             <th class="wd-10p"> برند خودرو </th>
                                             <th class="wd-10p"> مدل خودرو </th>
-                                            <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> حذف </th>
                                         </tr>
                                         </thead>
@@ -284,25 +301,6 @@
                                                     @endif
                                                 @endforeach
                                                     </td>
-                                                <td>
-                                                    @foreach($statuses as $status)
-                                                        @if($status->id == $Car_technical_group->status)
-                                                            @if($status->id == 1)
-                                                                <button class="btn ripple btn-warning">{{$status->title}}</button>
-                                                            @elseif($status->id == 2)
-                                                                <button class="btn ripple btn-primary">{{$status->title}}</button>
-                                                            @elseif($status->id == 3)
-                                                                <button class="btn ripple btn-info">{{$status->title}}</button>
-                                                            @elseif($status->id == 4)
-                                                                <button class="btn ripple btn-success">{{$status->title}}</button>
-                                                            @elseif($status->id == 5)
-                                                                <button class="btn ripple btn-light">{{$status->title}}</button>
-                                                            @elseif($status->id == 6)
-                                                                <button class="btn ripple btn-danger">{{$status->title}}</button>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
-                                                </td>
                                                 <td>
                                                     <form action="{{ route('cartechnichalgroups.destroy', $Car_technical_group->id) }}" method="post">
                                                         {{ method_field('delete') }}

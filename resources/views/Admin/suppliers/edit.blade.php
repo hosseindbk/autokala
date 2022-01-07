@@ -213,10 +213,22 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <p class="mg-b-10">تصویر اصلی تامین کننده</p>
+                                                    <p class="mg-b-10">تصویر اصلی فروشگاه</p>
                                                     <input type="file" name="image" class="dropify" data-height="200">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">تصویر دوم فروشگاه</p>
+                                                    <input type="file" name="image2" class="dropify" data-height="200">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">تصویر سوم فروشگاه</p>
+                                                    <input type="file" name="image3" class="dropify" data-height="200">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -300,7 +312,6 @@
                                             <th class="wd-10p"> گروه کالا </th>
                                             <th class="wd-10p"> برند خودرو </th>
                                             <th class="wd-10p"> مدل خودرو </th>
-                                            <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> حذف </th>
                                         </tr>
                                         </thead>
@@ -328,26 +339,6 @@
                                                     @foreach($carmodels as $Car_model)
                                                         @if($Supplier_product_group->car_model_id == $Car_model->id)
                                                             {{$Car_model->title_fa}}
-                                                        @endif
-                                                    @endforeach
-                                                </td>
-
-                                                <td>
-                                                    @foreach($statuses as $status)
-                                                        @if($status->id == $Supplier_product_group->status)
-                                                            @if($status->id == 1)
-                                                                <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
-                                                            @elseif($status->id == 2)
-                                                                <button class="btn ripple btn-outline-primary">{{$status->title}}</button>
-                                                            @elseif($status->id == 3)
-                                                                <button class="btn ripple btn-outline-info">{{$status->title}}</button>
-                                                            @elseif($status->id == 4)
-                                                                <button class="btn ripple btn-outline-success">{{$status->title}}</button>
-                                                            @elseif($status->id == 5)
-                                                                <button class="btn ripple btn-outline-light">{{$status->title}}</button>
-                                                            @elseif($status->id == 6)
-                                                                <button class="btn ripple btn-outline-danger">{{$status->title}}</button>
-                                                            @endif
                                                         @endif
                                                     @endforeach
                                                 </td>
@@ -408,7 +399,6 @@
                                         <tr>
                                             <th class="wd-10p"> ردیف </th>
                                             <th class="wd-10p"> برند قطعات </th>
-                                            <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> حذف </th>
                                         </tr>
                                         </thead>
@@ -424,25 +414,6 @@
                                                         <td>{{$Brand->title_fa}}</td>
                                                     @endif
                                                 @endforeach
-                                                <td>
-                                                    @foreach($statuses as $status)
-                                                        @if($status->id == $Representative->status)
-                                                            @if($status->id == 1)
-                                                                <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
-                                                            @elseif($status->id == 2)
-                                                                <button class="btn ripple btn-outline-primary">{{$status->title}}</button>
-                                                            @elseif($status->id == 3)
-                                                                <button class="btn ripple btn-outline-info">{{$status->title}}</button>
-                                                            @elseif($status->id == 4)
-                                                                <button class="btn ripple btn-outline-success">{{$status->title}}</button>
-                                                            @elseif($status->id == 5)
-                                                                <button class="btn ripple btn-outline-light">{{$status->title}}</button>
-                                                            @elseif($status->id == 6)
-                                                                <button class="btn ripple btn-outline-danger">{{$status->title}}</button>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
-                                                </td>
                                                 <td>
                                                     <form action="{{ route('representatives.destroy' , $Representative->id) }}" method="post">
                                                         {{ method_field('delete') }}

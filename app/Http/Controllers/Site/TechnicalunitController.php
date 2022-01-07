@@ -25,7 +25,7 @@ class TechnicalunitController extends Controller
 
         $menus              = Menu::whereStatus(4)->get();
         $countState         = null;
-        $totaltechnical     = Technical_unit::whereStatus(4)->count();
+        $technicals         = Technical_unit::select('id')->whereStatus(4)->get();
         $newtechnicals      = Technical_unit::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clicktechnicals    = Technical_unit::whereStatus(4)->orderBy('click')->paginate(16);
         $goodtechnicals     = Technical_unit::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
@@ -40,7 +40,7 @@ class TechnicalunitController extends Controller
 
         return view('Site.technicalunit')
             ->with(compact('countState'))
-            ->with(compact('totaltechnical'))
+            ->with(compact('technicals'))
             ->with(compact('filter'))
             ->with(compact('states'))
             ->with(compact('cities'))
@@ -64,7 +64,7 @@ class TechnicalunitController extends Controller
         }
         $menus              = Menu::whereStatus(4)->get();
 
-        $totaltechnical     = Technical_unit::state()->whereStatus(4)->count();
+        $technicals         = Technical_unit::state()->select('id')->whereStatus(4)->get();
         $newtechnicals      = Technical_unit::state()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clicktechnicals    = Technical_unit::state()->whereStatus(4)->orderBy('click')->paginate(16);
         $goodtechnicals     = Technical_unit::state()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
@@ -79,7 +79,7 @@ class TechnicalunitController extends Controller
 
         return view('Site.technicalunit')
             ->with(compact('countState'))
-            ->with(compact('totaltechnical'))
+            ->with(compact('technicals'))
             ->with(compact('filter'))
             ->with(compact('states'))
             ->with(compact('cities'))
@@ -96,7 +96,7 @@ class TechnicalunitController extends Controller
 
     public function subtechnical($slug){
         $menus                  = Menu::whereStatus(4)->get();
-        $countState         = null;
+        $countState             = null;
         $technicalunits         = Technical_unit::whereSlug($slug)->get();
         $technicalunit_id       = Technical_unit::whereSlug($slug)->pluck('id');
         $cartechnicalgroups     = Car_technical_group::whereTechnical_id($technicalunit_id)->get();
@@ -157,6 +157,7 @@ class TechnicalunitController extends Controller
         $countState         = null;
 
         $menus              = Menu::whereStatus(4)->get();
+        $technicals         = Technical_unit::filter()->select('id')->whereStatus(4)->get();
         $newtechnicals      = Technical_unit::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clicktechnicals    = Technical_unit::filter()->whereStatus(4)->orderBy('click')->paginate(16);
         $goodtechnicals     = Technical_unit::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
@@ -171,6 +172,7 @@ class TechnicalunitController extends Controller
         $filter             =   1;
 
         return view('Site.technicalunit')
+            ->with(compact('technicals'))
             ->with(compact('countState'))
             ->with(compact('city_id'))
             ->with(compact('carmodel_id'))
@@ -188,8 +190,6 @@ class TechnicalunitController extends Controller
             ->with(compact('cities'))
             ->with(compact('menus'))
             ->with(compact('newtechnicals'));
-
-
     }
 
     public function modeloption(Request $request){

@@ -126,6 +126,24 @@ class SupplierController extends Controller
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
         }
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $suppliers->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $suppliers->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
 
         $suppliers->save();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
@@ -289,7 +307,24 @@ class SupplierController extends Controller
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
         }
-
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $supplier->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $supplier->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
         $supplier->update();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return Redirect::back();

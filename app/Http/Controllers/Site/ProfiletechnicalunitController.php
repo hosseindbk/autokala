@@ -20,8 +20,8 @@ use Intervention\Image\Facades\Image;
 
 class ProfiletechnicalunitController extends Controller
 {
-    public  function  index(){
-        $states = State::all();
+    public function index(){
+        $states         = State::all();
         $menus          = Menu::whereStatus(1)->get();
         return view('Site.profiletechnicalunit')
             ->with(compact('menus'))

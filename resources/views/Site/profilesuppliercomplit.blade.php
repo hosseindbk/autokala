@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('main')
+    @include('sweet::alert')
 <div class="container-main">
     <div class="d-block">
         <section class="profile-home">

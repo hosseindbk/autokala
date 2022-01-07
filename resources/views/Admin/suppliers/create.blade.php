@@ -124,10 +124,22 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <p class="mg-b-10">تصویر اصلی تامین کننده</p>
                                                 <input type="file" name="image" class="dropify" data-height="200">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">تصویر دوم تامین کننده</p>
+                                                <input type="file" name="image2" class="dropify" data-height="200">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">تصویر سوم تامین کننده</p>
+                                                <input type="file" name="image3" class="dropify" data-height="200">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

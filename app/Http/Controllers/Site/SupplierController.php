@@ -24,6 +24,7 @@ class SupplierController extends Controller
     public function index(){
         $menus              = Menu::whereStatus(4)->get();
         $countState         = null;
+        $suppliers          = Supplier::select('id')->whereStatus(4)->get();
         $newsuppliers       = Supplier::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clicksuppliers     = Supplier::whereStatus(4)->orderBy('click')->paginate(16);
         $goodsuppliers      = Supplier::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
@@ -31,14 +32,15 @@ class SupplierController extends Controller
         $productgroups      = Product_group::whereStatus(4)->get();
         $carbrands          = Car_brand::whereStatus(4)->get();
         $brands             = Brand::whereStatus(4)->get();
-        $carmodels             = Car_model::whereStatus(4)->get();
-        $states                 = State::all();
-        $cities                 = City::all();
+        $carmodels          = Car_model::whereStatus(4)->get();
+        $states             = State::all();
+        $cities             = City::all();
         $filter             = 0;
 
 
         return view('Site.supplier')
             ->with(compact('countState'))
+            ->with(compact('suppliers'))
             ->with(compact('filter'))
             ->with(compact('states'))
             ->with(compact('carmodels'))
@@ -61,6 +63,7 @@ class SupplierController extends Controller
         }else{
             $countState             = State::whereIn('id' , $id)->get();
         }
+        $suppliers          = Supplier::state()->select('id')->whereStatus(4)->get();
         $newsuppliers       = Supplier::state()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clicksuppliers     = Supplier::state()->whereStatus(4)->orderBy('click')->paginate(16);
         $goodsuppliers      = Supplier::state()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
@@ -68,14 +71,15 @@ class SupplierController extends Controller
         $productgroups      = Product_group::whereStatus(4)->get();
         $carbrands          = Car_brand::whereStatus(4)->get();
         $brands             = Brand::whereStatus(4)->get();
-        $carmodels             = Car_model::whereStatus(4)->get();
-        $states                 = State::all();
-        $cities                 = City::all();
+        $carmodels          = Car_model::whereStatus(4)->get();
+        $states             = State::all();
+        $cities             = City::all();
         $filter             = 0;
 
 
         return view('Site.supplier')
             ->with(compact('countState'))
+            ->with(compact('suppliers'))
             ->with(compact('filter'))
             ->with(compact('states'))
             ->with(compact('carmodels'))
@@ -109,15 +113,15 @@ class SupplierController extends Controller
         $countState         = null;
 
         $menus              = Menu::whereStatus(4)->get();
-        $count              = Supplier::filter()->whereStatus(4)->count();
+        $suppliers          = Supplier::filter()->select('id')->whereStatus(4)->get();
         $newsuppliers       = Supplier::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clicksuppliers     = Supplier::filter()->whereStatus(4)->orderBy('click')->paginate(16);
         $goodsuppliers      = Supplier::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $oldsuppliers       = Supplier::filter()->whereStatus(4)->orderBy('id')->paginate(16);
-        $productgroups      = Product_group::whereStatus(1)->get();
-        $carbrands          = Car_brand::whereStatus(1)->get();
-        $brands             = Brand::whereStatus(1)->get();
-        $carmodels          = Car_model::whereStatus(1)->get();
+        $productgroups      = Product_group::whereStatus(4)->get();
+        $carbrands          = Car_brand::whereStatus(4)->get();
+        $brands             = Brand::whereStatus(4)->get();
+        $carmodels          = Car_model::whereStatus(4)->get();
          $states            = State::all();
         $cities             = City::all();
         $filter             = 1;
@@ -127,7 +131,7 @@ class SupplierController extends Controller
             ->with(compact('carmodel_id'))
             ->with(compact('city_id'))
             ->with(compact('productgroup_id'))
-            ->with(compact('count'))
+            ->with(compact('suppliers'))
             ->with(compact('filter'))
             ->with(compact('carmodels'))
             ->with(compact('states'))
@@ -150,7 +154,7 @@ class SupplierController extends Controller
         $carmodels              = Car_model::all();
         $cities                 = City::all();
         $states                 = State::all();
-        $countState         = null;
+        $countState             = null;
         $productgroups          = Product_group::all();
         $suppliers              = Supplier::whereSlug($slug)->get();
         $supplier_id            = Supplier::whereSlug($slug)->pluck('id');

@@ -135,7 +135,7 @@
                                                         href="#headingOne" role="button" aria-expanded="false"
                                                         aria-controls="headingOne">
                                                     دسته بندی قطعات خودرو
-                                                    @if($filter == 1)({{$count}} کالا )@endif
+                                                    {{$technicals->count()}}
                                                     <i class="mdi mdi-chevron-down"></i>
                                                 </button>
                                             </h2>
@@ -266,11 +266,7 @@
                         <div class="shop-archive-content mt-3 d-block">
                             <div class="archive-header">
                                 <div class="sort-tabs mt-0 d-inline-block pr">
-                                    @if($filter == 1)
-                                        <h4>مرتب ‌سازی {{$count}} کالا بر اساس :</h4>
-                                    @else
-                                        <h4>مرتب ‌سازی {{$totaltechnical}} کالا بر اساس :</h4>
-                                    @endif
+                                        <h4> مرتب ‌سازی {{$technicals->count()}}  تعمیرگاه بر اساس  : </h4>
                                 </div>
                                 <div class="nav-sort-tabs-res">
                                     <ul class="nav sort-tabs-options" id="myTab" role="tablist">

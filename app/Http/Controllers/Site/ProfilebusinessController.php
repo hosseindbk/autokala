@@ -36,13 +36,13 @@ class ProfilebusinessController extends Controller
         $carmodels              = Car_model::all();
         $supplierproductgroups  = Supplier_product_group::all();
         $productgroups          = Product_group::whereStatus(4)->get();
-        $cartechnicalgroups          = Car_technical_group::whereStatus(4)->get();
+        $cartechnicalgroups     = Car_technical_group::whereStatus(4)->whereUser_id(auth::user()->id)->get();
         $types                  = Type_user::all();
         $medias                 = Media::select('id' , 'image' , 'supplier_id' , 'technical_id')->whereStatus(1)->get();
         $suppliers              = Supplier::whereUser_id(auth::user()->id)->get();
         $technicalunits         = Technical_unit::whereUser_id(auth::user()->id)->get();
-        $supplierz = count($suppliers);
-        $technicalunitsz = count($technicalunits);
+        $supplierz              = count($suppliers);
+        $technicalunitsz        = count($technicalunits);
 
         if (auth::user()->type_id == 1) {
             if ($supplierz != null) {
@@ -418,7 +418,7 @@ class ProfilebusinessController extends Controller
                     'kala_group_id' => $request->input('product_group_id'),
                     'car_brand_id'  => $request->input('car_brand_id'),
                     'technical_id'  => $request->input('technical_id'),
-                    'status'        => '1',
+                    'status'        => '4',
                     'date'          => jdate()->format('Ymd '),
                     'date_handle'   => jdate()->format('Ymd '),
                     'user_id'       => Auth::user()->id,
@@ -433,13 +433,13 @@ class ProfilebusinessController extends Controller
 
             $cartechnicalgroups = new Car_technical_group();
 
-            $cartechnicalgroups->kala_group_id = $request->input('product_group_id');
-            $cartechnicalgroups->car_brand_id = $request->input('car_brand_id');
-            $cartechnicalgroups->technical_id = $request->input('technical_id');
-            $cartechnicalgroups->date = jdate()->format('Ymd ');
-            $cartechnicalgroups->date_handle = jdate()->format('Ymd ');
-            $cartechnicalgroups->user_id = Auth::user()->id;
-            $cartechnicalgroups->user_handle = Auth::user()->id;
+            $cartechnicalgroups->kala_group_id      = $request->input('product_group_id');
+            $cartechnicalgroups->car_brand_id       = $request->input('car_brand_id');
+            $cartechnicalgroups->technical_id       = $request->input('technical_id');
+            $cartechnicalgroups->date               = jdate()->format('Ymd ');
+            $cartechnicalgroups->date_handle        = jdate()->format('Ymd ');
+            $cartechnicalgroups->user_id            = Auth::user()->id;
+            $cartechnicalgroups->user_handle        = Auth::user()->id;
 
             $cartechnicalgroups->save();
 
@@ -456,7 +456,7 @@ class ProfilebusinessController extends Controller
                     'kala_group_id' => $request->input('product_group_id'),
                     'car_brand_id'  => $request->input('car_brand_id'),
                     'supplier_id'  => $request->input('supplier_id'),
-                    'status'        => '1',
+                    'status'        => '4',
                     'date'          => jdate()->format('Ymd '),
                     'date_handle'   => jdate()->format('Ymd '),
                     'user_id'       => Auth::user()->id,

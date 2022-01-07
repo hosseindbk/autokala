@@ -144,10 +144,24 @@
                                                         <div id="gallery_01f" style="width:420px;float:right;">
                                                     </a>
                                                     <ul class="gallery-items owl-carousel owl-theme" id="gallery-slider">
-                                                        <li class="item">
-                                                            <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($technical_unit->image)}}" data-zoom-image="{{asset($technical_unit->image)}}">
-                                                                <img src="{{asset($technical_unit->image)}}" width="100" /></a>
-                                                        </li>
+                                                        @if($technical_unit->image)
+                                                            <li class="item">
+                                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($technical_unit->image)}}" data-zoom-image="{{asset($technical_unit->image)}}">
+                                                                    <img src="{{asset($technical_unit->image)}}" width="100" /></a>
+                                                            </li>
+                                                        @endif
+                                                        @if($technical_unit->image2)
+                                                            <li class="item">
+                                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($technical_unit->image2)}}" data-zoom-image="{{asset($technical_unit->image2)}}">
+                                                                    <img src="{{asset($technical_unit->image2)}}" width="100" /></a>
+                                                            </li>
+                                                        @endif
+                                                        @if($technical_unit->image3)
+                                                            <li class="item">
+                                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($technical_unit->image3)}}" data-zoom-image="{{asset($technical_unit->image3)}}">
+                                                                    <img src="{{asset($technical_unit->image3)}}" width="100" /></a>
+                                                            </li>
+                                                        @endif
                                                         @foreach($medias as $media)
                                                             <li class="item">
                                                                 <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($media->image)}}" data-zoom-image="{{asset($media->image)}}">
