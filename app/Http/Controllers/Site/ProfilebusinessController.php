@@ -44,7 +44,7 @@ class ProfilebusinessController extends Controller
         $supplierz              = count($suppliers);
         $technicalunitsz        = count($technicalunits);
 
-        if (auth::user()->type_id == 1) {
+        if (auth::user()->type_id == 1 || auth::user()->type_id == 4) {
             if ($supplierz != null) {
                 return view('Site.profilesupplieredit')
                     ->with(compact('menus'))
@@ -67,7 +67,7 @@ class ProfilebusinessController extends Controller
                     ->with(compact('cities'))
                     ->with(compact('states'));
             }
-        }elseif(auth::user()->type_id == 3) {
+        }elseif(auth::user()->type_id == 3 || auth::user()->type_id == 4) {
             if ($technicalunitsz != null){
                 return view('Site.profiletechnicalunitedit')
                     ->with(compact('cartechnicalgroups'))
@@ -146,81 +146,95 @@ class ProfilebusinessController extends Controller
 
     public function storesupplier(supplierrequest $request)
     {
+        $usercheck = Supplier::whereUser_id(Auth::user()->id)->get();
 
-        $suppliers = new Supplier();
+        if (trim($usercheck) != '[]') {
+            alert()->error('عملیات ناموفق', 'شما قبلا فروشگاه ثبت نموده اید');
+            return Redirect::back();
+        } else {
 
-        if($request->input('manufacturer') == 'on'){
-            $suppliers->manufacturer = 1;
-        }else{
-            $suppliers->manufacturer = 0;
-        }
-        if($request->input('importer') == 'on'){
-            $suppliers->importer = 1;
-        }else{
-            $suppliers->importer = 0;
-        }
-        if($request->input('whole_seller') == 'on'){
-            $suppliers->whole_seller = 1;
-        }else{
-            $suppliers->whole_seller = 0;
-        }
-        if($request->input('retail_seller') == 'on'){
-            $suppliers->retail_seller = 1;
-        }else{
-            $suppliers->retail_seller = 0;
-        }
-        $suppliers->title       = $request->input('title');
-        $suppliers->manager     = $request->input('manager');
-        $suppliers->phone       = $request->input('phone');
-        $suppliers->mobile      = $request->input('mobile');
-        $suppliers->whatsapp    = $request->input('whatsapp');
-        $suppliers->email       = $request->input('email');
-        $suppliers->website     = $request->input('website');
-        $suppliers->state_id    = $request->input('state_id');
-        $suppliers->city_id     = $request->input('city_id');
-        $suppliers->address     = $request->input('address');
-        $suppliers->description = $request->input('description');
-        $suppliers->title       = $request->input('title');
-        $suppliers->title       = $request->input('title');
-        $suppliers->status      = '1';
-        $suppliers->slug        = 'SU-'.rand(1,999).chr(rand(97,122)).rand(1,999).chr(rand(97,122)).rand(1,999);
-        $suppliers->description = $request->input('description');
-        $suppliers->date        = jdate()->format('Ymd ');
-        $suppliers->user_id     = Auth::user()->id;
-        $suppliers->date_handle = jdate()->format('Ymd ');
+            $suppliers = new Supplier();
 
-        if ($request->file('image') != null) {
-            $file = $request->file('image');
-            $img = Image::make($file);
-            $imagePath ="images/suppliers";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
-            $suppliers->image = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
-        }
-        if ($request->file('image2') != null) {
-            $file = $request->file('image2');
-            $img = Image::make($file);
-            $imagePath ="images/suppliers";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
-            $suppliers->image2 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
-        }
-        if ($request->file('image3') != null) {
-            $file = $request->file('image3');
-            $img = Image::make($file);
-            $imagePath ="images/suppliers";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
-            $suppliers->image3 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
-        }
+            if ($request->input('manufacturer') == 'on') {
+                $suppliers->manufacturer = 1;
+            } else {
+                $suppliers->manufacturer = 0;
+            }
+            if ($request->input('importer') == 'on') {
+                $suppliers->importer = 1;
+            } else {
+                $suppliers->importer = 0;
+            }
+            if ($request->input('whole_seller') == 'on') {
+                $suppliers->whole_seller = 1;
+            } else {
+                $suppliers->whole_seller = 0;
+            }
+            if ($request->input('retail_seller') == 'on') {
+                $suppliers->retail_seller = 1;
+            } else {
+                $suppliers->retail_seller = 0;
+            }
+            $suppliers->title = $request->input('title');
+            $suppliers->manager = $request->input('manager');
+            $suppliers->phone = $request->input('phone');
+            $suppliers->mobile = $request->input('mobile');
+            $suppliers->whatsapp = $request->input('whatsapp');
+            $suppliers->email = $request->input('email');
+            $suppliers->website = $request->input('website');
+            $suppliers->state_id = $request->input('state_id');
+            $suppliers->city_id = $request->input('city_id');
+            $suppliers->address = $request->input('address');
+            $suppliers->description = $request->input('description');
+            $suppliers->title = $request->input('title');
+            $suppliers->title = $request->input('title');
+            $suppliers->status = '1';
+            $suppliers->slug = 'SU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
+            $suppliers->description = $request->input('description');
+            $suppliers->date = jdate()->format('Ymd ');
+            $suppliers->user_id = Auth::user()->id;
+            $suppliers->date_handle = jdate()->format('Ymd ');
 
-        $suppliers->save();
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
-        return Redirect::back();
+            if ($request->file('image') != null) {
+                $file = $request->file('image');
+                $img = Image::make($file);
+                $imagePath = "images/suppliers";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $suppliers->image = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            if ($request->file('image2') != null) {
+                $file = $request->file('image2');
+                $img = Image::make($file);
+                $imagePath = "images/suppliers";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $suppliers->image2 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            if ($request->file('image3') != null) {
+                $file = $request->file('image3');
+                $img = Image::make($file);
+                $imagePath = "images/suppliers";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $suppliers->image3 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            $slug = $suppliers->slug;
 
+            $suppliers->save();
+
+            alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+
+            $supplier_id = Supplier::whereSlug($slug)->get();
+            foreach ($supplier_id as $Supplier) {
+
+            }
+            return redirect(route('prosupplieredit', $Supplier->id));
+
+        }
     }
     public function imgupload(mediarequest $request)
     {
@@ -250,60 +264,75 @@ class ProfilebusinessController extends Controller
     }
     public function storetechnical(technicalrequest $request)
     {
-        $technical_units = new Technical_unit();
+        $usercheck = Technical_unit::whereUser_id(Auth::user()->id)->get();
 
-        $technical_units->title         = $request->input('title');
-        $technical_units->manager       = $request->input('manager');
-        $technical_units->state_id      = $request->input('state_id');
-        $technical_units->city_id       = $request->input('city_id');
-        $technical_units->phone         = $request->input('phone');
-        $technical_units->phone2        = $request->input('phone2');
-        $technical_units->phone3        = $request->input('phone3');
-        $technical_units->mobile        = $request->input('mobile');
-        $technical_units->mobile2       = $request->input('mobile2');
-        $technical_units->whatsapp      = $request->input('whatsapp');
-        $technical_units->status        = '1';
-        $technical_units->slug          = 'TU-'.rand(1,999).chr(rand(97,122)).rand(1,999).chr(rand(97,122)).rand(1,999);
-        $technical_units->email         = $request->input('email');
-        $technical_units->website       = $request->input('website');
-        $technical_units->address       = $request->input('address');
-        $technical_units->description   = $request->input('description');
-        $technical_units->date          = jdate()->format('Ymd ');
-        $technical_units->date_handle   = jdate()->format('Ymd ');
-        $technical_units->user_id       = Auth::user()->id;
+        if (trim($usercheck) != '[]') {
+            alert()->error('عملیات ناموفق', 'شما قبلا تعمیرگاه ثبت نموده اید');
+            return Redirect::back();
+        } else {
 
-        if ($request->file('image') != null) {
-            $file = $request->file('image');
-            $img = Image::make($file);
-            $imagePath ="images/technicals";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
-            $technical_units->image = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
+            $technical_units = new Technical_unit();
+
+            $technical_units->title = $request->input('title');
+            $technical_units->manager = $request->input('manager');
+            $technical_units->state_id = $request->input('state_id');
+            $technical_units->city_id = $request->input('city_id');
+            $technical_units->phone = $request->input('phone');
+            $technical_units->phone2 = $request->input('phone2');
+            $technical_units->phone3 = $request->input('phone3');
+            $technical_units->mobile = $request->input('mobile');
+            $technical_units->mobile2 = $request->input('mobile2');
+            $technical_units->whatsapp = $request->input('whatsapp');
+            $technical_units->status = '1';
+            $technical_units->slug = 'TU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
+            $technical_units->email = $request->input('email');
+            $technical_units->website = $request->input('website');
+            $technical_units->address = $request->input('address');
+            $technical_units->description = $request->input('description');
+            $technical_units->date = jdate()->format('Ymd ');
+            $technical_units->date_handle = jdate()->format('Ymd ');
+            $technical_units->user_id = Auth::user()->id;
+
+            if ($request->file('image') != null) {
+                $file = $request->file('image');
+                $img = Image::make($file);
+                $imagePath = "images/technicals";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $technical_units->image = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            if ($request->file('image2') != null) {
+                $file = $request->file('image2');
+                $img = Image::make($file);
+                $imagePath = "images/technicals";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $technical_units->image2 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            if ($request->file('image3') != null) {
+                $file = $request->file('image3');
+                $img = Image::make($file);
+                $imagePath = "images/technicals";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $technical_units->image3 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+
+            $slug = $technical_units->slug;
+
+            $technical_units->save();
+            alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+
+            $technical_id = Technical_unit::whereSlug($slug)->get();
+            foreach ($technical_id as $Technical_unit) {
+
+            }
+            return redirect(route('protechnicaledit', $Technical_unit->id));
         }
-        if ($request->file('image2') != null) {
-            $file = $request->file('image2');
-            $img = Image::make($file);
-            $imagePath ="images/technicals";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
-            $technical_units->image2 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
-        }
-        if ($request->file('image3') != null) {
-            $file = $request->file('image3');
-            $img = Image::make($file);
-            $imagePath ="images/technicals";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
-            $technical_units->image3 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
-        }
-        $technical_units->save();
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
-        return Redirect::back();
     }
-
 
     public function updatetechnical(Request $request,$id)
     {

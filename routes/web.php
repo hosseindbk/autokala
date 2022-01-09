@@ -137,8 +137,8 @@ Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , fu
     Route::get('brand-create/edit/{id}'         , 'BrandController@brandedit')->name('brand-edit');
     Route::patch('brand-create/edit/{id}'       , 'BrandController@brandupdate')->name('brand-update');
     Route::delete('brand-create/{id}'           , 'BrandController@branddelete')->name('brand-delete');
-    Route::get('profile-technical-unit'         , 'ProfiletechnicalunitController@index' )->name('profiletechnicaledit');
-    Route::post('profiletechnicalstore'         , 'ProfilebusinessController@storetechnical' )->name('profiletechnicalstore');
+    //Route::get('profile-technical-unit'         , 'ProfiletechnicalunitController@index' )->name('profiletechnicaledit');
+    Route::get('profiletechnicalunitedit/{id}'    , 'ProfiletechnicalunitController@profiletechnicaledit' )->name('protechnicaledit');
     Route::post('profiletechnicalstore'         , 'ProfilebusinessController@storetechnical' )->name('profiletechnicalstore');
     Route::patch('profiletechnicaledit/{id}'    , 'ProfilebusinessController@updatetechnical' )->name('profiletechnicaledit');
     Route::post('profilesupplierstore'          , 'ProfilebusinessController@storesupplier' )->name('profilesupplierstore');
@@ -153,6 +153,7 @@ Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , fu
     Route::get('brand-variety/{id}'             , 'ProfilebrandvarityController@index' )->name('brand-variety');
     Route::post('brand-variety'                 , 'ProfilebrandvarityController@store' )->name('brand-variety-create');
     Route::get('profile-supplier'               , 'ProfilesupplierController@index' )->name('profilesupplieredit');
+    Route::get('profile-supplier/{id}'          , 'ProfilesupplierController@prosupplieredit' )->name('prosupplieredit');
     Route::get('profile-technical-unit'         , 'ProfiletechnicalunitController@index' );
     Route::get('profile-user'                   , 'ProfileuserController@index' );
     Route::patch('profile-user/usermap'         , 'ProfileuserController@usermapset')->name('usermap');

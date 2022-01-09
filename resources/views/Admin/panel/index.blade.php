@@ -135,17 +135,13 @@
                                                 <td class="text-primary">{{$supplier->manager}}</td>
                                                 <td class="text-primary">
                                                     @foreach($users as $user)
-                                                        @if($user->id == $technical_unit->user_id)
+                                                        @if($user->id == $supplier->user_id)
                                                             @if($user->type_id == 1)
-                                                                <a href="{{ route('siteusers.edit' , $user->id ) }}">
                                                                 <h6 class="text-success">کاربر فروشگاه</h6>
-                                                                </a>
                                                             @elseif($user->type_id == 3)
                                                                 <h6 class="text-warning">کاربر تعمیرگاه</h6>
                                                             @elseif($user->type_id == 4)
-                                                                <a href="{{ route('siteusers.edit' , $user->id ) }}">
                                                                     <h6 class="text-danger">کاربر عادی</h6>
-                                                                </a>
                                                             @endif
                                                         @endif
                                                     @endforeach
@@ -222,13 +218,9 @@
                                                         @if($user->type_id == 1)
                                                                 <h6 class="text-warning">کاربر فروشگاه</h6>
                                                             @elseif($user->type_id == 3)
-                                                                <a href="{{ route('siteusers.edit' , $user->id ) }}">
                                                                     <h6 class="text-success">کاربر تعمیرگاه</h6>
-                                                                </a>
                                                             @elseif($user->type_id == 4)
-                                                                <a href="{{ route('siteusers.edit' , $user->id ) }}">
                                                                     <h6 class="text-danger">کاربر عادی</h6>
-                                                                </a>
                                                             @endif
                                                         @endif
                                                     @endforeach

@@ -278,6 +278,14 @@ class SupplierController extends Controller
         if($request->input('retail_seller') == null) {
             $supplier->retail_seller = 0;
         }
+        if ($request->input('status_id') == 4) {
+
+            $user = User::findOrfail($request->input('user_id'));
+            if($user->type_id == 4) {
+                $user->type_id = 1;
+                $user->update();
+            }
+        }
         $supplier->title        = $request->input('title');
         $supplier->manager      = $request->input('manager');
         $supplier->phone        = $request->input('phone');

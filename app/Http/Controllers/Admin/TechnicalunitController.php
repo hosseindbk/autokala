@@ -182,6 +182,15 @@ class TechnicalunitController extends Controller
 
     public function update(technicalrequest $request,$id)
     {
+        if ($request->input('status_id') == 4) {
+
+            $user = User::findOrfail($request->input('user_id'));
+            if($user->type_id == 4) {
+                $user->type_id = 3;
+                $user->update();
+            }
+        }
+
         $technical_unit = Technical_unit::findOrfail($id);
         $technical_unit->title          = $request->input('title');
         $technical_unit->manager        = $request->input('manager');
@@ -201,9 +210,9 @@ class TechnicalunitController extends Controller
         $technical_unit->autokala       = $request->input('autokala');
         $technical_unit->date           = jdate()->format('Ymd ');
         $technical_unit->date_handle    = jdate()->format('Ymd ');
-        $technical_unit->user_id       = $request->input('user_id');
+        $technical_unit->user_id        = $request->input('user_id');
         $technical_unit->status         = $request->input('status_id');
-        $technical_unit->user_handle    = Auth::user()->name;
+        $technical_unit->user_handle    = Auth::user()->id;
 
         if ($request->file('image') != null) {
             $file = $request->file('image');

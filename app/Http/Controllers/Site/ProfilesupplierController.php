@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Site;
 
 use App\Car_brand;
 use App\Car_model;
+use App\Car_technical_group;
 use App\City;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\supplierrequest;
+use App\Media;
 use App\Menu;
 use App\Product_group;
 use App\State;
 use App\Supplier;
 use App\Supplier_product_group;
+use App\Technical_unit;
+use App\Type_user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -25,6 +29,30 @@ class ProfilesupplierController extends Controller
 
         return view('Site.profilesupplier')
             ->with(compact('menus'))
+            ->with(compact('states'));
+    }
+
+    public function prosupplieredit(){
+        $menus                  = Menu::whereStatus(4)->get();
+        $states                 = State::all();
+        $cities                 = city::all();
+        $carbrands              = Car_brand::all();
+        $carmodels              = Car_model::all();
+        $supplierproductgroups  = Supplier_product_group::all();
+        $productgroups          = Product_group::whereStatus(4)->get();
+        $medias                 = Media::select('id' , 'image' , 'supplier_id' , 'technical_id')->whereStatus(1)->get();
+        $suppliers              = Supplier::whereUser_id(auth::user()->id)->get();
+        $technicalunits         = Technical_unit::whereUser_id(auth::user()->id)->get();
+        return view('Site.profilesupplieredit')
+            ->with(compact('menus'))
+            ->with(compact('carbrands'))
+            ->with(compact('carmodels'))
+            ->with(compact('productgroups'))
+            ->with(compact('supplierproductgroups'))
+            ->with(compact('medias'))
+            ->with(compact('suppliers'))
+            ->with(compact('cities'))
+            ->with(compact('technicalunits'))
             ->with(compact('states'));
     }
     public function suppliercreate()

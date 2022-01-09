@@ -159,7 +159,7 @@
                                                             <p class="mg-b-10">انتخاب وضعیت نمایش</p>
                                                             <select name="status_id" class="form-control select-lg select2">
                                                                 @foreach($statuses as $status)
-                                                                    <option value="{{$status->id}}" {{$Product_brand_variety->status == $status->id ? 'selected' : ''}}>{{$status->title}}</option>
+                                                                    <option value="{{$status->id}}" {{$product->status == $status->id ? 'selected' : ''}}>{{$status->title}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>

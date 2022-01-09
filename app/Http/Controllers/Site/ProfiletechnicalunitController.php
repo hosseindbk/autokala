@@ -8,11 +8,14 @@ use App\Car_technical_group;
 use App\City;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\technicalrequest;
+use App\Media;
 use App\Menu;
 use App\Product_group;
 use App\State;
+use App\Supplier;
 use App\Supplier_product_group;
 use App\Technical_unit;
+use App\Type_user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -25,6 +28,33 @@ class ProfiletechnicalunitController extends Controller
         $menus          = Menu::whereStatus(1)->get();
         return view('Site.profiletechnicalunit')
             ->with(compact('menus'))
+            ->with(compact('states'));
+    }
+
+    public function profiletechnicaledit(){
+        $menus                  = Menu::whereStatus(4)->get();
+        $states                 = State::all();
+        $cities                 = city::all();
+        $carbrands              = Car_brand::all();
+        $carmodels              = Car_model::all();
+        $supplierproductgroups  = Supplier_product_group::all();
+        $productgroups          = Product_group::whereStatus(4)->get();
+        $cartechnicalgroups     = Car_technical_group::whereStatus(4)->whereUser_id(auth::user()->id)->get();
+        $medias                 = Media::select('id' , 'image' , 'supplier_id' , 'technical_id')->whereStatus(1)->get();
+        $suppliers              = Supplier::whereUser_id(auth::user()->id)->get();
+        $technicalunits         = Technical_unit::whereUser_id(auth::user()->id)->get();
+
+        return view('Site.profiletechnicalunitedit')
+            ->with(compact('cartechnicalgroups'))
+            ->with(compact('menus'))
+            ->with(compact('productgroups'))
+            ->with(compact('supplierproductgroups'))
+            ->with(compact('carbrands'))
+            ->with(compact('carmodels'))
+            ->with(compact('cities'))
+            ->with(compact('medias'))
+            ->with(compact('suppliers'))
+            ->with(compact('technicalunits'))
             ->with(compact('states'));
     }
     public function technicalcreate()
