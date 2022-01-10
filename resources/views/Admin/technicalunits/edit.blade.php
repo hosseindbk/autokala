@@ -48,8 +48,9 @@
                                             <p> ایمیل : {{$technical_unit->email}}</p>
                                             <p> وبسایت : {{$technical_unit->website}}</p>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
+                                        <div class="col-md-6" style="display: inline-flex">
+                                            <div class="col-4">
+                                            <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
                                                 <img src="{{asset($technical_unit->image)}}" class="img-responsive" style="padding: 20px;" alt="">
                                                 @if($technical_unit->image != null)
                                                     <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
@@ -64,6 +65,43 @@
                                                         </form>
                                                     </div>
                                                 @endif
+                                            </div>
+                                            </div>
+                                            <div class="col-4">
+                                            <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                <img src="{{asset($technical_unit->image2)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                @if($technical_unit->image2 != null)
+                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+{{--                                                        <form action="{{ route('updatetechimg', $technical_unit->id)}}" method="post">--}}
+{{--                                                            {{ method_field('patch') }}--}}
+{{--                                                            {{csrf_field()}}--}}
+{{--                                                            <div class="btn-group btn-group-xs">--}}
+{{--                                                                <button type="submit" class="btn btn-outline-danger btn-xs">--}}
+{{--                                                                    <i class="fe fe-trash-2 "></i>--}}
+{{--                                                                </button>--}}
+{{--                                                            </div>--}}
+{{--                                                        </form>--}}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            </div>
+                                            <div class="col-4">
+                                            <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                <img src="{{asset($technical_unit->image3)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                @if($technical_unit->image3 != null)
+                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+{{--                                                        <form action="{{ route('updatetechimg', $technical_unit->id )}}" method="post">--}}
+{{--                                                            {{ method_field('patch') }}--}}
+{{--                                                            {{csrf_field()}}--}}
+{{--                                                            <div class="btn-group btn-group-xs">--}}
+{{--                                                                <button type="submit" class="btn btn-outline-danger btn-xs">--}}
+{{--                                                                    <i class="fe fe-trash-2 "></i>--}}
+{{--                                                                </button>--}}
+{{--                                                            </div>--}}
+{{--                                                        </form>--}}
+                                                    </div>
+                                                @endif
+                                            </div>
                                             </div>
                                         </div>
                                     @endforeach

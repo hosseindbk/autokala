@@ -33,8 +33,8 @@
                                                 <label for="phone" class="float-right">رمز عبور</label>
                                                 <input type="password" name="password" required class="form-control text-left @error('password') is-invalid @enderror" >
                                             </div>
-                                            <div class="form-account-title text-right">
-                                                <a href="{{route('remember')}}" class="account-link-password">رمز خود را فراموش کرده ام؟</a>
+                                            <div class="form-account-title ">
+                                                <a href="{{route('remember')}}" class="account-link-password float-right">بازیابی / دریافت رمز عبور</a>
                                             </div>
                                             <br>
                                             <div class="form-row-account">
