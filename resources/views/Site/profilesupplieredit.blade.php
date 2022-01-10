@@ -221,7 +221,13 @@
                                                             <input type="text" name="phone" value="{{$Supplier->phone}}" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-7">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">شماره واتس اپ</p>
+                                                            <input type="text" name="whatsapp"  value="{{$Supplier->whatsapp}}" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
                                                             <textarea name="address" cols="30" rows="1" class="form-control" >{{$Supplier->address}}</textarea>

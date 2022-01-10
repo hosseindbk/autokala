@@ -108,6 +108,7 @@ class SupplierController extends Controller
         $suppliers->city_id     = $request->input('city_id');
         $suppliers->address     = $request->input('address');
         $suppliers->description = $request->input('description');
+        $suppliers->autokala       = $request->input('autokala');
         $suppliers->title       = $request->input('title');
         $suppliers->status      = '1';
         $suppliers->slug        = 'SU-'.rand(1,999).chr(rand(97,122)).rand(1,999).chr(rand(97,122)).rand(1,999);
@@ -298,6 +299,7 @@ class SupplierController extends Controller
         $supplier->address      = $request->input('address');
         $supplier->status       = $request->input('status_id');
         $supplier->description  = $request->input('description');
+        $supplier->autokala       = $request->input('autokala');
         $supplier->title        = $request->input('title');
         $supplier->title        = $request->input('title');
         $supplier->description  = $request->input('description');

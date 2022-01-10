@@ -175,25 +175,25 @@ class ProfilebusinessController extends Controller
             } else {
                 $suppliers->retail_seller = 0;
             }
-            $suppliers->title = $request->input('title');
-            $suppliers->manager = $request->input('manager');
-            $suppliers->phone = $request->input('phone');
-            $suppliers->mobile = $request->input('mobile');
-            $suppliers->whatsapp = $request->input('whatsapp');
-            $suppliers->email = $request->input('email');
-            $suppliers->website = $request->input('website');
-            $suppliers->state_id = $request->input('state_id');
-            $suppliers->city_id = $request->input('city_id');
-            $suppliers->address = $request->input('address');
-            $suppliers->description = $request->input('description');
-            $suppliers->title = $request->input('title');
-            $suppliers->title = $request->input('title');
-            $suppliers->status = '1';
-            $suppliers->slug = 'SU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
-            $suppliers->description = $request->input('description');
-            $suppliers->date = jdate()->format('Ymd ');
-            $suppliers->user_id = Auth::user()->id;
-            $suppliers->date_handle = jdate()->format('Ymd ');
+            $suppliers->title           = $request->input('title');
+            $suppliers->manager         = $request->input('manager');
+            $suppliers->phone           = $request->input('phone');
+            $suppliers->mobile          = $request->input('mobile');
+            $suppliers->whatsapp        = $request->input('whatsapp');
+            $suppliers->email           = $request->input('email');
+            $suppliers->website         = $request->input('website');
+            $suppliers->state_id        = $request->input('state_id');
+            $suppliers->city_id         = $request->input('city_id');
+            $suppliers->address         = $request->input('address');
+            $suppliers->description     = $request->input('description');
+            $suppliers->title           = $request->input('title');
+            $suppliers->title           = $request->input('title');
+            $suppliers->status          = '1';
+            $suppliers->slug            = 'SU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
+            $suppliers->description     = $request->input('description');
+            $suppliers->date            = jdate()->format('Ymd ');
+            $suppliers->user_id         = Auth::user()->id;
+            $suppliers->date_handle     = jdate()->format('Ymd ');
 
             if ($request->file('image') != null) {
                 $file = $request->file('image');

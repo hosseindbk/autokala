@@ -45,22 +45,34 @@
                                             <p> ایمیل : {{$supplier->email}}</p>
                                             <p> وبسایت : {{$supplier->website}}</p>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
-                                                <img src="{{asset($supplier->image)}}" class="img-responsive" style="padding: 20px;" alt="">
-                                                @if($supplier->image != null)
-                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
-                                                        <form action="{{ route('updatesupimg', $supplier->id)}}" method="post">
-                                                            {{ method_field('patch') }}
-                                                            {{csrf_field()}}
-                                                            <div class="btn-group btn-group-xs">
-                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                    <i class="fe fe-trash-2 "></i>
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                @endif
+                                        <div class="col-md-6" style="display: inline-flex">
+                                            <div class="col-md-4">
+                                                <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                    <img src="{{asset($supplier->image)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                    @if($supplier->image != null)
+                                                        <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                            <form action="{{ route('updatesupimg', $supplier->id)}}" method="post">
+                                                                {{ method_field('patch') }}
+                                                                {{csrf_field()}}
+                                                                <div class="btn-group btn-group-xs">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                        <i class="fe fe-trash-2 "></i>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                    <img src="{{asset($supplier->image2)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                    <img src="{{asset($supplier->image3)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                </div>
                                             </div>
                                         </div>
 
@@ -160,6 +172,15 @@
                                                             @endif
                                                         @endforeach
                                                         @foreach($statuses as $status)<option value="{{$status->id}}">{{$status->title}}</option>@endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">نشان اتوکالا</p>
+                                                    <select name="autokala" class="form-control select-lg select2">
+                                                        <option value="">انتخاب نشان اتوکالا</option>
+                                                        <option value="1">نشان طلایی اتوکالا</option>
+                                                        <option value="2">نشان نقره ای اتوکالا</option>
+                                                        <option value="3">نشان برنزی اتوکالا</option>
                                                     </select>
                                                 </div>
                                             </div>

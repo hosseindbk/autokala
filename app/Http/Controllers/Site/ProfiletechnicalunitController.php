@@ -106,15 +106,40 @@ class ProfiletechnicalunitController extends Controller
         if ($request->file('image') != null) {
             $file = $request->file('image');
             $img = Image::make($file);
-            $imagePath ="image/technicals/";
+            $imagePath = "images/technicals";
             $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
             $technical_units->image = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
+            $img->save($imagePath . $imageName);
             $img->encode('jpg');
         }
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath = "images/technicals";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $technical_units->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath = "images/technicals";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $technical_units->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+        $slug = $technical_units->slug;
+
         $technical_units->save();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
-        return Redirect::back();
+
+        $technical_id = Technical_unit::whereSlug($slug)->get();
+        foreach ($technical_id as $Technical_unit) {
+
+        }
+        return redirect(route('protechnicaledit', $Technical_unit->id));
     }
 
     public function option(Request $request){

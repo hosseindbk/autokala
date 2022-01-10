@@ -69,7 +69,7 @@ class SearchController extends Controller
         $states                 = State::all();
         $cities                 = City::all();
         $countState             = null;
-
+        $filter                 =   0;
         $menus                  = Menu::whereStatus(4)->get();
         $carmodels              = Car_model::whereStatus(4)->get();
         $cartypes               = Car_type::whereStatus(4)->get();
@@ -85,6 +85,7 @@ class SearchController extends Controller
         }
 
         return view('Site.technicalsearch')
+            ->with(compact('filter'))
             ->with(compact('countState'))
             ->with(compact('carmodels'))
             ->with(compact('carproducts'))
@@ -106,8 +107,8 @@ class SearchController extends Controller
         $carmodels              = Car_model::whereStatus(4)->get();
         $states                 = State::all();
         $cities                 = City::all();
-        $countState         = null;
-
+        $countState             = null;
+        $filter                 =   0;
         $cartypes               = Car_type::whereStatus(4)->get();
         $carproducts            = Car_product::whereStatus(4)->get();
         $product_id             = Supplier::suppliersearch($keywords)->pluck('id');
@@ -120,6 +121,7 @@ class SearchController extends Controller
             $productbrandvarieties = null;
         }
         return view('Site.suppliersearch')
+            ->with(compact('filter'))
             ->with(compact('countState'))
             ->with(compact('carmodels'))
             ->with(compact('carproducts'))

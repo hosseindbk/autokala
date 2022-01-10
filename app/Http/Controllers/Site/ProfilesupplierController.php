@@ -123,16 +123,41 @@ class ProfilesupplierController extends Controller
         if ($request->file('image') != null) {
             $file = $request->file('image');
             $img = Image::make($file);
-            $imagePath ="image/suppliers/";
+            $imagePath = "images/suppliers";
             $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
             $suppliers->image = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
+            $img->save($imagePath . $imageName);
             $img->encode('jpg');
         }
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath = "images/suppliers";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $suppliers->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath = "images/suppliers";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $suppliers->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+        $slug = $suppliers->slug;
 
         $suppliers->save();
+
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
-        return Redirect::back();
+
+        $supplier_id = Supplier::whereSlug($slug)->get();
+        foreach ($supplier_id as $Supplier) {
+
+        }
+        return redirect(route('prosupplieredit', $Supplier->id));
 
     }
 

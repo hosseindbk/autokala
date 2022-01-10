@@ -169,7 +169,13 @@
                                                             <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-7">
+                                                    <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <p class="mg-b-10">شماره واتس اپ</p>
+                                                        <input type="text" name="whatsapp" placeholder="شماره واتس اپ را وارد کنید" class="form-control" />
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
                                                             <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>

@@ -128,19 +128,60 @@
                     <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">
-                                <section class="widget-product-categories">
-                                    <header class="cat-header">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-block text-right" data-toggle="collapse" href="#headingfor" role="button" aria-expanded="false" aria-controls="headingOne">
-                                                استان و شهرستان
-                                                <i class="mdi mdi-chevron-down"></i>
-                                            </button>
-                                        </h2>
-                                    </header>
-                                    <div class="product-filter">
-                                        <div class="card">
-                                            <div class="collapse show" id="headingfor">
-                                                <form action="{{route('supplierfilter')}}" method="get">
+                                <form action="{{route('supplierfilter')}}" method="get">
+                                    <section class="widget-product-categories">
+                                        <header class="cat-header">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse"
+                                                        href="#headingOne" role="button" aria-expanded="false"
+                                                        aria-controls="headingOne">
+                                                    دسته بندی قطعات خودرو
+                                                    {{$suppliers->count()}} فروشگاه
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                            </h2>
+                                        </header>
+                                        <div class="product-filter">
+                                            <div class="card">
+                                                <div class="collapse show" id="headingOne">
+                                                    <div class="card-main mb-0" style="height: 220px;overflow: auto;">
+                                                        @foreach($productgroups as $product_group)
+                                                            <div class="form-auth-row">
+                                                                <label for="{{$product_group->id}}" class="ui-checkbox">
+                                                                    <input type="checkbox" name="productgroup_id[]" id="{{$product_group->id}}"  @if($filter == 1 && $productgroup_id != null) @foreach($productgroup_id as $p) {{$product_group->id == $p->id ? 'checked' : ''}} @endforeach @endif value="{{$product_group->id}}"   >
+                                                                    <span class="ui-checkbox-check"></span>
+                                                                </label>
+                                                                <label for="{{$product_group->id}}"  class="remember-me">{{$product_group->title_fa}}</label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="mt-2 ">
+                                                        <button class="btn btn-range pr">
+                                                            اعمال فیلتر
+                                                        </button>
+
+                                                        @if($filter == 1)
+                                                            <a href="{{url('supplier')}}" class="btn btn-range pl">
+                                                                پاک کردن فیلتر
+                                                            </a>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="widget-product-categories">
+                                        <header class="cat-header">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingfor" role="button" aria-expanded="false" aria-controls="headingOne">
+                                                    استان و شهرستان
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                            </h2>
+                                        </header>
+                                        <div class="product-filter">
+                                            <div class="card">
+                                                <div class="collapse show" id="headingfor">
                                                     <div class="card-main mb-lg-4">
                                                         <div class="mb-lg-4 mg-lg-4">
                                                             <select name="state_id" class="form-control select-lg select2" id="state_id">
@@ -152,92 +193,99 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-lg-4 mg-lg-4">
-                                                            <select name="city_id" id="city_id" class="form-control select-lg select2">
-                                                                <option value="">انتخاب شهرستان</option>
-                                                                @foreach($cities as $city)
-                                                                    <option value="{{$city->id}}" {{request('city_id') == $city->id ? 'selected' : '' }}>{{$city->title}}</option>
-                                                                @endforeach
+                                                            <select multiple="multiple" name="city_id[]" id="city_id" class="form-control select2">
+                                                                @if($filter == 1)
+                                                                    @foreach($cities as $city)
+                                                                        <option value="{{$city->id}}" @if($filter == 1 && $city_id != null) @foreach($city_id as $y) {{$city->id == $y->id ? 'selected' : ''}} @endforeach @endif>{{$city->title}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="mt-2 pl">
-                                                        <button class="btn btn-range">
+                                                    <div class="mt-2 ">
+                                                        <button class="btn btn-range pr">
                                                             اعمال فیلتر
                                                         </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                                <section class="widget-product-categories">
-                                    <header class="cat-header">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-block text-right" data-toggle="collapse"
-                                                    href="#headingOne" role="button" aria-expanded="false"
-                                                    aria-controls="headingOne">
-                                                نوع تامین کننده قطعات خودرو
-                                                <i class="mdi mdi-chevron-down"></i>
-                                            </button>
-                                        </h2>
-                                    </header>
-                                    <div class="product-filter">
-                                        <div class="card">
-                                            <div class="collapse show" id="headingOne">
-                                                <form action="{{route('supplierfilter')}}" method="get">
-                                                <div class="card-main mb-0">
-                                                    <div class="form-auth-row">
-                                                        <label for="1" class="ui-checkbox">
-                                                            <input type="checkbox" value="1" name="whole_seller" {{request('whole_seller') == 1 ? 'checked' : '' }} id="1">
-                                                            <span class="ui-checkbox-check"></span>
-                                                        </label>
-                                                        <label for="1"  class="remember-me">عمده فروش</label>
-                                                    </div>
-                                                    <div class="form-auth-row">
-                                                        <label for="2" class="ui-checkbox">
-                                                            <input type="checkbox" value="1" name="retail_seller" {{request('retail_seller') == 1 ? 'checked' : '' }} id="2">
-                                                            <span class="ui-checkbox-check"></span>
-                                                        </label>
-                                                        <label for="2"  class="remember-me">خرده فروش</label>
-                                                    </div>
-                                                    <div class="form-auth-row">
-                                                        <label for="3" class="ui-checkbox">
-                                                            <input type="checkbox" value="1" name="manufacturer" {{request('manufacturer') == 1 ? 'checked' : '' }} id="3">
-                                                            <span class="ui-checkbox-check"></span>
-                                                        </label>
-                                                        <label for="3"  class="remember-me">تولید کننده</label>
-                                                    </div>
-                                                    <div class="form-auth-row">
-                                                        <label for="4" class="ui-checkbox">
-                                                            <input type="checkbox" value="1" name="importer" {{request('importer') == 1 ? 'checked' : '' }} id="4">
-                                                            <span class="ui-checkbox-check"></span>
-                                                        </label>
-                                                        <label for="4"  class="remember-me">وارد کننده</label>
+                                                        @if($filter == 1)
+                                                            <a href="{{url('supplier')}}" class="btn btn-range pl">
+                                                                پاک کردن فیلتر
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                                <div class="mt-2 pl">
-                                                    <button class="btn btn-range">
-                                                        اعمال فیلتر
-                                                    </button>
-                                                </div>
-                                                </form>
                                             </div>
                                         </div>
-                                    </div>
-                                </section>
-                                <section class="widget-product-categories">
-                                    <header class="cat-header">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-block text-right" data-toggle="collapse" href="#headingTwo" role="button" aria-expanded="false" aria-controls="headingOne">
-                                                نام برند و مدل خودرو
-                                                <i class="mdi mdi-chevron-down"></i>
-                                            </button>
-                                        </h2>
-                                    </header>
-                                    <div class="product-filter">
-                                        <div class="card">
-                                            <div class="collapse show" id="headingTwo">
-                                                <form action="{{route('supplierfilter')}}" method="get">
+                                    </section>
+                                    <section class="widget-product-categories">
+                                        <header class="cat-header">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse"
+                                                        href="#headingOne" role="button" aria-expanded="false"
+                                                        aria-controls="headingOne">
+                                                    نوع تامین کننده قطعات خودرو
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                            </h2>
+                                        </header>
+                                        <div class="product-filter">
+                                            <div class="card">
+                                                <div class="collapse show" id="headingOne">
+                                                    <div class="card-main mb-0">
+                                                        <div class="form-auth-row">
+                                                            <label for="whole_seller" class="ui-checkbox">
+                                                                <input type="checkbox" value="1" name="whole_seller" {{request('whole_seller') == 1 ? 'checked' : '' }} id="whole_seller">
+                                                                <span class="ui-checkbox-check"></span>
+                                                            </label>
+                                                            <label for="whole_seller"  class="remember-me">عمده فروش</label>
+                                                        </div>
+                                                        <div class="form-auth-row">
+                                                            <label for="retail_seller" class="ui-checkbox">
+                                                                <input type="checkbox" value="1" name="retail_seller" {{request('retail_seller') == 1 ? 'checked' : '' }} id="retail_seller">
+                                                                <span class="ui-checkbox-check"></span>
+                                                            </label>
+                                                            <label for="retail_seller"  class="remember-me">خرده فروش</label>
+                                                        </div>
+                                                        <div class="form-auth-row">
+                                                            <label for="manufacturer" class="ui-checkbox">
+                                                                <input type="checkbox" value="1" name="manufacturer" {{request('manufacturer') == 1 ? 'checked' : '' }} id="manufacturer">
+                                                                <span class="ui-checkbox-check"></span>
+                                                            </label>
+                                                            <label for="manufacturer"  class="remember-me">تولید کننده</label>
+                                                        </div>
+                                                        <div class="form-auth-row">
+                                                            <label for="importer" class="ui-checkbox">
+                                                                <input type="checkbox" value="1" name="importer" {{request('importer') == 1 ? 'checked' : '' }} id="importer">
+                                                                <span class="ui-checkbox-check"></span>
+                                                            </label>
+                                                            <label for="importer"  class="remember-me">وارد کننده</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2 ">
+                                                        <button class="btn btn-range pr">
+                                                            اعمال فیلتر
+                                                        </button>
+                                                        @if($filter == 1)
+                                                            <a href="{{url('supplier')}}" class="btn btn-range pl">
+                                                                پاک کردن فیلتر
+                                                            </a>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="widget-product-categories">
+                                        <header class="cat-header">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingTwo" role="button" aria-expanded="false" aria-controls="headingOne">
+                                                    نام برند و مدل خودرو
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                            </h2>
+                                        </header>
+                                        <div class="product-filter">
+                                            <div class="card">
+                                                <div class="collapse show" id="headingTwo">
                                                     <div class="card-main mb-lg-4">
                                                         <div class="mb-lg-4 mg-lg-4">
                                                             <select name="car_brand_id" class="form-control select-lg select2" id="car_brand_id">
@@ -248,49 +296,61 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-lg-4 mg-lg-4">
-                                                            <select name="car_model_id" id="car_model_id" class="form-control select-lg select2">
-                                                                <option value="">انتخاب مدل خودرو</option>
-                                                                @foreach($carmodels as $car_model)
-                                                                    <option value="{{$car_model->id}}" {{request('car_model_id') == $car_model->id ? 'selected' : '' }}>{{$car_model->title_fa}}</option>
-                                                                @endforeach
+                                                            <select multiple="multiple" name="car_model_id[]" id="car_model_id" class="form-control select2">
+                                                                @if($filter == 1)
+                                                                    @foreach($carmodels as $car_model)
+                                                                        <option value="{{$car_model->id}}" @if($filter == 1 && $carmodel_id != null) @foreach($carmodel_id as $c) {{$car_model->id == $c->id ? 'selected' : ''}} @endforeach @endif>{{$car_model->title_fa}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="mt-2 pl">
-                                                        <button class="btn btn-range">
+                                                    <div class="mt-2 ">
+                                                        <button class="btn btn-range pr">
                                                             اعمال فیلتر
                                                         </button>
+                                                        @if($filter == 1)
+                                                            <a href="{{url('supplier')}}" class="btn btn-range pl">
+                                                                پاک کردن فیلتر
+                                                            </a>
+                                                        @endif
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </section>
-
+                                    </section>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9 col-xs-12 pl">
                         <div class="shop-archive-content mt-3 d-block">
-
                             <div class="product-items">
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade  show active" id="newproduct" role="tabpanel" aria-labelledby="newproduct-tab">
                                         <div class="row">
                                             @foreach($suppliers as $supplier)
                                                 <div class="col-lg-3 col-md-3 col-xs-12 order-1 d-block mb-3">
-                                                    <section class="product-box product product-type-simple">
+                                                    <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
                                                         <div class="thumb">
-                                                            <a href="{{'supplier/sub/'.$supplier->slug}}" target="_blank" class="d-block">
+                                                            <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank" class="d-block">
                                                                 @if(! $supplier->image )
-                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="width: 235px;height: 235px;" alt="{{$supplier->title}}">
+                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$supplier->title}}">
                                                                 @else
-                                                                    <img src="{{asset($supplier->image)}}" style="width: 235px;height: 235px;" alt="{{$supplier->title}}">
+                                                                    <img src="{{asset($supplier->image)}}" style="height: 235px;" alt="{{$supplier->title}}">
                                                                 @endif
                                                             </a>
                                                         </div>
                                                         <div class="title">
-                                                            <a href="#">{{$supplier->title}}</a>
+                                                            <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank">{{$supplier->title}}</a>
+                                                        </div>
+                                                        <div class="price">
+
+                                                            <span class="amount"><b style="color: #fff;">.</b> @if($supplier->manager) مدیریت : {{$supplier->manager}} @endif</span>
+
+                                                        </div>
+                                                        <div class="title">
+                                                            <p>@foreach($cities as $city) @if($city->id == $supplier->city_id) {{$city->title}} : {{ \Illuminate\Support\Str::limit($supplier->address, 25, $end='...') }} @endif @endforeach</p>
                                                         </div>
                                                     </section>
                                                 </div>
@@ -299,15 +359,15 @@
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
                                                 {{$suppliers->appends(
-                                                ['state_id'      => request('productgroup_id')
-                                                , 'car_model_id' => request('car_model_id')
-                                                ,'whole_seller'  => request('whole_seller')
-                                                ,'retail_seller' => request('retail_seller')
-                                                ,'manufacturer'  => request('manufacturer')
-                                                ,'importer'      => request('importer')
-                                                ,'suppliersearch'=> request('suppliersearch')
-                                                ,'category_id'=> request('category_id')
-                                                ,'brand_id'      => request('brand_id')])->links()}}
+                                                ['car_model_id'     => request('car_model_id')
+                                                ,'car_brand_id'     => request('car_brand_id')
+                                                ,'productgroup_id'  => request('productgroup_id')
+                                                ,'city_id'          => request('city_id')
+                                                ,'state_id'         => request('state_id')
+                                                ,'whole_seller'     => request('whole_seller')
+                                                ,'retail_seller'    => request('retail_seller')
+                                                ,'manufacturer'     => request('manufacturer')
+                                                ,'importer'         => request('importer')])->links()}}
                                             </nav>
                                         </div>
                                     </div>
@@ -324,6 +384,8 @@
 @section('script')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(function(){
             $('#state_id').change(function(){
@@ -394,4 +456,9 @@
             });
         });
     </script>
-    @endsection
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+@endsection

@@ -98,6 +98,15 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            <div class="form-group">
+                                                <p class="mg-b-10">نشان اتوکالا</p>
+                                                <select name="autokala" class="form-control select-lg select2">
+                                                    <option value="">انتخاب نشان اتوکالا</option>
+                                                    <option value="1">نشان طلایی اتوکالا</option>
+                                                    <option value="2">نشان نقره ای اتوکالا</option>
+                                                    <option value="3">نشان برنزی اتوکالا</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group"></div>

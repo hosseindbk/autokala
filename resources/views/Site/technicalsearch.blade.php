@@ -2,6 +2,7 @@
 @section('title')
     <title>لیست واحد های خدمات فنی در وبسایت اتوکالا</title>
     <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+
 @endsection
 @section('top-header')
     <section class="h-main-row">
@@ -11,7 +12,7 @@
                     <div class="header-search row text-right">
                         <div class="header-search-box">
                             <form action="{{route('technicalsearch')}}" method="get" class="form-search">
-                                <input type="text" class="header-search-input" value="{{request('technicalsearch')}}" name="technicalsearch" placeholder="نام تعمیرگاه یا واحد خدمات فنی جستجو کنید…">
+                                <input type="text" class="header-search-input" name="technicalsearch" value="{{request('technicalsearch')}}" placeholder="نام تعمیرگاه یا واحد خدمات فنی جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
                                         <img src="{{asset('site/images/search.png')}}" alt="search">
@@ -123,23 +124,62 @@
                             </ol>
                         </nav>
                     </div>
+                    <form action="{{route('technicalfilter')}}" method="get">
+                        <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
+                            <div class="shop-archive-sidebar">
+                                <div class="sidebar-archive mb-3">
+                                    <section class="widget-product-categories">
+                                        <header class="cat-header">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse"
+                                                        href="#headingOne" role="button" aria-expanded="false"
+                                                        aria-controls="headingOne">
+                                                    دسته بندی قطعات خودرو
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                            </h2>
+                                        </header>
+                                        <div class="product-filter">
+                                            <div class="card">
+                                                <div class="collapse show" id="headingOne">
+                                                    <div class="card-main mb-0" style="height: 220px;overflow: auto;">
+                                                        @foreach($productgroups as $product_group)
+                                                            <div class="form-auth-row">
+                                                                <label for="{{$product_group->id}}" class="ui-checkbox">
+                                                                    <input type="checkbox" name="productgroup_id[]" id="{{$product_group->id}}"  @if($filter == 1 && $productgroup_id != null) @foreach($productgroup_id as $p) {{$product_group->id == $p->id ? 'checked' : ''}} @endforeach @endif value="{{$product_group->id}}"   >
+                                                                    <span class="ui-checkbox-check"></span>
+                                                                </label>
+                                                                <label for="{{$product_group->id}}"  class="remember-me">{{$product_group->related_service}}</label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="mt-2 ">
+                                                        <button class="btn btn-range pr">
+                                                            اعمال فیلتر
+                                                        </button>
 
-                    <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
-                        <div class="shop-archive-sidebar">
-                            <div class="sidebar-archive mb-3">
-                                <section class="widget-product-categories">
-                                    <header class="cat-header">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-block text-right" data-toggle="collapse" href="#headingfor" role="button" aria-expanded="false" aria-controls="headingOne">
-                                                استان و شهرستان
-                                                <i class="mdi mdi-chevron-down"></i>
-                                            </button>
-                                        </h2>
-                                    </header>
-                                    <div class="product-filter mt-3">
-                                        <div class="card">
-                                            <div class="collapse show" id="headingfor">
-                                                <form action="{{route('technicalfilter')}}" method="get">
+                                                        @if($filter == 1)
+                                                            <a href="{{url('technical')}}" class="btn btn-range pl">
+                                                                پاک کردن فیلتر
+                                                            </a>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="widget-product-categories">
+                                        <header class="cat-header">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingfor" role="button" aria-expanded="false" aria-controls="headingOne">
+                                                    استان و شهرستان
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                            </h2>
+                                        </header>
+                                        <div class="product-filter mt-3">
+                                            <div class="card">
+                                                <div class="collapse show" id="headingfor">
                                                     <div class="card-main mb-lg-4">
                                                         <div class="mb-lg-4 mg-lg-4">
                                                             <select name="state_id" class="form-control select-lg select2" id="state_id">
@@ -150,36 +190,41 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-lg-4 mg-lg-4">
-                                                            <select name="city_id" id="city_id" class="form-control select-lg select2">
-                                                                @foreach($cities as $city)
-                                                                    <option value="{{$city->id}}" {{request('city_id') == $city->id ? 'selected' : '' }}>{{$city->title}}</option>
-                                                                @endforeach
+                                                            <select multiple="multiple" name="city_id[]" id="city_id" class="form-control select2">
+                                                                @if($filter == 1)
+                                                                    @foreach($cities as $city)
+                                                                        <option value="{{$city->id}}" @if($filter == 1 && $city_id != null) @foreach($city_id as $y) {{$city->id == $y->id ? 'selected' : ''}} @endforeach @endif>{{$city->title}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="mt-2 pl">
-                                                        <button class="btn btn-range">
+                                                    <div class="mt-2 ">
+                                                        <button class="btn btn-range pr">
                                                             اعمال فیلتر
                                                         </button>
+                                                        @if($filter == 1)
+                                                            <a href="{{url('technical')}}" class="btn btn-range pl">
+                                                                پاک کردن فیلتر
+                                                            </a>
+                                                        @endif
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </section>
-                                <section class="widget-product-categories">
-                                    <header class="cat-header">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-block text-right" data-toggle="collapse" href="#headingTwo" role="button" aria-expanded="false" aria-controls="headingOne">
-                                                نام برند و مدل خودرو
-                                                <i class="mdi mdi-chevron-down"></i>
-                                            </button>
-                                        </h2>
-                                    </header>
-                                    <div class="product-filter mt-3">
-                                        <div class="card">
-                                            <div class="collapse show" id="headingTwo">
-                                                <form action="{{route('technicalfilter')}}" method="get">
+                                    </section>
+                                    <section class="widget-product-categories">
+                                        <header class="cat-header">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingTwo" role="button" aria-expanded="false" aria-controls="headingOne">
+                                                    نام برند و مدل خودرو
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                            </h2>
+                                        </header>
+                                        <div class="product-filter mt-3">
+                                            <div class="card">
+                                                <div class="collapse show" id="headingTwo">
                                                     <div class="card-main mb-lg-4">
                                                         <div class="mb-lg-4 mg-lg-4">
                                                             <select name="car_brand_id" class="form-control select-lg select2" id="car_brand_id">
@@ -190,67 +235,90 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-lg-4 mg-lg-4">
-                                                            <select name="car_model_id" id="car_model_id" class="form-control select-lg select2">
-                                                                <option value="all">همه مدل خودرو</option>
-                                                            @foreach($carmodels as $car_model)
-                                                                    <option value="{{$car_model->id}}" {{request('car_model_id') == $car_model->id ? 'selected' : '' }}>{{$car_model->title_fa}}</option>
-                                                                @endforeach
+                                                            <select multiple="multiple" name="car_model_id[]" id="car_model_id" class="form-control select2">
+                                                                @if($filter == 1)
+                                                                    @foreach($carmodels as $car_model)
+                                                                        <option value="{{$car_model->id}}" @if($filter == 1 && $carmodel_id != null) @foreach($carmodel_id as $c) {{$car_model->id == $c->id ? 'selected' : ''}} @endforeach @endif>{{$car_model->title_fa}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="mt-2 pl">
-                                                        <button class="btn btn-range">
+                                                    <div class="mt-2 ">
+                                                        <button class="btn btn-range pr">
                                                             اعمال فیلتر
                                                         </button>
+                                                        @if($filter == 1)
+                                                            <a href="{{url('technical')}}" class="btn btn-range pl">
+                                                                پاک کردن فیلتر
+                                                            </a>
+                                                        @endif
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </section>
+                                    </section>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-9 col-md-9 col-xs-12 pl">
-                        <div class="shop-archive-content mt-3 d-block">
-
-                            <div class="product-items">
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade  show active" id="newproduct" role="tabpanel" aria-labelledby="newproduct-tab">
-                                        <div class="row">
-                                            @foreach($technicalunits as $technical_unit)
-                                                <div class="col-lg-3 col-md-3 col-xs-12 order-1 d-block mb-3">
-                                                    <section class="product-box product product-type-simple">
-                                                        <div class="thumb">
-                                                            <a href="{{'technical/sub/'.$technical_unit->slug}}" class="d-block" target="_blank">
-                                                                @if(! $technical_unit->image )
-                                                                    <img src="{{asset('images/techndical_defult.png')}}" style="width: 235px;height: 235px;" alt="{{$technical_unit->title}}">
+                        <div class="col-lg-9 col-md-9 col-xs-12 pl">
+                            <div class="shop-archive-content mt-3 d-block">
+                                <div class="product-items">
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="product-new">
+                                            <div class="row">
+                                                @foreach($technicalunits as $technical_unit)
+                                                    <div class="col-lg-3 col-md-3 col-xs-12 order-1 d-block mb-3">
+                                                        <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
+                                                            <div class="thumb">
+                                                                <a href="{{url('technical/sub/'.$technical_unit->slug)}}" target="_blank" class="d-block text-center">
+                                                                    @if(! $technical_unit->image )
+                                                                        <img src="{{asset('images/techndical_defult.png')}}" style="height: 235px;" alt="{{$technical_unit->title}}">
+                                                                    @else
+                                                                        <img src="{{asset($technical_unit->image)}}" style="height: 235px;" alt="{{$technical_unit->title}}">
+                                                                    @endif
+                                                                </a>
+                                                            </div>
+                                                            <div class="title">
+                                                                <a href="{{url('technical/sub/'.$technical_unit->slug)}}" target="_blank">{{$technical_unit->title}}</a>
+                                                            </div>
+                                                            <div class="price">
+                                                                @if($technical_unit->manager)
+                                                                    <span class="amount"> مدیریت : {{$technical_unit->manager}} </span>
                                                                 @else
-                                                                    <img src="{{asset($technical_unit->image)}}" style="width: 235px;height: 235px;" alt="{{$technical_unit->title}}">
+                                                                    <b style="color: #fff;">.</b>
                                                                 @endif
-                                                            </a>
-                                                        </div>
-                                                        <div class="title">
-                                                            <a href="#">{{$technical_unit->title}}</a>
-                                                        </div>
-                                                    </section>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                        <div class="pagination-product">
-                                            <nav aria-label="Page navigation example">
-                                                {{$technicalunits->appends(['state_id'=> request('productgroup_id')
-                                                ,'car_model_id'     => request('car_model_id')
-                                                ,'city_id'          => request('city_id')
-                                                ,'technicalsearch'  => request('technicalsearch')
-                                                ,'category_id'      => request('category_id')])->links()}}
-                                            </nav>
+                                                            </div>
+                                                            <div class="title">
+                                                                <p>@foreach($cities as $city)
+                                                                        @if($city->id == $technical_unit->city_id)
+                                                                            {{$city->title}} :
+                                                                            {{ \Illuminate\Support\Str::limit($technical_unit->address, 25, $end='...') }}
+                                                                        @endif
+                                                                    @endforeach
+                                                                    <b style="color: #fff;">.</b>
+                                                                </p>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="pagination-product">
+                                                <nav aria-label="Page navigation example">
+                                                    {{$technicalunits->appends(
+                                                    ['state_id'         => request('state_id')
+                                                    ,'productgroup_id'  => request('productgroup_id')
+                                                    ,'car_brand_id'     => request('car_brand_id')
+                                                    ,'car_model_id'     => request('car_model_id')
+                                                    ,'city_id'          => request('city_id')])->links()}}
+                                                </nav>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -259,6 +327,49 @@
 @section('script')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#newproduct").click(function(){
+                $("#product-new").remove();
+                $.ajax({
+                    url : '{{ route( 'option' ) }}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": 10
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function( result )
+                    {
+                        $.each( result, function(k, v) {
+                            $('#product-new').append($('#product-new', {value:k, text:v}));
+                        });
+                    },
+                    error: function()
+                    {
+                        //handle errors
+                        alert('error...');
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $('#select-all').click(function(event) {
+            if(this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $(':checkbox').each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+    </script>
     <script>
         $(function(){
             $('#state_id').change(function(){
@@ -289,20 +400,6 @@
         });
     </script>
     <script>
-        $('#select-all').click(function(event) {
-            if(this.checked) {
-                // Iterate each checkbox
-                $(':checkbox').each(function() {
-                    this.checked = true;
-                });
-            } else {
-                $(':checkbox').each(function() {
-                    this.checked = false;
-                });
-            }
-        });
-    </script>
-    <script>
         $(function(){
             $('#car_brand_id').change(function(){
                 $("#car_model_id option").remove();
@@ -327,6 +424,11 @@
                     }
                 });
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
 @endsection
