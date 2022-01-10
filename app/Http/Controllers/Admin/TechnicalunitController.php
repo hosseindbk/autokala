@@ -247,16 +247,12 @@ class TechnicalunitController extends Controller
         return Redirect::back();
 
     }
-    public function updatetechimg($id , $image)
+    public function updatetechimg($id)
     {
         $technicaslunits = Technical_unit::findOrfail($id);
-        if($image == 'image') {
-            $technicaslunits->image = '';
-        }elseif($image == 'image2'){
-            $technicaslunits->image2 = '';
-        }elseif($image == 'image3'){
-            $technicaslunits->image3 = '';
-        }
+
+        $technicaslunits->image = '';
+
         $technicaslunits->update();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
         return Redirect::back();
