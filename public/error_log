@@ -178,3 +178,4 @@ Stack trace:
 [26-Oct-2021 08:27:04 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98582528 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 383
 [26-Oct-2021 08:28:34 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 48250880 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 383
 [26-Oct-2021 08:28:40 Asia/Tehran] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 65028096 bytes) in /home/myautoka/storage/framework/views/5eee1517453d2f0a44637709dd412ac266a996ed.php on line 375
+[29-Dec-2021 00:43:44 Asia/Tehran] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 33932656 bytes) in /home/myautoka/vendor/facade/ignition/src/Solutions/MakeViewVariableOptionalSolution.php on line 79

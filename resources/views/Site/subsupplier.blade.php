@@ -150,12 +150,14 @@
                                                                 <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($supplier->image)}}" data-zoom-image="{{asset($supplier->image)}}">
                                                                     <img src="{{asset($supplier->image)}}" width="100" /></a>
                                                             </li>
-                                                        @elseif($supplier->image2)
+                                                            @endif
+                                                        @if($supplier->image2)
                                                             <li class="item">
                                                                 <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($supplier->image2)}}" data-zoom-image="{{asset($supplier->image2)}}">
                                                                     <img src="{{asset($supplier->image2)}}" width="100" /></a>
                                                             </li>
-                                                        @elseif($supplier->image3)
+                                                            @endif
+                                                        @if($supplier->image3)
                                                             <li class="item">
                                                                 <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($supplier->image3)}}" data-zoom-image="{{asset($supplier->image3)}}">
                                                                     <img src="{{asset($supplier->image3)}}" width="100" />

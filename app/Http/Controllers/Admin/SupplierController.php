@@ -245,14 +245,25 @@ class SupplierController extends Controller
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'));
     }
-    public function updatesupimg($id)
+    public function updatesupimg(Request $request ,$id)
     {
         $suppliers = Supplier::findOrfail($id);
-        $suppliers->image  = '';
+
+        if ($request->input('image') == '0') {
+            $suppliers->image  = '';
+        }
+        if($request->input('image2') == '0') {
+            $suppliers->image2  = '';
+        }
+        if($request->input('image3') == '0') {
+            $suppliers->image3  = '';
+        }
+
         $suppliers->update();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
         return Redirect::back();
     }
+
     public function update(supplierrequest $request, Supplier $supplier)
     {
         if($request->input('manufacturer') == 'on'){

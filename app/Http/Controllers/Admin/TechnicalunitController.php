@@ -158,7 +158,7 @@ class TechnicalunitController extends Controller
         $states             = State::all();
         $users              = User::select('id' , 'name' , 'phone')->where('id' , '!=' ,1)->get();
         $statuses           = Status::select('id' , 'title')->get();
-        $medias             = Media::select('id' , 'image')->whereTechnical_id($id)->whereStatus(4)->get();
+        $medias             = Media::select('id' , 'image')->whereTechnical_id($id)->whereStatus(1)->get();
         $technicalunits    = Technical_unit::whereId($id)->get();
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
@@ -247,12 +247,19 @@ class TechnicalunitController extends Controller
         return Redirect::back();
 
     }
-    public function updatetechimg($id)
+    public function updatetechimg(Request $request , $id)
     {
         $technicaslunits = Technical_unit::findOrfail($id);
 
-        $technicaslunits->image = '';
-
+        if ($request->input('image') == '0') {
+            $technicaslunits->image = '';
+        }
+        if($request->input('image2') == '0') {
+            $technicaslunits->image2 = '';
+        }
+        if($request->input('image3') == '0') {
+            $technicaslunits->image3 = '';
+        }
         $technicaslunits->update();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
         return Redirect::back();

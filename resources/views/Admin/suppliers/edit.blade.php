@@ -47,13 +47,38 @@
                                         </div>
                                         <div class="col-md-6" style="display: inline-flex">
                                             <div class="col-md-4">
-                                                <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                <div style="width: 250px;float: left;border: 2px solid #4ec7c7;border-radius: 15px;">
                                                     <img src="{{asset($supplier->image)}}" class="img-responsive" style="padding: 20px;" alt="">
                                                     @if($supplier->image != null)
+                                                        <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                            <div class="col-3 d-inline-flex">
+                                                            <form action="{{ route('updatesupimg', $supplier->id)}}" method="post">
+                                                                {{ method_field('patch') }}
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" value="0" name="image">
+                                                                <div class="btn-group btn-group-xs">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                        <i class="fe fe-trash-2 "></i>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                            </div>
+                                                            <div class="col-5 d-inline-flex">
+                                                                <p>تصویر اصلی</p>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                    <img src="{{asset($supplier->image2)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                    @if($supplier->image2 != null)
                                                         <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
                                                             <form action="{{ route('updatesupimg', $supplier->id)}}" method="post">
                                                                 {{ method_field('patch') }}
                                                                 {{csrf_field()}}
+                                                                <input type="hidden" value="0" name="image2">
                                                                 <div class="btn-group btn-group-xs">
                                                                     <button type="submit" class="btn btn-outline-danger btn-xs">
                                                                         <i class="fe fe-trash-2 "></i>
@@ -66,12 +91,21 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
-                                                    <img src="{{asset($supplier->image2)}}" class="img-responsive" style="padding: 20px;" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
                                                     <img src="{{asset($supplier->image3)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                    @if($supplier->image3 != null)
+                                                        <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                            <form action="{{ route('updatesupimg', $supplier->id)}}" method="post">
+                                                                {{ method_field('patch') }}
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" value="0" name="image3">
+                                                                <div class="btn-group btn-group-xs">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                        <i class="fe fe-trash-2 "></i>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
