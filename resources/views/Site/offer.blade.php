@@ -269,7 +269,7 @@
                                                     <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">قیمت خرده فروشی (تومان)</p>
-                                                                <input type="text"  name="single_price" id="number single_price" placeholder="قیمت خرده فروشی را وارد کنید" class="form-control" />
+                                                                <input type="text"  name="single_price" id="single_price" placeholder="قیمت خرده فروشی را وارد کنید" class="form-control number1" />
                                                             </div>
                                                         </div>
                                                     <div class="col-md-3">
@@ -281,7 +281,7 @@
                                                     <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">حداقل تعداد عمده فروشی</p>
-                                                                <input type="text" name="total" placeholder="حداقل تعداد عمده فروشی را وارد کنید" class="form-control" />
+                                                                <input type="text" name="total" id="number3" placeholder="حداقل تعداد عمده فروشی را وارد کنید" class="form-control" />
                                                             </div>
                                                         </div>
                                                     <div class="col-md-12" >
@@ -314,14 +314,14 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
-                                                            <input type="text" disabled  value="{{Auth::user()->phone}}" class="form-control" />
+                                                            <input type="text" disabled  value="{{Auth::user()->phone}}" class="form-control text-left" />
                                                             <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">تلفن ثابت</p>
-                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
+                                                            <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
+                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-7">
@@ -527,7 +527,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">قیمت (تومان)</p>
-                                                            <input type="text"  name="single_price" id="number single_price" placeholder="قیمت را وارد کنید" class="form-control" />
+                                                            <input type="text"  name="single_price" id="single_price" placeholder="قیمت را وارد کنید" class="form-control number4" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12" >
@@ -560,14 +560,14 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
-                                                            <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
-                                                            <input type="hidden" name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
+                                                            <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control text-left" />
+                                                            <input type="hidden" name="mobile" value="{{Auth::user()->phone}}" class="form-control " />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">تلفن ثابت</p>
-                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
+                                                            <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
+                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" placeholder="021-88556644" class="form-control text-left" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-7">
@@ -611,102 +611,6 @@
                             </div>
                         </div>
                     </div>
-
-{{--                    <div class="col-lg-9 col-md-9 col-xs-12 pl">--}}
-{{--                        <div class="profile-content">--}}
-{{--                            <div class="profile-stats">--}}
-{{--                                <div class="profile-address">--}}
-{{--                                    <div class="middle-container">--}}
-{{--                                        <div>--}}
-{{--                                            <h3 class="text-center mb-1">--}}
-{{--                                                <span class="btn-outline-info">اطلاعات پیشنهاد فروش</span>--}}
-{{--                                            </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="table-responsive">--}}
-{{--                                            <table class="table" id="example1">--}}
-{{--                                                <thead>--}}
-{{--                                                <tr>--}}
-{{--                                                    <th class="wd-10p"> ردیف </th>--}}
-{{--                                                    <th class="wd-10p"> عنوان آگهی </th>--}}
-{{--                                                    <th class="wd-10p"> نام قطعه </th>--}}
-{{--                                                    <th class="wd-10p"> برند قطعه </th>--}}
-{{--                                                    <th class="wd-10p"> حداقل تعداد عمده فروشی </th>--}}
-{{--                                                    <th class="wd-10p"> پیشنهاد جهت </th>--}}
-{{--                                                    <th class="wd-10p"> وضعیت </th>--}}
-{{--                                                    <th class="wd-10p"> تغییر </th>--}}
-{{--                                                    <th class="wd-10p"> حذف </th>--}}
-{{--                                                </tr>--}}
-{{--                                                </thead>--}}
-{{--                                                <tbody>--}}
-{{--                                                <?php $x= 1; ?>--}}
-{{--                                                @foreach($offers as $offer)--}}
-{{--                                                    <tr class="odd gradeX">--}}
-{{--                                                        <td>{{$x++}}</td>--}}
-{{--                                                        <td>{{$offer->title_offer}}</td>--}}
-{{--                                                        <td>--}}
-{{--                                                            @foreach($products as $product)--}}
-{{--                                                                @if($offer->unicode_product == $product->unicode)--}}
-{{--                                                                    {{$product->title_fa}}--}}
-{{--                                                                @endif--}}
-{{--                                                            @endforeach--}}
-{{--                                                            @if($offer->product_name != null)--}}
-{{--                                                                    {{$offer->product_name}}--}}
-{{--                                                                @endif--}}
-{{--                                                        </td>--}}
-{{--                                                        <td>--}}
-{{--                                                            @foreach($brands as $brand)--}}
-{{--                                                                @if($offer->brand_id == $brand->id)--}}
-{{--                                                                    {{$brand->title_fa}}--}}
-{{--                                                                @endif--}}
-{{--                                                            @endforeach--}}
-{{--                                                            @if($offer->brand_name != null)--}}
-{{--                                                                    {{$offer->brand_name}}--}}
-{{--                                                                @endif--}}
-{{--                                                        </td>--}}
-{{--                                                        <td>{{$offer->total}}</td>--}}
-{{--                                                        <td>@if($offer->buyorsell == 'sell')فروش--}}
-{{--                                                            @elseif($offer->buyorsell == 'buy')خرید--}}
-{{--                                                            @endif--}}
-{{--                                                        </td>--}}
-{{--                                                        <td>--}}
-{{--                                                            @if($offer->status == 1)--}}
-{{--                                                                <p class="text-warning">درحال بررسی</p>--}}
-{{--                                                            @elseif($offer->status == 2)--}}
-{{--                                                                <p class="text-dark">غیر فعال</p>--}}
-{{--                                                            @elseif($offer->status == 3)--}}
-{{--                                                                <p class="text-secondary">زمان آگهی گذشته</p>--}}
-{{--                                                            @elseif($offer->status == 4)--}}
-{{--                                                                <p class="text-success">در حال نمایش</p>--}}
-{{--                                                            @elseif($offer->status == 5)--}}
-{{--                                                                <p class="text-danger">رد شده</p>--}}
-{{--                                                            @endif--}}
-{{--                                                        </td>--}}
-{{--                                                        <td>--}}
-{{--                                                            <a href="{{ route('offer-edit' , $offer->id) }}"  class="btn btn-outline-primary btn-xs">--}}
-{{--                                                                <i class="fa fa-edit"></i>--}}
-{{--                                                            </a>--}}
-{{--                                                        </td>--}}
-{{--                                                        <td>--}}
-{{--                                                            <form action="{{ route('offer-delete' , $offer->id) }}" method="post">--}}
-{{--                                                                {{ method_field('delete') }}--}}
-{{--                                                                {{ csrf_field() }}--}}
-{{--                                                                <div class="btn-group btn-group-xs">--}}
-{{--                                                                    <button type="submit" class="btn btn-outline-danger btn-xs">--}}
-{{--                                                                        <i class="fa fa-trash"></i>--}}
-{{--                                                                    </button>--}}
-{{--                                                                </div>--}}
-{{--                                                            </form>--}}
-{{--                                                        </td>--}}
-{{--                                                    </tr>--}}
-{{--                                                @endforeach--}}
-{{--                                                </tbody>--}}
-{{--                                            </table>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     </div>
                 </div>
             </section>
@@ -716,12 +620,10 @@
 @section('script')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min-rtl.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/bootstrap-daterangepicker/moment.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/advanced-form-elements.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
@@ -729,11 +631,9 @@
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{asset('site/js/popper.min.js')}}"></script>
+    <script src="{{asset('site/js/bootstrap.min.js')}}"></script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor1' ) )
@@ -749,13 +649,15 @@
             } );
     </script>
     <script>
-        $(function () { $('#number').change(function () { var x = $('#number').val(); $('#number').val(addCommas(x)); }); });
-        $(function () { $('#number2').change(function () { var y = $('#number2').val(); $('#number2').val(addCommas(y)); }); });
-        $(function () { $('#number3').change(function () { var z = $('#number3').val(); $('#number3').val(addCommas(z)); }); });
+        $(function () { $('.number1').focusout(function () { var x = $('.number1').val(); $('.number1').val(addCommas(x)); }); });
+        $(function () { $('.number4').focusout(function () { var f = $('.number4').val(); $('.number4').val(addCommas(f)); }); });
+        $(function () { $('#number2').focusout(function () { var y = $('#number2').val(); $('#number2').val(addCommas(y)); }); });
+        $(function () { $('#number3').focusout(function () { var z = $('#number3').val(); $('#number3').val(addCommas(z)); }); });
 
         function addCommas(z) { return z.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
         function addCommas(y) { return y.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
         function addCommas(x) { return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
+        function addCommas(f) { return f.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
     </script>
     <script>
         $(function(){
@@ -787,12 +689,10 @@
     <script>
         $(function () {
             $("#single2").click(function () {
-                if ($(this).is(":checked")) {
-                    $("#single_price").removeAttr("disabled");
-                    $("#single_price").focus();
-                } else {
-                    $("#single_price").attr("disabled", "disabled");
-                }
+                $("#single_price").attr("disabled", "disabled");
+            });
+            $("#single1").click(function () {
+                $("#single_price").removeAttr("disabled");
             });
         });
     </script>

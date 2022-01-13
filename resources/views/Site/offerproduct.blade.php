@@ -12,6 +12,7 @@
 
 @endsection
 @section('main')
+    @include('sweet::alert')
     <div class="nav-categories-overlay"></div>
     <div class="container-main">
         <div class="d-block">
@@ -119,6 +120,8 @@
                                                                         <option value="{{$product->unicode}}" selected>{{$product->unicode}} - {{$product->title_fa}}</option>
                                                                     @endforeach
                                                                 </select>
+                                                                <button type="button" style="position: absolute;" class="btn btn-info" data-placement="top" rel="tooltip" title="چنانچه بخش یا کل یونیکد کالای مورد نظر خود را میدانید بر روی کلید جستجو کلیک نمایید تا کالای مورد نظر شما نمایش داده شود" data-toggle="modal" data-target="#unicode"><i class="fa fa-search"></i></button>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -279,7 +282,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">قیمت خرده فروشی (تومان)</p>
-                                                                <input type="text"  name="single_price" id="single_price" placeholder="قیمت خرده فروشی را وارد کنید" class="form-control" />
+                                                                <input type="text"  name="single_price" id="single_price" placeholder="قیمت خرده فروشی را وارد کنید" class="form-control number1" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -324,7 +327,8 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تلفن موبایل</p>
-                                                                <input type="text" name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
+                                                                <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
+                                                                <input type="hidden" name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -336,7 +340,7 @@
                                                         <div class="col-md-7">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">آدرس</p>
-                                                                <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                                <textarea name="address" cols="30" rows="1" class="form-control">{{Auth::user()->address}}</textarea>
                                                             </div>
                                                         </div>
 
@@ -370,6 +374,8 @@
                                                                         <option value="{{$product->unicode}}" selected>{{$product->unicode}} - {{$product->title_fa}}</option>
                                                                     @endforeach
                                                                 </select>
+                                                                <button type="button" style="position: absolute;" class="btn btn-info" data-placement="top" rel="tooltip" title="چنانچه بخش یا کل یونیکد کالای مورد نظر خود را میدانید بر روی کلید جستجو کلیک نمایید تا کالای مورد نظر شما نمایش داده شود" data-toggle="modal" data-target="#unicode"><i class="fa fa-search"></i></button>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -440,11 +446,11 @@
                                                                 <p class="mg-b-10">نوع قطعه </p>
                                                                 <div class="form-check form-check-inline">
                                                                     <input class="form-check-input"  type="radio" checked name="noe" id="noe" value="new">
-                                                                    <label class="form-check-label" style="margin-right: 5px;" for="buyorsell1">  نو </label>
+                                                                    <label class="form-check-label" style="margin-right: 5px;" for="noe">  نو </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="noe" id="noe" value="old">
-                                                                    <label class="form-check-label" style="margin-right: 5px;" for="buyorsell2">  کارکرده </label>
+                                                                    <input class="form-check-input" type="radio" name="noe" id="old" value="old">
+                                                                    <label class="form-check-label" style="margin-right: 5px;" for="old">  کارکرده </label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -481,7 +487,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">قیمت (تومان)</p>
-                                                                <input type="text"  name="single_price" id="number single_price" placeholder="قیمت را وارد کنید" class="form-control" />
+                                                                <input type="text"  name="single_price" id=" single_price" placeholder="قیمت را وارد کنید" class="form-control number4" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12" >
@@ -514,7 +520,9 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تلفن موبایل</p>
-                                                                <input type="text" name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
+                                                                <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
+                                                                <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
+
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -526,7 +534,7 @@
                                                         <div class="col-md-7">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">آدرس</p>
-                                                                <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                                <textarea name="address" cols="30" rows="1" class="form-control" >{{Auth::user()->address}}</textarea>
                                                             </div>
                                                         </div>
 
@@ -538,112 +546,31 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-md-9 col-xs-12 pl">
-                            <div class="profile-content">
-                                <div class="profile-stats">
-                                    <div class="profile-address">
-                                        <div class="middle-container">
-
-                                        <div class="col-md-12" >
-                                            <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">قطعه مناسب برای خودرو (ها) :</h4>
-                                        </div>
-                                        <div class="col-md-12">
-                                             <div style="background-color: #0ab2e699; border-radius: 15px; padding: 20px; margin: 20px 0px 40px 0px;">
-                                                <ul>
-                                                    <li><p>چنانچه خودرو مورد نظر شما قبلا در جدول زیر ثبت شده است ، کافیست روی دکمه ثبت نهایی کلیک نمایید.</p></li>
-                                                    <li><p>چنانچه خودرو مورد نظر شما در لیست زیر وجود ندارد، پس از انتخاب خودرو روی کلید ثبت خودرو انتخابی کلیک نمایید، خودرو ثبت شده به جدول اضافه می گردد.</p></li>
-                                                    <li><p>پس از اطمینان از صحت اطلاعات درج شده جهت نهایی کردن آگهی روی کلید سبز رنگ کلیک نمایید.</p></li>
-                                                </ul>
-                                             </div>
-                                        </div>
-
-                                        <form action="{{ route('cartechnichalgroups.store')}}" method="POST">
-                                            {{csrf_field()}}
-                                            <input type="hidden" name="product_id" value="@foreach($products as $product) {{$product->id}} @endforeach">
-                                            <div class="row row-sm">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <p class="mg-b-10">انتخاب خودرو</p>
-                                                        <select name="car_brand_id" class="form-control select2" id="car_brand_id">
-                                                            <option value="">انتخاب خودرو</option>
-                                                            @foreach($carbrands as $car_brand)
-                                                                <option value="{{$car_brand->id}}">{{$car_brand->title_fa}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <p class="mg-b-10">انتخاب مدل خودرو</p>
-                                                        <select multiple="multiple" name="car_model_id[]" id="car_model_id" class="form-control select2">
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <p class="mg-b-10">افزودن خودرو</p>
-                                                        <button type="submit" class="btn btn-info m-r-20 text-center">ذخیره اطلاعات</button>
+                                            <div class="modal fade" id="unicode" tabindex="-1" role="dialog" aria-labelledby="unicodeLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">جستجوی کالا بر اساس یونیکد </h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{route('unicode')}}" method="get" class="form-search">
+                                                                <input type="text" class="form-control green-place" name="unicode" placeholder="جستجوی یونیکد (شناسه 10 رقمی کالا)" style="max-width: 350px !important;float: right;">
+                                                                <div class="action-btns">
+                                                                    <button class="btn btn-search btn-search-green" type="submit"><i class="fa fa-search"></i></button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                        <div class="table-responsive">
-                                            <table class="table" id="example1">
-                                                <thead>
-                                                <tr>
-                                                    <th class="wd-10p"> ردیف </th>
-                                                    <th class="wd-10p"> برند خودرو </th>
-                                                    <th class="wd-10p"> مدل خودرو </th>
-                                                    <th class="wd-10p"> حذف </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php $s = 1; ?>
-                                                @foreach($carproducts as $car_product)
-                                                    <tr class="odd gradeX">
-                                                        <td>{{$s++}}</td>
-
-                                                        <td>
-                                                            @foreach($carbrands as $Car_brand)
-                                                                @if($Car_brand->id == $car_product->car_brand_id)
-                                                                    {{$Car_brand->title_fa}}
-                                                                @endif
-                                                            @endforeach
-                                                        </td>
-                                                        <td>
-                                                            @foreach($carmodels as $Car_model)
-                                                                @if($car_product->car_model_id == $Car_model->id)
-                                                                    {{$Car_model->title_fa}}
-                                                                @endif
-                                                            @endforeach
-                                                        </td>
-                                                        <td>
-                                                            <form action="{{ route('cartechnichalgroups.destroy', $car_product->id) }}" method="post">
-                                                                {{ method_field('delete') }}
-                                                                {{ csrf_field() }}
-                                                                <div class="btn-group btn-group-xs">
-                                                                    <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                        <i class="fa fa-trash "></i>
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                                </tbody>
-                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </section>
@@ -653,12 +580,8 @@
 @section('script')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min-rtl.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/bootstrap-daterangepicker/moment.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/advanced-form-elements.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
@@ -666,8 +589,6 @@
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
     <script>
         ClassicEditor
@@ -684,13 +605,15 @@
             } );
     </script>
     <script>
-        $(function () { $('#number').change(function () { var x = $('#number').val(); $('#number').val(addCommas(x)); }); });
+        $(function () { $('.number1').change(function () { var x = $('.number1').val(); $('.number1').val(addCommas(x)); }); });
+        $(function () { $('.number4').change(function () { var f = $('.number4').val(); $('.number4').val(addCommas(f)); }); });
         $(function () { $('#number2').change(function () { var y = $('#number2').val(); $('#number2').val(addCommas(y)); }); });
         $(function () { $('#number3').change(function () { var z = $('#number3').val(); $('#number3').val(addCommas(z)); }); });
 
         function addCommas(z) { return z.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
         function addCommas(y) { return y.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
         function addCommas(x) { return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
+        function addCommas(f) { return f.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
     </script>
     <script type="text/javascript">
         $(function(){

@@ -12,6 +12,7 @@ use App\Http\Requests\offerrequest;
 use App\Media;
 use App\Menudashboard;
 use App\Offer;
+use App\Product;
 use App\Product_group;
 use App\State;
 use App\Status;
@@ -165,7 +166,8 @@ class OfferController extends Controller
         $cities             =   City::select('title' , 'state_id' , 'id')->get();
         $statuses           =   Status::select('id','title')->get();
         $offers             =   Offer::whereId($id)->get();
-        $productgroups          =   Product_group::all();
+        $products               = Product::whereStatus(4)->get();
+        $productgroups      =   Product_group::all();
         $suppliers          =   Supplier::all();
         $carbrands          =   Car_brand::all();
         $carmodels          =   Car_model::all();
@@ -176,6 +178,7 @@ class OfferController extends Controller
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
 
         return view('Admin.offers.edit')
+            ->with(compact('products'))
             ->with(compact('productgroups'))
             ->with(compact('carmodels'))
             ->with(compact('caroffers'))
@@ -216,22 +219,32 @@ class OfferController extends Controller
 
     public function update(offerrequest $request, Offer $offer)
     {
-        $offer->title          = $request->input('title');
-        $offer->single         = $request->input('single');
-        $offer->product_group  = $request->input('product_group');
-        $offer->buyorsell      = $request->input('buyorsell');
-        $offer->state_id       = $request->input('state_id');
-        $offer->supplier_id    = $request->input('supplier_id');
-        $offer->single_price   = $request->input('single_price');
-        $offer->city_id        = $request->input('city_id');
-        $offer->brand_id       = $request->input('brand_id');
-        $offer->price          = $request->input('price');
-        $offer->total          = $request->input('total');
+        $offer->title_offer        = $request->input('title_offer');
+        $offer->product_group      = $request->input('product_group');
+        $offer->noe                 = $request->input('noe');
+        $offer->state_id           = $request->input('state_id');
+        $offer->buyorsell          = $request->input('buyorsell');
+        $offer->unicode_product    = $request->input('unicode_product');
+        $offer->product_name       = $request->input('product_name');
+        if($request->input('single_price')) {
+            $offer->single_price = str_replace(',', '', $request->input('single_price'));
+        }
+        $offer->city_id            = $request->input('city_id');
+        $offer->mobile             = $request->input('mobile');
+        $offer->brand_id           = $request->input('brand_id');
+        $offer->brand_name         = $request->input('brand_name');
+        $offer->total              = $request->input('total');
+        $offer->description        = $request->input('description');
+        $offer->address            = $request->input('address');
+        $offer->phone              = $request->input('phone');
+
+        $offer->single             = $request->input('single');
+        if($request->input('price')) {
+            $offer->price = str_replace(',', '', $request->input('price'));
+        }
+        $offer->supplier_id        = $request->input('supplier_id');
+        $offer->permanent_supplier = $request->input('permanent_supplier');
         $offer->status         = $request->input('status_id');
-        $offer->slug           = 'OFF-'.rand(1,999).chr(rand(97,122)).rand(1,999).chr(rand(97,122)).rand(1,999);
-        $offer->mobile         = $request->input('mobile');
-        $offer->address        = $request->input('address');
-        $offer->description    = $request->input('description');
         $offer->user_handle    = Auth::user()->id;
 
 
@@ -284,12 +297,7 @@ class OfferController extends Controller
         return Redirect::back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Offer $offer)
     {
         $offer->delete();

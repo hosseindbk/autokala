@@ -172,7 +172,7 @@ class OfferController extends Controller
             $id = $offer->id;
         }
 
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+        alert()->success('', 'اطلاعات آگهی با موفقیت ثبت شد. اطلاعات خودرو مورد نظر را ثبت نمایید')->persistent('تایید');
         return redirect(route('offer-edit' , $id));
     }
 
@@ -292,7 +292,7 @@ class OfferController extends Controller
     {
         $offer = Offer::findOrfail($id);
         $offer->delete();
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+        alert()->success('عملیات موفق', 'خودرو با موفقیت پاک شد');
         return Redirect::back();
     }
 

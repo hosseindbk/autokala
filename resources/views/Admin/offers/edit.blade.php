@@ -112,8 +112,16 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <p class="mg-b-10">نام کالا</p>
-                                                    <input type="text" name="title" value="{{$offer->title}}"  class="form-control" />
+                                                    <p class="mg-b-10">نام قطعه</p>
+                                                    @if($offer->unicode_product != null)
+                                                        <select name="unicode_product" class="form-control select2">
+                                                            @foreach($products as $product)
+                                                                <option value="{{$product->unicode}}" {{$offer->unicode_product == $product->unicode ? 'selected' : ''}}>{{$product->unicode}} - {{$product->title_fa}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    @elseif($offer->product_name != null)
+                                                        <input type="text" name="product_name" value="{{$product_name}}" class="form-control">
+                                                    @endif
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">خرده فروشی داریم؟</p>
@@ -150,17 +158,21 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <p class="mg-b-10">تامین کننده کالا</p>
-                                                    <select name="supplier_id" class="form-control select2" id="supplier_id">
-                                                        <option value="">انتخاب تامین کننده</option>
-                                                        @foreach($suppliers as $supplier)
-                                                            <option value="{{$supplier->id}}" {{$offer->supplier_id == $supplier->id ? 'selected' : ''}}>{{$supplier->title}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    <p class="mg-b-10">برند قطعه</p>
+                                                    @if($offer->brand_id != null)
+                                                        <select name="brand_id" class="form-control select2" id="brand_id_select">
+                                                            <option value="">انتخاب برند</option>
+                                                            @foreach($brands as $brand)
+                                                                <option value="{{$brand->id}}" {{$offer->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    @elseif($offer->brand_name != null)
+                                                        <input type="text" name="brand_name" value="{{$offer->brand_name}}" class="form-control">
+                                                    @endif
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">قیمت کالا خرده فروشی</p>
-                                                    <input type="text" name="single_price" value="{{$offer->single_price}}" class="form-control" />
+                                                    <input type="text" name="single_price" value="{{number_format($offer->single_price)}}" class="form-control" />
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخاب شهرستان</p>
@@ -180,22 +192,18 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <p class="mg-b-10">برند کالا</p>
-                                                    @if($offer->brand_id != null)
-                                                    <select name="brand_id" class="form-control select2" id="brand_id">
-                                                        <option value="">انتخاب برند</option>
-                                                        @foreach($brands as $brand)
-                                                            <option value="{{$brand->id}}" {{$offer->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @else
-                                                        <input type="text" name="brand_name" value="{{$offer->brand_name}}" class="form-control" />
-                                                    @endif
-                                                </div>
+                                                    <div class="form-group">
+                                                        <p class="mg-b-10">دسته بندی گروه قطعات</p>
+                                                        <select name="product_group" class="form-control select2" id="product_group">
+                                                            <option value="">انتخاب گروه</option>
+                                                            @foreach($productgroups as $product_group)
+                                                                <option value="{{$product_group->id}}" {{$product_group->id == $offer->product_group ? 'selected' : ''}}>{{$product_group->title_fa}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">قیمت کالا عمده فروشی</p>
-                                                    <input type="text" name="price" value="{{$offer->price}}" class="form-control" />
+                                                    <input type="text" name="price" value="{{number_format($offer->price)}}" class="form-control" />
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تعداد کالا</p>

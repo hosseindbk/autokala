@@ -353,8 +353,8 @@
 @section('script')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{asset('site/js/popper.min.js')}}"></script>
+    <script src="{{asset('site/js/bootstrap.min.js')}}"></script>
 
     <script>
         $(function(){

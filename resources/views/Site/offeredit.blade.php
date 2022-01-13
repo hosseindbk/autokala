@@ -360,11 +360,11 @@
                                                                         <p class="mg-b-10">وضعیت قطعه </p>
                                                                         <div class="form-check form-check-inline">
                                                                             <input class="form-check-input"  type="radio" {{$offer->noe == 'new' ? 'checked' : ''}} name="noe" id="noe" value="new">
-                                                                            <label class="form-check-label" style="margin-right: 5px;" for="buyorsell1">  نو </label>
+                                                                            <label class="form-check-label" style="margin-right: 5px;" for="noe">  نو </label>
                                                                         </div>
                                                                         <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio" {{$offer->noe == 'old' ? 'checked' : ''}} name="noe" id="noe" value="old">
-                                                                            <label class="form-check-label" style="margin-right: 5px;" for="buyorsell2">  کارکرده </label>
+                                                                            <input class="form-check-input" type="radio" {{$offer->noe == 'old' ? 'checked' : ''}} name="noe" id="old" value="old">
+                                                                            <label class="form-check-label" style="margin-right: 5px;" for="old">  کارکرده </label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -457,7 +457,7 @@
                                                             @endif
                                                             <div class="col-lg-12 mg-b-10 text-center">
                                                                 <div class="form-group">
-                                                                    <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
+                                                                    <button type="submit" class="btn btn-info  btn-lg m-r-20">ثبت ویرایش اطلاعات</button>
                                                                 </div>
                                                             </div>
                                                         </div>

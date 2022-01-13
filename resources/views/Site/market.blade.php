@@ -319,7 +319,7 @@
                                         <header class="cat-header">
                                             <h2 class="mb-0">
                                                 <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingTwo" role="button" aria-expanded="false" aria-controls="headingOne">
-                                                    نام برند و مدل خودرو
+                                                    برند و مدل خودرو
                                                     <i class="mdi mdi-chevron-down"></i>
                                                 </button>
                                             </h2>
@@ -468,9 +468,9 @@
                                                         <div style="float: right">
                                                             @foreach($users as $user)
                                                                 @if($offer->user_id == $user->id)
-                                                                    @if($user->type_id == 1 || $user->type_id == 3)
+                                                                    @if($user->type_id == 1 )
                                                                         <button class="btn btn-danger">فروشگاه</button>
-                                                                    @elseif($user->type_id == 4)
+                                                                    @elseif($user->type_id == 4 || $user->type_id == 3)
                                                                         <button class="btn btn-success">شخصی</button>
                                                                     @endif
                                                                 @endif
@@ -490,13 +490,15 @@
                                                         </span>
                                                         </div>
                                                         <div class="title">
-                                                            @foreach($brands as $brand)
-                                                                @if($offer->brand_id == $brand->id)
-                                                                    {{$brand->title_fa}}
-                                                                @elseif($offer->brand_id == null)
-                                                                    {{$offer->brand_name}}
-                                                                @endif
-                                                            @endforeach
+                                                            @if($offer->brand_id == null)
+                                                                {{$offer->brand_name}}
+                                                            @elseif($offer->brand_id != null)
+                                                                @foreach($brands as $brand)
+                                                                    @if($offer->brand_id == $brand->id)
+                                                                        {{$brand->title_fa}}
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
                                                         </div>
                                                         <div class="price">
                                                             <span class="amount">{{jdate($offer->created_at)->ago()}}</span>
@@ -509,9 +511,9 @@
                                                             <div style="float: right">
                                                                 @foreach($users as $user)
                                                                     @if($offer->user_id == $user->id)
-                                                                        @if($user->type_id == 1 || $user->type_id == 3)
+                                                                        @if($user->type_id == 1 )
                                                                             <button class="btn btn-danger">فروشگاه</button>
-                                                                        @elseif($user->type_id == 4)
+                                                                        @elseif($user->type_id == 4 || $user->type_id == 3)
                                                                             <button class="btn btn-success">شخصی</button>
                                                                         @endif
                                                                     @endif
@@ -531,13 +533,15 @@
                                                         </span>
                                                             </div>
                                                             <div class="title">
-                                                                @foreach($brands as $brand)
-                                                                    @if($offer->brand_id == $brand->id)
-                                                                        {{$brand->title_fa}}
-                                                                    @elseif($offer->brand_id == null)
-                                                                        {{$offer->brand_name}}
-                                                                    @endif
-                                                                @endforeach
+                                                                @if($offer->brand_id == null)
+                                                                    {{$offer->brand_name}}
+                                                                @elseif($offer->brand_id != null)
+                                                                    @foreach($brands as $brand)
+                                                                        @if($offer->brand_id == $brand->id)
+                                                                            {{$brand->title_fa}}
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
                                                             </div>
                                                             <div class="price">
                                                                 <span class="amount">{{jdate($offer->created_at)->ago()}}</span>
@@ -550,9 +554,9 @@
                                                                 <div style="float: right">
                                                                     @foreach($users as $user)
                                                                         @if($offer->user_id == $user->id)
-                                                                            @if($user->type_id == 1 || $user->type_id == 3)
+                                                                            @if($user->type_id == 1 )
                                                                                 <button class="btn btn-danger">فروشگاه</button>
-                                                                            @elseif($user->type_id == 4)
+                                                                            @elseif($user->type_id == 4 || $user->type_id == 3)
                                                                                 <button class="btn btn-success">شخصی</button>
                                                                             @endif
                                                                         @endif
@@ -572,13 +576,15 @@
                                                             </span>
                                                                 </div>
                                                                 <div class="title">
-                                                                    @foreach($brands as $brand)
-                                                                        @if($offer->brand_id == $brand->id)
-                                                                            {{$brand->title_fa}}
-                                                                        @elseif($offer->brand_id == null)
-                                                                            {{$offer->brand_name}}
-                                                                        @endif
-                                                                    @endforeach
+                                                                    @if($offer->brand_id == null)
+                                                                        {{$offer->brand_name}}
+                                                                    @elseif($offer->brand_id != null)
+                                                                        @foreach($brands as $brand)
+                                                                            @if($offer->brand_id == $brand->id)
+                                                                                {{$brand->title_fa}}
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
                                                                 </div>
                                                                 <div class="price">
                                                                     <span class="amount">{{jdate($offer->created_at)->ago()}}</span>
@@ -611,9 +617,9 @@
                                                         <div style="float: right">
                                                             @foreach($users as $user)
                                                                 @if($offer->user_id == $user->id)
-                                                                    @if($user->type_id == 1 || $user->type_id == 3)
+                                                                    @if($user->type_id == 1 )
                                                                         <button class="btn btn-danger">فروشگاه</button>
-                                                                    @elseif($user->type_id == 4)
+                                                                    @elseif($user->type_id == 4 || $user->type_id == 3)
                                                                         <button class="btn btn-success">شخصی</button>
                                                                     @endif
                                                                 @endif
@@ -633,13 +639,15 @@
                                                         </span>
                                                         </div>
                                                         <div class="title">
-                                                            @foreach($brands as $brand)
-                                                                @if($offer->brand_id == $brand->id)
-                                                                    {{$brand->title_fa}}
-                                                                @elseif($offer->brand_id == null)
-                                                                    {{$offer->brand_name}}
-                                                                @endif
-                                                            @endforeach
+                                                            @if($offer->brand_id == null)
+                                                                {{$offer->brand_name}}
+                                                            @elseif($offer->brand_id != null)
+                                                                @foreach($brands as $brand)
+                                                                    @if($offer->brand_id == $brand->id)
+                                                                        {{$brand->title_fa}}
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
                                                         </div>
                                                         <div class="price">
                                                             <span class="amount">{{jdate($offer->created_at)->ago()}}</span>
@@ -675,10 +683,35 @@
 @section('script')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <script src="{{asset('site/js/popper.min.js')}}"></script>
+    <script src="{{asset('site/js/bootstrap.min.js')}}"></script>
+    <script>
+        $(function(){
+            $('#car_brand_id').change(function(){
+                $("#car_model_id option").remove();
+                var id = $('#car_brand_id').val();
+                $.ajax({
+                    url : '{{ route( 'modeloption' ) }}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function( result )
+                    {
+                        $.each( result, function(k, v) {
+                            $('#car_model_id').append($('<option>', {value:k, text:v}));
+                        });
+                    },
+                    error: function()
+                    {
+                        alert('error...');
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         $(function(){
             $('#state_id').change(function(){
