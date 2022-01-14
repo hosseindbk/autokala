@@ -1,6 +1,6 @@
 @extends('Admin.admin')
 @section('title')
-    <title> ویرایش  پیشنهاد خرید/فروش </title>
+    <title> ویرایش  آگهی </title>
     <link href="{{asset('admin/assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
     <link href="{{asset('admin/assets/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet">
     <link href="{{asset('admin/assets/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
@@ -16,11 +16,11 @@
             <div class="inner-body">
                 <div class="page-header">
                     <div>
-                        <h2 class="main-content-title tx-24 mg-b-5">مدیریت  پیشنهاد خرید/فروش</h2>
+                        <h2 class="main-content-title tx-24 mg-b-5">مدیریت  آگهی</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{url('admin/panel')}}">صفحه اصلی</a></li>
-                            <li class="breadcrumb-item"><a href="{{url('admin/offers')}}">مدیریت پیشنهاد خرید/فروش</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">ویرایش پیشنهاد خرید/فروش</li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/offers')}}">مدیریت آگهی</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">ویرایش آگهی</li>
                         </ol>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div>
-                                    <h3 class="text-center mb-5"><span class="badge badge-light">ویرایش اطلاعات پیشنهاد خرید/فروش</span></h3>
+                                    <h3 class="text-center mb-5"><span class="badge badge-light">ویرایش اطلاعات آگهی</span></h3>
                                 </div>
                                 @foreach($offers as $offer)
                                     <form action="{{route('offers.update', $offer->id)}}" method="POST" enctype="multipart/form-data">
@@ -113,16 +113,14 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">نام قطعه</p>
-                                                    @if($offer->unicode_product != null)
+                                                    @if($offer->product_name != null)
+                                                        <input type="text" name="product_name" value="{{$product_name}}" class="form-control">
+                                                    @else
                                                         <select name="unicode_product" class="form-control select2">
                                                             @foreach($products as $product)
                                                                 <option value="{{$product->unicode}}" {{$offer->unicode_product == $product->unicode ? 'selected' : ''}}>{{$product->unicode}} - {{$product->title_fa}}</option>
                                                             @endforeach
                                                         </select>
-                                                    @elseif($offer->product_name != null)
-                                                        <input type="text" name="product_name" value="{{$product_name}}" class="form-control">
-                                                    @else
-                                                        <input type="text" name="product_name" class="form-control">
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
@@ -148,30 +146,20 @@
                                                         <option value="buy"  {{$offer->buyorsell == 'buy' ? 'selected' : ''}}>پیشنهاد خرید</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group">
-                                                    <p class="mg-b-10">دسته بندی گروه کالا</p>
-                                                    <select name="product_group" class="form-control select2" id="product_group">
-                                                        <option value="">انتخاب برند</option>
-                                                        @foreach($productgroups as $product_group)
-                                                            <option value="{{$product_group->id}}" {{$product_group->id == $offer->product_group ? 'selected' : ''}}>{{$product_group->title_fa}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">برند قطعه</p>
-                                                    @if($offer->brand_id != null)
+
+                                                    @if($offer->brand_name != null)
+                                                        <input type="text" name="brand_name" value="{{$offer->brand_name}}" class="form-control">
+                                                    @else
                                                         <select name="brand_id" class="form-control select2" id="brand_id_select">
                                                             <option value="">انتخاب برند</option>
                                                             @foreach($brands as $brand)
                                                                 <option value="{{$brand->id}}" {{$offer->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
                                                             @endforeach
                                                         </select>
-                                                    @elseif($offer->brand_name != null)
-                                                        <input type="text" name="brand_name" value="{{$offer->brand_name}}" class="form-control">
-                                                    @else
-                                                        <input type="text" name="brand_name" class="form-control">
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
@@ -227,7 +215,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تصویر کالا</p>
-                                                    <input type="file" name="image2" class="dropify" data-height="200">
+                                                    <input  type="file" name="image2" class="dropify" data-height="200">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -342,7 +330,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
