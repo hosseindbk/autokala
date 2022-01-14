@@ -121,6 +121,8 @@
                                                         </select>
                                                     @elseif($offer->product_name != null)
                                                         <input type="text" name="product_name" value="{{$product_name}}" class="form-control">
+                                                    @else
+                                                        <input type="text" name="product_name" class="form-control">
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
@@ -168,6 +170,8 @@
                                                         </select>
                                                     @elseif($offer->brand_name != null)
                                                         <input type="text" name="brand_name" value="{{$offer->brand_name}}" class="form-control">
+                                                    @else
+                                                        <input type="text" name="brand_name" class="form-control">
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
