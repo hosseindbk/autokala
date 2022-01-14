@@ -117,7 +117,8 @@
                                                         <input type="text" name="product_name" value="{{$product_name}}" class="form-control">
                                                     @else
                                                         <select name="unicode_product" class="form-control select2">
-                                                            @foreach($products as $product)
+                                                            <option value="">انتخاب قطعه</option>
+                                                        @foreach($products as $product)
                                                                 <option value="{{$product->unicode}}" {{$offer->unicode_product == $product->unicode ? 'selected' : ''}}>{{$product->unicode}} - {{$product->title_fa}}</option>
                                                             @endforeach
                                                         </select>
