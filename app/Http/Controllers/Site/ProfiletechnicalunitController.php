@@ -133,7 +133,7 @@ class ProfiletechnicalunitController extends Controller
         $slug = $technical_units->slug;
 
         $technical_units->save();
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+        alert()->success('عملیات موفق', 'اطلاعات تعمیرگاه با موفقیت ثبت شد');
 
         $technical_id = Technical_unit::whereSlug($slug)->get();
         foreach ($technical_id as $Technical_unit) {

@@ -226,7 +226,7 @@ class ProfilebusinessController extends Controller
 
             $suppliers->save();
 
-            alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+            alert()->success('عملیات موفق', 'اطلاعات فروشگاه با موفقیت ثبت شد');
 
             $supplier_id = Supplier::whereSlug($slug)->get();
             foreach ($supplier_id as $Supplier) {
@@ -324,7 +324,7 @@ class ProfilebusinessController extends Controller
             $slug = $technical_units->slug;
 
             $technical_units->save();
-            alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+            alert()->success('عملیات موفق', 'اطلاعات تعمیرگاه با موفقیت ثبت شد');
 
             $technical_id = Technical_unit::whereSlug($slug)->get();
             foreach ($technical_id as $Technical_unit) {
@@ -368,7 +368,7 @@ class ProfilebusinessController extends Controller
         }
         $technical_unit->update();
 
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+        alert()->success('عملیات موفق', 'اطلاعات تعمیرگاه با موفقیت ویرایش شد');
         return Redirect::back();
 
     }
@@ -449,7 +449,7 @@ class ProfilebusinessController extends Controller
         }
 
         $supplier->update();
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+        alert()->success('عملیات موفق', 'اطلاعات فروشگاه با موفقیت ویرایش شد');
         return Redirect::back();
     }
 

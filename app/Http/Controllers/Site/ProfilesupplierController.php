@@ -151,7 +151,7 @@ class ProfilesupplierController extends Controller
 
         $suppliers->save();
 
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+        alert()->success('عملیات موفق', 'اطلاعات فروشگاه با موفقیت ثبت شد');
 
         $supplier_id = Supplier::whereSlug($slug)->get();
         foreach ($supplier_id as $Supplier) {
