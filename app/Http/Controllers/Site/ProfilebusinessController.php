@@ -322,9 +322,9 @@ class ProfilebusinessController extends Controller
             }
 
             $slug = $technical_units->slug;
-
+            $user = Auth::user()->name;
             $technical_units->save();
-            alert()->success('عملیات موفق', 'اطلاعات تعمیرگاه با موفقیت ثبت شد');
+            alert()->success('عملیات موفق' ,'اطلاعات تعمیرگاه با موفقیت ثبت شد');
 
             $technical_id = Technical_unit::whereSlug($slug)->get();
             foreach ($technical_id as $Technical_unit) {
