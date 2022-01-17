@@ -366,6 +366,26 @@ class ProfilebusinessController extends Controller
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
         }
+
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath ="image/technicals/";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $technical_unit->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath ="image/technicals/";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $technical_unit->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
         $technical_unit->update();
 
         alert()->success('عملیات موفق', 'اطلاعات تعمیرگاه با موفقیت ویرایش شد');
