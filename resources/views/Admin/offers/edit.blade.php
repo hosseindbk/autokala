@@ -114,7 +114,7 @@
                                                 <div class="form-group">
                                                     <p class="mg-b-10">نام قطعه</p>
                                                     @if($offer->product_name != null)
-                                                        <input type="text" name="product_name" value="{{$offer->$product_name}}" class="form-control">
+                                                        <input type="text" name="product_name" value="{{$offer->product_name}}" class="form-control">
                                                     @else
                                                         <select name="unicode_product" class="form-control select2">
                                                             <option value="">انتخاب قطعه</option>
