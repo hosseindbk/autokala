@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Car_brand;
 use App\Car_model;
 use App\Car_type;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\carbrandrequest;
 use App\Http\Requests\carmodelrequest;
 use App\Http\Requests\cartyperequest;
 use App\Menudashboard;
 use App\Status;
 use App\Submenudashboard;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class CarController extends Controller
@@ -21,20 +22,26 @@ class CarController extends Controller
 
     public function index()
     {
-        $carmodels          = Car_model::select('id' , 'title_fa' , 'vehicle_brand_id')->get();
-        $carbrands          = Car_brand::select('id' , 'title_fa')->get();
-        $cartypes           = Car_type::select('id' , 'title_fa' , 'car_model_id')->get();
+//        $carmodels          = Car_model::select('id' , 'title_fa' , 'vehicle_brand_id')->get();
+//        $carbrands          = Car_brand::select('id' , 'title_fa')->get();
+//        $cartypes           = Car_type::select('id' , 'title_fa' , 'car_model_id')->get();
         $statuses           = Status::select('id' , 'title')->get();
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
 
+        $shares = DB::table('car_brands')
+            ->leftjoin('car_models', 'car_models.vehicle_brand_id', '=', 'car_brands.id')
+            ->leftjoin('car_types', 'car_types.car_model_id', '=', 'car_models.id')
+            ->select('car_brands.title_fa as brand' , 'car_models.title_fa as model' , 'car_types.title_fa as type' ,'car_models.id as id' )->get();
+
+
         return view('Admin.cars.all')
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'))
-            ->with(compact('cartypes'))
             ->with(compact('statuses'))
-            ->with(compact('carbrands'))
-            ->with(compact('carmodels'));
+            ->with(compact('shares'));
+//            ->with(compact('carbrands'))
+//            ->with(compact('carmodels'))
 
     }
 
@@ -79,7 +86,6 @@ class CarController extends Controller
         $carmodels->date             = jdate()->format('Ymd ');
         $carmodels->date_handle      = jdate()->format('Ymd ');
         $carmodels->user_id          = Auth::user()->id;
-        $carmodels->user_handle      = Auth::user()->name;
 
         $carmodels->save();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
@@ -98,7 +104,6 @@ class CarController extends Controller
         $cartypes->date         = jdate()->format('Ymd ');
         $cartypes->date_handle  = jdate()->format('Ymd ');
         $cartypes->user_id      = Auth::user()->id;
-        $cartypes->user_handle  = Auth::user()->name;
 
         $cartypes->save();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
@@ -109,9 +114,9 @@ class CarController extends Controller
 
     public function edit($id)
     {
-        $carmodels          = Car_model::whereId($id)->get();
-        $carbrands          = Car_brand::all();
-        $statuses           = Status::all();
+        $carmodels          = Car_model::select('id' , 'title_fa' , 'title_en')->whereId($id)->get();
+        $carbrands          = Car_brand::select('id' , 'title_fa')->get();
+        $statuses           = Status::select('id' , 'title')->get();
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
 
@@ -122,17 +127,27 @@ class CarController extends Controller
             ->with(compact('carbrands'))
             ->with(compact('carmodels'));
     }
+    public function caredit(carmodelrequest $request,$id)
+    {
+        $carmodel = Car_model::findOrfail($id);
+        $carmodel->title_fa         = $request->input('title_fa');
+        $carmodel->title_en         = $request->input('title_en');
+        $carmodel->vehicle_brand_id = $request->input('vehicle_brand_id');
+        $carmodel->date_handle      = jdate()->format('Ymd ');
+        $carmodel->user_handle      = Auth::user()->name;
+
+        $carmodel->update();
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+        return redirect(route('carmodels.index'));
+    }
 
     public function update(carmodelrequest $request, Car_model $carmodel)
     {
         $carmodel->title_fa         = $request->input('title_fa');
         $carmodel->title_en         = $request->input('title_en');
         $carmodel->vehicle_brand_id = $request->input('vehicle_brand_id');
-        $carmodel->description      = $request->input('description');
-        $carmodel->status           = $request->input('status_id');
         $carmodel->date             = jdate()->format('Ymd ');
         $carmodel->date_handle      = jdate()->format('Ymd ');
-        $carmodel->user_id          = Auth::user()->id;
         $carmodel->user_handle      = Auth::user()->name;
 
         $carmodel->update();

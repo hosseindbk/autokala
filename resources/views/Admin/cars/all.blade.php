@@ -43,34 +43,32 @@
                                         </thead>
                                         <tbody>
                                         <?php $s = 1; ?>
-                                            @foreach($carmodels as $Car_model)
+                                            @foreach($shares as $Car_brand)
                                                 <tr class="odd gradeX">
                                                     <td>{{$s++}}</td>
 
                                                     <td>
-                                                        @foreach($carbrands as $Car_brand)
-                                                            @if($Car_brand->id == $Car_model->vehicle_brand_id)
-                                                                {{$Car_brand->title_fa}}
-                                                            @endif
-                                                        @endforeach
+                                                        {{$Car_brand->brand}}
                                                     </td>
 
-                                                    <td>{{$Car_model->title_fa}}</td>
-
                                                     <td>
-                                                        @foreach($cartypes as $Car_type)
-                                                            @if($Car_type->car_model_id == $Car_model->id)
-                                                                {{$Car_type->title_fa}}
-                                                            @endif
-                                                        @endforeach
+                                                                <button class="btn btn-default">{{$Car_brand->model}}</button>
+
+
+
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('cars.edit' , $Car_model->id) }}"  class="btn btn-outline-primary btn-xs">
+
+                                                                <button class="btn btn-default">{{$Car_brand->type}}</button>
+
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('cars.edit' , $Car_brand->id) }}"  class="btn btn-outline-primary btn-xs">
                                                             <i class="fe fe-edit-2"></i>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <form action="{{ route('cars.destroy'  , $Car_model->id) }}" method="post">
+                                                        <form action="{{ route('cars.destroy'  , $Car_brand->id) }}" method="post">
                                                             {{ method_field('delete') }}
                                                             {{ csrf_field() }}
                                                             <div class="btn-group btn-group-xs">
