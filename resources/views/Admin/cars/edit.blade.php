@@ -32,8 +32,8 @@
                                 <div>
                                     <h6 class="main-content-label text-center mb-5">ویرایش اطلاعات خودرو</h6>
                                 </div>
-                                @foreach($carmodels as $Car_model)
-                                    <form action="{{route('carupdate', $Car_model->id)}}" method="POST">
+                                @foreach($carbrands as $Car_brand)
+                                    <form action="{{route('carbrandupdate', $Car_brand->id)}}" method="POST">
                                         <div class="row row-sm">
                                             {{csrf_field()}}
                                             {{ method_field('PATCH') }}
@@ -44,31 +44,60 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10"> برند خودرو فارسی</p>
-                                                    <input type="text" name="title_fa" data-required="1" value="{{$Car_brand->title_fa}}"  class="form-control" />
+                                                    <input type="text" name="title_fa" value="{{$Car_brand->title_fa}}"  class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10"> برند خودرو لاتین</p>
-                                                    <input type="text" name="title_en" data-required="1" value="{{$Car_brand->title_en}}"  class="form-control" />
+                                                    <input type="text" name="title_en" value="{{$Car_brand->title_en}}"  class="form-control" />
                                                 </div>
+                                            </div>
+
+                                            <div class="col-lg-12 mg-b-10 text-center">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره ویرایش اطلاعات</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-sm">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div>
+                                    <h6 class="main-content-label text-center mb-5">ویرایش اطلاعات خودرو</h6>
+                                </div>
+                                @foreach($carmodels as $Car_model)
+                                    <form action="{{route('carmodelupdate', $Car_model->id)}}" method="POST">
+                                        <div class="row row-sm">
+                                            {{csrf_field()}}
+                                            {{ method_field('PATCH') }}
+
+                                            <div class="col-md-12">
+                                                @include('error')
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <p class="mg-b-10"> مدل خودرو فارسی</p>
+                                                    <p class="mg-b-10"> برند خودرو فارسی</p>
                                                     <input type="text" name="title_fa" data-required="1" value="{{$Car_model->title_fa}}"  class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <p class="mg-b-10"> مدل خودرو لاتین</p>
+                                                    <p class="mg-b-10"> برند خودرو لاتین</p>
                                                     <input type="text" name="title_en" data-required="1" value="{{$Car_model->title_en}}"  class="form-control" />
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-12 mg-b-10 text-center">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
+                                                    <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره ویرایش اطلاعات</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -47,7 +47,7 @@
                                                     <td>{{$s++}}</td>
 
                                                     <td>
-                                                        {{$Car_brand->brand}}
+                                                        <button class="btn btn-default">{{$Car_brand->brand}}</button>
                                                     </td>
                                                     <td>
                                                         <button class="btn btn-default">{{$Car_brand->model}}</button>

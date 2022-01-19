@@ -72,7 +72,8 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     Route::get('cars'                                 , 'CarController@index');
     Route::get('cars/carcreate'                       , 'CarController@carcreate')->name('carcreate');
     Route::get('cars/carbrand/{id}'                   , 'CarController@carbrandedit')->name('carbrandedit');
-    Route::patch('cars/carbrand/{id}'                 , 'CarController@carupdate')->name('carupdate');
+    Route::patch('cars/carbrand/{id}'                 , 'CarController@carbrandupdate')->name('carbrandupdate');
+    Route::patch('cars/carmodel/{id}'                 , 'CarController@carmodelupdate')->name('carmodelupdate');
 
     Route::post('cars/create/storecarbrand'           , 'CarController@storecarbrand')->name('storecarbrand');
     Route::delete('cars/create/destroycarbrand/{id}'  , 'CarController@destroycarbrand')->name('destroycarbrand');

@@ -130,8 +130,8 @@ class CarController extends Controller
     public function carbrandedit($id)
     {
 
-        $carbrands          = Car_brand::select('id' , 'title_fa')->whereId($id)->get();
-        $carbrand_id        = Car_brand::select('id' , 'title_fa')->whereId($id)->pluck('id');
+        $carbrands          = Car_brand::select('id' , 'title_fa', 'title_en')->whereId($id)->get();
+        $carbrand_id        = Car_brand::whereId($id)->pluck('id');
         $carmodels          = Car_model::select('id' , 'title_fa' , 'title_en')->whereVehicle_brand_id($carbrand_id)->get();
         $statuses           = Status::select('id' , 'title')->get();
         $menudashboards     = Menudashboard::whereStatus(4)->get();
@@ -145,19 +145,26 @@ class CarController extends Controller
             ->with(compact('carmodels'));
     }
 
-    public function carupdate(carmodelrequest $request, $id)
+    public function carbrandupdate(carmodelrequest $request, $id)
     {
-        $carmodel = Car_model::findOrfail($id);
+        $carbrand                   = Car_brand::findOrfail($id);
+        $carbrand->title_fa         = $request->input('title_fa');
+        $carbrand->title_en         = $request->input('title_en');
+
+        $carbrand->update();
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+        return Redirect::back();
+    }
+
+    public function carmodelupdate(carmodelrequest $request, $id)
+    {
+        $carmodel                   = Car_model::findOrfail($id);
         $carmodel->title_fa         = $request->input('title_fa');
         $carmodel->title_en         = $request->input('title_en');
-        $carmodel->vehicle_brand_id = $request->input('vehicle_brand_id');
-        $carmodel->date             = jdate()->format('Ymd ');
-        $carmodel->date_handle      = jdate()->format('Ymd ');
-        $carmodel->user_handle      = Auth::user()->name;
 
         $carmodel->update();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
-        return redirect(route('carmodels.index'));
+        return Redirect::back();
     }
 
 
