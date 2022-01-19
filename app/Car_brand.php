@@ -14,7 +14,7 @@ class Car_brand  extends Model
      *
      * @return array
      */
-    public function sluggable()
+    public function sluggable() : array
     {
         return [
             'slug' => [

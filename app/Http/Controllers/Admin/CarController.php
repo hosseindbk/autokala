@@ -32,7 +32,7 @@ class CarController extends Controller
         $shares = DB::table('car_brands')
             ->leftjoin('car_models', 'car_models.vehicle_brand_id', '=', 'car_brands.id')
             ->leftjoin('car_types', 'car_types.car_model_id', '=', 'car_models.id')
-            ->select('car_brands.title_fa as brand' , 'car_models.title_fa as model' , 'car_types.title_fa as type' ,'car_models.id as id' )->get();
+            ->select('car_brands.title_fa as brand' , 'car_models.title_fa as model' , 'car_types.title_fa as type' ,'car_brands.id as id' )->get();
 
 
         return view('Admin.cars.all')
@@ -45,7 +45,7 @@ class CarController extends Controller
 
     }
 
-    public function create()
+    public function carcreate()
     {
         $carbrands          = Car_brand::all();
         $carmodels          = Car_model::all();
@@ -127,22 +127,27 @@ class CarController extends Controller
             ->with(compact('carbrands'))
             ->with(compact('carmodels'));
     }
-    public function caredit(carmodelrequest $request,$id)
+    public function carbrandedit($id)
     {
-        $carmodel = Car_model::findOrfail($id);
-        $carmodel->title_fa         = $request->input('title_fa');
-        $carmodel->title_en         = $request->input('title_en');
-        $carmodel->vehicle_brand_id = $request->input('vehicle_brand_id');
-        $carmodel->date_handle      = jdate()->format('Ymd ');
-        $carmodel->user_handle      = Auth::user()->name;
 
-        $carmodel->update();
-        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
-        return redirect(route('carmodels.index'));
+        $carbrands          = Car_brand::select('id' , 'title_fa')->whereId($id)->get();
+        $carbrand_id        = Car_brand::select('id' , 'title_fa')->whereId($id)->pluck('id');
+        $carmodels          = Car_model::select('id' , 'title_fa' , 'title_en')->whereVehicle_brand_id($carbrand_id)->get();
+        $statuses           = Status::select('id' , 'title')->get();
+        $menudashboards     = Menudashboard::whereStatus(4)->get();
+        $submenudashboards  = Submenudashboard::whereStatus(4)->get();
+
+        return view('Admin.cars.edit')
+            ->with(compact('menudashboards'))
+            ->with(compact('submenudashboards'))
+            ->with(compact('statuses'))
+            ->with(compact('carbrands'))
+            ->with(compact('carmodels'));
     }
 
-    public function update(carmodelrequest $request, Car_model $carmodel)
+    public function carupdate(carmodelrequest $request, $id)
     {
+        $carmodel = Car_model::findOrfail($id);
         $carmodel->title_fa         = $request->input('title_fa');
         $carmodel->title_en         = $request->input('title_en');
         $carmodel->vehicle_brand_id = $request->input('vehicle_brand_id');
@@ -163,6 +168,13 @@ class CarController extends Controller
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
         return Redirect::back();
     }
+    public function delete($id)
+{
+    $carmodel = Car_model::find($id);
+    $carmodel->delete();
+    alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+    return Redirect::back();
+}
     public function destroycarmodel($id)
     {
         $carmodel = Car_model::find($id);

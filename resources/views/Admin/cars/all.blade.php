@@ -26,7 +26,7 @@
                             <div class="card-body">
                                 <div>
                                     <h6 class="main-content-label mb-1">لیست خودرو ها</h6>
-                                    <a href="{{url('admin/cars/create')}}" class="btn btn-primary btn-xs float-left">افزودن خودرو جدید</a>
+                                    <a href="{{route('carcreate')}}" class="btn btn-primary btn-xs float-left m-2">افزودن خودرو جدید</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table" id="example1">
@@ -37,7 +37,6 @@
                                             <th class="wd-10p"> مدل خودرو </th>
                                             <th class="wd-10p"> تیپ و تریم خودرو </th>
                                             <th class="wd-10p"> تغییرات </th>
-                                            <th class="wd-10p"> حذف </th>
 
                                         </tr>
                                         </thead>
@@ -50,33 +49,16 @@
                                                     <td>
                                                         {{$Car_brand->brand}}
                                                     </td>
-
                                                     <td>
-                                                                <button class="btn btn-default">{{$Car_brand->model}}</button>
-
-
-
+                                                        <button class="btn btn-default">{{$Car_brand->model}}</button>
                                                     </td>
                                                     <td>
-
-                                                                <button class="btn btn-default">{{$Car_brand->type}}</button>
-
+                                                        <button class="btn btn-default">{{$Car_brand->type}}</button>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('cars.edit' , $Car_brand->id) }}"  class="btn btn-outline-primary btn-xs">
+                                                        <a href="{{ route('carbrandedit' , $Car_brand->id) }}"  class="btn btn-outline-primary btn-xs">
                                                             <i class="fe fe-edit-2"></i>
                                                         </a>
-                                                    </td>
-                                                    <td>
-                                                        <form action="{{ route('cars.destroy'  , $Car_brand->id) }}" method="post">
-                                                            {{ method_field('delete') }}
-                                                            {{ csrf_field() }}
-                                                            <div class="btn-group btn-group-xs">
-                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                    <i class="fe fe-trash-2 "></i>
-                                                                </button>
-                                                            </div>
-                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

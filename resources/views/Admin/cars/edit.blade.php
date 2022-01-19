@@ -33,13 +33,25 @@
                                     <h6 class="main-content-label text-center mb-5">ویرایش اطلاعات خودرو</h6>
                                 </div>
                                 @foreach($carmodels as $Car_model)
-                                    <form action="{{route('caredit', $Car_model->id)}}" method="POST">
+                                    <form action="{{route('carupdate', $Car_model->id)}}" method="POST">
                                         <div class="row row-sm">
                                             {{csrf_field()}}
                                             {{ method_field('PATCH') }}
 
                                             <div class="col-md-12">
                                                 @include('error')
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10"> برند خودرو فارسی</p>
+                                                    <input type="text" name="title_fa" data-required="1" value="{{$Car_brand->title_fa}}"  class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10"> برند خودرو لاتین</p>
+                                                    <input type="text" name="title_en" data-required="1" value="{{$Car_brand->title_en}}"  class="form-control" />
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -53,16 +65,7 @@
                                                     <input type="text" name="title_en" data-required="1" value="{{$Car_model->title_en}}"  class="form-control" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <p class="mg-b-10">انتخاب برند خودرو</p>
-                                                    <select name="vehicle_brand_id" class="form-control select2">
-                                                        @foreach($carbrands as $Car_brand)
-                                                            <option value="{{$Car_brand->id}}" {{$Car_brand->id == $Car_model->vehicle_brand_id ? 'selected' : ''}}>{{$Car_brand->title_fa}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+
                                             <div class="col-lg-12 mg-b-10 text-center">
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>

@@ -72,7 +72,6 @@
                                                 <th class="wd-10p"> ردیف </th>
                                                 <th class="wd-10p"> برند خودرو فارسی </th>
                                                 <th class="wd-10p"> برند خودرو انگلیسی </th>
-                                                <th class="wd-10p"> وضعیت </th>
                                                 <th class="wd-10p"> تغییر </th>
                                                 <th class="wd-10p"> حذف </th>
                                             </tr>
@@ -84,28 +83,11 @@
                                                     <td>{{$s++}}</td>
                                                     <td>{{$Car_brand->title_fa}}</td>
                                                     <td>{{$Car_brand->title_en}}</td>
+
                                                     <td>
-                                                        @foreach($statuses as $status)
-                                                            @if($status->id == $Car_brand->status)
-                                                                @if($status->id == 1)
-                                                                    <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
-                                                                @elseif($status->id == 2)
-                                                                    <button class="btn ripple btn-outline-primary">{{$status->title}}</button>
-                                                                @elseif($status->id == 3)
-                                                                    <button class="btn ripple btn-outline-info">{{$status->title}}</button>
-                                                                @elseif($status->id == 4)
-                                                                    <button class="btn ripple btn-outline-success">{{$status->title}}</button>
-                                                                @elseif($status->id == 5)
-                                                                    <button class="btn ripple btn-outline-light">{{$status->title}}</button>
-                                                                @elseif($status->id == 6)
-                                                                    <button class="btn ripple btn-outline-danger">{{$status->title}}</button>
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ route('carbrands.edit' , $Car_brand->id) }}"  class="btn btn-outline-primary btn-xs">
-                                                            <i class="fe fe-edit-2"></i>                                                    </a>
+{{--                                                        <a href="{{ route('carbrands.edit' , $Car_brand->id) }}"  class="btn btn-outline-primary btn-xs">--}}
+{{--                                                            <i class="fe fe-edit-2"></i>                                                    --}}
+{{--                                                        </a>--}}
                                                     </td>
                                                     <td>
                                                         <form action="{{ route('destroycarbrand' , $Car_brand->id) }}" method="post">
@@ -180,7 +162,6 @@
                                             <th class="wd-10p"> ردیف </th>
                                             <th class="wd-10p"> نام خودرو فارسی </th>
                                             <th class="wd-10p"> مدل خودرو انگلیسی</th>
-                                            <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> ویرایش </th>
                                             <th class="wd-10p"> حذف </th>
 
@@ -197,28 +178,9 @@
                                                 <td>{{$Car_model->title_en}}</td>
 
                                                 <td>
-                                                    @foreach($statuses as $status)
-                                                        @if($status->id == $Car_model->status)
-                                                            @if($status->id == 1)
-                                                                <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
-                                                            @elseif($status->id == 2)
-                                                                <button class="btn ripple btn-outline-primary">{{$status->title}}</button>
-                                                            @elseif($status->id == 3)
-                                                                <button class="btn ripple btn-outline-info">{{$status->title}}</button>
-                                                            @elseif($status->id == 4)
-                                                                <button class="btn ripple btn-outline-success">{{$status->title}}</button>
-                                                            @elseif($status->id == 5)
-                                                                <button class="btn ripple btn-outline-light">{{$status->title}}</button>
-                                                            @elseif($status->id == 6)
-                                                                <button class="btn ripple btn-outline-danger">{{$status->title}}</button>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('carmodels.edit' , $Car_model->id) }}"  class="btn btn-outline-info btn-xs">
-                                                        <i class="fe fe-edit-2"></i>
-                                                    </a>
+{{--                                                    <a href="{{ route('carmodels.edit' , $Car_model->id) }}"  class="btn btn-outline-info btn-xs">--}}
+{{--                                                        <i class="fe fe-edit-2"></i>--}}
+{{--                                                    </a>--}}
                                                 </td>
                                                 <td>
                                                     <form action="{{ route('destroycarmodel'  , $Car_model->id) }}" method="post">
@@ -302,7 +264,6 @@
                                                 <th class="wd-10p"> ردیف </th>
                                                 <th class="wd-10p">  تیپ وتریم فارسی </th>
                                                 <th class="wd-10p"> تیپ وتریم انگلیسی </th>
-                                                <th class="wd-10p"> وضعیت </th>
                                                 <th class="wd-10p"> ویرایش </th>
                                                 <th class="wd-10p"> حذف </th>
                                             </tr>
@@ -314,29 +275,11 @@
                                                     <td>{{$s++}}</td>
                                                     <td>{{$Car_type->title_fa}}</td>
                                                     <td>{{$Car_type->title_en}}</td>
+
                                                     <td>
-                                                        @foreach($statuses as $status)
-                                                            @if($status->id == $Car_type->status)
-                                                                @if($status->id == 1)
-                                                                    <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
-                                                                @elseif($status->id == 2)
-                                                                    <button class="btn ripple btn-outline-primary">{{$status->title}}</button>
-                                                                @elseif($status->id == 3)
-                                                                    <button class="btn ripple btn-outline-info">{{$status->title}}</button>
-                                                                @elseif($status->id == 4)
-                                                                    <button class="btn ripple btn-outline-success">{{$status->title}}</button>
-                                                                @elseif($status->id == 5)
-                                                                    <button class="btn ripple btn-outline-light">{{$status->title}}</button>
-                                                                @elseif($status->id == 6)
-                                                                    <button class="btn ripple btn-outline-danger">{{$status->title}}</button>
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ route('cartypes.edit' , $Car_type->id) }}"  class="btn btn-outline-primary btn-xs">
-                                                            <i class="fe fe-edit-2"></i>
-                                                        </a>
+{{--                                                        <a href="{{ route('cartypes.edit' , $Car_type->id) }}"  class="btn btn-outline-primary btn-xs">--}}
+{{--                                                            <i class="fe fe-edit-2"></i>--}}
+{{--                                                        </a>--}}
                                                     </td>
                                                     <td>
                                                         <form action="{{ route('destroycartype' , $Car_type->id) }}" method="post">

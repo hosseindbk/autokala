@@ -61,15 +61,18 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     Route::resource('representetivesuppliers'       , 'RepresentativesupplierController');
     Route::resource('cartypes'                      , 'CartypeController');
     Route::resource('carbrands'                     , 'CarbrandController');
-    Route::resource('carmodels'                     , 'CarController');
+    //Route::resource('carmodels'                     , 'CarController');
     Route::resource('representatives'               , 'RepresentController');
     Route::resource('productgroups'                 , 'ProductgroupController');
     Route::resource('carproducts'                   , 'CarproductController');
     Route::resource('profiles'                      , 'ProfileController');
     Route::resource('cartechnichalgroups'           , 'CartechnicalgroupController');
-    Route::resource('cars'                          , 'CarController');
-    Route::patch('cars/{id}'                          , 'CarController@caredit')->name('caredit');
     Route::resource('supplierproductgroups'         , 'SupplierproductgroupController');
+
+    Route::get('cars'                                 , 'CarController@index');
+    Route::get('cars/carcreate'                       , 'CarController@carcreate')->name('carcreate');
+    Route::get('cars/carbrand/{id}'                   , 'CarController@carbrandedit')->name('carbrandedit');
+    Route::patch('cars/carbrand/{id}'                 , 'CarController@carupdate')->name('carupdate');
 
     Route::post('cars/create/storecarbrand'           , 'CarController@storecarbrand')->name('storecarbrand');
     Route::delete('cars/create/destroycarbrand/{id}'  , 'CarController@destroycarbrand')->name('destroycarbrand');
