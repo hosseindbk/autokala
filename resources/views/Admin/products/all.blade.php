@@ -43,19 +43,14 @@
                                         <tbody>
                                         @foreach($products as $product)
                                         <tr>
-                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->idproduct}}</td>
                                             <td>
                                                 <img src="{{asset($product->image)}}" class="img-responsive lazy" style="display: block" width="30" alt="">
                                             </td>
                                             <td>
-                                                @foreach($productgroups as $product_group)
-                                                    @if($product_group->id == $product->kala_group_id)
-                                                        {{$product_group->title_fa}}
-                                                    @endif
-                                                @endforeach
-                                            </td>
+                                                {{$product->titleproductgroup}}
                                             <td>
-                                                {{$product->title_fa}} با یونیکد <button type="button" class="btn ripple btn-light">{{$product->unicode}}</button>  و کد فنی   {{$product->code_fani_company}}
+                                                {{$product->titleproduct}} با یونیکد <button type="button" class="btn ripple btn-light">{{$product->unicode}}</button>  و کد فنی   {{$product->codefani}}
                                             </td>
                                             <td>
                                                 @if($product->status == 1)
@@ -74,20 +69,20 @@
                                             </td>
                                             <td>
                                                 <div class="btn-icon-list">
-                                                    <a href="{{ route('product-brand-variety' , $product->id ) }}" class="btn ripple btn-outline-info btn-icon">
+                                                    <a href="{{ route('product-brand-variety' , $product->idproduct ) }}" class="btn ripple btn-outline-info btn-icon">
                                                         <i class="fe fe-edit"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="btn-icon-list">
-                                                    <a href="{{ route('products.edit' , $product->id ) }}" class="btn ripple btn-outline-info btn-icon">
+                                                    <a href="{{ route('products.edit' , $product->idproduct ) }}" class="btn ripple btn-outline-info btn-icon">
                                                         <i class="fe fe-edit-2"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td>
-                                                <form action="{{ route('products.destroy' , $product->id) }}" method="post">
+                                                <form action="{{ route('products.destroy' , $product->idproduct) }}" method="post">
                                                     {{ method_field('delete') }}
                                                     {{ csrf_field() }}
                                                     <div class="btn-icon-list">

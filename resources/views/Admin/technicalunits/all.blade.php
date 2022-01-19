@@ -50,11 +50,11 @@
                                         <tbody>
                                         @foreach($technicalunits as $technicalunit)
                                             <tr class="odd gradeX">
-                                                <td>{{$technicalunit->id}}</td>
+                                                <td>{{$technicalunit->tid}}</td>
                                                 <td>
                                                     <img src="{{asset($technicalunit->image)}}" class="img-responsive" style="display: block" width="30" alt="">
                                                 </td>
-                                                <td>{{$technicalunit->title}} با مدیریت {{$technicalunit->manager}}</td>
+                                                <td>{{$technicalunit->ttitle}} با مدیریت {{$technicalunit->manager}}</td>
                                                 <td>
                                                     @if($technicalunit->phone != null) {{$technicalunit->phone}}
                                                     @elseif($technicalunit->phone2 != null) - {{$technicalunit->phone2}} -
@@ -64,33 +64,26 @@
                                                     @elseif($technicalunit->whatsapp != null) {{$technicalunit->whatsapp}} @endif
                                                 </td>
                                                 <td>
-                                                @foreach($states as $state)
-                                                    @if($state->id == $technicalunit->state_id)
-                                                        {{$state->title}}
-                                                    @endif
-                                                @endforeach
+                                                        {{$technicalunit->stitle}}
                                                 </td>
                                                 <td>
-                                                @foreach($cities as $city)
-                                                    @if($city->id == $technicalunit->city_id)
-                                                      {{$city->title}}
-                                                    @endif
-                                                @endforeach
+                                                      {{$technicalunit->ctitle}}
                                                 </td>
                                                 <td style="text-align: center;">
                                                     <label class="custom-switch">
-                                                        <input type="checkbox" name="homeshow" class="custom-switch-input" id="{{$technicalunit->id}}" {{$technicalunit->homeshow == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" name="homeshow" class="custom-switch-input" id="{{$technicalunit->tid}}" {{$technicalunit->homeshow == 1 ? 'checked' : ''}}>
                                                         <span class="custom-switch-indicator"></span>
                                                     </label>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('technicalunits.address' , $technicalunit->id) }}"  class="btn btn-outline-primary btn-xs">
+                                                    <a href="{{ route('technicalunits.address' , $technicalunit->tid) }}"  class="btn btn-outline-primary btn-xs">
                                                         <i class="fe fe-map-pin"></i>
                                                     </a>
                                                 </td>
                                                 <td>
+
                                                     @foreach($statuses as $status)
-                                                        @if($status->id == $technicalunit->status)
+                                                        @if($status->id == $technicalunit->tstatus)
                                                             @if($status->id == 1)
                                                                 <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
                                                             @elseif($status->id == 2)
@@ -106,14 +99,15 @@
                                                             @endif
                                                         @endif
                                                     @endforeach
+
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('technicalunits.edit' , $technicalunit->id) }}"  class="btn btn-outline-primary btn-xs">
+                                                    <a href="{{ route('technicalunits.edit' , $technicalunit->tid) }}"  class="btn btn-outline-primary btn-xs">
                                                         <i class="fe fe-edit-2"></i>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('technicalunits.destroy'  , $technicalunit->id) }}" method="post">
+                                                    <form action="{{ route('technicalunits.destroy'  , $technicalunit->tid) }}" method="post">
                                                         {{ method_field('delete') }}
                                                         {{ csrf_field() }}
                                                         <div class="btn-group btn-group-xs">

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Car_brand;
 use App\Car_model;
 use App\Car_technical_group;
-use App\Car_type;
 use App\City;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\mediarequest;
@@ -20,6 +19,7 @@ use App\Technical_unit;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
@@ -29,23 +29,23 @@ class TechnicalunitController extends Controller
 
     public function index()
     {
-        $technicalunits     =   Technical_unit::all();
-        $states             =   State::select('id','title')->get();
-        $cities             =   City::select('title' , 'state_id' , 'id')->get();
         $statuses           =   Status::select('id','title')->get();
-        $users              =   User::select('id' , 'name')->where('id' , '!=' ,1)->get();
-        $medias             =   Media::select('technical_id' , 'image')->get();
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
 
+
+        $technicalunits = DB::table('technical_units')
+            ->leftJoin('states', 'states.id', '=', 'technical_units.state_id')
+            ->leftJoin('cities', 'cities.id', '=', 'technical_units.city_id')
+            ->select('technical_units.id as tid' , 'technical_units.image as image' , 'technical_units.title as ttitle' ,'technical_units.manager as manager'
+                , 'technical_units.phone as phone', 'technical_units.phone as phone2', 'technical_units.phone as phone3', 'technical_units.mobile as mobile'
+                , 'technical_units.mobile2 as mobile2', 'technical_units.whatsapp as whatsapp' , 'states.title as stitle' , 'cities.title as ctitle'
+                , 'technical_units.homeshow as homeshow' , 'technical_units.status as tstatus')->get();
+
         return view('Admin.technicalunits.all')
-            ->with(compact('users'))
+            ->with(compact('statuses'))
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'))
-            ->with(compact('statuses'))
-            ->with(compact('medias'))
-            ->with(compact('states'))
-            ->with(compact('cities'))
             ->with(compact('technicalunits'));
 
     }

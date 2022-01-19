@@ -150,7 +150,7 @@ Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , fu
     Route::post('profilecartechnical'           , 'ProfilebusinessController@cartechnicalstore' )->name('cartechnicalstore');
     Route::post('profilecarsupplier'            , 'ProfilebusinessController@carsupplierstore' )->name('carsupplierstore');
     Route::delete('profilecarsupplier/{id}'       , 'ProfilebusinessController@carsuppliergroupdelete' )->name('carsuppliergroupdelete');
-    Route::post('profilecartechnical/{id}'      , 'ProfilebusinessController@cartechnicaldelete' )->name('cartechnicaldelete');
+    Route::delete('profilecartechnical/{id}'      , 'ProfilebusinessController@cartechnicaldelete' )->name('cartechnicaldelete');
     Route::patch('profilesupplieredit/{id}'     , 'ProfilebusinessController@updatesupplier' )->name('profilesupplieredit');
     Route::get('profile-info'                   , 'ProfilebusinessController@profileinfo' )->name('profile-info');
     Route::get('profile-supplier-create'        , 'ProfilesupplierController@suppliercreate' )->name('supplier-business');

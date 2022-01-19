@@ -3,43 +3,41 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Brand;
 use App\Car_brand;
 use App\Car_model;
 use App\Car_product;
 use App\Car_type;
-use App\Http\Requests\carproductrequest;
-use App\Http\Requests\mediarequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\productrequest;
 use App\Media;
 use App\Menudashboard;
-use App\Permission;
-use App\Product_group;
 use App\Product;
-use App\Status;
-use App\Brand;
 use App\Product_brand_variety;
+use App\Product_group;
+use App\Status;
 use App\Submenudashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products           = Product::select('id' , 'image' , 'kala_group_id' , 'title_fa' , 'unicode' , 'status' , 'code_fani_company')->get();
-        $productgroups      = Product_group::select('id' , 'title_fa')->get();
+        $products = DB::table('products')
+            ->leftjoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
+            ->select('products.id as idproduct' , 'products.image as image' , 'products.title_fa as titleproduct'
+        , 'products.unicode as unicode' , 'products.status as status' , 'products.code_fani_company as codefani' ,'product_groups.id as idproductgroup' , 'product_groups.title_fa as titleproductgroup')->get();
+
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
 
         return view('Admin.products.all')
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'))
-            ->with(compact('productgroups'))
             ->with(compact('products'));
 
     }
