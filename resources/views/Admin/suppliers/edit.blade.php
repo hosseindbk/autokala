@@ -212,9 +212,10 @@
                                                     <p class="mg-b-10">نشان اتوکالا</p>
                                                     <select name="autokala" class="form-control select-lg select2">
                                                         <option value="">انتخاب نشان اتوکالا</option>
-                                                        <option value="1">نشان طلایی اتوکالا</option>
-                                                        <option value="2">نشان نقره ای اتوکالا</option>
-                                                        <option value="3">نشان برنزی اتوکالا</option>
+                                                        <option value="0" {{$Supplier->autokala == 0 ? 'selected' : ''}}>فاقد نشان </option>
+                                                        <option value="1" {{$Supplier->autokala == 1 ? 'selected' : ''}}>نشان طلایی اتوکالا</option>
+                                                        <option value="2" {{$Supplier->autokala == 2 ? 'selected' : ''}}>نشان نقره ای اتوکالا</option>
+                                                        <option value="3" {{$Supplier->autokala == 3 ? 'selected' : ''}}>نشان برنزی اتوکالا</option>
                                                     </select>
                                                 </div>
                                             </div>

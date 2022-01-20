@@ -15,10 +15,8 @@ use App\State;
 use App\Supplier;
 use App\Supplier_product_group;
 use App\Technical_unit;
-use App\Type_user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
 class ProfiletechnicalunitController extends Controller
@@ -59,27 +57,42 @@ class ProfiletechnicalunitController extends Controller
     }
     public function technicalcreate()
     {
-        $menus                  = Menu::whereStatus(4)->get();
-        $states                 = State::all();
-        $cities                 = city::all();
-        $carbrands              = Car_brand::all();
-        $carmodels              = Car_model::all();
-        $supplierproductgroups  = Supplier_product_group::all();
-        $productgroups          = Product_group::whereStatus(4)->get();
-        $cartechnicalgroups     = Car_technical_group::whereStatus(4)->get();
-        $technicalunits         = Technical_unit::whereUser_id(auth::user()->id)->get();
+        $menus = Menu::whereStatus(4)->get();
+        $states = State::all();
+        $cities = city::all();
+        $carbrands = Car_brand::all();
+        $carmodels = Car_model::all();
+        $supplierproductgroups = Supplier_product_group::all();
+        $productgroups = Product_group::whereStatus(4)->get();
+        $cartechnicalgroups = Car_technical_group::whereStatus(4)->get();
+        $technicalunits = Technical_unit::whereUser_id(auth::user()->id)->get();
+        $technicalunit_userid = Technical_unit::whereUser_id(auth::user()->id)->pluck('user_id');
 
-        return view('Site.profiletechnicalunit')
-            ->with(compact('cartechnicalgroups'))
-            ->with(compact('menus'))
-            ->with(compact('productgroups'))
-            ->with(compact('supplierproductgroups'))
-            ->with(compact('carbrands'))
-            ->with(compact('carmodels'))
-            ->with(compact('cities'))
-            ->with(compact('technicalunits'))
-            ->with(compact('states'));
+        if ($technicalunit_userid != '[]') {
+            return view('Site.profiletechnicalunitedit')
+                ->with(compact('cartechnicalgroups'))
+                ->with(compact('menus'))
+                ->with(compact('productgroups'))
+                ->with(compact('supplierproductgroups'))
+                ->with(compact('carbrands'))
+                ->with(compact('carmodels'))
+                ->with(compact('cities'))
+                ->with(compact('technicalunits'))
+                ->with(compact('states'));
+        } else {
+            return view('Site.profiletechnicalunit')
+                ->with(compact('cartechnicalgroups'))
+                ->with(compact('menus'))
+                ->with(compact('productgroups'))
+                ->with(compact('supplierproductgroups'))
+                ->with(compact('carbrands'))
+                ->with(compact('carmodels'))
+                ->with(compact('cities'))
+                ->with(compact('technicalunits'))
+                ->with(compact('states'));
+        }
     }
+
     public function store(technicalrequest $request)
     {
         $technical_units = new Technical_unit();

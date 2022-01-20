@@ -554,8 +554,8 @@ class ProfilebusinessController extends Controller
 
     public function cartechnicaldelete($id)
     {
-        $carsuppliergroup = Supplier_product_group::findOrfail($id);
-        $carsuppliergroup->delete();
+        $cartechnicalgroup = Car_technical_group::findOrfail($id);
+        $cartechnicalgroup->delete();
         return Redirect::back();
     }
 
