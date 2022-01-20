@@ -183,11 +183,12 @@ class TechnicalunitController extends Controller
     public function update(technicalrequest $request,$id)
     {
         if ($request->input('status_id') == 4) {
-
-            $user = User::findOrfail($request->input('user_id'));
-            if($user->type_id == 4) {
-                $user->type_id = 3;
-                $user->update();
+            if ($request->input('user_id') != null) {
+                $user = User::findOrfail($request->input('user_id'));
+                if ($user->type_id == 4) {
+                    $user->type_id = 3;
+                    $user->update();
+                }
             }
         }
 

@@ -467,7 +467,6 @@ class ProfilebusinessController extends Controller
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
         }
-
         $supplier->update();
         alert()->success('عملیات موفق', 'اطلاعات فروشگاه با موفقیت ویرایش شد');
         return Redirect::back();
@@ -526,19 +525,20 @@ class ProfilebusinessController extends Controller
             }
 
             Supplier_product_group::insert($carmodel);
+
             return Redirect::back();
         }else {
 
-            $cartechnicalgroups = new Car_technical_group();
+            $carproductgroups = new Supplier_product_group();
 
-            $cartechnicalgroups->kala_group_id = $request->input('product_group_id');
-            $cartechnicalgroups->car_brand_id = $request->input('car_brand_id');
-            $cartechnicalgroups->supplier_id = $request->input('supplier_id');
-            $cartechnicalgroups->date = jdate()->format('Ymd ');
-            $cartechnicalgroups->date_handle = jdate()->format('Ymd ');
-            $cartechnicalgroups->user_id = Auth::user()->id;
+            $carproductgroups->kala_group_id = $request->input('product_group_id');
+            $carproductgroups->car_brand_id = $request->input('car_brand_id');
+            $carproductgroups->supplier_id = $request->input('supplier_id');
+            $carproductgroups->date = jdate()->format('Ymd ');
+            $carproductgroups->date_handle = jdate()->format('Ymd ');
+            $carproductgroups->user_id = Auth::user()->id;
 
-            $cartechnicalgroups->save();
+            $carproductgroups->save();
 
             return Redirect::back();
         }

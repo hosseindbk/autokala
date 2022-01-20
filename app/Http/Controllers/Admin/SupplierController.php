@@ -8,21 +8,18 @@ use App\Car_model;
 use App\City;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\mediarequest;
-use App\Http\Requests\servicerequest;
 use App\Http\Requests\supplierrequest;
 use App\Media;
 use App\Menudashboard;
-use App\Product;
 use App\Product_group;
 use App\Representative;
 use App\Representative_supplier;
 use App\State;
 use App\Status;
-use App\User;
 use App\Submenudashboard;
 use App\Supplier;
 use App\Supplier_product_group;
-use Illuminate\Database\Eloquent\Model;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -291,13 +288,15 @@ class SupplierController extends Controller
             $supplier->retail_seller = 0;
         }
         if ($request->input('status_id') == 4) {
-
-            $user = User::findOrfail($request->input('user_id'));
-            if($user->type_id == 4) {
-                $user->type_id = 1;
-                $user->update();
+            if($request->input('user_id') != null) {
+                $user = User::findOrfail($request->input('user_id'));
+                if($user->type_id == 4) {
+                    $user->type_id = 1;
+                    $user->update();
+                }
             }
         }
+
         $supplier->title        = $request->input('title');
         $supplier->manager      = $request->input('manager');
         $supplier->phone        = $request->input('phone');
@@ -311,13 +310,11 @@ class SupplierController extends Controller
         $supplier->status       = $request->input('status_id');
         $supplier->description  = $request->input('description');
         $supplier->autokala       = $request->input('autokala');
-        $supplier->title        = $request->input('title');
-        $supplier->title        = $request->input('title');
         $supplier->description  = $request->input('description');
         $supplier->date         = jdate()->format('Ymd ');
-        $supplier->user_id      = $request->input('user_id');
         $supplier->user_handle  = Auth::user()->id;
         $supplier->date_handle  = jdate()->format('Ymd ');
+
 
         if ($request->file('image') != null) {
             $file = $request->file('image');
@@ -346,7 +343,10 @@ class SupplierController extends Controller
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
         }
+
+
         $supplier->update();
+
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return Redirect::back();
     }

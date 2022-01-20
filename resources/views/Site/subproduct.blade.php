@@ -342,7 +342,7 @@
                                                             <td> {{$brand->title_en}} </td>
                                                             <td>@foreach($countries as $country) @if($country->id == $brand->country_id) {{$country->name}} @endif @endforeach</td>
                                                             <td>
-                                                                    @if(! $productbrandvariety->item1 == null)
+                                                                    @if($productbrandvariety->item1 != null)
                                                                         @if($brand->id == $productbrandvariety->brand_id)
                                                                         <span>{{$productbrandvariety->item1}}</span>
                                                                         <span>{{$productbrandvariety->value_item1}}</span>
@@ -351,7 +351,7 @@
                                                                     <br>
                                                             </td>
                                                             <td>
-                                                                    @if(! $productbrandvariety->item2 == null)
+                                                                    @if($productbrandvariety->item2 != null)
                                                                         @if($brand->id == $productbrandvariety->brand_id)
                                                                         <span>{{$productbrandvariety->item2}}</span>
                                                                             <span>{{$productbrandvariety->value_item2}}</span>
@@ -361,7 +361,7 @@
                                                                     <br>
                                                             </td>
                                                             <td>
-                                                                    @if(! $productbrandvariety->item3 == null)
+                                                                    @if($productbrandvariety->item3 != null)
                                                                         @if($brand->id == $productbrandvariety->brand_id)
                                                                             <span>{{$productbrandvariety->item3}}</span>
                                                                             <span>{{$productbrandvariety->value_item3}}</span>

@@ -12,7 +12,6 @@ use App\City;
 use App\Country;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\offerrequest;
-use App\Media;
 use App\Menu;
 use App\Offer;
 use App\Product;
@@ -20,7 +19,6 @@ use App\Product_brand_variety;
 use App\Product_group;
 use App\State;
 use App\Supplier;
-use App\Technical_unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -71,13 +69,20 @@ class OfferController extends Controller
         $products               = Product::whereStatus(4)->whereId($id)->get();
         $product_id             = Product::whereStatus(4)->whereId($id)->pluck('id');
         $kalagroup_id           = Product::whereStatus(4)->whereId($id)->pluck('kala_group_id');
-        $brand_id               = Product_brand_variety::whereProduct_id($product_id)->pluck('brand_id');
+        $brand_varietis         = Product_brand_variety::whereIn('product_id' ,$product_id)->get();
         $productgroups          = Product_group::whereIn('id' , $kalagroup_id)->get();
         $carproducts            = Car_product::whereIn('product_id' , $product_id)->get();
-        $brands                 = Brand::whereIn('id' , $brand_id)->get();
+        $brands                 = Brand::all();
         $offers                 = Offer::whereUser_id(Auth::user()->id)->get();
 
+//        $shares = DB::table('brands')
+//            ->leftjoin('car_models', 'car_models.vehicle_brand_id', '=', 'car_brands.id')
+//            ->leftjoin('car_types', 'car_types.car_model_id', '=', 'car_models.id')
+//            ->select('car_brands.title_fa as brand' , 'car_models.title_fa as model' , 'car_types.title_fa as type' ,'car_brands.id as id' )->
+//            whereIn('id' , $brand_id)->get();
+
         return view('Site.offerproduct')
+            ->with(compact('brand_varietis'))
             ->with(compact('car_offers'))
             ->with(compact('cartypes'))
             ->with(compact('carproducts'))

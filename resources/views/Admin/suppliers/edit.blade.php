@@ -149,14 +149,9 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخاب استان</p>
-                                                    <select name="state_id" class="form-control select-lg select2" id="state_id">
+                                                    <select name="state_id" class="form-control select2">
                                                         @foreach($states as $state)
-                                                            @if($Supplier->state_id == $state->id)
-                                                                <option value="{{$state->id}}">{{$state->title}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                        @foreach($states as $state)
-                                                            <option value="{{$state->id}}">{{$state->title}}</option>
+                                                            <option value="{{$state->id}}" {{$Supplier->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -164,15 +159,13 @@
                                                     <p class="mg-b-10">انتخاب شهرستان</p>
                                                     <select name="city_id" id="city_id" class="form-control select-lg select2">
                                                         @foreach($cities as $city)
-                                                            @if($Supplier->city_id == $city->id)
-                                                                <option value="{{$city->id}}">{{$city->title}}</option>
-                                                            @endif
+                                                                <option value="{{$city->id}}" {{$Supplier->city_id == $city->id ? 'selected' : ''}}>{{$city->title}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">کاربر فروشگاه</p>
-                                                    <select name="user_id" class="form-control select-lg select2" id="state_id">
+                                                    <select name="user_id" class="form-control select2">
                                                         <option value="">انتخاب کاربر</option>
                                                         @foreach($users as $user)
                                                             <option value="{{$user->id}}" {{$user->id == $Supplier->user_id ? 'selected' : ''}}>{{$user->name}} - {{$user->phone}}</option>
@@ -199,13 +192,10 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخاب وضعیت نمایش</p>
-                                                    <select name="status_id" class="form-control select-lg select2">
+                                                    <select name="status_id" class="form-control select2">
                                                         @foreach($statuses as $status)
-                                                            @if($Supplier->status == $status->id)
-                                                                <option value="{{$status->id}}">{{$status->title}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                        @foreach($statuses as $status)<option value="{{$status->id}}">{{$status->title}}</option>@endforeach
+                                                                <option value="{{$status->id}}" {{$Supplier->status == $status->id ? 'selected' : ''}}>{{$status->title}}</option>
+                                                            @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="form-group">

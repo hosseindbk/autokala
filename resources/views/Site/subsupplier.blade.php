@@ -218,7 +218,7 @@
                                                         </li>
                                                         <li>
                                                             <span>وب سایت : </span>
-                                                            <span>{{$supplier->website}}</span>
+                                                            <span><a href="{{$supplier->website}}" target="_blank">{{$supplier->website}}</a></span>
                                                         </li>
                                                         <li>
                                                             <span>ایمیل : </span>
