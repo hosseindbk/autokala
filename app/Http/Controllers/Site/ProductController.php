@@ -7,8 +7,6 @@ use App\Car_brand;
 use App\Car_model;
 use App\Car_product;
 use App\Car_type;
-use App\City;
-use App\State;
 use App\comment;
 use App\commentrate;
 use App\Country;
@@ -18,6 +16,7 @@ use App\Menu;
 use App\Product;
 use App\Product_brand_variety;
 use App\Product_group;
+use App\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -78,7 +77,7 @@ class ProductController extends Controller
         $clickproducts      = Product::filter()->whereStatus(4)->orderBy('click')->paginate(16);
         $goodproducts       = Product::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $oldproducts        = Product::filter()->whereStatus(4)->orderBy('id')->paginate(16);
-$states             = State::all();
+        $states             = State::all();
         $productgroups      = Product_group::whereStatus(4)->get();
         $carproducts        = Car_product::whereStatus(4)->get();
         $carmodels          = Car_model::whereStatus(4)->get();
@@ -103,7 +102,6 @@ $states             = State::all();
             ->with(compact('productgroups'))
             ->with(compact('menus'))
             ->with(compact('newproducts'));
-
 
     }
 

@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
@@ -11,7 +10,7 @@ class Supplier extends Model
     public function scopeSuppliersearch($query , $keywords)
     {
         $category = request('category_id');
-        if ($category == 'all')
+        if ($category == 'all' || $category == null)
         {
             $query->where('title' , 'LIKE' , '%' .$keywords. '%')
                 ->orwhere('manager' , 'LIKE' , '%' .$keywords. '%')

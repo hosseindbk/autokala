@@ -310,6 +310,7 @@
                                                     ,'productgroup_id'  => request('productgroup_id')
                                                     ,'car_brand_id'     => request('car_brand_id')
                                                     ,'car_model_id'     => request('car_model_id')
+                                                    ,'technicalsearch'   =>  request('technicalsearch')
                                                     ,'city_id'          => request('city_id')])->links()}}
                                                 </nav>
                                             </div>

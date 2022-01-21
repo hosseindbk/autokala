@@ -366,6 +366,7 @@
                                                 ,'state_id'         => request('state_id')
                                                 ,'whole_seller'     => request('whole_seller')
                                                 ,'retail_seller'    => request('retail_seller')
+                                                ,'suppliersearch'    => request('suppliersearch')
                                                 ,'manufacturer'     => request('manufacturer')
                                                 ,'importer'         => request('importer')])->links()}}
                                             </nav>

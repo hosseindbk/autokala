@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Technical_unit extends Model
@@ -10,7 +9,7 @@ class Technical_unit extends Model
     public function scopeTechnicalsearch($query , $keywords)
     {
         $category = request('category_id');
-        if ($category == 'all')
+        if ($category == 'all' || $category == null)
         {
             $query->where('title' , 'LIKE' , '%' .$keywords. '%')
                 ->orwhere('manager' , 'LIKE' , '%' .$keywords. '%')
