@@ -18,7 +18,7 @@ class IndexController extends Controller
         $citis = City::all();
         $state = State::all();
 
-        return new IndexCollection($citis);
+        return new IndexCollection($state);
 
     }
 }

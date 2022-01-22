@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -16,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','username' ,'phone' , 'phone_number' , 'address' , 'state_id' , 'type_id' , 'city_id' , 'image' ,'whatsapp' ,'instagram', 'telegram' , 'email', 'password',
+        'name','username' ,'phone' , 'phone_number','api_token' , 'address' , 'state_id' , 'type_id' , 'city_id' , 'image' ,'whatsapp' ,'instagram', 'telegram' , 'email', 'password',
     ];
     public function activeCode()
     {
@@ -28,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','api_token'
     ];
 
     /**

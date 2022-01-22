@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -23,7 +24,14 @@ class UserController extends Controller
                 'status' => 'error'
             ]);
 
+
+
         }
+
+        auth()->user()->update([
+                'api_token' => Str::random(100)
+            ]);
+
         return auth()->user();
 
     }

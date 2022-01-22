@@ -16,8 +16,10 @@ class Index extends JsonResource
     {
         return
         [
+            'id' => $this->id,
             'title' => $this->title,
             'state_id' => $this->state_id,
+            'city_id' => $this->city_id,
         ];
     }
 }
