@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\ActiveCode;
 use App\City;
 use App\Http\Controllers\Controller;
+use App\Notifications\ActiveCode as ActiveCodeNotification;
 use App\State;
 use App\User;
 use Illuminate\Http\Request;
@@ -68,6 +70,29 @@ class UserController extends Controller
         'type_id'       =>  4
         ]);
 
+        $code = ActiveCode::generateCode($user);
+
+        $user->notify(new ActiveCodeNotification($code , $validData['phone']));
+
         return $user ;
+    }
+
+    public function token(Request $request){
+
+        $validData = $this->validate($request, [
+            'token'     => 'required',
+        ]);
+
+        $status = ActiveCode::verifyCode($validData['token'] , auth()->user()->id);
+
+        if(! $status) {
+            return Response::json(['error' => 'کد فعال سازی نادرست']);
+        }else{
+            $user = auth()->user();
+            $user->activeCode()->delete();
+            $user->phone_verify = 1;
+            $user->update();
+            return Response::json(['success' => 'ورود با موفقیت انجام شد']);
+        }
     }
 }

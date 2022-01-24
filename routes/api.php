@@ -13,6 +13,8 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('/technicalunit' , 'TechnicalunitController@index');
 
     Route::middleware('auth:api')->group(function (){
+        Route::post('/token'         , 'UserController@token');
+
         Route::get('/user' , function (){
             return auth()->user();
         });
