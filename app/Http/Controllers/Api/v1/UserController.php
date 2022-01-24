@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -24,15 +26,16 @@ class UserController extends Controller
                 'status' => 'error'
             ]);
 
-
-
         }
 
         auth()->user()->update([
                 'api_token' => Str::random(100)
             ]);
+        //$user = User::select('id', 'name', 'api_token')->whereId(auth::user()->id)->get()->toArray();
 
-        return auth()->user();
+        return Response::json(['api_token'=>auth()->user()->api_token]);
+
+        //return response()->json(['user' => $user->only(['id', 'name', 'phone', 'api_token'])]);
 
     }
     public function register(Request $request){
