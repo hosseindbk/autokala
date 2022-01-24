@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\City;
 use App\Http\Controllers\Controller;
+use App\State;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
 
@@ -36,6 +37,15 @@ class UserController extends Controller
         return Response::json(['api_token'=>auth()->user()->api_token]);
 
         //return response()->json(['user' => $user->only(['id', 'name', 'phone', 'api_token'])]);
+
+    }
+
+    public function getregister(){
+
+            $citis              = City::select('id as city_id','title as city' , 'state_id')->get()->toArray();
+            $state              = State::select('id as state_id','title as state')->get()->toArray();
+
+        return Response::json(['citis' => $citis , 'state'=>$state]);
 
     }
     public function register(Request $request){
