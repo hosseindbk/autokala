@@ -50,31 +50,42 @@ class UserController extends Controller
         return Response::json(['citis' => $citis , 'state'=>$state]);
 
     }
-    public function register(Request $request){
+    public function register(Request $request)
+    {
 
-        $validData = $this->validate($request, [
-            'phone'     => 'required',
-            'name'      => 'required|string',
-            'password'  => 'required|string|min:8|confirmed',
-            'state_id'  => 'required',
-            'city_id'   => 'required',
-        ]);
+        $user = User::wherePhone($request->input('phone'))->first();
+        if ($user === null) {
 
-        $user = User::create([
+            $validData = $this->validate($request, [
+                'phone' => 'required',
+                'name' => 'required|string',
+                'password' => 'required|string|min:8|confirmed',
+                'state_id' => 'required',
+                'city_id' => 'required',
+            ]);
 
-        'phone'         => $validData['phone'],
-        'name'          => $validData['name'],
-        'password'      => bcrypt($validData['password']),
-        'state_id'      => $validData['state_id'],
-        'city_id'       => $validData['city_id'],
-        'type_id'       =>  4
-        ]);
+            $user = User::create([
 
-        $code = ActiveCode::generateCode($user);
+                'phone' => $validData['phone'],
+                'name' => $validData['name'],
+                'password' => bcrypt($validData['password']),
+                'state_id' => $validData['state_id'],
+                'city_id' => $validData['city_id'],
+                'type_id' => 4
+            ]);
 
-        $user->notify(new ActiveCodeNotification($code , $validData['phone']));
+            $user->update([
+                'api_token' => Str::random(100)
+            ]);
 
-        return $user ;
+            $code = ActiveCode::generateCode($user);
+
+            //$user->notify(new ActiveCodeNotification($code , $validData['phone']));
+
+            return Response::json(['token' => $user->api_token]);
+        }else{
+            return  Response::json(['error' => 'شماره موبایل قبلا ثبت شده']);
+        }
     }
 
     public function token(Request $request){
@@ -83,13 +94,17 @@ class UserController extends Controller
             'token'     => 'required',
         ]);
 
-        $status = ActiveCode::verifyCode($validData['token'] , auth()->user()->id);
+        $token= (int)$request->input('token');
+        $user = auth()->user();
+        //return Response::json(['token' => auth()->user()->id]);
+
+        $status = $user->activeCode()->whereCode($token)->where('expired_at' , '>' , now())->first();
+
 
         if(! $status) {
             return Response::json(['error' => 'کد فعال سازی نادرست']);
         }else{
             $user = auth()->user();
-
             $user->activeCode()->delete();
             $user->phone_verify = 1;
             $user->update();
