@@ -80,7 +80,7 @@ class UserController extends Controller
 
             $code = ActiveCode::generateCode($user);
 
-            //$user->notify(new ActiveCodeNotification($code , $validData['phone']));
+            $user->notify(new ActiveCodeNotification($code , $validData['phone']));
 
             return Response::json(['token' => $user->api_token]);
         }else{
@@ -90,13 +90,9 @@ class UserController extends Controller
 
     public function token(Request $request){
 
-        $validData = $this->validate($request, [
-            'token'     => 'required',
-        ]);
 
         $token= (int)$request->input('token');
         $user = auth()->user();
-        //return Response::json(['token' => auth()->user()->id]);
 
         $status = $user->activeCode()->whereCode($token)->where('expired_at' , '>' , now())->first();
 
