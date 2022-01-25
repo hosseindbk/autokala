@@ -240,6 +240,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-lg-6 col-md-6 col-xs-12 pl text-center">
+                                            @if($supplier->autokala == 1)
+                                                <img src="{{asset('images/autokala1.jpg')}}" alt="نشان طلایی اتوکالا">
+                                            @elseif($supplier->autokala == 2)
+                                                <img src="{{asset('images/autokala2.jpg')}}" alt="نشان نقره ای توکالا">
+                                            @elseif($supplier->autokala == 3)
+                                                <img src="{{asset('images/autokala3.jpg')}}" alt="نشان برنزی اتوکالا">
+                                            @endif
+                                        </div>
                                             <div class="col=lg-6 col-md-6 col-xs-12 pr">
                                                 <div class="product-seller-info-overal">
                                                     <div class="seller-info-changable">
