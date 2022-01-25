@@ -89,6 +89,7 @@ class UserController extends Controller
             return Response::json(['error' => 'کد فعال سازی نادرست']);
         }else{
             $user = auth()->user();
+
             $user->activeCode()->delete();
             $user->phone_verify = 1;
             $user->update();
