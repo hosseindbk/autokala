@@ -253,31 +253,50 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @foreach($carproducts as $car_product)
-                                                        @if($car_product->product_id == $product->id)
-                                                            @foreach($carbrands as $car_brand)
-                                                                @if($car_brand->id == $car_product->car_brand_id)
-                                                                    <tr>
-                                                                        <td>{{$car_brand->title_fa}}
-                                                                    @foreach($carmodels as $car_model)
-                                                                        @if($car_model->id == $car_product->car_model_id)
-                                                                                <td> {{$car_model->title_fa}}
-                                                                            @foreach($cartypes as $car_type)
-                                                                                @if($car_type->id == $car_product->car_type_id)
-                                                                                        <td>{{$car_type->title_fa}}</td>
-                                                                                @endif
-                                                                            @endforeach
-                                                                                </td>
-                                                                        @endif
-                                                                    @endforeach
-                                                                        </td>
-                                                                    </tr>
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
-                                                    @endforeach
+                                                        @foreach($carproducts as $carproduct)
+                                                            <tr>
+                                                                <td>
+                                                                    @if($carproduct->brand_title != null)
+                                                                        {{$carproduct->brand_title}}
+                                                                    @endif
+                                                                </td>
+                                                                <td>
 
+{{--                                                                    @if($carproduct->model_title != null)--}}
+{{--                                                                        {{$carproduct->model_title}}--}}
+{{--                                                                    @endif--}}
+                                                                </td>
+{{--                                                                <td>{{$carproduct->type}}</td>--}}
+                                                            </tr>
+                                                        @endforeach
                                                     </tbody>
+
+{{--                                                    <tbody>--}}
+{{--                                                    @foreach($carproducts as $car_product)--}}
+{{--                                                        @if($car_product->product_id == $product->id)--}}
+{{--                                                            @foreach($carbrands as $car_brand)--}}
+{{--                                                                @if($car_brand->id == $car_product->car_brand_id)--}}
+{{--                                                                    <tr>--}}
+{{--                                                                        <td>{{$car_brand->title_fa}}--}}
+{{--                                                                    @foreach($carmodels as $car_model)--}}
+{{--                                                                        @if($car_model->id == $car_product->car_model_id)--}}
+{{--                                                                                <td> {{$car_model->title_fa}}--}}
+{{--                                                                            @foreach($cartypes as $car_type)--}}
+{{--                                                                                @if($car_type->id == $car_product->car_type_id)--}}
+{{--                                                                                        <td>{{$car_type->title_fa}}</td>--}}
+{{--                                                                                @endif--}}
+{{--                                                                            @endforeach--}}
+{{--                                                                                </td>--}}
+{{--                                                                        @endif--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                        </td>--}}
+{{--                                                                    </tr>--}}
+{{--                                                                @endif--}}
+{{--                                                            @endforeach--}}
+{{--                                                        @endif--}}
+{{--                                                    @endforeach--}}
+
+{{--                                                    </tbody>--}}
                                                 </table>
                                             </div>
                                         </div>

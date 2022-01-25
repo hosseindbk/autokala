@@ -18,6 +18,7 @@ use App\Product_brand_variety;
 use App\Product_group;
 use App\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
@@ -113,7 +114,7 @@ class ProductController extends Controller
         $countries              = Country::all();
         $brands                 = Brand::whereStatus(4)->get();
         $products               = Product::whereSlug($slug)->get();
-        $carproducts            = Car_product::whereStatus(4)->get();
+        //$carproducts            = Car_product::whereStatus(4)->get();
         $carmodels              = Car_model::whereStatus(4)->get();
         $carbrands              = Car_brand::whereStatus(4)->get();
         $cartypes               = Car_type::whereStatus(4)->get();
@@ -123,6 +124,15 @@ class ProductController extends Controller
         $productgroups          = Product_group::whereId($product_group_id)->get();
         $productbrandvarieties  = Product_brand_variety::whereStatus(4)->get();
         $productvarieties       = Product_brand_variety::whereIn('Product_id' , $product_id)->whereStatus(4)->get();
+
+
+        $carproducts = DB::table('car_products')
+            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
+            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
+            ->leftJoin('car_types' , 'car_types.id' , '=', 'car_products.car_type_id')
+            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title ' , 'car_types.title_fa as type_title')
+            ->whereProduct_id($product_id)->get();
+
 
         $comments               = comment::whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
         $commentrates           = commentrate::whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
