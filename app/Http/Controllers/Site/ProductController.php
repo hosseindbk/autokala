@@ -127,10 +127,10 @@ class ProductController extends Controller
 
 
         $carproducts = DB::table('car_products')
-            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
-            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
-            ->leftJoin('car_types' , 'car_types.id' , '=', 'car_products.car_type_id')
-            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title ' , 'car_types.title_fa as type_title')
+            ->LeftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
+            ->LeftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
+            ->LeftJoin('car_types' , 'car_types.id' , '=', 'car_products.car_type_id')
+            ->select('car_brands.title_fa as car_brand' , 'car_models.title_fa as car_model' , 'car_types.title_fa as car_type')
             ->whereProduct_id($product_id)->get();
 
 
