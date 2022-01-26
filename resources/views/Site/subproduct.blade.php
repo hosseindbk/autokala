@@ -256,17 +256,20 @@
                                                         @foreach($carproducts as $carproduct)
                                                             <tr>
                                                                 <td>
-                                                                    @if($carproduct->brand_title != null)
-                                                                        {{$carproduct->brand_title}}
+                                                                    @if(isset($carproduct->car_brand))
+                                                                        {{$carproduct->car_brand}}
                                                                     @endif
                                                                 </td>
                                                                 <td>
-
-{{--                                                                    @if($carproduct->model_title != null)--}}
-{{--                                                                        {{$carproduct->model_title}}--}}
-{{--                                                                    @endif--}}
+                                                                    @if(isset($carproduct->car_model))
+                                                                        {{$carproduct->car_model}}
+                                                                    @endif
                                                                 </td>
-{{--                                                                <td>{{$carproduct->type}}</td>--}}
+                                                                <td>
+                                                                @if(isset($carproduct->car_type))
+                                                                    {{$carproduct->car_type}}
+                                                                @endif
+                                                                </td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
