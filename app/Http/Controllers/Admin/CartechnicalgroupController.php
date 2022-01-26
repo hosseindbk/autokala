@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Car_technical_group;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\carproductrequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -20,11 +19,10 @@ class CartechnicalgroupController extends Controller
                     'kala_group_id' => $request->input('product_group_id'),
                     'car_brand_id'  => $request->input('car_brand_id'),
                     'technical_id'  => $request->input('technical_id'),
-                    'status'        => '1',
+                    'status'        => '4',
                     'date'          => jdate()->format('Ymd '),
                     'date_handle'   => jdate()->format('Ymd '),
                     'user_id'       => Auth::user()->id,
-                    'user_handle'   => Auth::user()->id,
                     'car_model_id'  => $request->car_model_id[$i]
                 ];
             }
@@ -41,7 +39,6 @@ class CartechnicalgroupController extends Controller
             $cartechnicalgroups->date = jdate()->format('Ymd ');
             $cartechnicalgroups->date_handle = jdate()->format('Ymd ');
             $cartechnicalgroups->user_id = Auth::user()->id;
-            $cartechnicalgroups->user_handle = Auth::user()->id;
 
             $cartechnicalgroups->save();
 

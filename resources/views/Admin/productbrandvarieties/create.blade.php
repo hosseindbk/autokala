@@ -164,6 +164,109 @@
                             </div>
                         </div>
                     </div>
+                <div class="row row-sm">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div>
+                                    <h3 class="text-center mb-5"><span class="badge badge-light">   @foreach($products as $product) انتخاب خودرو مناسب  {{$product->title_fa}} @endforeach</span></h3>
+                                </div>
+                                <form action="{{ route('carproducts.store')}}" method="POST">
+                                    {{csrf_field()}}
+                                    <div class="row row-sm">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="hidden" value="@foreach($products as $product) {{$product->id}} @endforeach" name="product_id">
+                                                <p class="mg-b-10">انتخاب خودرو</p>
+                                                <select name="car_brand_id" class="form-control select2" id="car_brand_id">
+                                                    <option value="">انتخاب خودرو</option>
+                                                    @foreach($carbrands as $car_brand)
+                                                        <option value="{{$car_brand->id}}">{{$car_brand->title_fa}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">انتخاب مدل خودرو</p>
+                                                <select name="car_model_id" class="form-control select2" id="car_model_id">
+                                                    <option value="">انتخاب مدل خودرو</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">انتخاب تیپ و تریم خودرو</p>
+                                                <select multiple="multiple" name="car_type_id[]" id="car_type_id" class="form-control select2">
+                                                    <option value="">انتخاب تیپ و تریم خودرو</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-info m-r-20 text-center">ذخیره اطلاعات</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="table-responsive">
+                                    <table class="table" id="example1">
+                                        <thead>
+                                        <tr>
+                                            <th class="wd-10p"> ردیف </th>
+                                            <th class="wd-10p"> نام خودرو </th>
+                                            <th class="wd-10p"> مدل خودرو </th>
+                                            <th class="wd-10p"> تیپ خودرو </th>
+                                            <th class="wd-10p"> حذف </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $s = 1; ?>
+                                        @foreach($carproducts as $Car_product)
+                                            <tr class="odd gradeX">
+                                                <td>{{$s++}}</td>
+                                                <td>
+                                                    @foreach($carbrands as $Car_brand)
+                                                        @if($Car_brand->id == $Car_product->car_brand_id)
+                                                            {{$Car_brand->title_fa}}
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach($carmodels as $Car_model)
+                                                        @if($Car_product->car_model_id == $Car_model->id)
+                                                            {{$Car_model->title_fa}}
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach($cartypes as $Car_type)
+                                                        @if($Car_product->car_type_id == $Car_type->id)
+                                                            {{$Car_type->title_fa}}
+                                                        @elseif($Car_product->car_type_id == $Car_type->id)
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('carproducts.destroy' , $Car_product->id) }}" method="post">
+                                                        {{ method_field('delete') }}
+                                                        {{ csrf_field() }}
+                                                        <div class="btn-group btn-group-xs">
+                                                            <button type="submit" class="btn btn-danger btn-xs">
+                                                                <i class="fe fe-trash-2 "></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

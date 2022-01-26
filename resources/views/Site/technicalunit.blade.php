@@ -333,12 +333,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$newtechnicals->appends(
-                                                ['state_id'         => request('state_id')
-                                                ,'productgroup_id'  => request('productgroup_id')
-                                                ,'car_brand_id'     => request('car_brand_id')
-                                                ,'car_model_id'     => request('car_model_id')
-                                                ,'city_id'          => request('city_id')])->links()}}
+                                                {{$newtechnicals->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>
@@ -373,12 +368,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$oldtechnicals->appends(
-                                                ['state_id'         => request('state_id')
-                                                ,'productgroup_id'  => request('productgroup_id')
-                                                ,'car_brand_id'     => request('car_brand_id')
-                                                ,'car_model_id'     => request('car_model_id')
-                                                ,'city_id'          => request('city_id')])->links()}}
+                                                {{$oldtechnicals->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>
@@ -413,12 +403,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$clicktechnicals->appends(
-                                                ['state_id'         => request('state_id')
-                                                ,'productgroup_id'  => request('productgroup_id')
-                                                ,'car_brand_id'     => request('car_brand_id')
-                                                ,'car_model_id'     => request('car_model_id')
-                                                ,'city_id'          => request('city_id')])->links()}}
+                                                {{$clicktechnicals->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>

@@ -11,7 +11,6 @@ use App\Product;
 use App\Product_brand_variety;
 use App\Status;
 use App\Submenudashboard;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
@@ -91,12 +90,11 @@ class ProductbrandvarietyController extends Controller
         $productbrandvarieties->weakness2            = $request->input('weakness2');
         $productbrandvarieties->weakness3            = $request->input('weakness3');
         $productbrandvarieties->weakness4            = $request->input('weakness4');
-        $productbrandvarieties->status               = '1';
+        $productbrandvarieties->status               = '4';
         $productbrandvarieties->description          = $request->input('description');
         $productbrandvarieties->date                 = jdate()->format('Ymd ');
         $productbrandvarieties->date_handle          = jdate()->format('Ymd ');
         $productbrandvarieties->user_id              = Auth::user()->id;
-        $productbrandvarieties->user_handle          = Auth::user()->id;
 
         if ($request->file('image1') != null) {
             $file = $request->file('image1');

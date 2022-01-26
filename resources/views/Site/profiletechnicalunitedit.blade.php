@@ -179,6 +179,18 @@
                                                                 <input type="text" name="whatsapp" value="{{$technical_unit->whatsapp}}" class="form-control" />
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">وبسایت</p>
+                                                                <input type="text" name="site" placeholder="وبسایت را وارد کنید" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">ایمیل</p>
+                                                                <input type="text" name="email" placeholder="ایمیل را وارد کنید" class="form-control" />
+                                                            </div>
+                                                        </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">آدرس</p>
@@ -266,7 +278,7 @@
                                                         <th class="wd-10p"> ردیف </th>
                                                         <th class="wd-10p"> برند خودرو </th>
                                                         <th class="wd-10p"> مدل خودرو </th>
-                                                        <th class="wd-10p"> گروه کالا </th>
+                                                        <th class="wd-10p"> نام خدمات مرتبط </th>
                                                         <th class="wd-10p"> حذف </th>
                                                     </tr>
                                                     </thead>

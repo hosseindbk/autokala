@@ -170,10 +170,22 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <p class="mg-b-10">شماره واتس اپ</p>
-                                                        <input type="text" name="whatsapp" placeholder="شماره واتس اپ را وارد کنید" class="form-control" />
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">شماره واتس اپ</p>
+                                                            <input type="text" name="whatsapp" placeholder="شماره واتس اپ را وارد کنید" class="form-control" />
+                                                        </div>
                                                     </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">وبسایت</p>
+                                                            <input type="text" name="site" placeholder="وبسایت را وارد کنید" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">ایمیل</p>
+                                                            <input type="text" name="email" placeholder="ایمیل را وارد کنید" class="form-control" />
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">

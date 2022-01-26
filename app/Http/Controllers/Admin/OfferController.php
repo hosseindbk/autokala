@@ -105,7 +105,6 @@ class OfferController extends Controller
         $offers->address            = $request->input('address');
         $offers->description        = $request->input('description');
         $offers->user_id            = Auth::user()->id;
-        $offers->user_handle        = Auth::user()->id;
 
 
         if ($request->file('image1') != null) {
@@ -219,33 +218,33 @@ class OfferController extends Controller
 
     public function update(offerrequest $request, Offer $offer)
     {
-        $offer->title_offer        = $request->input('title_offer');
-        $offer->product_group      = $request->input('product_group');
+        $offer->title_offer         = $request->input('title_offer');
+        $offer->product_group       = $request->input('product_group');
         $offer->noe                 = $request->input('noe');
-        $offer->state_id           = $request->input('state_id');
-        $offer->buyorsell          = $request->input('buyorsell');
-        $offer->unicode_product    = $request->input('unicode_product');
-        $offer->product_name       = $request->input('product_name');
+        $offer->state_id            = $request->input('state_id');
+        $offer->buyorsell           = $request->input('buyorsell');
+        $offer->unicode_product     = $request->input('unicode_product');
+        $offer->product_name        = $request->input('product_name');
         if($request->input('single_price')) {
-            $offer->single_price = str_replace(',', '', $request->input('single_price'));
+            $offer->single_price    = str_replace(',', '', $request->input('single_price'));
         }
-        $offer->city_id            = $request->input('city_id');
-        $offer->mobile             = $request->input('mobile');
-        $offer->brand_id           = $request->input('brand_id');
-        $offer->brand_name         = $request->input('brand_name');
-        $offer->total              = $request->input('total');
-        $offer->description        = $request->input('description');
-        $offer->address            = $request->input('address');
-        $offer->phone              = $request->input('phone');
+        $offer->city_id             = $request->input('city_id');
+        $offer->mobile              = $request->input('mobile');
+        $offer->brand_id            = $request->input('brand_id');
+        $offer->brand_name          = $request->input('brand_name');
+        $offer->total               = $request->input('total');
+        $offer->description         = $request->input('description');
+        $offer->address             = $request->input('address');
+        $offer->phone               = $request->input('phone');
 
-        $offer->single             = $request->input('single');
+        $offer->single              = $request->input('single');
         if($request->input('price')) {
-            $offer->price = str_replace(',', '', $request->input('price'));
+            $offer->price           = str_replace(',', '', $request->input('price'));
         }
-        $offer->supplier_id        = $request->input('supplier_id');
-        $offer->permanent_supplier = $request->input('permanent_supplier');
-        $offer->status         = $request->input('status_id');
-        $offer->user_handle    = Auth::user()->id;
+        $offer->supplier_id         = $request->input('supplier_id');
+        $offer->permanent_supplier  = $request->input('permanent_supplier');
+        $offer->status              = $request->input('status_id');
+        $offer->user_handle         = Auth::user()->id;
 
 
         if ($request->file('image1') != null) {

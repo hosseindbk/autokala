@@ -305,13 +305,7 @@
                                             </div>
                                             <div class="pagination-product">
                                                 <nav aria-label="Page navigation example">
-                                                    {{$technicalunits->appends(
-                                                    ['state_id'         => request('state_id')
-                                                    ,'productgroup_id'  => request('productgroup_id')
-                                                    ,'car_brand_id'     => request('car_brand_id')
-                                                    ,'car_model_id'     => request('car_model_id')
-                                                    ,'technicalsearch'   =>  request('technicalsearch')
-                                                    ,'city_id'          => request('city_id')])->links()}}
+                                                    {{$technicalunits->appends(request()->all())->links()}}
                                                 </nav>
                                             </div>
                                         </div>

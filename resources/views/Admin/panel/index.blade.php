@@ -71,7 +71,6 @@
                                             <tr>
                                                 <td class="text-primary">{{$user->name}}</td>
                                                 <td class="text-nowrap">{{$user->phone}}</td>
-                                                <td class="text-nowrap">{{$user->email}}</td>
                                                 <td class="text-nowrap">
                                                     @foreach($typeusers as $type_user)
                                                         @if($type_user->id == $user->type_id)
@@ -458,7 +457,7 @@
                                             <div class="card-body" style="max-height: 500px; overflow: auto;">
                                                 <div class="card-header border-bottom-0 pt-0 pl-0 pr-0 d-flex">
                                                     <div>
-                                                        <label class="main-content-label mb-2">پیشنهاد فروش/خرید </label>
+                                                        <label class="main-content-label mb-2">آگهی های جدید </label>
                                                     </div>
                                                 </div>
                                                 <div class="table-responsive tasks">
@@ -472,6 +471,8 @@
                                                             <th class="wd-10p"> تعداد موجودی </th>
                                                             <th class="wd-10p"> پیشنهاد جهت </th>
                                                             <th class="wd-10p"> زمان ثبت </th>
+                                                            <th class="wd-10p"> کاربر ثبت کننده</th>
+                                                            <th class="wd-10p"> نوع کاربر </th>
                                                             <th class="wd-10p"> وضعیت </th>
                                                             <th class="wd-10p"> تغییر </th>
                                                         </tr>
@@ -511,6 +512,27 @@
                                                                 </td>
 
                                                                 <td>{{jdate($offer->created_at)->ago()}}</td>
+                                                                <td class="text-primary">
+                                                                    @foreach($users as $user)
+                                                                        @if($user->id == $offer->user_id)
+                                                                            {{$user->name}}
+                                                                        @endif
+                                                                    @endforeach
+                                                                </td>
+
+                                                                <td class="text-primary">
+                                                                    @foreach($users as $user)
+                                                                        @if($user->id == $offer->user_id)
+                                                                            @if($user->type_id == 1)
+                                                                                <h6 class="text-warning">کاربر فروشگاه</h6>
+                                                                            @elseif($user->type_id == 3)
+                                                                                <h6 class="text-success">کاربر تعمیرگاه</h6>
+                                                                            @elseif($user->type_id == 4)
+                                                                                <h6 class="text-danger">کاربر عادی</h6>
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                </td>
 
                                                                 <td>
                                                                     @foreach($statuses as $status)

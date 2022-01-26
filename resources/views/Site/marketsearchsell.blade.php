@@ -177,45 +177,45 @@
                                                         </div>
                                                     </div>
                                                 </section>
-                                                <section class="widget-product-categories">
-                                                    <header class="cat-header">
-                                                        <h2 class="mb-0">
-                                                            <button class="btn btn-block text-right collapsed" type="button" data-toggle="collapse"
-                                                                    href="#headingfor" role="button" aria-expanded="false"
-                                                                    aria-controls="headingfor">
-                                                                محدوده قیمت
-                                                                <i class="mdi mdi-chevron-down"></i>
-                                                            </button>
-                                                        </h2>
-                                                    </header>
-                                                    <div class="product-filter">
-                                                        <div class="card">
-                                                            <div class="collapse show" id="headingfor">
-                                                                <div class="card-main mb-0">
-                                                                    <div class="box-data">
-                                                                        <div class="mt-5 mb-4" id="slider"></div>
+{{--                                                <section class="widget-product-categories">--}}
+{{--                                                    <header class="cat-header">--}}
+{{--                                                        <h2 class="mb-0">--}}
+{{--                                                            <button class="btn btn-block text-right collapsed" type="button" data-toggle="collapse"--}}
+{{--                                                                    href="#headingfor" role="button" aria-expanded="false"--}}
+{{--                                                                    aria-controls="headingfor">--}}
+{{--                                                                محدوده قیمت--}}
+{{--                                                                <i class="mdi mdi-chevron-down"></i>--}}
+{{--                                                            </button>--}}
+{{--                                                        </h2>--}}
+{{--                                                    </header>--}}
+{{--                                                    <div class="product-filter">--}}
+{{--                                                        <div class="card">--}}
+{{--                                                            <div class="collapse show" id="headingfor">--}}
+{{--                                                                <div class="card-main mb-0">--}}
+{{--                                                                    <div class="box-data">--}}
+{{--                                                                        <div class="mt-5 mb-4" id="slider"></div>--}}
 
-                                                                        <div class="filter-range mt-2 mb-2 pr">
-                                                                            <span>قیمت: </span>
-                                                                            <span class="example-val" id="limitedPrice"></span> تومان
-                                                                        </div>
-                                                                        <div class="mt-2 pl ">
-                                                                            <button class="btn btn-range pr" type="submit">
-                                                                                اعمال فیلتر
-                                                                            </button>
-                                                                            @if($filter == 1)
+{{--                                                                        <div class="filter-range mt-2 mb-2 pr">--}}
+{{--                                                                            <span>قیمت: </span>--}}
+{{--                                                                            <span class="example-val" id="limitedPrice"></span> تومان--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="mt-2 pl ">--}}
+{{--                                                                            <button class="btn btn-range pr" type="submit">--}}
+{{--                                                                                اعمال فیلتر--}}
+{{--                                                                            </button>--}}
+{{--                                                                            @if($filter == 1)--}}
 
-                                                                                    <a href="{{url('market/sell')}}" class="btn btn-range pl">
-                                                                                        پاک کردن فیلتر
-                                                                                    </a>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </section>
+{{--                                                                                    <a href="{{url('market/sell')}}" class="btn btn-range pl">--}}
+{{--                                                                                        پاک کردن فیلتر--}}
+{{--                                                                                    </a>--}}
+{{--                                                                            @endif--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </section>--}}
                                                 <section class="widget-product-categories">
                                                     <header class="cat-header">
                                                         <h2 class="mb-0">

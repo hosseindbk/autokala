@@ -392,16 +392,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$newsuppliers->appends(
-                                                ['car_model_id'     => request('car_model_id')
-                                                ,'car_brand_id'     => request('car_brand_id')
-                                                ,'productgroup_id'  => request('productgroup_id')
-                                                ,'city_id'          => request('city_id')
-                                                ,'state_id'         => request('state_id')
-                                                ,'whole_seller'     => request('whole_seller')
-                                                ,'retail_seller'    => request('retail_seller')
-                                                ,'manufacturer'     => request('manufacturer')
-                                                ,'importer'         => request('importer')])->links()}}
+                                                {{$newsuppliers->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>
@@ -434,16 +425,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$oldsuppliers->appends(
-                                                ['car_model_id'     => request('car_model_id')
-                                                ,'car_brand_id'     => request('car_brand_id')
-                                                ,'productgroup_id'  => request('productgroup_id')
-                                                ,'city_id'          => request('city_id')
-                                                ,'state_id'         => request('state_id')
-                                                ,'whole_seller'     => request('whole_seller')
-                                                ,'retail_seller'    => request('retail_seller')
-                                                ,'manufacturer'     => request('manufacturer')
-                                                ,'importer'         => request('importer')])->links()}}
+                                                {{$oldsuppliers->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>
@@ -476,16 +458,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$clicksuppliers->appends(
-                                                ['car_model_id'     => request('car_model_id')
-                                                ,'car_brand_id'     => request('car_brand_id')
-                                                ,'productgroup_id'  => request('productgroup_id')
-                                                ,'city_id'          => request('city_id')
-                                                ,'state_id'         => request('state_id')
-                                                ,'whole_seller'     => request('whole_seller')
-                                                ,'retail_seller'    => request('retail_seller')
-                                                ,'manufacturer'     => request('manufacturer')
-                                                ,'importer'         => request('importer')])->links()}}
+                                                {{$clicksuppliers->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>

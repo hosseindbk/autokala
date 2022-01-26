@@ -238,34 +238,30 @@
                                         <div class="row">
                                             @foreach($products as $product)
                                                 <div class="col-lg-3 col-md-3 col-xs-12 order-1 d-block mb-3">
-                                                    <section class="product-box product product-type-simple">
+                                                    <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
                                                         <div class="thumb">
-                                                            <a href="{{'product'.'/'.$product->slug}}" target="_blank" class="d-block">
+                                                            <a href="{{url('product'.'/'.$product->slug)}}" class="d-block" target="_blank">
                                                                 @if(! $product->image )
-                                                                    <img src="{{asset('images/supplier_defult.png')}}" alt="{{$product->title}}">
+                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$product->title}}">
                                                                 @else
-                                                                    <img src="{{asset($product->image)}}" alt="{{$product->title}}">
+                                                                    <img src="{{asset($product->image)}}" style="height: 235px;" alt="{{$product->title}}">
                                                                 @endif
-                                                                    <div class="promotion-badge"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereProduct_id($product->id)->count()}} </div>
                                                             </a>
                                                         </div>
                                                         <div class="title">
-                                                            <a href="#">{{$product->title_fa}} {{$product->title_en}}</a>
+                                                            <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}} {{$product->title_en}}</a>
+                                                        </div>
+                                                        <div class="price">
+                                                            <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereProduct_id($product->id)->count()}}</span>
                                                         </div>
                                                         <div class="title">
-                                                            <p><a href="">مناسب برای : @foreach($carproducts as $car_product)
-                                                                        @if($car_product->product_id == $product->id)
-                                                                            @foreach($carbrands as $car_brand)
-                                                                                @if($car_brand->id == $car_product->car_brand_id)
-                                                                                    @foreach($carmodels as $car_model)
-                                                                                        @if($car_model->id == $car_product->car_model_id)
-                                                                                            {{$car_brand->title_fa}} {{$car_model->title_fa}}
-                                                                                        @endif
-                                                                                    @endforeach
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endforeach</a></p>
+                                                            <p><a href="">مناسب برای :
+                                                                        @foreach($carproducts as $car_product)
+                                                                            @if($car_product->product_id == $product->id)
+                                                                                {{$car_product->brand_title}} {{$car_product->model_title}}
+                                                                            @endif
+                                                                        @endforeach
+                                                                </a></p>
                                                         </div>
                                                     </section>
                                                 </div>
@@ -273,12 +269,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$products->appends(
-                                                ['productgroup_id' => request('productgroup_id')
-                                                , 'search' => request('search')
-                                                , 'category_id' => request('category_id')
-                                                , 'car_model_id' => request('car_model_id')
-                                                , 'brand_id' => request('brand_id')])->links()}}
+                                                {{$products->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>

@@ -273,25 +273,25 @@ class ProfilebusinessController extends Controller
 
             $technical_units = new Technical_unit();
 
-            $technical_units->title = $request->input('title');
-            $technical_units->manager = $request->input('manager');
-            $technical_units->state_id = $request->input('state_id');
-            $technical_units->city_id = $request->input('city_id');
-            $technical_units->phone = $request->input('phone');
-            $technical_units->phone2 = $request->input('phone2');
-            $technical_units->phone3 = $request->input('phone3');
-            $technical_units->mobile = $request->input('mobile');
-            $technical_units->mobile2 = $request->input('mobile2');
-            $technical_units->whatsapp = $request->input('whatsapp');
-            $technical_units->status = '1';
-            $technical_units->slug = 'TU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
-            $technical_units->email = $request->input('email');
-            $technical_units->website = $request->input('website');
-            $technical_units->address = $request->input('address');
-            $technical_units->description = $request->input('description');
-            $technical_units->date = jdate()->format('Ymd ');
-            $technical_units->date_handle = jdate()->format('Ymd ');
-            $technical_units->user_id = Auth::user()->id;
+            $technical_units->title         = $request->input('title');
+            $technical_units->manager       = $request->input('manager');
+            $technical_units->state_id      = $request->input('state_id');
+            $technical_units->city_id       = $request->input('city_id');
+            $technical_units->phone         = $request->input('phone');
+            $technical_units->phone2        = $request->input('phone2');
+            $technical_units->phone3        = $request->input('phone3');
+            $technical_units->mobile        = $request->input('mobile');
+            $technical_units->mobile2       = $request->input('mobile2');
+            $technical_units->whatsapp      = $request->input('whatsapp');
+            $technical_units->status        = '1';
+            $technical_units->slug          = 'TU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
+            $technical_units->email         = $request->input('email');
+            $technical_units->website       = $request->input('website');
+            $technical_units->address       = $request->input('address');
+            $technical_units->description   = $request->input('description');
+            $technical_units->date          = jdate()->format('Ymd ');
+            $technical_units->date_handle   = jdate()->format('Ymd ');
+            $technical_units->user_id       = Auth::user()->id;
 
             if ($request->file('image') != null) {
                 $file = $request->file('image');
@@ -348,7 +348,7 @@ class ProfilebusinessController extends Controller
         $technical_unit->mobile         = $request->input('mobile');
         $technical_unit->mobile2        = $request->input('mobile2');
         $technical_unit->whatsapp       = $request->input('whatsapp');
-        $technical_unit->status         = 2;
+        $technical_unit->status         = 1;
         $technical_unit->email          = $request->input('email');
         $technical_unit->website        = $request->input('website');
         $technical_unit->address        = $request->input('address');

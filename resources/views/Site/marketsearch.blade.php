@@ -170,47 +170,47 @@
                                             </div>
                                         </div>
                                     </section>
-                                    <section class="widget-product-categories">
-                                        <header class="cat-header">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingfor" role="button" aria-expanded="false" aria-controls="headingOne">
-                                                    محدوده قیمت
-                                                    <i class="mdi mdi-chevron-down"></i>
-                                                </button>
-                                            </h2>
-                                        </header>
-                                        <div class="product-filter mt-3">
-                                            <div class="card">
-                                                <div class="collapse show" id="headingfor">
-                                                    <div class="card custom-card">
-                                                        <div class="card-body">
-                                                            <div class="row row-sm mg-t-40">
-                                                                <div class="col-lg-12">
-                                                                    <div class="range-slider">
-                                                                        <input class="range-slider__range" type="range" name="range" style="width: 100%;direction: ltr;" value="{{$max_price}}" min="{{$min_price}}" max="{{$max_price}}" step="{{$max_price / 100}}">
+{{--                                    <section class="widget-product-categories">--}}
+{{--                                        <header class="cat-header">--}}
+{{--                                            <h2 class="mb-0">--}}
+{{--                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingfor" role="button" aria-expanded="false" aria-controls="headingOne">--}}
+{{--                                                    محدوده قیمت--}}
+{{--                                                    <i class="mdi mdi-chevron-down"></i>--}}
+{{--                                                </button>--}}
+{{--                                            </h2>--}}
+{{--                                        </header>--}}
+{{--                                        <div class="product-filter mt-3">--}}
+{{--                                            <div class="card">--}}
+{{--                                                <div class="collapse show" id="headingfor">--}}
+{{--                                                    <div class="card custom-card">--}}
+{{--                                                        <div class="card-body">--}}
+{{--                                                            <div class="row row-sm mg-t-40">--}}
+{{--                                                                <div class="col-lg-12">--}}
+{{--                                                                    <div class="range-slider">--}}
+{{--                                                                        <input class="range-slider__range" type="range" name="range" style="width: 100%;direction: ltr;" value="{{$max_price}}" min="{{$min_price}}" max="{{$max_price}}" step="{{$max_price / 100}}">--}}
 
-                                                                        <span class="range-slider__value"></span>
-                                                                        <b>تومان</b>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+{{--                                                                        <span class="range-slider__value"></span>--}}
+{{--                                                                        <b>تومان</b>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-2 ">
-                                                        <button class="btn btn-range pr">
-                                                            اعمال فیلتر
-                                                        </button>
-                                                        @if($filter == 1)
-                                                            <a href="{{url('market')}}" class="btn btn-range pl">
-                                                                پاک کردن فیلتر
-                                                            </a>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mt-2 ">--}}
+{{--                                                        <button class="btn btn-range pr">--}}
+{{--                                                            اعمال فیلتر--}}
+{{--                                                        </button>--}}
+{{--                                                        @if($filter == 1)--}}
+{{--                                                            <a href="{{url('market')}}" class="btn btn-range pl">--}}
+{{--                                                                پاک کردن فیلتر--}}
+{{--                                                            </a>--}}
+{{--                                                        @endif--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </section>--}}
                                 </form>
                             </div>
                         </div>

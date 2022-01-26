@@ -265,15 +265,7 @@
                                                             <p><a href="">مناسب برای :
                                                                     @foreach($carproducts as $car_product)
                                                                         @if($car_product->product_id == $product->id)
-                                                                            @foreach($carbrands as $car_brand)
-                                                                                @if($car_brand->id == $car_product->car_brand_id)
-                                                                                    @foreach($carmodels as $car_model)
-                                                                                        @if($car_model->id == $car_product->car_model_id)
-                                                                                            {{$car_brand->title_fa}} {{$car_model->title_fa}}
-                                                                                        @endif
-                                                                                    @endforeach
-                                                                                @endif
-                                                                            @endforeach
+                                                                            {{$car_product->brand_title}} {{$car_product->model_title}}
                                                                         @endif
                                                                     @endforeach
                                                                 </a>
@@ -285,11 +277,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$newproducts->appends(
-                                                ['productgroup_id' => request('productgroup_id')
-                                                , 'car_brand_id' => request('car_brand_id')
-                                                , 'car_model_id' => request('car_model_id')
-                                                , 'brand_id' => request('brand_id')])->links()}}
+                                                {{$newproducts->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>
@@ -317,15 +305,7 @@
                                                             <p><a href="">مناسب برای :
                                                                     @foreach($carproducts as $car_product)
                                                                         @if($car_product->product_id == $product->id)
-                                                                            @foreach($carbrands as $car_brand)
-                                                                                @if($car_brand->id == $car_product->car_brand_id)
-                                                                                    @foreach($carmodels as $car_model)
-                                                                                        @if($car_model->id == $car_product->car_model_id)
-                                                                                            {{$car_brand->title_fa}} {{$car_model->title_fa}}
-                                                                                        @endif
-                                                                                    @endforeach
-                                                                                @endif
-                                                                            @endforeach
+                                                                            {{$car_product->brand_title}} {{$car_product->model_title}}
                                                                         @endif
                                                                     @endforeach
                                                                 </a>
@@ -337,11 +317,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$oldproducts->appends(
-                                                ['productgroup_id' => request('productgroup_id')
-                                                , 'car_brand_id' => request('car_brand_id')
-                                                , 'car_model_id' => request('car_model_id')
-                                                , 'brand_id' => request('brand_id')])->links()}}
+                                                {{$oldproducts->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>
@@ -369,15 +345,7 @@
                                                             <p><a href="">مناسب برای :
                                                                     @foreach($carproducts as $car_product)
                                                                         @if($car_product->product_id == $product->id)
-                                                                            @foreach($carbrands as $car_brand)
-                                                                                @if($car_brand->id == $car_product->car_brand_id)
-                                                                                    @foreach($carmodels as $car_model)
-                                                                                        @if($car_model->id == $car_product->car_model_id)
-                                                                                            {{$car_brand->title_fa}} {{$car_model->title_fa}}
-                                                                                        @endif
-                                                                                    @endforeach
-                                                                                @endif
-                                                                            @endforeach
+                                                                            {{$car_product->brand_title}} {{$car_product->model_title}}
                                                                         @endif
                                                                     @endforeach
                                                                 </a>
@@ -389,11 +357,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$clickproducts->appends(
-                                                ['productgroup_id' => request('productgroup_id')
-                                                , 'car_brand_id' => request('car_brand_id')
-                                                , 'car_model_id' => request('car_model_id')
-                                                , 'brand_id' => request('brand_id')])->links()}}
+                                                {{$clickproducts->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>

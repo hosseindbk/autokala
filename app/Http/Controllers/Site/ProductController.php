@@ -30,13 +30,19 @@ class ProductController extends Controller
         $clickproducts  = Product::whereStatus(4)->orderBy('click')->paginate(16);
         $goodproducts   = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $oldproducts    = Product::whereStatus(4)->orderBy('id')->paginate(16);
-        $carproducts    = Car_product::whereStatus(4)->get();
+        //$carproducts    = Car_product::whereStatus(4)->get();
         $productgroups  = Product_group::whereStatus(4)->get();
         $carbrands      = Car_brand::whereStatus(4)->get();
         $carmodels      = Car_model::whereStatus(4)->get();
         $brands         = Brand::whereStatus(4)->get();
         $filter         = 0;
         $states         = State::all();
+
+        $carproducts = DB::table('car_products')
+            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
+            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
+            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
+            ->get();
 
         return view('Site.product')
             ->with(compact('countState'))

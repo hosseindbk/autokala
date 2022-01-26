@@ -19,7 +19,7 @@ use App\State;
 use App\Supplier;
 use App\Technical_unit;
 use App\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use UxWeb\SweetAlert\SweetAlert;
 
@@ -39,7 +39,7 @@ class SearchController extends Controller
 
         $carmodels              = Car_model::whereStatus(4)->get();
         $cartypes               = Car_type::whereStatus(4)->get();
-        $carproducts            = Car_product::whereStatus(4)->get();
+        //$carproducts            = Car_product::whereStatus(4)->get();
         $productgroups          = Product_group::whereStatus(4)->get();
         $carbrands              = Car_brand::whereStatus(4)->get();
         $brands                 = Brand::whereStatus(4)->get();
@@ -48,6 +48,13 @@ class SearchController extends Controller
         }else{
             $productbrandvarieties = null;
         }
+
+        $carproducts = DB::table('car_products')
+            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
+            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
+            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
+            ->get();
+
         return view('Site.search')
             ->with(compact('carmodels'))
             ->with(compact('countState'))
