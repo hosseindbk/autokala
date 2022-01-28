@@ -23,22 +23,21 @@ class UserController extends Controller
 
 
         if (! auth()->attempt($validData)){
+            $response = [
+                'error' => 'شماره موبایل و یا رمز عبور نادرست است',
+            ];
 
-            return Response([
-                'data' => 'اطلاعات صحیح نیست',
-                'status' => 'error'
-            ]);
+            return Response::json(['ok' => false,'message' => 'failed','response' => $response]);
 
         }
 
         auth()->user()->update([
                 'api_token' => Str::random(100)
             ]);
-        //$user = User::select('id', 'name', 'api_token')->whereId(auth::user()->id)->get()->toArray();
-
-        return Response::json(['api_token'=>auth()->user()->api_token]);
-
-        //return response()->json(['user' => $user->only(['id', 'name', 'phone', 'api_token'])]);
+        $response = [
+            'api_token'=>auth()->user()->api_token,
+        ];
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
 
@@ -46,8 +45,12 @@ class UserController extends Controller
 
             $citis              = City::select('id as city_id','title as city' , 'state_id')->get()->toArray();
             $state              = State::select('id as state_id','title as state')->get()->toArray();
+            $response = [
+                'city' => $citis,
+                'state' => $state,
+                ];
 
-        return Response::json(['citis' => $citis , 'state'=>$state]);
+            return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
     public function register(Request $request)
@@ -81,10 +84,17 @@ class UserController extends Controller
             $code = ActiveCode::generateCode($user);
 
             $user->notify(new ActiveCodeNotification($code , $validData['phone']));
+            $response = [
+                'token' => $user->api_token,
+            ];
 
-            return Response::json(['token' => $user->api_token]);
+            return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+
         }else{
-            return  Response::json(['error' => 'شماره موبایل قبلا ثبت شده']);
+            $errorResponse = [
+                'error' => 'شماره موبایل قبلا ثبت شده',
+            ];
+            return Response::json(['ok' =>false ,'message' => 'failed','response'=>$errorResponse]);
         }
     }
 
@@ -98,13 +108,22 @@ class UserController extends Controller
 
 
         if(! $status) {
-            return Response::json(['error' => 'کد فعال سازی نادرست']);
+            $errorResponse = [
+                'error' => 'کد فعال سازی نادرست',
+            ];
+            return Response::json(['ok' =>false ,'message' => 'failed','response'=>$errorResponse]);
+
         }else{
             $user = auth()->user();
             $user->activeCode()->delete();
             $user->phone_verify = 1;
             $user->update();
-            return Response::json(['success' => 'ورود با موفقیت انجام شد']);
+
+            $response = [
+                'good' => 'ورود با موفقیت انجام شد',
+            ];
+            return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+
         }
     }
 }
