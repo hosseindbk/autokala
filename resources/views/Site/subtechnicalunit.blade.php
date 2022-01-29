@@ -189,7 +189,7 @@
                                     <div class="product-directory">
                                         <ul>
                                             <li>
-                                                <span>  <i class="fa fa-archive"></i> اطلاعات مرکز خدمات فنی: </span>
+                                                <span> اطلاعات مرکز خدمات فنی: </span>
                                                 @foreach($cartechnicalgroups as $car_technical_group)
                                                     @foreach($productgroups as $product_group)
                                                         @if($car_technical_group->kala_group_id == $product_group->id)
@@ -267,10 +267,16 @@
                                                 </thead>
                                                 <tbody>
                                                 @foreach($cartechnicalgroups as $car_technical_group)
-                                                    @foreach($carbrands as $car_brand)
-                                                        @if($car_brand->id == $car_technical_group->car_brand_id)
+
+                                                        @if($technical_unit->id == $car_technical_group->technical_id)
                                                             <tr>
-                                                                <td>{{$car_brand->title_fa}}</td>
+                                                                <td>
+                                                                    @foreach($carbrands as $car_brand)
+                                                                        @if($car_brand->id == $car_technical_group->car_brand_id)
+                                                                        {{$car_brand->title_fa}}
+                                                                        @endif
+                                                                    @endforeach
+                                                                </td>
                                                                 <td>
                                                                 @foreach($carmodels as $car_model)
                                                                     @if($car_model->id == $car_technical_group->car_model_id)
@@ -287,7 +293,6 @@
                                                                 </td>
                                                             </tr>
                                                         @endif
-                                                    @endforeach
                                                 @endforeach
                                                 </tbody>
                                             </table>
@@ -295,7 +300,6 @@
                                     </div>
                                     <div id="app" style="width: 100%; height: 400px;"></div>
                                 </div>
-                            </div>
                         </section>
                     </div>
                 </div>
