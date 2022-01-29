@@ -255,11 +255,11 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">انتخاب گروه کالا</p>
+                                                            <p class="mg-b-10">انتخاب خدمات مرتبط</p>
                                                             <select name="product_group_id" class="form-control select2" id="product_group_id">
-                                                                <option value="">انتخاب گروه کالا</option>
+                                                                <option value="">انتخاب خدمات مرتبط</option>
                                                                 @foreach($productgroups as $product_group)
-                                                                    <option value="{{$product_group->id}}">{{$product_group->title_fa}}</option>
+                                                                    <option value="{{$product_group->id}}">{{$product_group->related_service}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
