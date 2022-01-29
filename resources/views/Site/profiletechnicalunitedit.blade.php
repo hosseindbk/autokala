@@ -306,7 +306,7 @@
                                                             <td>
                                                                 @foreach($productgroups as $product_group)
                                                                     @if($car_technical_group->kala_group_id == $product_group->id)
-                                                                        {{$product_group->title_fa}}
+                                                                        {{$product_group->related_service}}
                                                                     @endif
                                                                 @endforeach
                                                             </td>
