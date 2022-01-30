@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="{{asset('admin/assets/plugins/web-fonts/icons.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/plugins/web-fonts/font-awesome/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/plugins/web-fonts/plugin.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/assets/plugins/sweet-alert/sweetalert.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/css-rtl/style/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/css-rtl/skins.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/css-rtl/colors/color.css')}}" id="theme" type="text/css" media="all">
     <link rel="stylesheet" href="{{asset('admin/assets/css-rtl/sidemenu/sidemenu.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/vendor/sweetalert.css')}}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{--    <link rel="stylesheet" href="{{asset('admin/assets/css-rtl/dark-style.css')}}">--}}
 {{--    <link rel="stylesheet" href="{{asset('admin/assets/css-rtl/colors/default.css')}}">--}}
 {{--    <link rel="stylesheet" href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}">--}}
@@ -238,7 +239,6 @@
 <script src="{{asset('admin/assets/plugins/bootstrap/js/popper.min.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/bootstrap/js/bootstrap-rtl.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/sidemenu/sidemenu-rtl.js')}}"></script>
-<script src="{{asset('admin/assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
 <script src="{{asset('admin/assets/js/custom.js')}}"></script>
 <script src="{{asset('admin/assets/js/sticky.js')}}"></script>
 

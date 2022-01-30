@@ -155,6 +155,7 @@ class OfferController extends Controller
             }
             Car_offer::insert($carmodel);
         }
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
 
         return redirect(route('offers.index'));
     }
@@ -283,6 +284,8 @@ class OfferController extends Controller
             $img->encode('jpg');
         }
         $offer->update();
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
+
         return Redirect::back();
     }
 
