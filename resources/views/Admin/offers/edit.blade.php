@@ -160,7 +160,7 @@
                                                             @foreach($brand_varietis as $Product_brand_variety)
                                                                 @foreach($brands as $brand)
                                                                     @if($brand->id == $Product_brand_variety->brand_id)
-                                                                        <option value="{{$Product_brand_variety->id}}">{{$brand->title_fa}}
+                                                                        <option value="{{$Product_brand_variety->id}}" {{$brand->id == $Product_brand_variety->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}
                                                                             @if($Product_brand_variety->item1 != null)
                                                                                 -
                                                                                 <li>

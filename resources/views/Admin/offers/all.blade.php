@@ -1,6 +1,6 @@
 @extends('Admin.admin')
 @section('title')
-    <title> مدیریت پیشنهاد فروش/خرید </title>
+    <title> مدیریت آگهی ها </title>
     <link href="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min-rtl.css')}} " rel="stylesheet" />
     <link href="{{asset('admin/assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
     <link href="{{asset('admin/assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
@@ -12,10 +12,10 @@
             <div class="inner-body">
                 <div class="page-header">
                     <div>
-                        <h2 class="main-content-title tx-24 mg-b-5">مدیریت پیشنهاد فروش/خرید</h2>
+                        <h2 class="main-content-title tx-24 mg-b-5">مدیریت آگهی ها</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{url('admin/panel')}}">صفحه اصلی</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">مدیریت پیشنهاد فروش/خرید</li>
+                            <li class="breadcrumb-item active" aria-current="page">مدیریت آگهی ها</li>
                         </ol>
                     </div>
                 </div>
@@ -25,8 +25,8 @@
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
                                 <div>
-                                    <h6 class="main-content-label mb-1">لیست پیشنهاد فروش/خرید</h6>
-                                    <a href="{{url('admin/offers/create')}}" class="btn btn-primary btn-xs float-left">افزودن پیشنهاد فروش/خرید جدید</a>
+                                    <h6 class="main-content-label mb-1">لیست  آگهی ها</h6>
+                                    <a href="{{url('admin/offers/create')}}" class="btn btn-primary btn-xs float-left">افزودن  آگهی ها جدید</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table" id="example1">

@@ -176,7 +176,8 @@ class OfferController extends Controller
         $medias             =   Media::select('technical_id' , 'image')->get();
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
-        $product_id         =   Product::whereStatus(4)->whereId($id)->pluck('id');
+        $unicode_product    =   Offer::whereId($id)->pluck('unicode_product');
+        $product_id         =   Product::whereUnicode($unicode_product)->pluck('id');
         $brand_varietis     =   Product_brand_variety::whereIn('product_id' ,$product_id)->get();
 
 

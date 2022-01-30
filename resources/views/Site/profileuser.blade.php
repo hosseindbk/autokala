@@ -115,12 +115,7 @@
                                                             <input type="text" name="phone_number" value="{{Auth::user()->phone_number}}" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">آدرس ایمیل<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" name="email" value="{{Auth::user()->email}}" class="form-control" />
-                                                        </div>
-                                                    </div>
+
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان<span style="color: #ff3d00">*</span></p>
@@ -142,7 +137,12 @@
                                                             </select>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">آدرس ایمیل<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" name="email" value="{{Auth::user()->email}}" class="form-control" />
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تصویر کاربر</p>
