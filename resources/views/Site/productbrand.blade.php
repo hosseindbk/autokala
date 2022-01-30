@@ -147,7 +147,7 @@
                                                     @if($Product_brand_variety->image1)
                                                         <li class="item">
                                                             <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($Product_brand_variety->image1)}}" data-zoom-image="{{asset($Product_brand_variety->image1)}}">
-                                                                <img src="{{asset($product->image1)}}" width="100" /></a>
+                                                                <img src="{{asset($Product_brand_variety->image1)}}" width="100" /></a>
                                                         </li>
                                                     @endif
                                                     @if($Product_brand_variety->image2)
