@@ -109,7 +109,7 @@ class ProfiletechnicalunitController extends Controller
         $technical_units->whatsapp      = $request->input('whatsapp');
         $technical_units->status        = '1';
         $technical_units->email         = $request->input('email');
-        $technical_units->website       = $request->input('website');
+        $technical_units->website       = $request->input('site');
         $technical_units->address       = $request->input('address');
         $technical_units->description   = $request->input('description');
         $technical_units->date          = jdate()->format('Ymd ');

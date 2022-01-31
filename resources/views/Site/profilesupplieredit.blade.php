@@ -185,7 +185,7 @@
                                                     <div class="col-md-12" >
                                                         <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h4>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان</p>
                                                             <select name="state_id" class="form-control select-lg select2" id="state_id">
@@ -195,9 +195,6 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-
-                                                    </div>
-                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب شهرستان</p>
                                                             <select name="city_id" id="city_id" class="form-control select-lg select2">
@@ -208,30 +205,38 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
                                                             <input type="text" name="mobile" value="{{$Supplier->mobile}}" class="form-control" />
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">تلفن ثابت</p>
-                                                            <input type="text" name="phone" value="{{$Supplier->phone}}" class="form-control" />
+                                                            <p class="mg-b-10">وبسایت</p>
+                                                            <input type="text" name="website" value="{{$Supplier->website}}" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شماره واتس اپ</p>
                                                             <input type="text" name="whatsapp"  value="{{$Supplier->whatsapp}}" class="form-control" />
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">تلفن ثابت</p>
+                                                            <input type="text" name="phone" value="{{$Supplier->phone}}" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">ایمیل</p>
+                                                            <input type="text" name="email" value="{{$Supplier->email}}" class="form-control" />
+                                                        </div>
+
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
                                                             <textarea name="address" cols="30" rows="1" class="form-control" >{{$Supplier->address}}</textarea>
                                                         </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <p class="mg-b-10">موقعیت مکانی خود را با کلیک بر روی نقشه انتخاب نمایید</p>
+                                                        <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
 
                                                     <div class="col-lg-12 mg-b-10 text-center">

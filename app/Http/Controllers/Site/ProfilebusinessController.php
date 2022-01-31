@@ -286,7 +286,7 @@ class ProfilebusinessController extends Controller
             $technical_units->status        = '1';
             $technical_units->slug          = 'TU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
             $technical_units->email         = $request->input('email');
-            $technical_units->website       = $request->input('website');
+            $technical_units->website       = $request->input('site');
             $technical_units->address       = $request->input('address');
             $technical_units->description   = $request->input('description');
             $technical_units->date          = jdate()->format('Ymd ');
@@ -350,7 +350,7 @@ class ProfilebusinessController extends Controller
         $technical_unit->whatsapp       = $request->input('whatsapp');
         $technical_unit->status         = 1;
         $technical_unit->email          = $request->input('email');
-        $technical_unit->website        = $request->input('website');
+        $technical_unit->website        = $request->input('site');
         $technical_unit->address        = $request->input('address');
         $technical_unit->description    = $request->input('description');
         $technical_unit->date           = jdate()->format('Ymd ');

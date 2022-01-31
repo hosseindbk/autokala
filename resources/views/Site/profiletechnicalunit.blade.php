@@ -1,9 +1,12 @@
 @extends('master-main')
 @section('title')
     <title>پروفایل اطلاعات واحد خدمات فنی</title>
+    <link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
     <link href="{{asset('admin/assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
     <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('main')
@@ -134,7 +137,7 @@
                                                     <div class="col-md-12" >
                                                         <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h4>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان</p>
                                                             <select name="state_id" class="form-control select-lg select2" id="state_id">
@@ -145,7 +148,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب شهرستان</p>
                                                             <select name="city_id" id="city_id" class="form-control select-lg select2">
@@ -157,43 +160,44 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
                                                             <input type="text" name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت</p>
                                                             <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شماره واتس اپ</p>
                                                             <input type="text" name="whatsapp" placeholder="شماره واتس اپ را وارد کنید" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">وبسایت</p>
                                                             <input type="text" name="site" placeholder="وبسایت را وارد کنید" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">ایمیل</p>
                                                             <input type="text" name="email" placeholder="ایمیل را وارد کنید" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
                                                             <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
                                                         </div>
                                                     </div>
-
                                                     <div class="col-lg-12 mg-b-10 text-center">
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
@@ -213,24 +217,19 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script  src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min-rtl.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/bootstrap-daterangepicker/moment.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/advanced-form-elements.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
+
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
