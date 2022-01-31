@@ -63,7 +63,7 @@
                                                 <td>
                                                     @if($slide->status == 0)
                                                         <button class="btn ripple btn-outline-danger">عدم نمایش</button>
-                                                    @elseif($slide->status == 1)
+                                                    @elseif($slide->status == 4)
                                                         <button class="btn ripple btn-outline-success">در حال نمایش</button>
                                                     @endif
                                                 </td>

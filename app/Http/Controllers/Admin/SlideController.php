@@ -14,11 +14,7 @@ use Intervention\Image\Facades\Image;
 
 class SlideController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $slides             =   Slide::all();
@@ -31,11 +27,6 @@ class SlideController extends Controller
             ->with(compact('submenudashboards'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
@@ -46,19 +37,13 @@ class SlideController extends Controller
             ->with(compact('submenudashboards'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(sliderequest $request , Slide $slides)
     {
         $slides = new Slide();
 
         $slides->title      = $request->input('title');
         $slides->position   = $request->input('position');
-        $slides->status     = 1;
+        $slides->status     = 4;
         $slides->user_id    = Auth::user()->id;
 
         if ($request->file('image') != null) {
@@ -77,23 +62,6 @@ class SlideController extends Controller
         return redirect(route('slides.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $slides             =   Slide::whereId($id)->get();
@@ -106,13 +74,6 @@ class SlideController extends Controller
             ->with(compact('submenudashboards'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request , Slide  $slide)
     {
         $slide->title           = $request->input('title');
@@ -131,12 +92,6 @@ class SlideController extends Controller
         return redirect(route('slides.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $slide = Slide::findOrfail($id);
