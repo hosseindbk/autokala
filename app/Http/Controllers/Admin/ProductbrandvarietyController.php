@@ -17,15 +17,11 @@ use Intervention\Image\Facades\Image;
 
 class ProductbrandvarietyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $productbrandvarieties  = Product_brand_variety::all();
-        $products               = Product::select('id' , 'title_fa')->get();
+        $products               = Product::select('id' , 'title_fa' , 'unicode')->get();
         $brands                 = Brand::select('id' , 'title_fa')->get();
         $statuses               = Status::select('id' , 'title')->get();
         $menudashboards         = Menudashboard::whereStatus(4)->get();
@@ -40,11 +36,7 @@ class ProductbrandvarietyController extends Controller
             ->with(compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $productbrandvarieties  = Product_brand_variety::all();
@@ -63,12 +55,6 @@ class ProductbrandvarietyController extends Controller
             ->with(compact('products'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(productbrandvarietyrequest $request)
     {
         $productbrandvarieties = new Product_brand_variety();
@@ -237,12 +223,6 @@ class ProductbrandvarietyController extends Controller
         return Redirect::back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product_brand_variety $productbrandvariety)
     {
         $productbrandvariety->delete();

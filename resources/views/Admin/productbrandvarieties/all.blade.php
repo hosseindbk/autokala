@@ -33,17 +33,10 @@
                                         <thead>
                                         <tr>
                                             <th class="wd-10p"> ردیف </th>
+                                            <th class="wd-10p"> تصویر </th>
                                             <th class="wd-10p"> نام برند قطعه </th>
                                             <th class="wd-10p"> نام کالا </th>
-                                            <th class="wd-10p"> عامل 1 </th>
-                                            <th class="wd-10p"> عامل 2 </th>
-                                            <th class="wd-10p"> عامل 3 </th>
-                                            <th class="wd-10p"> نقطه قوت 1 </th>
-                                            <th class="wd-10p"> نقطه قوت 2 </th>
-                                            <th class="wd-10p"> نقطه قوت 3 </th>
-                                            <th class="wd-10p"> نقطه ضعف 1 </th>
-                                            <th class="wd-10p"> نقطه ضعف 2 </th>
-                                            <th class="wd-10p"> نقطه ضعف 3 </th>
+                                            <th class="wd-10p"> یونیکد کالا </th>
                                             <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> تغییر </th>
                                             <th class="wd-10p"> حذف </th>
@@ -54,6 +47,11 @@
                                         @foreach($productbrandvarieties as $Product_brand_variety)
                                             <tr class="odd gradeX">
                                                 <td>{{$s++}}</td>
+                                                <td>
+                                                    @if($Product_brand_variety->image1)
+                                                        <img src="{{asset($Product_brand_variety->image1)}}" width="70px" height="50px" alt="">
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @foreach($brands as $brand)
                                                         @if($Product_brand_variety->brand_id == $brand->id)
@@ -69,20 +67,13 @@
                                                     @endforeach
                                                 </td>
 
-                                                <td>{{$Product_brand_variety->value_item1}}</td>
-
-                                                <td>{{$Product_brand_variety->value_item2}}</td>
-
-                                                <td>{{$Product_brand_variety->value_item3}}</td>
-
-                                                <td>{{$Product_brand_variety->strength1}}</td>
-                                                <td>{{$Product_brand_variety->strength2}}</td>
-                                                <td>{{$Product_brand_variety->strength3}}</td>
-
-                                                <td>{{$Product_brand_variety->weakness1}}</td>
-                                                <td>{{$Product_brand_variety->weakness2}}</td>
-                                                <td>{{$Product_brand_variety->weakness3}}</td>
-
+                                                <td>
+                                                    @foreach($products as $product)
+                                                        @if($Product_brand_variety->product_id == $product->id)
+                                                            <span class="btn btn-light">{{$product->unicode}}</span>
+                                                        @endif
+                                                    @endforeach
+                                                </td>
 
                                                 <td>
                                                     @foreach($statuses as $status)
