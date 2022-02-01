@@ -216,7 +216,7 @@
                                                                             <label class="form-check-label" style="margin-right: 5px;" for="single1">  داریم </label>
                                                                         </div>
                                                                         <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio" {{$offer->single == 0 ? 'checked' : ''}} name="single" id="single2" value="2">
+                                                                            <input class="form-check-input" type="radio" {{$offer->single == 2 ? 'checked' : ''}} name="single" id="single2" value="2">
                                                                             <label class="form-check-label" style="margin-right: 5px;" for="single2"> نداریم </label>
                                                                         </div>
                                                                     </div>
@@ -269,20 +269,20 @@
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">تلفن موبایل</p>
-                                                                        <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
+                                                                        <input type="text" disabled value="{{$offer->mobile}}" class="form-control" />
                                                                         <input type="hidden" name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">تلفن ثابت</p>
-                                                                        <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
+                                                                        <input type="text" name="phone" value="{{$offer->phone}}" class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-7">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">آدرس</p>
-                                                                        <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                                        <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{$offer->address}}</textarea>
                                                                     </div>
                                                                 </div>
 
