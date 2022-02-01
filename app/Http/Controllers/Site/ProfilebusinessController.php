@@ -107,6 +107,28 @@ class ProfilebusinessController extends Controller
                     ->with(compact('states'));
         }
     }
+
+    public function setmapsupplier($id){
+        $menus              = Menu::whereStatus(4)->get();
+        $suppliers          = Supplier::whereId($id)->get();
+        $states                 = State::all();
+        $cities                 = city::all();
+
+        return view('Site.setmapsupplier')
+            ->with(compact('suppliers' , 'menus' , 'states' , 'cities'))
+            ->with('id' , $id);
+    }
+
+    public function setmaptechnical($id){
+        $menus              = Menu::whereStatus(4)->get();
+        $technicals          = Technical_unit::whereId($id)->get();
+        $states                 = State::all();
+        $cities                 = city::all();
+
+        return view('Site.setmaptechnical')
+            ->with(compact('technicals' , 'menus' , 'states' , 'cities'))
+            ->with('id' , $id);
+    }
     public function suppliermap(Request $request)
     {
         $suppliermap               = Supplier::findOrfail($request->input('id'));

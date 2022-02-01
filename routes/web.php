@@ -163,8 +163,10 @@ Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , fu
     Route::get('profile-user'                   , 'ProfileuserController@index' );
     Route::patch('profile-user/usermap'         , 'ProfileuserController@usermapset')->name('usermap');
     Route::patch('profile-business/suppliermap' , 'ProfilebusinessController@suppliermap')->name('suppliermap');
-    Route::patch('profile-business'             , 'ProfilebusinessController@technicalunitmap')->name('technicalunitmap');
+    Route::patch('profile-business/technicalmap', 'ProfilebusinessController@technicalunitmap')->name('technicalunitmap');
     Route::get('profile-business'               , 'ProfilebusinessController@index' )->name('profile-business');
+    Route::get('profile-business/setmapsupplier/{id}'   , 'ProfilebusinessController@setmapsupplier' )->name('setmapsupplier');
+    Route::get('profile-business/setmaptechnical/{id}'   , 'ProfilebusinessController@setmaptechnical' )->name('setmaptechnical');
     Route::post('profile-user/option'           , 'ProfileuserController@option')->name('option');
     Route::post('profile-business/option'       , 'ProfilebusinessController@option')->name('option');
     Route::patch('profile-user/{id}'            , 'ProfileuserController@update' )->name('profile_user_update');

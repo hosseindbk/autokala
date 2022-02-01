@@ -7,83 +7,6 @@
     <link href="{{asset('admin/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
     <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <style>
-        #app {
-            width: 100%;
-            height: 100%;
-        }
-        input {
-            text-align: right;
-            direction: rtl;
-            border: 0;
-            height: 45px;
-        }
-        textarea:focus,
-        input:focus {
-            outline: none;
-        }
-        .search-box {
-            top: 5px;
-            right: 5px;
-            z-index: 1000;
-            min-width: 250px;
-            max-width: 300px;
-        }
-        .search-box__item {
-            background-color: white;
-            margin-top: 3px;
-            border-top: none;
-            border: 1px solid #a8a7a7;
-            border-radius: 5px;
-        }
-        .search-results {
-            overflow: auto;
-            max-height: 40vh;
-            display: none;
-        }
-        .search-result-item {
-            border-bottom: 1px solid #ccc;
-            padding: 10px;
-            cursor: pointer;
-        }
-        .search-result-item img {
-            width: 20px;
-            margin-left: 5px;
-        }
-        .search-result-item-title {
-            font-weight: bolder;
-        }
-        .search-result-item-address {
-            font-size: 1rem;
-        }
-        .clear-seach {
-            cursor: pointer;
-            position: absolute;
-            left: 40px;
-            padding: 10px;
-            display: none;
-        }
-        .btn-seach {
-            background-color: #ff0871;
-            height: 45px;
-            width: 40px;
-            text-align: center;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            color: white;
-            cursor: pointer;
-            position: absolute;
-            left: 30px;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            border-right: 1px solid #a8a7a7;
-        }
-        .flex-row {
-            display: flex;
-            flex-direction: row;
-        }
-    </style>
 @endsection
 @section('main')
     @include('sweet::alert')
@@ -312,18 +235,7 @@
                                                     </div>
 
                                                     <div class="col-md-4">
-                                                        <div class="container search-box">
-                                                            <div class="container search-box__item  flex-row">
-                                                                <input autocomplete="off" type="text" id="search" placeholder="دنبال کجا می&zwnj;گردید..." /><span class="clear-seach">&#10006;</span>
-                                                                <div class="btn-seach">
-                                                                    <span>برو</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="container search-box__item search-results">
-                                                                <div class="search-result-item"></div>
-                                                            </div>
-                                                        </div>
-                                                        <p class="mg-b-10">موقعیت مکانی خود را با کلیک بر روی نقشه انتخاب نمایید</p>
+                                                        <p class="mg-b-10">برای جستجو موقعیت مکانی خود <a href="{{route('setmapsupplier' , $Supplier->id)}}">کلیک</a> نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
 
@@ -480,6 +392,7 @@
 <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
+
 <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.env.js"></script>
 <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.min.js"></script>
 <script>
@@ -510,45 +423,93 @@
     });
 </script>
 <script>
-    var crosshairIcon = {
-        iconUrl: '{{asset('site/images/icon_map.png')}}',
-        iconSize:     [40, 50], // size of the icon
-        iconAnchor:   [20, 55], // point of the icon which will correspond to marker's location
-    };
-    $(document).ready(function() {
-        //create map and layers
+    $(document).ready(function () {
+        var crosshairIcon = {
+            iconUrl: '{{asset('site/assets/images/icon-marker.svg')}}',
+            iconSize:     [40, 50], // size of the icon
+            iconAnchor:   [20, 55], // point of the icon which will correspond to marker's location
+        };
         var app = new Mapp({
             element: '#app',
-            presets: {
-{{--                @foreach($technicals as $technical_unit)--}}
-{{--                    @if($technical_unit->lat != '' && $technical_unit->lng != '')--}}
-{{--                latlng: {--}}
-{{--                    lat: {{$technical_unit->lat}},--}}
-{{--                    lng: {{$technical_unit->lng}},--}}
-
-{{--                },--}}
-{{--                @else--}}
-                latlng: {
-                    lat: 35.73249,
-                    lng: 51.42268
+            @if($Supplier->lat != null && $Supplier->lng != null)
+                presets: {
+                    latlng: {
+                        lat: {{$Supplier->lat}},
+                        lng: {{$Supplier->lng}},
+                    },
+                    icon: crosshairIcon,
+                    zoom: 20,
+                    popup: {
+                        title: {
+                            i18n: 'موقعیت مکانی',
+                        },
+                        description: {
+                            i18n: 'توضیحات',
+                        },
+                        class: 'marker-class',
+                        open: false,
+                    },
                 },
-{{--                @endif--}}
-{{--                    @endforeach--}}
-                zoom: 14,
+            @elseif(Auth::user()->lat != null && Auth::user()->lng != null)
+            presets: {
+                latlng: {
+                    lat: {{Auth::user()->lat}},
+                    lng: {{Auth::user()->lng}},
+                },
                 icon: crosshairIcon,
+                zoom: 20,
+                popup: {
+                    title: {
+                        i18n: 'موقعیت مکانی',
+                    },
+                    description: {
+                        i18n: 'توضیحات',
+                    },
+                    class: 'marker-class',
+                    open: false,
+
+                },
             },
+            @endif
             apiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2In0.eyJhdWQiOiIxNTQ5NCIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2IiwiaWF0IjoxNjMxNzc5MjQ0LCJuYmYiOjE2MzE3NzkyNDQsImV4cCI6MTYzNDQ2MTI0NCwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.VsRI2wiG_IvFVkVKXt_XnOBpzyjMIygnv6s_s81u9WVC_Z-stANinKYH_6iJPuJ3lRdAX8SdtHwYCr2DZVF2hi6WiTu-BSvMuXPb6sg0iYXgYREKQjzsWU4NPf2kOwd4q6aj1R6UOT_EA7GIrJQ5FPYDceAmeT8va1VdK6xYp-Ypstja-clURippQKEk0mDe9Z_ABYWQNAWfqUt_ubYEZrETjnDoSQHbJxJc46vxWvYmwoK1sIZ4NoXaQbRrAb0QKZ_7Lnh3H3_vHqQGMB0vJELzwSJEmiNxr_h7uIvugtRAUneAa878lOJuv03976YNjIoepK_aWhxzrP-RmE4O5A",
         });
         app.addLayers();
         app.addZoomControls();
         app.addGeolocation({
-            history: true,
+            history: false,
             onLoad: false,
             onLoadCallback: function(){
                 console.log(app.states.user.latlng);
             },
         });
+        app.addLogo({
+            url: '{{asset('site/images/maplogo.png')}}',
+        });
 
+        @if($Supplier->lat != null && $Supplier->lng != null)
+
+        app.markReverseGeocode({
+            state: {
+                latlng: {
+                    lat: {{$Supplier->lat}},
+                    lng: {{$Supplier->lng}},
+                },
+                zoom: 14,
+                icon: crosshairIcon,
+            },
+        });
+        @elseif(Auth::user()->lat != null && Auth::user()->lng != null)
+        app.markReverseGeocode({
+            state: {
+                latlng: {
+                    lat: {{Auth::user()->lat}},
+                    lng: {{Auth::user()->lng}},
+                },
+                zoom: 14,
+                icon: crosshairIcon,
+            },
+        });
+        @endif
         app.map.on('click', function (e) {
 
             var marker = app.addMarker({
@@ -570,7 +531,7 @@
                 },
             });
             $.ajax({
-                url: '{{ route( 'mapset' ) }}',
+                url: '{{ route( 'suppliermap' ) }}',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -578,8 +539,7 @@
                     "_token": "{{ csrf_token() }}",
                     lat     : e.latlng.lat,
                     lng     : e.latlng.lng,
-                    'address': e.address,
-                    {{--'id'    :{{$supplier->id}},--}}
+                    'id'    :{{$Supplier->id}},
                 },
                 type: 'patch',
                 dataType: 'json',
@@ -587,266 +547,8 @@
                 console.log(data);
             });
         })
-        app.addVectorLayers();
-
-        var drawnMarker = new L.LayerGroup();
-
-        app.map.addLayer(drawnMarker);
-
-        //search object
-        const search = {
-            params: {
-                text: null
-            },
-            search: function(options, calback) {
-                if (options.text === null || options.text === '') {
-                    return null;
-                }
-                //prepare data
-                const data = {};
-                for (let key in options) {
-                    if (options[key] !== null && options[key] !== '') {
-                        data[key] = options[key];
-                    }
-                }
-                calback(null); ///show results
-                $.ajax({
-                    url: `https://map.ir/search/v2/`,
-
-                    data: JSON.stringify(data),
-                    method: 'POST',
-                    beforeSend: function(request) {
-                        request.setRequestHeader('x-api-key', "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2In0.eyJhdWQiOiIxNTQ5NCIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2IiwiaWF0IjoxNjMxNzc5MjQ0LCJuYmYiOjE2MzE3NzkyNDQsImV4cCI6MTYzNDQ2MTI0NCwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.VsRI2wiG_IvFVkVKXt_XnOBpzyjMIygnv6s_s81u9WVC_Z-stANinKYH_6iJPuJ3lRdAX8SdtHwYCr2DZVF2hi6WiTu-BSvMuXPb6sg0iYXgYREKQjzsWU4NPf2kOwd4q6aj1R6UOT_EA7GIrJQ5FPYDceAmeT8va1VdK6xYp-Ypstja-clURippQKEk0mDe9Z_ABYWQNAWfqUt_ubYEZrETjnDoSQHbJxJc46vxWvYmwoK1sIZ4NoXaQbRrAb0QKZ_7Lnh3H3_vHqQGMB0vJELzwSJEmiNxr_h7uIvugtRAUneAa878lOJuv03976YNjIoepK_aWhxzrP-RmE4O5A");
-                        request.setRequestHeader('content-type', 'application/json');
-                    },
-                    success: function(data, status) {
-                        calback(data); ///show results
-                    },
-                    error: function(error) {
-                        calback({ 'odata.count': 0, value: [] }); /// show results
-                    }
-                });
-            },
-            setParams: function(key, value, onUpdate, calback) {
-                this.params[key] = value;
-                if (onUpdate) {
-                    this.search(this.params, calback);
-                }
-            }
-        };
-
-        function showResults(results) {
-            if (results === null) {
-                $('.search-results').text('در حال جستجو...');
-                $('.search-results').show();
-            } else {
-                let count = results['odata.count'];
-                if (count > 0) {
-                    $('.clear-seach').show();
-                    let html = '';
-                    results['value'].forEach(function(item, index) {
-                        html += `<div data-title="${item.title}" data-address="${
-                            item.address
-                        }" data-lat="${item.geom.coordinates[1]}" data-lon="${
-                            item.geom.coordinates[0]
-                        }" class="search-result-item">`;
-                        html += `<p class="search-result-item-title"><img src="https://map.ir/css/images/marker-default-white.svg"/>${
-                            item.title
-                        }</p>`;
-                        html += `<p class="search-result-item-address">${item.address}</p>`;
-                        html += `</div>`;
-                    });
-                    //show results
-                    $('.search-results').html(html);
-                    $('.search-result-item').on('click', function(e) {
-                        let lat = e.currentTarget.getAttribute('data-lat');
-                        let lng = e.currentTarget.getAttribute('data-lon');
-                        let title = e.currentTarget.getAttribute('data-title');
-                        let address = e.currentTarget.getAttribute('data-address');
-                        app.addMarker({
-                            name: 'basic-marker',
-                            latlng: {
-                                lat,
-                                lng
-                            },
-                            popup: {
-                                title: {
-                                    html: title
-                                },
-                                description: {
-                                    html: address
-                                },
-                                open: true
-                            }
-                        });
-                        app.map.flyTo({
-                            lat,
-                            lng
-                        });
-                    });
-                    $('.search-results').show();
-                } else {
-                    $('.clear-seach').show();
-                    $('.search-results').html('<p>نتیجه ای یافت نشد</p>');
-                }
-            }
-        }
-
-        //clear search
-        $('.clear-seach').click(function() {
-            search.params = {
-                text: null
-            };
-
-            $('.search-results').html('');
-            $('.search-results').hide();
-            $('.clear-seach').hide();
-            $('input#search').val('');
-            $('.leaflet-container').css('cursor', '');
-
-            if (app.groups.features !== undefined) {
-                app.removeMarkers({
-                    group: app.groups.features.markers
-                });
-            }
-            drawnMarker.clearLayers();
-        });
-
-        //text change event handling
-        $('#search').on('keyup paste', function(e) {
-            let text = $('input#search').val();
-            if (text.length > 1) {
-                search.setParams('text', text, true, showResults);
-            }
-        });
-    });</script>
-{{--<script>--}}
-{{--    $(document).ready(function () {--}}
-{{--        var crosshairIcon = {--}}
-{{--            iconUrl: '{{asset('site/assets/images/icon-marker.svg')}}',--}}
-{{--            iconSize:     [40, 50], // size of the icon--}}
-{{--            iconAnchor:   [20, 55], // point of the icon which will correspond to marker's location--}}
-{{--        };--}}
-{{--        var app = new Mapp({--}}
-{{--            element: '#app',--}}
-{{--            @if($Supplier->lat != null && $Supplier->lng != null)--}}
-{{--                presets: {--}}
-{{--                    latlng: {--}}
-{{--                        lat: {{$Supplier->lat}},--}}
-{{--                        lng: {{$Supplier->lng}},--}}
-{{--                    },--}}
-{{--                    icon: crosshairIcon,--}}
-{{--                    zoom: 20,--}}
-{{--                    popup: {--}}
-{{--                        title: {--}}
-{{--                            i18n: 'موقعیت مکانی',--}}
-{{--                        },--}}
-{{--                        description: {--}}
-{{--                            i18n: 'توضیحات',--}}
-{{--                        },--}}
-{{--                        class: 'marker-class',--}}
-{{--                        open: false,--}}
-{{--                    },--}}
-{{--                },--}}
-{{--            @elseif(Auth::user()->lat != null && Auth::user()->lng != null)--}}
-{{--            presets: {--}}
-{{--                latlng: {--}}
-{{--                    lat: {{Auth::user()->lat}},--}}
-{{--                    lng: {{Auth::user()->lng}},--}}
-{{--                },--}}
-{{--                icon: crosshairIcon,--}}
-{{--                zoom: 20,--}}
-{{--                popup: {--}}
-{{--                    title: {--}}
-{{--                        i18n: 'موقعیت مکانی',--}}
-{{--                    },--}}
-{{--                    description: {--}}
-{{--                        i18n: 'توضیحات',--}}
-{{--                    },--}}
-{{--                    class: 'marker-class',--}}
-{{--                    open: false,--}}
-
-{{--                },--}}
-{{--            },--}}
-{{--            @endif--}}
-{{--            apiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2In0.eyJhdWQiOiIxNTQ5NCIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2IiwiaWF0IjoxNjMxNzc5MjQ0LCJuYmYiOjE2MzE3NzkyNDQsImV4cCI6MTYzNDQ2MTI0NCwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.VsRI2wiG_IvFVkVKXt_XnOBpzyjMIygnv6s_s81u9WVC_Z-stANinKYH_6iJPuJ3lRdAX8SdtHwYCr2DZVF2hi6WiTu-BSvMuXPb6sg0iYXgYREKQjzsWU4NPf2kOwd4q6aj1R6UOT_EA7GIrJQ5FPYDceAmeT8va1VdK6xYp-Ypstja-clURippQKEk0mDe9Z_ABYWQNAWfqUt_ubYEZrETjnDoSQHbJxJc46vxWvYmwoK1sIZ4NoXaQbRrAb0QKZ_7Lnh3H3_vHqQGMB0vJELzwSJEmiNxr_h7uIvugtRAUneAa878lOJuv03976YNjIoepK_aWhxzrP-RmE4O5A",--}}
-{{--        });--}}
-{{--        app.addLayers();--}}
-{{--        app.addZoomControls();--}}
-{{--        app.addGeolocation({--}}
-{{--            history: false,--}}
-{{--            onLoad: false,--}}
-{{--            onLoadCallback: function(){--}}
-{{--                console.log(app.states.user.latlng);--}}
-{{--            },--}}
-{{--        });--}}
-{{--        app.addLogo({--}}
-{{--            url: '{{asset('site/images/maplogo.png')}}',--}}
-{{--        });--}}
-
-{{--        @if($Supplier->lat != null && $Supplier->lng != null)--}}
-
-{{--        app.markReverseGeocode({--}}
-{{--            state: {--}}
-{{--                latlng: {--}}
-{{--                    lat: {{$Supplier->lat}},--}}
-{{--                    lng: {{$Supplier->lng}},--}}
-{{--                },--}}
-{{--                zoom: 14,--}}
-{{--                icon: crosshairIcon,--}}
-{{--            },--}}
-{{--        });--}}
-{{--        @elseif(Auth::user()->lat != null && Auth::user()->lng != null)--}}
-{{--        app.markReverseGeocode({--}}
-{{--            state: {--}}
-{{--                latlng: {--}}
-{{--                    lat: {{Auth::user()->lat}},--}}
-{{--                    lng: {{Auth::user()->lng}},--}}
-{{--                },--}}
-{{--                zoom: 14,--}}
-{{--                icon: crosshairIcon,--}}
-{{--            },--}}
-{{--        });--}}
-{{--        @endif--}}
-{{--        app.map.on('click', function (e) {--}}
-
-{{--            var marker = app.addMarker({--}}
-{{--                name: 'advanced-marker',--}}
-{{--                latlng: {--}}
-{{--                    lat: e.latlng.lat,--}}
-{{--                    lng: e.latlng.lng,--}}
-{{--                },--}}
-{{--                icon: crosshairIcon,--}}
-{{--                popup: {--}}
-{{--                    title: {--}}
-{{--                        i18n: 'موقعیت مکانی',--}}
-{{--                    },--}}
-{{--                    description: {--}}
-{{--                        i18n: 'توضیحات',--}}
-{{--                    },--}}
-{{--                    class: 'marker-class',--}}
-{{--                    open: false,--}}
-{{--                },--}}
-{{--            });--}}
-{{--            $.ajax({--}}
-{{--                url: '{{ route( 'suppliermap' ) }}',--}}
-{{--                headers: {--}}
-{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--                },--}}
-{{--                data: {--}}
-{{--                    "_token": "{{ csrf_token() }}",--}}
-{{--                    lat     : e.latlng.lat,--}}
-{{--                    lng     : e.latlng.lng,--}}
-{{--                    'id'    :{{$Supplier->id}},--}}
-{{--                },--}}
-{{--                type: 'patch',--}}
-{{--                dataType: 'json',--}}
-{{--            }).done(function (data) {--}}
-{{--                console.log(data);--}}
-{{--            });--}}
-{{--        })--}}
-{{--    });--}}
-{{--</script>--}}
+    });
+</script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
