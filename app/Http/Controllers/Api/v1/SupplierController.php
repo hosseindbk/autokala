@@ -22,7 +22,7 @@ class SupplierController extends Controller
 
     }
     public function subsupplier($slug){
-        $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
+        $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image' , 'image2' , 'image3' , 'manufacturer' , 'importer' , 'whole_seller' , 'retail_seller' , 'phone' , 'mobile' , 'website' , 'email' , 'whatsapp')
             ->whereStatus(4)
             ->whereSlug($slug)
             ->get()
