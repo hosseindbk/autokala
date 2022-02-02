@@ -11,10 +11,22 @@ class ProductController extends Controller
 {
     public function index(){
         $products       = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
-                                    ->whereStatus(4)
-                                    ->orderBy('id' , 'DESC')
-                                    ->paginate(10)
-                                    ->toArray();
+            ->whereStatus(4)
+            ->orderBy('id' , 'DESC')
+            ->paginate(10)
+            ->toArray();
+
+        $response = [
+            'products'=>$products,
+        ];
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+    }
+
+    public function subproduct($id){
+        $products       = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
+            ->whereStatus(4)
+            ->whereId($id)
+            ->get();
 
         $response = [
             'products'=>$products,

@@ -11,10 +11,21 @@ class SupplierController extends Controller
 {
     public function index(){
         $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
-                                    ->whereStatus(4)
-                                    ->orderBy('id' , 'DESC')
-                                    ->paginate(10)
-                                    ->toArray();
+            ->whereStatus(4)
+            ->orderBy('id' , 'DESC')
+            ->paginate(10)
+            ->toArray();
+
+        $response = ['supplier' => $suppliers];
+
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+
+    }
+    public function subsupplier($id){
+        $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
+            ->whereStatus(4)
+            ->whereId($id)
+            ->get();
 
         $response = ['supplier' => $suppliers];
 
