@@ -21,11 +21,12 @@ class SupplierController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
-    public function subsupplier($id){
+    public function subsupplier($slug){
         $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->whereStatus(4)
-            ->whereId($id)
-            ->get();
+            ->whereSlug($slug)
+            ->get()
+            ->toArray();
 
         $response = ['supplier' => $suppliers];
 

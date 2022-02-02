@@ -21,12 +21,13 @@ class TechnicalunitController extends Controller
 
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
-    public function subtechnical($id){
+    public function subtechnical($slug){
 
         $technicals      = Technical_unit::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->whereStatus(4)
-           ->whereId($id)
-            ->get();
+           ->whereSlug($slug)
+            ->get()
+            ->toArray();
 
         $response = ['technical_unit' => $technicals];
 

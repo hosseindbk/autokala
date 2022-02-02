@@ -9,11 +9,11 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::post('/register'             , 'UserController@register');
     Route::get('/register'              , 'UserController@getregister');
     Route::get('/product'               , 'ProductController@index');
-    Route::get('/product/{id}'          , 'ProductController@subproduct');
+    Route::get('/product/{slug}'        , 'ProductController@subproduct');
     Route::get('/supplier'              , 'SupplierController@index');
-    Route::get('/supplier/{id}'         , 'SupplierController@subsupplier');
+    Route::get('/supplier/{slug}'       , 'SupplierController@subsupplier');
     Route::get('/technicalunit'         , 'TechnicalunitController@index');
-    Route::get('/technicalunit/{id}'    , 'TechnicalunitController@subtechnical');
+    Route::get('/technicalunit/{slug}'  , 'TechnicalunitController@subtechnical');
 
     Route::middleware('auth:api')->group(function (){
         Route::post('/token'         , 'UserController@token');
