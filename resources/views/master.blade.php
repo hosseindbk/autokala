@@ -132,11 +132,13 @@
                                         </div>
                                         <ul class="footer-menu-ul">
                                             @foreach($menus as $menu)
-                                                <li class="menu-item-type-custom">
-                                                    <a href="{{url($menu->slug)}}">
-                                                        {{$menu->title}}
-                                                    </a>
-                                                </li>
+                                                @if($menu->id != 1)
+                                                    <li class="menu-item-type-custom">
+                                                        <a href="{{url($menu->slug)}}">
+                                                            {{$menu->title}}
+                                                        </a>
+                                                    </li>
+                                                @endif
                                             @endforeach
                                         </ul>
                                     </section>
