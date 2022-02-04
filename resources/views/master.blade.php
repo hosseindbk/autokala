@@ -131,31 +131,13 @@
                                             </a>
                                         </div>
                                         <ul class="footer-menu-ul">
-                                            <li class="menu-item-type-custom">
-                                                <a href="#">
-                                                    قطعات خودرو
-                                                </a>
-                                            </li>
-                                            <li class="menu-item-type-custom">
-                                                <a href="#">
-                                                    بازارچه قطعات
-                                                </a>
-                                            </li>
-                                            <li class="menu-item-type-custom">
-                                                <a href="#">
-                                                    فروشگاه و تامین کنندگان
-                                                </a>
-                                            </li>
-                                            <li class="menu-item-type-custom">
-                                                <a href="#">
-                                                    تعمیرگاه و خدمات فنی
-                                                </a>
-                                            </li>
-                                            <li class="menu-item-type-custom">
-                                                <a href="#">
-                                                    برند قطعات
-                                                </a>
-                                            </li>
+                                            @foreach($menus as $menu)
+                                                <li class="menu-item-type-custom">
+                                                    <a href="{{url($menu->slug)}}">
+                                                        {{$menu->title}}
+                                                    </a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </section>
                                 </div>
@@ -239,14 +221,7 @@
                         </div>
                     </div>
                     <div class="footer-more-info">
-                        <div class="col-lg-10 pr">
-                            <div class="footer-content d-block">
-                                <div class="text pr-1">
-                                    <h2 class="title">اتوکالا مرجع تخصصی لوازم و قطعات یدکی اصلی خودرو</h2>
-                                    <p class="desc">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها اساسا مورد استفاده قرار گیرد.</p>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-lg-2 pl">
                             <div class="footer-safety-partner">
                                 <div class="widget widget-product card mb-0">
