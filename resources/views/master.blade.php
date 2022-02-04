@@ -219,21 +219,16 @@
                                 </fieldset>
                             </form>
                         </div>
-                    </div>
-                    <div class="footer-more-info">
-
-                        <div class="col-lg-2 pl">
-                            <div class="footer-safety-partner">
-                                <div class="widget widget-product card mb-0">
-                                    <div class="product-carousel-symbol owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
-                                        <div class="owl-stage-outer">
-                                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2234px;">
-                                                <div class="owl-item active" style="width: 300.75px; margin-left: 10px;">
-                                                    <div class="item">
-                                                        <a href="#" class="d-block hover-img-link mt-0">
-                                                            <img referrerpolicy='origin' id = 'nbqejzpefukzwlaofukzsizp' style = 'cursor:pointer' onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=276469&p=uiwkjyoegvkaaodsgvkapfvl", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=276469&p=odrfyndtwlbqshwlwlbqbsiy' />
-                                                        </a>
-                                                    </div>
+                        <div class="footer-safety-partner">
+                            <div class="widget widget-product card mb-0">
+                                <div class="product-carousel-symbol owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
+                                    <div class="owl-stage-outer">
+                                        <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2234px;">
+                                            <div class="owl-item active" style="width: 300.75px; margin-left: 10px;">
+                                                <div class="item">
+                                                    <a href="#" class="d-block hover-img-link mt-0">
+                                                        <img referrerpolicy='origin' id = 'nbqejzpefukzwlaofukzsizp' style = 'cursor:pointer;width: 100px;' onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=276469&p=uiwkjyoegvkaaodsgvkapfvl", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=276469&p=odrfyndtwlbqshwlwlbqbsiy' />
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -241,6 +236,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="footer-more-info">
                         <div class="footer-copyright">
                             <div class="footer-copyright-text">
                                 <p>کلیه حقوق این وبسایت به اتوکالا نیک آراد (سامانه جامع قطعات و خدمات خودرو) تعلق دارد</p>
