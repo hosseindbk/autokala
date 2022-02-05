@@ -32,6 +32,9 @@ class TechnicalunitController extends Controller
             ->get()
             ->toArray();
 
+        $image = [$technicals[0]['image'],$technicals[0]['image2'],$technicals[0]['image3']];
+
+
         $technical_id      = Technical_unit::whereSlug($slug)->pluck('id');
 
         $technicalgroups = DB::table('car_technical_groups')
@@ -64,6 +67,7 @@ class TechnicalunitController extends Controller
             , 'commentrateability'      => $commentrateability
             , 'commentratedesign'       => $commentratedesign
             , 'commentratecomfort'      => $commentratecomfort
+            , 'image'                   => $image
 
         ];
 

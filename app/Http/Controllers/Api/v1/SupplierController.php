@@ -34,6 +34,8 @@ class SupplierController extends Controller
             ->get()
             ->toArray();
 
+        $image = [$suppliers[0]['image'],$suppliers[0]['image2'],$suppliers[0]['image3']];
+
         $supplier_id            = Supplier::whereSlug($slug)->pluck('id');
 
         $suppliergroups = DB::table('supplier_product_groups')
@@ -66,7 +68,10 @@ class SupplierController extends Controller
             , 'commentrateinnovation'   => $commentrateinnovation
             , 'commentrateability'      => $commentrateability
             , 'commentratedesign'       => $commentratedesign
-            , 'commentratecomfort'      => $commentratecomfort];
+            , 'commentratecomfort'      => $commentratecomfort
+            , 'image'                   => $image
+
+        ];
 
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
