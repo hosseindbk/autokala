@@ -18,6 +18,7 @@ use App\Supplier;
 use App\Supplier_product_group;
 use App\Technical_unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
@@ -150,16 +151,22 @@ class SupplierController extends Controller
     public function subsupplier($slug){
 
         $menus                  = Menu::whereStatus(4)->get();
-        $carbrands              = Car_brand::all();
-        $carmodels              = Car_model::all();
         $cities                 = City::all();
         $states                 = State::all();
         $countState             = null;
-        $productgroups          = Product_group::all();
         $suppliers              = Supplier::whereSlug($slug)->get();
         $supplier_id            = Supplier::whereSlug($slug)->pluck('id');
-        $supplierproductgroups  = Supplier_product_group::whereSupplier_id($supplier_id)->get();
         $medias                 = Media::whereSupplier_id($supplier_id)->get();
+
+
+        $suppliergroups = DB::table('supplier_product_groups')
+            ->leftJoin('car_brands', 'car_brands.id', '=', 'supplier_product_groups.car_brand_id')
+            ->leftJoin('car_models', 'car_models.id', '=', 'supplier_product_groups.car_model_id')
+            ->leftJoin('product_groups', 'product_groups.id', '=', 'supplier_product_groups.kala_group_id')
+            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'product_groups.title_fa as product_group')
+            ->whereIn('supplier_product_groups.supplier_id' ,$supplier_id)
+            ->get();
+
         $comments               = comment::whereCommentable_id($supplier_id)->whereApproved(1)->latest()->get();
         $commentrates           = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->latest()->get();
         $commentratecount       = commentrate::whereCommentable_id($supplier_id)->whereApproved(1)->count();
@@ -172,10 +179,9 @@ class SupplierController extends Controller
 
         return view('Site.subsupplier')
             ->with(compact('countState'))
+            ->with(compact('suppliergroups'))
             ->with(compact('states'))
             ->with(compact('cities'))
-            ->with(compact('carbrands'))
-            ->with(compact('carmodels'))
             ->with(compact('menus'))
             ->with(compact('commentrates'))
             ->with(compact('commentratequality'))
@@ -185,8 +191,6 @@ class SupplierController extends Controller
             ->with(compact('commentratedesign'))
             ->with(compact('commentratecomfort'))
             ->with(compact('commentratecount'))
-            ->with(compact('productgroups'))
-            ->with(compact('supplierproductgroups'))
             ->with(compact('medias'))
             ->with(compact('comments'))
             ->with(compact('suppliers'));

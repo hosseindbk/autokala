@@ -99,14 +99,21 @@ class TechnicalunitController extends Controller
         $countState             = null;
         $technicalunits         = Technical_unit::whereSlug($slug)->get();
         $technicalunit_id       = Technical_unit::whereSlug($slug)->pluck('id');
-        $cartechnicalgroups     = Car_technical_group::whereTechnical_id($technicalunit_id)->get();
         $productgroups          = Product_group::whereStatus(4)->get();
-        $carbrands              = Car_brand::whereStatus(4)->get();
-        $carmodels              = Car_model::whereStatus(4)->get();
         $medias                 = Media::whereTechnical_id($technicalunit_id)->get();
         $comments               = comment::whereCommentable_id($technicalunit_id)->whereApproved(1)->latest()->get();
         $cities                 = City::all();
         $states                 = State::all();
+
+
+        $technicalgroups = DB::table('car_technical_groups')
+            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_technical_groups.car_brand_id')
+            ->leftJoin('car_models', 'car_models.id', '=', 'car_technical_groups.car_model_id')
+            ->leftJoin('product_groups', 'product_groups.id', '=', 'car_technical_groups.kala_group_id')
+            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'product_groups.related_service')
+            ->whereIn('car_technical_groups.technical_id' ,$technicalunit_id)
+            ->get();
+
         $commentrates           = commentrate::whereCommentable_id($technicalunit_id)->whereApproved(1)->latest()->get();
         $commentratecount       = commentrate::whereCommentable_id($technicalunit_id)->whereApproved(1)->count();
         $commentratequality     = commentrate::whereCommentable_id($technicalunit_id)->whereApproved(1)->avg('quality');
@@ -130,9 +137,7 @@ class TechnicalunitController extends Controller
             ->with(compact('commentratedesign'))
             ->with(compact('commentratecomfort'))
             ->with(compact('commentratecount'))
-            ->with(compact('cartechnicalgroups'))
-            ->with(compact('carbrands'))
-            ->with(compact('carmodels'))
+            ->with(compact('technicalgroups'))
             ->with(compact('productgroups'))
             ->with(compact('menus'))
             ->with(compact('comments'))

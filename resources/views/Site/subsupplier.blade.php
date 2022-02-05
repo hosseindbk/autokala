@@ -261,24 +261,16 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @foreach($supplierproductgroups as $supplier_product_group)
-                                                                @foreach($carbrands as $car_brand)
-                                                                    @if($car_brand->id == $supplier_product_group->car_brand_id)
-                                                                        <tr>
-                                                                            <td>{{$car_brand->title_fa}}</td>
-                                                                            @foreach($carmodels as $car_model)
-                                                                                @if($car_model->id == $supplier_product_group->car_model_id)
-                                                                                    <td> {{$car_model->title_fa}}</td>
-                                                                                @endif
-                                                                            @endforeach
-                                                                            @foreach($productgroups as $product_group)
-                                                                                @if($product_group->id == $supplier_product_group->kala_group_id)
-                                                                                    <td> {{$product_group->title_fa}}</td>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        </tr>
-                                                                    @endif
-                                                                @endforeach
+                                                            @foreach($suppliergroups as $suppliergroup)
+
+                                                                <tr>
+                                                                    <td>{{$suppliergroup->brand_title}}</td>
+
+                                                                    <td> {{$suppliergroup->model_title}}</td>
+
+                                                                    <td> {{$suppliergroup->product_group}}</td>
+                                                                </tr>
+
                                                             @endforeach
                                                             </tbody>
                                                         </table>
@@ -288,8 +280,6 @@
                                             <div class="col-lg-6 col-md-6 col-xs-12 pl" style="margin-top: 20px;">
                                                 <div id="app" style="width: 100%; height: 400px;"></div>
                                             </div>
-                                        </div>
-                                        </div>
                                     </section>
                                 </div>
                             </div>

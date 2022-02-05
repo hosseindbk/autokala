@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Menu;
 use App\Product;
 use App\Product_group;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class ProductController extends Controller
@@ -24,14 +25,21 @@ class ProductController extends Controller
     }
 
     public function subproduct($slug){
+
         $products       = Product::select('unicode' , 'slug' , 'image' , 'title_fa' , 'title_en' , 'title_bazar_fa' , 'code_fani_company as company_code' , 'description' )
             ->whereStatus(4)
             ->whereSlug($slug)
             ->get()
             ->toArray();
 
-        $product_group_id       = Product::whereSlug($slug)->pluck('kala_group_id');
-        $productgroups          = Product_group::select('title_fa as productgroup_title')->whereIn('id' , $product_group_id)->get()->toArray();
+        $product_id       = Product::whereSlug($slug)->pluck('id');
+
+        $productgroups = DB::table('car_products')
+            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
+            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
+            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
+            ->whereIn('product_id'  , $product_id)
+            ->get();
 
         $response = [
             'products'      =>  $products,

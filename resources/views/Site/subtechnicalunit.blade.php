@@ -190,25 +190,18 @@
                                         <ul>
                                             <li>
                                                 <span> اطلاعات مرکز خدمات فنی: </span>
-                                                @foreach($cartechnicalgroups as $car_technical_group)
-                                                    @foreach($productgroups as $product_group)
-                                                        @if($car_technical_group->kala_group_id == $product_group->id)
-                                                            <a href="" class="product-link product-cat-title">
-                                                                {{$product_group->related_service}}
-                                                                    @foreach($carbrands as $car_brand)
-                                                                        @if($car_brand->id == $car_technical_group->car_brand_id)
-                                                                                {{$car_brand->title_fa}}
-                                                                            @foreach($carmodels as $car_model)
-                                                                                @if($car_model->id == $car_technical_group->car_model_id)
-                                                                                    {{$car_model->title_fa}}
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endforeach
-                                                            </a>
-                                                        @endif
+                                                    @foreach($technicalgroups as $technicalgroup)
+
+                                                        <a href="" class="product-link product-cat-title">
+                                                            {{$technicalgroup->related_service}}
+
+                                                            {{$technicalgroup->brand_title}}
+
+                                                            {{$technicalgroup->model_title}}
+
+                                                        </a>
+
                                                     @endforeach
-                                                @endforeach
                                             </li>
                                         </ul>
                                     </div>
@@ -266,33 +259,19 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($cartechnicalgroups as $car_technical_group)
+                                                @foreach($technicalgroups as $technicalgroup)
 
-                                                        @if($technical_unit->id == $car_technical_group->technical_id)
-                                                            <tr>
-                                                                <td>
-                                                                    @foreach($carbrands as $car_brand)
-                                                                        @if($car_brand->id == $car_technical_group->car_brand_id)
-                                                                        {{$car_brand->title_fa}}
-                                                                        @endif
-                                                                    @endforeach
-                                                                </td>
-                                                                <td>
-                                                                @foreach($carmodels as $car_model)
-                                                                    @if($car_model->id == $car_technical_group->car_model_id)
-                                                                         {{$car_model->title_fa}}
-                                                                    @endif
-                                                                @endforeach
-                                                                </td>
-                                                                <td>
-                                                                @foreach($productgroups as $product_group)
-                                                                    @if($product_group->id == $car_technical_group->kala_group_id)
-                                                                         {{$product_group->related_service}}
-                                                                    @endif
-                                                                @endforeach
-                                                                </td>
-                                                            </tr>
-                                                        @endif
+                                                    <tr>
+                                                        <td>
+                                                            {{$technicalgroup->brand_title}}
+                                                        </td>
+                                                        <td>
+                                                            {{$technicalgroup->model_title}}
+                                                        </td>
+                                                        <td>
+                                                            {{$technicalgroup->related_service}}
+                                                        </td>
+                                                    </tr>
                                                 @endforeach
                                                 </tbody>
                                             </table>

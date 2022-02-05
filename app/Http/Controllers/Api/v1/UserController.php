@@ -100,7 +100,6 @@ class UserController extends Controller
 
     public function token(Request $request){
 
-
         $token= (int)$request->input('token');
         $user = auth()->user();
 
