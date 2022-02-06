@@ -269,7 +269,8 @@
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">تلفن موبایل</p>
-                                                                        <input type="text" disabled value="{{$offer->mobile}}" class="form-control" />
+                                                                        <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
+                                                                        <input type="hidden" name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3">
