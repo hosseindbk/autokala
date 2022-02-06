@@ -28,7 +28,7 @@ class SupplierController extends Controller
         $suppliers       = Supplier::select(
             'title' , 'slug' , 'address' , 'manager' , 'image' , 'image2' , 'image3'
             , 'manufacturer' , 'importer' , 'whole_seller' , 'retail_seller' , 'phone' , 'mobile'
-            , 'website', 'email' , 'whatsapp' , 'lat' , 'lng' , 'state_id' , 'city_id')
+            , 'website', 'email' , 'whatsapp' , 'lat' , 'lng' , 'state_id' , 'city_id' ,'autokala')
             ->whereStatus(4)
             ->whereSlug($slug)
             ->get()
