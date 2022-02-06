@@ -334,6 +334,7 @@ class MarketController extends Controller
         $menus                  = Menu::whereStatus(4)->get();
         $offers                 = Offer::whereSlug($slug)->whereStatus(4)->get();
         $unicode                = Offer::whereSlug($slug)->get();
+        $users                  = User::select('id' , 'type_id')->get();
 
         foreach ($unicode as $offer) {
             if ($offer->unicode_product != null) {
@@ -363,6 +364,7 @@ class MarketController extends Controller
         $filter                 = 0;
 
         return view('Site.submarket')
+            ->with(compact('users'))
             ->with(compact('carbrands'))
             ->with(compact('carmodels'))
             ->with(compact('cartypes'))

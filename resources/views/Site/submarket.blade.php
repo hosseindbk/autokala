@@ -112,6 +112,17 @@
                                                     <li class="text-info">
                                                         <button class="btn btn-danger">آگهی فروش</button>
                                                     </li>
+                                                    <li class="text-info">
+                                                        @foreach($users as $user)
+                                                            @if($offer->user_id == $user->id)
+                                                                @if($user->type_id == 1 )
+                                                                    <button class="btn btn-outline-danger">آگهی دهنده : فروشگاه</button>
+                                                                @elseif($user->type_id == 4 || $user->type_id == 3)
+                                                                    <button class="btn btn-outline-success"> آگهی دهنده : شخصی</button>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -366,12 +377,14 @@
                                                             <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($offer->image1)}}" data-zoom-image="{{asset($offer->image1)}}">
                                                                 <img src="{{asset($offer->image1)}}" width="100" /></a>
                                                         </li>
-                                                    @elseif($offer->image2)
+                                                    @endif
+                                                    @if($offer->image2)
                                                         <li class="item">
                                                             <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($offer->image2)}}" data-zoom-image="{{asset($offer->image2)}}">
                                                                 <img src="{{asset($offer->image2)}}" width="100" /></a>
                                                         </li>
-                                                    @elseif($offer->image3)
+                                                        @endif
+                                                    @if($offer->image3)
                                                         <li class="item">
                                                             <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($offer->image3)}}" data-zoom-image="{{asset($offer->image3)}}">
                                                                 <img src="{{asset($offer->image3)}}" width="100" /></a>
