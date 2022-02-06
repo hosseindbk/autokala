@@ -125,6 +125,10 @@
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
+                                                    <p class="mg-b-10">عنوان آگهی</p>
+                                                    <input type="text" name="title_offer" value="{{$offer->title_offer}}"  class="form-control" />
+                                                </div>
+                                                <div class="form-group">
                                                     <p class="mg-b-10">خرده فروشی داریم؟</p>
                                                     <select name="single" id="" class="form-control select-lg select2">
                                                         <option value="1" {{$offer->single == 1 ? 'selected' : ''}}>بلی</option>

@@ -482,7 +482,11 @@
                                                             </a>
                                                         </div>
                                                         <div class="title">
+                                                            @if($offer->title_offer)
                                                             <h3>{{ \Illuminate\Support\Str::limit($offer->title_offer, 21, $end='...') }}</h3>
+                                                                @elseif($offer->title)
+                                                                <h3>{{ \Illuminate\Support\Str::limit($offer->title, 21, $end='...') }}</h3>
+                                                                @endif
                                                         </div>
                                                         <div class="title">
                                                         <span class="amount">{{number_format($offer->single_price)}}
