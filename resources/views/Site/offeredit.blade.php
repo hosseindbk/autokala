@@ -276,7 +276,7 @@
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">تلفن ثابت</p>
-                                                                        <input type="text" name="phone" value="{{$offer->phone}}" class="form-control" />
+                                                                        <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-7">
