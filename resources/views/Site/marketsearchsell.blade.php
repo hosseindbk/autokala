@@ -402,9 +402,15 @@
                                                                     <h3>{{ \Illuminate\Support\Str::limit($offer->title_offer, 21, $end='...') }}</h3>
                                                                 </div>
                                                                 <div class="title">
-                                                        <span class="amount">{{number_format($offer->single_price)}}
-                                                            <span>تومان</span>
-                                                        </span>
+                                                                    @if($offer->price > 100)
+                                                                        <span class="amount">{{number_format($offer->price)}}
+                                                                    <span>تومان</span>
+                                                                </span>
+                                                                    @elseif($offer->price < 100 && $offer->single_price > 100)
+                                                                        <span class="amount">{{number_format($offer->single_price)}}
+                                                                    <span>تومان</span>
+                                                                </span>
+                                                                    @endif
                                                                 </div>
                                                                 <div class="title">
                                                                     @if($offer->brand_id != null)
