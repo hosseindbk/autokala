@@ -47,7 +47,7 @@ class TechnicalunitController extends Controller
 
         $comments               = comment::whereCommentable_type('App\Technical_unit')->whereIn('Commentable_id' , $technical_id)->select('phone' , 'comment')->whereApproved(1)->latest()->get();
         $commentrates           = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->select('name' , 'phone' , 'quality' , 'value' , 'innovation' , 'ability' , 'design' , 'comfort' ,'comment')->whereApproved(1)->latest()->get();
-        $commentratecount       = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->select('name' , 'phone' , 'quality' , 'value' , 'innovation' , 'ability' , 'design' , 'comfort' ,'comment')->whereApproved(1)->count();
+        $commentratecount       = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->count();
         $commentratequality     = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('quality');
         $commentratevalue       = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('value');
         $commentrateinnovation  = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('innovation');

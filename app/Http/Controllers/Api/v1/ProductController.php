@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\comment;
+use App\commentrate;
 use App\Http\Controllers\Controller;
 use App\Menu;
 use App\Product;
@@ -34,6 +36,10 @@ class ProductController extends Controller
 
         $product_id       = Product::whereSlug($slug)->pluck('id');
 
+        $commentratecount       = commentrate::whereCommentable_type('App\Product')->where('Commentable_id' ,$product_id)->whereApproved(1)->count();
+        $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment')->whereApproved(1)->latest()->get();
+
+
         $productgroups = DB::table('car_products')
             ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
             ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
@@ -42,8 +48,11 @@ class ProductController extends Controller
             ->get();
 
         $response = [
-            'products'      =>  $products,
-            'productgroups' =>  $productgroups,
+            'products'          =>  $products,
+            'productgroups'     =>  $productgroups,
+            'comment'           => $comments,
+            'commentratecount'  => $commentratecount
+
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
