@@ -129,6 +129,8 @@
                                                         <p class="mt-4">بعد از انتخاب موقعیت مکانی فروشگاه خود بر روی دکمه ثبت کلیک نمایید</p>
                                                         <a  href="{{URL::previous()}}" class="btn btn-success "> ثبت اطلاعات</a>
                                                     </div>
+                                                    <p id="latelement"></p>
+                                                    <p id="lngelement"></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -209,6 +211,8 @@
                     open: false,
                 },
             });
+            document.getElementById('latelement').innerHTML = e.latlng.lat;
+            document.getElementById('lngelement').innerHTML = e.latlng.lng;
             $.ajax({
                 url: '{{ route( 'suppliermap' ) }}',
                 headers: {

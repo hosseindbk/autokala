@@ -1,9 +1,11 @@
 @extends('master-main')
 @section('title')
     <title>پروفایل اطلاعات تامین کنندگان</title>
+    <link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
     <link href="{{asset('admin/assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
-    <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <link  href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('main')
@@ -145,12 +147,11 @@
                                                         <p class="mg-b-10">تصویر سوم فروشگاه </p>
                                                         <input type="file" name="image3" class="dropify" data-height="200">
                                                     </div>
-                                                </div>
-
-                                                <div class="col-md-12" >
+                                                </div >
+                                                <div class="col-md-12">
                                                     <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h4>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">انتخاب استان</p>
                                                         <select name="state_id" class="form-control select-lg select2" id="state_id">
@@ -162,7 +163,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">انتخاب شهرستان</p>
                                                         <select name="city_id" id="city_id" class="form-control select-lg select2">
@@ -174,30 +175,42 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">تلفن موبایل</p>
                                                         <input type="text" name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">تلفن ثابت</p>
                                                         <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
                                                     </div>
+                                                    <div class="form-group">
+                                                        <p class="mg-b-10">طول جغرافیایی</p>
+                                                        <input type="text" name="lat" id="latelement" class="form-control"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <p class="mg-b-10">عرض جغرافیایی</p>
+                                                        <input type="text" name="lng" id="lngelement" class="form-control"/>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">شماره واتس اپ</p>
                                                         <input type="text" name="whatsapp"  placeholder="شماره واتس اپ را وارد کنید" class="form-control" />
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">آدرس</p>
                                                         <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-4">
+                                                    <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
+                                                    <div id="app" style="width: 100%; height: 325px;"></div>
+                                                </div>
+
 
                                                 <div class="col-lg-12 mg-b-10 text-center">
                                                     <div class="form-group">
@@ -229,7 +242,7 @@
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
-    <script src="{{asset('site/js/mapp.env.js')}}"></script>
+    <script  src="{{asset('site/js/mapp.env.js')}}"></script>
     <script src="{{asset('site/js/mapp.min.js')}}"></script>
     <script>
         $(document).ready(function () {
@@ -240,15 +253,7 @@
             };
             var app = new Mapp({
                 element: '#app',
-                @if(Auth::user()->lat == '' && Auth::user()->lng == '')
-                presets: {
-                    latlng: {
-                        lat: 35.73249,
-                        lng: 51.42268,
-                    },
-                    zoom: 14
-                },
-                @else
+                @if(Auth::user()->lat != null && Auth::user()->lng != null)
                 presets: {
                     latlng: {
                         lat: {{Auth::user()->lat}},
@@ -284,8 +289,8 @@
                 url: '{{asset('site/images/maplogo.png')}}',
             });
 
-            @if(Auth::user()->lat != '' && Auth::user()->lng != '')
 
+            @if(Auth::user()->lat != null && Auth::user()->lng != null)
             app.markReverseGeocode({
                 state: {
                     latlng: {
@@ -297,7 +302,6 @@
                 },
             });
             @endif
-
             app.map.on('click', function (e) {
 
                 var marker = app.addMarker({
@@ -318,22 +322,9 @@
                         open: false,
                     },
                 });
-                $.ajax({
-                    url: '{{ route( 'suppliermap' ) }}',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        lat     : e.latlng.lat,
-                        lng     : e.latlng.lng,
-                        'id'    :{{Auth::user()->id}},
-                    },
-                    type: 'patch',
-                    dataType: 'json',
-                }).done(function (data) {
-                    console.log(data);
-                });
+                document.getElementById("latelement").setAttribute('value', e.latlng.lat);
+                document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
+
             })
         });
     </script>

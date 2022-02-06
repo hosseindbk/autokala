@@ -108,6 +108,8 @@ class ProfilesupplierController extends Controller
         $suppliers->manager     = $request->input('manager');
         $suppliers->phone       = $request->input('phone');
         $suppliers->mobile      = $request->input('mobile');
+        $suppliers->lat         = $request->input('lat');
+        $suppliers->lng         = $request->input('lng');
         $suppliers->whatsapp    = $request->input('whatsapp');
         $suppliers->email       = $request->input('email');
         $suppliers->website     = $request->input('website');

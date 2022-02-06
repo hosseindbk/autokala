@@ -102,6 +102,8 @@ class ProfiletechnicalunitController extends Controller
         $technical_units->state_id      = $request->input('state_id');
         $technical_units->city_id       = $request->input('city_id');
         $technical_units->phone         = $request->input('phone');
+        $technical_units->lat           = $request->input('lat');
+        $technical_units->lng           = $request->input('lng');
         $technical_units->phone2        = $request->input('phone2');
         $technical_units->phone3        = $request->input('phone3');
         $technical_units->mobile        = $request->input('mobile');
