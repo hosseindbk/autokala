@@ -123,7 +123,9 @@ class OfferController extends Controller
         $offers->address            = $request->input('address');
         $offers->phone              = $request->input('phone');
         $offers->mobile             = $request->input('mobile');
-        $offers->image1             = $request->input('image1');
+        if ($request->input('image1')) {
+            $offers->image1 = $request->input('image1');
+        }
         if (auth::user()->type_id == 4 || auth::user()->type_id == 3){
             $offers->single = 1;
         }elseif (auth::user()->type_id == 1) {
