@@ -219,7 +219,7 @@
                                                                                         @if($product->id == $Product_brand_variety->product_id)
                                                                                         <span>برند : </span>
                                                                                         <span>
-                                                                                            {{$brand->title_fa}}
+                                                                                            <a href="{{url('productbrand'.'/'.$product->slug.'/'.$Product_brand_variety->id)}}">{{$brand->title_fa}}</a>
                                                                                         </span>
                                                                                         @if($Product_brand_variety->item1 != null)
                                                                                             <li>
@@ -247,7 +247,8 @@
                                                                     @endif
                                                                 @endforeach
                                                             @elseif($offer->brand_id == null)
-                                                                {{$offer->brand_name}}
+                                                        <span>برند : </span>
+                                                              <span>  {{$offer->brand_name}} </span>
                                                             @endif
                                                         </span>
                                                     </li>

@@ -18,7 +18,7 @@
                             <section class="profile-box">
                                 <header class="profile-box-header-inline">
                                     <div class="profile-avatar user-avatar profile-img">
-                                        <img src="{{asset('site/images/man.png')}}">
+                                        <img src="{{asset('site/images/man.png')}}" alt="">
                                     </div>
                                 </header>
                                 <footer class="profile-box-content-footer">
@@ -82,7 +82,7 @@
                                                     @include('error')
                                                 </div>
                                                 <div class="col-md-12" >
-                                                    <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin: 20px 0px;">مشخصات فروشگاه / شرکت</h4>
+                                                    <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin: 20px 0;">مشخصات فروشگاه / شرکت</h4>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
@@ -97,7 +97,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12" >
-                                                    <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin: 20px 0px;">نوع فعالیت</h4>
+                                                    <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin: 20px 0;">نوع فعالیت</h4>
                                                 </div>
 
                                                 <div class="col-md-3">

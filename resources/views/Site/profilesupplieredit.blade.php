@@ -182,7 +182,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-12" >
+                                                    <div class="col-md-12">
                                                         <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h4>
                                                     </div>
                                                     <div class="col-md-4">
@@ -575,33 +575,34 @@
         })(jQuery);
 
     </script>
-    <script>
-        $(function(){
-            $('#state_id').change(function(){
-                $("#city_id option").remove();
-                var id = $('#state_id').val();
+<script>
+    $(function(){
+        $('#state_id').change(function(){
+            $("#city_id option").remove();
+            var id = $('#state_id').val();
 
-                $.ajax({
-                    url : '{{ route( 'state' ) }}',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "id": id
-                    },
-                    type: 'post',
-                    dataType: 'json',
-                    success: function( result )
-                    {
-                        $.each( result, function(k, v) {
-                            $('#city_id').append($('<option>', {value:k, text:v}));
-                        });
-                    },
-                    error: function()
-                    {
-                        //handle errors
-                        alert('error...');
-                    }
-                });
+            $.ajax({
+                url : '{{ route( 'state' ) }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function( result )
+                {
+                    $.each( result, function(k, v) {
+                        $('#city_id').append($('<option>', {value:k, text:v}));
+                    });
+                },
+                error: function()
+                {
+                    //handle errors
+                    alert('error...');
+                }
             });
         });
-    </script>
+    });
+</script>
+
 @endsection
