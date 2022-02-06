@@ -38,6 +38,8 @@ class MarketController extends Controller
         $carbrands              = Car_brand::whereStatus(4)->get();
         $carmodels              = Car_model::whereStatus(4)->get();
         $productgroups          = Product_group::whereStatus(4)->get();
+        $products               = Product::whereStatus(4)->get();
+        $brand_varietis         = Product_brand_variety::all();
         $states                 = State::all();
         $cities                 = City::all();
         $brands                 = Brand::whereStatus(4)->get();
@@ -45,6 +47,8 @@ class MarketController extends Controller
         $filter                 = 0;
 
         return view('Site.market')
+            ->with(compact('products'))
+            ->with(compact('brand_varietis'))
             ->with(compact('users'))
             ->with(compact('countState'))
             ->with(compact('sell'))
@@ -75,7 +79,8 @@ class MarketController extends Controller
         $sell                   = 1;
         $buy                    = 0;
         $users                  = User::select('id' , 'type_id')->get();
-
+        $products               = Product::whereStatus(4)->get();
+        $brand_varietis         = Product_brand_variety::all();
         $selloffers             = Offer::state()->whereStatus(4)->whereBuyorsell('sell')->latest()->paginate('16');
         $max_price              = Offer::state()->whereStatus(4)->max('single_price');
         $min_price              = Offer::state()->whereStatus(4)->min('single_price');
@@ -90,6 +95,8 @@ class MarketController extends Controller
         $filter                 = 0;
 
         return view('Site.market')
+            ->with(compact('products'))
+            ->with(compact('brand_varietis'))
             ->with(compact('users'))
             ->with(compact('countState'))
             ->with(compact('sell'))
@@ -119,6 +126,8 @@ class MarketController extends Controller
         $menus                  = Menu::whereStatus(4)->get();
         $sell                   = 1;
         $buy                    = 0;
+        $products               = Product::whereStatus(4)->get();
+        $brand_varietis         = Product_brand_variety::all();
         $users                  = User::select('id' , 'type_id')->get();
         $selloffers             = Offer::state()->whereStatus(4)->whereBuyorsell('buy')->latest()->paginate('16');
         $max_price              = Offer::state()->whereStatus(4)->max('single_price');
@@ -134,6 +143,8 @@ class MarketController extends Controller
         $filter                 = 0;
 
         return view('Site.market')
+            ->with(compact('products'))
+            ->with(compact('brand_varietis'))
             ->with(compact('users'))
             ->with(compact('countState'))
             ->with(compact('sell'))
@@ -158,6 +169,8 @@ class MarketController extends Controller
         $buy                    = 1;
         $sell                   = 0;
         $countState             = null;
+        $products               = Product::whereStatus(4)->get();
+        $brand_varietis         = Product_brand_variety::all();
         $users                  = User::select('id' , 'type_id')->get();
         $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->paginate('16');
         $max_price              = Offer::whereStatus(4)->max('single_price');
@@ -173,6 +186,8 @@ class MarketController extends Controller
         $filter                 = 0;
 
         return view('Site.market')
+            ->with(compact('products'))
+            ->with(compact('brand_varietis'))
             ->with(compact('users'))
             ->with(compact('countState'))
             ->with(compact('buy'))
@@ -215,7 +230,8 @@ class MarketController extends Controller
         }else{$city_id = null;}
         $countState             = null;
         $users                  = User::select('id' , 'type_id')->get();
-
+        $products               = Product::whereStatus(4)->get();
+        $brand_varietis         = Product_brand_variety::all();
         $carproducts            = Car_product::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $carbrands              = Car_brand::whereStatus(4)->get();
@@ -234,7 +250,8 @@ class MarketController extends Controller
         $sell                   =   1;
 
         return view('Site.market')
-
+            ->with(compact('products'))
+            ->with(compact('brand_varietis'))
             ->with(compact('users'))
             ->with(compact('countState'))
             ->with(compact('buy'))
@@ -284,7 +301,8 @@ class MarketController extends Controller
         }else{$city_id = null;}
         $countState             = null;
         $users                  = User::select('id' , 'type_id')->get();
-
+        $products               = Product::whereStatus(4)->get();
+        $brand_varietis         = Product_brand_variety::all();
         $carproducts            = Car_product::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $carbrands              = Car_brand::whereStatus(4)->get();
@@ -304,6 +322,8 @@ class MarketController extends Controller
 
         return view('Site.market')
 
+            ->with(compact('products'))
+            ->with(compact('brand_varietis'))
             ->with(compact('users'))
             ->with(compact('countState'))
             ->with(compact('buy'))

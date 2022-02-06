@@ -494,14 +494,25 @@
                                                         </span>
                                                         </div>
                                                         <div class="title">
-                                                            @if($offer->brand_id == null)
-                                                                {{$offer->brand_name}}
-                                                            @elseif($offer->brand_id != null)
-                                                                @foreach($brands as $brand)
-                                                                    @if($offer->brand_id == $brand->id)
-                                                                        {{$brand->title_fa}}
+
+                                                            @if($offer->brand_id != null)
+                                                                @foreach($products as $product)
+                                                                    @if($offer->unicode_product == $product->unicode)
+                                                                        @foreach($brand_varietis as $Product_brand_variety)
+                                                                            @if($offer->brand_id == $Product_brand_variety->id)
+                                                                                @foreach($brands as $brand)
+                                                                                    @if($brand->id == $Product_brand_variety->brand_id)
+                                                                                        @if($product->id == $Product_brand_variety->product_id)
+                                                                                            {{$brand->title_fa}}
+                                                                                        @endif
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            @endif
+                                                                        @endforeach
                                                                     @endif
                                                                 @endforeach
+                                                            @elseif($offer->brand_id == null)
+                                                                   {{$offer->brand_name}}
                                                             @endif
                                                         </div>
                                                         <div class="price">
@@ -643,14 +654,24 @@
                                                         </span>
                                                         </div>
                                                         <div class="title">
-                                                            @if($offer->brand_id == null)
-                                                                {{$offer->brand_name}}
-                                                            @elseif($offer->brand_id != null)
-                                                                @foreach($brands as $brand)
-                                                                    @if($offer->brand_id == $brand->id)
-                                                                        {{$brand->title_fa}}
+                                                            @if($offer->brand_id != null)
+                                                                @foreach($products as $product)
+                                                                    @if($offer->unicode_product == $product->unicode)
+                                                                        @foreach($brand_varietis as $Product_brand_variety)
+                                                                            @if($offer->brand_id == $Product_brand_variety->id)
+                                                                                @foreach($brands as $brand)
+                                                                                    @if($brand->id == $Product_brand_variety->brand_id)
+                                                                                        @if($product->id == $Product_brand_variety->product_id)
+                                                                                            {{$brand->title_fa}}
+                                                                                        @endif
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            @endif
+                                                                        @endforeach
                                                                     @endif
                                                                 @endforeach
+                                                            @elseif($offer->brand_id == null)
+                                                                {{$offer->brand_name}}
                                                             @endif
                                                         </div>
                                                         <div class="price">

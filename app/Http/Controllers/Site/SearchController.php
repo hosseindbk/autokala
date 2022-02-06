@@ -177,12 +177,15 @@ class SearchController extends Controller
         $cities                 = City::all();
         $countState         = null;
         $users                  = User::select('id' , 'type_id')->get();
-
+        $products               = Product::whereStatus(4)->get();
+        $brand_varietis         = Product_brand_variety::all();
         $brands             = Brand::whereStatus(4)->get();
         $caroffers          = Car_offer::all();
         $filter             = 0;
 
         return view('Site.marketsearchsell')
+            ->with(compact('products'))
+            ->with(compact('brand_varietis'))
             ->with(compact('users'))
             ->with(compact('countState'))
             ->with(compact('selloffers'))
@@ -204,7 +207,8 @@ class SearchController extends Controller
         $keywords           = request('offersearch');
         $menus              = Menu::whereStatus(4)->get();
         $users                  = User::select('id' , 'type_id')->get();
-
+        $products               = Product::whereStatus(4)->get();
+        $brand_varietis         = Product_brand_variety::all();
         $offers             = Offer::offersearchbuy($keywords)->whereStatus(4)->latest()->paginate(12);
         $buyoffers          = Offer::offersearchbuy($keywords)->whereStatus(4)->whereBuyorsell('buy')->paginate('16');
         $max_price          = Offer::offersearchbuy($keywords)->whereStatus(4)->max('single_price');
@@ -220,6 +224,8 @@ class SearchController extends Controller
         $filter             = 0;
 
         return view('Site.marketsearchbuy')
+            ->with(compact('products'))
+            ->with(compact('brand_varietis'))
             ->with(compact('users'))
             ->with(compact('buyoffers'))
             ->with(compact('max_price'))
