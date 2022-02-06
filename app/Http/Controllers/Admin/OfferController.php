@@ -19,6 +19,7 @@ use App\State;
 use App\Status;
 use App\Submenudashboard;
 use App\Supplier;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -174,6 +175,7 @@ class OfferController extends Controller
         $carmodels          =   Car_model::all();
         $caroffers          =   Car_offer::whereOffer_id($id)->get();
         $brands             =   Brand::all();
+        $users             =   User::all();
         $medias             =   Media::select('technical_id' , 'image')->get();
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
@@ -185,6 +187,7 @@ class OfferController extends Controller
         return view('Admin.offers.edit')
             ->with(compact('brand_varietis'))
             ->with(compact('products'))
+            ->with(compact('users'))
             ->with(compact('productgroups'))
             ->with(compact('carmodels'))
             ->with(compact('caroffers'))

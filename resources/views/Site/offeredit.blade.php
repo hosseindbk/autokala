@@ -216,7 +216,7 @@
                                                                             <label class="form-check-label" style="margin-right: 5px;" for="single1">  داریم </label>
                                                                         </div>
                                                                         <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio" {{$offer->single == 2 ? 'checked' : ''}} name="single" id="single2" value="2">
+                                                                            <input class="form-check-input" type="radio" {{$offer->single == 0 ? 'checked' : ''}} name="single" id="single2" value="0">
                                                                             <label class="form-check-label" style="margin-right: 5px;" for="single2"> نداریم </label>
                                                                         </div>
                                                                     </div>

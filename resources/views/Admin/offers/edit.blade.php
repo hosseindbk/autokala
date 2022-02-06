@@ -145,6 +145,13 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
+                                                    <p class="mg-b-10">تامین کننده دائمی </p>
+                                                    <select name="permanent_supplier" id="" class="form-control select-lg select2">
+                                                        <option value="1" {{$offer->permanent_supplier == 1 ? 'selected' : ''}}>هست</option>
+                                                        <option value="0" {{$offer->permanent_supplier == 0 ? 'selected' : ''}}>نیست</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
                                                     <p class="mg-b-10">جهت فروش / خرید</p>
                                                     <select name="buyorsell" class="form-control select-lg select2" id="buyorsell">
                                                         <option value="sell" {{$offer->buyorsell == 'sell' ? 'selected' : ''}}>پیشنهاد فروش</option>
@@ -199,6 +206,11 @@
                                                     <p class="mg-b-10">قیمت کالا خرده فروشی</p>
                                                     <input type="text" name="single_price" value="{{number_format($offer->single_price)}}" class="form-control" />
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">کاربر ثبت کننده</p>
+                                                    <input type="text" disabled @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->name}}" @endif @endforeach class="form-control" />
+                                                </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخاب شهرستان</p>
                                                     <select name="city_id" id="city_id" class="form-control select-lg select2">
@@ -236,7 +248,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تلفن موبایل</p>
-                                                    <input type="text" disabled name="mobile" value="{{$offer->mobile}}" class="form-control" />
+                                                    <input type="text" disabled @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone}}" @endif @endforeach class="form-control" />
+                                                    <input type="hidden"  name="mobile" @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone}}" @endif @endforeach class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">تلفن ثابت</p>
+                                                    <input type="text" disabled @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone_number}}" @endif @endforeach class="form-control" />
+                                                    <input type="hidden" name="phone" @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone_number}}" @endif @endforeach class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
