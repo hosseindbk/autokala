@@ -127,7 +127,8 @@
                                                     <div id="app" style="width: 100%; height: 500px;"></div>
                                                     <div class="col-md-12 text-center">
                                                         <p class="mt-4">بعد از انتخاب موقعیت مکانی فروشگاه خود بر روی دکمه ثبت کلیک نمایید</p>
-                                                        <a  href="{{route('profile-business')}}" class="btn btn-success "> ثبت اطلاعات</a>
+                                                        <a  href="{{URL::previous()}}" class="btn btn-success "> ثبت اطلاعات</a>
+
                                                     </div>
                                                 </div>
                                             </div>
