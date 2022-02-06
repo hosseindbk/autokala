@@ -207,19 +207,49 @@
                                                 </span>
                                                     </li>
                                                     <li>
-                                                        <span>برند : </span>
-                                                        @if($offer->brand_id != null)
-                                                            <span>
-                                                    @foreach($brands as $brand)
-                                                                    @if($offer->brand_id == $brand->id)
 
-                                                                        {{$brand->title_fa}}
+
+                                                            @if($offer->brand_id != null)
+                                                                @foreach($products as $product)
+                                                                    @if($offer->unicode_product == $product->unicode)
+                                                                        @foreach($brand_varietis as $Product_brand_variety)
+                                                                            @if($offer->brand_id == $Product_brand_variety->id)
+                                                                                @foreach($brands as $brand)
+                                                                                    @if($brand->id == $Product_brand_variety->brand_id)
+                                                                                        @if($product->id == $Product_brand_variety->product_id)
+                                                                                        <span>برند : </span>
+                                                                                        <span>
+                                                                                            {{$brand->title_fa}}
+                                                                                        </span>
+                                                                                        @if($Product_brand_variety->item1 != null)
+                                                                                            <li>
+                                                                                                <span>{{$Product_brand_variety->item1}} : </span>
+                                                                                                <span>{{$Product_brand_variety->value_item1}}</span>
+                                                                                            </li>
+                                                                                            @endif
+                                                                                            @if($Product_brand_variety->item2 != null)
+                                                                                                <li>
+                                                                                                    <span>{{$Product_brand_variety->item2}} : </span>
+                                                                                                    <span>{{$Product_brand_variety->value_item2}}</span>
+                                                                                                </li>
+                                                                                            @endif
+                                                                                            @if($Product_brand_variety->item3 != null)
+                                                                                                <li>
+                                                                                                    <span>{{$Product_brand_variety->item3}} : </span>
+                                                                                                    <span>{{$Product_brand_variety->value_item3}}</span>
+                                                                                                </li>
+                                                                                                @endif
+                                                                                        @endif
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            @endif
+                                                                        @endforeach
                                                                     @endif
                                                                 @endforeach
-                                                </span>
-                                                        @elseif($offer->brand_name != null)
-                                                            <span>{{$offer->brand_name}}</span>
-                                                        @endif
+                                                            @elseif($offer->brand_id == null)
+                                                                {{$offer->brand_name}}
+                                                            @endif
+                                                        </span>
                                                     </li>
 
                                                     @if($offer->single = 1)
