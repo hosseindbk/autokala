@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductgroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $productgroups      = Product_group::all();
@@ -30,11 +26,7 @@ class ProductgroupController extends Controller
             ->with(compact('submenudashboards'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $productgroups      = Product_group::all();
@@ -46,12 +38,7 @@ class ProductgroupController extends Controller
             ->with(compact('submenudashboards'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(productgrouprequest $request)
     {
         $productgroups = new Product_group();
@@ -66,30 +53,14 @@ class ProductgroupController extends Controller
         $productgroups->date                    = jdate()->format('Ymd ');
         $productgroups->date_handle             = jdate()->format('Ymd ');
         $productgroups->user_id                 = Auth::user()->id;
-        $productgroups->user_handle             = Auth::user()->name;
+        $productgroups->user_handle             = Auth::user()->id;
 
         $productgroups->save();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return redirect(route('productgroups.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
 
@@ -104,13 +75,6 @@ class ProductgroupController extends Controller
             ->with(compact('submenudashboards'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(productgrouprequest $request, Product_group $product_group)
     {
         $product_group->title_fa            = $request->input('title_fa');
@@ -126,12 +90,7 @@ class ProductgroupController extends Controller
         return redirect(route('productgroups.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Product_group $productgroup)
     {
         $productgroup->delete();

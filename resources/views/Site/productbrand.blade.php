@@ -99,8 +99,12 @@
                                         <ul class="" style="float: left;">
                                             <li class="unic_code">
                                                 <a href="#" class="btn btn-outline-success">
-
                                                     <span> یونیکد :  @foreach($products as $product) {{$product->unicode}} @endforeach </span>
+                                                </a>
+                                            </li>
+                                            <li class="option-alarm mt-2">
+                                                <a href="{{route('offer-product' , $product->id)}}" target="_blank">
+                                                    <button type="button" class="btn btn-outline-danger">  ثبت آگهی فروش  </button>
                                                 </a>
                                             </li>
                                         </ul>
