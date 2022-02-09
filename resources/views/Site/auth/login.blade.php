@@ -31,7 +31,7 @@
                                             </div>
                                             <div class="form-account-title">
                                                 <label for="phone" class="float-right">رمز عبور</label>
-                                                <input type="password" name="password" required class="form-control text-left @error('password') is-invalid @enderror" >
+                                                <input type="password" name="password" required autocomplete="new-password" class="form-control text-left @error('password') is-invalid @enderror" >
                                             </div>
                                             <div class="form-account-title ">
                                                 <a href="{{route('remember')}}" class="account-link-password float-right">بازیابی / دریافت رمز عبور</a>

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\userrequest;
 use App\Menudashboard;
 use App\Submenudashboard;
 use App\Type_user;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SiteuserController extends Controller
 {
@@ -40,7 +40,7 @@ class SiteuserController extends Controller
             ->with(compact('typeusers'))
             ->with(compact('users'));
     }
-    
+
     public function update(Request $request , $user)
     {
         $user = User::findOrfail($user);
@@ -51,7 +51,9 @@ class SiteuserController extends Controller
         $user->phone_verify = $request->input('phone_verify');
         $user->phone_number = $request->input('phone_number');
         $user->email        = $request->input('email');
-
+        if ($request->input('password') != null) {
+            $user->password = Hash::make($request->input('password'));
+        }
         $user->update();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return redirect(route('siteusers.index'));

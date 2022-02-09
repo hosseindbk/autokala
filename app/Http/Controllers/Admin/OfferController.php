@@ -230,7 +230,6 @@ class OfferController extends Controller
     {
         $offer->title_offer         = $request->input('title_offer');
         $offer->product_group       = $request->input('product_group');
-        $offer->noe                 = $request->input('noe');
         $offer->state_id            = $request->input('state_id');
         $offer->buyorsell           = $request->input('buyorsell');
         $offer->unicode_product     = $request->input('unicode_product');

@@ -67,38 +67,49 @@
                                                 <div class="form-group">
                                                     <p class="mg-b-10">وضعیت شماره کاربر</p>
                                                     <select name="phone_verify" class="form-control select-lg select2">
-                                                            <option value="0" {{$user->phone_verify == 0 ? 'selected' : ''}}>عدم تایید شماره</option>
-                                                            <option value="1" {{$user->phone_verify == 1 ? 'selected' : ''}}> تایید شماره</option>
+                                                        <option value="0" {{$user->phone_verify == 0 ? 'selected' : ''}}>عدم تایید شماره</option>
+                                                        <option value="1" {{$user->phone_verify == 1 ? 'selected' : ''}}> تایید شماره</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">آدرس ایمیل</p>
-                                                    <input type="text" name="email" data-required="1" value="{{$user->email}}" class="form-control" />
+                                                    <input type="text" name="email" value="{{$user->email}}" id="mail" class="form-control" />
                                                 </div>
 
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخاب وضعیت کاربر</p>
                                                     <select name="status" class="form-control select-lg select2">
-                                                            @if($user->status == 1)
-                                                                <option value="1">در حال بررسی </option>
-                                                                <option value="2">تایید </option>
-                                                            @elseif($user->status == 2)
-                                                                <option value="2">تایید </option>
-                                                                <option value="1">در حال بررسی</option>
-                                                            @endif
+                                                        @if($user->status == 1)
+                                                            <option value="1">در حال بررسی </option>
+                                                            <option value="2">تایید </option>
+                                                        @elseif($user->status == 2)
+                                                            <option value="2">تایید </option>
+                                                            <option value="1">در حال بررسی</option>
+                                                        @endif
                                                     </select>
                                                 </div>
+                                                <div class="form-account-title">
+                                                    <label>رمز عبور</label>
+                                                    <input type="password" id="pass" name="password"  autocomplete="new-password" class="form-control" />
+                                                    <i class="fa fa-eye-slash" style="float: left;margin-top: -25px;margin-left: 15px;" onclick="togglePassword()"></i>
+
+                                                </div>
+
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">شماره موبایل</p>
-                                                    <input type="text" name="phone" data-required="1" value="{{$user->phone}}" class="form-control" />
+                                                    <input type="text" name="phone" value="{{$user->phone}}" class="form-control" />
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تلفن ثابت</p>
-                                                    <input type="text" name="phone_number" data-required="1" value="{{$user->phone_number}}" class="form-control" />
+                                                    <input type="text" name="phone_number" value="{{$user->phone_number}}" class="form-control" />
+                                                </div>
+                                                <div class="form-account-title">
+                                                    <label>تکرار رمز عبور</label>
+                                                    <input type="password" required name="password_confirmation" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mg-b-10 text-center">
@@ -118,7 +129,7 @@
     </div>
     </div>
 
-
+@endsection
 @section('end')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
@@ -137,5 +148,18 @@
     <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-@endsection
+    <script type="text/javascript">
+        function togglePassword(){
+            x = document.getElementById("togglePassword")
+            y = document.getElementById("pass")
+
+            if (y.type ==="password") {
+                y.type = 'text';
+            } else{
+                y.type="password";
+                y.innerHTML = "Show"
+            }
+        }
+    </script>
+
 @endsection
