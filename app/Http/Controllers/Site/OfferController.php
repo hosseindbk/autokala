@@ -107,6 +107,8 @@ class OfferController extends Controller
         $offers->title_offer        = $request->input('title_offer');
         $offers->product_group      = $request->input('product_group');
         $offers->noe                = $request->input('noe');
+        $offers->lat                = $request->input('lat');
+        $offers->lng                = $request->input('lng');
         $offers->state_id           = $request->input('state_id');
         $offers->buyorsell          = $request->input('buyorsell');
         $offers->unicode_product    = $request->input('unicode_product');
@@ -132,7 +134,7 @@ class OfferController extends Controller
             $offers->single         = $request->input('single');
         }
         if ($request->input('price')) {
-                $offers->price      = str_replace(',', '', $request->input('price'));
+            $offers->price      = str_replace(',', '', $request->input('price'));
         }
         $offers->supplier_id        = $request->input('supplier_id');
         $offers->permanent_supplier = $request->input('permanent_supplier');
@@ -173,14 +175,21 @@ class OfferController extends Controller
 
         $offers->save();
 
-        $offer_id = Offer::whereSlug($offers->slug)->get();
+        $product_id = Product::whereUnicode($offers->unicode_product)->get();
 
-        foreach($offer_id as $offer) {
-            $id = $offer->id;
+        $cars = Car_product::whereIn('product_id' , $product_id)->get();
+        foreach($cars as $car) {
+            $caroffers = new Car_offer();
+
+            $caroffers->offer_id = $offers->id;
+            $caroffers->car_brand_id = $car->car_brand_id;
+            $caroffers->car_model_id = $car->car_model_id;
+
+            $caroffers->save();
         }
 
         alert()->success('', 'اطلاعات آگهی با موفقیت ثبت شد. اطلاعات خودرو مورد نظر را ثبت نمایید')->persistent('تایید');
-        return redirect(route('offer-edit' , $id));
+        return redirect(route('offer-edit' , $offers->id));
     }
 
     public function offermap(Request $request)
@@ -235,7 +244,7 @@ class OfferController extends Controller
 
         $offer->title_offer        = $request->input('title_offer');
         $offer->product_group      = $request->input('product_group');
-        $offer->noe                 = $request->input('noe');
+        $offer->noe                = $request->input('noe');
         $offer->state_id           = $request->input('state_id');
         $offer->buyorsell          = $request->input('buyorsell');
         $offer->unicode_product    = $request->input('unicode_product');
@@ -248,6 +257,8 @@ class OfferController extends Controller
         $offer->brand_id           = $request->input('brand_id');
         $offer->brand_name         = $request->input('brand_name');
         $offer->total              = $request->input('total');
+        $offer->lat                = $request->input('lat');
+        $offer->lng                = $request->input('lng');
         $offer->description        = $request->input('description');
         $offer->address            = $request->input('address');
         $offer->phone              = $request->input('phone');

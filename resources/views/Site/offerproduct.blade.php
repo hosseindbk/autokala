@@ -9,6 +9,8 @@
     <link href="{{asset('admin/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
     <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/assets/css-rtl/colors/default.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
 
 @endsection
 @section('main')
@@ -302,7 +304,7 @@
                                                                     <label class="form-check-label" style="margin-right: 5px;" for="single1">  داریم </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="single" id="single2" value="2">
+                                                                    <input class="form-check-input" type="radio" name="single" id="single2" value="0">
                                                                     <label class="form-check-label" style="margin-right: 5px;" for="single2"> نداریم </label>
                                                                 </div>
                                                             </div>
@@ -329,7 +331,7 @@
                                                         <div class="col-md-12" >
                                                             <h3 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h3>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">انتخاب استان</p>
                                                                 <select name="state_id" class="form-control select-lg select2" id="state_id">
@@ -339,9 +341,6 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">انتخاب شهرستان</p>
                                                                 <select name="city_id" id="city_id" class="form-control select-lg select2">
@@ -352,25 +351,36 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">طول جغرافیایی</p>
+                                                                <input type="text" name="lat" id="latelement" class="form-control"/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">آدرس</p>
+                                                                <textarea name="address" cols="30" rows="1" class="form-control" >{{Auth::user()->address}}</textarea>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-3">
+
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تلفن موبایل</p>
                                                                 <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
-                                                                <input type="hidden" name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
+                                                                <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تلفن ثابت</p>
                                                                 <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-7">
                                                             <div class="form-group">
-                                                                <p class="mg-b-10">آدرس</p>
-                                                                <textarea name="address" cols="30" rows="1" class="form-control">{{Auth::user()->address}}</textarea>
+                                                                <p class="mg-b-10">عرض جغرافیایی</p>
+                                                                <input type="text" name="lng" id="lngelement" class="form-control"/>
                                                             </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
+                                                            <div id="app" style="width: 100%; height: 325px;"></div>
                                                         </div>
 
                                                         <input type="hidden" name="supplier_id" @foreach($suppliers as $supplier) @if($supplier->user_id == Auth::user()->id) value="{{$supplier->id}}" @endif @endforeach >
@@ -551,7 +561,7 @@
                                                         <div class="col-md-12" >
                                                             <h3 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h3>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">انتخاب استان</p>
                                                                 <select name="state_id" class="form-control select-lg select2" id="state_id">
@@ -561,9 +571,6 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">انتخاب شهرستان</p>
                                                                 <select name="city_id" id="city_id" class="form-control select-lg select2">
@@ -574,26 +581,36 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <p class="mg-b-10">تلفن موبایل</p>
-                                                                <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
-                                                                <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
+                                                                <p class="mg-b-10">طول جغرافیایی</p>
+                                                                <input type="text" name="lat" id="latelement" class="form-control"/>
+                                                            </div>
 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">تلفن ثابت</p>
-                                                                <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-7">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">آدرس</p>
                                                                 <textarea name="address" cols="30" rows="1" class="form-control" >{{Auth::user()->address}}</textarea>
                                                             </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تلفن موبایل</p>
+                                                                <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
+                                                                <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تلفن ثابت</p>
+                                                                <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">عرض جغرافیایی</p>
+                                                                <input type="text" name="lng" id="lngelement" class="form-control"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
+                                                            <div id="app" style="width: 100%; height: 325px;"></div>
                                                         </div>
 
                                                     @endif
@@ -648,6 +665,8 @@
     <script src="{{asset('admin/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
+    <script  src="{{asset('site/js/mapp.env.js')}}"></script>
+    <script src="{{asset('site/js/mapp.min.js')}}"></script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor1' ) )
@@ -661,6 +680,90 @@
             .catch( error => {
                 console.error( error );
             } );
+    </script>
+    <script>
+        $(document).ready(function () {
+            var crosshairIcon = {
+                iconUrl: '{{asset('site/assets/images/icon-marker.svg')}}',
+                iconSize:     [40, 50], // size of the icon
+                iconAnchor:   [20, 55], // point of the icon which will correspond to marker's location
+            };
+            var app = new Mapp({
+                element: '#app',
+                @if(Auth::user()->lat != null && Auth::user()->lng != null)
+                presets: {
+                    latlng: {
+                        lat: {{Auth::user()->lat}},
+                        lng: {{Auth::user()->lng}},
+                    },
+                    icon: crosshairIcon,
+                    zoom: 20,
+                    popup: {
+                        title: {
+                            i18n: 'موقعیت مکانی',
+                        },
+                        description: {
+                            i18n: 'توضیحات',
+                        },
+                        class: 'marker-class',
+                        open: false,
+
+                    },
+                },
+                @endif
+                apiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2In0.eyJhdWQiOiIxNTQ5NCIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2IiwiaWF0IjoxNjMxNzc5MjQ0LCJuYmYiOjE2MzE3NzkyNDQsImV4cCI6MTYzNDQ2MTI0NCwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.VsRI2wiG_IvFVkVKXt_XnOBpzyjMIygnv6s_s81u9WVC_Z-stANinKYH_6iJPuJ3lRdAX8SdtHwYCr2DZVF2hi6WiTu-BSvMuXPb6sg0iYXgYREKQjzsWU4NPf2kOwd4q6aj1R6UOT_EA7GIrJQ5FPYDceAmeT8va1VdK6xYp-Ypstja-clURippQKEk0mDe9Z_ABYWQNAWfqUt_ubYEZrETjnDoSQHbJxJc46vxWvYmwoK1sIZ4NoXaQbRrAb0QKZ_7Lnh3H3_vHqQGMB0vJELzwSJEmiNxr_h7uIvugtRAUneAa878lOJuv03976YNjIoepK_aWhxzrP-RmE4O5A",
+            });
+            app.addLayers();
+            app.addZoomControls();
+            app.addGeolocation({
+                history: false,
+                onLoad: false,
+                onLoadCallback: function(){
+                    console.log(app.states.user.latlng);
+                },
+            });
+            app.addLogo({
+                url: '{{asset('site/images/maplogo.png')}}',
+            });
+
+
+            @if(Auth::user()->lat != null && Auth::user()->lng != null)
+            app.markReverseGeocode({
+                state: {
+                    latlng: {
+                        lat: {{Auth::user()->lat}},
+                        lng: {{Auth::user()->lng}},
+                    },
+                    zoom: 14,
+                    icon: crosshairIcon,
+                },
+            });
+            @endif
+            app.map.on('click', function (e) {
+
+                var marker = app.addMarker({
+                    name: 'advanced-marker',
+                    latlng: {
+                        lat: e.latlng.lat,
+                        lng: e.latlng.lng,
+                    },
+                    icon: crosshairIcon,
+                    popup: {
+                        title: {
+                            i18n: 'موقعیت مکانی',
+                        },
+                        description: {
+                            i18n: 'توضیحات',
+                        },
+                        class: 'marker-class',
+                        open: false,
+                    },
+                });
+                document.getElementById("latelement").setAttribute('value', e.latlng.lat);
+                document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
+
+            })
+        });
     </script>
     <script>
         $(function () { $('.number1').change(function () { var x = $('.number1').val(); $('.number1').val(addCommas(x)); }); });
