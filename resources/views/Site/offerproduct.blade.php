@@ -410,7 +410,7 @@
                                                                 <select name="unicode_product" class="form-control select2">
                                                                     <option value="">انتخاب قطعه</option>
                                                                     @foreach($products as $product)
-                                                                        <option value="{{$product->unicode}}" selected>{{$product->unicode}} - {{$product->title_fa}}</option>
+                                                                        <option value="{{$product->unicode}}" >{{$product->unicode}} - {{$product->title_fa}}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <button type="button" style="position: absolute;" class="btn btn-info" data-placement="top" rel="tooltip" title="چنانچه بخش یا کل یونیکد کالای مورد نظر خود را میدانید بر روی کلید جستجو کلیک نمایید تا کالای مورد نظر شما نمایش داده شود" data-toggle="modal" data-target="#unicode"><i class="fa fa-search"></i></button>

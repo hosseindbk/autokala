@@ -111,7 +111,9 @@ class OfferController extends Controller
         $offers->lng                = $request->input('lng');
         $offers->state_id           = $request->input('state_id');
         $offers->buyorsell          = $request->input('buyorsell');
-        $offers->unicode_product    = $request->input('unicode_product');
+        if ($request->input('unicode_product') != null) {
+            $offers->unicode_product = $request->input('unicode_product');
+        }
         $offers->product_name       = $request->input('product_name');
         if ($request->input('single_price')) {
             $offers->single_price   = str_replace(',', '', $request->input('single_price'));
@@ -247,7 +249,9 @@ class OfferController extends Controller
         $offer->noe                = $request->input('noe');
         $offer->state_id           = $request->input('state_id');
         $offer->buyorsell          = $request->input('buyorsell');
-        $offer->unicode_product    = $request->input('unicode_product');
+        if ($request->input('unicode_product') != null) {
+            $offer->unicode_product = $request->input('unicode_product');
+        }
         $offer->product_name       = $request->input('product_name');
         if($request->input('single_price')) {
             $offer->single_price = str_replace(',', '', $request->input('single_price'));
@@ -262,8 +266,9 @@ class OfferController extends Controller
         $offer->description        = $request->input('description');
         $offer->address            = $request->input('address');
         $offer->phone              = $request->input('phone');
-
-        $offer->single             = $request->input('single');
+        if ($request->input('single') != null) {
+            $offer->single = $request->input('single');
+        }
         if($request->input('price')) {
             $offer->price = str_replace(',', '', $request->input('price'));
         }
