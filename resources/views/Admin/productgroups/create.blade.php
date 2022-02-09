@@ -38,7 +38,7 @@
                                         <div class="col-md-12">
                                             @include('error')
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <p class="mg-b-10">عنوان گروه کالا</p>
                                                 <input type="text" name="title_fa" data-required="1" placeholder="عنوان گروه کالا را وارد کنید" class="form-control" />
@@ -47,6 +47,8 @@
                                                 <p class="mg-b-10">خدمات مرتبط</p>
                                                 <input type="text" name="related_service" data-required="1" placeholder="خدمات مرتبط را وارد کنید" class="form-control" />
                                             </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <p class="mg-b-10">کد گروه کالا</p>
                                                 <input type="text" name="code" data-required="1" placeholder="کد گروه کالا را وارد کنید" class="form-control" />
@@ -56,13 +58,13 @@
                                                 <input type="text" name="service_title" data-required="1" placeholder="عنوان خدمات را وارد کنید" class="form-control" />
                                             </div>
                                         </div>
-                                        <div class="col-md-12 ">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <p class="mg-b-10">توضیحات قطعه</p>
                                                 <textarea name="part_description" id="" cols="30" data-required="1" rows="10" class="form-control" placeholder="توضیحات قطعه را وارد کنید"></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 ">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <p class="mg-b-10">توضیحات خدمات</p>
                                                 <textarea name="service_description" id="" cols="30" data-required="1" rows="10" class="form-control" placeholder="توضیحات خدمات را وارد کنید"></textarea>
