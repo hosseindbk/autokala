@@ -36,7 +36,7 @@
                                     <h6 class="main-content-label text-center mb-5">ورود اطلاعات گروه کالا</h6>
                                 </div>
                                 @foreach($productgroups as $Product_group)
-                                    <form action="{{route('productgroups.update', $Product_group->id)}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('productgroupedit', $Product_group->id)}}" method="POST">
                                         <div class="row row-sm">
                                             {{csrf_field()}}
                                             {{ method_field('PATCH') }}
@@ -44,7 +44,7 @@
                                             <div class="col-md-12">
                                                 @include('error')
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">عنوان گروه کالا</p>
                                                     <input type="text" name="title_fa" data-required="1" value="{{$Product_group->title_fa}}"  class="form-control" />
@@ -54,6 +54,8 @@
                                                     <p class="mg-b-10">خدمات مرتبط</p>
                                                     <input type="text" name="related_service" data-required="1" value="{{$Product_group->related_service}}" class="form-control" />
                                                 </div>
+                                            </div>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">کد گروه کالا</p>
                                                     <input type="text" name="code" data-required="1" value="{{$Product_group->code}}"  class="form-control" />
@@ -63,28 +65,23 @@
                                                     <input type="text" name="service_title" data-required="1" value="{{$Product_group->service_title}}"  class="form-control" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخاب وضعیت نمایش</p>
-                                                    <select name="status_id" class="form-control select-lg select2">
+                                                    <select name="status_id" class="form-control select2">
                                                         @foreach($statuses as $status)
-                                                            @if($Product_group->status == $status->id)
-                                                                <option value="{{$status->id}}">{{$status->title}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                        @foreach($statuses as $status)
-                                                            <option value="{{$status->id}}">{{$status->title}}</option>
+                                                                <option value="{{$status->id}}" {{$Product_group->status == $status->id ? 'selected' : ''}}>{{$status->title}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 ">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">توضیحات قطعه</p>
                                                     <textarea name="part_description" id="" cols="30" data-required="1" rows="10" class="form-control" >{{$Product_group->part_description}}</textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 ">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">توضیحات خدمات</p>
                                                     <textarea name="service_description" id="" cols="30" data-required="1" rows="10" class="form-control" >{{$Product_group->service_description}}</textarea>

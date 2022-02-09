@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\productgrouprequest;
-use App\Product_group;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\productgrouprequest;
 use App\Menudashboard;
+use App\Product_group;
 use App\Status;
 use App\Submenudashboard;
 use Illuminate\Support\Facades\Auth;
@@ -75,8 +75,9 @@ class ProductgroupController extends Controller
             ->with(compact('submenudashboards'));
     }
 
-    public function update(productgrouprequest $request, Product_group $product_group)
+    public function update(productgrouprequest $request, $id)
     {
+        $product_group = Product_group::findOrfail($id);
         $product_group->title_fa            = $request->input('title_fa');
         $product_group->related_service     = $request->input('related_service');
         $product_group->code                = $request->input('code');

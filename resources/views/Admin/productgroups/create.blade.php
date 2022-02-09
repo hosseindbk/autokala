@@ -32,7 +32,7 @@
                                 <div>
                                     <h6 class="main-content-label text-center mb-5">ورود اطلاعات گروه کالا</h6>
                                 </div>
-                                <form action="{{ route('productgroups.store')}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('productgroups.store')}}" method="POST" >
                                     <div class="row row-sm">
                                         {{csrf_field()}}
                                         <div class="col-md-12">

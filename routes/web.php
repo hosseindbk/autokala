@@ -64,6 +64,7 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     //Route::resource('carmodels'                     , 'CarController');
     Route::resource('representatives'               , 'RepresentController');
     Route::resource('productgroups'                 , 'ProductgroupController');
+    Route::patch('productgroups/{id}'                 ,   'ProductgroupController@productgroupedit')->name('productgroupedit');
     Route::resource('carproducts'                   , 'CarproductController');
     Route::resource('profiles'                      , 'ProfileController');
     Route::resource('cartechnichalgroups'           , 'CartechnicalgroupController');
