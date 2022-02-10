@@ -54,9 +54,9 @@ class ProductController extends Controller
             'cars'              =>  $cars,
             'comment'           => $comments,
             'commentratecount'  => $commentratecount,
-            'productgroup'      => $productgroups
+//            'productgroup'      => $productgroups
 
         ];
-        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response , $productgroups]);
     }
 }
