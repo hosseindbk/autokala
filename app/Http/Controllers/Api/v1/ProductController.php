@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\comment;
 use App\commentrate;
 use App\Http\Controllers\Controller;
+use App\Media;
 use App\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -31,6 +32,7 @@ class ProductController extends Controller
         $commentratecount       = commentrate::whereCommentable_type('App\Product')->where('Commentable_id' ,$product_id)->whereApproved(1)->count();
         $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'id as comment_id')->whereParent_id(0)->whereApproved(1)->latest()->get();
 
+
         $subcomments            = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' , '>', 0)->whereApproved(1)->latest()->get();
 
         $cars = DB::table('car_products')
@@ -45,9 +47,13 @@ class ProductController extends Controller
             ->select('products.unicode' , 'products.slug' , 'products.image' , 'products.title_fa' , 'products.title_en' ,
                 'products.title_bazar_fa' , 'products.code_fani_company as company_code' , 'products.description' , 'product_groups.title_fa as productgroup')
             ->whereSlug($slug)
-            ->get();
+            ->first();
+
+        $medias                 = Media::select('image')->whereProduct_id($product_id)->get();
+        $medias = [$medias[0]['image']];
 
         $response = [
+            'product_image'     => $medias,
             'products'          => $products,
             'cars'              => $cars,
             'comment'           => $comments,
