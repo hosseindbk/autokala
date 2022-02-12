@@ -55,13 +55,9 @@
                                                     <p class="mg-b-10">انتخاب وضعیت کاربر</p>
                                                     <select name="type_id" class="form-control select-lg select2">
                                                         @foreach($typeusers as $type_user)
-                                                            @if($user->type_id == $type_user->id)
-                                                                <option value="{{$type_user->id}}">{{$type_user->title}}</option>
-                                                            @endif
+                                                                <option value="{{$type_user->id}}" {{$user->type_id == $type_user->id ? 'selected' : ''}}>{{$type_user->title}}</option>
                                                         @endforeach
-                                                        @foreach($typeusers as $type_user)
-                                                            <option value="{{$type_user->id}}">{{$type_user->title}}</option>
-                                                        @endforeach
+
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
@@ -109,7 +105,7 @@
                                                 </div>
                                                 <div class="form-account-title">
                                                     <label>تکرار رمز عبور</label>
-                                                    <input type="password" required name="password_confirmation" class="form-control" />
+                                                    <input type="password" name="password_confirmation" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mg-b-10 text-center">
@@ -152,7 +148,6 @@
         function togglePassword(){
             x = document.getElementById("togglePassword")
             y = document.getElementById("pass")
-
             if (y.type ==="password") {
                 y.type = 'text';
             } else{
@@ -163,3 +158,4 @@
     </script>
 
 @endsection
+
