@@ -316,7 +316,8 @@
                                                                                 @endforeach
                                                                             </select>
                                                                         @elseif($offer->title != null)
-                                                                            <input type="text" name="product_name" value="{{$offer->title}}" class="form-control">
+                                                                            <input type="text" disabled value="{{$offer->title}}" class="form-control">
+                                                                            <input type="hidden" name="product_name" value="{{$offer->title}}" class="form-control">
                                                                         @endif
                                                                     </div>
                                                                 </div>
@@ -326,8 +327,34 @@
                                                                         @if($offer->brand_id != null)
                                                                         <select name="brand_id" class="form-control select2" id="brand_id_select">
                                                                             <option value="">انتخاب برند</option>
-                                                                            @foreach($brands as $brand)
-                                                                                <option value="{{$brand->id}}" {{$offer->brand_id == $brand->id ? 'selected' : '' }}>{{$brand->title_fa}}</option>
+                                                                            @foreach($productbrandvarieties as $Product_brand_variety)
+                                                                                    @if($offer->brand_id == $Product_brand_variety->id)
+                                                                                        @foreach($brands as $brand)
+                                                                                            <option value="{{$Product_brand_variety->id}}" {{$brand->id == $Product_brand_variety->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}
+                                                                                                @if($Product_brand_variety->item1 != null)
+                                                                                                    -
+                                                                                                    <li>
+                                                                                                        <span>{{$Product_brand_variety->item1}}</span>
+                                                                                                        <span>{{$Product_brand_variety->value_item1}}</span>
+                                                                                                    </li>
+                                                                                                @endif
+                                                                                                @if($Product_brand_variety->item2 != null)
+                                                                                                    ,
+                                                                                                    <li>
+                                                                                                        <span>{{$Product_brand_variety->item2}}</span>
+                                                                                                        <span>{{$Product_brand_variety->value_item2}}</span>
+                                                                                                    </li>
+                                                                                                @endif
+                                                                                                @if($Product_brand_variety->item3 != null)
+                                                                                                    ,
+                                                                                                    <li>
+                                                                                                        <span>{{$Product_brand_variety->item3}}</span>
+                                                                                                        <span>{{$Product_brand_variety->value_item3}}</span>
+                                                                                                    </li>
+                                                                                                @endif
+                                                                                            </option>
+                                                                                    @endforeach
+                                                                                    @endif
                                                                             @endforeach
                                                                         </select>
                                                                         @elseif($offer->brand_name != null)
