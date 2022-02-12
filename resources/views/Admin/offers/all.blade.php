@@ -34,7 +34,6 @@
                                         <tr>
                                             <th class="wd-10p"> ردیف </th>
                                             <th class="wd-10p"> تصویر </th>
-                                            <th class="wd-10p"> نام کالا </th>
                                             <th class="wd-10p"> عنوان آگهی </th>
                                             <th class="wd-10p"> نوع آگهی </th>
                                             <th class="wd-10p"> استان </th>
@@ -57,7 +56,6 @@
                                                 <td>
                                                     <img src="{{asset($offer->image1)}}" class="img-responsive" style="display: block" width="30" alt="">
                                                 </td>
-                                                <td>{{$offer->title}}</td>
                                                 <td>{{$offer->title_offer}}</td>
                                                 <td>
                                                     @if($offer->buyorsell == 'buy')

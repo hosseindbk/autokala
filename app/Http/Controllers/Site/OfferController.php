@@ -177,8 +177,7 @@ class OfferController extends Controller
 
         $offers->save();
 
-        $product_id = Product::whereUnicode($offers->unicode_product)->get();
-
+        $product_id = Product::whereUnicode($offers->unicode_product)->pluck('id');
         $cars = Car_product::whereIn('product_id' , $product_id)->get();
         foreach($cars as $car) {
             $caroffers = new Car_offer();
