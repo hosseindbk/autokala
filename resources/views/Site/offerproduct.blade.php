@@ -115,15 +115,10 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <input type="hidden" name="title" @foreach($products as $product) value="{{$product->title_fa}}"  @endforeach class="form-control" />
                                                                 <p class="mg-b-10">نام قطعه</p>
-                                                                <select name="unicode_product" class="form-control select2">
-                                                                    @foreach($products as $product)
-                                                                        <option value="{{$product->unicode}}" selected>{{$product->unicode}} - {{$product->title_fa}}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                                <input type="hidden" name="title" @foreach($products as $product) value="{{$product->title_fa}}"  @endforeach class="form-control" />
+                                                                <input type="text" disabled @foreach($products as $product) value="{{$product->title_fa}}"  @endforeach class="form-control" />
                                                                 <button type="button" style="position: absolute;" class="btn btn-info" data-placement="top" rel="tooltip" title="چنانچه بخش یا کل یونیکد کالای مورد نظر خود را میدانید بر روی کلید جستجو کلیک نمایید تا کالای مورد نظر شما نمایش داده شود" data-toggle="modal" data-target="#unicode"><i class="fa fa-search"></i></button>
-
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -407,14 +402,15 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">نام قطعه</p>
-                                                                <select name="unicode_product" class="form-control select2">
-                                                                    <option value="">انتخاب قطعه</option>
-                                                                    @foreach($products as $product)
-                                                                        <option value="{{$product->unicode}}" >{{$product->unicode}} - {{$product->title_fa}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                <button type="button" style="position: absolute;" class="btn btn-info" data-placement="top" rel="tooltip" title="چنانچه بخش یا کل یونیکد کالای مورد نظر خود را میدانید بر روی کلید جستجو کلیک نمایید تا کالای مورد نظر شما نمایش داده شود" data-toggle="modal" data-target="#unicode"><i class="fa fa-search"></i></button>
-
+{{--                                                                <select name="unicode_product" class="form-control select2">--}}
+{{--                                                                    <option value="">انتخاب قطعه</option>--}}
+{{--                                                                    @foreach($products as $product)--}}
+{{--                                                                        <option value="{{$product->unicode}}" >{{$product->unicode}} - {{$product->title_fa}}</option>--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                </select>--}}
+                                                                <input type="hidden" name="title" @foreach($products as $product) value="{{$product->title_fa}}"  @endforeach class="form-control" />
+                                                                <input type="text" disabled @foreach($products as $product) value="{{$product->title_fa}}"  @endforeach class="form-control" style="width: 80% !important;margin-left: 5px;float: right;"" />
+                                                                <button type="button" style="float: left;" class="btn btn-info" data-placement="top" rel="tooltip" title="چنانچه بخش یا کل یونیکد کالای مورد نظر خود را میدانید بر روی کلید جستجو کلیک نمایید تا کالای مورد نظر شما نمایش داده شود" data-toggle="modal" data-target="#unicode"><i class="fa fa-search"></i></button>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">

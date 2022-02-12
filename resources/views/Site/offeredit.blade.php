@@ -123,8 +123,8 @@
                                                                                     <option value="{{$product->unicode}}" {{$offer->unicode_product == $product->unicode ? 'selected' : ''}}>{{$product->unicode}} - {{$product->title_fa}}</option>
                                                                                 @endforeach
                                                                             </select>
-                                                                        @elseif($offer->product_name != null)
-                                                                            <input type="text" name="product_name" value="{{$product_name}}" class="form-control">
+                                                                        @elseif($offer->title != null)
+                                                                            <input type="text" name="product_name" value="{{$title}}" class="form-control">
                                                                             @endif
                                                                     </div>
                                                                 </div>
@@ -315,8 +315,8 @@
                                                                                     <option value="{{$product->unicode}}" {{$offer->unicode_product == $product->unicode ? 'selected' : ''}}>{{$product->unicode}} - {{$product->title_fa}}</option>
                                                                                 @endforeach
                                                                             </select>
-                                                                        @elseif($offer->product_name != null)
-                                                                            <input type="text" name="product_name" value="{{$offer->product_name}}" class="form-control">
+                                                                        @elseif($offer->title != null)
+                                                                            <input type="text" name="product_name" value="{{$offer->title}}" class="form-control">
                                                                         @endif
                                                                     </div>
                                                                 </div>
