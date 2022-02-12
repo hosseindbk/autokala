@@ -150,8 +150,8 @@ Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , fu
     Route::post('profilesupplierstore'          , 'ProfilebusinessController@storesupplier' )->name('profilesupplierstore');
     Route::post('profilecartechnical'           , 'ProfilebusinessController@cartechnicalstore' )->name('cartechnicalstore');
     Route::post('profilecarsupplier'            , 'ProfilebusinessController@carsupplierstore' )->name('carsupplierstore');
-    Route::delete('profilecarsupplier/{id}'       , 'ProfilebusinessController@carsuppliergroupdelete' )->name('carsuppliergroupdelete');
-    Route::delete('profilecartechnical/{id}'      , 'ProfilebusinessController@cartechnicaldelete' )->name('cartechnicaldelete');
+    Route::delete('profilecarsupplier/{id}'     , 'ProfilebusinessController@carsuppliergroupdelete' )->name('carsuppliergroupdelete');
+    Route::delete('profilecartechnical/{id}'    , 'ProfilebusinessController@cartechnicaldelete' )->name('cartechnicaldelete');
     Route::patch('profilesupplieredit/{id}'     , 'ProfilebusinessController@updatesupplier' )->name('profilesupplieredit');
     Route::get('profile-info'                   , 'ProfilebusinessController@profileinfo' )->name('profile-info');
     Route::get('profile-supplier-create'        , 'ProfilesupplierController@suppliercreate' )->name('supplier-business');
@@ -171,6 +171,7 @@ Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , fu
     Route::post('profile-user/option'           , 'ProfileuserController@option')->name('option');
     Route::post('profile-business/option'       , 'ProfilebusinessController@option')->name('option');
     Route::patch('profile-user/{id}'            , 'ProfileuserController@update' )->name('profile_user_update');
+    Route::get('profile-user/setmapuser/{id}'   , 'ProfileuserController@setmapuser' )->name('setmapuser');
     Route::get('profile-supplier'               , 'ProfilesupplierController@index' );
     Route::post('img'                           , 'ProfilebusinessController@imgupload')->name('img');
     Route::get('offer-product/{id}'             , 'OfferController@offerproduct')->name('offer-product');

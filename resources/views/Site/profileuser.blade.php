@@ -156,8 +156,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
-
-                                                        <p class="mg-b-10">موقعیت مکانی خود را با کلیک بر روی نقشه انتخاب نمایید</p>
+                                                        <p class="mg-b-10">برای جستجو موقعیت مکانی خود <a href="{{route('setmapuser' , Auth::user()->id)}}">کلیک</a> نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
 

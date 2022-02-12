@@ -28,6 +28,16 @@ class ProfileuserController extends Controller
             ->with(compact('cities'))
             ->with(compact('typeusers'));
     }
+    public function setmapuser($id){
+        $menus              = Menu::whereStatus(4)->get();
+        $suppliers          = User::whereId($id)->get();
+        $states             = State::all();
+        $cities             = city::all();
+
+        return view('Site.setmapuser')
+            ->with(compact('suppliers' , 'menus' , 'states' , 'cities'))
+            ->with('id' , $id);
+    }
     public function usermapset(Request $request)
     {
         $usermap               = User::findOrfail($request->input('id'));
