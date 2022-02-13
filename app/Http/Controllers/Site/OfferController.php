@@ -107,8 +107,16 @@ class OfferController extends Controller
         $offers->title_offer        = $request->input('title_offer');
         $offers->product_group      = $request->input('product_group');
         $offers->noe                = $request->input('noe');
-        $offers->lat                = $request->input('lat');
-        $offers->lng                = $request->input('lng');
+        if ($request->input('lat') != null){
+            $offers->lat                = $request->input('lat');
+        }else{
+            $offers->lat = auth::user()->lat;
+        }
+        if ($request->input('lng') != null){
+            $offers->lng                = $request->input('lng');
+        }else{
+            $offers->lng = auth::user()->lng;
+        }
         $offers->state_id           = $request->input('state_id');
         $offers->buyorsell          = $request->input('buyorsell');
         if ($request->input('unicode_product') != null) {
