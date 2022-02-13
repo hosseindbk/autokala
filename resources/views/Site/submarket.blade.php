@@ -769,7 +769,7 @@
                 };
                 var app = new Mapp({
                     element: '#app',
-                    @if($offer->lat != null && $offer->lng != null)
+                    @if($offer->lat == null && $offer->lng == null)
                     presets: {
                         latlng: {
                             lat: 35.73249,
