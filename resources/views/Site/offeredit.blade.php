@@ -134,8 +134,34 @@
                                                                         @if($offer->brand_id != null)
                                                                         <select name="brand_id" class="form-control select2" id="brand_id_select">
                                                                             <option value="">انتخاب برند</option>
-                                                                            @foreach($brands as $brand)
-                                                                                <option value="{{$brand->id}}" {{$offer->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
+                                                                            @foreach($productbrandvarieties as $Product_brand_variety)
+                                                                                @if($offer->brand_id == $Product_brand_variety->id)
+                                                                                    @foreach($brands as $brand)
+                                                                                        <option value="{{$Product_brand_variety->id}}" {{$brand->id == $Product_brand_variety->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}
+                                                                                            @if($Product_brand_variety->item1 != null)
+                                                                                                -
+                                                                                                <li>
+                                                                                                    <span>{{$Product_brand_variety->item1}}</span>
+                                                                                                    <span>{{$Product_brand_variety->value_item1}}</span>
+                                                                                                </li>
+                                                                                            @endif
+                                                                                            @if($Product_brand_variety->item2 != null)
+                                                                                                ,
+                                                                                                <li>
+                                                                                                    <span>{{$Product_brand_variety->item2}}</span>
+                                                                                                    <span>{{$Product_brand_variety->value_item2}}</span>
+                                                                                                </li>
+                                                                                            @endif
+                                                                                            @if($Product_brand_variety->item3 != null)
+                                                                                                ,
+                                                                                                <li>
+                                                                                                    <span>{{$Product_brand_variety->item3}}</span>
+                                                                                                    <span>{{$Product_brand_variety->value_item3}}</span>
+                                                                                                </li>
+                                                                                            @endif
+                                                                                        </option>
+                                                                                    @endforeach
+                                                                                @endif
                                                                             @endforeach
                                                                         </select>
                                                                         @elseif($offer->brand_name != null)
@@ -224,19 +250,19 @@
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">قیمت خرده فروشی (تومان)</p>
-                                                                        <input type="text"  name="single_price" id="number single_price" value="{{$offer->single_price}}" class="form-control" />
+                                                                        <input type="text"  {{$offer->single == 0 ? 'disabled' : ''}}  name="single_price" id="single_price" value="{{number_format($offer->single_price)}}" class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">قیمت عمده فروشی (تومان)</p>
-                                                                        <input type="text" name="price" id="number2" value="{{$offer->price}}" class="form-control" />
+                                                                        <input type="text" name="price" id="number2" value="{{number_format($offer->price)}}" class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">حداقل تعداد عمده فروشی</p>
-                                                                        <input type="text" name="total" value="{{$offer->total}}" class="form-control" />
+                                                                        <input type="text" name="total" value="{{number_format($offer->total)}}" class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12" >
@@ -431,7 +457,7 @@
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">قیمت (تومان)</p>
-                                                                        <input type="text"  name="single_price" id="number single_price" value="{{$offer->single_price}}"  class="form-control" />
+                                                                        <input type="text"  name="single_price" id="single_price" value="{{$offer->single_price}}"  class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12" >
@@ -638,6 +664,18 @@
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('site/js/mapp.env.js')}}"></script>
     <script src="{{asset('site/js/mapp.min.js')}}"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#single1').click(function() {
+                $('#single_price').attr("disabled", false);
+            })
+        });
+        $(function(){
+            $('#single2').click(function() {
+                $('#single_price').attr("disabled", true);
+            })
+        });
+    </script>
     <script>
         $(document).ready(function () {
             var crosshairIcon = {
