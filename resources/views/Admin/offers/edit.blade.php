@@ -169,35 +169,35 @@
                                                         <select name="brand_id" class="form-control select2" id="brand_id_select">
                                                             <option value="">انتخاب برند</option>
                                                             @foreach($brand_varietis as $Product_brand_variety)
-                                                                @foreach($brands as $brand)
-                                                                    @if($brand->id == $Product_brand_variety->brand_id)
-                                                                        <option value="{{$Product_brand_variety->id}}" {{$brand->id == $Product_brand_variety->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}
-                                                                            @if($Product_brand_variety->item1 != null)
-                                                                                -
-                                                                                <li>
-                                                                                    <span>{{$Product_brand_variety->item1}}</span>
-                                                                                    <span>{{$Product_brand_variety->value_item1}}</span>
-                                                                                </li>
+                                                                @if($offer->brand_id == $Product_brand_variety->id)
+                                                                    @foreach($brands as $brand)
+                                                                            <option value="{{$Product_brand_variety->id}}" {{$brand->id == $Product_brand_variety->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}
+                                                                                @if($Product_brand_variety->item1 != null)
+                                                                                    -
+                                                                                    <li>
+                                                                                        <span>{{$Product_brand_variety->item1}}</span>
+                                                                                        <span>{{$Product_brand_variety->value_item1}}</span>
+                                                                                    </li>
 
-                                                                            @endif
-                                                                            @if($Product_brand_variety->item2 != null)
-                                                                                ,
-                                                                                <li>
-                                                                                    <span>{{$Product_brand_variety->item2}}</span>
-                                                                                    <span>{{$Product_brand_variety->value_item2}}</span>
-                                                                                </li>
+                                                                                @endif
+                                                                                @if($Product_brand_variety->item2 != null)
+                                                                                    ,
+                                                                                    <li>
+                                                                                        <span>{{$Product_brand_variety->item2}}</span>
+                                                                                        <span>{{$Product_brand_variety->value_item2}}</span>
+                                                                                    </li>
 
-                                                                            @endif
-                                                                            @if($Product_brand_variety->item3 != null)
-                                                                                ,
-                                                                                <li>
-                                                                                    <span>{{$Product_brand_variety->item3}}</span>
-                                                                                    <span>{{$Product_brand_variety->value_item3}}</span>
-                                                                                </li>
-                                                                            @endif
-                                                                        </option>
-                                                                    @endif
+                                                                                @endif
+                                                                                @if($Product_brand_variety->item3 != null)
+                                                                                    ,
+                                                                                    <li>
+                                                                                        <span>{{$Product_brand_variety->item3}}</span>
+                                                                                        <span>{{$Product_brand_variety->value_item3}}</span>
+                                                                                    </li>
+                                                                                @endif
+                                                                            </option>
                                                                 @endforeach
+                                                                @endif
                                                             @endforeach
                                                         </select>
                                                     @endif
