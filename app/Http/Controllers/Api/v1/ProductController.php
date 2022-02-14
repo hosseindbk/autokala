@@ -58,7 +58,6 @@ class ProductController extends Controller
                 'company_code'  => $product->company_code,
                 'description'   => $product->description,
                 'productgroup'  => $product->productgroup,
-                'created_at'    => jdate($product->created_at)->ago(),
             ];
         }
         $tmp        = json_decode(json_encode($test), true);
