@@ -48,13 +48,13 @@ class ProductController extends Controller
                 'products.title_bazar_fa' , 'products.code_fani_company as company_code' , 'products.description' , 'product_groups.title_fa as productgroup')
             ->whereSlug($slug)
             ->first();
-
+        $tmp=json_decode(json_encode($products), true);;
         $medias                 = Media::select('image')->whereProduct_id($product_id)->get();
         $medias = [$medias[0]['image']];
+        $tmp['p-image']=$medias;
 
         $response = [
-            'product_image'     => $medias,
-            'products'          => $products,
+            'products'          => $tmp,
             'cars'              => $cars,
             'comment'           => $comments,
             'subcomment'        => $subcomments,
