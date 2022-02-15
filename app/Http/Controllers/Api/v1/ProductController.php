@@ -71,7 +71,7 @@ class ProductController extends Controller
         }
         $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
         $subcomments            = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
-        if (trim($comments) != '[]') {
+        if (trim($comments) != '[]' && trim($subcomments) != '[]') {
             foreach ($comments as $comment) {
                 foreach ($subcomments as $subcomment) {
                     if ($comment->id == $subcomment->parent_id) {
@@ -88,7 +88,17 @@ class ProductController extends Controller
                     }
                 }
             }
-        }else{
+        }elseif(trim($comments) != '[]' && trim($subcomments) == '[]'){
+            foreach ($comments as $comment) {
+                $comt[] = [
+                    'phone' => $comment->phone,
+                    'comment' => $comment->comment,
+                    'created_at' => jdate($comment->created_at)->ago()
+                    ];
+            }
+
+        }elseif(trim($comments) == '[]' && trim($subcomments) == '[]')
+        {
             $comt = null;
         }
 

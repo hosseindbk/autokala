@@ -75,7 +75,7 @@ class TechnicalunitController extends Controller
         $commentratecomfort     = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('comfort');
 
 
-        if (trim($comments) != '[]') {
+        if (trim($comments) != '[]' && trim($subcomments) != '[]') {
             foreach ($comments as $comment) {
                 foreach ($subcomments as $subcomment) {
                     if ($comment->id == $subcomment->parent_id) {
@@ -92,7 +92,17 @@ class TechnicalunitController extends Controller
                     }
                 }
             }
-        }else{
+        }elseif(trim($comments) != '[]' && trim($subcomments) == '[]'){
+            foreach ($comments as $comment) {
+                $comt[] = [
+                    'phone' => $comment->phone,
+                    'comment' => $comment->comment,
+                    'created_at' => jdate($comment->created_at)->ago()
+                ];
+            }
+
+        }elseif(trim($comments) == '[]' && trim($subcomments) == '[]')
+        {
             $comt = null;
         }
 
