@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\v1;
 use App\comment;
 use App\commentrate;
 use App\Http\Controllers\Controller;
-use App\Menu;
 use App\Technical_unit;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -45,8 +44,28 @@ class TechnicalunitController extends Controller
             ->whereIn('car_technical_groups.technical_id' ,$technical_id)
             ->get();
 
-        $comments               = comment::whereCommentable_type('App\Technical_unit')->whereIn('Commentable_id' , $technical_id)->select('phone' , 'comment')->whereApproved(1)->latest()->get();
-        $commentrates           = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->select('name' , 'phone' , 'quality' , 'value' , 'innovation' , 'ability' , 'design' , 'comfort' ,'comment')->whereApproved(1)->latest()->get();
+        $comments               = comment::whereCommentable_type('App\Technical_unit')->whereIn('Commentable_id'   ,$technical_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
+        $subcomments            = comment::whereCommentable_type('App\Technical_unit')->whereIn('Commentable_id'   ,$technical_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
+        $commentrates           = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->select('name' , 'phone' , 'quality' , 'value' , 'innovation' , 'ability' , 'design' , 'comfort' ,'comment' , 'created_at')->whereApproved(1)->latest()->get();
+        if (trim($commentrates) != '[]') {
+            foreach ($commentrates as $commentrate) {
+                $comentratin = [
+                    'name' => $commentrate->name,
+                    'phone' => $commentrate->phone,
+                    'quality' => $commentrate->quality,
+                    'value' => $commentrate->value,
+                    'innovation' => $commentrate->innovation,
+                    'ability' => $commentrate->ability,
+                    'design' => $commentrate->design,
+                    'comfort' => $commentrate->comfort,
+                    'comment' => $commentrate->comment,
+                    'avgcommentrate' => ((int)$commentrate->quality + (int)$commentrate->value + (int)$commentrate->innovation + (int)$commentrate->ability + (int)$commentrate->design + (int)$commentrate->comfort) / 6,
+                    'created_at' => jdate($commentrate->created_at)->ago()
+                ];
+            }
+        }else{
+            $comentratin = null ;
+        }
         $commentratecount       = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->count();
         $commentratequality     = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('quality');
         $commentratevalue       = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('value');
@@ -55,11 +74,34 @@ class TechnicalunitController extends Controller
         $commentratedesign      = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('design');
         $commentratecomfort     = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('comfort');
 
+
+        if (trim($comments) != '[]') {
+            foreach ($comments as $comment) {
+                foreach ($subcomments as $subcomment) {
+                    if ($comment->id == $subcomment->parent_id) {
+                        $comt[] = [
+                            'phone' => $comment->phone,
+                            'comment' => $comment->comment,
+                            'created_at' => jdate($comment->created_at)->ago(),
+                            'subcomment' => $subcomts[] = [
+                                'phone' => $subcomment->phone,
+                                'comment' => $subcomment->comment,
+                                'created_at' => jdate($subcomment->created_at)->ago(),
+                            ],
+                        ];
+                    }
+                }
+            }
+        }else{
+            $comt = null;
+        }
+
         $response = [
               'technical_unit'          => $technicals
+            , 'image'                   => $image
             , 'technicalgroups'         => $technicalgroups
-            , 'comment'                 => $comments
-            , 'commentrates'            => $commentrates
+            , 'comment'                 => $comt
+            , 'commentrates'            => $comentratin
             , 'commentratecount'        => $commentratecount
             , 'commentratequality'      => $commentratequality
             , 'commentratevalue'        => $commentratevalue
@@ -67,7 +109,7 @@ class TechnicalunitController extends Controller
             , 'commentrateability'      => $commentrateability
             , 'commentratedesign'       => $commentratedesign
             , 'commentratecomfort'      => $commentratecomfort
-            , 'image'                   => $image
+
 
         ];
 
