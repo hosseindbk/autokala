@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Brand;
 use App\comment;
 use App\commentrate;
 use App\Http\Controllers\Controller;
 use App\Media;
 use App\Product;
+use App\Product_brand_variety;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
@@ -27,10 +29,33 @@ class ProductController extends Controller
 
     public function subproduct($slug){
 
-        $product_id       = Product::whereSlug($slug)->pluck('id');
+        $product_id         = Product::whereSlug($slug)->pluck('id');
+        $brandvarieties       = Product_brand_variety::whereIn('Product_id' , $product_id)->select('product_brand_varieties.item1 as item1'
+            ,'product_brand_varieties.item2 as item2','product_brand_varieties.item3 as item3','product_brand_varieties.value_item1 as value1'
+            ,'product_brand_varieties.value_item2 as value2','product_brand_varieties.value_item3 as value3')->whereStatus(4)->get();
+        $brand_id           = Product_brand_variety::whereIn('Product_id' , $product_id)->whereStatus(4)->pluck('brand_id');
+        $brands             = Brand::select('title_fa' , 'slug' , 'image')->whereIn('id' , $brand_id)->get();
+        foreach ($brands as $brand){
+            $brandi[] = [
+                'brand_name'    => $brand->title_fa,
+                'slug'          => $brand->slug,
+                'brand_image'   => $brand->image
+
+            ];
+        }
+        foreach ($brandvarieties as $brandvariety)
+        {
+            $brand_variety[] = [
+                'item1'         => $brandvariety->item1,
+                'item2'         => $brandvariety->item2,
+                'item3'         => $brandvariety->item3,
+                'itemvalue1'    => $brandvariety->value1,
+                'itemvalue2'    => $brandvariety->value2,
+                'itemvalue3'    => $brandvariety->value3,
+            ];
+        }
 
         $commentratecount       = commentrate::whereCommentable_type('App\Product')->where('Commentable_id' ,$product_id)->whereApproved(1)->count();
-
 
         $cars = DB::table('car_products')
             ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
@@ -58,6 +83,9 @@ class ProductController extends Controller
                 'company_code'  => $product->company_code,
                 'description'   => $product->description,
                 'productgroup'  => $product->productgroup,
+                'brand'         => $brandi,
+                'brand_variety' => $brand_variety,
+
             ];
         }
         $tmp        = json_decode(json_encode($test), true);
@@ -71,37 +99,23 @@ class ProductController extends Controller
         }
         $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
         $subcomments            = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
-        if (trim($comments) != '[]' && trim($subcomments) != '[]') {
-            foreach ($comments as $comment) {
-                foreach ($subcomments as $subcomment) {
-                    if ($comment->id == $subcomment->parent_id) {
-                        $comt[] = [
-                            'phone' => $comment->phone,
-                            'comment' => $comment->comment,
-                            'created_at' => jdate($comment->created_at)->ago(),
-                            'subcomment' => $subcomts[] = [
-                                'phone' => $subcomment->phone,
-                                'comment' => $subcomment->comment,
-                                'created_at' => jdate($subcomment->created_at)->ago(),
-                            ],
-                        ];
-                    }
-                }
-            }
-        }elseif(trim($comments) != '[]' && trim($subcomments) == '[]'){
-            foreach ($comments as $comment) {
+
+        foreach ($subcomments as $subcomment) {
+                 $subcomts[] = [
+                    'phone' => $subcomment->phone,
+                    'comment' => $subcomment->comment,
+                    'created_at' => jdate($subcomment->created_at)->ago(),
+            ];
+        }
+
+        foreach ($comments as $comment) {
                 $comt[] = [
                     'phone' => $comment->phone,
                     'comment' => $comment->comment,
-                    'created_at' => jdate($comment->created_at)->ago()
+                    'created_at' => jdate($comment->created_at)->ago(),
+                    'subcoment' => $subcomts
                     ];
             }
-
-        }elseif(trim($comments) == '[]' && trim($subcomments) == '[]')
-        {
-            $comt = null;
-        }
-
 
         $response = [
             'products'          => $tmp,

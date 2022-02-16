@@ -31,7 +31,8 @@ class TechnicalunitController extends Controller
             ->get()
             ->toArray();
 
-        $image = [$technicals[0]['image'],$technicals[0]['image2'],$technicals[0]['image3']];
+        if ($technicals != []) {
+            $image = [$technicals[0]['image'], $technicals[0]['image2'], $technicals[0]['image3']];
 
 
         $technical_id      = Technical_unit::whereSlug($slug)->pluck('id');
@@ -43,6 +44,7 @@ class TechnicalunitController extends Controller
             ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'product_groups.related_service')
             ->whereIn('car_technical_groups.technical_id' ,$technical_id)
             ->get();
+
 
         $comments               = comment::whereCommentable_type('App\Technical_unit')->whereIn('Commentable_id'   ,$technical_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
         $subcomments            = comment::whereCommentable_type('App\Technical_unit')->whereIn('Commentable_id'   ,$technical_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
@@ -106,6 +108,29 @@ class TechnicalunitController extends Controller
             $comt = null;
         }
 
+
+            $status = true;
+            $message = 'success';
+
+
+        }else{
+
+            $technicals = null;
+            $image = null;
+            $technicalgroups = null;
+            $comt = null;
+            $comentratin = null;
+            $commentratecount = null;
+            $commentratequality = null;
+            $commentratevalue = null;
+            $commentrateinnovation = null;
+            $commentrateability = null;
+            $commentratedesign = null;
+            $commentratecomfort = null;
+            $status = false;
+            $message = 'faild';
+        }
+
         $response = [
               'technical_unit'          => $technicals
             , 'image'                   => $image
@@ -123,6 +148,6 @@ class TechnicalunitController extends Controller
 
         ];
 
-        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+        return Response::json(['ok' => $status ,'message' => $message ,'response'=>$response]);
     }
 }
