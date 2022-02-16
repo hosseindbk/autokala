@@ -107,15 +107,25 @@ class ProductController extends Controller
                     'created_at' => jdate($subcomment->created_at)->ago(),
             ];
         }
+        if ($subcomts != []) {
 
-        foreach ($comments as $comment) {
+            foreach ($comments as $comment) {
                 $comt[] = [
                     'phone' => $comment->phone,
                     'comment' => $comment->comment,
                     'created_at' => jdate($comment->created_at)->ago(),
                     'subcoment' => $subcomts
-                    ];
+                ];
             }
+        }else{
+            foreach ($comments as $comment) {
+                $comt[] = [
+                    'phone' => $comment->phone,
+                    'comment' => $comment->comment,
+                    'created_at' => jdate($comment->created_at)->ago(),
+                ];
+            }
+        }
 
         $response = [
             'products'          => $tmp,
