@@ -107,7 +107,7 @@ class ProductController extends Controller
                     'created_at' => jdate($subcomment->created_at)->ago(),
             ];
         }
-        if ($subcomts != []) {
+        if ($subcomts != '[]') {
 
             foreach ($comments as $comment) {
                 $comt[] = [
