@@ -100,6 +100,7 @@ class ProductController extends Controller
         $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
         $subcomments            = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
 
+        if (trim($subcomments) != '[]' && trim($comments) != '[]') {
         foreach ($subcomments as $subcomment) {
                  $subcomts[] = [
                     'phone' => $subcomment->phone,
@@ -107,7 +108,6 @@ class ProductController extends Controller
                     'created_at' => jdate($subcomment->created_at)->ago(),
             ];
         }
-        if ($subcomts != '[]') {
 
             foreach ($comments as $comment) {
                 $comt[] = [
@@ -117,7 +117,7 @@ class ProductController extends Controller
                     'subcoment' => $subcomts
                 ];
             }
-        }else{
+        }if (trim($subcomments) == '[]' && trim($comments) != '[]') {
             foreach ($comments as $comment) {
                 $comt[] = [
                     'phone' => $comment->phone,
@@ -125,6 +125,8 @@ class ProductController extends Controller
                     'created_at' => jdate($comment->created_at)->ago(),
                 ];
             }
+        }else{
+            $comt = null;
         }
 
         $response = [
