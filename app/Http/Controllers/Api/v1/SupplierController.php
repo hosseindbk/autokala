@@ -93,7 +93,7 @@ class SupplierController extends Controller
                             'comment' => $subcomment->comment,
                             'created_at' => jdate($subcomment->created_at)->ago(),
                         ];
-                          array_push($comt , $sub);
+                        $comt[$key] = ['answer'=>$sub];
                     }
 
                 }
