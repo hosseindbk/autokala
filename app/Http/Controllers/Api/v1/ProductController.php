@@ -35,20 +35,28 @@ class ProductController extends Controller
             ,'product_brand_varieties.value_item2 as value2','product_brand_varieties.value_item3 as value3')->whereStatus(4)->get();
         $brand_id           = Product_brand_variety::whereIn('Product_id' , $product_id)->whereStatus(4)->pluck('brand_id');
         $brands             = Brand::select('title_fa' , 'slug' , 'image')->whereIn('id' , $brand_id)->get();
-        foreach ($brands as $brand){
-            $brandi[] = [
-                'brand_name'    => $brand->title_fa,
-                'slug'          => $brand->slug,
-                'brand_image'   => $brand->image
+        if (trim($brands) != '[]') {
+            foreach ($brands as $brand) {
+                $brandi[] = [
+                    'brand_name' => $brand->title_fa,
+                    'slug' => $brand->slug,
+                    'brand_image' => $brand->image
 
-            ];
+                ];
+            }
+        }else{
+            $brandi = null;
         }
+        if (trim($brandvarieties) != '[]') {
         foreach ($brandvarieties as $brandvariety)
         {
             $brand_variety[] = [ 'key' => $brandvariety->item1 ,'value' => $brandvariety->value1];
             $brand_variety[] = [ 'key' => $brandvariety->item2 ,'value' => $brandvariety->value2];
             $brand_variety[] = [ 'key' => $brandvariety->item3 ,'value' => $brandvariety->value3];
 
+        }
+        }else{
+            $brand_variety = null;
         }
 
         $commentratecount       = commentrate::whereCommentable_type('App\Product')->where('Commentable_id' ,$product_id)->whereApproved(1)->count();
