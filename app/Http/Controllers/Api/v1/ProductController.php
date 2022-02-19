@@ -45,9 +45,9 @@ class ProductController extends Controller
         }
         foreach ($brandvarieties as $brandvariety)
         {
-            $brand_variety['1'] = [ $brandvariety->item1 , $brandvariety->value1];
-            $brand_variety['2'] = [ $brandvariety->item2 , $brandvariety->value2];
-            $brand_variety['3'] = [ $brandvariety->item3 , $brandvariety->value3];
+            $brand_variety['1'] = [ 'key' => $brandvariety->item1 ,'value' => $brandvariety->value1];
+            $brand_variety['2'] = [ 'key' => $brandvariety->item2 ,'value' => $brandvariety->value2];
+            $brand_variety['3'] = [ 'key' => $brandvariety->item3 ,'value' => $brandvariety->value3];
 
         }
 
