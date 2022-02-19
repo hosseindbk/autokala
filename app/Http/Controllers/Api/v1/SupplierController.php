@@ -76,35 +76,56 @@ class SupplierController extends Controller
             $commentratedesign = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('design');
             $commentratecomfort = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('comfort');
 
-            if (trim($comments) != '[]' && trim($subcomments) != '[]') {
-                foreach ($comments as $comment) {
-                    foreach ($subcomments as $subcomment) {
-                        if ($comment->id == $subcomment->parent_id) {
-                            $comt[] = [
-                                'phone' => $comment->phone,
-                                'comment' => $comment->comment,
-                                'created_at' => jdate($comment->created_at)->ago(),
-                                'subcomment' => $subcomts[] = [
-                                    'phone' => $subcomment->phone,
-                                    'comment' => $subcomment->comment,
-                                    'created_at' => jdate($subcomment->created_at)->ago(),
-                                ],
-                            ];
-                        }
-                    }
-                }
-            } elseif (trim($comments) != '[]' && trim($subcomments) == '[]') {
-                foreach ($comments as $comment) {
-                    $comt[] = [
-                        'phone' => $comment->phone,
-                        'comment' => $comment->comment,
-                        'created_at' => jdate($comment->created_at)->ago()
-                    ];
-                }
 
-            } elseif (trim($comments) == '[]' && trim($subcomments) == '[]') {
-                $comt = null;
+            foreach ($comments as $key => $comment) {
+                $comt[$key] = [
+                    'phone' => $comment->phone,
+                    'comment' => $comment->comment,
+                    'created_at' => jdate($comment->created_at)->ago(),
+
+                ];
+                foreach ($subcomments as $subcomment) {
+                    if ($comment->id == $subcomment->parent_id) {
+                        $subcomts[$key] = [
+                            'phone' => $subcomment->phone,
+                            'comment' => $subcomment->comment,
+                            'created_at' => jdate($subcomment->created_at)->ago(),
+                        ];
+                    }
+
+                }
             }
+
+
+//            if (trim($comments) != '[]' && trim($subcomments) != '[]') {
+//                foreach ($comments as $comment) {
+//                    foreach ($subcomments as $subcomment) {
+//                        if ($comment->id == $subcomment->parent_id) {
+//                            $comt[] = [
+//                                'phone' => $comment->phone,
+//                                'comment' => $comment->comment,
+//                                'created_at' => jdate($comment->created_at)->ago(),
+//                                'subcomment' => $subcomts[] = [
+//                                    'phone' => $subcomment->phone,
+//                                    'comment' => $subcomment->comment,
+//                                    'created_at' => jdate($subcomment->created_at)->ago(),
+//                                ],
+//                            ];
+//                        }
+//                    }
+//                }
+//            } elseif (trim($comments) != '[]' && trim($subcomments) == '[]') {
+//                foreach ($comments as $comment) {
+//                    $comt[] = [
+//                        'phone' => $comment->phone,
+//                        'comment' => $comment->comment,
+//                        'created_at' => jdate($comment->created_at)->ago()
+//                    ];
+//                }
+//
+//            } elseif (trim($comments) == '[]' && trim($subcomments) == '[]') {
+//                $comt = null;
+//            }
 
             $status = true;
             $message = 'success';
