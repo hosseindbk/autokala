@@ -86,7 +86,7 @@ class SupplierController extends Controller
                 ];
                 foreach ($subcomments as $subcomment) {
                     if ($comment->id == $subcomment->parent_id) {
-                        $subcomts[$key] = [
+                        $comt[$key] = $subcomts[$key] = [
                             'phone' => $subcomment->phone,
                             'comment' => $subcomment->comment,
                             'created_at' => jdate($subcomment->created_at)->ago(),
