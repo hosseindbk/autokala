@@ -121,7 +121,7 @@ class ProductController extends Controller
                     'subcoment' => $subcomts
                 ];
             }
-        }if (trim($subcomments) == '[]' && trim($comments) != '[]') {
+        }elseif (trim($subcomments) == '[]' && trim($comments) != '[]') {
             foreach ($comments as $comment) {
                 $comt[] = [
                     'phone' => $comment->phone,

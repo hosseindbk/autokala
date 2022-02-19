@@ -76,37 +76,34 @@ class TechnicalunitController extends Controller
         $commentratedesign      = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('design');
         $commentratecomfort     = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('comfort');
 
-
-        if (trim($comments) != '[]' && trim($subcomments) != '[]') {
-            foreach ($comments as $comment) {
+            if (trim($subcomments) != '[]' && trim($comments) != '[]') {
                 foreach ($subcomments as $subcomment) {
-                    if ($comment->id == $subcomment->parent_id) {
-                        $comt[] = [
-                            'phone' => $comment->phone,
-                            'comment' => $comment->comment,
-                            'created_at' => jdate($comment->created_at)->ago(),
-                            'subcomment' => $subcomts[] = [
-                                'phone' => $subcomment->phone,
-                                'comment' => $subcomment->comment,
-                                'created_at' => jdate($subcomment->created_at)->ago(),
-                            ],
-                        ];
-                    }
+                    $subcomts[] = [
+                        'phone' => $subcomment->phone,
+                        'comment' => $subcomment->comment,
+                        'created_at' => jdate($subcomment->created_at)->ago(),
+                    ];
                 }
-            }
-        }elseif(trim($comments) != '[]' && trim($subcomments) == '[]'){
-            foreach ($comments as $comment) {
-                $comt[] = [
-                    'phone' => $comment->phone,
-                    'comment' => $comment->comment,
-                    'created_at' => jdate($comment->created_at)->ago()
-                ];
-            }
 
-        }elseif(trim($comments) == '[]' && trim($subcomments) == '[]')
-        {
-            $comt = [];
-        }
+                foreach ($comments as $comment) {
+                    $comt[] = [
+                        'phone' => $comment->phone,
+                        'comment' => $comment->comment,
+                        'created_at' => jdate($comment->created_at)->ago(),
+                        'subcoment' => $subcomts
+                    ];
+                }
+            }elseif (trim($subcomments) == '[]' && trim($comments) != '[]') {
+                foreach ($comments as $comment) {
+                    $comt[] = [
+                        'phone' => $comment->phone,
+                        'comment' => $comment->comment,
+                        'created_at' => jdate($comment->created_at)->ago(),
+                    ];
+                }
+            }else{
+                $comt = [];
+            }
 
 
             $status = true;
