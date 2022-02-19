@@ -78,7 +78,7 @@ class SupplierController extends Controller
 
 
             foreach ($comments as $key => $comment) {
-                $comt[$key] = [
+                $comt[] = [
                     'phone' => $comment->phone,
                     'comment' => $comment->comment,
                     'created_at' => jdate($comment->created_at)->ago(),
@@ -86,14 +86,12 @@ class SupplierController extends Controller
                 ];
                 foreach ($subcomments as $subcomment) {
                     if ($comment->id == $subcomment->parent_id) {
-
-
                           $sub =  $subcomts[$key] = [
                             'phone' => $subcomment->phone,
                             'comment' => $subcomment->comment,
                             'created_at' => jdate($subcomment->created_at)->ago(),
                         ];
-                        $comt[$key] = ['answer'=>$sub];
+                        $comt[] = ['answer'=>$sub];
                     }
 
                 }
