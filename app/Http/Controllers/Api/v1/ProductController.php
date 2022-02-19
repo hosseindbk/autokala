@@ -45,14 +45,10 @@ class ProductController extends Controller
         }
         foreach ($brandvarieties as $brandvariety)
         {
-            $brand_variety[] = [
-                'key1'       => $brandvariety->item1,
-                'value1'     => $brandvariety->value1,
-                'key2'       => $brandvariety->item2,
-                'value2'     => $brandvariety->value2,
-                'key3'       => $brandvariety->item3,
-                'value3'     => $brandvariety->value3,
-            ];
+            $brand_variety['1'] = [ $brandvariety->item1 , $brandvariety->value1];
+            $brand_variety['2'] = [ $brandvariety->item2 , $brandvariety->value2];
+            $brand_variety['3'] = [ $brandvariety->item3 , $brandvariety->value3];
+
         }
 
         $commentratecount       = commentrate::whereCommentable_type('App\Product')->where('Commentable_id' ,$product_id)->whereApproved(1)->count();
