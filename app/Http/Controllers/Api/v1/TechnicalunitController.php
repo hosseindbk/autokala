@@ -66,7 +66,7 @@ class TechnicalunitController extends Controller
                 ];
             }
         }else{
-            $comentratin = null ;
+            $comentratin = [] ;
         }
         $commentratecount       = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->count();
         $commentratequality     = commentrate::whereCommentable_type('App\Technical_unit')->where('Commentable_id' ,$technical_id)->whereApproved(1)->avg('quality');
@@ -105,7 +105,7 @@ class TechnicalunitController extends Controller
 
         }elseif(trim($comments) == '[]' && trim($subcomments) == '[]')
         {
-            $comt = null;
+            $comt = [];
         }
 
 
@@ -115,18 +115,18 @@ class TechnicalunitController extends Controller
 
         }else{
 
-            $technicals = null;
-            $image = null;
-            $technicalgroups = null;
-            $comt = null;
-            $comentratin = null;
-            $commentratecount = null;
-            $commentratequality = null;
-            $commentratevalue = null;
-            $commentrateinnovation = null;
-            $commentrateability = null;
-            $commentratedesign = null;
-            $commentratecomfort = null;
+            $technicals = [];
+            $image = [];
+            $technicalgroups = [];
+            $comt = [];
+            $comentratin = [];
+            $commentratecount = [];
+            $commentratequality = [];
+            $commentratevalue = [];
+            $commentrateinnovation = [];
+            $commentrateability = [];
+            $commentratedesign = [];
+            $commentratecomfort = [];
             $status = false;
             $message = 'faild';
         }

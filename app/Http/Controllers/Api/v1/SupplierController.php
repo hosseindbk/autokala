@@ -65,7 +65,7 @@ class SupplierController extends Controller
                     ];
                 }
             } else {
-                $comentratin = null;
+                $comentratin = [];
             }
 
             $commentratecount = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->count();
@@ -125,7 +125,7 @@ class SupplierController extends Controller
                 }
 
             } elseif (trim($comments) == '[]' && trim($subcomments) == '[]') {
-                $comt = null;
+                $comt = [];
             }
 
             $status = true;
@@ -134,18 +134,18 @@ class SupplierController extends Controller
 
         }else{
 
-            $suppliers = null;
-            $image = null;
-            $suppliergroups = null;
-            $comt = null;
-            $comentratin = null;
-            $commentratecount = null;
-            $commentratequality = null;
-            $commentratevalue = null;
-            $commentrateinnovation = null;
-            $commentrateability = null;
-            $commentratedesign = null;
-            $commentratecomfort = null;
+            $suppliers = [];
+            $image = [];
+            $suppliergroups = [];
+            $comt = [];
+            $comentratin = [];
+            $commentratecount = [];
+            $commentratequality = [];
+            $commentratevalue = [];
+            $commentrateinnovation = [];
+            $commentrateability = [];
+            $commentratedesign = [];
+            $commentratecomfort = [];
             $status = false;
             $message = 'faild';
         }

@@ -45,7 +45,7 @@ class ProductController extends Controller
                 ];
             }
         }else{
-            $brandi = null;
+            $brandi = [];
         }
         if (trim($brandvarieties) != '[]') {
         foreach ($brandvarieties as $brandvariety)
@@ -56,7 +56,7 @@ class ProductController extends Controller
 
         }
         }else{
-            $brand_variety = null;
+            $brand_variety = [];
         }
 
         $commentratecount       = commentrate::whereCommentable_type('App\Product')->where('Commentable_id' ,$product_id)->whereApproved(1)->count();
@@ -130,7 +130,7 @@ class ProductController extends Controller
                 ];
             }
         }else{
-            $comt = null;
+            $comt = [];
         }
 
         $response = [
