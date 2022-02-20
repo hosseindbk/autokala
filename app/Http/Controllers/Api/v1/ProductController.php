@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\comment;
 use App\commentrate;
-use App\Country;
 use App\Http\Controllers\Controller;
 use App\Media;
 use App\Product;
@@ -30,13 +29,14 @@ class ProductController extends Controller
     public function subproduct($slug){
 
         $product_id         = Product::whereSlug($slug)->pluck('id');
-        $countris           = Country::all();
+        $brand_id           = Product_brand_variety::whereIn('product_id' , $product_id)->pluck('brand_id');
         $brandvarieties     = Product_brand_variety::whereIn('product_id' , $product_id)->select('product_brand_varieties.item1 as item1'
             ,'product_brand_varieties.item2 as item2','product_brand_varieties.item3 as item3','product_brand_varieties.value_item1 as value1'
             ,'product_brand_varieties.value_item2 as value2','product_brand_varieties.value_item3 as value3' , 'product_brand_varieties.brand_id as brandid')->whereStatus(4)->get();
         $brands = DB::table('brands')
             ->leftJoin('countries', 'countries.id', '=', 'brands.country_id')
             ->select('brands.id as id' ,'brands.title_fa as title_fa' , 'brands.slug as slug' , 'brands.image as image' , 'countries.name as country')
+            ->whereIn('brands.id' , $brand_id )
             ->get();
 
         if (trim($brandvarieties) != '[]' && trim($brands) != '[]') {
