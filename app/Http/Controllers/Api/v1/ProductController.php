@@ -101,7 +101,7 @@ class ProductController extends Controller
         }
             $tmp['product-image'] = $medis;
         }else{
-            $tmp['product-image'] = null;
+            $tmp['product-image'] = [];
         }
 
         $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
