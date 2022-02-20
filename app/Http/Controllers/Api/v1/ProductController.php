@@ -61,22 +61,18 @@ class ProductController extends Controller
             }
             elseif(trim($brands) != '[]' && trim($brandvarieties) == '[]'){
                 foreach ($brands as $brand) {
-                    foreach ($countris as $country){
-                        if ($country->id == $brand->country_id){
                             $brandi[] = [
                                 'brand_name'    => $brand->title_fa,
-                                'country'       => $country->title_fa,
+                                'country'       => $brand->country,
                                 'guarantee'     => null,
                                 'slug'          => $brand->slug,
                                 'brand_image'   => $brand->image,
                                 'brand_variety' => []
                             ];
                         }
+                    }else{
+                    $brandi = [];
                     }
-                }
-            }else{
-            $brandi = [];
-            }
 
 
         $commentratecount       = commentrate::whereCommentable_type('App\Product')->where('Commentable_id' ,$product_id)->whereApproved(1)->count();
