@@ -99,6 +99,8 @@ class TechnicalunitController extends Controller
                         'phone' => $comment->phone,
                         'comment' => $comment->comment,
                         'created_at' => jdate($comment->created_at)->ago(),
+                        'subcoment' => []
+
                     ];
                 }
             }else{
