@@ -96,13 +96,16 @@ class ProductController extends Controller
         }
         $tmp        = json_decode(json_encode($test), true);
         $medias     = Media::select('image')->whereIn('product_id' , $product_id)->get();
+
         if (trim($medias) != '[]') {
         foreach ($medias as $media){
             $medis[]  =  $media->image;
         }
-
             $tmp['product-image'] = $medis;
+        }else{
+            $tmp['product-image'] = [];
         }
+
         $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
         $subcomments            = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
 
