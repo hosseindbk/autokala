@@ -49,11 +49,11 @@ class ProductController extends Controller
                                 'country'       => $brand->country,
                                 'slug'          => $brand->slug,
                                 'brand_image'   => $brand->image,
-                                'brand_variety' => [
-                                    $brand_variety[] = ['key' => $brandvariety->item1, 'value' => $brandvariety->value1],
-                                    $brand_variety[] = ['key' => $brandvariety->item2, 'value' => $brandvariety->value2],
-                                    $brand_variety[] = ['key' => $brandvariety->item3, 'value' => $brandvariety->value3]
-                                ]
+//                                'brand_variety' => [
+//                                    $brand_variety[] = ['key' => $brandvariety->item1, 'value' => $brandvariety->value1],
+//                                    $brand_variety[] = ['key' => $brandvariety->item2, 'value' => $brandvariety->value2],
+//                                    $brand_variety[] = ['key' => $brandvariety->item3, 'value' => $brandvariety->value3]
+//                                ]
                             ];
                         }
                     }
