@@ -74,15 +74,16 @@ class ProductController extends Controller
                     $brandi = [];
                     }
 
-
-        $commentratecount       = commentrate::whereCommentable_type('App\Product')->where('Commentable_id' ,$product_id)->whereApproved(1)->count();
-
         $cars = DB::table('car_products')
             ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
             ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
             ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
             ->whereIn('product_id'  , $product_id)
             ->get();
+
+        $commentratecount       = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id' , $brand_id)->whereApproved(1)->count();
+        $commentrates           = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id' , $brand_id)->select('name', 'phone', 'quality', 'value', 'innovation', 'ability', 'design', 'comfort', 'comment', 'created_at')->whereApproved(1)->latest()->get();
+
 
         $products = DB::table('products')
             ->leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
@@ -94,15 +95,16 @@ class ProductController extends Controller
         foreach ($products as $product) {
 
             $test = [
-                'unicode'       => $product->unicode,
-                'slug'          => $product->slug,
-                'hs'            => $product->hs,
-                'oem'           => $product->oem,
-                'image'         => $product->image,
-                'title'         => $product->title,
-                'title_en'      => $product->title_en,
-                'title_bazar'   => $product->title_bazar,
-                'company_code'  => $product->company_code,
+                'unicode'           => $product->unicode,
+                'slug'              => $product->slug,
+                'hs'                => $product->hs,
+                'oem'               => $product->oem,
+                'image'             => $product->image,
+                'title'             => $product->title,
+                'title_en'          => $product->title_en,
+                'title_bazar'       => $product->title_bazar,
+                'company_code'      => $product->company_code,
+                'commentratecount'  => $commentratecount,
                 'specific' => [
                     ['key' => $product->title_specific1, 'value' => $product->specific1],
                     ['key' => $product->title_specific2, 'value' => $product->specific2],
@@ -127,8 +129,8 @@ class ProductController extends Controller
             $tmp['product-image'] = [];
         }
 
-        $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
-        $subcomments            = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$product_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
+        $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$brand_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
+        $subcomments            = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$brand_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
 
         if (trim($subcomments) != '[]' && trim($comments) != '[]') {
         foreach ($subcomments as $subcomment) {
@@ -164,7 +166,6 @@ class ProductController extends Controller
             'products'          => $tmp,
             'cars'              => $cars,
             'comment'           => $comt,
-            'commentratecount'  => $commentratecount,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response ]);
     }

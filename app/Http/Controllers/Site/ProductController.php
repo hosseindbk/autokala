@@ -141,27 +141,12 @@ class ProductController extends Controller
 
 
         $comments               = comment::whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
-        $commentrates           = commentrate::whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
-        $commentratecount       = commentrate::whereCommentable_id($product_id)->whereApproved(1)->count();
-        $commentratequality     = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('quality');
-        $commentratevalue       = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('value');
-        $commentrateinnovation  = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('innovation');
-        $commentrateability     = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('ability');
-        $commentratedesign      = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('design');
-        $commentratecomfort     = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('comfort');
+
 
         return view('Site.subproduct')
             ->with(compact('productvarieties'))
             ->with(compact('countState'))
             ->with(compact('countries'))
-            ->with(compact('commentratequality'))
-            ->with(compact('commentratevalue'))
-            ->with(compact('commentrateinnovation'))
-            ->with(compact('commentrateability'))
-            ->with(compact('commentratedesign'))
-            ->with(compact('commentratecomfort'))
-            ->with(compact('commentratecount'))
-            ->with(compact('commentrates'))
             ->with(compact('menus'))
             ->with(compact('states'))
             ->with(compact('brands'))
