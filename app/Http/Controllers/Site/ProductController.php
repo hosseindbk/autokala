@@ -193,15 +193,15 @@ class ProductController extends Controller
         $productbrandvarieties  = Product_brand_variety::whereId($id)->get();
         $brand_id               = Product_brand_variety::whereId($id)->pluck('brand_id');
         $brandproducts          = Brand::whereId($brand_id)->get();
-        $comments               = comment::whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
-        $commentrates           = commentrate::whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
-        $commentratecount       = commentrate::whereCommentable_id($product_id)->whereApproved(1)->count();
-        $commentratequality     = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('quality');
-        $commentratevalue       = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('value');
-        $commentrateinnovation  = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('innovation');
-        $commentrateability     = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('ability');
-        $commentratedesign      = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('design');
-        $commentratecomfort     = commentrate::whereCommentable_id($product_id)->whereApproved(1)->avg('comfort');
+        $comments               = comment::whereCommentable_id($product_id)->whereCommentable_type('App\Product_brand_variety')->whereApproved(1)->latest()->get();
+        $commentrates           = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
+        $commentratecount       = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($product_id)->whereApproved(1)->count();
+        $commentratequality     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($product_id)->whereApproved(1)->avg('quality');
+        $commentratevalue       = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($product_id)->whereApproved(1)->avg('value');
+        $commentrateinnovation  = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($product_id)->whereApproved(1)->avg('innovation');
+        $commentrateability     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($product_id)->whereApproved(1)->avg('ability');
+        $commentratedesign      = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($product_id)->whereApproved(1)->avg('design');
+        $commentratecomfort     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($product_id)->whereApproved(1)->avg('comfort');
 
         return view('Site.productbrand')
             ->with(compact('countState'))
