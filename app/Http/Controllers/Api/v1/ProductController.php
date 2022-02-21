@@ -104,9 +104,9 @@ class ProductController extends Controller
                 'title_bazar'   => $product->title_bazar,
                 'company_code'  => $product->company_code,
                 'specific' => [
-                    $product[] = ['key' => $product->title_specific1, 'value' => $product->specific1],
-                    $product[] = ['key' => $product->title_specific2, 'value' => $product->specific2],
-                    $product[] = ['key' => $product->title_specific3, 'value' => $product->specific3]
+                    ['key' => $product->title_specific1, 'value' => $product->specific1],
+                    ['key' => $product->title_specific2, 'value' => $product->specific2],
+                    ['key' => $product->title_specific3, 'value' => $product->specific3]
                 ],
 
                 'description'   => $product->description,
