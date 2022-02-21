@@ -88,7 +88,7 @@ class ProductController extends Controller
             ->leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
             ->select('products.unicode as unicode' , 'products.slug as slug' , 'products.image as image' , 'products.title_fa as title' , 'products.title_en as title_en' ,
                 'products.title_bazar_fa as title_bazar' , 'products.code_fani_company as company_code' , 'products.description as description' , 'product_groups.title_fa as productgroup'
-            ,'products.created_at as created_at' , 'products.hs as hs' , 'products.oem as oem')
+            ,'products.created_at as created_at' , 'products.hs as hs' , 'products.oem as oem' , 'title_specific1' , 'title_specific2' , 'title_specific3' , 'specific1' , 'specific2' , 'specific3')
             ->whereSlug($slug)
             ->get();
         foreach ($products as $product) {
@@ -103,6 +103,12 @@ class ProductController extends Controller
                 'title_en'      => $product->title_en,
                 'title_bazar'   => $product->title_bazar,
                 'company_code'  => $product->company_code,
+                'key1'          => $product->title_specific1,
+                'value1'        => $product->specific1,
+                'key2'          => $product->title_specific2,
+                'value2'        => $product->specific2,
+                'key3'          => $product->title_specific3,
+                'value3'        => $product->specific3,
                 'description'   => $product->description,
                 'productgroup'  => $product->productgroup,
                 'brand'         => $brandi,

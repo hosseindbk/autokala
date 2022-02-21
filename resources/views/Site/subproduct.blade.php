@@ -197,35 +197,35 @@
                                                     <span>{{$product->specific1}}</span>
                                                 </li>
                                                 @endif
-                                                @if(! $product->title_specific1 == null)
+                                                @if(! $product->title_specific2 == null)
                                                 <li>
                                                     <span>{{$product->title_specific2}}</span>
                                                     :
                                                     <span>{{$product->specific2}}</span>
                                                 </li>
                                                 @endif
-                                                @if(! $product->title_specific1 == null)
+                                                @if(! $product->title_specific3 == null)
                                                 <li>
                                                     <span>{{$product->title_specific3}}</span>
                                                     :
                                                     <span>{{$product->specific3}}</span>
                                                 </li>
                                                 @endif
-                                                @if(! $product->title_specific1 == null)
+                                                @if(! $product->title_specific4 == null)
                                                 <li>
                                                     <span>{{$product->title_specific4}}</span>
                                                     :
                                                     <span>{{$product->specific4}}</span>
                                                 </li>
                                                 @endif
-                                                @if(! $product->title_specific1 == null)
+                                                @if(! $product->title_specific5 == null)
                                                 <li>
                                                     <span>{{$product->title_specific5}}</span>
                                                     :
                                                     <span>{{$product->specific5}}</span>
                                                 </li>
                                                 @endif
-                                                @if(! $product->title_specific1 == null)
+                                                @if(! $product->title_specific6 == null)
                                                 <li>
                                                     <span>{{$product->title_specific6}}</span>
                                                     :
