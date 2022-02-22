@@ -39,12 +39,12 @@ class ProductController extends Controller
                 ->select('brands.id as id', 'brands.title_fa as title_fa', 'brands.slug as slug', 'brands.image as image', 'countries.name as country')
                 ->whereIn('brands.id', $brand_id)
                 ->get();
-            $commentratequality = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('quality');
-            $commentratevalue = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('value');
-            $commentrateinnovation = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('innovation');
-            $commentrateability = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('ability');
-            $commentratedesign = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('design');
-            $commentratecomfort = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('comfort');
+            $commentratequality     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('quality');
+            $commentratevalue       = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('value');
+            $commentrateinnovation  = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('innovation');
+            $commentrateability     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('ability');
+            $commentratedesign      = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('design');
+            $commentratecomfort     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('comfort');
 
             $avgcommentrate = ((int)$commentratequality + (int)$commentratevalue + (int)$commentrateinnovation + (int)$commentrateability + (int)$commentratedesign + (int)$commentratecomfort) / 6;
 
@@ -53,12 +53,12 @@ class ProductController extends Controller
                     foreach ($brands as $brand) {
                         if ($brandvariety->brandid == $brand->id) {
                             $brandi[] = [
-                                'brand_name' => $brand->title_fa,
-                                'guarantee' => $brandvariety->guarantee,
-                                'country' => $brand->country,
-                                'avgcommentrate' => $avgcommentrate,
-                                'slug' => $brand->slug,
-                                'brand_image' => $brand->image,
+                                'brand_name'        => $brand->title_fa,
+                                'guarantee'         => $brandvariety->guarantee,
+                                'country'           => $brand->country,
+                                'avgcommentrate'    => $avgcommentrate,
+                                'slug'              => $brand->slug,
+                                'brand_image'       => $brand->image,
 //                                'brand_variety' => [
 //                                    $brand_variety[] = ['key' => $brandvariety->item1, 'value' => $brandvariety->value1],
 //                                    $brand_variety[] = ['key' => $brandvariety->item2, 'value' => $brandvariety->value2],
@@ -71,12 +71,12 @@ class ProductController extends Controller
             } elseif (trim($brands) != '[]' && trim($brandvarieties) == '[]') {
                 foreach ($brands as $brand) {
                     $brandi[] = [
-                        'brand_name' => $brand->title_fa,
-                        'country' => $brand->country,
-                        'guarantee' => null,
-                        'avgcommentrate' => $avgcommentrate,
-                        'slug' => $brand->slug,
-                        'brand_image' => $brand->image,
+                        'brand_name'        => $brand->title_fa,
+                        'country'           => $brand->country,
+                        'guarantee'         => null,
+                        'avgcommentrate'    => $avgcommentrate,
+                        'slug'              => $brand->slug,
+                        'brand_image'       => $brand->image,
                         'brand_variety' => []
                     ];
                 }
@@ -164,17 +164,19 @@ class ProductController extends Controller
                     foreach ($subcomments as $subcomment) {
                         if ($subcomment->parent_id == $comment->id) {
                             $answer[] = [
-                                'phone' => $subcomment->phone,
-                                'comment' => $subcomment->comment,
-                                'created_at' => jdate($subcomment->created_at)->ago(),
+                                'name'          => $subcomment->name,
+                                'phone'         => $subcomment->phone,
+                                'comment'       => $subcomment->comment,
+                                'created_at'    => jdate($subcomment->created_at)->ago(),
                             ];
                         }
                     }
                     $comt[] = [
-                        'phone' => $comment->phone,
-                        'comment' => $comment->comment,
-                        'created_at' => jdate($comment->created_at)->ago(),
-                        'answer' => $answer
+                        'name'          => $comment->name,
+                        'phone'         => $comment->phone,
+                        'comment'       => $comment->comment,
+                        'created_at'    => jdate($comment->created_at)->ago(),
+                        'answer'        => $answer
                     ];
                 }
             } else {

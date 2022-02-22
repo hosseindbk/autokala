@@ -82,16 +82,18 @@ class TechnicalunitController extends Controller
                     foreach ($subcomments as  $subcomment) {
                         if ($subcomment->parent_id == $comment->id) {
                             $answer[] = [
-                                'phone' => $subcomment->phone,
-                                'comment' => $subcomment->comment,
-                                'created_at' => jdate($subcomment->created_at)->ago(),
+                                'name'          => $subcomment->name,
+                                'phone'         => $subcomment->phone,
+                                'comment'       => $subcomment->comment,
+                                'created_at'    => jdate($subcomment->created_at)->ago(),
                             ];
                         }
                     }
                     $comt[] = [
-                        'phone' => $comment->phone,
-                        'comment' => $comment->comment,
-                        'created_at' => jdate($comment->created_at)->ago(),
+                        'name'          => $comment->name,
+                        'phone'         => $comment->phone,
+                        'comment'       => $comment->comment,
+                        'created_at'    => jdate($comment->created_at)->ago(),
                         'answer'        => $answer
                     ];
                 }
