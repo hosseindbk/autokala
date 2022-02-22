@@ -135,11 +135,7 @@ class ProductController extends Controller
                     'title_en' => $product->title_en,
                     'title_bazar' => $product->title_bazar,
                     'company_code' => $product->company_code,
-                    'specific' => [
-                        ['key' => $product->title_specific1, 'value' => $product->specific1],
-                        ['key' => $product->title_specific2, 'value' => $product->specific2],
-                        ['key' => $product->title_specific3, 'value' => $product->specific3]
-                    ],
+                    'specific' => [],
 
                     'description' => $product->description,
                     'productgroup' => $product->productgroup,
