@@ -100,28 +100,53 @@ class ProductController extends Controller
             ->whereSlug($slug)
             ->get();
         foreach ($products as $product) {
+            if ($product->title_specific1 != null) {
+                $test = [
+                    'unicode' => $product->unicode,
+                    'slug' => $product->slug,
+                    'hs' => $product->hs,
+                    'oem' => $product->oem,
+                    'image' => $product->image,
+                    'title' => $product->title,
+                    'title_en' => $product->title_en,
+                    'title_bazar' => $product->title_bazar,
+                    'company_code' => $product->company_code,
+                    'specific' => [
+                        ['key' => $product->title_specific1, 'value' => $product->specific1],
+                        ['key' => $product->title_specific2, 'value' => $product->specific2],
+                        ['key' => $product->title_specific3, 'value' => $product->specific3]
+                    ],
 
-            $test = [
-                'unicode'           => $product->unicode,
-                'slug'              => $product->slug,
-                'hs'                => $product->hs,
-                'oem'               => $product->oem,
-                'image'             => $product->image,
-                'title'             => $product->title,
-                'title_en'          => $product->title_en,
-                'title_bazar'       => $product->title_bazar,
-                'company_code'      => $product->company_code,
-                'specific' => [
-                    ['key' => $product->title_specific1, 'value' => $product->specific1],
-                    ['key' => $product->title_specific2, 'value' => $product->specific2],
-                    ['key' => $product->title_specific3, 'value' => $product->specific3]
-                ],
+                    'description' => $product->description,
+                    'productgroup' => $product->productgroup,
+                    'brand' => $brandi,
 
-                'description'   => $product->description,
-                'productgroup'  => $product->productgroup,
-                'brand'         => $brandi,
+                ];
 
-            ];
+            } elseif ($product->title_specific1 == null) {
+
+                $test = [
+                    'unicode' => $product->unicode,
+                    'slug' => $product->slug,
+                    'hs' => $product->hs,
+                    'oem' => $product->oem,
+                    'image' => $product->image,
+                    'title' => $product->title,
+                    'title_en' => $product->title_en,
+                    'title_bazar' => $product->title_bazar,
+                    'company_code' => $product->company_code,
+                    'specific' => [
+                        ['key' => $product->title_specific1, 'value' => $product->specific1],
+                        ['key' => $product->title_specific2, 'value' => $product->specific2],
+                        ['key' => $product->title_specific3, 'value' => $product->specific3]
+                    ],
+
+                    'description' => $product->description,
+                    'productgroup' => $product->productgroup,
+                    'brand' => $brandi,
+
+                ];
+            }
         }
         $tmp        = json_decode(json_encode($test), true);
         $medias     = Media::select('image')->whereIn('product_id' , $product_id)->get();
