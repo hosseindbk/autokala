@@ -81,9 +81,14 @@ class ProductController extends Controller
             ->whereIn('product_id'  , $product_id)
             ->get();
 
-        $commentratecount       = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id' , $brand_id)->whereApproved(1)->count();
-        $commentrates           = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id' , $brand_id)->select('name', 'phone', 'quality', 'value', 'innovation', 'ability', 'design', 'comfort', 'comment', 'created_at')->whereApproved(1)->latest()->get();
+        $commentratequality     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('quality');
+        $commentratevalue       = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('value');
+        $commentrateinnovation  = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('innovation');
+        $commentrateability     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('ability');
+        $commentratedesign      = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('design');
+        $commentratecomfort     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('comfort');
 
+        $avgcommentrate    = ((int)$commentratequality + (int)$commentratevalue + (int)$commentrateinnovation + (int)$commentrateability + (int)$commentratedesign + (int)$commentratecomfort) / 6;
 
         $products = DB::table('products')
             ->leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
@@ -104,7 +109,7 @@ class ProductController extends Controller
                 'title_en'          => $product->title_en,
                 'title_bazar'       => $product->title_bazar,
                 'company_code'      => $product->company_code,
-                'commentratecount'  => $commentratecount,
+                'avgcommentrate'    => $avgcommentrate,
                 'specific' => [
                     ['key' => $product->title_specific1, 'value' => $product->specific1],
                     ['key' => $product->title_specific2, 'value' => $product->specific2],

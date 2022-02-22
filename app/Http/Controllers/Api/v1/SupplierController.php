@@ -45,21 +45,21 @@ class SupplierController extends Controller
                 ->whereIn('supplier_product_groups.supplier_id', $supplier_id)
                 ->get();
 
-            $comments = comment::whereCommentable_type('App\Supplier')->whereIn('Commentable_id', $supplier_id)->select('phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
-            $subcomments = comment::whereCommentable_type('App\Supplier')->whereIn('Commentable_id', $supplier_id)->select('phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
-            $commentrates = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->select('name', 'phone', 'quality', 'value', 'innovation', 'ability', 'design', 'comfort', 'comment', 'created_at')->whereApproved(1)->latest()->get();
+            $comments       = comment::whereCommentable_type('App\Supplier')->whereIn('Commentable_id', $supplier_id)->select('phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
+            $subcomments    = comment::whereCommentable_type('App\Supplier')->whereIn('Commentable_id', $supplier_id)->select('phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
+            $commentrates   = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->select('name', 'phone', 'quality', 'value', 'innovation', 'ability', 'design', 'comfort', 'comment', 'created_at')->whereApproved(1)->latest()->get();
             if (trim($commentrates) != '[]') {
                 foreach ($commentrates as $commentrate) {
                     $comentratin = [
-                        'name' => $commentrate->name,
-                        'phone' => $commentrate->phone,
-                        'quality' => $commentrate->quality,
-                        'value' => $commentrate->value,
-                        'innovation' => $commentrate->innovation,
-                        'ability' => $commentrate->ability,
-                        'design' => $commentrate->design,
-                        'comfort' => $commentrate->comfort,
-                        'comment' => $commentrate->comment,
+                        'name'          => $commentrate->name,
+                        'phone'         => $commentrate->phone,
+                        'quality'       => $commentrate->quality,
+                        'value'         => $commentrate->value,
+                        'innovation'    => $commentrate->innovation,
+                        'ability'       => $commentrate->ability,
+                        'design'        => $commentrate->design,
+                        'comfort'       => $commentrate->comfort,
+                        'comment'       => $commentrate->comment,
                         'avgcommentrate' => ((int)$commentrate->quality + (int)$commentrate->value + (int)$commentrate->innovation + (int)$commentrate->ability + (int)$commentrate->design + (int)$commentrate->comfort) / 6,
                         'created_at' => jdate($commentrate->created_at)->ago()
                     ];
@@ -68,13 +68,13 @@ class SupplierController extends Controller
                 $comentratin = [];
             }
 
-            $commentratecount = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->count();
-            $commentratequality = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('quality');
-            $commentratevalue = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('value');
-            $commentrateinnovation = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('innovation');
-            $commentrateability = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('ability');
-            $commentratedesign = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('design');
-            $commentratecomfort = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('comfort');
+            $commentratecount       = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->count();
+            $commentratequality     = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('quality');
+            $commentratevalue       = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('value');
+            $commentrateinnovation  = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('innovation');
+            $commentrateability     = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('ability');
+            $commentratedesign      = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('design');
+            $commentratecomfort     = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('comfort');
 
             if (trim($subcomments) != '[]' && trim($comments) != '[]') {
                 foreach ($subcomments as $subcomment) {
