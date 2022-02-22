@@ -76,35 +76,27 @@ class SupplierController extends Controller
             $commentratedesign      = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('design');
             $commentratecomfort     = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->whereApproved(1)->avg('comfort');
 
-            if (trim($subcomments) != '[]' && trim($comments) != '[]') {
-                foreach ($subcomments as $subcomment) {
-                    $subcomts[] = [
-                        'phone' => $subcomment->phone,
-                        'comment' => $subcomment->comment,
-                        'created_at' => jdate($subcomment->created_at)->ago(),
-                    ];
-                }
-
+            if (trim($comments) != '[]') {
                 foreach ($comments as $comment) {
+                    $answer = [];
+                    foreach ($subcomments as  $subcomment) {
+                        if ($subcomment->parent_id == $comment->id) {
+                            $answer[] = [
+                                'phone' => $subcomment->phone,
+                                'comment' => $subcomment->comment,
+                                'created_at' => jdate($subcomment->created_at)->ago(),
+                            ];
+                        }
+                    }
                     $comt[] = [
                         'phone' => $comment->phone,
                         'comment' => $comment->comment,
                         'created_at' => jdate($comment->created_at)->ago(),
-                        'subcoment' => $subcomts
-                    ];
-                }
-            }elseif (trim($subcomments) == '[]' && trim($comments) != '[]') {
-                foreach ($comments as $comment) {
-                    $comt[] = [
-                        'phone' => $comment->phone,
-                        'comment' => $comment->comment,
-                        'created_at' => jdate($comment->created_at)->ago(),
-                        'subcoment' => []
-
+                        'answer'        => $answer
                     ];
                 }
             }else{
-                $comt = [];
+                $comt= [];
             }
 
             $status = true;
