@@ -156,8 +156,8 @@ class ProductController extends Controller
                 $tmp['product-image'] = [];
             }
             $proid = Product::whereSlug($slug)->pluck('id');
-            $comments = comment::whereCommentable_type('App\Product')->where('Commentable_id', $proid)->select('phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
-            $subcomments = comment::whereCommentable_type('App\Product')->where('Commentable_id', $proid)->select('phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
+            $comments = comment::whereCommentable_type('App\Product')->where('Commentable_id', $proid)->select('name', 'phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
+            $subcomments = comment::whereCommentable_type('App\Product')->where('Commentable_id', $proid)->select('name','phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
             if (trim($comments) != '[]') {
                 foreach ($comments as $comment) {
                     $answer = [];
