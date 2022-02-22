@@ -51,7 +51,7 @@ class TechnicalunitController extends Controller
         $commentrates           = commentrate::whereCommentable_type('App\Technical_unit')->whereIn('Commentable_id' ,$technical_id)->select('name' , 'phone' , 'quality' , 'value' , 'innovation' , 'ability' , 'design' , 'comfort' ,'comment' , 'created_at')->whereApproved(1)->latest()->get();
         if (trim($commentrates) != '[]') {
             foreach ($commentrates as $commentrate) {
-                $comentratin = [
+                $comentratin[] = [
                     'name' => $commentrate->name,
                     'phone' => $commentrate->phone,
                     'quality' => $commentrate->quality,
