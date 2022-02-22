@@ -155,39 +155,61 @@ class ProductController extends Controller
         }else{
             $tmp['product-image'] = [];
         }
-
-        $comments               = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$brand_id)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
-        $subcomments            = comment::whereCommentable_type('App\Product')->whereIn('Commentable_id'   ,$brand_id)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
-
-        if (trim($subcomments) != '[]' && trim($comments) != '[]') {
-        foreach ($subcomments as $subcomment) {
-                 $subcomts[] = [
-                    'phone' => $subcomment->phone,
-                    'comment' => $subcomment->comment,
-                    'created_at' => jdate($subcomment->created_at)->ago(),
-            ];
-        }
-
-            foreach ($comments as $comment) {
+        $proid                  = Product::whereSlug($slug)->pluck('id');
+        $comments               = comment::whereCommentable_type('App\Product')->where('Commentable_id'   ,$proid)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
+        $subcomments            = comment::whereCommentable_type('App\Product')->where('Commentable_id'   ,$proid)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
+        if (trim($comments) != '[]') {
+            foreach ($comments as $key => $comment) {
+                $answer = [];
+                foreach ($subcomments as  $subcomment) {
+                    if ($subcomment->parent_id == $comment->id) {
+                        $answer[] = [
+                                'phone' => $subcomment->phone,
+                                'comment' => $subcomment->comment,
+                                'created_at' => jdate($subcomment->created_at)->ago(),
+                        ];
+                    }
+                }
                 $comt[] = [
                     'phone' => $comment->phone,
                     'comment' => $comment->comment,
                     'created_at' => jdate($comment->created_at)->ago(),
-                    'subcoment' => $subcomts
-                ];
-            }
-        }elseif (trim($subcomments) == '[]' && trim($comments) != '[]') {
-            foreach ($comments as $comment) {
-                $comt[] = [
-                    'phone' => $comment->phone,
-                    'comment' => $comment->comment,
-                    'created_at' => jdate($comment->created_at)->ago(),
-                    'subcoment' => []
+                    'answer'        => $answer
                 ];
             }
         }else{
-            $comt = [];
+            $comt= [];
         }
+
+//        if (trim($comments) != '[]') {
+//        foreach ($subcomments as $subcomment) {
+//                 $subcomts[] = [
+//                    'parent_id'     => $subcomment->parent_id,
+//                    'phone'         => $subcomment->phone,
+//                    'comment'       => $subcomment->comment,
+//                    'created_at'    => jdate($subcomment->created_at)->ago(),
+//            ];
+//        }
+//            foreach ($comments as $comment) {
+//                if ($subcomts[0]['parent_id'] == $comment->id){
+//                    $comt[] = [
+//                        'phone' => $comment->phone,
+//                        'comment' => $comment->comment,
+//                        'created_at' => jdate($comment->created_at)->ago(),
+//                        'subcoment' => $subcomts
+//                    ];
+//            }else{
+//                    $comt[] = [
+//                        'phone' => $comment->phone,
+//                        'comment' => $comment->comment,
+//                        'created_at' => jdate($comment->created_at)->ago(),
+//                        'subcoment' => []
+//                    ];
+//                }
+//            }
+//        }else{
+//            $comt = [];
+//        }
 
         $response = [
             'products'          => $tmp,
