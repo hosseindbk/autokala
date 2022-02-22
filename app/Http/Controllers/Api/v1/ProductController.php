@@ -38,17 +38,26 @@ class ProductController extends Controller
             ->select('brands.id as id' ,'brands.title_fa as title_fa' , 'brands.slug as slug' , 'brands.image as image' , 'countries.name as country')
             ->whereIn('brands.id' , $brand_id )
             ->get();
+        $commentratequality     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('quality');
+        $commentratevalue       = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('value');
+        $commentrateinnovation  = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('innovation');
+        $commentrateability     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('ability');
+        $commentratedesign      = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('design');
+        $commentratecomfort     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('comfort');
+
+        $avgcommentrate    = ((int)$commentratequality + (int)$commentratevalue + (int)$commentrateinnovation + (int)$commentrateability + (int)$commentratedesign + (int)$commentratecomfort) / 6;
 
         if (trim($brandvarieties) != '[]' && trim($brands) != '[]') {
                 foreach ($brandvarieties as $brandvariety){
                     foreach ($brands as $brand) {
                         if ($brandvariety->brandid == $brand->id) {
                             $brandi[] = [
-                                'brand_name'    => $brand->title_fa,
-                                'guarantee'     => $brandvariety->guarantee,
-                                'country'       => $brand->country,
-                                'slug'          => $brand->slug,
-                                'brand_image'   => $brand->image,
+                                'brand_name'        => $brand->title_fa,
+                                'guarantee'         => $brandvariety->guarantee,
+                                'country'           => $brand->country,
+                                'avgcommentrate'   => $avgcommentrate,
+                                'slug'              => $brand->slug,
+                                'brand_image'       => $brand->image,
 //                                'brand_variety' => [
 //                                    $brand_variety[] = ['key' => $brandvariety->item1, 'value' => $brandvariety->value1],
 //                                    $brand_variety[] = ['key' => $brandvariety->item2, 'value' => $brandvariety->value2],
@@ -65,6 +74,7 @@ class ProductController extends Controller
                                 'brand_name'    => $brand->title_fa,
                                 'country'       => $brand->country,
                                 'guarantee'     => null,
+                                'avgcommentrate'=> $avgcommentrate,
                                 'slug'          => $brand->slug,
                                 'brand_image'   => $brand->image,
                                 'brand_variety' => []
@@ -81,14 +91,6 @@ class ProductController extends Controller
             ->whereIn('product_id'  , $product_id)
             ->get();
 
-        $commentratequality     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('quality');
-        $commentratevalue       = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('value');
-        $commentrateinnovation  = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('innovation');
-        $commentrateability     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('ability');
-        $commentratedesign      = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('design');
-        $commentratecomfort     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('comfort');
-
-        $avgcommentrate    = ((int)$commentratequality + (int)$commentratevalue + (int)$commentrateinnovation + (int)$commentrateability + (int)$commentratedesign + (int)$commentratecomfort) / 6;
 
         $products = DB::table('products')
             ->leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
@@ -109,7 +111,6 @@ class ProductController extends Controller
                 'title_en'          => $product->title_en,
                 'title_bazar'       => $product->title_bazar,
                 'company_code'      => $product->company_code,
-                'avgcommentrate'    => $avgcommentrate,
                 'specific' => [
                     ['key' => $product->title_specific1, 'value' => $product->specific1],
                     ['key' => $product->title_specific2, 'value' => $product->specific2],
