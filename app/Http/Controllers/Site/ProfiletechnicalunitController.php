@@ -102,8 +102,16 @@ class ProfiletechnicalunitController extends Controller
         $technical_units->state_id      = $request->input('state_id');
         $technical_units->city_id       = $request->input('city_id');
         $technical_units->phone         = $request->input('phone');
-        $technical_units->lat           = $request->input('lat');
-        $technical_units->lng           = $request->input('lng');
+        if ($request->input('lat') != null) {
+            $technical_units->lat = $request->input('lat');
+        }else{
+            $technical_units->lat = auth::user()->lat;
+        }
+        if ($request->input('lng') != null) {
+            $technical_units->lat = $request->input('lng');
+        }else{
+            $technical_units->lat = auth::user()->lng;
+        }
         $technical_units->phone2        = $request->input('phone2');
         $technical_units->phone3        = $request->input('phone3');
         $technical_units->mobile        = $request->input('mobile');

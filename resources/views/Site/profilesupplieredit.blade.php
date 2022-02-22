@@ -224,6 +224,14 @@
                                                             <input type="text" name="phone" value="{{$Supplier->phone}}" class="form-control" />
                                                         </div>
                                                         <div class="form-group">
+                                                            <p class="mg-b-10">طول جغرافیایی</p>
+                                                            <input type="text" name="lat" value="{{$Supplier->lat}}" class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">عرض جغرافیایی</p>
+                                                            <input type="text" name="lng" value="{{$Supplier->lng}}" class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <p class="mg-b-10">ایمیل</p>
                                                             <input type="text" name="email" value="{{$Supplier->email}}" class="form-control" />
                                                         </div>

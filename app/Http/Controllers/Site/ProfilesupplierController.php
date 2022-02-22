@@ -108,8 +108,16 @@ class ProfilesupplierController extends Controller
         $suppliers->manager     = $request->input('manager');
         $suppliers->phone       = $request->input('phone');
         $suppliers->mobile      = $request->input('mobile');
-        $suppliers->lat         = $request->input('lat');
-        $suppliers->lng         = $request->input('lng');
+        if ($request->input('lat') != null) {
+            $suppliers->lat = $request->input('lat');
+        }else{
+            $suppliers->lat = auth::user()->lat;
+        }
+        if ($request->input('lng') != null) {
+            $suppliers->lat = $request->input('lng');
+        }else{
+            $suppliers->lat = auth::user()->lng;
+        }
         $suppliers->whatsapp    = $request->input('whatsapp');
         $suppliers->email       = $request->input('email');
         $suppliers->website     = $request->input('website');
@@ -117,7 +125,6 @@ class ProfilesupplierController extends Controller
         $suppliers->city_id     = $request->input('city_id');
         $suppliers->address     = $request->input('address');
         $suppliers->description = $request->input('description');
-        $suppliers->title       = $request->input('title');
         $suppliers->title       = $request->input('title');
         $suppliers->status      = '1';
         $suppliers->description = $request->input('description');

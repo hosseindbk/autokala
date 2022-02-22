@@ -178,7 +178,14 @@
                                                                 <p class="mg-b-10">تلفن ثابت</p>
                                                                 <input type="text" name="phone" value="{{$technical_unit->phone}}" class="form-control" />
                                                             </div>
-
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">طول جغرافیایی</p>
+                                                                <input type="text" name="lat" value="{{$technical_unit->lat}}" class="form-control"/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">عرض جغرافیایی</p>
+                                                                <input type="text" name="lng" value="{{$technical_unit->lng}}" class="form-control"/>
+                                                            </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">شماره واتس اپ</p>
                                                                 <input type="text" name="whatsapp" value="{{$technical_unit->whatsapp}}" class="form-control" />
