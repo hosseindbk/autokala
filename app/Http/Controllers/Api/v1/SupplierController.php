@@ -47,10 +47,10 @@ class SupplierController extends Controller
 
             $comments       = comment::whereCommentable_type('App\Supplier')->whereIn('Commentable_id', $supplier_id)->select('phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
             $subcomments    = comment::whereCommentable_type('App\Supplier')->whereIn('Commentable_id', $supplier_id)->select('phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
-            $commentrates   = commentrate::whereCommentable_type('App\Supplier')->where('Commentable_id', $supplier_id)->select('name', 'phone', 'quality', 'value', 'innovation', 'ability', 'design', 'comfort', 'comment', 'created_at')->whereApproved(1)->latest()->get();
+            $commentrates   = commentrate::whereCommentable_type('App\Supplier')->whereIn('Commentable_id', $supplier_id)->select('name', 'phone', 'quality', 'value', 'innovation', 'ability', 'design', 'comfort', 'comment', 'created_at')->whereApproved(1)->latest()->get();
             if (trim($commentrates) != '[]') {
                 foreach ($commentrates as $commentrate) {
-                    $comentratin = [
+                    $comentratin[] = [
                         'name'          => $commentrate->name,
                         'phone'         => $commentrate->phone,
                         'quality'       => $commentrate->quality,
