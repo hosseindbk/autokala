@@ -159,7 +159,7 @@ class ProductController extends Controller
         $comments               = comment::whereCommentable_type('App\Product')->where('Commentable_id'   ,$proid)->select('phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
         $subcomments            = comment::whereCommentable_type('App\Product')->where('Commentable_id'   ,$proid)->select('phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
         if (trim($comments) != '[]') {
-            foreach ($comments as $key => $comment) {
+            foreach ($comments as $comment) {
                 $answer = [];
                 foreach ($subcomments as  $subcomment) {
                     if ($subcomment->parent_id == $comment->id) {
