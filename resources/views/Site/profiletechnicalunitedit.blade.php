@@ -230,8 +230,8 @@
                                                     <ul>
                                                         <li><p>* ابتدا خودرو و مدل آن را انتخاب و سپس گروه کالایی از آن خودرو که روی آن فعالیت دارید را انتخاب نمایید و در انتها بر روی کلید ثبت خودرو کلیک نمایید </p></li>
                                                         <li><p>* چنانچه روی خودروهای متعدد و یا گروه های مختلف کالایی از یک خودرو فعالیت دارید می توانید ردیف های بیشتری به جدول زیر اضافه نمایید.</p></li>
-                                                        <li><p>* اطلاعات وارد شده در این قسمت ، در جستجوی کاربران و دسترسی به فروشگاه شما تاثیر زیادی دارد، در ورود اطلاعات و اطمینان از صحت آن دقت نمایید.</p></li>
-                                                        <li><p>* پس از اطمینان از صحت اطلاعات درج شده جهت نهایی کردن پروفایل روی کلید سبز رنگ ثبت نهایی کلیک نمایید.</p></li>
+                                                        <li><p>* اطلاعات وارد شده در این قسمت ، در جستجوی کاربران و دسترسی به فروشگاه شما تاثیر زیادی دارد، در ورود اطلاعات و اطمینان از صحت آن دقت نمایید.</p ></li>
+                                                        <li><p>* پس از اطمینان از صحت اطلاعات درج شده جهت نهایی کردن پروفایل روی کلید سبز رنگ ثبت نهایی کلیک نمایید.</p ></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -267,7 +267,7 @@
                                                                 @foreach($productgroups as $product_group)
                                                                     <option value="{{$product_group->id}}">{{$product_group->related_service}}</option>
                                                                 @endforeach
-                                                            </select>
+                                                            </select >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -432,6 +432,14 @@
                         open: false,
 
                     },
+                },
+                @else
+                presets: {
+                    latlng: {
+                        lat: 35.73249,
+                            lng: 51.42268,
+                    },
+                    zoom: 14
                 },
                 @endif
                 apiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2In0.eyJhdWQiOiIxNTQ5NCIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2IiwiaWF0IjoxNjMxNzc5MjQ0LCJuYmYiOjE2MzE3NzkyNDQsImV4cCI6MTYzNDQ2MTI0NCwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.VsRI2wiG_IvFVkVKXt_XnOBpzyjMIygnv6s_s81u9WVC_Z-stANinKYH_6iJPuJ3lRdAX8SdtHwYCr2DZVF2hi6WiTu-BSvMuXPb6sg0iYXgYREKQjzsWU4NPf2kOwd4q6aj1R6UOT_EA7GIrJQ5FPYDceAmeT8va1VdK6xYp-Ypstja-clURippQKEk0mDe9Z_ABYWQNAWfqUt_ubYEZrETjnDoSQHbJxJc46vxWvYmwoK1sIZ4NoXaQbRrAb0QKZ_7Lnh3H3_vHqQGMB0vJELzwSJEmiNxr_h7uIvugtRAUneAa878lOJuv03976YNjIoepK_aWhxzrP-RmE4O5A",
