@@ -220,6 +220,7 @@ class ProductController extends Controller
             'commentable_type'  => 'required',
             'parent_id'         => 'required',
             'comment'           => 'required',
+            'name'              => 'required',
             'phone'             => 'required',
         ]);
 

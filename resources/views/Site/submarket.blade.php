@@ -720,6 +720,12 @@
                                                                         </label>
                                                                         <input type="text" required name="phone" value="@if(Auth::check()){{Auth::user()->phone}}@endif" class="form-control text-left">
                                                                     </div>
+                                                                    <div class="col-lg-12 col-md-12 col-xs-12 fc-direction-rtl">
+                                                                        <label for="phone-number">نام و نام خانوادگی
+                                                                            <abbr class="required" title="ضروری" style="color:red;">*</abbr>
+                                                                        </label>
+                                                                        <input type="text" required name="name" value="@if(Auth::check()){{Auth::user()->name}}@endif" class="form-control text-left">
+                                                                    </div>
                                                                 </div>
                                                                 <div class="form-checkout-row">
                                                                     <div class="col-lg-12 col-md-12 col-xs-12 fc-direction-rtl">
