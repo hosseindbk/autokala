@@ -6,7 +6,7 @@ use App\City;
 use App\Http\Controllers\Controller;
 use App\Menu;
 use App\State;
-use App\visitor;
+use App\Visitor;
 
 class HelpController extends Controller
 {
