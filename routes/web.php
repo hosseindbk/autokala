@@ -135,6 +135,7 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::post('comment-rate'              , 'ProductController@commentrate')->name('comment-rate');
     /*contact*/
     Route::get('contact'                    , 'ContactusController@index' );
+    Route::get('help'                       , 'HelpController@index' );
 });
 
 Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , function(){
