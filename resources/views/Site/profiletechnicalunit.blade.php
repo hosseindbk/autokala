@@ -172,7 +172,7 @@
                                                             <p class="mg-b-10">تلفن ثابت</p>
                                                             <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
                                                         </div>
-                                                    </div>
+
                                                     <div class="form-group">
                                                         <p class="mg-b-10">طول جغرافیایی</p>
                                                         <input type="text" name="lat" id="latelement" class="form-control"/>
@@ -181,10 +181,20 @@
                                                         <p class="mg-b-10">عرض جغرافیایی</p>
                                                         <input type="text" name="lng" id="lngelement" class="form-control"/>
                                                     </div>
+
+                                                    </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شماره واتس اپ</p>
                                                             <input type="text" name="whatsapp" placeholder="شماره واتس اپ را وارد کنید" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">ایمیل</p>
+                                                            <input type="text" name="email" placeholder="ایمیل را وارد کنید" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">آدرس</p>
+                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -192,32 +202,10 @@
                                                             <p class="mg-b-10">وبسایت</p>
                                                             <input type="text" name="site" placeholder="وبسایت را وارد کنید" class="form-control" />
                                                         </div>
+                                                        <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
+                                                        <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
 
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">ایمیل</p>
-                                                            <input type="text" name="email" placeholder="ایمیل را وارد کنید" class="form-control" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">طول جغرافیایی</p>
-                                                            <input type="text" name="lat" id="latelement" class="form-control"/>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">عرض جغرافیایی</p>
-                                                            <input type="text" name="lng" id="lngelement" class="form-control"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">آدرس</p>
-                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
-                                                    <div id="app" style="width: 100%; height: 325px;"></div>
-                                                    </div>
                                                     <div class="col-lg-12 mg-b-10 text-center">
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>

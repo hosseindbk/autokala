@@ -150,7 +150,7 @@
 <script src="{{asset('admin/assets/plugins/bootstrap/js/bootstrap-rtl.js')}}"></script>
 <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.env.js"></script>
 <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.min.js"></script>
-
+@foreach($technicals as $technical_unit)
 <script>
     var crosshairIcon = {
         iconUrl: '{{asset('site/images/icon_map.png')}}',
@@ -161,24 +161,39 @@
         //create map and layers
         var app = new Mapp({
             element: '#app',
+            @if($technical_unit->lat != '' && $technical_unit->lng != '')
             presets: {
-                @foreach($technicals as $technical_unit)
-                    @if($technical_unit->lat != '' && $technical_unit->lng != '')
+
                 latlng: {
                     lat: {{$technical_unit->lat}},
                     lng: {{$technical_unit->lng}},
 
                 },
-                @else
-                latlng: {
-                    lat: 35.73249,
-                    lng: 51.42268
-                },
-                @endif
-                    @endforeach
-                zoom: 14,
                 icon: crosshairIcon,
+                zoom: 20,
+                popup: {
+                    title: {
+                        i18n: 'موقعیت مکانی',
+                    },
+                    description: {
+                        i18n: 'توضیحات',
+                    },
+                    class: 'marker-class',
+                    open: false,
+                },
             },
+            @else
+            presets: {
+                presets: {
+                    latlng: {
+                        lat: 35.73249,
+                        lng: 51.42268,
+                    },
+                    zoom: 14
+                },
+            },
+            @endif
+
             apiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2In0.eyJhdWQiOiIxNTQ5NCIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2IiwiaWF0IjoxNjMxNzc5MjQ0LCJuYmYiOjE2MzE3NzkyNDQsImV4cCI6MTYzNDQ2MTI0NCwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.VsRI2wiG_IvFVkVKXt_XnOBpzyjMIygnv6s_s81u9WVC_Z-stANinKYH_6iJPuJ3lRdAX8SdtHwYCr2DZVF2hi6WiTu-BSvMuXPb6sg0iYXgYREKQjzsWU4NPf2kOwd4q6aj1R6UOT_EA7GIrJQ5FPYDceAmeT8va1VdK6xYp-Ypstja-clURippQKEk0mDe9Z_ABYWQNAWfqUt_ubYEZrETjnDoSQHbJxJc46vxWvYmwoK1sIZ4NoXaQbRrAb0QKZ_7Lnh3H3_vHqQGMB0vJELzwSJEmiNxr_h7uIvugtRAUneAa878lOJuv03976YNjIoepK_aWhxzrP-RmE4O5A",
         });
         app.addLayers();
@@ -190,7 +205,23 @@
                 console.log(app.states.user.latlng);
             },
         });
+        app.addLogo({
+            url: '{{asset('site/images/maplogo.png')}}',
+        });
 
+        @if($technical_unit->lat != null && $technical_unit->lng != null)
+
+        app.markReverseGeocode({
+            state: {
+                latlng: {
+                    lat: {{$technical_unit->lat}},
+                    lng: {{$technical_unit->lng}},
+                },
+                zoom: 14,
+                icon: crosshairIcon,
+            },
+        });
+        @endif
         app.map.on('click', function (e) {
 
             var marker = app.addMarker({
@@ -366,4 +397,5 @@
             }
         });
     });</script>
+@endforeach
 

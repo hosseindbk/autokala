@@ -433,7 +433,7 @@
 <script>
     $(document).ready(function () {
         var crosshairIcon = {
-            iconUrl: '{{asset('site/assets/images/icon-marker.svg')}}',
+            iconUrl: '{{asset('site/images/icon_map.png')}}',
             iconSize:     [40, 50], // size of the icon
             iconAnchor:   [20, 55], // point of the icon which will correspond to marker's location
         };
