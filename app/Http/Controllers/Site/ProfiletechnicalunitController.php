@@ -108,9 +108,9 @@ class ProfiletechnicalunitController extends Controller
             $technical_units->lat = auth::user()->lat;
         }
         if ($request->input('lng') != null) {
-            $technical_units->lat = $request->input('lng');
+            $technical_units->lng = $request->input('lng');
         }else{
-            $technical_units->lat = auth::user()->lng;
+            $technical_units->lng = auth::user()->lng;
         }
         $technical_units->phone2        = $request->input('phone2');
         $technical_units->phone3        = $request->input('phone3');

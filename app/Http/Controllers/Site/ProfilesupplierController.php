@@ -114,9 +114,9 @@ class ProfilesupplierController extends Controller
             $suppliers->lat = auth::user()->lat;
         }
         if ($request->input('lng') != null) {
-            $suppliers->lat = $request->input('lng');
+            $suppliers->lng = $request->input('lng');
         }else{
-            $suppliers->lat = auth::user()->lng;
+            $suppliers->lng = auth::user()->lng;
         }
         $suppliers->whatsapp    = $request->input('whatsapp');
         $suppliers->email       = $request->input('email');

@@ -211,9 +211,9 @@ class ProfilebusinessController extends Controller
                 $suppliers->lat = auth::user()->lat;
             }
             if ($request->input('lng') != null) {
-                $suppliers->lat = $request->input('lng');
+                $suppliers->lng = $request->input('lng');
             }else{
-                $suppliers->lat = auth::user()->lng;
+                $suppliers->lng = auth::user()->lng;
             }
             $suppliers->city_id         = $request->input('city_id');
             $suppliers->address         = $request->input('address');
@@ -316,9 +316,9 @@ class ProfilebusinessController extends Controller
                 $technical_units->lat = auth::user()->lat;
             }
             if ($request->input('lng') != null) {
-                $technical_units->lat = $request->input('lng');
+                $technical_units->lng = $request->input('lng');
             }else{
-                $technical_units->lat = auth::user()->lng;
+                $technical_units->lng = auth::user()->lng;
             }
             $technical_units->phone2        = $request->input('phone2');
             $technical_units->phone3        = $request->input('phone3');
@@ -384,8 +384,12 @@ class ProfilebusinessController extends Controller
         $technical_unit->manager        = $request->input('manager');
         $technical_unit->state_id       = $request->input('state_id');
         $technical_unit->city_id        = $request->input('city_id');
-        $technical_unit->lat            = $request->input('lat');
-        $technical_unit->lng            = $request->input('lng');
+        if ($request->input('lat') != null){
+            $technical_unit->lat          = $request->input('lat');
+        }
+        if ($request->input('lng') != null){
+            $technical_unit->lng          = $request->input('lng');
+        }
         $technical_unit->phone          = $request->input('phone');
         $technical_unit->phone2         = $request->input('phone2');
         $technical_unit->phone3         = $request->input('phone3');
@@ -472,8 +476,12 @@ class ProfilebusinessController extends Controller
         $supplier->mobile       = $request->input('mobile');
         $supplier->whatsapp     = $request->input('whatsapp');
         $supplier->email        = $request->input('email');
-        $supplier->lat          = $request->input('lat');
-        $supplier->lng          = $request->input('lng');
+        if ($request->input('lat') != null){
+            $supplier->lat          = $request->input('lat');
+        }
+        if ($request->input('lng') != null){
+            $supplier->lng          = $request->input('lng');
+        }
         $supplier->website      = $request->input('website');
         $supplier->state_id     = $request->input('state_id');
         $supplier->city_id      = $request->input('city_id');
