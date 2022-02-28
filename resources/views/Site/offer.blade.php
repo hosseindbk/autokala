@@ -206,7 +206,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">عنوان آگهی</p>
-                                                            <input type="text" name="title_offer" placeholder="عنوان آگهی را وارد کنید" class="form-control" />
+                                                            <input type="text" name="title_offer" required placeholder="عنوان آگهی را وارد کنید" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -322,6 +322,8 @@
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
                                                             <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
+                                                            <input type="hidden" name="lat" class="form-control" />
+                                                            <input type="hidden" name="lng" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-7">
@@ -478,7 +480,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">عنوان آگهی</p>
-                                                            <input type="text" name="title_offer" placeholder="عنوان آگهی را وارد کنید" class="form-control" />
+                                                            <input type="text" name="title_offer" required placeholder="عنوان آگهی را وارد کنید" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -568,6 +570,8 @@
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
                                                             <input type="text" name="phone" value="{{Auth::user()->phone_number}}" placeholder="021-88556644" class="form-control text-left" />
+                                                            <input type="hidden" name="lat" class="form-control" />
+                                                            <input type="hidden" name="lng" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-7">
