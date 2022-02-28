@@ -56,7 +56,6 @@ class MarketController extends Controller
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
             ->get();
-        dd($brandnames);
 
         return view('Site.market')
             ->with(compact('brandnames'))
