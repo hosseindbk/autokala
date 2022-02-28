@@ -478,7 +478,11 @@
                                                         </div>
                                                         <div class="thumb">
                                                             <a href="{{url('market'.'/'.$offer->slug)}}" target="_blank" class="d-block">
-                                                                <img src="{{asset($offer->image1)}}" style="height: 235px;" alt="{{$offer->title_offer}}">
+                                                                @if($offer->image1)
+                                                                    <img src="{{asset($offer->image1)}}" style="height: 235px;" alt="{{$offer->title_offer}}">
+                                                                @else
+                                                                    <img src="{{asset('images/techndical_defult.png')}}" style="height: 235px;" alt="{{$offer->title_offer}}">
+                                                                @endif
                                                             </a>
                                                         </div>
                                                         <div class="title">

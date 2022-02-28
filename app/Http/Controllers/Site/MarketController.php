@@ -51,11 +51,12 @@ class MarketController extends Controller
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->select('offers.brand_id as brand_offer_id' , 'offers.id as offer_id' , 'product_brand_varieties.brand_id as brand_variety_id' , 'product_brand_varieties.product_id' ,'brands.title_fa')
-            ->where('offers.id' , '=', '4')
+            ->where('offers.status' , '=', '4')
             //->where('products.id' , '=', 'product_brand_varieties.product_id')
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
             ->get();
+        dd($brandnames);
 
         return view('Site.market')
             ->with(compact('brandnames'))
