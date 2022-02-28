@@ -227,6 +227,14 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">وضعیت قطعه</p>
+                                                    <select name="noe" class="form-control select-lg select2">
+                                                            <option value=""    {{$offer->noe == null ? 'selected' : ''}}>خالی</option>
+                                                            <option value="new" {{$offer->noe == 'new' ? 'selected' : ''}}>نو</option>
+                                                            <option value="old" {{$offer->noe == 'old' ? 'selected' : ''}}>کارکرده</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                     <div class="form-group">

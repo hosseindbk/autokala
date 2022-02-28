@@ -486,11 +486,11 @@
                                                             <p class="mg-b-10">وضعیت قطعه </p>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input"  type="radio" checked name="noe" id="noe" value="new">
-                                                                <label class="form-check-label" style="margin-right: 5px;" for="buyorsell1">  نو </label>
+                                                                <label class="form-check-label" style="margin-right: 5px;" for="new">  نو </label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio" name="noe" id="noe" value="old">
-                                                                <label class="form-check-label" style="margin-right: 5px;" for="buyorsell2">  کارکرده </label>
+                                                                <label class="form-check-label" style="margin-right: 5px;" for="old">  کارکرده </label>
                                                             </div>
                                                         </div>
                                                     </div>
