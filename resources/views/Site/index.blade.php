@@ -214,7 +214,7 @@
                                                     </div>
                                                 <div class="item">
                                                     <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="d-block">
-                                                        <img src="{{asset($offer->image1)}}" class="img-fluid" alt="">
+                                                        <img src="{{asset($offer->image1)}}" class="img-fluid" style="width: 200px;margin: 0 auto;" alt="{{$offer->title_offer}}">
                                                     </a>
                                                     <h2 class="post-title pt-4">
                                                         <a href="{{url('market/'.$offer->slug)}}" target="_blank">{{$offer->title_offer}}</a>
@@ -249,7 +249,7 @@
                                                         <div class="item">
                                                             <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="d-block hover-img-link" data-toggle="modal"
                                                                data-target="#exampleModal">
-                                                                <img src="{{asset($offer->image1)}}" class="img-fluid" alt="">
+                                                                <img src="{{asset($offer->image1)}}" class="img-fluid" style="width: 200px;margin: 0 auto;" alt="{{$offer->title_offer}}">
                                                             </a>
                                                             <h2 class="post-title pt-4">
                                                                 <a href="{{url('market/'.$offer->slug)}}" target="_blank">{{$offer->title_offer}}</a>

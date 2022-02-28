@@ -12,11 +12,8 @@
                 <div class="col-lg-4 pr">
                     <div class="header-search row text-right">
                         <div class="header-search-box">
-                            @if($sell == 1)
-                                <form action="{{route('offer-search-sell')}}" method="get" class="form-search">
-                                    @elseif($buy == 1)
-                                        <form action="{{route('offer-search-buy')}}" method="get" class="form-search">
-                                            @endif
+
+                                <form  @if($sell == 1) action="{{route('offer-search-sell')}}" @elseif($buy == 1) action="{{route('offer-search-buy')}}"  @endif method="get" class="form-search">
 
                                 <input type="text" class="header-search-input" name="offersearch" placeholder="نام کالای مورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">
@@ -38,7 +35,7 @@
             <div class="text-center">
                 <div class="col-lg-4 pr">
                     <a href="{{url('/')}}"> <img src="{{asset('site/images/logo.png')}}" alt="اتوکالا"> </a>
-                    <h2 style="padding: 2px 0px 0px 0px;font-size: 12px;">اتوکالا سامانه جامع قطعات و خدمات خودرو</h2>
+                    <h2 style="padding: 2px 0 0 0;font-size: 12px;">اتوکالا سامانه جامع قطعات و خدمات خودرو</h2>
                 </div>
             </div>
             <div class="header-left">
@@ -71,11 +68,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                @if($sell == 1)
-                    <form action="{{route('sellfilterstate')}}" method="get" class="form-search">
-                @elseif($buy == 1)
-                    <form action="{{route('buyfilterstate')}}" method="get" class="form-search">
-               @endif
+
+                    <form @if($sell == 1) action="{{route('sellfilterstate')}}"  @elseif($buy == 1) action="{{route('buyfilterstate')}}"  @endif method="get" class="form-search">
+
                     <div class="row">
                         @foreach($states as $state)
                             <div class="col-md-4 col-sm-12">
@@ -112,11 +107,9 @@
                     <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">
-                                @if($sell == 1)
-                                <form action="{{route('market-sell-filter')}}" method="get">
-                                    @elseif($buy == 1)
-                                        <form action="{{route('market-buy-filter')}}" method="get">
-                                        @endif
+
+                                <form @if($sell == 1) action="{{route('market-sell-filter')}}"  @elseif($buy == 1) action="{{route('market-buy-filter')}}" @endif method="get">
+
                                     <section class="widget-product-categories">
                                         <header class="cat-header">
                                             <h2 class="mb-0">
@@ -410,6 +403,7 @@
                                         </div>
                                     </section>
                                 </form>
+
                             </div>
                         </div>
                     </div>
