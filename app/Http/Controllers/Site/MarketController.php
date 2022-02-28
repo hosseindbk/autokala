@@ -46,7 +46,19 @@ class MarketController extends Controller
         $caroffers              = Car_offer::all();
         $filter                 = 0;
 
+        $brandnames = DB::table('offers')
+            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
+            ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->select('offers.brand_id as brand_offer_id' , 'offers.id as offer_id' , 'product_brand_varieties.brand_id as brand_variety_id' , 'product_brand_varieties.product_id' ,'brands.title_fa')
+            ->where('offers.id' , '=', '143')
+            //->where('products.id' , '=', 'product_brand_varieties.product_id')
+            ->whereBuyorsell('sell')
+            ->where('offers.brand_id' , '<>' , null)
+            ->get();
+
         return view('Site.market')
+            ->with(compact('brandnames'))
             ->with(compact('products'))
             ->with(compact('brand_varietis'))
             ->with(compact('users'))
