@@ -197,7 +197,7 @@ class OfferController extends Controller
             $caroffers->save();
         }
 
-        alert()->success('', 'اطلاعات آگهی با موفقیت ثبت شد. اطلاعات خودرو مورد نظر را ثبت نمایید')->persistent('تایید');
+        alert()->success('<h3>اطلاعات آگهی با موفقیت ثبت شد</h3><p>برای ورود اطلاعات خودرو <a href="#carset">کلیک</a> نمایید و سپس دکمه تایید را بزنید</p>')->html()->persistent('تایید');
         return redirect(route('offer-edit' , $offers->id));
     }
 
