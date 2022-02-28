@@ -784,6 +784,8 @@
                         open: false,
                     },
                 });
+                document.getElementById("latelement").setAttribute('value', e.latlng.lat);
+                document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
                 $.ajax({
                     url: '{{ route( 'offermap' ) }}',
                     headers: {
