@@ -184,11 +184,11 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">طول جغرافیایی</p>
-                                                                <input type="text" name="lat" value="{{$technical_unit->lat}}" class="form-control"/>
+                                                                <input type="text" name="lat" id="latelement" value="{{$technical_unit->lat}}" class="form-control"/>
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">عرض جغرافیایی</p>
-                                                                <input type="text" name="lng" value="{{$technical_unit->lng}}" class="form-control"/>
+                                                                <input type="text" name="lng" id="lngelement" value="{{$technical_unit->lng}}" class="form-control"/>
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">شماره واتس اپ</p>
@@ -502,6 +502,8 @@
                         open: false,
                     },
                 });
+                document.getElementById("latelement").setAttribute('value', e.latlng.lat);
+                document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
                 $.ajax({
                     url: '{{ route( 'technicalunitmap' ) }}',
                     headers: {
