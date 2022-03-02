@@ -4,93 +4,44 @@ namespace App\Http\Controllers\Api\v1;
 
 
 use App\Http\Controllers\Controller;
-use App\Offer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class MarketController extends Controller
 {
     public function sell(){
-        $selloffers             = Offer::select('id', 'slug', 'brand_id' , 'image1 as image' , 'title_offer as title' , 'product_name as name' , 'brand_name as brand')->whereStatus(4)->whereBuyorsell('sell')->latest()->get();
         $brandnames = DB::table('offers')
             ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
-            ->select('offers.id as offer_id' ,'brands.title_fa as brand')
+            ->leftJoin('states', 'states.id', '=', 'offers.state_id')
+            ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
+            ->select('brands.title_fa as brand' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city')
             ->where('offers.status' , '=', '4')
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
-            ->get();
-
-
-        foreach($selloffers as $selloffer) {
-            if ($selloffer->brand != null) {
-                $sellmarket[] = [
-                    'slug'  => $selloffer->slug,
-                    'image' => $selloffer->image,
-                    'title' => $selloffer->title,
-                    'brand' => $selloffer->brand,
-                ];
-
-            } elseif ($selloffer->brand_id != null) {
-                foreach ($brandnames as $brandname) {
-                    if ($brandname->offer_id == $selloffer->id) {
-                        $sellmarket[] = [
-                            'slug'  => $selloffer->slug,
-                            'image' => $selloffer->image,
-                            'title' => $selloffer->title,
-                            'brand' => $brandname->brand,
-                        ];
-                    }
-                }
-            }
-        }
+            ->paginate(16);
 
         $response = [
-            'selloffer'=>$sellmarket,
+            'selloffer'=>$brandnames,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
     public function buy(){
-        $buyoffers             = Offer::select('id', 'slug', 'brand_id' , 'image1 as image' , 'title_offer as title' , 'product_name as name' , 'brand_name as brand')->whereStatus(4)->whereBuyorsell('buy')->latest()->get();
         $brandnames = DB::table('offers')
             ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
-            ->select('offers.id as offer_id' ,'brands.title_fa as brand')
+            ->leftJoin('states', 'states.id', '=', 'offers.state_id')
+            ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
+            ->select('brands.title_fa as brand' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city')
             ->where('offers.status' , '=', '4')
             ->whereBuyorsell('buy')
             ->where('offers.brand_id' , '<>' , null)
-            ->get();
-        if (trim($buyoffers) != '[]') {
-            foreach ($buyoffers as $buyoffer) {
-                if ($buyoffer->brand != null) {
-                    $buymarket[] = [
-                        'slug' => $buyoffer->slug,
-                        'image' => $buyoffer->image,
-                        'title' => $buyoffer->title,
-                        'brand' => $buyoffer->brand,
-                    ];
-
-                } elseif ($buyoffer->brand_id != null) {
-                    foreach ($brandnames as $brandname) {
-                        if ($brandname->offer_id == $buyoffer->id) {
-                            $buymarket[] = [
-                                'slug' => $buyoffer->slug,
-                                'image' => $buyoffer->image,
-                                'title' => $buyoffer->title,
-                                'brand' => $brandname->brand,
-                            ];
-                        }
-                    }
-                }
-            }
-        }else{
-            $buymarket = [];
-        }
+            ->paginate(16);
 
         $response = [
-            'buyoffer'=>$buymarket,
+            'buyoffer'=>$brandnames,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
