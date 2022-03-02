@@ -175,11 +175,11 @@
 
                                                     <div class="form-group">
                                                         <p class="mg-b-10">طول جغرافیایی</p>
-                                                        <input type="text" name="lat" id="latelement" class="form-control"/>
+                                                        <input type="text" name="lat" id="latelement" value="{{Auth::user()->lat}}" class="form-control"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <p class="mg-b-10">عرض جغرافیایی</p>
-                                                        <input type="text" name="lng" id="lngelement" class="form-control"/>
+                                                        <input type="text" name="lng" id="lngelement" value="{{Auth::user()->lng}}" class="form-control"/>
                                                     </div>
 
                                                     </div>
