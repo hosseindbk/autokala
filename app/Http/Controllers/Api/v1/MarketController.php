@@ -5,27 +5,97 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Offer;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class MarketController extends Controller
 {
     public function sell(){
-        $selloffers             = Offer::select('slug' , 'title_offer as title' , 'product_name as name' , 'brand_name as brand')->whereStatus(4)->whereBuyorsell('sell')->latest()->paginate('16');
+        $selloffers             = Offer::select('id', 'slug', 'brand_id' , 'image1 as image' , 'title_offer as title' , 'product_name as name' , 'brand_name as brand')->whereStatus(4)->whereBuyorsell('sell')->latest()->get();
+        $brandnames = DB::table('offers')
+            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
+            ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->select('offers.id as offer_id' ,'brands.title_fa as brand')
+            ->where('offers.status' , '=', '4')
+            ->whereBuyorsell('sell')
+            ->where('offers.brand_id' , '<>' , null)
+            ->get();
+
+
+        foreach($selloffers as $selloffer) {
+            if ($selloffer->brand != null) {
+                $sellmarket[] = [
+                    'slug'  => $selloffer->slug,
+                    'image' => $selloffer->image,
+                    'title' => $selloffer->title,
+                    'name'  => $selloffer->name,
+                    'brand' => $selloffer->brand,
+                ];
+
+            } elseif ($selloffer->brand_id != null) {
+                foreach ($brandnames as $brandname) {
+                    if ($brandname->offer_id == $selloffer->id) {
+                        $sellmarket[] = [
+                            'slug'  => $selloffer->slug,
+                            'image' => $selloffer->image,
+                            'title' => $selloffer->title,
+                            'name'  => $selloffer->name,
+                            'brand' => $brandname->brand,
+                        ];
+                    }
+                }
+            }
+        }
 
         $response = [
-            'selloffer'=>$selloffers,
+            'selloffer'=>$sellmarket,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
     public function buy(){
-        $buyoffers             = Offer::select('slug' , 'title_offer as title' , 'product_name as name' , 'brand_name as brand')->whereStatus(4)->whereBuyorsell('buy')->latest()->paginate('16');
+        $buyoffers             = Offer::select('id', 'slug', 'brand_id' , 'image1 as image' , 'title_offer as title' , 'product_name as name' , 'brand_name as brand')->whereStatus(4)->whereBuyorsell('buy')->latest()->get();
+        $brandnames = DB::table('offers')
+            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
+            ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->select('offers.id as offer_id' ,'brands.title_fa as brand')
+            ->where('offers.status' , '=', '4')
+            ->whereBuyorsell('buy')
+            ->where('offers.brand_id' , '<>' , null)
+            ->get();
+
+
+        foreach($buyoffers as $buyoffer) {
+            if ($buyoffer->brand != null) {
+                $buymarket[] = [
+                    'slug'  => $buyoffer->slug,
+                    'image' => $buyoffer->image,
+                    'title' => $buyoffer->title,
+                    'name'  => $buyoffer->name,
+                    'brand' => $buyoffer->brand,
+                ];
+
+            } elseif ($buyoffer->brand_id != null) {
+                foreach ($brandnames as $brandname) {
+                    if ($brandname->offer_id == $buyoffer->id) {
+                        $buymarket[] = [
+                            'slug'  => $buyoffer->slug,
+                            'image' => $buyoffer->image,
+                            'title' => $buyoffer->title,
+                            'name'  => $buyoffer->name,
+                            'brand' => $brandname->brand,
+                        ];
+                    }
+                }
+            }
+        }
 
         $response = [
-            'buyoffer'=>$buyoffers,
+            'buyoffer'=>$buymarket,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
-
     /*public function subproduct($slug){
 
         $product_id         = Product::whereSlug($slug)->pluck('id');
