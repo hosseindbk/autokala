@@ -14,6 +14,9 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('/supplier/{slug}'       , 'SupplierController@subsupplier');
     Route::get('/technicalunit'         , 'TechnicalunitController@index');
     Route::get('/technicalunit/{slug}'  , 'TechnicalunitController@subtechnical');
+    Route::get('/market/sell'           , 'MarketController@sell');
+    Route::get('/market/buy'            , 'MarketController@buy');
+
 
     Route::middleware('auth:api')->group(function (){
         Route::post('/token'         , 'UserController@token');
