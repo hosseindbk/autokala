@@ -167,6 +167,10 @@
                                                                 <p class="mg-b-10">وبسایت</p>
                                                                 <input type="text" name="site" value="{{$technical_unit->website}}" class="form-control" />
                                                             </div>
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">آدرس</p>
+                                                                <textarea name="address" cols="30" rows="1" class="form-control">{{$technical_unit->address}}</textarea>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
@@ -180,20 +184,17 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">طول جغرافیایی</p>
-                                                                <input type="text" name="lat" value="{{$technical_unit->lat}}" class="form-control"/>
+                                                                <input type="text" name="lat" id="latelement" value="{{$technical_unit->lat}}" class="form-control"/>
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">عرض جغرافیایی</p>
-                                                                <input type="text" name="lng" value="{{$technical_unit->lng}}" class="form-control"/>
+                                                                <input type="text" name="lng" id="lngelement" value="{{$technical_unit->lng}}" class="form-control"/>
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">شماره واتس اپ</p>
                                                                 <input type="text" name="whatsapp" value="{{$technical_unit->whatsapp}}" class="form-control" />
                                                             </div>
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">آدرس</p>
-                                                                <textarea name="address" cols="30" rows="1" class="form-control">{{$technical_unit->address}}</textarea>
-                                                            </div>
+
                                                         </div>
 
                                                         <div class="col-md-4">
@@ -501,6 +502,8 @@
                         open: false,
                     },
                 });
+                document.getElementById("latelement").setAttribute('value', e.latlng.lat);
+                document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
                 $.ajax({
                     url: '{{ route( 'technicalunitmap' ) }}',
                     headers: {
