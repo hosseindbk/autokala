@@ -24,6 +24,7 @@ class IndexController extends Controller
             ->select('brands.title_fa as brand' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city')
             ->where('offers.status' , '=', '4')
             ->where('offers.homeshow' , '=', '1')
+            ->inRandomOrder()
             ->get();
 
         $technicalunits = DB::table('technical_units')
@@ -32,6 +33,7 @@ class IndexController extends Controller
             ->select('technical_units.title' , 'technical_units.slug' , 'technical_units.image' , 'states.title as state' , 'cities.title as city')
             ->where('technical_units.status' , '=', '4')
             ->where('technical_units.homeshow' , '=', '1')
+            ->inRandomOrder()
             ->get();
 
         $suppliers = DB::table('suppliers')
@@ -40,6 +42,7 @@ class IndexController extends Controller
             ->select('suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'states.title as state' , 'cities.title as city')
             ->where('suppliers.status' , '=', '4')
             ->where('suppliers.homeshow' , '=', '1')
+            ->inRandomOrder()
             ->get();
 
         foreach($orginal_slides as $orginal_slide) {
