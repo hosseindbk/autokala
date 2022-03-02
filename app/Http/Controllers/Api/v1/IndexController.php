@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Brand;
 use App\Http\Controllers\Controller;
-use App\Offer;
 use App\Slide;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -13,9 +12,18 @@ class IndexController extends Controller
 {
     public function index(){
 
-        $offers             = Offer::select('slug' , 'unicode_product' , 'supplier_id' , 'title_offer as title' , 'buyorsell' , 'single_price' , 'image1')->whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
         $brands             = Brand::select('title_fa as title' , 'slug' , 'image')->whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
-        $orginal_slides     = Slide::select('image as images')->whereStatus(4)->wherePosition(1)->latest()->get();
+
+        $offers = DB::table('offers')
+            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
+            ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->leftJoin('states', 'states.id', '=', 'offers.state_id')
+            ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
+            ->select('brands.title_fa as brand' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city')
+            ->where('offers.status' , '=', '4')
+            ->where('offers.homeshow' , '=', '1')
+            ->paginate(16);        $orginal_slides     = Slide::select('image as images')->whereStatus(4)->wherePosition(1)->latest()->get();
 
         $technicalunits = DB::table('technical_units')
             ->leftJoin('states', 'states.id', '=', 'technical_units.state_id')
