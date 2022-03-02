@@ -29,7 +29,6 @@ class MarketController extends Controller
                     'slug'  => $selloffer->slug,
                     'image' => $selloffer->image,
                     'title' => $selloffer->title,
-                    'name'  => $selloffer->name,
                     'brand' => $selloffer->brand,
                 ];
 
@@ -40,7 +39,6 @@ class MarketController extends Controller
                             'slug'  => $selloffer->slug,
                             'image' => $selloffer->image,
                             'title' => $selloffer->title,
-                            'name'  => $selloffer->name,
                             'brand' => $brandname->brand,
                         ];
                     }
@@ -64,31 +62,31 @@ class MarketController extends Controller
             ->whereBuyorsell('buy')
             ->where('offers.brand_id' , '<>' , null)
             ->get();
+        if (trim($buyoffers) != '[]') {
+            foreach ($buyoffers as $buyoffer) {
+                if ($buyoffer->brand != null) {
+                    $buymarket[] = [
+                        'slug' => $buyoffer->slug,
+                        'image' => $buyoffer->image,
+                        'title' => $buyoffer->title,
+                        'brand' => $buyoffer->brand,
+                    ];
 
-
-        foreach($buyoffers as $buyoffer) {
-            if ($buyoffer->brand != null) {
-                $buymarket[] = [
-                    'slug'  => $buyoffer->slug,
-                    'image' => $buyoffer->image,
-                    'title' => $buyoffer->title,
-                    'name'  => $buyoffer->name,
-                    'brand' => $buyoffer->brand,
-                ];
-
-            } elseif ($buyoffer->brand_id != null) {
-                foreach ($brandnames as $brandname) {
-                    if ($brandname->offer_id == $buyoffer->id) {
-                        $buymarket[] = [
-                            'slug'  => $buyoffer->slug,
-                            'image' => $buyoffer->image,
-                            'title' => $buyoffer->title,
-                            'name'  => $buyoffer->name,
-                            'brand' => $brandname->brand,
-                        ];
+                } elseif ($buyoffer->brand_id != null) {
+                    foreach ($brandnames as $brandname) {
+                        if ($brandname->offer_id == $buyoffer->id) {
+                            $buymarket[] = [
+                                'slug' => $buyoffer->slug,
+                                'image' => $buyoffer->image,
+                                'title' => $buyoffer->title,
+                                'brand' => $brandname->brand,
+                            ];
+                        }
                     }
                 }
             }
+        }else{
+            $buymarket = [];
         }
 
         $response = [
