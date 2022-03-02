@@ -167,6 +167,10 @@
                                                                 <p class="mg-b-10">وبسایت</p>
                                                                 <input type="text" name="site" value="{{$technical_unit->website}}" class="form-control" />
                                                             </div>
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">آدرس</p>
+                                                                <textarea name="address" cols="30" rows="1" class="form-control">{{$technical_unit->address}}</textarea>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
@@ -190,10 +194,7 @@
                                                                 <p class="mg-b-10">شماره واتس اپ</p>
                                                                 <input type="text" name="whatsapp" value="{{$technical_unit->whatsapp}}" class="form-control" />
                                                             </div>
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">آدرس</p>
-                                                                <textarea name="address" cols="30" rows="1" class="form-control">{{$technical_unit->address}}</textarea>
-                                                            </div>
+
                                                         </div>
 
                                                         <div class="col-md-4">
