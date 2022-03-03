@@ -16,7 +16,14 @@ class MarketController extends Controller
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
-            ->select('brands.title_fa as brand' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city')
+            ->leftJoin('users', 'users.id', '=', 'offers.user_id')
+            ->select('brands.title_fa as brand' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
+
+            \DB::raw( '(CASE
+            WHEN users.type_id = "1" THEN "فروشگاه"
+            WHEN users.type_id = "3" THEN "شخصی"
+            WHEN users.type_id = "4" THEN "شخصی"
+            END) AS type'))
             ->where('offers.status' , '=', '4')
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
@@ -34,8 +41,14 @@ class MarketController extends Controller
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
-            ->select('brands.title_fa as brand' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city')
-            ->where('offers.status' , '=', '4')
+            ->leftJoin('users', 'users.id', '=', 'offers.user_id')
+            ->select('brands.title_fa as brand' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
+
+                \DB::raw( '(CASE
+            WHEN users.type_id = "1" THEN "فروشگاه"
+            WHEN users.type_id = "3" THEN "شخصی"
+            WHEN users.type_id = "4" THEN "شخصی"
+            END) AS type'))            ->where('offers.status' , '=', '4')
             ->whereBuyorsell('buy')
             ->where('offers.brand_id' , '<>' , null)
             ->paginate(16);
