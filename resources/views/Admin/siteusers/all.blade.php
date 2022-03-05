@@ -35,7 +35,7 @@
                                             <th class="wd-10p"> ردیف </th>
                                             <th class="wd-10p"> نام و نام خانوادگی </th>
                                             <th class="wd-10p"> شماره موبایل </th>
-                                            <th class="wd-10p"> آدرس ایمیل </th>
+                                            <th class="wd-10p"> تاریخ ایجاد حساب </th>
                                             <th class="wd-10p"> نوع همکاری </th>
                                             <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> ویرایش </th>
@@ -51,7 +51,7 @@
 
                                                 <td>{{$user->name}}</td>
                                                 <td>{{$user->phone}}</td>
-                                                <td>{{$user->email}}</td>
+                                                <td>{{jdate($user->created_at)->format('%Y/%m/%d')}}</td>
                                                 <td>
                                                     @foreach($typeusers as $type_user)
                                                         @if($type_user->id == $user->type_id)

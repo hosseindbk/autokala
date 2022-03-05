@@ -497,6 +497,13 @@
                                                                 </span>
                                                             @endif
                                                         </div>
+                                                        @if($offer->total > 1)
+                                                            <div class="title">
+                                                                <span class="amount">
+                                                                   حداقل تعداد سفارش  {{$offer->total}} عدد
+                                                                </span>
+                                                            </div>
+                                                        @endif
                                                         <div class="title">
 
                                                                 @if($offer->brand_id != null)
