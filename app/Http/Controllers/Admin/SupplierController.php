@@ -309,8 +309,9 @@ class SupplierController extends Controller
         $supplier->address      = $request->input('address');
         $supplier->status       = $request->input('status_id');
         $supplier->description  = $request->input('description');
-        $supplier->autokala       = $request->input('autokala');
+        $supplier->autokala     = $request->input('autokala');
         $supplier->description  = $request->input('description');
+        $supplier->user_id      = $request->input('user_id');
         $supplier->date         = jdate()->format('Ymd ');
         $supplier->user_handle  = Auth::user()->id;
         $supplier->date_handle  = jdate()->format('Ymd ');
