@@ -37,6 +37,7 @@
                                             <th class="wd-10p"> شماره موبایل </th>
                                             <th class="wd-10p"> تاریخ ایجاد حساب </th>
                                             <th class="wd-10p"> نوع همکاری </th>
+                                            <th class="wd-10p"> وضعیت شماره </th>
                                             <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> ویرایش </th>
                                             <th class="wd-10p"> حذف </th>
@@ -58,6 +59,13 @@
                                                             {{$type_user->title}}
                                                         @endif
                                                     @endforeach
+                                                </td>
+                                                <td>
+                                                    @if($user->phone_verify == 0)
+                                                        <button class="btn ripple btn-outline-info">تایید نشده</button>
+                                                    @elseif($user->phone_verify == 1)
+                                                        <button class="btn ripple btn-outline-success">تایید شده</button>
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     @if($user->status == 1)
