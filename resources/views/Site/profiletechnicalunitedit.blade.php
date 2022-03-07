@@ -184,11 +184,11 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">طول جغرافیایی</p>
-                                                                <input type="text" name="lat" id="latelement" value="{{$technical_unit->lat}}" class="form-control"/>
+                                                                <input type="text" id="latelement"  name="lat" @if(strlen($technical_unit->lat) > 1) value="{{$technical_unit->lat}}" @elseif(strlen(Auth::user()->lat) > 1) value="{{Auth::user()->lat}}" @endif class="form-control"/>
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">عرض جغرافیایی</p>
-                                                                <input type="text" name="lng" id="lngelement" value="{{$technical_unit->lng}}" class="form-control"/>
+                                                                <input type="text" id="lngelement"  name="lng" @if(strlen($technical_unit->lng) > 1) value="{{$technical_unit->lng}}" @elseif(strlen(Auth::user()->lng) > 1) value="{{Auth::user()->lng}}" @endif class="form-control"/>
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">شماره واتس اپ</p>
@@ -199,8 +199,8 @@
 
                                                         <div class="col-md-4">
 
-                                                        <p class="mg-b-10">برای جستجو موقعیت مکانی خود <a href="{{route('setmaptechnical' , $technical_unit->id)}}">کلیک</a> نمایید</p>
-                                                        <div id="app" style="width: 100%; height: 325px;"></div>
+                                                            <p class="mg-b-10">برای جستجو موقعیت مکانی خود <a href="{{route('setmaptechnical' , $technical_unit->id)}}">کلیک</a> نمایید</p>
+                                                            <div id="app" style="width: 100%; height: 325px;"></div>
 
                                                         </div>
 
@@ -293,42 +293,42 @@
                                                     <?php $s = 1; ?>
                                                     @foreach($cartechnicalgroups as $car_technical_group)
                                                         @if($car_technical_group->technical_id == $technical_unit->id)
-                                                        <tr class="odd gradeX">
-                                                            <td>{{$s++}}</td>
+                                                            <tr class="odd gradeX">
+                                                                <td>{{$s++}}</td>
 
-                                                            <td>
-                                                                @foreach($carbrands as $Car_brand)
-                                                                    @if($Car_brand->id == $car_technical_group->car_brand_id)
-                                                                        {{$Car_brand->title_fa}}
-                                                                    @endif
-                                                                @endforeach
-                                                            </td>
-                                                            <td>
-                                                                @foreach($carmodels as $Car_model)
-                                                                    @if($car_technical_group->car_model_id == $Car_model->id)
-                                                                        {{$Car_model->title_fa}}
-                                                                    @endif
-                                                                @endforeach
-                                                            </td>
-                                                            <td>
-                                                                @foreach($productgroups as $product_group)
-                                                                    @if($car_technical_group->kala_group_id == $product_group->id)
-                                                                        {{$product_group->related_service}}
-                                                                    @endif
-                                                                @endforeach
-                                                            </td>
-                                                            <td>
-                                                                <form action="{{ route('cartechnicaldelete', $car_technical_group->id) }}" method="post">
-                                                                    {{ method_field('delete') }}
-                                                                    {{ csrf_field() }}
-                                                                    <div class="btn-group btn-group-xs">
-                                                                        <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                            <i class="fa fa-trash "></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
+                                                                <td>
+                                                                    @foreach($carbrands as $Car_brand)
+                                                                        @if($Car_brand->id == $car_technical_group->car_brand_id)
+                                                                            {{$Car_brand->title_fa}}
+                                                                        @endif
+                                                                    @endforeach
+                                                                </td>
+                                                                <td>
+                                                                    @foreach($carmodels as $Car_model)
+                                                                        @if($car_technical_group->car_model_id == $Car_model->id)
+                                                                            {{$Car_model->title_fa}}
+                                                                        @endif
+                                                                    @endforeach
+                                                                </td>
+                                                                <td>
+                                                                    @foreach($productgroups as $product_group)
+                                                                        @if($car_technical_group->kala_group_id == $product_group->id)
+                                                                            {{$product_group->related_service}}
+                                                                        @endif
+                                                                    @endforeach
+                                                                </td>
+                                                                <td>
+                                                                    <form action="{{ route('cartechnicaldelete', $car_technical_group->id) }}" method="post">
+                                                                        {{ method_field('delete') }}
+                                                                        {{ csrf_field() }}
+                                                                        <div class="btn-group btn-group-xs">
+                                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                                <i class="fa fa-trash "></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
                                                         @endif
                                                     @endforeach
                                                     </tbody>
@@ -395,7 +395,7 @@
             };
             var app = new Mapp({
                 element: '#app',
-                @if($technical_unit->lat != null && $technical_unit->lng != null)
+                @if(strlen($technical_unit->lat) > 1)
                 presets: {
                     latlng: {
                         lat: {{$technical_unit->lat}},
@@ -412,9 +412,10 @@
                         },
                         class: 'marker-class',
                         open: false,
+
                     },
                 },
-                @elseif(Auth::user()->lat != null && Auth::user()->lng != null)
+                @elseif(strlen(Auth::user()->lat) > 1)
                 presets: {
                     latlng: {
                         lat: {{Auth::user()->lat}},
@@ -438,9 +439,21 @@
                 presets: {
                     latlng: {
                         lat: 35.73249,
-                            lng: 51.42268,
+                        lng: 51.42268,
                     },
-                    zoom: 14
+                    icon: crosshairIcon,
+                    zoom: 20,
+                    popup: {
+                        title: {
+                            i18n: 'موقعیت مکانی',
+                        },
+                        description: {
+                            i18n: 'توضیحات',
+                        },
+                        class: 'marker-class',
+                        open: false,
+
+                    },
                 },
                 @endif
                 apiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2In0.eyJhdWQiOiIxNTQ5NCIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2IiwiaWF0IjoxNjMxNzc5MjQ0LCJuYmYiOjE2MzE3NzkyNDQsImV4cCI6MTYzNDQ2MTI0NCwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.VsRI2wiG_IvFVkVKXt_XnOBpzyjMIygnv6s_s81u9WVC_Z-stANinKYH_6iJPuJ3lRdAX8SdtHwYCr2DZVF2hi6WiTu-BSvMuXPb6sg0iYXgYREKQjzsWU4NPf2kOwd4q6aj1R6UOT_EA7GIrJQ5FPYDceAmeT8va1VdK6xYp-Ypstja-clURippQKEk0mDe9Z_ABYWQNAWfqUt_ubYEZrETjnDoSQHbJxJc46vxWvYmwoK1sIZ4NoXaQbRrAb0QKZ_7Lnh3H3_vHqQGMB0vJELzwSJEmiNxr_h7uIvugtRAUneAa878lOJuv03976YNjIoepK_aWhxzrP-RmE4O5A",
@@ -457,9 +470,7 @@
             app.addLogo({
                 url: '{{asset('site/images/maplogo.png')}}',
             });
-
-            @if($technical_unit->lat != null && $technical_unit->lng != null)
-
+            @if(strlen($technical_unit->lat) > 1 )
             app.markReverseGeocode({
                 state: {
                     latlng: {
@@ -470,7 +481,8 @@
                     icon: crosshairIcon,
                 },
             });
-            @elseif(Auth::user()->lat != null && Auth::user()->lng != null)
+            @elseif(strlen(Auth::user()->lat) > 1)
+
             app.markReverseGeocode({
                 state: {
                     latlng: {
@@ -482,6 +494,7 @@
                 },
             });
             @endif
+
             app.map.on('click', function (e) {
 
                 var marker = app.addMarker({
@@ -513,7 +526,7 @@
                         "_token": "{{ csrf_token() }}",
                         lat     : e.latlng.lat,
                         lng     : e.latlng.lng,
-                        'id'    :{{$technical_unit->id}},
+                        'id'    :{{Auth::user()->id}},
                     },
                     type: 'patch',
                     dataType: 'json',

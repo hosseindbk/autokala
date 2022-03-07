@@ -1,8 +1,8 @@
 @extends('master-main')
 @section('title')
     <title>پروفایل اطلاعات تامین کنندگان</title>
-    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/mapp.min.css">
-    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/fa/style.css">
+    <link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
     <link href="{{asset('admin/assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
     <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
@@ -35,7 +35,7 @@
                             <section class="profile-box">
                                 <ul class="profile-account-navs">
                                     @if(Auth::user()->phone_verify == 1)
-                                        <li class="profile-account-nav-item navigation-link-dashboard">
+                                        <li  class="profile-account-nav-item navigation-link-dashboard">
                                             <a href="{{url('profile-user')}}" class=""><i class="mdi mdi-account-outline"></i>
                                                 حساب کاربری
                                             </a>
@@ -66,7 +66,7 @@
                                         @endif
                                     @endif
                                 </ul>
-                            </section>
+                            </section >
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9 col-xs-12 pl">
@@ -77,7 +77,7 @@
                                         @foreach($suppliers as $Supplier)
 
                                             <div class="card-body">
-                                                <div class="text-center"><h3 class="main-content-label text-center text-info">ویرایش مشخصات فروشگاه / شرکت </h3></div>
+                                                <div class="text-center"><h3  class="main-content-label text-center text-info">ویرایش مشخصات فروشگاه / شرکت </h3 ></div>
                                             </div>
                                             <form action="{{route('profilesupplieredit', $Supplier->id)}}" method="POST" enctype="multipart/form-data">
                                                 <div class="row row-sm">
@@ -213,6 +213,10 @@
                                                             <p class="mg-b-10">وبسایت</p>
                                                             <input type="text" name="website" value="{{$Supplier->website}}" class="form-control" />
                                                         </div>
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">ایمیل</p>
+                                                            <input type="text" name="email" value="{{$Supplier->email}}" class="form-control" />
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
@@ -225,17 +229,12 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">طول جغرافیایی</p>
-                                                            <input type="text" name="lat" value="{{$Supplier->lat}}" class="form-control"/>
+                                                            <input type="text" id="latelement"  name="lat" @if(strlen($Supplier->lat) > 1) value="{{$Supplier->lat}}" @elseif(strlen(Auth::user()->lat) > 1) value="{{Auth::user()->lat}}" @endif class="form-control"/>
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">عرض جغرافیایی</p>
-                                                            <input type="text" name="lng" value="{{$Supplier->lng}}" class="form-control"/>
+                                                            <input type="text" id="lngelement"  name="lng" @if(strlen($Supplier->lng) > 1) value="{{$Supplier->lng}}" @elseif(strlen(Auth::user()->lng) > 1) value="{{Auth::user()->lng}}" @endif class="form-control"/>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">ایمیل</p>
-                                                            <input type="text" name="email" value="{{$Supplier->email}}" class="form-control" />
-                                                        </div>
-
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
                                                             <textarea name="address" cols="30" rows="1" class="form-control" >{{$Supplier->address}}</textarea>
@@ -260,7 +259,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-9 col-md-9 col-xs-12 pl" >
+                    <div class="col-lg-9 col-md-9 col-xs-12 pl"  >
                         <div class="profile-content">
                             <div class="profile-stats">
                                 <div class="profile-address">
@@ -272,10 +271,10 @@
                                         <div class="col-md-12">
                                             <div style="background-color: #0ab2e699; border-radius: 15px; padding: 20px; margin: 20px 0px 40px 0px;">
                                                 <ul>
-                                                    <li><p>* ابتدا خودرو و مدل آن را انتخاب و سپس گروه کالایی از آن خودرو که روی آن فعالیت دارید را انتخاب نمایید و در انتها بر روی کلید ثبت خودرو کلیک نمایید </p></li>
-                                                    <li><p>* چنانچه روی خودروهای متعدد و یا گروه های مختلف کالایی از یک خودرو فعالیت دارید می توانید ردیف های بیشتری به جدول زیر اضافه نمایید.</p></li>
-                                                    <li><p>* اطلاعات وارد شده در این قسمت ، در جستجوی کاربران و دسترسی به فروشگاه شما تاثیر زیادی دارد، در ورود اطلاعات و اطمینان از صحت آن دقت نمایید.</p></li>
-                                                    <li><p>* پس از اطمینان از صحت اطلاعات درج شده جهت نهایی کردن پروفایل روی کلید سبز رنگ ثبت نهایی کلیک نمایید.</p></li>
+                                                    <li><p>* ابتدا خودرو و مدل آن را انتخاب و سپس گروه کالایی از آن خودرو که روی آن فعالیت دارید را انتخاب نمایید و در  انتها بر روی کلید ثبت خودرو کلیک نمایید </p></li>
+                                                    <li><p>* چنانچه روی خودروهای متعدد و یا گروه های مختلف کالایی از یک خودرو فعالیت دارید  می توانید ردیف های بیشتری به جدول زیر اضافه نمایید.</p></li>
+                                                    <li><p>* اطلاعات وارد شده در این قسمت ، در جستجوی کاربران و دسترسی به فروشگاه شما تاثیر زیادی  دارد، در ورود اطلاعات و اطمینان از صحت آن دقت نمایید.</p></li>
+                                                    <li><p>* پس از اطمینان از صحت  اطلاعات درج شده جهت نهایی کردن  پروفایل روی کلید سبز رنگ ثبت نهایی کلیک  نمایید.</p></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -292,7 +291,7 @@
                                                             @foreach($carbrands as $car_brand)
                                                                 <option value="{{$car_brand->id}}">{{$car_brand->title_fa}}</option>
                                                             @endforeach
-                                                        </select>
+                                                        </select >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -311,7 +310,7 @@
                                                             @foreach($productgroups as $product_group)
                                                                 <option value="{{$product_group->id}}">{{$product_group->title_fa}}</option>
                                                             @endforeach
-                                                        </select>
+                                                        </select >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
@@ -337,7 +336,7 @@
                                                 @foreach($supplierproductgroups as $supplier_product_group)
                                                     @if($supplier_product_group->supplier_id == $Supplier->id)
                                                         <tr class="odd gradeX">
-                                                            <td>{{$s++}}</td>
+                                                            <td >{{$s++}}</td >
 
                                                             <td>
                                                                 @foreach($carbrands as $Car_brand)
@@ -345,14 +344,14 @@
                                                                         {{$Car_brand->title_fa}}
                                                                     @endif
                                                                 @endforeach
-                                                            </td>
+                                                            </td >
                                                             <td>
                                                                 @foreach($carmodels as $Car_model)
                                                                     @if($supplier_product_group->car_model_id == $Car_model->id)
                                                                         {{$Car_model->title_fa}}
                                                                     @endif
                                                                 @endforeach
-                                                            </td>
+                                                            </td >
                                                             <td>
                                                                 @foreach($productgroups as $product_group)
                                                                     @if($supplier_product_group->kala_group_id == $product_group->id)
@@ -401,68 +400,62 @@
 <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
 
-<script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.env.js"></script>
-<script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.min.js"></script>
-<script>
-    $(function(){
-        $('#car_brand_id').change(function(){
-            $("#car_model_id option").remove();
-            var id = $('#car_brand_id').val();
-            $.ajax({
-                url : '{{ route( 'modeloption' ) }}',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": id
-                },
-                type: 'post',
-                dataType: 'json',
-                success: function( result )
-                {
-                    $.each( result, function(k, v) {
-                        $('#car_model_id').append($('<option>', {value:k, text:v}));
-                    });
-                },
-                error: function()
-                {
-                    alert('error...');
-                }
-            });
-        });
-    });
-</script>
+<script src="{{asset('site/js/mapp.env.js')}}"></script>
+<script src="{{asset('site/js/mapp.min.js')}}"></script>
 <script>
     $(document).ready(function () {
         var crosshairIcon = {
-            iconUrl: '{{asset('site/images/icon_map.png')}}',
+            iconUrl: '{{asset('site/assets/images/icon-marker.svg')}}',
             iconSize:     [40, 50], // size of the icon
             iconAnchor:   [20, 55], // point of the icon which will correspond to marker's location
         };
         var app = new Mapp({
             element: '#app',
-            @if($Supplier->lat != null && $Supplier->lng != null)
-                presets: {
-                    latlng: {
-                        lat: {{$Supplier->lat}},
-                        lng: {{$Supplier->lng}},
-                    },
-                    icon: crosshairIcon,
-                    zoom: 20,
-                    popup: {
-                        title: {
-                            i18n: 'موقعیت مکانی',
-                        },
-                        description: {
-                            i18n: 'توضیحات',
-                        },
-                        class: 'marker-class',
-                        open: false,
-                    },
+            @if(strlen($Supplier->lat) > 1)
+            presets: {
+                latlng: {
+                    lat: {{$Supplier->lat}},
+                    lng: {{$Supplier->lng}},
                 },
-            @elseif(Auth::user()->lat != null && Auth::user()->lng != null)
+                icon: crosshairIcon,
+                zoom: 20,
+                popup: {
+                    title: {
+                        i18n: 'موقعیت مکانی',
+                    },
+                    description: {
+                        i18n: 'توضیحات',
+                    },
+                    class: 'marker-class',
+                    open: false,
+
+                },
+            },
+            @elseif(strlen(Auth::user()->lat) > 1)
             presets: {
                 latlng: {
                     lat: {{Auth::user()->lat}},
                     lng: {{Auth::user()->lng}},
+                },
+                icon: crosshairIcon,
+                zoom: 20,
+                popup: {
+                    title: {
+                        i18n: 'موقعیت مکانی',
+                    },
+                    description: {
+                        i18n: 'توضیحات',
+                    },
+                    class: 'marker-class',
+                    open: false,
+
+                },
+            },
+            @else
+            presets: {
+                latlng: {
+                    lat: 35.73249,
+                    lng: 51.42268,
                 },
                 icon: crosshairIcon,
                 zoom: 20,
@@ -493,9 +486,7 @@
         app.addLogo({
             url: '{{asset('site/images/maplogo.png')}}',
         });
-
-        @if($Supplier->lat != null && $Supplier->lng != null)
-
+        @if(strlen($Supplier->lat) > 1 )
         app.markReverseGeocode({
             state: {
                 latlng: {
@@ -506,7 +497,8 @@
                 icon: crosshairIcon,
             },
         });
-        @elseif(Auth::user()->lat != null && Auth::user()->lng != null)
+        @elseif(strlen(Auth::user()->lat) > 1)
+
         app.markReverseGeocode({
             state: {
                 latlng: {
@@ -518,6 +510,7 @@
             },
         });
         @endif
+
         app.map.on('click', function (e) {
 
             var marker = app.addMarker({
@@ -538,6 +531,8 @@
                     open: false,
                 },
             });
+            document.getElementById("latelement").setAttribute('value', e.latlng.lat);
+            document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
             $.ajax({
                 url: '{{ route( 'suppliermap' ) }}',
                 headers: {
@@ -547,7 +542,7 @@
                     "_token": "{{ csrf_token() }}",
                     lat     : e.latlng.lat,
                     lng     : e.latlng.lng,
-                    'id'    :{{$Supplier->id}},
+                    'id'    :{{Auth::user()->id}},
                 },
                 type: 'patch',
                 dataType: 'json',
@@ -555,6 +550,33 @@
                 console.log(data);
             });
         })
+    });
+</script>
+<script>
+    $(function(){
+        $('#car_brand_id').change(function(){
+            $("#car_model_id option").remove();
+            var id = $('#car_brand_id').val();
+            $.ajax({
+                url : '{{ route( 'modeloption' ) }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function( result )
+                {
+                    $.each( result, function(k, v) {
+                        $('#car_model_id').append($('<option>', {value:k, text:v}));
+                    });
+                },
+                error: function()
+                {
+                    alert('error...');
+                }
+            });
+        });
     });
 </script>
     <script>
