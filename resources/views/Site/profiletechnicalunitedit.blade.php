@@ -180,7 +180,7 @@
 
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تلفن ثابت</p>
-                                                                <input type="text" name="phone" value="{{$technical_unit->phone}}" class="form-control" />
+                                                                <input type="text" name="phone" @if(strlen($technical_unit->phone) > 1 )  value="{{$technical_unit->phone}}" @elseif(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control" />
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">طول جغرافیایی</p>

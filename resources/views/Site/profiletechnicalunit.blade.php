@@ -170,7 +170,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت</p>
-                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
+                                                            <input type="text" name="phone" @if(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control" />
                                                         </div>
 
                                                     <div class="form-group">
