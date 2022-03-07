@@ -186,7 +186,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شماره واتس اپ</p>
-                                                            <input type="text" name="whatsapp" placeholder="شماره واتس اپ را وارد کنید" class="form-control" />
+                                                            <input type="text" name="whatsapp" @if(strlen(Auth::user()->whatsapp) > 1) value="{{Auth::user()->whatsapp}}" @endif class="form-control" />
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">ایمیل</p>

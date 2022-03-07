@@ -221,7 +221,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شماره واتس اپ</p>
-                                                            <input type="text" name="whatsapp"  value="{{$Supplier->whatsapp}}" class="form-control" />
+                                                            <input type="text" name="whatsapp" @if(strlen($Supplier->whatsapp) > 1) value="{{$Supplier->whatsapp}}" @elseif(strlen(Auth::user()->whatsapp) > 1) value="{{Auth::user()->whatsapp}}" @endif class="form-control" />
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت</p>
