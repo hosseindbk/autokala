@@ -237,7 +237,10 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
-                                                            <textarea name="address" cols="30" rows="1" class="form-control" >{{$Supplier->address}}</textarea>
+
+                                                            <textarea name="address" cols="30" rows="1" class="form-control" >
+                                                                   @if(strlen($Supplier->address) > 1) {{$Supplier->address}} @elseif(strlen(Auth::user()->whatsapp) > 1) @endif
+                                                            </textarea>
                                                         </div>
                                                     </div>
 

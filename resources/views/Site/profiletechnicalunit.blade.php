@@ -194,7 +194,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
-                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">@if(strlen(Auth::user()->address) > 1) {{Auth::user()->address}} @endif</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
