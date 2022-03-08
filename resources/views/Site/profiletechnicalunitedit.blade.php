@@ -169,9 +169,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">آدرس</p>
-                                                                <textarea name="address" cols="30" rows="1" class="form-control">
-                                                                    @if(strlen($technical_unit->address) > 1) {{$technical_unit->address}} @elseif(strlen(Auth::user()->address) > 1) {{Auth::user()->address}} @endif
-                                                                </textarea>
+                                                                <textarea name="address" cols="30" rows="3" class="form-control">@if(strlen($technical_unit->address) > 1){{$technical_unit->address}}@elseif(strlen(Auth::user()->address) > 1){{Auth::user()->address}}@endif</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
