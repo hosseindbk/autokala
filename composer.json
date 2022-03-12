@@ -12,8 +12,8 @@
         "cviebrock/eloquent-sluggable": "^7.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
-        "vendor/Ghasedak/php": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "Ghasedak/php": "^1.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
@@ -22,7 +22,7 @@
         "laravelium/sitemap": "^7.0",
         "morilog/jalali": "3.*",
         "uxweb/sweet-alert": "^2.0",
-      "ext-http": "*"
+        "yajra/laravel-datatables-oracle": "^9.19"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
