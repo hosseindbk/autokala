@@ -24,12 +24,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '29d75cfa6aad4a29d8e081e633376dbe581a326c',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -209,15 +209,6 @@ private static $installed = array (
       array (
       ),
       'reference' => 'fc10d778e4b84d5bd315dad194661e091d307c6f',
-    ),
-    'ghasedak/php' => 
-    array (
-      'pretty_version' => 'v1.0.1',
-      'version' => '1.0.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'b5fb1ff4a5acde89e4354a846d35fe76e53e4d3c',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -485,12 +476,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '29d75cfa6aad4a29d8e081e633376dbe581a326c',
     ),
     'laravel/tinker' => 
     array (
@@ -1310,6 +1301,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'bafc69caeb4d49c39fd0779086c03a3738cbb389',
+    ),
+    'yajra/laravel-datatables-oracle' => 
+    array (
+      'pretty_version' => 'v9.19.1',
+      'version' => '9.19.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c4baacc0a90d5f894cdeaedf19558d8794c09b08',
     ),
   ),
 );
