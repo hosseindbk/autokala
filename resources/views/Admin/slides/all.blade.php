@@ -1,8 +1,9 @@
 @extends('Admin.admin')
 @section('title')
     <title> مدیریت اسلایدها </title>
-    <link href="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min-rtl.css')}} " rel="stylesheet" />
-    <link href="{{asset('admin/assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 @endsection
 @section('main')
 
@@ -29,7 +30,18 @@
                                     <a href="{{url('admin/slides/create')}}" class="btn btn-primary btn-xs float-left">افزودن اسلاید جدید</a>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table" id="example1">
+                                    <style>
+                                        table{
+                                            margin: 0 auto;
+                                            width: 100% !important;
+                                            clear: both;
+                                            border-collapse: collapse;
+                                            table-layout: fixed;
+                                            word-wrap:break-word;
+                                        }
+
+                                    </style>
+                                    <table id="sample1" class="table table-striped table-bordered yajra-datatable">
                                         <thead>
                                         <tr>
                                             <th class="wd-10p"> سریال </th>
@@ -37,54 +49,10 @@
                                             <th class="wd-10p"> موقعیت </th>
                                             <th class="wd-10p"> نام </th>
                                             <th class="wd-10p"> وضعیت </th>
-                                            <th class="wd-10p"> ویرایش </th>
-                                            <th class="wd-10p"> حذف </th>
-
+                                            <th class="wd-10p">ویرایش / حذف </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($slides as $slide)
-                                            <tr class="odd gradeX">
-                                                <td>{{$slide->id}}</td>
-                                                <td>
-                                                    <img src="{{asset($slide->image)}}" class="img-responsive" style="display: block" width="30" alt="">
-                                                </td>
-                                                <td>
-                                                    @if($slide->position == 1)
-                                                        اسلاید اصلی
-                                                    @elseif($slide->position == 2)
-                                                        اسلاید چپ بالا
-                                                    @elseif($slide->position == 3)
-                                                        اسلاید چپ پایین
-                                                    @endif
-                                                </td>
-                                                <td>{{$slide->title}} </td>
-
-                                                <td>
-                                                    @if($slide->status == 0)
-                                                        <button class="btn ripple btn-outline-danger">عدم نمایش</button>
-                                                    @elseif($slide->status == 4)
-                                                        <button class="btn ripple btn-outline-success">در حال نمایش</button>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('slides.edit' , $slide->id) }}"  class="btn btn-outline-primary btn-xs">
-                                                        <i class="fe fe-edit-2"></i>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <form action="{{ route('slides.destroy'  , $slide->id) }}" method="post">
-                                                        {{ method_field('delete') }}
-                                                        {{ csrf_field() }}
-                                                        <div class="btn-group btn-group-xs">
-                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                <i class="fe fe-trash-2 "></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -96,15 +64,32 @@
         </div>
     </div>
 @section('end')
-    <script src="{{asset('admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-    <script src="{{asset('admin/assets/js/table-data.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min-rtl.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var table = $('.yajra-datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('slides.index') }}",
+                columns: [
+                    {data: 'id'                 , name: 'id'},
+                    {data: 'image'              , name: 'image'},
+                    {data: 'position'           , name: 'position'},
+                    {data: 'title'              , name: 'title'},
+                    {data: 'status'             , name: 'status'},
+
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+
+        });
+    </script>
 @endsection
 @endsection

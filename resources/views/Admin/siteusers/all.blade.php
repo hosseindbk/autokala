@@ -79,8 +79,8 @@
                     {data: 'userid'             , name: 'userid'},
                     {data: 'username'           , name: 'username'},
                     {data: 'userphone'          , name: 'userphone'},
-                    {data: 'typetitle'          , name: 'typetitle'},
                     {data: 'usercreated'        , name: 'usercreated'},
+                    {data: 'typetitle'          , name: 'typetitle'},
                     {data: 'userphoneverify'    , name: 'userphoneverify'},
                     {data: 'userstatus'         , name: 'userstatus'},
                     {

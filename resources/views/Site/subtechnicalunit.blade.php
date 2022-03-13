@@ -220,7 +220,7 @@
                                             </li>
                                             <li>
                                                 <span>وب سایت : </span>
-                                                <span><a href="{{$technical_unit->website}}" target="_blank"></a>{{$technical_unit->website}}</span>
+                                                <span><a href="{{$technical_unit->website}}" target="_blank"></a>لینک وبسایت</span>
                                             </li>
                                             <li>
                                                 <span>ایمیل : </span>
