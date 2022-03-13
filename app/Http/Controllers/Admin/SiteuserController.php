@@ -64,7 +64,8 @@ class SiteuserController extends Controller
                         }
                     })
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="' . route('siteusers.edit' , $row->userid) . '" class="edit btn btn-success btn-sm">Edit</a>
+                                  <a href="' . route('siteusers.destroy' , $row->userid)  .'" class="delete btn btn-danger btn-sm">Delete</a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -74,50 +75,6 @@ class SiteuserController extends Controller
         return view('Admin.siteusers.all')
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'));
-        /*if ($request->ajax()) {
-            $datas = DB::table('users')->LeftJoin('type_users', 'type_users.id', '=', 'users.type_id')
-                ->select('users.name as username' , 'users.id as userid' , 'users.phone as userphone'
-                    , 'users.phone_verify as userphoneverify' , 'users.status as userstatus' , 'users.created_at as usercreated' , 'type_users.title as typetitle')
-                ->where('users.level','=',null)
-                ->orderBy('users.id', 'desc')
-                ->get();
-            return Datatables::of($datas)
-
-                ->editColumn('username', function ($data) {
-                    return ($data->username);
-                })
-                ->editColumn('userphone', function ($data) {
-                    return ($data->userphone);
-                })
-                ->editColumn('typetitle', function ($data) {
-                    return ($data->typetitle);
-                })
-                ->editColumn('usercreated', function ($data) {
-                    return \Morilog\Jalali\Jalalian::forge($data->usercreated)->format(' H:i:s %Y/%m/%d');
-                })
-                ->editColumn('userphoneverify', function ($data) {
-                    if ($data->userphoneverify == "0") {
-                        return "تایید نشده";
-                    }
-                    elseif ($data->ticket_type == "1") {
-                        return "تایید شده";
-                    }
-                })
-                ->editColumn('userstatus', function ($data) {
-                    if ($data->userstatus == "0") {
-                        return "غیر فعال";
-                    }
-                    elseif ($data->userstatus == "1") {
-                        return "ثبت نام اولیه";
-                    }
-                    elseif ($data->userstatus == "2") {
-                        return "تایید مدیر";
-                    }
-                })
-                ->addIndexColumn()
-                ->make(true);
-
-            }*/
 
     }
 
