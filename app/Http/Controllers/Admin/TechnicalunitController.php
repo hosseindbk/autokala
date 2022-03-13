@@ -23,31 +23,85 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
+use Yajra\DataTables\Facades\DataTables;
 
 class TechnicalunitController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $statuses           =   Status::select('id','title')->get();
+
+        if ($request->ajax()) {
+            $data = DB::table('technical_units')
+                ->leftJoin('states', 'states.id', '=', 'technical_units.state_id')
+                ->leftJoin('cities', 'cities.id', '=', 'technical_units.city_id')
+                ->select('technical_units.id as tid', 'technical_units.image as image', 'technical_units.title as ttitle', 'technical_units.manager as manager'
+                    , 'technical_units.phone as phone', 'technical_units.phone as phone2', 'technical_units.phone as phone3', 'technical_units.mobile as mobile'
+                    , 'technical_units.mobile2 as mobile2', 'technical_units.whatsapp as whatsapp', 'states.title as stitle', 'cities.title as ctitle'
+                    , 'technical_units.homeshow as homeshow', 'technical_units.status as status')
+                ->get();
+
+            return Datatables::of($data)
+                ->editColumn('tid', function ($data) {
+                    return ($data->tid);
+                })
+                ->editColumn('ttitle', function ($data) {
+                    return ($data->ttitle);
+                })
+                ->editColumn('manager', function ($data) {
+                    return ($data->manager);
+                })
+                ->editColumn('stitle', function ($data) {
+                    return ($data->stitle);
+                })
+                ->editColumn('ctitle', function ($data) {
+                    return ($data->ctitle);
+                })
+                ->editColumn('phone', function ($data) {
+                    return ([$data->phone, $data->phone2, $data->phone3]);
+                })
+                ->editColumn('tstatus', function ($data) {
+                    if ($data->status == "1") {
+                        return 'پیش نویس';
+                    } elseif ($data->status == "2") {
+                        return 'درحال بررسی';
+                    } elseif ($data->status == "3") {
+                        return 'تایید مدیر';
+                    } elseif ($data->status == "4") {
+                        return 'درحال نمایش';
+                    } elseif ($data->status == "5") {
+                        return 'معلق شده';
+                    } elseif ($data->status == "6") {
+                        return 'حذف شده';
+                    }
+                })
+                ->addColumn('image', function ($row) {
+                    return '<img src="' . asset($row->image) . '"  width="50" class="img-rounded" align="center" />';
+
+                })
+                ->addColumn('location', function ($row) {
+                    return '<a href="'. route('technicalunits.address' , $row->tid) .'"  class="btn btn-outline-primary btn-xs"><i class="fe fe-map-pin"></i></a>';
+                })
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<a href="' . route('technicalunits.edit', $row->tid) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
+                                  <a href="' . route('technicalunits.destroy', $row->tid) . '" class="btn ripple btn-outline-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->addColumn('homeshow', function ($row) {
+                    $homeshow = '<label class="custom-switch">
+                              <input type="checkbox" name="homeshow" class="custom-switch-input" id="' . $row->tid . '" >
+                              <span class="custom-switch-indicator"></span></label>';
+                    return $homeshow;
+                })
+                ->rawColumns(['action', 'image', 'homeshow' , 'location'])
+                ->make(true);
+        }
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
 
-
-        $technicalunits = DB::table('technical_units')
-            ->leftJoin('states', 'states.id', '=', 'technical_units.state_id')
-            ->leftJoin('cities', 'cities.id', '=', 'technical_units.city_id')
-            ->select('technical_units.id as tid' , 'technical_units.image as image' , 'technical_units.title as ttitle' ,'technical_units.manager as manager'
-                , 'technical_units.phone as phone', 'technical_units.phone as phone2', 'technical_units.phone as phone3', 'technical_units.mobile as mobile'
-                , 'technical_units.mobile2 as mobile2', 'technical_units.whatsapp as whatsapp' , 'states.title as stitle' , 'cities.title as ctitle'
-                , 'technical_units.homeshow as homeshow' , 'technical_units.status as tstatus')->get();
-
         return view('Admin.technicalunits.all')
-            ->with(compact('statuses'))
             ->with(compact('menudashboards'))
-            ->with(compact('submenudashboards'))
-            ->with(compact('technicalunits'));
-
+            ->with(compact('submenudashboards'));
     }
 
     public function create()

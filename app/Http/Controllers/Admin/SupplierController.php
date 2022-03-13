@@ -22,31 +22,110 @@ use App\Supplier_product_group;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
+use Yajra\DataTables\Facades\DataTables;
 
 class SupplierController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $states             =   State::select('id','title')->get();
-        $cities             =   City::select('title' , 'state_id' , 'id')->get();
-        $statuses           =   Status::select('id','title')->get();
-        $suppliers          =   Supplier::all();
-        $users              =   User::select('id' , 'name')->where('id' , '!=' ,1)->get();
-        $medias             =   Media::select('technical_id' , 'image')->get();
+
+        if ($request->ajax()) {
+
+            $data = DB::table('suppliers')
+                ->leftJoin('states', 'states.id', '=', 'suppliers.state_id')
+                ->leftJoin('cities', 'cities.id', '=', 'suppliers.city_id')
+                ->select('suppliers.id as sid', 'suppliers.image as image','suppliers.manufacturer' , 'suppliers.importer'
+                    , 'suppliers.whole_seller', 'suppliers.retail_seller' , 'suppliers.title as stitle', 'suppliers.manager as manager'
+                    , 'suppliers.phone as phone', 'suppliers.mobile as mobile','suppliers.whatsapp as whatsapp', 'states.title as statetitle'
+                    , 'cities.title as ctitle' , 'suppliers.homeshow as homeshow', 'suppliers.status as status')
+                ->get();
+
+        return Datatables::of($data)
+            ->editColumn('sid', function ($data) {
+                return ($data->sid);
+            })
+            ->editColumn('stitle', function ($data) {
+                return ($data->stitle);
+            })
+            ->editColumn('manager', function ($data) {
+                return ($data->manager);
+            })
+            ->editColumn('statetitle', function ($data) {
+                return ($data->statetitle);
+            })
+            ->editColumn('ctitle', function ($data) {
+                return ($data->ctitle);
+            })
+            ->editColumn('phone', function ($data) {
+                return ([$data->phone, $data->mobile, $data->whatsapp]);
+            })
+            ->editColumn('status', function ($data) {
+                if ($data->status == "1") {
+                    return 'پیش نویس';
+                } elseif ($data->status == "2") {
+                    return 'درحال بررسی';
+                } elseif ($data->status == "3") {
+                    return 'تایید مدیر';
+                } elseif ($data->status == "4") {
+                    return 'درحال نمایش';
+                } elseif ($data->status == "5") {
+                    return 'معلق شده';
+                } elseif ($data->status == "6") {
+                    return 'حذف شده';
+                }
+            })
+            ->editColumn('noe', function ($data) {
+                if ($data->manufacturer == "1") {
+                    $manufacturer   = 'تولید کننده';
+                }else{
+                    $manufacturer = null;
+                } if ($data->importer == "1") {
+                    $importer       = 'وارد کننده';
+                }
+                else{
+                    $importer = null;
+                }
+                if ($data->whole_seller == "1") {
+                    $whole_seller   =  'عمده فروش';
+                }else{
+                    $whole_seller = null;
+                }  if ($data->retail_seller == "1") {
+                    $retail_seller  =  'خرده فروش';
+                }else{
+                    $retail_seller = null;
+                }
+                return ([$manufacturer , $importer, $whole_seller,$retail_seller]);
+            })
+            ->addColumn('image', function ($row) {
+                return '<img src="' . asset($row->image) . '"  width="50" class="img-rounded" align="center" />';
+
+            })
+            ->addColumn('location', function ($row) {
+                return '<a href="'. route('suppliers.address' , $row->sid) .'"  class="btn btn-outline-primary btn-xs"><i class="fe fe-map-pin"></i></a>';
+            })
+            ->addColumn('action', function ($row) {
+                $actionBtn = '<a href="' . route('suppliers.edit', $row->sid) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
+                                  <a href="' . route('suppliers.destroy', $row->sid) . '" class="btn ripple btn-outline-danger btn-sm">Delete</a>';
+                return $actionBtn;
+            })
+            ->addColumn('homeshow', function ($row) {
+                $homeshow = '<label class="custom-switch">
+                              <input type="checkbox" name="homeshow" class="custom-switch-input" id="' . $row->sid . '" >
+                              <span class="custom-switch-indicator"></span></label>';
+                return $homeshow;
+            })
+            ->rawColumns(['action', 'image', 'homeshow' , 'location' , 'noe'])
+            ->make(true);
+        }
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
 
         return view('Admin.suppliers.all')
-            ->with(compact('users'))
-            ->with(compact('suppliers'))
-            ->with(compact('medias'))
-            ->with(compact('cities'))
-            ->with(compact('states'))
-            ->with(compact('statuses'))
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'));
     }
