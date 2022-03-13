@@ -22,23 +22,73 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = DB::table('products')
-            ->leftjoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
-            ->select('products.id as idproduct' , 'products.image as image' , 'products.title_fa as titleproduct'
-        , 'products.unicode as unicode' , 'products.status as status' , 'products.code_fani_company as codefani' ,'product_groups.id as idproductgroup' , 'product_groups.title_fa as titleproductgroup')->get();
 
+        if ($request->ajax()) {
+            $data = DB::table('products')
+                ->leftjoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
+                ->select('products.id as idproduct' , 'products.image as image' , 'products.title_fa as titleproduct'
+                    , 'products.unicode as unicode' , 'products.status as status' , 'products.code_fani_company as codefani' ,'product_groups.id as idproductgroup' , 'product_groups.title_fa as titleproductgroup')
+                ->get();
+
+            return Datatables::of($data)
+
+                ->editColumn('idproduct', function ($data) {
+                    return ($data->idproduct);
+                })
+                ->editColumn('titleproduct', function ($data) {
+                    return ($data->titleproduct);
+                })
+                ->editColumn('unicode', function ($data) {
+                    return ($data->unicode);
+                })
+                ->editColumn('codefani', function ($data) {
+                    return ($data->codefani);
+                })
+                ->editColumn('titleproductgroup', function ($data) {
+                    return ($data->titleproductgroup);
+                })
+                ->editColumn('status', function ($data) {
+                    if ($data->status == "1") {
+                        return 'پیش نویس';
+                    }elseif ($data->status == "2") {
+                        return 'درحال بررسی';
+                    }elseif ($data->status == "3") {
+                        return 'تایید مدیر';
+                    }elseif ($data->status == "4") {
+                        return 'درحال نمایش';
+                    }elseif ($data->status == "5") {
+                        return 'معلق شده';
+                    }elseif ($data->status == "6") {
+                        return 'حذف شده';
+                    }
+                })
+                ->addColumn('image', function ($row) {
+                    return '<img src="'.asset($row->image).'"  width="50" class="img-rounded" align="center" />';
+
+                })
+                ->addColumn('brandvariety', function ($row) {
+                    return '<a href="' . route('product-brand-variety' , $row->idproduct)  .'" class="btn ripple btn-outline-info btn-sm">برند</a>';
+                })
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="' . route('products.edit' , $row->idproduct) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
+                                  <a href="' . route('products.destroy' , $row->idproduct)  .'" class="btn ripple btn-outline-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action' , 'image' , 'brandvariety'])
+                ->make(true);
+        }
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
 
         return view('Admin.products.all')
             ->with(compact('menudashboards'))
-            ->with(compact('submenudashboards'))
-            ->with(compact('products'));
+            ->with(compact('submenudashboards'));
 
     }
 

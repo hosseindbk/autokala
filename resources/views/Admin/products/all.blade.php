@@ -1,8 +1,9 @@
 @extends('Admin.admin')
 @section('title')
     <title> مدیریت کالا </title>
-    <link href="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min-rtl.css')}} " rel="stylesheet" />
-    <link href="{{asset('admin/assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 @endsection
 @section('main')
@@ -27,74 +28,31 @@
                                     <a href="{{url('admin/products/create')}}" class="btn btn-primary btn-xs">افزودن کالا جدید</a>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table" id="example1">
+                                    <style>
+                                        table{
+                                            margin: 0 auto;
+                                            width: 100% !important;
+                                            clear: both;
+                                            border-collapse: collapse;
+                                            table-layout: fixed;
+                                            word-wrap:break-word;
+                                        }
+                                    </style>
+                                    <table id="sample1" class="table table-striped table-bordered yajra-datatable">
                                         <thead>
                                         <tr>
-                                            <th class="wd-10p"> سریال </th>
+                                            <th class="wd-5p"> سریال </th>
                                             <th class="wd-10p"> تصویر </th>
-                                            <th class="wd-10p"> گروه کالا </th>
-                                            <th class="wd-10p"> مشخصات کالا </th>
+                                            <th class="wd-10p"> نام کالا </th>
+                                            <th class="wd-10p"> کدیونیک </th>
+                                            <th class="wd-10p"> کد فنی </th>
+                                            <th class="wd-10p">عنوان گروه کالا </th>
                                             <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> برند-تنوع </th>
-                                            <th class="wd-10p"> تغییر </th>
-                                            <th class="wd-10p"> حذف </th>
+                                            <th class="wd-10p">ویرایش / حذف </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($products as $product)
-                                        <tr>
-                                            <td>{{$product->idproduct}}</td>
-                                            <td>
-                                                <img src="{{asset($product->image)}}" class="img-responsive lazy" style="display: block" width="30" alt="">
-                                            </td>
-                                            <td>
-                                                {{$product->titleproductgroup}}
-                                            <td>
-                                                {{$product->titleproduct}} با یونیکد <button type="button" class="btn ripple btn-light">{{$product->unicode}}</button>  و کد فنی   {{$product->codefani}}
-                                            </td>
-                                            <td>
-                                                @if($product->status == 1)
-                                                    <button class="btn ripple btn-outline-warning">پیش نویس</button>
-                                                @elseif($product->status == 2)
-                                                    <button class="btn ripple btn-outline-primary">درحال بررسی</button>
-                                                @elseif($product->status == 3)
-                                                    <button class="btn ripple btn-outline-info">تایید مدیر</button>
-                                                @elseif($product->status == 4)
-                                                    <button class="btn ripple btn-outline-success">درحال نمایش</button>
-                                                @elseif($product->status == 5)
-                                                    <button class="btn ripple btn-outline-light">معلق شده</button>
-                                                @elseif($product->status == 6)
-                                                    <button class="btn ripple btn-outline-danger">حذف شده</button>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <div class="btn-icon-list">
-                                                    <a href="{{ route('product-brand-variety' , $product->idproduct ) }}" class="btn ripple btn-outline-info btn-icon">
-                                                        <i class="fe fe-edit"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="btn-icon-list">
-                                                    <a href="{{ route('products.edit' , $product->idproduct ) }}" class="btn ripple btn-outline-info btn-icon">
-                                                        <i class="fe fe-edit-2"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('products.destroy' , $product->idproduct) }}" method="post">
-                                                    {{ method_field('delete') }}
-                                                    {{ csrf_field() }}
-                                                    <div class="btn-icon-list">
-                                                        <button type="submit" class="btn ripple btn-outline-danger btn-icon">
-                                                            <i class="fe fe-trash-2 "></i>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -106,12 +64,35 @@
         </div>
     </div>
 @section('end')
-    <script src="{{asset('admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('admin/assets/js/table-data.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min-rtl.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
 
+            var table = $('.yajra-datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('products.index') }}",
+                columns: [
+                    {data: 'idproduct'          , name: 'idproduct'         },
+                    {data: 'image'              , name: 'image'             },
+                    {data: 'titleproduct'       , name: 'titleproduct'      },
+                    {data: 'unicode'            , name: 'unicode'           },
+                    {data: 'codefani'           , name: 'codefani'          },
+                    {data: 'titleproductgroup'  , name: 'titleproductgroup' },
+                    {data: 'status'             , name: 'status'            },
+                    {data: 'brandvariety'       , name: 'brandvariety'      },
+
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+
+        });
+    </script>
 @endsection
 @endsection
