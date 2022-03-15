@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '29d75cfa6aad4a29d8e081e633376dbe581a326c',
+    'reference' => '5b860d2810ea1c1ffa3b892c046b8f5bfa95527e',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -209,6 +209,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'fc10d778e4b84d5bd315dad194661e091d307c6f',
+    ),
+    'ghasedak/php' => 
+    array (
+      'pretty_version' => 'v1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b5fb1ff4a5acde89e4354a846d35fe76e53e4d3c',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -481,7 +490,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '29d75cfa6aad4a29d8e081e633376dbe581a326c',
+      'reference' => '5b860d2810ea1c1ffa3b892c046b8f5bfa95527e',
     ),
     'laravel/tinker' => 
     array (

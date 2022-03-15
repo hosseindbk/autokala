@@ -149,6 +149,7 @@ class ComposerStaticInitd1a90dfac2f2b610a2e57f15189fad5c
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+            'Ghasedak\\' => 9,
         ),
         'F' => 
         array (
@@ -436,6 +437,10 @@ class ComposerStaticInitd1a90dfac2f2b610a2e57f15189fad5c
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Ghasedak\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ghasedak/php/src',
         ),
         'Fruitcake\\Cors\\' => 
         array (
@@ -1588,6 +1593,9 @@ class ComposerStaticInitd1a90dfac2f2b610a2e57f15189fad5c
         'Fideloper\\Proxy\\TrustedProxyServiceProvider' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
         'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
         'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
+        'Ghasedak\\Exceptions\\ApiException' => __DIR__ . '/..' . '/ghasedak/php/src/Exceptions/ApiException.php',
+        'Ghasedak\\Exceptions\\HttpException' => __DIR__ . '/..' . '/ghasedak/php/src/Exceptions/HttpException.php',
+        'Ghasedak\\GhasedakApi' => __DIR__ . '/..' . '/ghasedak/php/src/GhasedakApi.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
         'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
         'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',

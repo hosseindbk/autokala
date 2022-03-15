@@ -2,8 +2,8 @@
 
 namespace Ghasedak;
 
-use Ghasedak\Exceptions\HttpException;
 use Ghasedak\Exceptions\ApiException;
+use Ghasedak\Exceptions\HttpException;
 
 class GhasedakApi
 {
@@ -114,11 +114,12 @@ class GhasedakApi
         return $this->runCurl($path, $params);
     }
 
-    public function Verify($receptor, $type, $template, ...$args)
+    public function Verify($receptor, $type, $template,...$args)
     {
         if (is_array($receptor)) {
             $receptor = implode(",", $receptor);
         }
+
         $path = 'send/verify';
         $params = array(
             "receptor" => $receptor,
