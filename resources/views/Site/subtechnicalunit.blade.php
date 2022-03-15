@@ -162,12 +162,6 @@
                                                                     <img src="{{asset($technical_unit->image3)}}" width="100" /></a>
                                                             </li>
                                                         @endif
-                                                        @foreach($medias as $media)
-                                                            <li class="item">
-                                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset($media->image)}}" data-zoom-image="{{asset($media->image)}}">
-                                                                    <img src="{{asset($media->image)}}" width="100" /></a>
-                                                            </li>
-                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
@@ -220,7 +214,7 @@
                                             </li>
                                             <li>
                                                 <span>وب سایت : </span>
-                                                <span><a href="{{$technical_unit->website}}" target="_blank">لینک وبسایت</a></span>
+                                                <span>@if($technical_unit->website) <a href="{{$technical_unit->website}}" target="_blank">لینک وبسایت</a> @endif</span>
                                             </li>
                                             <li>
                                                 <span>ایمیل : </span>
