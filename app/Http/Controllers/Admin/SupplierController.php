@@ -62,7 +62,7 @@ class SupplierController extends Controller
                 return ($data->ctitle);
             })
             ->editColumn('phone', function ($data) {
-                return ([$data->phone, $data->mobile, $data->whatsapp]);
+                return ($data->phone);
             })
             ->editColumn('status', function ($data) {
                 if ($data->status == "1") {
