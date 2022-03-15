@@ -26,10 +26,10 @@ class ProductController extends Controller
     public function index(){
         $menus          = Menu::whereStatus(4)->get();
         $countState     = null;
-//        $newproducts    = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $newproducts    = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clickproducts  = Product::whereStatus(4)->orderBy('click')->paginate(16);
         $goodproducts   = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-//        $oldproducts    = Product::whereStatus(4)->orderBy('id')->paginate(16);
+        $oldproducts    = Product::whereStatus(4)->orderBy('id')->paginate(16);
         //$carproducts    = Car_product::whereStatus(4)->get();
         $productgroups  = Product_group::whereStatus(4)->get();
         $carbrands      = Car_brand::whereStatus(4)->get();
@@ -37,18 +37,6 @@ class ProductController extends Controller
         $brands         = Brand::whereStatus(4)->get();
         $filter         = 0;
         $states         = State::all();
-
-        $newproducts = DB::table('products')
-            ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id', '=', 'products.id')
-            ->select( 'products.id as id','products.slug as slug' , 'products.image as image' , 'products.title_fa as title_fa' , 'products.title_en as title_en')
-            ->orderBy('id' , 'DESC')
-            ->paginate(16);
-
-        $oldproducts = DB::table('products')
-            ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id', '=', 'products.id')
-            ->select( 'products.id as id','products.slug as slug' , 'products.image as image' , 'products.title_fa as title_fa' , 'products.title_en as title_en')
-            ->orderBy('id')
-            ->paginate(16);
 
         $carproducts = DB::table('car_products')
             ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
