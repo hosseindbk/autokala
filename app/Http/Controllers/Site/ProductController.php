@@ -26,10 +26,10 @@ class ProductController extends Controller
     public function index(){
         $menus          = Menu::whereStatus(4)->get();
         $countState     = null;
-        $newproducts    = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+//        $newproducts    = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clickproducts  = Product::whereStatus(4)->orderBy('click')->paginate(16);
         $goodproducts   = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $oldproducts    = Product::whereStatus(4)->orderBy('id')->paginate(16);
+//        $oldproducts    = Product::whereStatus(4)->orderBy('id')->paginate(16);
         //$carproducts    = Car_product::whereStatus(4)->get();
         $productgroups  = Product_group::whereStatus(4)->get();
         $carbrands      = Car_brand::whereStatus(4)->get();
@@ -37,6 +37,18 @@ class ProductController extends Controller
         $brands         = Brand::whereStatus(4)->get();
         $filter         = 0;
         $states         = State::all();
+
+        $newproducts = DB::table('products')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id', '=', 'products.id')
+            ->select( 'products.id as id','products.slug as slug' , 'products.image as image' , 'products.title_fa as title_fa' , 'products.title_en as title_en')
+            ->orderBy('id' , 'DESC')
+            ->paginate(16);
+
+        $oldproducts = DB::table('products')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id', '=', 'products.id')
+            ->select( 'products.id as id','products.slug as slug' , 'products.image as image' , 'products.title_fa as title_fa' , 'products.title_en as title_en')
+            ->orderBy('id')
+            ->paginate(16);
 
         $carproducts = DB::table('car_products')
             ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
@@ -131,6 +143,17 @@ class ProductController extends Controller
         $productbrandvarieties  = Product_brand_variety::whereStatus(4)->get();
         $productvarieties       = Product_brand_variety::whereIn('Product_id' , $product_id)->whereStatus(4)->get();
 
+        $brandvarietis = DB::table('product_brand_varieties')
+            ->LeftJoin('products', 'products.id', '=', 'product_brand_varieties.product_id')
+            ->LeftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->LeftJoin('countries' , 'countries.id' , '=', 'brands.country_id')
+            ->select('products.slug as product_slug' , 'brands.id as brand_id' , 'brands.image as brand_image' , 'brands.title_fa as brand_title'
+            ,'brands.abstract_title as brand_abstract_title' , 'brands.title_en as brand_title_en' , 'countries.name as country_name' ,'product_brand_varieties.id as brand_vareity_id',
+            'product_brand_varieties.item1 as item1'  , 'product_brand_varieties.item2 as item2' , 'product_brand_varieties.item3 as item3',
+            'product_brand_varieties.value_item1 as value1' , 'product_brand_varieties.value_item2 as value2' , 'product_brand_varieties.value_item3 as value3')
+            ->whereProduct_id($product_id)->get();
+
+
 
         $carproducts = DB::table('car_products')
             ->LeftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
@@ -140,10 +163,14 @@ class ProductController extends Controller
             ->whereProduct_id($product_id)->get();
 
 
+
+
+
         $comments               = comment::whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
 
 
         return view('Site.subproduct')
+            ->with(compact('brandvarietis'))
             ->with(compact('productvarieties'))
             ->with(compact('countState'))
             ->with(compact('countries'))

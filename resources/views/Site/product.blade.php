@@ -249,9 +249,9 @@
                                                         <div class="thumb">
                                                             <a href="{{url('product'.'/'.$product->slug)}}" class="d-block" target="_blank">
                                                                 @if(! $product->image )
-                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$product->title}}">
+                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$product->title_fa}}">
                                                                 @else
-                                                                    <img src="{{asset($product->image)}}" style="height: 235px;" alt="{{$product->title}}">
+                                                                    <img src="{{asset($product->image)}}" style="height: 235px;" alt="{{$product->title_fa}}">
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -289,9 +289,9 @@
                                                         <div class="thumb">
                                                             <a href="{{url('product'.'/'.$product->slug)}}" target="_blank" class="d-block">
                                                                 @if(! $product->image )
-                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$product->title}}">
+                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$product->title_fa}}">
                                                                 @else
-                                                                    <img src="{{asset($product->image)}}" style="height: 235px;" alt="{{$product->title}}">
+                                                                    <img src="{{asset($product->image)}}" style="height: 235px;" alt="{{$product->title_fa}}">
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -329,9 +329,9 @@
                                                         <div class="thumb">
                                                             <a href="{{url('product'.'/'.$product->slug)}}" class="d-block" target="_blank">
                                                                 @if(! $product->image )
-                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$product->title}}">
+                                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$product->title_fa}}">
                                                                 @else
-                                                                    <img src="{{asset($product->image)}}" style="height: 235px;" alt="{{$product->title}}">
+                                                                    <img src="{{asset($product->image)}}" style="height: 235px;" alt="{{$product->title_fa}}">
                                                                 @endif
                                                             </a>
                                                         </div>

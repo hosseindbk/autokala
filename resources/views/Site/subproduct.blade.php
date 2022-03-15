@@ -316,66 +316,112 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-
-                                                @foreach($productvarieties as $productbrandvariety)
-                                                    @if($productbrandvariety->product_id == $product->id)
-                                                        @foreach($brands as $brand)
-                                                            @if($brand->id == $productbrandvariety->brand_id)
-                                                        <tr>
-                                                            <th scope="row" class="th-img">
-                                                                <div class="thumb-img">
-                                                                    <a href="{{url('productbrand'.'/'.$product->slug.'/'.$brand->id)}}">
-                                                                        @if(! $brand->image == null)
-                                                                        <img src="{{asset($brand->image)}}" alt="{{$brand->title_fa}}">
-                                                                        @else
-                                                                        <img src="{{asset('images/supplier_defult.png')}}" alt="{{$brand->title_fa}}">
-                                                                        @endif
-                                                                    </a>
-                                                                </div>
-                                                            </th>
-                                                            <td> {{$brand->title_fa}} </td>
-                                                            <td> {{$brand->abstract_title}} </td>
-                                                            <td> {{$brand->title_en}} </td>
-                                                            <td>@foreach($countries as $country) @if($country->id == $brand->country_id) {{$country->name}} @endif @endforeach</td>
-                                                            <td>
-                                                                    @if($productbrandvariety->item1 != null)
-                                                                        @if($brand->id == $productbrandvariety->brand_id)
-                                                                        <span>{{$productbrandvariety->item1}}</span>
-                                                                        <span>{{$productbrandvariety->value_item1}}</span>
-                                                                        @endif
-                                                                    @endif
-                                                                    <br>
-                                                            </td>
-                                                            <td>
-                                                                    @if($productbrandvariety->item2 != null)
-                                                                        @if($brand->id == $productbrandvariety->brand_id)
-                                                                        <span>{{$productbrandvariety->item2}}</span>
-                                                                            <span>{{$productbrandvariety->value_item2}}</span>
-                                                                    @endif
-                                                                    @endif
-
-                                                                    <br>
-                                                            </td>
-                                                            <td>
-                                                                    @if($productbrandvariety->item3 != null)
-                                                                        @if($brand->id == $productbrandvariety->brand_id)
-                                                                            <span>{{$productbrandvariety->item3}}</span>
-                                                                            <span>{{$productbrandvariety->value_item3}}</span>
-                                                                    @endif
-                                                                    @endif
-
-                                                                    <br>
-                                                            </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>
-                                                                <a href="{{url('productbrand'.'/'.$product->slug.'/'.$productbrandvariety->id)}}" class="btn btn-default"><i class="fa fa-eye"></i> </a>
-                                                            </td>
-                                                        </tr>
+                                            @foreach($brandvarietis as $brandvariety)
+                                                <tr>
+                                                    <th scope="row" class="th-img">
+                                                        <div class="thumb-img">
+                                                            <a href="{{url('productbrand'.'/'.$brandvariety->product_slug.'/'.$brandvariety->brand_id)}}">
+                                                                @if(! $brandvariety->brand_image == null)
+                                                                <img src="{{asset($brandvariety->brand_image)}}" alt="{{$brandvariety->brand_title}}">
+                                                                @else
+                                                                <img src="{{asset('images/supplier_defult.png')}}" alt="{{$brandvariety->brand_title}}">
                                                                 @endif
-                                                        @endforeach
-                                                        @endif
+                                                            </a>
+                                                        </div>
+                                                    </th>
+                                                    <td> {{$brandvariety->brand_title}} </td>
+                                                    <td> {{$brandvariety->brand_abstract_title}} </td>
+                                                    <td> {{$brandvariety->brand_title_en}} </td>
+                                                    <td> {{$brandvariety->country_name}} </td>
+                                                    <td>
+                                                            @if($brandvariety->item1 != null)
+                                                                <span>{{$brandvariety->item1}}</span>
+                                                                <span>{{$brandvariety->value1}}</span>
+                                                            @endif
+                                                            <br>
+                                                    </td>
+                                                    <td>
+                                                            @if($brandvariety->item2 != null)
+                                                                <span>{{$brandvariety->item2}}</span>
+                                                                <span>{{$brandvariety->value2}}</span>
+                                                            @endif
+                                                            <br>
+                                                    </td>
+                                                    <td>
+                                                            @if($brandvariety->item3 != null)
+                                                                    <span>{{$brandvariety->item3}}</span>
+                                                                    <span>{{$brandvariety->value3}}</span>
+                                                            @endif
+                                                            <br>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <a href="{{url('productbrand'.'/'.$brandvariety->product_slug.'/'.$brandvariety->brand_id)}}" class="btn btn-default"><i class="fa fa-eye"></i> </a>
+                                                    </td>
+                                                </tr>
+
                                             @endforeach
+
+{{--                                                @foreach($productvarieties as $productbrandvariety)--}}
+{{--                                                    @if($productbrandvariety->product_id == $product->id)--}}
+{{--                                                        @foreach($brands as $brand)--}}
+{{--                                                            @if($brand->id == $productbrandvariety->brand_id)--}}
+{{--                                                        <tr>--}}
+{{--                                                            <th scope="row" class="th-img">--}}
+{{--                                                                <div class="thumb-img">--}}
+{{--                                                                    <a href="{{url('productbrand'.'/'.$product->slug.'/'.$brand->id)}}">--}}
+{{--                                                                        @if(! $brand->image == null)--}}
+{{--                                                                        <img src="{{asset($brand->image)}}" alt="{{$brand->title_fa}}">--}}
+{{--                                                                        @else--}}
+{{--                                                                        <img src="{{asset('images/supplier_defult.png')}}" alt="{{$brand->title_fa}}">--}}
+{{--                                                                        @endif--}}
+{{--                                                                    </a>--}}
+{{--                                                                </div>--}}
+{{--                                                            </th>--}}
+{{--                                                            <td> {{$brand->title_fa}} </td>--}}
+{{--                                                            <td> {{$brand->abstract_title}} </td>--}}
+{{--                                                            <td> {{$brand->title_en}} </td>--}}
+{{--                                                            <td>@foreach($countries as $country) @if($country->id == $brand->country_id) {{$country->name}} @endif @endforeach</td>--}}
+{{--                                                            <td>--}}
+{{--                                                                    @if($productbrandvariety->item1 != null)--}}
+{{--                                                                        @if($brand->id == $productbrandvariety->brand_id)--}}
+{{--                                                                        <span>{{$productbrandvariety->item1}}</span>--}}
+{{--                                                                        <span>{{$productbrandvariety->value_item1}}</span>--}}
+{{--                                                                        @endif--}}
+{{--                                                                    @endif--}}
+{{--                                                                    <br>--}}
+{{--                                                            </td>--}}
+{{--                                                            <td>--}}
+{{--                                                                    @if($productbrandvariety->item2 != null)--}}
+{{--                                                                        @if($brand->id == $productbrandvariety->brand_id)--}}
+{{--                                                                        <span>{{$productbrandvariety->item2}}</span>--}}
+{{--                                                                            <span>{{$productbrandvariety->value_item2}}</span>--}}
+{{--                                                                    @endif--}}
+{{--                                                                    @endif--}}
+
+{{--                                                                    <br>--}}
+{{--                                                            </td>--}}
+{{--                                                            <td>--}}
+{{--                                                                    @if($productbrandvariety->item3 != null)--}}
+{{--                                                                        @if($brand->id == $productbrandvariety->brand_id)--}}
+{{--                                                                            <span>{{$productbrandvariety->item3}}</span>--}}
+{{--                                                                            <span>{{$productbrandvariety->value_item3}}</span>--}}
+{{--                                                                    @endif--}}
+{{--                                                                    @endif--}}
+
+{{--                                                                    <br>--}}
+{{--                                                            </td>--}}
+{{--                                                            <td></td>--}}
+{{--                                                            <td></td>--}}
+{{--                                                            <td>--}}
+{{--                                                                <a href="{{url('productbrand'.'/'.$product->slug.'/'.$productbrandvariety->id)}}" class="btn btn-default"><i class="fa fa-eye"></i> </a>--}}
+{{--                                                            </td>--}}
+{{--                                                        </tr>--}}
+{{--                                                                @endif--}}
+{{--                                                        @endforeach--}}
+{{--                                                        @endif--}}
+{{--                                            @endforeach--}}
                                             </tbody>
                                         </table>
                                     </div>
