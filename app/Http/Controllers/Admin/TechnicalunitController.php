@@ -58,7 +58,7 @@ class TechnicalunitController extends Controller
                     return ($data->ctitle);
                 })
                 ->editColumn('phone', function ($data) {
-                    return ([$data->phone, $data->phone2, $data->phone3]);
+                    return ($data->phone);
                 })
                 ->editColumn('tstatus', function ($data) {
                     if ($data->status == "1") {
