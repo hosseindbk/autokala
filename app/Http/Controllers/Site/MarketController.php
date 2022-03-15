@@ -227,6 +227,7 @@ class MarketController extends Controller
             ->where('offers.brand_id' , '<>' , null)
             ->get();
         return view('Site.market')
+            ->with(compact('brandnames'))
             ->with(compact('products'))
             ->with(compact('brand_varietis'))
             ->with(compact('users'))
