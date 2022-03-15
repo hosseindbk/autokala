@@ -42,14 +42,12 @@ class ProductController extends Controller
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id', '=', 'products.id')
             ->select( 'products.id as id','products.slug as slug' , 'products.image as image' , 'products.title_fa as title_fa' , 'products.title_en as title_en')
             ->orderBy('id' , 'DESC')
-            ->whereStatus(4)
             ->paginate(16);
 
         $oldproducts = DB::table('products')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id', '=', 'products.id')
             ->select( 'products.id as id','products.slug as slug' , 'products.image as image' , 'products.title_fa as title_fa' , 'products.title_en as title_en')
             ->orderBy('id')
-            ->whereStatus(4)
             ->paginate(16);
 
         $carproducts = DB::table('car_products')
