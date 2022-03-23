@@ -33,7 +33,7 @@ class IndexController extends Controller
             WHEN offers.buyorsell = "sell" THEN "پیشنهاد فروش"
             WHEN offers.buyorsell = "buy" THEN "پیشنهاد خرید"
             END) AS type'),
-            DB::raw( ' " '. \Morilog\Jalali\Jalalian::forge('offers.created_at')->ago() . ' " as time '))
+            DB::raw( ' " '. \Morilog\Jalali\Jalalian::forge('2021-10-03 14:22:26')->ago() . ' " as time '))
             ->where('offers.status' , '=', '4')
             ->where('offers.homeshow' , '=', '1')
             ->inRandomOrder()
