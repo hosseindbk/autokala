@@ -36,22 +36,20 @@ class Supplier extends Model
     public function scopeFilter($query)
     {
         $productgroup_id    = request('productgroup_id');
-        if(isset($productgroup_id)  && $productgroup_id != '') {
-            $supplier_id = Supplier_product_group::whereIn('kala_group_id', $productgroup_id)->pluck('supplier_id');
-            if (trim($supplier_id) != '[]') {
+        if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null) {
+            $supplier_id = Supplier_product_group::whereIn('kala_group_id', $productgroup_id)->pluck('supplier_id')->toArray();
+            if (array_values($supplier_id)[0] != null) {
                 $query->whereIn('id', $supplier_id);
-            } else {
-                $query->whereId(null);
             }
         }
 
         $state_id = request('state_id');
-        if (isset($state_id) && $state_id != '') {
+        if (isset($state_id) && $state_id != null) {
             $query->whereState_id($state_id);
         }
 
         $city_id = request('city_id');
-        if (isset($city_id) && $city_id != '') {
+        if (isset($city_id) &&  array_values($city_id)[0] != null) {
             $query->whereIn('city_id' , $city_id);
         }
 
@@ -76,22 +74,18 @@ class Supplier extends Model
         }
 
         $carbrands = request('car_brand_id');
-        if (isset($carbrands) && trim($carbrands) != '') {
+        if (isset($carbrands) && $carbrands != null) {
             $supplier_id = Supplier_product_group::whereCar_brand_id($carbrands)->pluck('supplier_id');
             if (trim($supplier_id) != '[]') {
                 $query->whereIn('id',$supplier_id);
-            }else{
-                $query->whereId(null);
             }
         }
 
         $carmodels = request('car_model_id');
-        if (isset($carmodels) && $carmodels != '') {
-            $supplier_id = Supplier_product_group::whereIn('car_model_id',$carmodels)->pluck('supplier_id');
-            if (trim($supplier_id) != '[]') {
+        if (isset($carmodels) && array_values($carmodels)[0] != null) {
+            $supplier_id = Supplier_product_group::whereIn('car_model_id',$carmodels)->pluck('supplier_id')->toArray();
+            if (array_values($supplier_id)[0] != null) {
                 $query->whereIn('id',$supplier_id);
-            }else{
-                $query->whereId(null);
             }
         }
         return $query;

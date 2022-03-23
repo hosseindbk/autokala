@@ -24,11 +24,11 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::post('/search/technical'     , 'SearchController@technical');
     Route::post('/search/offersell'     , 'SearchController@offersell');
     Route::post('/search/offerbuy'      , 'SearchController@offerbuy');
-    Route::post('/filter/product'       , 'SearchController@productfilter');
-    Route::post('/filter/supplier'      , 'SearchController@supplierfilter');
-    Route::post('/filter/technical'     , 'SearchController@technicalfilter');
-    Route::post('/filter/offersell'     , 'SearchController@sellfilter');
-    Route::post('/filter/offerbuy'      , 'SearchController@buyfilter');
+    Route::get('/filter/product'       , 'SearchController@productfilter');
+    Route::get('/filter/supplier'      , 'SearchController@supplierfilter');
+    Route::get('/filter/technical'     , 'SearchController@technicalfilter');
+    Route::get('/filter/offersell'     , 'SearchController@sellfilter');
+    Route::get('/filter/offerbuy'      , 'SearchController@buyfilter');
     Route::post('comment'               , 'CommentController@comment');
     Route::post('rate-number'           , 'CommentController@commentrate');
 
