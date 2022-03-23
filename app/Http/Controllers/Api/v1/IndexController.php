@@ -22,17 +22,18 @@ class IndexController extends Controller
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
-            ->select('brands.title_fa as brand' , 'offers.total as numberofsell', 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
+            ->select('brands.title_fa as brand' , 'offers.total as numberofsell', 'offers.slug'  , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
 
-                \DB::raw( '(CASE
+            DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
             WHEN users.type_id = "4" THEN "شخصی"
             END) AS type'),
-            \DB::raw( '(CASE
+                DB::raw( '(CASE
             WHEN offers.buyorsell = "sell" THEN "پیشنهاد فروش"
             WHEN offers.buyorsell = "buy" THEN "پیشنهاد خرید"
-            END) AS type'))
+            END) AS type'),
+            DB::raw( ' " '. \Morilog\Jalali\Jalalian::forge('offers.created_at')->ago() . ' " as time '))
             ->where('offers.status' , '=', '4')
             ->where('offers.homeshow' , '=', '1')
             ->inRandomOrder()

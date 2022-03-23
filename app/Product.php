@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -10,7 +9,7 @@ class Product extends Model
     public function scopeSearch($query , $keywords)
     {
         $category = request('category_id');
-        if ($category == 'all')
+        if ($category == 'all' || $category == null)
         {
             $query->where('title_fa' , 'LIKE' , '%' .$keywords. '%')
                 ->orwhere('title_bazar_fa' , 'LIKE' , '%' .$keywords. '%')

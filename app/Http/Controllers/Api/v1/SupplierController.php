@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api\v1;
 use App\comment;
 use App\commentrate;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\supplierrequest;
 use App\Supplier;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Intervention\Image\Facades\Image;
 
 class SupplierController extends Controller
 {
@@ -142,5 +145,103 @@ class SupplierController extends Controller
 
         return Response::json(['ok' =>$status ,'message' => $message,'response'=>$response]);
 
+    }
+
+    public function store(supplierrequest $request , Supplier $suppliers)
+    {
+        $supplier_user = Supplier::where('user_id', auth::user()->id)->first();
+        if ($supplier_user === null) {
+
+            $suppliers = new Supplier();
+
+            if ($request->input('manufacturer') == 'on') {
+                $suppliers->manufacturer = 1;
+            } else {
+                $suppliers->manufacturer = 0;
+            }
+            if ($request->input('importer') == 'on') {
+                $suppliers->importer = 1;
+            } else {
+                $suppliers->importer = 0;
+            }
+            if ($request->input('whole_seller') == 'on') {
+                $suppliers->whole_seller = 1;
+            } else {
+                $suppliers->whole_seller = 0;
+            }
+            if ($request->input('retail_seller') == 'on') {
+                $suppliers->retail_seller = 1;
+            } else {
+                $suppliers->retail_seller = 0;
+            }
+            $suppliers->title       = $request->input('title');
+            $suppliers->manager     = $request->input('manager');
+            $suppliers->phone       = $request->input('phone');
+            $suppliers->mobile      = $request->input('mobile');
+            if ($request->input('lat') != null) {
+                $suppliers->lat     = $request->input('lat');
+            } else {
+                $suppliers->lat     = auth::user()->lat;
+            }
+            if ($request->input('lng') != null) {
+                $suppliers->lng     = $request->input('lng');
+            } else {
+                $suppliers->lng     = auth::user()->lng;
+            }
+            $suppliers->whatsapp    = $request->input('whatsapp');
+            $suppliers->email       = $request->input('email');
+            $suppliers->website     = $request->input('website');
+            $suppliers->state_id    = $request->input('state_id');
+            $suppliers->city_id     = $request->input('city_id');
+            $suppliers->address     = $request->input('address');
+            $suppliers->slug        = 'SU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
+            $suppliers->description = $request->input('description');
+            $suppliers->status      = '1';
+            $suppliers->date        = jdate()->format('Ymd ');
+
+            $suppliers->user_id     = Auth::user()->id;
+
+            if ($request->file('image') != null) {
+                $file = $request->file('image');
+                $img = Image::make($file);
+                $imagePath = "images/suppliers";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $suppliers->image = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            if ($request->file('image2') != null) {
+                $file = $request->file('image2');
+                $img = Image::make($file);
+                $imagePath = "images/suppliers";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $suppliers->image2 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            if ($request->file('image3') != null) {
+                $file = $request->file('image3');
+                $img = Image::make($file);
+                $imagePath = "images/suppliers";
+                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $suppliers->image3 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+
+            $suppliers->save();
+            $status     = true;
+            $message    = 'success';
+            $response   = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+
+        } else {
+            $status     = false;
+            $message    = 'faild';
+            $response   = 'شما قبلا با همین حساب کاربری فروشگاه ثبت کرده اید جهت ثبت فروشگاه دیگر باید با حساب دیگری اقدام نمایید';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        }
     }
 }

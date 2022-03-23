@@ -8,15 +8,15 @@ class Offer extends Model
 {
     public function scopeOffersearchsell($query , $keywords)
     {
-        $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%')
-            ->orwhere('description' , 'LIKE' , '%' .$keywords. '%');
+        $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
+//            ->orwhere('description' , 'LIKE' , '%' .$keywords. '%');
 
         return $query;
     }
     public function scopeOffersearchbuy($query , $keywords)
     {
-        $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%')
-            ->orwhere('description' , 'LIKE' , '%' .$keywords. '%');
+        $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
+//            ->orwhere('description' , 'LIKE' , '%' .$keywords. '%');
 
         return $query;
     }

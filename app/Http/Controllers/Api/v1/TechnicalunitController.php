@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api\v1;
 use App\comment;
 use App\commentrate;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\technicalrequest;
 use App\Technical_unit;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Intervention\Image\Facades\Image;
 
 class TechnicalunitController extends Controller
 {
@@ -143,4 +146,84 @@ class TechnicalunitController extends Controller
 
         return Response::json(['ok' => $status ,'message' => $message ,'response'=>$response]);
     }
+
+    public function store(technicalrequest $request)
+    {
+        $technical_user = Technical_unit::where('user_id', auth::user()->id)->first();
+        if ($technical_user === null) {
+        $technical_units = new Technical_unit();
+
+        $technical_units->title         = $request->input('title');
+        $technical_units->manager       = $request->input('manager');
+        $technical_units->state_id      = $request->input('state_id');
+        $technical_units->city_id       = $request->input('city_id');
+        $technical_units->phone         = $request->input('phone');
+        if ($request->input('lat') != null) {
+            $technical_units->lat = $request->input('lat');
+        }else{
+            $technical_units->lat = auth::user()->lat;
+        }
+        if ($request->input('lng') != null) {
+            $technical_units->lng = $request->input('lng');
+        }else{
+            $technical_units->lng = auth::user()->lng;
+        }
+        $technical_units->phone2        = $request->input('phone2');
+        $technical_units->phone3        = $request->input('phone3');
+        $technical_units->mobile        = $request->input('mobile');
+        $technical_units->mobile2       = $request->input('mobile2');
+        $technical_units->whatsapp      = $request->input('whatsapp');
+        $technical_units->status        = '1';
+        $technical_units->slug          = 'TU-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
+        $technical_units->email         = $request->input('email');
+        $technical_units->website       = $request->input('site');
+        $technical_units->address       = $request->input('address');
+        $technical_units->description   = $request->input('description');
+        $technical_units->user_id       = Auth::user()->id;
+        $technical_units->date          = jdate()->format('Ymd ');
+
+
+        if ($request->file('image') != null) {
+            $file = $request->file('image');
+            $img = Image::make($file);
+            $imagePath = "images/technicals";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $technical_units->image = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath = "images/technicals";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $technical_units->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath = "images/technicals";
+            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $technical_units->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath . $imageName);
+            $img->encode('jpg');
+        }
+
+        $technical_units->save();
+            $status = true;
+            $message = 'success';
+            $response = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+    }else{
+            $status = false;
+            $message = 'faild';
+            $response = 'شما قبلا با همین حساب کاربری تعمیرگاه ثبت کرده اید جهت ثبت تعمیرگاه دیگر باید با حساب دیگری اقدام نمایید';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        }
+    }
+
 }

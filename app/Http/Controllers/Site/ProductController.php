@@ -234,9 +234,9 @@ class ProductController extends Controller
             'commentable_id'    => 'required',
             'commentable_type'  => 'required',
             'parent_id'         => 'required',
-            'comment'           => 'required',
-            'name'              => 'required',
-            'phone'             => 'required',
+            'comment'           => 'required|min:3',
+            'name'              => 'required|min:3',
+            'phone'             => 'required|min:9',
         ]);
 
         comment::create($valiData);
@@ -249,15 +249,15 @@ class ProductController extends Controller
         $commentData = $request->validate([
             'commentable_id'    => 'required',
             'commentable_type'  => 'required',
-            'comment'           => 'required',
-            'phone'             => 'required',
-            'name'              => 'required',
-            'quality'           => 'required',
-            'value'             => 'required',
-            'innovation'        => 'required',
-            'ability'           => 'required',
-            'design'            => 'required',
-            'comfort'           => 'required',
+            'comment'           => 'required|min:3',
+            'phone'             => 'required|min:9',
+            'name'              => 'required|min:3',
+            'quality'           => 'required|integer|between:0,5',
+            'value'             => 'required|integer|between:0,5',
+            'innovation'        => 'required|integer|between:0,5',
+            'ability'           => 'required|integer|between:0,5',
+            'design'            => 'required|integer|between:0,5',
+            'comfort'           => 'required|integer|between:0,5',
         ]);
 
         commentrate::create($commentData);
