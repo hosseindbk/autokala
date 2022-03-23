@@ -37,10 +37,8 @@ class Supplier extends Model
     {
         $productgroup_id    = request('productgroup_id');
         if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null) {
-            $supplier_id = Supplier_product_group::whereIn('kala_group_id', $productgroup_id)->pluck('supplier_id')->toArray();
-            if (array_values($supplier_id)[0] != null) {
-                $query->whereIn('id', $supplier_id);
-            }
+            $supplier_id = Supplier_product_group::whereIn('kala_group_id', $productgroup_id)->pluck('supplier_id');
+            $query->whereIn('id', $supplier_id);
         }
 
         $state_id = request('state_id');
@@ -76,17 +74,14 @@ class Supplier extends Model
         $carbrands = request('car_brand_id');
         if (isset($carbrands) && $carbrands != null) {
             $supplier_id = Supplier_product_group::whereCar_brand_id($carbrands)->pluck('supplier_id');
-            if (trim($supplier_id) != '[]') {
-                $query->whereIn('id',$supplier_id);
-            }
+            $query->whereIn('id',$supplier_id);
         }
 
         $carmodels = request('car_model_id');
         if (isset($carmodels) && array_values($carmodels)[0] != null) {
-            $supplier_id = Supplier_product_group::whereIn('car_model_id',$carmodels)->pluck('supplier_id')->toArray();
-            if (array_values($supplier_id)[0] != null) {
-                $query->whereIn('id',$supplier_id);
-            }
+            $supplier_id = Supplier_product_group::whereIn('car_model_id',$carmodels)->pluck('supplier_id');
+            $query->whereIn('id',$supplier_id);
+
         }
         return $query;
     }
