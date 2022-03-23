@@ -22,7 +22,8 @@ class IndexController extends Controller
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
-            ->select('brands.title_fa as brand' , 'offers.total as numberofsell', 'offers.slug'  , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
+            ->select('brands.title_fa as brand' , 'offers.total as numberofsell', 'offers.slug'  , 'offers.image1 as image' , 'offers.title_offer as title'
+                            ,'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice','offers.created_at as time' ,
 
             DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
@@ -32,12 +33,26 @@ class IndexController extends Controller
                 DB::raw( '(CASE
             WHEN offers.buyorsell = "sell" THEN "پیشنهاد فروش"
             WHEN offers.buyorsell = "buy" THEN "پیشنهاد خرید"
-            END) AS type'),
-            DB::raw( ' " '. \Morilog\Jalali\Jalalian::forge('2021-10-03 14:22:26')->ago() . ' " as time '))
+            END) AS type'))
             ->where('offers.status' , '=', '4')
             ->where('offers.homeshow' , '=', '1')
             ->inRandomOrder()
             ->get();
+
+        foreach ($offers as $offer){
+            $offera[] = [
+            'brand'             => $offer->brand,
+            'numberofsell'      => $offer->numberofsell,
+            'slug'              => $offer->slug,
+            'image'             => $offer->image,
+            'title'             => $offer->title,
+            'state'             => $offer->state,
+            'city'              => $offer->city,
+            'wholesaleprice'    => $offer->wholesaleprice,
+            'retailprice'       => $offer->retailprice,
+            'time'              => jdate($offer->time)->ago(),
+            ];
+        }
 
         $technicalunits = DB::table('technical_units')
             ->leftJoin('states', 'states.id', '=', 'technical_units.state_id')
@@ -62,7 +77,7 @@ class IndexController extends Controller
         }
 
         $response = [
-                'offer'          => $offers ,
+                'offer'          => $offera ,
                 'brand'          => $brands,
                 'technicalunits' => $technicalunits  ,
                 'suppliers'      => $suppliers ,
