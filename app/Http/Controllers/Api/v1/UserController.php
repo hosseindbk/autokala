@@ -207,4 +207,22 @@ class UserController extends Controller
         }
 
     }
+
+    public function update(Request $request){
+
+        $user = auth::user();
+
+        $user->name             = $request->input('name');
+        if ($request->input('phone') != null) {
+            $user->phone        = $request->input('phone');
+            $user->phone_verify = 0;
+        }
+        $user->state_id         = $request->input('state_id');
+        $user->city_id          = $request->input('city_id');
+
+        $user->update();
+        $response = 'تغییرات با موفقیت انجام شد' ;
+
+        return Response::json(['ok' => true , 'message' => 'success' , 'response' => $response]);
+    }
 }

@@ -24,6 +24,11 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::post('/search/technical'     , 'SearchController@technical');
     Route::post('/search/offersell'     , 'SearchController@offersell');
     Route::post('/search/offerbuy'      , 'SearchController@offerbuy');
+    Route::post('/filter/product'       , 'SearchController@productfilter');
+    Route::post('/filter/supplier'      , 'SearchController@supplierfilter');
+    Route::post('/filter/technical'     , 'SearchController@technicalfilter');
+    Route::post('/filter/offersell'     , 'SearchController@sellfilter');
+    Route::post('/filter/offerbuy'      , 'SearchController@buyfilter');
     Route::post('comment'               , 'CommentController@comment');
     Route::post('rate-number'           , 'CommentController@commentrate');
 
@@ -33,6 +38,7 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/supplier/store'       , 'SupplierController@store');
     Route::post('/technicalunit/store'  , 'TechnicalunitController@store');
     Route::post('/offer/store'          , 'OfferController@store');
+    Route::post('/user/update'         , 'UserController@update');
 
 
     });
