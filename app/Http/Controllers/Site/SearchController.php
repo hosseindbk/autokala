@@ -203,6 +203,7 @@ class SearchController extends Controller
             ->with(compact('brands'))
             ->with(compact('menus'));
     }
+
     public function offersearchbuy(){
         $keywords           = request('offersearch');
         $menus              = Menu::whereStatus(4)->get();

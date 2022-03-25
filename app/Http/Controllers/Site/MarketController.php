@@ -463,6 +463,7 @@ class MarketController extends Controller
             ->with(compact('brands'))
             ->with(compact('menus'));
     }
+
     public function option(Request $request){
         $cities = City::whereState_id($request->input('id'))->get();
         $output = [];

@@ -141,7 +141,7 @@
                                                         </div>
                                                         <div class="form-auth-row">
                                                             <label for="supandshop" class="ui-checkbox">
-                                                                <input type="radio" name="type" id="supandshop" {{request('type') == '13' ? 'checked' : '' }} value="13"   >
+                                                                <input type="radio" name="type" id="supandshop" {{request('type') == '1' ? 'checked' : '' }} value="1"   >
                                                                 <span class="outline-radio-check"></span>
                                                             </label>
                                                             <label for="supandshop"  class="remember-me">فروشگاه / تامین کننده</label>
@@ -464,7 +464,7 @@
                                                                 @if($offer->user_id == $user->id)
                                                                     @if($user->type_id == 1 )
                                                                         <button class="btn btn-danger">فروشگاه</button>
-                                                                    @elseif($user->type_id == 4 || $user->type_id == 3)
+                                                                    @elseif($user->type_id != 1)
                                                                         <button class="btn btn-success">شخصی</button>
                                                                     @endif
                                                                 @endif

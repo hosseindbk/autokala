@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -219,7 +220,15 @@ class UserController extends Controller
         }
         $user->state_id         = $request->input('state_id');
         $user->city_id          = $request->input('city_id');
-
+        if ($request->file('image') != null) {
+            $file = $request->file('image');
+            $img = Image::make($file);
+            $imagePath ="images/user/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $user->image = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
         $user->update();
         $response = 'تغییرات با موفقیت انجام شد' ;
 

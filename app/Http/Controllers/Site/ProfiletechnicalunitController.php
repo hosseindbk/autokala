@@ -55,6 +55,7 @@ class ProfiletechnicalunitController extends Controller
             ->with(compact('technicalunits'))
             ->with(compact('states'));
     }
+
     public function technicalcreate()
     {
         $menus = Menu::whereStatus(4)->get();
@@ -130,7 +131,7 @@ class ProfiletechnicalunitController extends Controller
             $file = $request->file('image');
             $img = Image::make($file);
             $imagePath = "images/technicals";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $technical_units->image = $file->move($imagePath, $imageName);
             $img->save($imagePath . $imageName);
             $img->encode('jpg');
@@ -139,7 +140,7 @@ class ProfiletechnicalunitController extends Controller
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath = "images/technicals";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $technical_units->image2 = $file->move($imagePath, $imageName);
             $img->save($imagePath . $imageName);
             $img->encode('jpg');
@@ -148,7 +149,7 @@ class ProfiletechnicalunitController extends Controller
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath = "images/technicals";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $technical_units->image3 = $file->move($imagePath, $imageName);
             $img->save($imagePath . $imageName);
             $img->encode('jpg');

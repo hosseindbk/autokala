@@ -46,6 +46,7 @@ class ProfilesupplierController extends Controller
             ->with(compact('cities'))
             ->with(compact('states'));
     }
+
     public function suppliercreate()
     {
         $menus                  = Menu::whereStatus(4)->get();
@@ -79,6 +80,7 @@ class ProfilesupplierController extends Controller
                 ->with(compact('states'));
         }
     }
+
     public function store(supplierrequest $request , Supplier $suppliers)
     {
 
@@ -136,7 +138,7 @@ class ProfilesupplierController extends Controller
             $file = $request->file('image');
             $img = Image::make($file);
             $imagePath = "images/suppliers";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $suppliers->image = $file->move($imagePath, $imageName);
             $img->save($imagePath . $imageName);
             $img->encode('jpg');
@@ -145,7 +147,7 @@ class ProfilesupplierController extends Controller
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath = "images/suppliers";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $suppliers->image2 = $file->move($imagePath, $imageName);
             $img->save($imagePath . $imageName);
             $img->encode('jpg');
@@ -154,7 +156,7 @@ class ProfilesupplierController extends Controller
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath = "images/suppliers";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $suppliers->image3 = $file->move($imagePath, $imageName);
             $img->save($imagePath . $imageName);
             $img->encode('jpg');

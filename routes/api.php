@@ -9,6 +9,8 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::post('/register'             , 'UserController@register');
     Route::get('/register'              , 'UserController@getregister');
     Route::get('/product'               , 'ProductController@index');
+    Route::get('/product/variety'       , 'ProductController@variety');
+    Route::get('/product/topview'       , 'ProductController@topview');
     Route::get('/product/{slug}'        , 'ProductController@subproduct');
     Route::get('/supplier'              , 'SupplierController@index');
     Route::get('/supplier/{slug}'       , 'SupplierController@subsupplier');
@@ -24,21 +26,23 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::post('/search/technical'     , 'SearchController@technical');
     Route::post('/search/offersell'     , 'SearchController@offersell');
     Route::post('/search/offerbuy'      , 'SearchController@offerbuy');
-    Route::get('/filter/product'       , 'SearchController@productfilter');
-    Route::get('/filter/supplier'      , 'SearchController@supplierfilter');
-    Route::get('/filter/technical'     , 'SearchController@technicalfilter');
-    Route::get('/filter/offersell'     , 'SearchController@sellfilter');
-    Route::get('/filter/offerbuy'      , 'SearchController@buyfilter');
+    Route::get('/filter/product'        , 'SearchController@productfilter');
+    Route::get('/filter/supplier'       , 'SearchController@supplierfilter');
+    Route::get('/filter/technical'      , 'SearchController@technicalfilter');
+    Route::get('/filter/offersell'      , 'SearchController@sellfilter');
+    Route::get('/filter/offerbuy'       , 'SearchController@buyfilter');
+    Route::get('/filter/state'          , 'SearchController@state');
     Route::post('comment'               , 'CommentController@comment');
     Route::post('rate-number'           , 'CommentController@commentrate');
 
 Route::middleware('auth:api')->group(function (){
-    Route::post('/recoverpass'          , 'UserController@recoverpass');
-    Route::get('/profile'               , 'UserController@profile');
-    Route::post('/supplier/store'       , 'SupplierController@store');
-    Route::post('/technicalunit/store'  , 'TechnicalunitController@store');
-    Route::post('/offer/store'          , 'OfferController@store');
-    Route::post('/user/update'         , 'UserController@update');
+    Route::post('/recoverpass'                  , 'UserController@recoverpass');
+    Route::get('/profile'                       , 'UserController@profile');
+    Route::post('/supplier/store'               , 'SupplierController@store');
+    Route::post('/technicalunit/store'          , 'TechnicalunitController@store');
+    Route::post('/product/createproductvariety' , 'ProductController@createproductvariety');
+    Route::post('/offer/store'                  , 'OfferController@store');
+    Route::post('/user/update'                  , 'UserController@update');
 
 
     });

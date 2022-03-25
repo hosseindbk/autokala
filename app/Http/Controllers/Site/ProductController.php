@@ -151,11 +151,14 @@ class ProductController extends Controller
             ->whereProduct_id($product_id)->get();
 
 
-
-
-
         $comments               = comment::whereCommentable_id($product_id)->whereApproved(1)->latest()->get();
 
+
+        $product_click          = Product::whereSlug($slug)->pluck('click');
+        $product_new_click      = $product_click[0] + 1;
+        $pros = Product::findOrfail($product_id)->first();
+        $pros->click = $product_new_click;
+        $pros->update();
 
         return view('Site.subproduct')
             ->with(compact('brandvarietis'))

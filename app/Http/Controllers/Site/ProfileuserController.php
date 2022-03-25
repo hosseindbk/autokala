@@ -10,8 +10,6 @@ use App\State;
 use App\Type_user;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
 class ProfileuserController extends Controller
@@ -28,6 +26,7 @@ class ProfileuserController extends Controller
             ->with(compact('cities'))
             ->with(compact('typeusers'));
     }
+
     public function setmapuser($id){
         $menus              = Menu::whereStatus(4)->get();
         $suppliers          = User::whereId($id)->get();
@@ -38,6 +37,7 @@ class ProfileuserController extends Controller
             ->with(compact('suppliers' , 'menus' , 'states' , 'cities'))
             ->with('id' , $id);
     }
+
     public function usermapset(Request $request)
     {
         $usermap               = User::findOrfail($request->input('id'));
@@ -65,7 +65,7 @@ class ProfileuserController extends Controller
             $file = $request->file('image');
             $img = Image::make($file);
             $imagePath ="image/user/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $user->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -76,7 +76,6 @@ class ProfileuserController extends Controller
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return redirect(route('profile-info'));
     }
-
 
     public function option(Request $request){
         $cities = City::whereState_id($request->input('id'))->get();

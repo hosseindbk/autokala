@@ -11,12 +11,9 @@ use App\commentrate;
 use App\Http\Controllers\Controller;
 use App\Media;
 use App\Menu;
-use App\Product;
 use App\Product_group;
 use App\State;
 use App\Supplier;
-use App\Supplier_product_group;
-use App\Technical_unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -148,6 +145,7 @@ class SupplierController extends Controller
 
 
     }
+
     public function subsupplier($slug){
 
         $menus                  = Menu::whereStatus(4)->get();

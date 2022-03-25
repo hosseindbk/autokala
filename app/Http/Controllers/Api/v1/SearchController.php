@@ -106,6 +106,7 @@ class SearchController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
+
     public function offerbuy()
     {
         $keywords = request('offerbuysearch');
@@ -137,8 +138,8 @@ class SearchController extends Controller
     }
 
     public function sellfilter(){
-        $brandnames = DB::table('offers')
-            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+        $brandnames = Offer::
+            leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
@@ -146,15 +147,15 @@ class SearchController extends Controller
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
             ->select('brands.title_fa as brand' ,'offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
 
-                DB::raw( '(CASE
-            WHEN users.type_id = "1" THEN "فروشگاه"
-            WHEN users.type_id = "3" THEN "شخصی"
-            WHEN users.type_id = "4" THEN "شخصی"
-            END) AS type'))
+            DB::raw( '(CASE
+                WHEN users.type_id = "1" THEN "فروشگاه"
+                WHEN users.type_id = "3" THEN "شخصی"
+                WHEN users.type_id = "4" THEN "شخصی"
+                END) AS type'))
+            ->filter()
             ->where('offers.status' , '=', '4')
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
-            ->filter()
             ->paginate(16);
 
         $response = [
@@ -173,15 +174,15 @@ class SearchController extends Controller
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
             ->select('brands.title_fa as brand' ,'offers.total as numberofsell', 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
 
-                DB::raw( '(CASE
-            WHEN users.type_id = "1" THEN "فروشگاه"
-            WHEN users.type_id = "3" THEN "شخصی"
-            WHEN users.type_id = "4" THEN "شخصی"
-            END) AS type'))
+            DB::raw( '(CASE
+                WHEN users.type_id = "1" THEN "فروشگاه"
+                WHEN users.type_id = "3" THEN "شخصی"
+                WHEN users.type_id = "4" THEN "شخصی"
+                END) AS type'))
+            ->filter()
             ->where('offers.status' , '=', '4')
             ->whereBuyorsell('buy')
             ->where('offers.brand_id' , '<>' , null)
-            ->filter()
             ->paginate(16);
 
         $response = [
@@ -202,6 +203,7 @@ class SearchController extends Controller
 
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
+
     public function supplierfilter(){
         $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->filter()
@@ -213,6 +215,7 @@ class SearchController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
+
     public function productfilter(){
         $products       = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
             ->filter()

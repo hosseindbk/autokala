@@ -129,6 +129,7 @@ class ProfilebusinessController extends Controller
             ->with(compact('technicals' , 'menus' , 'states' , 'cities'))
             ->with('id' , $id);
     }
+
     public function suppliermap(Request $request)
     {
         $suppliermap               = Supplier::findOrfail($request->input('id'));
@@ -146,6 +147,7 @@ class ProfilebusinessController extends Controller
 
         $technicalunitmap->update();
     }
+
     public function profileinfo(){
         $menus                  =  Menu::whereStatus(4)->get();
         $suppliers              =  Supplier::whereUser_id(Auth::user()->id)->get();
@@ -231,7 +233,7 @@ class ProfilebusinessController extends Controller
                 $file = $request->file('image');
                 $img = Image::make($file);
                 $imagePath = "images/suppliers";
-                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
                 $suppliers->image = $file->move($imagePath, $imageName);
                 $img->save($imagePath . $imageName);
                 $img->encode('jpg');
@@ -240,7 +242,7 @@ class ProfilebusinessController extends Controller
                 $file = $request->file('image2');
                 $img = Image::make($file);
                 $imagePath = "images/suppliers";
-                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
                 $suppliers->image2 = $file->move($imagePath, $imageName);
                 $img->save($imagePath . $imageName);
                 $img->encode('jpg');
@@ -249,7 +251,7 @@ class ProfilebusinessController extends Controller
                 $file = $request->file('image3');
                 $img = Image::make($file);
                 $imagePath = "images/suppliers";
-                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
                 $suppliers->image3 = $file->move($imagePath, $imageName);
                 $img->save($imagePath . $imageName);
                 $img->encode('jpg');
@@ -268,6 +270,7 @@ class ProfilebusinessController extends Controller
 
         }
     }
+
     public function imgupload(mediarequest $request)
     {
         $medias = new Media();
@@ -277,7 +280,7 @@ class ProfilebusinessController extends Controller
             $id   = $request->input('id');
             $img = Image::make($file);
             $imagePath ="images/product/$id";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $medias->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -294,6 +297,7 @@ class ProfilebusinessController extends Controller
         return Response::json(['success'=>true,'result'=>$medias]);
 
     }
+
     public function storetechnical(technicalrequest $request)
     {
         $usercheck = Technical_unit::whereUser_id(Auth::user()->id)->get();
@@ -339,7 +343,7 @@ class ProfilebusinessController extends Controller
                 $file = $request->file('image');
                 $img = Image::make($file);
                 $imagePath = "images/technicals";
-                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
                 $technical_units->image = $file->move($imagePath, $imageName);
                 $img->save($imagePath . $imageName);
                 $img->encode('jpg');
@@ -348,7 +352,7 @@ class ProfilebusinessController extends Controller
                 $file = $request->file('image2');
                 $img = Image::make($file);
                 $imagePath = "images/technicals";
-                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
                 $technical_units->image2 = $file->move($imagePath, $imageName);
                 $img->save($imagePath . $imageName);
                 $img->encode('jpg');
@@ -357,7 +361,7 @@ class ProfilebusinessController extends Controller
                 $file = $request->file('image3');
                 $img = Image::make($file);
                 $imagePath = "images/technicals";
-                $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
                 $technical_units->image3 = $file->move($imagePath, $imageName);
                 $img->save($imagePath . $imageName);
                 $img->encode('jpg');
@@ -409,7 +413,7 @@ class ProfilebusinessController extends Controller
             $file = $request->file('image');
             $img = Image::make($file);
             $imagePath ="image/technicals/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $technical_unit->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -419,7 +423,7 @@ class ProfilebusinessController extends Controller
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="image/technicals/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $technical_unit->image2 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -429,7 +433,7 @@ class ProfilebusinessController extends Controller
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="image/technicals/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $technical_unit->image3 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -498,7 +502,7 @@ class ProfilebusinessController extends Controller
             $file = $request->file('image');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $supplier->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -507,7 +511,7 @@ class ProfilebusinessController extends Controller
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+             $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $supplier->image2 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -516,7 +520,7 @@ class ProfilebusinessController extends Controller
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+             $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $supplier->image3 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');

@@ -37,58 +37,48 @@ class Offer extends Model
 
         if (isset($type) && $type == 'all') {
             $user_id = User::pluck('id');
-            $query->whereIn('User_id' ,$user_id);
-        }elseif(isset($type) && $type == '4'){
-            $user_id = User::whereType_id('4')->pluck('id');
-            $query->whereIn('User_id' ,$user_id);
-        }elseif(isset($type) && $type == '13'){
-            $user_id = User::whereIn('Type_id' , ['3' , '1'])->pluck('id');
-            $query->whereIn('User_id' ,$user_id);
+            $query->whereIn('offers.user_id' ,$user_id);
+
+        }elseif(isset($type) && $type == 1){
+
+            $user_id = User::whereType_id('1')->pluck('id');
+            $query->whereIn('offers.user_id' ,$user_id);
+
+        }elseif(isset($type) && $type > 1){
+            $user_id = User::where('type_id' ,'>' ,1)->pluck('id');
+            $query->whereIn('offers.user_id' ,$user_id);
         }
 
         $state_id = request('state_id');
-        if (isset($state_id) && $state_id != '') {
-            $query->whereState_id($state_id);
+        if (isset($state_id) && $state_id != null) {
+            $query->where('offers.state_id' , $state_id);
         }
 
         $city_id = request('city_id');
-        if (isset($city_id) && $city_id != '') {
-            $query->whereIn('city_id' , $city_id);
-        }
-
-        $range = request('range');
-        if (isset($range) && $range != '') {
-            $query->where('Single_price' ,'<=', $range);
+        if (isset($city_id) &&  array_values($city_id)[0] != null) {
+            $query->whereIn('offers.city_id' , $city_id);
         }
 
         $productgroup_id    = request('productgroup_id');
-        if(isset($productgroup_id)  && $productgroup_id != ''){
+        if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null){
             $query->whereIn('product_group' , $productgroup_id);
         }
 
         $carbrands = request('car_brand_id');
-        if (isset($carbrands) && trim($carbrands) != '') {
+        if (isset($carbrands) && $carbrands != null) {
             $offer_id = Car_offer::whereCar_brand_id($carbrands)->pluck('offer_id');
-            if (trim($offer_id) != '[]') {
-                $query->whereIn('id',$offer_id);
-            }else{
-                $query->whereId(null);
-            }
+            $query->whereIn('offers.id',$offer_id);
         }
 
         $car_model_id    = request('car_model_id');
-        if(isset($car_model_id)  && $car_model_id != ''){
-            $offer_id  = Car_offer::whereIn('Car_model_id',$car_model_id)->pluck('offer_id');
-            if (trim($offer_id) != '[]') {
-                $query->whereIn('id',$offer_id);
-            }else{
-                $query->whereId(null);
-            }
+        if(isset($car_model_id)  &&  array_values($car_model_id)[0] != null){
+            $offer_id  = Car_offer::whereIn('car_model_id',$car_model_id)->pluck('offer_id');
+            $query->whereIn('offers.id',$offer_id);
         }
 
         $brand_id    = request('brand_id');
-        if(isset($brand_id)  && $brand_id != ''){
-            $query->whereIn('brand_id' , $brand_id);
+        if(isset($brand_id)  && array_values($brand_id)[0] != null){
+            $query->whereIn('offers.brand_id' , $brand_id);
         }
 
     }
