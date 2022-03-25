@@ -22,6 +22,7 @@ use App\Technical_unit;
 use App\Type_user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
@@ -157,7 +158,19 @@ class ProfilebusinessController extends Controller
         $brands                 =  Brand::all();
         $states                 =  State::all();
         $cities                 =  City::all();
+
+        $brandnames = DB::table('offers')
+            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
+            ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->select('offers.brand_id as brand_offer_id' , 'offers.id as offer_id' , 'product_brand_varieties.brand_id as brand_variety_id' , 'product_brand_varieties.product_id' ,'brands.title_fa')
+            ->where('offers.status' , '=', '4')
+            ->whereBuyorsell('sell')
+            ->where('offers.brand_id' , '<>' , null)
+            ->get();
+
         return view('Site.profileinfo')
+            ->with(compact('brandnames'))
             ->with(compact('brands'))
             ->with(compact('offers'))
             ->with(compact('suppliers'))

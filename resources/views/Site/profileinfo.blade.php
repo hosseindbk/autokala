@@ -330,13 +330,15 @@
                                                                 </span>
                                                         </div>
                                                         <div class="title">
-                                                            @foreach($brands as $brand)
-                                                                @if($offer->brand_id == $brand->id)
-                                                                    {{$brand->title_fa}}
-                                                                @elseif($offer->brand_id == null)
-                                                                    {{$offer->brand_name}}
-                                                                @endif
-                                                            @endforeach
+                                                            @if($offer->brand_id != null)
+                                                                @foreach($brandnames as $brandname)
+                                                                    @if($offer->id == $brandname->offer_id)
+                                                                        {{$brandname->title_fa}}
+                                                                    @endif
+                                                                @endforeach
+                                                            @elseif($offer->brand_id == null)
+                                                                {{$offer->brand_name}}
+                                                            @endif
                                                         </div>
                                                         <div class="price">
                                                             <span class="amount">{{jdate($offer->created_at)->ago()}}</span>
