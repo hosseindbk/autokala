@@ -154,30 +154,14 @@ class SupplierController extends Controller
 
             $suppliers = new Supplier();
 
-            if ($request->input('manufacturer') != null) {
-                $suppliers->manufacturer = 1;
-            } else {
-                $suppliers->manufacturer = 0;
-            }
-            if ($request->input('importer') != null) {
-                $suppliers->importer = 1;
-            } else {
-                $suppliers->importer = 0;
-            }
-            if ($request->input('whole_seller') != null) {
-                $suppliers->whole_seller = 1;
-            } else {
-                $suppliers->whole_seller = 0;
-            }
-            if ($request->input('retail_seller') != null) {
-                $suppliers->retail_seller = 1;
-            } else {
-                $suppliers->retail_seller = 0;
-            }
-            $suppliers->title       = $request->input('title');
-            $suppliers->manager     = $request->input('manager');
-            $suppliers->phone       = $request->input('phone');
-            $suppliers->mobile      = $request->input('mobile');
+            $suppliers->manufacturer    = $request->input('manufacturer');
+            $suppliers->importer        = $request->input('importer');
+            $suppliers->whole_seller    = $request->input('whole_seller');
+            $suppliers->retail_seller   = $request->input('retail_seller');
+            $suppliers->title           = $request->input('title');
+            $suppliers->manager         = $request->input('manager');
+            $suppliers->phone           = $request->input('phone');
+            $suppliers->mobile          = $request->input('mobile');
             if ($request->input('lat') != null) {
                 $suppliers->lat     = $request->input('lat');
             } else {
