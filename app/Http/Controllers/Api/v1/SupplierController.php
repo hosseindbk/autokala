@@ -154,22 +154,22 @@ class SupplierController extends Controller
 
             $suppliers = new Supplier();
 
-            if ($request->input('manufacturer') == 'on') {
+            if ($request->input('manufacturer') != null) {
                 $suppliers->manufacturer = 1;
             } else {
                 $suppliers->manufacturer = 0;
             }
-            if ($request->input('importer') == 'on') {
+            if ($request->input('importer') != null) {
                 $suppliers->importer = 1;
             } else {
                 $suppliers->importer = 0;
             }
-            if ($request->input('whole_seller') == 'on') {
+            if ($request->input('whole_seller') != null) {
                 $suppliers->whole_seller = 1;
             } else {
                 $suppliers->whole_seller = 0;
             }
-            if ($request->input('retail_seller') == 'on') {
+            if ($request->input('retail_seller') != null) {
                 $suppliers->retail_seller = 1;
             } else {
                 $suppliers->retail_seller = 0;
