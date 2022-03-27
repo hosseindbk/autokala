@@ -238,7 +238,6 @@ class TechnicalunitController extends Controller
                     'technical_id'  => $request->input('technical_id'),
                     'status'        => '4',
                     'date'          => jdate()->format('Ymd '),
-                    'date_handle'   => jdate()->format('Ymd '),
                     'user_id'       => Auth::user()->id,
                     'car_model_id'  => $request->car_model_id[$i]
                 ];

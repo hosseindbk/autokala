@@ -262,7 +262,6 @@ class SupplierController extends Controller
             $carproductgroups->car_brand_id = $request->input('car_brand_id');
             $carproductgroups->supplier_id = $request->input('supplier_id');
             $carproductgroups->date = jdate()->format('Ymd ');
-            $carproductgroups->date_handle = jdate()->format('Ymd ');
             $carproductgroups->user_id = Auth::user()->id;
 
             $carproductgroups->save();
