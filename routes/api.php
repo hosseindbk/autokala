@@ -34,15 +34,18 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('/filter/state'          , 'SearchController@state');
     Route::post('comment'               , 'CommentController@comment');
     Route::post('rate-number'           , 'CommentController@commentrate');
+    Route::get('cars'                   , 'IndexController@cars');
 
 Route::middleware('auth:api')->group(function (){
-    Route::post('/recoverpass'                  , 'UserController@recoverpass');
-    Route::get('/profile'                       , 'UserController@profile');
-    Route::post('/supplier/store'               , 'SupplierController@store');
-    Route::post('/technicalunit/store'          , 'TechnicalunitController@store');
-    Route::post('/product/createproductvariety' , 'ProductController@createproductvariety');
-    Route::post('/offer/store'                  , 'OfferController@store');
-    Route::post('/user/update'                  , 'UserController@update');
+    Route::post('/recoverpass'                      , 'UserController@recoverpass');
+    Route::get('/profile'                           , 'UserController@profile');
+    Route::post('/supplier/store'                   , 'SupplierController@store');
+    Route::post('/supplier/carsupplierstore'        , 'SupplierController@carsupplierstore');
+    Route::post('/technicalunit/store'              , 'TechnicalunitController@store');
+    Route::post('/technicalunit/cartechnicalstore'  , 'TechnicalunitController@cartechnicalstore');
+    Route::post('/product/createproductvariety'     , 'ProductController@createproductvariety');
+    Route::post('/offer/store'                      , 'OfferController@store');
+    Route::post('/user/update'                      , 'UserController@update');
 
 
     });

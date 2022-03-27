@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Car_technical_group;
 use App\comment;
 use App\commentrate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\technicalrequest;
 use App\Technical_unit;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -224,6 +226,49 @@ class TechnicalunitController extends Controller
 
             return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
         }
+    }
+
+    public function cartechnicalstore(Request $request)
+    {
+        if ($request->car_model_id != null) {
+            for ($i = 0; $i < count($request->car_model_id); $i++) {
+                $carmodel[] = [
+                    'kala_group_id' => $request->input('product_group_id'),
+                    'car_brand_id'  => $request->input('car_brand_id'),
+                    'technical_id'  => $request->input('technical_id'),
+                    'status'        => '4',
+                    'date'          => jdate()->format('Ymd '),
+                    'date_handle'   => jdate()->format('Ymd '),
+                    'user_id'       => Auth::user()->id,
+                    'car_model_id'  => $request->car_model_id[$i]
+                ];
+            }
+
+            Car_technical_group::insert($carmodel);
+            $status = true;
+            $message = 'success';
+            $response = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        }else {
+
+            $cartechnicalgroups = new Car_technical_group();
+
+            $cartechnicalgroups->kala_group_id      = $request->input('product_group_id');
+            $cartechnicalgroups->car_brand_id       = $request->input('car_brand_id');
+            $cartechnicalgroups->technical_id       = $request->input('technical_id');
+            $cartechnicalgroups->date               = jdate()->format('Ymd ');
+            $cartechnicalgroups->user_id            = Auth::user()->id;
+
+            $cartechnicalgroups->save();
+
+            $status = true;
+            $message = 'success';
+            $response = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        }
+
     }
 
 }

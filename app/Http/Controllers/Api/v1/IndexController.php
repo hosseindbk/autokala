@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Brand;
+use App\Car_brand;
+use App\Car_model;
 use App\Http\Controllers\Controller;
+use App\Product_group;
 use App\Slide;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -85,5 +88,19 @@ class IndexController extends Controller
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
+    }
+
+    public function cars(){
+        $carbrands              = Car_brand::select('title_fa as brand' , 'id as brand_id')->get();
+        $carmodels              = Car_model::select('title_fa as model' , 'id as model_id')->get();
+        $productgroups          = Product_group::select('title_fa as supplier_service' , 'id as productgroup_id' , 'related_service as technical_service')->whereStatus(4)->get();
+
+        $response = [
+            'offer'          => $carbrands ,
+            'brand'          => $carmodels,
+            'technicalunits' => $productgroups  ,
+        ];
+
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
 }

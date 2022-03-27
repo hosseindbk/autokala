@@ -7,6 +7,8 @@ use App\commentrate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\supplierrequest;
 use App\Supplier;
+use App\Supplier_product_group;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -227,5 +229,50 @@ class SupplierController extends Controller
 
             return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
         }
+    }
+
+    public function carsupplierstore(Request $request)
+    {
+        if ($request->car_model_id != null) {
+            for ($i = 0; $i < count($request->car_model_id); $i++) {
+                $carmodel[] = [
+                    'kala_group_id' => $request->input('product_group_id'),
+                    'car_brand_id'  => $request->input('car_brand_id'),
+                    'supplier_id'  => $request->input('supplier_id'),
+                    'status'        => '4',
+                    'date'          => jdate()->format('Ymd '),
+                    'date_handle'   => jdate()->format('Ymd '),
+                    'user_id'       => Auth::user()->id,
+                    'car_model_id'  => $request->car_model_id[$i]
+                ];
+            }
+
+            Supplier_product_group::insert($carmodel);
+
+            $status     = true;
+            $message    = 'success';
+            $response   = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        }else {
+
+            $carproductgroups = new Supplier_product_group();
+
+            $carproductgroups->kala_group_id = $request->input('product_group_id');
+            $carproductgroups->car_brand_id = $request->input('car_brand_id');
+            $carproductgroups->supplier_id = $request->input('supplier_id');
+            $carproductgroups->date = jdate()->format('Ymd ');
+            $carproductgroups->date_handle = jdate()->format('Ymd ');
+            $carproductgroups->user_id = Auth::user()->id;
+
+            $carproductgroups->save();
+
+            $status     = true;
+            $message    = 'success';
+            $response   = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        }
+
     }
 }
