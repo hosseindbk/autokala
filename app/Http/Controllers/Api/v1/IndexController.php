@@ -96,9 +96,9 @@ class IndexController extends Controller
         $productgroups          = Product_group::select('title_fa as supplier_service' , 'id as productgroup_id' , 'related_service as technical_service')->whereStatus(4)->get();
 
         $response = [
-            'offer'          => $carbrands ,
-            'brand'          => $carmodels,
-            'technicalunits' => $productgroups  ,
+            'brand'          => $carbrands ,
+            'model'          => $carmodels,
+            'productgroup'   => $productgroups  ,
         ];
 
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
