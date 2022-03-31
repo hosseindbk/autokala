@@ -5,23 +5,58 @@ namespace App\Http\Controllers\Site;
 use App\Brand;
 use App\Car_brand;
 use App\Car_model;
-use App\Car_technical_group;
 use App\City;
 use App\comment;
 use App\commentrate;
 use App\Http\Controllers\Controller;
 use App\Media;
 use App\Menu;
-use App\Product;
 use App\Product_group;
 use App\State;
 use App\Technical_unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class TechnicalunitController extends Controller
 {
     public function index(){
+
+        $technicals = Technical_unit::whereNotnull('image')->select('id','image')->get();
+        foreach ($technicals as $technical){
+
+            $imagePath =base_path()."/public/$technical->image";
+            $newname = "images/newtechnicals/".md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $imageName =base_path()."/public/".$newname;
+            $productes = Technical_unit::findOrfail($technical->id);
+            $productes->image = $newname ;
+            $productes->update();
+            $productname =  File::move($imagePath, $imageName);
+        }
+
+//        $technicals = Technical_unit::whereNotnull('image2')->select('id','image2')->get();
+//        foreach ($technicals as $technical){
+//
+//            $imagePath =base_path()."/public/$technical->image2";
+//            $newname = "images/technicals/".md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+//            $imageName =base_path()."/public/".$newname;
+//            $productes = Technical_unit::findOrfail($technical->id);
+//            $productes->image2 = $newname ;
+//            $productes->update();
+//            $productname =  File::move($imagePath, $imageName);
+//        }
+//
+//        $technicals = Technical_unit::whereNotnull('image3')->select('id','image3')->get();
+//        foreach ($technicals as $technical){
+//
+//            $imagePath =base_path()."/public/$technical->image3";
+//            $newname = "images/technicals/".md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+//            $imageName =base_path()."/public/".$newname;
+//            $productes = Technical_unit::findOrfail($technical->id);
+//            $productes->image3 = $newname ;
+//            $productes->update();
+//            $productname =  File::move($imagePath, $imageName);
+//        }
 
         $menus              = Menu::whereStatus(4)->get();
         $countState         = null;
