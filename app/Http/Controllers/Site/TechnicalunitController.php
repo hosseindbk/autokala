@@ -16,23 +16,22 @@ use App\State;
 use App\Technical_unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 
 class TechnicalunitController extends Controller
 {
     public function index(){
 
-        $technicals = Technical_unit::whereNotnull('image')->select('id','image')->get();
-        foreach ($technicals as $technical){
-
-            $imagePath =base_path()."/public/$technical->image";
-            $newname = "images/newtechnicals/".md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $imageName =base_path()."/public/".$newname;
-            $productes = Technical_unit::findOrfail($technical->id);
-            $productes->image = $newname ;
-            $productes->update();
-            $productname =  File::move($imagePath, $imageName);
-        }
+//        $technicals = Technical_unit::whereNotnull('image')->select('id','image')->get();
+//        foreach ($technicals as $technical){
+//
+//            $imagePath =base_path()."/public/$technical->image";
+//            $newname = "images/newtechnicals/".md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+//            $imageName =base_path()."/public/".$newname;
+//            $productes = Technical_unit::findOrfail($technical->id);
+//            $productes->image = $newname ;
+//            $productes->update();
+//            $productname =  File::move($imagePath, $imageName);
+//        }
 
 //        $technicals = Technical_unit::whereNotnull('image2')->select('id','image2')->get();
 //        foreach ($technicals as $technical){
