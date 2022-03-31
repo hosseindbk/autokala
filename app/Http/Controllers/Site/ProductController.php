@@ -19,23 +19,22 @@ use App\Product_group;
 use App\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::whereNotnull('image')->select('id','image' , 'unicode')->get();
-        foreach ($products as $product){
-
-            $imagePath =base_path()."/public/$product->image";
-            $newname = "images/products/$product->unicode/".md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $imageName =base_path()."/public/".$newname;
-            $productes = Product::findOrfail($product->id);
-            $productes->image = $newname ;
-            $productes->update();
-            $productname =  File::move($imagePath, $imageName);
-        }
+//        $products = Product::whereNotnull('image')->select('id','image' , 'unicode')->get();
+//        foreach ($products as $product){
+//
+//            $imagePath =base_path()."/public/$product->image";
+//            $newname = "images/products/$product->unicode/".md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+//            $imageName =base_path()."/public/".$newname;
+//            $productes = Product::findOrfail($product->id);
+//            $productes->image = $newname ;
+//            $productes->update();
+//            $productname =  File::move($imagePath, $imageName);
+//        }
 
 
 
