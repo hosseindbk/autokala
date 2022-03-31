@@ -148,7 +148,7 @@ class ProductController extends Controller
             $img = Image::make($file);
             $unicode = $request->input('unicode');
             $imagePath ="images/products/{$unicode}/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $products->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -228,7 +228,7 @@ class ProductController extends Controller
             $img = Image::make($file);
             $unicode = $request->input('unicode');
             $imagePath ="images/products/{$unicode}/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $product->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');

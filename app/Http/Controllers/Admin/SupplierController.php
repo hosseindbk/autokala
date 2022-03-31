@@ -198,7 +198,7 @@ class SupplierController extends Controller
             $file = $request->file('image');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $suppliers->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -207,7 +207,7 @@ class SupplierController extends Controller
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $suppliers->image2 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -216,7 +216,7 @@ class SupplierController extends Controller
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $suppliers->image3 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -261,7 +261,7 @@ class SupplierController extends Controller
             $id   = $request->input('id');
             $img = Image::make($file);
             $imagePath ="image/suppliers/$id";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $medias->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -400,7 +400,7 @@ class SupplierController extends Controller
             $file = $request->file('image');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $supplier->image = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -409,7 +409,7 @@ class SupplierController extends Controller
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $supplier->image2 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -418,7 +418,7 @@ class SupplierController extends Controller
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $supplier->image3 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
