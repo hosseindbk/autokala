@@ -113,7 +113,7 @@ class OfferController extends Controller
             $file = $request->file('image1');
             $img = Image::make($file);
             $imagePath ="image/offers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $offers->image1 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -123,7 +123,7 @@ class OfferController extends Controller
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="image/offers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $offers->image2 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -133,7 +133,7 @@ class OfferController extends Controller
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="image/offers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $offers->image3 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -260,7 +260,7 @@ class OfferController extends Controller
             $file = $request->file('image1');
             $img = Image::make($file);
             $imagePath ="image/offers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $offer->image1 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -270,7 +270,7 @@ class OfferController extends Controller
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="image/offers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $offer->image2 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
@@ -280,7 +280,7 @@ class OfferController extends Controller
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="image/offers/";
-            $imageName = md5(uniqid(rand(), true)) . $file->getClientOriginalName();
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
             $offer->image3 = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
