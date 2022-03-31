@@ -45,6 +45,7 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/technicalunit/cartechnicalstore'  , 'TechnicalunitController@cartechnicalstore');
     Route::post('/product/createproductvariety'     , 'ProductController@createproductvariety');
     Route::post('/offer/store'                      , 'OfferController@store');
+    Route::post('/offer/carofferstore'              , 'OfferController@carofferstore');
     Route::post('/user/update'                      , 'UserController@update');
 
 

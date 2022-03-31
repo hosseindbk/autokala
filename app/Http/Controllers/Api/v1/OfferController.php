@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\offerrequest;
 use App\Offer;
 use App\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
@@ -116,6 +117,60 @@ class OfferController extends Controller
         $message = 'success';
         $response = 'اطلاعات با موفقیت ثبت شد';
         return Response::json(['ok' =>$status ,'message' => $message, 'response' => $response]);
+
+    }
+
+    public function carofferstore(Request $request){
+
+        if($request->car_brand_id != null && $request->car_model_id != null) {
+            $offer_id = Offer::whereId($request->input('offer_id'))->get();
+            foreach($offer_id as $offer){
+                $x  = $offer->id;
+            }
+
+            for ($i = 0; $i < count($request->car_model_id); $i++) {
+                $carmodel[] = [
+                    'car_brand_id'  => $request->input('car_brand_id'),
+                    'offer_id'      => $x,
+                    'car_model_id' => $request->car_model_id[$i]
+                ];
+            }
+            Car_offer::insert($carmodel);
+
+            $status     = true;
+            $message    = 'success';
+            $response   = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+
+        }elseif($request->car_brand_id != null && $request->car_model_id == null){
+
+            $offer_id = Offer::whereId($request->input('offer_id'))->get();
+            foreach($offer_id as $offer){
+                $x  = $offer->id;
+            }
+
+
+            $caroffers = new Car_offer();
+
+            $caroffers->car_brand_id       = $request->input('car_brand_id');
+            $caroffers->offer_id           = $x;
+
+            $caroffers->save();
+
+            $status     = true;
+            $message    = 'success';
+            $response   = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        }
+
+
+        $status     = false;
+        $message    = 'failed';
+        $response   = 'اطلاعات با کامل نمی باشد';
+
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
 
     }
 }

@@ -254,7 +254,7 @@ class ProductController extends Controller
         $productbrandvarieties->status               = '1';
         $productbrandvarieties->description          = $request->input('description');
         $productbrandvarieties->date                 = jdate()->format('Ymd ');
-        $productbrandvarieties->date_handle           = jdate()->format('Ymd ');
+        $productbrandvarieties->date_handle          = jdate()->format('Ymd ');
         $productbrandvarieties->user_id              = Auth::user()->id;
 
         if ($request->file('image1') != null) {
