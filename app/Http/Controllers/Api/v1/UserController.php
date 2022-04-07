@@ -163,7 +163,11 @@ class UserController extends Controller
 
         public function profile(){
         if (Auth::check()) {
-            $users = User::select('name' , 'email' , 'image' , 'phone' , 'phone_number' , 'state_id' , 'city_id' , 'address' ,
+            $users = User::
+            leftJoin('states', 'states.id', '=', 'users.state_id')
+            ->leftJoin('cities', 'cities.id', '=', 'users.city_id')
+            ->select('users.name' , 'users.email' , 'users.image' , 'users.phone' , 'users.phone_number' , 'users.state_id' , 'users.city_id' , 'users.address' ,
+                'states.title as state' , 'cities.title as city',
                 DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه و تامین کننده"
             WHEN users.type_id = "3" THEN "تعمیرگاه و خدمات فنی"
