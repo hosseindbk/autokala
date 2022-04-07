@@ -219,8 +219,8 @@ class SupplierController extends Controller
             $status     = true;
             $message    = 'success';
             $response   = 'اطلاعات با موفقیت ثبت شد';
-
-            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+            $id = $suppliers->id;
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response , 'supplier_id' => $id]);
 
         } else {
             $status     = false;

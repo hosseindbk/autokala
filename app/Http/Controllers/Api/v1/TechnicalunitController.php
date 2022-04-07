@@ -217,8 +217,8 @@ class TechnicalunitController extends Controller
             $status = true;
             $message = 'success';
             $response = 'اطلاعات با موفقیت ثبت شد';
-
-            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+            $id = $technical_units->id;
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response , 'technical_id' => $id]);
     }else{
             $status = false;
             $message = 'faild';
