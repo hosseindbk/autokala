@@ -34,7 +34,6 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('/filter/state'          , 'SearchController@state');
     Route::post('comment'               , 'CommentController@comment');
     Route::post('rate-number'           , 'CommentController@commentrate');
-    Route::get('cars'                   , 'IndexController@cars');
 
 Route::middleware('auth:api')->group(function (){
     Route::post('/recoverpass'                      , 'UserController@recoverpass');
@@ -47,6 +46,9 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/offer/store'                      , 'OfferController@store');
     Route::post('/offer/carofferstore'              , 'OfferController@carofferstore');
     Route::post('/user/update'                      , 'UserController@update');
+    Route::get('carbrand'                           , 'IndexController@carbrand');
+    Route::get('carproduct'                         , 'IndexController@carproduct');
+    Route::post('carmodel'                           , 'IndexController@carmodel');
 
 
     });
