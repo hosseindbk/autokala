@@ -90,7 +90,7 @@ class IndexController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
-    public function carbarnd(){
+    public function carbrand(){
         $carbrands              = Car_brand::select('title_fa as brand' , 'id as brand_id')->get();
 
         $response = [
@@ -114,15 +114,4 @@ class IndexController extends Controller
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
-//    public function cars(){
-//        $productgroups          = Product_group::select('title_fa as supplier_service' , 'id as productgroup_id' , 'related_service as technical_service')->whereStatus(4)->get();
-//
-//        $response = [
-//            'brand'          => $carbrands ,
-//            'model'          => $carmodels,
-//            'productgroup'   => $productgroups  ,
-//        ];
-//
-//        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
-//    }
 }
