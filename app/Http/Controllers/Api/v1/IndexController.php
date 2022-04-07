@@ -8,6 +8,7 @@ use App\Car_model;
 use App\Http\Controllers\Controller;
 use App\Product_group;
 use App\Slide;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
@@ -89,18 +90,39 @@ class IndexController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
-
-    public function cars(){
+    public function carbarnd(){
         $carbrands              = Car_brand::select('title_fa as brand' , 'id as brand_id')->get();
-        $carmodels              = Car_model::select('title_fa as model' , 'id as model_id')->get();
-        $productgroups          = Product_group::select('title_fa as supplier_service' , 'id as productgroup_id' , 'related_service as technical_service')->whereStatus(4)->get();
 
         $response = [
             'brand'          => $carbrands ,
-            'model'          => $carmodels,
+            ];
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+
+    }
+    public function carproduct(){
+        $productgroups          = Product_group::select('title_fa as supplier_service' , 'id as productgroup_id' , 'related_service as technical_service')->whereStatus(4)->get();
+        $response = [
             'productgroup'   => $productgroups  ,
         ];
 
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
+    public function carmodel(Request $request){
+        $carmodels              = Car_model::select('title_fa as model' , 'id as model_id')->whereVehicle_brand_id($request->input('brand_id'))->get();
+        $response = [
+            'model'          => $carmodels,
+        ];
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+    }
+//    public function cars(){
+//        $productgroups          = Product_group::select('title_fa as supplier_service' , 'id as productgroup_id' , 'related_service as technical_service')->whereStatus(4)->get();
+//
+//        $response = [
+//            'brand'          => $carbrands ,
+//            'model'          => $carmodels,
+//            'productgroup'   => $productgroups  ,
+//        ];
+//
+//        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+//    }
 }
