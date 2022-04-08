@@ -218,10 +218,6 @@ class UserController extends Controller
         $user = auth::user();
 
         $user->name             = $request->input('name');
-        if ($request->input('phone') != null) {
-            $user->phone        = $request->input('phone');
-            $user->phone_verify = 0;
-        }
         $user->state_id         = $request->input('state_id');
         $user->city_id          = $request->input('city_id');
         if ($request->file('image') != null) {
