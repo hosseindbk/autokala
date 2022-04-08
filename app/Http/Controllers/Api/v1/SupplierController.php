@@ -274,4 +274,24 @@ class SupplierController extends Controller
         }
 
     }
+    public function supplierdelete(){
+        $supplier_id = Supplier::whereUser_id(auth::user()->id)->pluck('id');
+        if(count($supplier_id) != 0){
+
+        Supplier::whereUser_id(auth::user()->id)->delete();
+
+        $status     = true;
+        $message    = 'success';
+        $response   = 'اطلاعات با موفقیت پاک شد';
+
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+
+        }else{
+            $status     = false;
+            $message    = 'fail';
+            $response   = 'اطلاعات با مشخصات شما وجود نداشت';
+
+            return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        }
+    }
 }
