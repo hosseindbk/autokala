@@ -42,6 +42,8 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
 Route::middleware('auth:api')->group(function (){
     Route::post('/recoverpass'                      , 'UserController@recoverpass');
     Route::get('/profile'                           , 'UserController@profile');
+    Route::get('bmpsupplier'                       , 'SupplierController@bmpsupplier');
+    Route::get('bmptechnical'                      , 'TechnicalunitController@bmptechnical');
     Route::post('/supplier/store'                   , 'SupplierController@store');
     Route::post('/supplier/carsupplierstore'        , 'SupplierController@carsupplierstore');
     Route::post('/technicalunit/store'              , 'TechnicalunitController@store');
