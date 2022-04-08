@@ -297,7 +297,8 @@ class SupplierController extends Controller
     public function bmpsupplier(){
 
         $suppliergroups = Supplier_product_group::
-            leftJoin('car_brands'                           , 'car_brands.id'       , '=', 'supplier_product_groups.car_brand_id')
+            leftjoin('suppliers'                            , 'suppliers.id'        , '=', 'supplier_product_groups.supplier_id')
+            ->leftJoin('car_brands'                         , 'car_brands.id'       , '=', 'supplier_product_groups.car_brand_id')
             ->leftJoin('car_models'                         , 'car_models.id'       , '=', 'supplier_product_groups.car_model_id')
             ->leftJoin('product_groups'                     , 'product_groups.id'   , '=', 'supplier_product_groups.kala_group_id')
             ->select('car_brands.title_fa as brand_title'   , 'car_models.title_fa as model_title' , 'product_groups.title_fa as product_group')
