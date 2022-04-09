@@ -10,7 +10,6 @@ use App\Submenudashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -57,10 +56,15 @@ class SlideController extends Controller
                     return '<img src="'.asset($row->image).'"  width="200" class="img-rounded" align="center" />';
 
                 })
-
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href="' . route('slides.edit' , $row->id) . '" class="edit btn btn-success btn-sm">Edit</a>
-                                  <a href="' . route('slides.destroy' , $row->id)  .'" class="delete btn btn-danger btn-sm">Delete</a>';
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<a href="' . route('slides.edit', $row->id) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
+                                <form action="' . route('slides.destroy' ,$row->id) .'" method="post"  style="display: inline;">
+                                    '.csrf_field().'
+                                    '.method_field("DELETE").'
+                                         <button type="submit" class="btn ripple btn-outline-danger btn-sm">
+                                             <i class="fe fe-trash-2 "></i>
+                                         </button>
+                                </form>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action' , 'image'])
