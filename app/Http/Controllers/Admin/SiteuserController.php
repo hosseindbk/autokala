@@ -63,9 +63,15 @@ class SiteuserController extends Controller
                             return "تایید مدیر";
                         }
                     })
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href="' . route('siteusers.edit' , $row->userid) . '" class="edit btn btn-success btn-sm">Edit</a>
-                                  <a href="' . route('siteusers.destroy' , $row->userid)  .'" class="delete btn btn-danger btn-sm">Delete</a>';
+                    ->addColumn('action', function ($row) {
+                        $actionBtn = '<a href="' . route('siteusers.edit', $row->userid) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
+                                <form action="' . route('siteusers.destroy' ,$row->userid) .'" method="post" style="display: inline;">
+                                    '.csrf_field().'
+                                    '.method_field("DELETE").'
+                                         <button type="submit" class="btn ripple btn-outline-danger btn-sm">
+                                             <i class="fe fe-trash-2 "></i>
+                                         </button>
+                                </form>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
