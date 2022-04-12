@@ -84,7 +84,7 @@ class TechnicalunitController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $actionBtn = '<a href="' . route('technicalunits.edit', $row->tid) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
-                                <form action="' . route('technicalunits.destroy' ,$row->tid) .'" method="post">
+                                <form action="' . route('technicalunits.destroy' ,$row->tid) .'" method="post"  style="display: inline;">
                                     '.csrf_field().'
                                     '.method_field("DELETE").'
                                          <button type="submit" class="btn ripple btn-outline-danger btn-sm">

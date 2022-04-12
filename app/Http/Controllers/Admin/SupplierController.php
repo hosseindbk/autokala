@@ -108,10 +108,11 @@ class SupplierController extends Controller
             ->addColumn('location', function ($row) {
                 return '<a href="'. route('suppliers.address' , $row->sid) .'"  class="btn btn-outline-primary btn-xs"><i class="fe fe-map-pin"></i></a>';
             })
+
+
             ->addColumn('action', function ($row) {
                 $actionBtn = '<a href="' . route('suppliers.edit', $row->sid) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
-
-                                <form action="' . route('suppliers.destroy' ,$row->tid) .'" method="post">
+                                <form action="' . route('suppliers.destroy' ,$row->sid) .'" method="post"  style="display: inline;">
                                     '.csrf_field().'
                                     '.method_field("DELETE").'
                                          <button type="submit" class="btn ripple btn-outline-danger btn-sm">
@@ -120,6 +121,7 @@ class SupplierController extends Controller
                                 </form>';
                 return $actionBtn;
             })
+
             ->addColumn('homeshow', function ($row) {
                 $homeshow = '<label class="custom-switch">
                               <input type="checkbox" name="homeshow" class="custom-switch-input" id="' . $row->sid . '" >
