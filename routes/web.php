@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     Route::post('offers'                                    , 'OfferController@createcar')->name('caroffers-create');
     Route::post('offers/offerhomeshow'                      , 'OfferController@offerhomeshow')->name('offerhomeshow');
     Route::delete('offers/edit/{id}'                        , 'OfferController@deletecar')->name('caroffers-delete');
+    Route::delete('siteusers/delete/{id}'                          , 'SiteuserController@deleteuser')->name('deleteuser');
     Route::post('offers/imgoffer1update/{id}'               , 'OfferController@imgoffer1update')->name('imgoffer1update');
     Route::post('offers/imgoffer2update/{id}'               , 'OfferController@imgoffer2update')->name('imgoffer2update');
     Route::post('offers/imgoffer3update/{id}'               , 'OfferController@imgoffer3update')->name('imgoffer3update');

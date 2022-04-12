@@ -65,7 +65,7 @@ class SiteuserController extends Controller
                     })
                     ->addColumn('action', function ($row) {
                         $actionBtn = '<a href="' . route('siteusers.edit', $row->userid) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
-                                <form action="' . route('siteusers.destroy' ,$row->userid) .'" method="post" style="display: inline;">
+                                <form action="' . route('deleteuser' ,$row->userid) .'" method="post" style="display: inline;">
                                     '.csrf_field().'
                                     '.method_field("DELETE").'
                                          <button type="submit" class="btn ripple btn-outline-danger btn-sm">
@@ -117,9 +117,13 @@ class SiteuserController extends Controller
     }
 
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
+
+    }
+    public function deleteuser($id)
+    {
+        User::findOrfail($id)->delete();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
         return back();
     }
