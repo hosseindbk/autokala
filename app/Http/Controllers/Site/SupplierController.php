@@ -16,6 +16,7 @@ use App\State;
 use App\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class SupplierController extends Controller
 {
@@ -192,6 +193,25 @@ class SupplierController extends Controller
             ->with(compact('medias'))
             ->with(compact('comments'))
             ->with(compact('suppliers'));
+    }
+
+    public function updatesupimg(Request $request ,$id)
+    {
+        $suppliers = Supplier::findOrfail($id);
+
+        if ($request->input('image') == '0') {
+            $suppliers->image  = '';
+        }
+        if($request->input('image2') == '0') {
+            $suppliers->image2  = '';
+        }
+        if($request->input('image3') == '0') {
+            $suppliers->image3  = '';
+        }
+
+        $suppliers->update();
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+        return Redirect::back();
     }
 
     public function modeloption(Request $request){

@@ -121,17 +121,65 @@
                                                                 <p class="mg-b-10">تصویر اصلی تعمیرگاه </p>
                                                                 <input type="file" name="image" @if($technical_unit->image)  value="{{$technical_unit->image}}"  data-default-file="{{url($technical_unit->image)}}" @endif  class="dropify" data-height="200">
                                                             </div>
+                                                            <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                                @if($technical_unit->image != null)
+                                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                                        <form action="{{ route('updatetechimg', $technical_unit->id)}}" method="post">
+                                                                            {{ method_field('patch') }}
+                                                                            {{csrf_field()}}
+                                                                            <input type="hidden" value="0" name="image">
+                                                                            <div class="btn-group btn-group-xs">
+                                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                                    <i class="fe fe-trash-2 "></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تصویر دوم تعمیرگاه </p>
                                                                 <input type="file" name="image2" @if($technical_unit->image2)  value="{{$technical_unit->image2}}"  data-default-file="{{url($technical_unit->image2)}}" @endif  class="dropify" data-height="200">
                                                             </div>
+                                                            <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                                @if($technical_unit->image2 != null)
+                                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                                        <form action="{{ route('updatetechimg', $technical_unit->id)}}" method="post">
+                                                                            {{ method_field('patch') }}
+                                                                            {{csrf_field()}}
+                                                                            <input type="hidden" value="0" name="image2">
+                                                                            <div class="btn-group btn-group-xs">
+                                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                                    <i class="fe fe-trash-2 "></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تصویر سوم تعمیرگاه </p>
                                                                 <input type="file" name="image3" @if($technical_unit->image3)  value="{{$technical_unit->image3}}"  data-default-file="{{url($technical_unit->image3)}}" @endif  class="dropify" data-height="200">
+                                                            </div>
+                                                            <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                                @if($technical_unit->image3 != null)
+                                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                                        <form action="{{ route('updatetechimg', $technical_unit->id)}}" method="post">
+                                                                            {{ method_field('patch') }}
+                                                                            {{csrf_field()}}
+                                                                            <input type="hidden" value="0" name="image3">
+                                                                            <div class="btn-group btn-group-xs">
+                                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                                    <i class="fe fe-trash-2 "></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                @endif
                                                             </div>
                                                         </div>
 

@@ -168,17 +168,65 @@
                                                             <p class="mg-b-10">تصویر اصلی فروشگاه </p>
                                                             <input type="file" name="image" @if($Supplier->image)  value="{{$Supplier->image}}"  data-default-file="{{url($Supplier->image)}}" @endif class="dropify" data-height="200">
                                                         </div>
+                                                        <div style="border: 1px solid #dad8d8;">
+                                                            @if($Supplier->image != null)
+                                                                <div style="text-align: center;padding: 5px;">
+                                                                    <form action="{{ route('updatesupimg', $Supplier->id)}}" method="post">
+                                                                        {{ method_field('patch') }}
+                                                                        {{csrf_field()}}
+                                                                        <input type="hidden" value="0" name="image">
+                                                                        <div class="btn-group btn-group-xs">
+                                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                                <i class="fa fa-trash"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تصویر دوم فروشگاه </p>
                                                             <input type="file" name="image2" @if($Supplier->image2)  value="{{$Supplier->image2}}"  data-default-file="{{url($Supplier->image2)}}" @endif  class="dropify" data-height="200">
                                                         </div>
+                                                        <div style="border: 1px solid #dad8d8;">
+                                                            @if($Supplier->image2 != null)
+                                                                <div style="text-align: center;padding: 5px;">
+                                                                    <form action="{{ route('updatesupimg', $Supplier->id)}}" method="post">
+                                                                        {{ method_field('patch') }}
+                                                                        {{csrf_field()}}
+                                                                        <input type="hidden" value="0" name="image2">
+                                                                        <div class="btn-group btn-group-xs">
+                                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                                <i class="fa fa-trash"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تصویر سوم فروشگاه </p>
                                                             <input type="file" name="image3" @if($Supplier->image3)  value="{{$Supplier->image3}}"  data-default-file="{{url($Supplier->image3)}}" @endif  class="dropify" data-height="200">
+                                                        </div>
+                                                        <div style="border: 1px solid #dad8d8;">
+                                                            @if($Supplier->image3 != null)
+                                                                <div style="text-align: center;padding: 5px;">
+                                                                    <form action="{{ route('updatesupimg', $Supplier->id)}}" method="post">
+                                                                        {{ method_field('patch') }}
+                                                                        {{csrf_field()}}
+                                                                        <input type="hidden" value="0" name="image3">
+                                                                        <div class="btn-group btn-group-xs">
+                                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                                <i class="fa fa-trash"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                     </div>
 

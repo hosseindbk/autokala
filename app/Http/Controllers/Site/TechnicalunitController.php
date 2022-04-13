@@ -16,6 +16,7 @@ use App\State;
 use App\Technical_unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class TechnicalunitController extends Controller
 {
@@ -241,5 +242,24 @@ class TechnicalunitController extends Controller
         }
 
         return $output;
+    }
+
+    public function updatetechimg(Request $request ,$id)
+    {
+        $technicals = Technical_unit::findOrfail($id);
+
+        if ($request->input('image') == '0') {
+            $technicals->image  = '';
+        }
+        if($request->input('image2') == '0') {
+            $technicals->image2  = '';
+        }
+        if($request->input('image3') == '0') {
+            $technicals->image3  = '';
+        }
+
+        $technicals->update();
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+        return Redirect::back();
     }
 }

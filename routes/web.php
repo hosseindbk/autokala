@@ -120,12 +120,16 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('technical/filter'           , 'TechnicalunitController@technicalfilter' )->name('technicalfilter');
     Route::get('technical/sub/{slug}'       , 'TechnicalunitController@subtechnical' )->name('subtechnical');
     Route::get('technical/filterstate'      , 'TechnicalunitController@filterstate')->name('technicalfilterstate');
+    Route::patch('technical/updatetechimg/{id}', 'TechnicalunitController@updatetechimg')->name('updatetechimg');
+
     /*supplier*/
     Route::get('supplier'                   , 'SupplierController@index' );
     Route::get('suppliersearch'             , 'SearchController@suppliersearch')->name('suppliersearch');
     Route::get('supplier/filter'            , 'SupplierController@supplierfilter' )->name('supplierfilter');
     Route::get('supplier/sub/{slug}'        , 'SupplierController@subsupplier' );
     Route::get('supplier/state'             , 'SupplierController@indexstate')->name('supplierfilterstate');
+    Route::patch('suppliers/updatesupimg/{id}', 'SupplierController@updatesupimg')->name('updatesupimg');
+
     /*search-filter*/
     Route::post('state'                     , 'StateController@state')->name('state');
     Route::get('search'                     , 'SearchController@search')->name('search');
