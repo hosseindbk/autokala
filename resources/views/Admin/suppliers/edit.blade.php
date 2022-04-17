@@ -43,7 +43,7 @@
                                             <p> شماره تماس : {{$supplier->phone}}</p>
                                             <p> موبایل : {{$supplier->mobile}}</p>
                                             <p> ایمیل : {{$supplier->email}}</p>
-                                            <p> وبسایت : {{$supplier->website}}</p>
+                                            <p> وبسایت : <a href="{{$supplier->website}}">لینک وبسایت</a> </p>
                                         </div>
                                         <div class="col-md-6" style="display: inline-flex">
                                             <div class="col-md-4">

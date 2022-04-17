@@ -234,7 +234,7 @@
                                                         </li>
                                                         <li>
                                                             <span>توضیحات : </span>
-                                                            <span>{!! $supplier->description !!}</span>
+                                                            <p>{!! $supplier->description !!}</p>
                                                         </li>
                                                     </ul>
                                                 </div>
