@@ -47,13 +47,13 @@
                                                 <td class="text-primary" style="max-width: 300px;overflow: auto;">{{$comment->comment}}</td>
                                                 <td class="text-nowrap">{{$comment->commentable_type}}</td>
                                                 <td class="text-nowrap">
-                                                    @if($commentrate->commentable_type == 'App\Supplier')
+                                                    @if($comment->commentable_type == 'App\Supplier')
                                                         تامین کنندگان
-                                                    @elseif($commentrate->commentable_type == 'App\Technical_unit')
+                                                    @elseif($comment->commentable_type == 'App\Technical_unit')
                                                         تعمیرگاه ها
-                                                    @elseif($commentrate->commentable_type == 'App\Product_brand_variety')
+                                                    @elseif($comment->commentable_type == 'App\Product_brand_variety')
                                                         برند تنوع
-                                                    @elseif($commentrate->commentable_type == 'App\Product')
+                                                    @elseif($comment->commentable_type == 'App\Product')
                                                         کالا یا قطعات
                                                     @endif
                                                 </td>
