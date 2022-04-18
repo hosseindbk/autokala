@@ -123,17 +123,10 @@
                                                             </div>
                                                             <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
                                                                 @if($technical_unit->image != null)
-                                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
-                                                                        <form action="{{ route('updatetechimg', $technical_unit->id)}}" method="post">
-                                                                            {{ method_field('patch') }}
-                                                                            {{csrf_field()}}
-                                                                            <input type="hidden" value="0" name="image">
-                                                                            <div class="btn-group btn-group-xs">
-                                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                                    <i class="fe fe-trash-2 "></i>
-                                                                                </button>
-                                                                            </div>
-                                                                        </form>
+                                                                    <div style="text-align: center;padding: 5px;">
+                                                                        <div class="btn-group btn-group-xs">
+                                                                            <input type="button" value="پاک کردن تصویر"  id='deleteimage' style="background-color: #fff;cursor: pointer;">
+                                                                        </div>
                                                                     </div>
                                                                 @endif
                                                             </div>
@@ -145,17 +138,10 @@
                                                             </div>
                                                             <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
                                                                 @if($technical_unit->image2 != null)
-                                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
-                                                                        <form action="{{ route('updatetechimg', $technical_unit->id)}}" method="post">
-                                                                            {{ method_field('patch') }}
-                                                                            {{csrf_field()}}
-                                                                            <input type="hidden" value="0" name="image2">
-                                                                            <div class="btn-group btn-group-xs">
-                                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                                    <i class="fe fe-trash-2 "></i>
-                                                                                </button>
-                                                                            </div>
-                                                                        </form>
+                                                                    <div style="text-align: center;padding: 5px;">
+                                                                        <div class="btn-group btn-group-xs">
+                                                                            <input type="button" value="پاک کردن تصویر"  id='deleteimage2' style="background-color: #fff;cursor: pointer;">
+                                                                        </div>
                                                                     </div>
                                                                 @endif
                                                             </div>
@@ -167,17 +153,10 @@
                                                             </div>
                                                             <div style="width: 250px;border: 2px solid #dad8d8;border-radius: 15px;">
                                                                 @if($technical_unit->image3 != null)
-                                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
-                                                                        <form action="{{ route('updatetechimg', $technical_unit->id)}}" method="post">
-                                                                            {{ method_field('patch') }}
-                                                                            {{csrf_field()}}
-                                                                            <input type="hidden" value="0" name="image3">
-                                                                            <div class="btn-group btn-group-xs">
-                                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                                    <i class="fe fe-trash-2 "></i>
-                                                                                </button>
-                                                                            </div>
-                                                                        </form>
+                                                                    <div style="text-align: center;padding: 5px;">
+                                                                        <div class="btn-group btn-group-xs">
+                                                                            <input type="button" value="پاک کردن تصویر"  id='deleteimage3' style="background-color: #fff;cursor: pointer;">
+                                                                        </div>
                                                                     </div>
                                                                 @endif
                                                             </div>
@@ -590,6 +569,60 @@
             .catch( error => {
                 console.error( error );
             } );
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#deleteimage").click(function(){
+                $.ajax({
+                    url : '{{ route( 'updatetechimg', $technical_unit->id ) }}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "image":  '0',
+                        "id" : {{$technical_unit->id}}
+                    },
+                    type: 'patch',
+                    dataType: 'json',
+
+                });
+                window.location.reload();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#deleteimage2").click(function(){
+                $.ajax({
+                    url : '{{ route( 'updatetechimg', $technical_unit->id ) }}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "image2": '0',
+                        "id" : {{$technical_unit->id}}
+
+                    },
+                    type: 'patch',
+                    dataType: 'json',
+                });
+                window.location.reload();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#deleteimage3").click(function(){
+                $.ajax({
+                    url : '{{ route( 'updatetechimg', $technical_unit->id ) }}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "image3": '0',
+                        "id" : {{$technical_unit->id}}
+
+                    },
+                    type: 'patch',
+                    dataType: 'json',
+                });
+                window.location.reload();
+            });
+        });
     </script>
     <script>
         $(function(){

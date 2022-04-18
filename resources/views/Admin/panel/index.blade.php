@@ -340,7 +340,7 @@
                                                             <th class="wd-lg-20p">نام و نام خانوادگی</th>
                                                             <th class="wd-lg-20p">متن پیام کاربر</th>
                                                             <th class="wd-lg-20p">صفحه پیام</th>
-                                                            <th class="wd-lg-20p">موضوع پیام</th>
+                                                            <th class="wd-lg-20p">شماره سریال</th>
                                                             <th class="wd-lg-20p">زمان ثبت</th>
                                                             <th class="wd-lg-20p">وضعیت</th>
                                                             <th class="wd-lg-20p">ویرایش پیام</th>
@@ -354,9 +354,19 @@
                                                                 <td class="text-primary">{{$commentrate->phone}}</td>
                                                                 <td class="text-primary">{{$commentrate->name}}</td>
                                                                 <td class="text-primary" style="max-width: 300px;overflow: auto;">{{$commentrate->comment}}</td>
-                                                                <td class="text-nowrap">{{$commentrate->commentable_type}}</td>
+                                                                <td class="text-nowrap">
+                                                                    @if($commentrate->commentable_type == 'App\Supplier')
+                                                                        تامین کنندگان
+                                                                    @elseif($commentrate->commentable_type == 'App\Technical_unit')
+                                                                        تعمیرگاه ها
+                                                                    @elseif($commentrate->commentable_type == 'App\Product_brand_variety')
+                                                                        برند تنوع
+                                                                    @elseif($commentrate->commentable_type == 'App\Product')
+                                                                        کالا یا قطعات
+                                                                    @endif
+                                                                </td>
                                                                 <td class="text-nowrap">{{$commentrate->commentable_id}}</td>
-                                                                <td>{{jdate($commentrate->created_at)->ago()}}</td>
+                                                                <td>{{jdate($commentrate->created_at)->format('Y/m/d')}}</td>
 
                                                                 <td>
                                                                     @if($commentrate->approved == 0)

@@ -162,74 +162,51 @@
                                                             </style>
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">تصویر اصلی فروشگاه </p>
-                                                            <input type="file" name="image" @if($Supplier->image)  value="{{$Supplier->image}}"  data-default-file="{{url($Supplier->image)}}" @endif class="dropify" data-height="200">
-                                                        </div>
-                                                        <div style="border: 1px solid #dad8d8;">
-                                                            @if($Supplier->image != null)
-                                                                <div style="text-align: center;padding: 5px;">
-                                                                    <form action="{{ route('updatesupimg', $Supplier->id)}}" method="post">
-                                                                        {{ method_field('patch') }}
-                                                                        {{csrf_field()}}
-                                                                        <input type="hidden" value="0" name="image">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تصویر اصلی فروشگاه </p>
+                                                                <input type="file" name="image" @if($Supplier->image)  value="{{$Supplier->image}}"  data-default-file="{{url($Supplier->image)}}" @endif class="dropify" data-height="200">
+                                                            </div>
+                                                            <div style="border: 1px solid #dad8d8;">
+                                                                @if($Supplier->image != null)
+                                                                    <div style="text-align: center;padding: 5px;">
                                                                         <div class="btn-group btn-group-xs">
-                                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                                <i class="fa fa-trash"></i>
-                                                                            </button>
+                                                                            <input type="button" value="پاک کردن تصویر"  id='deleteimage' style="background-color: #fff;cursor: pointer;">
                                                                         </div>
-                                                                    </form>
-                                                                </div>
-                                                            @endif
+                                                                    </div>
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">تصویر دوم فروشگاه </p>
-                                                            <input type="file" name="image2" @if($Supplier->image2)  value="{{$Supplier->image2}}"  data-default-file="{{url($Supplier->image2)}}" @endif  class="dropify" data-height="200">
-                                                        </div>
-                                                        <div style="border: 1px solid #dad8d8;">
-                                                            @if($Supplier->image2 != null)
-                                                                <div style="text-align: center;padding: 5px;">
-                                                                    <form action="{{ route('updatesupimg', $Supplier->id)}}" method="post">
-                                                                        {{ method_field('patch') }}
-                                                                        {{csrf_field()}}
-                                                                        <input type="hidden" value="0" name="image2">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تصویر دوم فروشگاه </p>
+                                                                <input type="file" name="image2" @if($Supplier->image2)  value="{{$Supplier->image2}}"  data-default-file="{{url($Supplier->image2)}}" @endif  class="dropify" data-height="200">
+                                                            </div>
+                                                            <div style="border: 1px solid #dad8d8;">
+                                                                @if($Supplier->image2 != null)
+                                                                    <div style="text-align: center;padding: 5px;">
                                                                         <div class="btn-group btn-group-xs">
-                                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                                <i class="fa fa-trash"></i>
-                                                                            </button>
+                                                                            <input type="button" value="پاک کردن تصویر"  id='deleteimage2' style="background-color: #fff;cursor: pointer;">
                                                                         </div>
-                                                                    </form>
-                                                                </div>
-                                                            @endif
+                                                                    </div>
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">تصویر سوم فروشگاه </p>
-                                                            <input type="file" name="image3" @if($Supplier->image3)  value="{{$Supplier->image3}}"  data-default-file="{{url($Supplier->image3)}}" @endif  class="dropify" data-height="200">
-                                                        </div>
-                                                        <div style="border: 1px solid #dad8d8;">
-                                                            @if($Supplier->image3 != null)
-                                                                <div style="text-align: center;padding: 5px;">
-                                                                    <form action="{{ route('updatesupimg', $Supplier->id)}}" method="post">
-                                                                        {{ method_field('patch') }}
-                                                                        {{csrf_field()}}
-                                                                        <input type="hidden" value="0" name="image3">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تصویر سوم فروشگاه </p>
+                                                                <input type="file" name="image3" @if($Supplier->image3)  value="{{$Supplier->image3}}"  data-default-file="{{url($Supplier->image3)}}" @endif  class="dropify" data-height="200">
+                                                            </div>
+                                                            <div style="border: 1px solid #dad8d8;">
+                                                                @if($Supplier->image3 != null)
+                                                                    <div style="text-align: center;padding: 5px;">
                                                                         <div class="btn-group btn-group-xs">
-                                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                                <i class="fa fa-trash"></i>
-                                                                            </button>
+                                                                            <input type="button" value="پاک کردن تصویر"  id='deleteimage3' style="background-color: #fff;cursor: pointer;">
                                                                         </div>
-                                                                    </form>
-                                                                </div>
-                                                            @endif
+                                                                    </div>
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                    </div>
-
                                                     <div class="col-md-12">
                                                         <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h4>
                                                     </div>
@@ -635,25 +612,79 @@
                 console.error( error );
             } );
     </script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    (function($) {
+        //fancyfileuplod
+        $('#demo').FancyFileUpload({
+            params : {
+                action : 'fileuploader',
+                id:"{{$Supplier->id}}",
+                table:"supplier_id",
+            },
+            maxfilesize : 1000000
         });
-        (function($) {
-            //fancyfileuplod
-            $('#demo').FancyFileUpload({
-                params : {
-                    action : 'fileuploader',
-                    id:"{{$Supplier->id}}",
-                    table:"supplier_id",
-                },
-                maxfilesize : 1000000
-            });
-        })(jQuery);
+    })(jQuery);
 
-    </script>
+</script>
+<script>
+    $(document).ready(function(){
+        $("#deleteimage").click(function(){
+            $.ajax({
+                url : '{{ route( 'updatesupimg', $Supplier->id ) }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "image":  '0',
+                    "id" : {{$Supplier->id}}
+                },
+                type: 'patch',
+                dataType: 'json',
+
+            });
+            window.location.reload();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#deleteimage2").click(function(){
+            $.ajax({
+                url : '{{ route( 'updatesupimg', $Supplier->id ) }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "image2": '0',
+                    "id" : {{$Supplier->id}}
+
+                },
+                type: 'patch',
+                dataType: 'json',
+            });
+            window.location.reload();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#deleteimage3").click(function(){
+            $.ajax({
+                url : '{{ route( 'updatesupimg', $Supplier->id ) }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "image3": '0',
+                    "id" : {{$Supplier->id}}
+
+                },
+                type: 'patch',
+                dataType: 'json',
+            });
+            window.location.reload();
+        });
+    });
+</script>
 <script>
     $(function(){
         $('#state_id').change(function(){
