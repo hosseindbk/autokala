@@ -78,7 +78,7 @@
                                         <div class="middle-container">
                                             @foreach($technicalunits as $technical_unit)
                                                 <div class="card-body">
-                                                    <div class="text-center"><h3 class="main-content-label text-center text-info">ویرایش مشخصات تعمیرگاه / خدمات فنی </h3></div>
+                                                    <div class="text-center"><h3 class="main-content-label text-center text-info"> ویرایش مشخصات تعمیرگاه / خدمات فنی با سریال  {{$technical_unit->id}} </h3></div>
                                                 </div>
                                                 <form action="{{route('profiletechnicaledit', $technical_unit->id)}}" method="POST" enctype="multipart/form-data">
                                                     <div class="row row-sm">

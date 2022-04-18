@@ -52,8 +52,12 @@
 
                                                 <div class="account-box" style="margin-left: 20px">
                                                     <div class="nav-account d-block pl">
-                                                        <span class="icon-account">
-                                                            <img src="{{asset('site/images/man.png')}}" class="avator">
+                                                         <span class="icon-account">
+                                                            @if(Auth::user()->image)
+                                                                 <img src="{{asset(Auth::user()->image)}}" class="avator">
+                                                             @else
+                                                                 <img src="{{asset('site/images/man.png')}}" class="avator">
+                                                             @endif
                                                         </span>
                                                         <span class="title-account">{{Auth::user()->name}}</span>
                                                         <div class="dropdown-menu">

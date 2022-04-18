@@ -77,7 +77,7 @@
                                         @foreach($suppliers as $Supplier)
 
                                             <div class="card-body">
-                                                <div class="text-center"><h3  class="main-content-label text-center text-info">ویرایش مشخصات فروشگاه / شرکت </h3 ></div>
+                                                <div class="text-center"><h3  class="main-content-label text-center text-info"> ویرایش مشخصات فروشگاه / شرکت با سریال  {{$Supplier->id}}</h3 ></div>
                                             </div>
                                             <form action="{{route('profilesupplieredit', $Supplier->id)}}" method="POST" enctype="multipart/form-data">
                                                 <div class="row row-sm">
