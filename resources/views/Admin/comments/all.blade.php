@@ -45,7 +45,6 @@
                                                     {{$comment->phone}}
                                                 </td>
                                                 <td class="text-primary" style="max-width: 300px;overflow: auto;">{{$comment->comment}}</td>
-                                                <td class="text-nowrap">{{$comment->commentable_type}}</td>
                                                 <td class="text-nowrap">
                                                     @if($comment->commentable_type == 'App\Supplier')
                                                         تامین کنندگان
@@ -56,7 +55,7 @@
                                                     @elseif($comment->commentable_type == 'App\Product')
                                                         کالا یا قطعات
                                                     @endif
-                                                </td>
+                                                </td>                                                <td class="text-nowrap">{{$comment->commentable_id}}</td>
                                                 <td>
                                                     @if($comment->approved == 0)
                                                         <button class="btn ripple btn-outline-warning">عدم نمایش پیام</button>
