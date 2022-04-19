@@ -77,7 +77,7 @@ class ProductController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $actionBtn = '<a href="' . route('products.edit' , $row->idproduct) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
-                                  <form action="' . route('products.destroy' , $row->idproduct) .'" method="post">
+                                  <form action="' . route('products.destroy' , $row->idproduct) .'" method="post"  style="display: inline;">
                                     '.csrf_field().'
                                     '.method_field("DELETE").'
                                          <button type="submit" class="btn ripple btn-outline-danger btn-sm">

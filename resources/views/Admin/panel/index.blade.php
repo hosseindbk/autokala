@@ -294,7 +294,17 @@
                                                                   {{$comment->phone}}
                                                            </td>
                                                            <td class="text-primary" style="max-width: 300px;overflow: auto;">{{$comment->comment}}</td>
-                                                           <td class="text-nowrap">{{$comment->commentable_type}}</td>
+                                                           <td class="text-nowrap">
+                                                               @if($comment->commentable_type == 'App\Supplier')
+                                                                   تامین کنندگان
+                                                               @elseif($comment->commentable_type == 'App\Technical_unit')
+                                                                   تعمیرگاه ها
+                                                               @elseif($comment->commentable_type == 'App\Product_brand_variety')
+                                                                   برند تنوع
+                                                               @elseif($comment->commentable_type == 'App\Product')
+                                                                   کالا یا قطعات
+                                                               @endif
+                                                           </td>
                                                            <td class="text-nowrap">{{$comment->commentable_id}}</td>
                                                            <td>{{jdate($comment->created_at)->ago()}}</td>
 

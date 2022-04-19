@@ -205,6 +205,10 @@
                                         </div>
                                         <ul>
                                             <li>
+                                                <span>کد تعمیرگاه : </span>
+                                                <span>{{$technical_unit->id}}</span>
+                                            </li>
+                                            <li>
                                                 <span>شماره ثابت : </span>
                                                 <span>{{$technical_unit->phone}}</span>
                                             </li>
