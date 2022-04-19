@@ -286,10 +286,9 @@
                                                    </tr>
                                                    </thead>
                                                    <tbody>
-                                                   <?php $i = 1 ?>
                                                    @foreach($comments as $comment)
                                                        <tr>
-                                                           <td>{{$i++}}</td>
+                                                           <td>{{$loop->iteration}}</td>
                                                            <td class="text-primary">
                                                                   {{$comment->phone}}
                                                            </td>
@@ -357,10 +356,9 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $i = 1 ?>
                                                         @foreach($commentrates as $commentrate)
                                                             <tr>
-                                                                <td>{{$i++}}</td>
+                                                                <td>{{$loop->iteration}}</td>
                                                                 <td class="text-primary">{{$commentrate->phone}}</td>
                                                                 <td class="text-primary">{{$commentrate->name}}</td>
                                                                 <td class="text-primary" style="max-width: 300px;overflow: auto;">{{$commentrate->comment}}</td>
@@ -426,10 +424,9 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $i = 1 ?>
                                                         @foreach($brands as $brand)
                                                             <tr>
-                                                                <td>{{$i++}}</td>
+                                                                <td>{{$loop->iteration}}</td>
                                                                 <td class="text-primary">{{$brand->title_fa}}</td>
                                                                 <td class="text-primary">{{$brand->title_en}}</td>
                                                                 <td class="text-nowrap">{{$brand->abstract_title}}</td>
@@ -498,10 +495,10 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $i = 1 ?>
+
                                                         @foreach($offers as $offer)
                                                             <tr>
-                                                                <td class="text-nowrap">{{$i++}}</td>
+                                                                <td class="text-nowrap">{{$loop->iteration}}</td>
                                                                 <td class="text-primary">{{$offer->title_offer}}</td>
                                                                 <td class="text-primary">
                                                                     @foreach($products as $product)
