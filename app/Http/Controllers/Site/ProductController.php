@@ -18,6 +18,7 @@ use App\Product_brand_variety;
 use App\Product_group;
 use App\State;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -37,15 +38,24 @@ class ProductController extends Controller
 //        }
 
 
-
-
-        $menus          = Menu::whereStatus(4)->get();
+        $menus          = Menu::select('id' , 'title' , 'slug')->whereStatus(4)->get();
         $countState     = null;
-        $newproducts    = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $clickproducts  = Product::whereStatus(4)->orderBy('click')->paginate(16);
-        $goodproducts   = Product::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $oldproducts    = Product::whereStatus(4)->orderBy('id')->paginate(16);
-        //$carproducts    = Car_product::whereStatus(4)->get();
+
+        $newproducts    = Product::select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->whereStatus(4)
+            ->orderBy('id' , 'DESC')
+            ->paginate(16);
+
+        $clickproducts  = Product::select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')->whereStatus(4)->orderBy('click' , 'DESC')->paginate(16);
+
+        $productvars  = DB::select("SELECT p.id , p.slug , p.title_fa , p.image , p.title_en , v.count_v from products as p
+            left join (SELECT product_id , COUNT(id) as count_v FROM product_brand_varieties GROUP BY product_id )
+            AS v on p.id = v.product_id ORDER BY v.count_v DESC;");
+
+        $maxPage = 16;
+
+        $oldproducts = new Paginator($productvars, $maxPage);
+
         $productgroups  = Product_group::whereStatus(4)->get();
         $carbrands      = Car_brand::whereStatus(4)->get();
         $carmodels      = Car_model::whereStatus(4)->get();
@@ -71,7 +81,6 @@ class ProductController extends Controller
             ->with(compact('carmodels'))
             ->with(compact('newproducts'))
             ->with(compact('clickproducts'))
-            ->with(compact('goodproducts'))
             ->with(compact('oldproducts'));
     }
 
@@ -97,7 +106,6 @@ class ProductController extends Controller
         $count              = Product::filter()->whereStatus(4)->count();
         $newproducts        = Product::filter()->whereStatus(4)->paginate(16);
         $clickproducts      = Product::filter()->whereStatus(4)->orderBy('click')->paginate(16);
-        $goodproducts       = Product::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $oldproducts        = Product::filter()->whereStatus(4)->orderBy('id')->paginate(16);
         $states             = State::all();
         $productgroups      = Product_group::whereStatus(4)->get();
@@ -116,7 +124,6 @@ class ProductController extends Controller
             ->with(compact('brands'))
             ->with(compact('states'))
             ->with(compact('clickproducts'))
-            ->with(compact('goodproducts'))
             ->with(compact('oldproducts'))
             ->with(compact('carbrands'))
             ->with(compact('carproducts'))
