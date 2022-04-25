@@ -239,7 +239,9 @@
                                             </div>
                                             <div class="owl-item active" style="width: 300.75px; margin-left: 10px;">
                                                 <div class="item">
-                                                    <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK"><img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" alt="" style="cursor:pointer" id="dfxWaqnQkjgkX5PcBJnK"></a>
+                                                    <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" class="d-block hover-img-link mt-0">
+                                                        <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" alt="" style="cursor:pointer" id="dfxWaqnQkjgkX5PcBJnK">
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
