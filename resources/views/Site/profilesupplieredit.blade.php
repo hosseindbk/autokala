@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
     <link href="{{asset('admin/assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
-    <link href="{{asset('admin/assets/plugins/sumoselect/sumoselect-rtl.css')}}" rel="stylesheet">
     <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
@@ -324,7 +323,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">انتخاب مدل خودرو</p>
-                                                        <select multiple="multiple" name="car_model_id[]" id="car_model_id" onchange="console.log($(this).children(':selected').length)" class="form-control selectsum2">
+                                                        <select multiple="multiple" name="car_model_id[]" id="car_model_id" class="form-control select2">
 
                                                         </select>
                                                     </div>
@@ -417,7 +416,6 @@
 @section('script')
 <script  src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
 <script src="{{asset('admin/assets/js/select2.js')}}"></script>
-<script src="{{asset('admin/assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
 <script src="{{asset('admin/assets/js/advanced-form-elements.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/fileuploads/js/fileupload.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/fileuploads/js/file-upload.js')}}"></script>
