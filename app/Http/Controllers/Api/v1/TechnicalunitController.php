@@ -148,7 +148,6 @@ class TechnicalunitController extends Controller
 
         return Response::json(['ok' => $status ,'message' => $message ,'response'=>$response]);
     }
-
     public function store(technicalrequest $request)
     {
         $technical_user = Technical_unit::where('user_id', auth::user()->id)->first();
@@ -227,7 +226,6 @@ class TechnicalunitController extends Controller
             return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
         }
     }
-
     public function cartechnicalstore(Request $request)
     {
         if ($request->car_model_id != null) {
@@ -292,10 +290,10 @@ class TechnicalunitController extends Controller
     public function bmptechnical(){
 
         $technicalgroups = Car_technical_group::
-            leftjoin('technical_units' , 'technical_units.id' , '=' , 'car_technical_groups.technical_id')
-            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_technical_groups.car_brand_id')
-            ->leftJoin('car_models', 'car_models.id', '=', 'car_technical_groups.car_model_id')
-            ->leftJoin('product_groups', 'product_groups.id', '=', 'car_technical_groups.kala_group_id')
+              leftjoin('technical_units', 'technical_units.id'  , '=' , 'car_technical_groups.technical_id')
+            ->leftJoin('car_brands'     , 'car_brands.id'       , '=' , 'car_technical_groups.car_brand_id')
+            ->leftJoin('car_models'     , 'car_models.id'       , '=' , 'car_technical_groups.car_model_id')
+            ->leftJoin('product_groups' , 'product_groups.id'   , '=' , 'car_technical_groups.kala_group_id')
             ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'product_groups.related_service')
             ->where('car_technical_groups.user_id' , Auth::user()->id)
             ->get();
