@@ -30,7 +30,7 @@ class TechnicalunitController extends Controller
     }
     public function subtechnical($slug){
 
-        $technicals      = Technical_unit::select('title' , 'slug' , 'address' , 'manager' , 'phone' ,'image' , 'image2' , 'image3' , 'mobile' , 'website' , 'email' , 'whatsapp' , 'autokala' , 'lat' , 'lng' , 'autokala' )
+        $technicals      = Technical_unit::select('id' , 'title' , 'slug' , 'address' , 'manager' , 'phone' ,'image' , 'image2' , 'image3' , 'mobile' , 'website' , 'email' , 'whatsapp' , 'autokala' , 'lat' , 'lng' , 'autokala' )
             ->whereStatus(4)
             ->whereSlug($slug)
             ->get()
