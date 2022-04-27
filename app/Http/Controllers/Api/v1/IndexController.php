@@ -122,4 +122,12 @@ class IndexController extends Controller
         ];
         return Response::json(['ok'=>true , 'message' =>'success','response'=>$response ]);
     }
+    public function productgroup(){
+        $productgroups = Product_group::select('title_fa', 'related_service')->get();
+
+        $response = [
+            'brand' => $productgroups
+        ];
+        return Response::json(['ok'=>true , 'message' =>'success','response'=>$response ]);
+    }
 }

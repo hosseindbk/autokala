@@ -38,6 +38,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('carproduct'             , 'IndexController@carproduct');
     Route::post('carmodel'              , 'IndexController@carmodel');
     Route::get('brand'                  , 'IndexController@brand');
+    Route::get('productgroup'           , 'IndexController@productgroup');
 
 
 Route::middleware('auth:api')->group(function (){
