@@ -52,7 +52,6 @@ class ProductController extends Controller
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
-
     public function subproduct($slug){
 
         $product_id         = Product::whereSlug($slug)->pluck('id');
@@ -229,7 +228,6 @@ class ProductController extends Controller
         ];
         return Response::json(['ok' => $status ,'message' => $message ,'response'=>$response ]);
     }
-
     public function createproductvariety(productbrandvarietyrequest $request)
     {
         $productbrandvarieties = new Product_brand_variety();
@@ -293,4 +291,17 @@ class ProductController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
+    public function sproduct(){
+            $keywords      = request('productsearch');
+
+            $products      = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
+                ->search($keywords)
+                ->whereStatus(4)
+                ->paginate(10);
+
+            $response = [
+                'products'=>$products,
+            ];
+            return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+        }
 }

@@ -9,6 +9,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::post('/register'             , 'UserController@register');
     Route::get('/register'              , 'UserController@getregister');
     Route::get('/product'               , 'ProductController@index');
+    Route::get('/product/search'        , 'ProductController@sproduct');
     Route::get('/product/variety'       , 'ProductController@variety');
     Route::get('/product/topview'       , 'ProductController@topview');
     Route::get('/product/{slug}'        , 'ProductController@subproduct');
@@ -20,10 +21,9 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('/market/buy'            , 'MarketController@buy');
     Route::post('remember'              , 'UserController@remember');
     Route::post('/token'                , 'UserController@token');
-    Route::post('/search/product'       , 'SearchController@product');
-    Route::post('/search/unicode'       , 'SearchController@unicode');
-    Route::post('/search/supplier'      , 'SearchController@supplier');
-    Route::post('/search/technical'     , 'SearchController@technical');
+    Route::get('unicode/search'         , 'SearchController@searchunicode');
+    Route::get('supplier/search'        , 'SearchController@searchsupplier');
+    Route::get('technical/search'       , 'SearchController@searchtechnical');
     Route::post('/search/offersell'     , 'SearchController@offersell');
     Route::post('/search/offerbuy'      , 'SearchController@offerbuy');
     Route::get('/filter/product'        , 'SearchController@productfilter');
