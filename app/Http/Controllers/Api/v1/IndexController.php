@@ -114,4 +114,12 @@ class IndexController extends Controller
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
+    public function brand(){
+        $brands = Brand::select('title_fa', 'title_en' , 'abstract_title' , 'slug' , 'image')->get();
+
+        $response = [
+            'brand' => $brands
+        ];
+        return Response::json(['ok'=>true , 'message' =>'success','response'=>$response ]);
+    }
 }
