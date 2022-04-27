@@ -145,7 +145,7 @@
             </div>
 
             <div class="col-lg-4 col-md-4 col-xs-12 pl mt-1">
-                <div class="adplacement-container-column">
+                <div class="">
                     <a href="#" class="adplacement-item">
                         @foreach($left_top_slides as $slide)
                             <div class="adplacement-sponsored-box">
