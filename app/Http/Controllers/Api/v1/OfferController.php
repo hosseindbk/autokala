@@ -112,10 +112,14 @@ class OfferController extends Controller
 
             $caroffers->save();
         }
-
+        $offersid = $offers->id;
         $status = true;
         $message = 'success';
-        $response = 'اطلاعات با موفقیت ثبت شد';
+
+        $response = [
+        'response'      =>    'اطلاعات با موفقیت ثبت شد',
+        'offer_id'      => $offersid
+        ];
         return Response::json(['ok' =>$status ,'message' => $message, 'response' => $response]);
 
     }
