@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Response;
 class SearchController extends Controller
 {
 
-    public function unicode(){
+    public function searchunicode(){
         $keywords      = request('unicodesearch');
         $products      = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
             ->where('unicode', 'LIKE', '%' . $keywords . '%')
