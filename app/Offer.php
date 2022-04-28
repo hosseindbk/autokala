@@ -20,7 +20,6 @@ class Offer extends Model
 
         return $query;
     }
-
     public function scopeState($query){
         $state_id = request('state_id');
         if (isset($state_id) && $state_id == ''){
@@ -30,8 +29,17 @@ class Offer extends Model
             $query->whereIn('State_id' , $state_id);
         }
     }
-
     public function scopeFilter($query){
+
+        $keywords = request('offersellsearch');
+        if (isset($keywords) && $keywords != null) {
+            $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
+        }
+
+        $keywords = request('offerbuysearch');
+        if (isset($keywords) && $keywords != null) {
+            $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
+        }
 
         $type = request('type');
 

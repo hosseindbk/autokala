@@ -11,17 +11,16 @@ class Technical_unit extends Model
         $category = request('category_id');
         if ($category == 'all' || $category == null)
         {
-            $query->where('title' , 'LIKE' , '%' .$keywords. '%')
+            $query->where('title'   , 'LIKE' , '%' .$keywords. '%')
                 ->orwhere('manager' , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('phone' , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('mobile' , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('phone'   , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('mobile'  , 'LIKE' , '%' .$keywords. '%')
                 ->orwhere('address' , 'LIKE' , '%' .$keywords. '%');
         }else {
             $query->where($category, 'LIKE', '%' . $keywords . '%');
         }
         return $query;
     }
-
     public function scopeState($query){
         $state_id = request('state_id');
         if (isset($state_id) && $state_id == ''){
@@ -31,9 +30,18 @@ class Technical_unit extends Model
             $query->whereIn('State_id' , $state_id);
         }
     }
-
     public function scopeFilter($query)
     {
+
+        $keywords               = request('technicalsearch');
+        if (isset($keywords) &&  $keywords != null)
+        {
+            $query->where('title'   , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('manager' , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('phone'   , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('mobile'  , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('address' , 'LIKE' , '%' .$keywords. '%');
+        }
 
         $productgroup_id = request('productgroup_id');
         if (isset($productgroup_id) && array_values($productgroup_id)[0] != null) {
@@ -69,7 +77,6 @@ class Technical_unit extends Model
             $query->whereIn('id' , $product_id);
         }
     }
-
     public  function comment(){
 
         return $this->morphMany(comment::class, 'commentable');

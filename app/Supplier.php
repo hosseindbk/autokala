@@ -12,17 +12,16 @@ class Supplier extends Model
         $category = request('category_id');
         if ($category == 'all' || $category == null)
         {
-            $query->where('title' , 'LIKE' , '%' .$keywords. '%')
+            $query->where('title'   , 'LIKE' , '%' .$keywords. '%')
                 ->orwhere('manager' , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('phone' , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('mobile' , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('phone'   , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('mobile'  , 'LIKE' , '%' .$keywords. '%')
                 ->orwhere('address' , 'LIKE' , '%' .$keywords. '%');
         }else {
             $query->where($category, 'LIKE', '%' . $keywords . '%')->whereStatus(4);
         }
         return $query;
     }
-
     public function scopeState($query){
         $state_id = request('state_id');
         if (isset($state_id) && $state_id == ''){
@@ -32,9 +31,19 @@ class Supplier extends Model
             $query->whereIn('State_id' , $state_id);
         }
     }
-
     public function scopeFilter($query)
     {
+
+        $keywords        = request('suppliersearch');
+        if(isset($keywords)  && $keywords != null)
+        {
+            $query->where('title'   , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('manager' , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('phone'   , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('mobile'  , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('address' , 'LIKE' , '%' .$keywords. '%');
+        }
+
         $productgroup_id    = request('productgroup_id');
         if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null) {
             $supplier_id = Supplier_product_group::whereIn('kala_group_id', $productgroup_id)->pluck('supplier_id');
@@ -85,7 +94,6 @@ class Supplier extends Model
         }
         return $query;
     }
-
     public  function comment(){
 
         return $this->morphMany(comment::class, 'commentable');

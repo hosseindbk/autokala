@@ -11,18 +11,28 @@ class Product extends Model
         $category = request('category_id');
         if ($category == 'all' || $category == null)
         {
-            $query->where('title_fa' , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_bazar_fa' , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_fani_fa' , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_fani_en' , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('code_fani_company' , 'LIKE' , '%' .$keywords. '%');
+            $query->where('title_fa'            , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('title_bazar_fa'      , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('title_fani_fa'       , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('title_fani_en'       , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('code_fani_company'   , 'LIKE' , '%' .$keywords. '%');
         }else {
             $query->where($category, 'LIKE', '%' . $keywords . '%');
         }
         return $query;
     }
+    public function scopeFilter($query)
+    {
 
-    public function scopeFilter($query){
+        $keywords = request('productsearch');
+        if (isset($keywords) && $keywords != null)
+        {
+            $query->where('title_fa'            , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('title_bazar_fa'      , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('title_fani_fa'       , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('title_fani_en'       , 'LIKE' , '%' .$keywords. '%')
+                ->orwhere('code_fani_company'   , 'LIKE' , '%' .$keywords. '%');
+        }
 
         $productgroup_id    = request('productgroup_id');
         if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null){
@@ -47,7 +57,6 @@ class Product extends Model
                 $query->whereIn('id' , $product_id);
         }
     }
-
     public function productgroup(){
 
         return $this->belongsToMany(Product_group::class);
@@ -55,7 +64,6 @@ class Product extends Model
     public function productbrandvarieties(){
         return $this->belongsToMany(Product_brand_variety::class);
     }
-
     public  function comment(){
 
         return $this->morphMany(comment::class, 'commentable');

@@ -291,17 +291,4 @@ class ProductController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
-    public function sproduct(){
-            $keywords      = request('productsearch');
-
-            $products      = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
-                ->search($keywords)
-                ->whereStatus(4)
-                ->paginate(10);
-
-            $response = [
-                'products'=>$products,
-            ];
-            return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
-        }
 }
