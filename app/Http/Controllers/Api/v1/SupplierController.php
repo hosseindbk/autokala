@@ -19,6 +19,7 @@ class SupplierController extends Controller
     public function index(){
         $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->whereStatus(4)
+            ->filter()
             ->orderBy('id' , 'DESC')
             ->paginate(10)
             ->toArray();

@@ -21,9 +21,9 @@ class ProductController extends Controller
     public function index(){
         $products       = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
             ->whereStatus(4)
+            ->filter()
             ->latest()
-            ->paginate(10)
-            ->toArray();
+            ->paginate(10);
 
         $response = [
             'products'=>$products,

@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Api\v1;
 
 
 use App\Http\Controllers\Controller;
+use App\Offer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class MarketController extends Controller
 {
     public function sell(){
-        $brandnames = DB::table('offers')
-            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+        $brandnames = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
@@ -27,6 +27,7 @@ class MarketController extends Controller
             ->where('offers.status' , '=', '4')
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
+            ->filter()
             ->paginate(16);
 
         $response = [
@@ -37,8 +38,7 @@ class MarketController extends Controller
 
 
     public function buy(){
-        $brandnames = DB::table('offers')
-            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+        $brandnames = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
@@ -52,6 +52,7 @@ class MarketController extends Controller
             WHEN users.type_id = "4" THEN "شخصی"
             END) AS type'))            ->where('offers.status' , '=', '4')
             ->whereBuyorsell('buy')
+            ->filter()
             ->where('offers.brand_id' , '<>' , null)
             ->paginate(16);
 
