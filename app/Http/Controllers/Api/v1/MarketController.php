@@ -73,7 +73,7 @@ class MarketController extends Controller
             ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title')
             ->where('offers.user_id' , Auth::user()->id)
             ->where('offers.buyorsell' , 'sell')
-            ->where('car_offers.user_id' , request('offer_id'))
+            ->where('car_offers.offer_id' , request('offer_id'))
             ->get();
 
         $status     = true;
@@ -92,7 +92,7 @@ class MarketController extends Controller
             ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title')
             ->where('offers.user_id' , Auth::user()->id)
             ->where('offers.buyorsell' , 'buy')
-            ->where('car_offers.user_id' , request('offer_id'))
+            ->where('car_offers.offer_id' , request('offer_id'))
             ->get();
 
         $status     = true;
