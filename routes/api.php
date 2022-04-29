@@ -43,6 +43,8 @@ Route::middleware('auth:api')->group(function (){
     Route::get('/profile'                           , 'UserController@profile');
     Route::get('bmpsupplier'                        , 'SupplierController@bmpsupplier');
     Route::get('bmptechnical'                       , 'TechnicalunitController@bmptechnical');
+    Route::get('bmpsell'                            , 'MarketController@bmpsell');
+    Route::get('bmpbuy'                             , 'MarketController@bmpbuy');
     Route::post('/supplier/store'                   , 'SupplierController@store');
     Route::post('/supplier/carsupplierstore'        , 'SupplierController@carsupplierstore');
     Route::post('/technicalunit/store'              , 'TechnicalunitController@store');
