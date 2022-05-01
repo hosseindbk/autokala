@@ -225,30 +225,40 @@
                                 </fieldset>
                             </form>
                         </div>
-                        <div class="footer-safety-partner">
-                            <div class="widget widget-product card mb-0">
-                                <div class="product-carousel-symbol owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
-                                    <div class="owl-stage-outer">
-                                        <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2234px;">
-                                            <div class="owl-item active" style="width: 300.75px; margin-left: 10px;">
-                                                <div class="item">
-                                                    <a href="#" class="d-block hover-img-link mt-0">
-                                                        <img referrerpolicy='origin' id = 'nbqejzpefukzwlaofukzsizp' style = 'cursor:pointer;width: 100px;' onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=276469&p=uiwkjyoegvkaaodsgvkapfvl", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=276469&p=odrfyndtwlbqshwlwlbqbsiy' />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item active" style="width: 300.75px; margin-left: 10px;">
-                                                <div class="item">
-                                                    <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" class="d-block hover-img-link mt-0">
-                                                        <img referrerpolicy="origin" src="https://trustseal.enamad.ir/Content/Images/Star/star1.png?v=5.0.0.47" alt="" style="cursor:pointer;width: 100px" id="dfxWaqnQkjgkX5PcBJnK">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="footer-shopping-features">
+                            <div class="container-fluid">
+                                <div class="col-12">
+                                    <div class="item">
+                                        <span class="icon-shopping">
+                                            <a href="#" class="d-block hover-img-link mt-0">
+                                                <img referrerpolicy='origin' id = 'nbqejzpefukzwlaofukzsizp' style = 'cursor:pointer;width: 100px;' onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=276469&p=uiwkjyoegvkaaodsgvkapfvl", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=276469&p=odrfyndtwlbqshwlwlbqbsiy' />
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="item">
+                                        <span class="icon-shopping">
+                                            <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" class="d-block hover-img-link mt-0">
+                                                <img referrerpolicy="origin" src="https://trustseal.enamad.ir/Content/Images/Star/star1.png?v=5.0.0.47" alt="" style="cursor:pointer;width: 100px" id="dfxWaqnQkjgkX5PcBJnK">
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+{{--                        <div class="footer-safety-partner">--}}
+{{--                            <div class="widget widget-product card mb-0">--}}
+{{--                                <div class="item">--}}
+{{--                                    <a href="#" class="d-block hover-img-link mt-0">--}}
+{{--                                        <img referrerpolicy='origin' id = 'nbqejzpefukzwlaofukzsizp' style = 'cursor:pointer;width: 100px;' onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=276469&p=uiwkjyoegvkaaodsgvkapfvl", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=276469&p=odrfyndtwlbqshwlwlbqbsiy' />--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+{{--                                <div class="item">--}}
+{{--                                    <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" class="d-block hover-img-link mt-0">--}}
+{{--                                        <img referrerpolicy="origin" src="https://trustseal.enamad.ir/Content/Images/Star/star1.png?v=5.0.0.47" alt="" style="cursor:pointer;width: 100px" id="dfxWaqnQkjgkX5PcBJnK">--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     <div class="footer-more-info">
                         <div class="footer-copyright">
