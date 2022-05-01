@@ -6,9 +6,11 @@ use App\Brand;
 use App\Car_brand;
 use App\Car_model;
 use App\Http\Controllers\Controller;
+use App\Markuser;
 use App\Product_group;
 use App\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
@@ -129,5 +131,53 @@ class IndexController extends Controller
             'brand' => $productgroups
         ];
         return Response::json(['ok'=>true , 'message' =>'success','response'=>$response ]);
+    }
+    public function markuser(){
+
+        $suppliers       = Markuser::leftjoin('suppliers'  , 'suppliers.id' , '=' , 'markusers.supplier_id')
+            ->select('suppliers.title as supplier' , 'suppliers.id' , 'suppliers.image')
+            ->where('markusers.user_id' , Auth::user()->id)
+            ->get();
+
+        $offers          = Markuser::leftjoin('offers'     , 'offers.id'     , '=' , 'markusers.offer_id')
+            ->select('offers.id' , 'offers.title_offer as offer' , 'offers.image1')
+            ->where('markusers.user_id' , Auth::user()->id)
+            ->get();
+
+        $products        = Markuser::leftjoin('products'   , 'products.id'    , '=' , 'markusers.product_id')
+            ->select('products.title_fa as product' , 'products.id' , 'products.image')
+            ->where('markusers.user_id' , Auth::user()->id)
+            ->get();
+
+        $technical_units = Markuser::leftjoin('technical_units' , 'technical_units.id'  , '=' , 'markusers.technical_id')
+            ->select('technical_units.id' , 'technical_units.title as technical' , 'technical_units.image')
+            ->where('markusers.user_id' , Auth::user()->id)
+            ->get();
+
+        $response = [
+            'supplier'          => $suppliers,
+            'offer'             => $offers,
+            'product'           => $products,
+            'technical_unit'    => $technical_units
+        ];
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+
+    }
+    public function markusercreate(Request $request){
+
+        $markusers = new Markuser();
+
+        $markusers->supplier_id         = $request->input('supplier_id');
+        $markusers->technical_id        = $request->input('technical_id');
+        $markusers->offer_id            = $request->input('offer_id');
+        $markusers->product_id          = $request->input('product_id');
+        $markusers->user_id             = Auth::user()->id;
+
+        $markusers->save();
+        $status     = true;
+        $message    = 'success';
+        $response   = 'اطلاعات با موفقیت ثبت شد';
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+
     }
 }

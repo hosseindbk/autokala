@@ -56,7 +56,10 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/technicalunit/delete'             , 'TechnicalunitController@technicaldelete');
     Route::delete('/supplier/delete'                , 'SupplierController@supplierdelete');
     Route::delete('/technical/delete'               , 'TechnicalunitController@technicaldelete');
+    Route::post('/mark'                             , 'IndexController@markusercreate');
+    Route::get('/mark'                              , 'IndexController@markuser');
 
-    });
+
+});
 
 });
