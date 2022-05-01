@@ -229,14 +229,14 @@
                             <div class="container-fluid">
                                 <div class="col-12">
                                     <div class="item">
-                                        <span class="icon-shopping">
+                                        <span>
                                             <a href="#" class="d-block hover-img-link mt-0">
                                                 <img referrerpolicy='origin' id = 'nbqejzpefukzwlaofukzsizp' style = 'cursor:pointer;width: 100px;' onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=276469&p=uiwkjyoegvkaaodsgvkapfvl", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=276469&p=odrfyndtwlbqshwlwlbqbsiy' />
                                             </a>
                                         </span>
                                     </div>
                                     <div class="item">
-                                        <span class="icon-shopping">
+                                        <span>
                                             <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" class="d-block hover-img-link mt-0">
                                                 <img referrerpolicy="origin" src="https://trustseal.enamad.ir/Content/Images/Star/star1.png?v=5.0.0.47" alt="" style="cursor:pointer;width: 100px" id="dfxWaqnQkjgkX5PcBJnK">
                                             </a>
