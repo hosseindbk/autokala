@@ -128,14 +128,13 @@ class ProductController extends Controller
                 ->get();
 
 
-            $products = Product::leftjoin('markusers' , 'markusers.product_id' , '=' , 'products.id')
-                ->leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
+            $products = Product::leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
                 ->select('products.unicode as unicode'          , 'products.slug as slug'           , 'products.hs as hs',
-                    'products.title_bazar_fa as title_bazar'    , 'products.oem as oem'             , 'title_specific1' ,
-                    'products.code_fani_company as company_code', 'title_specific2'                 , 'title_specific3' ,
-                    'products.description as description'       , 'products.image as image'         , 'specific3',
-                    'product_groups.title_fa as productgroup'   , 'products.title_en as title_en'   , 'specific1',
-                    'product_groups.id as productgroup_id'      , 'products.title_fa as title'      , 'specific2',
+                    'products.title_bazar_fa as title_bazar'    , 'products.oem as oem'             , 'products.title_specific1' ,
+                    'products.code_fani_company as company_code', 'products.title_specific2'        , 'products.title_specific3' ,
+                    'products.description as description'       , 'products.products.image as image', 'products.specific3',
+                    'product_groups.title_fa as productgroup'   , 'products.title_en as title_en'   , 'products.specific1',
+                    'product_groups.id as productgroup_id'      , 'products.title_fa as title'      , 'products.specific2',
                     'products.created_at as created_at'  )
                 ->whereSlug($slug)
                 ->get();
