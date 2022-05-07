@@ -124,9 +124,11 @@
                         </ol>
                         <div class="carousel-inner">
                             @foreach($orginal_slides as $slide)
-                                <div class="carousel-item @if($slide->id == $minid) active @endif">
-                                    <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
-                                </div>
+                                <a href="{{$slide->link}}" class="adplacement-item">
+                                    <div class="carousel-item @if($slide->id == $minid) active @endif">
+                                        <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
+                                    </div>
+                                </a>
                             @endforeach
 
                         </div>
