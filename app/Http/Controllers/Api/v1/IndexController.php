@@ -180,4 +180,8 @@ class IndexController extends Controller
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
 
     }
+    public function markdelete(){
+
+    }
+
 }

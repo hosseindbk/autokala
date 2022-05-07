@@ -30,21 +30,21 @@ class SupplierController extends Controller
 
     }
     public function subsupplier($slug){
-        $suppliers       = Supplier::select(
-            'id' , 'title' , 'slug' , 'address' , 'manager' , 'image' , 'image2' , 'image3'
-            , 'manufacturer' , 'importer' , 'whole_seller' , 'retail_seller' , 'phone' , 'mobile'
-            , 'website', 'email' , 'whatsapp' , 'lat' , 'lng' , 'state_id' , 'city_id' ,'autokala')
+        $suppliers       = Supplier::leftjoin('markusers' , 'markusers.supplier_id' , '=' , 'suppliers.id')
+        ->select('markusers.id as mark_id'  ,'suppliers.id'         , 'suppliers.title'         , 'suppliers.slug'          , 'suppliers.address'   , 'suppliers.manager'   , 'suppliers.image'
+            , 'suppliers.manufacturer'      , 'suppliers.importer'  , 'suppliers.whole_seller'  , 'suppliers.retail_seller' , 'suppliers.phone'     , 'suppliers.mobile'    , 'suppliers.image2' , 'suppliers.image3'
+            , 'suppliers.website'           , 'suppliers.email'     , 'suppliers.whatsapp'      , 'suppliers.lat'           , 'suppliers.lng'       , 'suppliers.state_id'  , 'suppliers.city_id' ,'suppliers.autokala')
             ->whereStatus(4)
             ->whereSlug($slug)
-            ->get()
-            ->toArray();
+            ->get();
+
         if ($suppliers != []) {
             $image = [$suppliers[0]['image'], $suppliers[0]['image2'], $suppliers[0]['image3']];
 
             $supplier_id = Supplier::whereSlug($slug)->pluck('id');
 
-            $suppliergroups = DB::table('supplier_product_groups')
-                ->leftJoin('car_brands', 'car_brands.id', '=', 'supplier_product_groups.car_brand_id')
+            $suppliergroups = Supplier_product_group::
+                  leftJoin('car_brands', 'car_brands.id', '=', 'supplier_product_groups.car_brand_id')
                 ->leftJoin('car_models', 'car_models.id', '=', 'supplier_product_groups.car_model_id')
                 ->leftJoin('product_groups', 'product_groups.id', '=', 'supplier_product_groups.kala_group_id')
                 ->select('car_brands.title_fa as brand_title', 'car_models.title_fa as model_title', 'product_groups.title_fa as product_group')

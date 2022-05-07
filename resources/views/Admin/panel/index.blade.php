@@ -1,6 +1,6 @@
 @extends('Admin.admin')
 @section('title')
-    <title> داشبورد مدیریتی بستا</title>
+    <title> داشبورد مدیریتی وبسایت اتوکالا</title>
 @endsection
 @section('main')
     <div class="main-content side-content pt-0">
