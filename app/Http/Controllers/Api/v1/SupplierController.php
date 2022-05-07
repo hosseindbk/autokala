@@ -17,6 +17,7 @@ use Intervention\Image\Facades\Image;
 class SupplierController extends Controller
 {
     public function index(){
+        dd('saam');
         $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->whereStatus(4)
             ->filter()
