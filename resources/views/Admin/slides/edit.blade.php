@@ -111,7 +111,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">لینک اسلاید</p>
-                                                    <input type="text" name="link" value="{{$slide->title}}"  class="form-control" />
+                                                    <input type="text" name="link" value="{{$slide->link}}"  class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
