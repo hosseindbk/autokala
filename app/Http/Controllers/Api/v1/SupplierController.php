@@ -29,7 +29,8 @@ class SupplierController extends Controller
 
     }
     public function subsupplier($slug){
-        $suppliers       = Supplier::select('suppliers.id'         , 'suppliers.title'         , 'suppliers.slug'          , 'suppliers.address'   , 'suppliers.manager'   , 'suppliers.image'
+        $suppliers       = Supplier::leftjoin('markusers' , 'markusers.supplier_id' , '=' , 'suppliers.id')
+        ->select('markusers.id as mark_id'  ,'suppliers.id'         , 'suppliers.title'         , 'suppliers.slug'          , 'suppliers.address'   , 'suppliers.manager'   , 'suppliers.image'
             , 'suppliers.manufacturer'      , 'suppliers.importer'  , 'suppliers.whole_seller'  , 'suppliers.retail_seller' , 'suppliers.phone'     , 'suppliers.mobile'    , 'suppliers.image2' , 'suppliers.image3'
             , 'suppliers.website'           , 'suppliers.email'     , 'suppliers.whatsapp'      , 'suppliers.lat'           , 'suppliers.lng'       , 'suppliers.state_id'  , 'suppliers.city_id' ,'suppliers.autokala')
             ->whereStatus(4)

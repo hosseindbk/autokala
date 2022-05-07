@@ -128,8 +128,9 @@ class ProductController extends Controller
                 ->get();
 
 
-            $products = Product::leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
-                ->select('products.unicode as unicode'          , 'products.slug as slug'           , 'products.hs as hs',
+            $products = Product::leftjoin('markusers' , 'markusers.product_id' , '=' , 'products.id')
+                ->leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
+                ->select('markusers.id as mark_id' , 'products.unicode as unicode'          , 'products.slug as slug'           , 'products.hs as hs',
                     'products.title_bazar_fa as title_bazar'    , 'products.oem as oem'             , 'products.title_specific1' ,
                     'products.code_fani_company as company_code', 'products.title_specific2'        , 'products.title_specific3' ,
                     'products.description as description'       , 'products.products.image as image', 'products.specific3',
