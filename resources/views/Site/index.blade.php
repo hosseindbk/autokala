@@ -152,7 +152,7 @@
                 <div class="adplacement-container-column">
 
                         @foreach($left_top_slides as $slide)
-                            <a href="{{$slide->link}}" class="adplacement-item">
+                            <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
                                 <div class="adplacement-sponsored-box">
                                     <img src="{{asset($slide->image)}}">
                                 </div>
@@ -160,7 +160,7 @@
                         @endforeach
 
                         @foreach($left_bottom_slides as $slide)
-                            <a href="{{$slide->link}}" class="adplacement-item">
+                            <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
                                 <div class="adplacement-sponsored-box">
                                     <img src="{{asset($slide->image)}}">
                                 </div>
