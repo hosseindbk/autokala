@@ -59,6 +59,12 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">لینک اسلاید</p>
+                                                <input type="text" name="link" data-required="1" placeholder="لینک اسلاید را وارد کنید" class="form-control" />
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <p class="mg-b-10">تصویر اسلاید</p>

@@ -146,20 +146,22 @@
 
             <div class="col-lg-4 col-md-4 col-xs-12 pl mt-1">
                 <div class="adplacement-container-column">
-                    <a href="#" class="adplacement-item">
+
                         @foreach($left_top_slides as $slide)
-                            <div class="adplacement-sponsored-box">
-                                <img src="{{asset($slide->image)}}">
-                            </div>
+                            <a href="#" class="adplacement-item">
+                                <div class="adplacement-sponsored-box">
+                                    <img src="{{asset($slide->image)}}">
+                                </div>
+                            </a>
                         @endforeach
-                    </a>
-                    <a href="#" class="adplacement-item">
+
                         @foreach($left_bottom_slides as $slide)
-                            <div class="adplacement-sponsored-box">
-                                <img src="{{asset($slide->image)}}">
-                            </div>
+                            <a href="#" class="adplacement-item">
+                                <div class="adplacement-sponsored-box">
+                                    <img src="{{asset($slide->image)}}">
+                                </div>
+                            </a>
                         @endforeach
-                    </a>
                 </div>
             </div>
 
