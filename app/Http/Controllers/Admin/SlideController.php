@@ -92,6 +92,7 @@ class SlideController extends Controller
 
         $slides->title      = $request->input('title');
         $slides->position   = $request->input('position');
+        $slides->link       = $request->input('link');
         $slides->status     = 4;
         $slides->user_id    = Auth::user()->id;
 
@@ -127,6 +128,7 @@ class SlideController extends Controller
     {
         $slide->title           = $request->input('title');
         $slide->position        = $request->input('position');
+        $slide->link            = $request->input('link');
         if ($request->file('image') != null) {
             $file = $request->file('image');
             $img = Image::make($file);

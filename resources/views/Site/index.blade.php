@@ -124,9 +124,13 @@
                         </ol>
                         <div class="carousel-inner">
                             @foreach($orginal_slides as $slide)
-                                <div class="carousel-item @if($slide->id == $minid) active @endif">
-                                    <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
-                                </div>
+
+                                    <div class="carousel-item @if($slide->id == $minid) active @endif">
+                                        <a href="{{$slide->link}}" class="adplacement-item">
+                                            <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
+                                        </a>
+                                    </div>
+
                             @endforeach
 
                         </div>
@@ -146,20 +150,22 @@
 
             <div class="col-lg-4 col-md-4 col-xs-12 pl mt-1">
                 <div class="adplacement-container-column">
-                    <a href="#" class="adplacement-item">
+
                         @foreach($left_top_slides as $slide)
-                            <div class="adplacement-sponsored-box">
-                                <img src="{{asset($slide->image)}}">
-                            </div>
+                            <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
+                                <div class="adplacement-sponsored-box">
+                                    <img src="{{asset($slide->image)}}">
+                                </div>
+                            </a>
                         @endforeach
-                    </a>
-                    <a href="#" class="adplacement-item">
+
                         @foreach($left_bottom_slides as $slide)
-                            <div class="adplacement-sponsored-box">
-                                <img src="{{asset($slide->image)}}">
-                            </div>
+                            <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
+                                <div class="adplacement-sponsored-box">
+                                    <img src="{{asset($slide->image)}}">
+                                </div>
+                            </a>
                         @endforeach
-                    </a>
                 </div>
             </div>
 
