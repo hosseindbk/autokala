@@ -126,7 +126,7 @@
                             @foreach($orginal_slides as $slide)
 
                                     <div class="carousel-item @if($slide->id == $minid) active @endif">
-                                        <a href="{{$slide->link}}" class="adplacement-item">
+                                        <a href="{{$slide->link}}" class="adplacement-item"  target="_blank">
                                             <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
                                         </a>
                                     </div>
