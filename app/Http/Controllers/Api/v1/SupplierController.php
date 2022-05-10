@@ -10,7 +10,6 @@ use App\Supplier;
 use App\Supplier_product_group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
 
@@ -28,6 +27,7 @@ class SupplierController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
+
     public function subsupplier($slug){
         $suppliers       = Supplier::leftjoin('markusers' , 'markusers.supplier_id' , '=' , 'suppliers.id')
         ->select('markusers.id as mark_id'  ,'suppliers.id'         , 'suppliers.title'         , 'suppliers.slug'          , 'suppliers.address'   , 'suppliers.manager'   , 'suppliers.image'
@@ -274,6 +274,7 @@ class SupplierController extends Controller
         }
 
     }
+
     public function supplierdelete(){
         $supplier_id = Supplier::whereUser_id(auth::user()->id)->pluck('id');
         if(count($supplier_id) != 0){
@@ -294,6 +295,7 @@ class SupplierController extends Controller
             return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
         }
     }
+
     public function bmpsupplier(){
 
         $suppliergroups = Supplier_product_group::
@@ -311,4 +313,5 @@ class SupplierController extends Controller
 
                 return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
             }
+
 }

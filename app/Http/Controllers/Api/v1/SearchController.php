@@ -4,11 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Brand;
 use App\Http\Controllers\Controller;
-use App\Offer;
 use App\Product;
-use App\Supplier;
-use App\Technical_unit;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class SearchController extends Controller
@@ -35,5 +31,6 @@ class SearchController extends Controller
         $brands             = Brand::brandsearch($keywords)->whereStatus(4)->latest()->paginate(12);
 
     }
+
 
 }

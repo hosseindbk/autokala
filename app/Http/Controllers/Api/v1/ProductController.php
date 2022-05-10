@@ -12,7 +12,6 @@ use App\Media;
 use App\Product;
 use App\Product_brand_variety;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
 
@@ -30,6 +29,7 @@ class ProductController extends Controller
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
+
     public function variety(){
 
         $products       = Product::leftjoin('product_brand_varieties' , 'product_brand_varieties.product_id' , '=' , 'products.id')
@@ -42,6 +42,7 @@ class ProductController extends Controller
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
+
     public function topview(){
         $products       = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
             ->whereStatus(4)
@@ -54,6 +55,7 @@ class ProductController extends Controller
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
+
     public function subproduct($slug){
 
         $product_id         = Product::whereSlug($slug)->pluck('id');
@@ -246,6 +248,7 @@ class ProductController extends Controller
         ];
         return Response::json(['ok' => $status ,'message' => $message ,'response'=>$response ]);
     }
+
     public function createproductvariety(productbrandvarietyrequest $request)
     {
         $productbrandvarieties = new Product_brand_variety();
@@ -309,4 +312,5 @@ class ProductController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
+
 }

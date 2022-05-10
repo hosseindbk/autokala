@@ -58,6 +58,7 @@ class UserController extends Controller
             return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
+
     public function register(Request $request)
     {
 
@@ -161,7 +162,7 @@ class UserController extends Controller
         return Response::json(['ok' => true , 'message' => 'success' , 'response' => $response]);
     }
 
-        public function profile(){
+    public function profile(){
         if (Auth::check()) {
             $users = User::
             leftJoin('states', 'states.id', '=', 'users.state_id')

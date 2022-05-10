@@ -38,7 +38,6 @@ class MarketController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
 
-
     public function buy(){
         $brandnames = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')

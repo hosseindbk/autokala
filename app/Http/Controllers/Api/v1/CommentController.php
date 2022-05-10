@@ -54,4 +54,5 @@ class CommentController extends Controller
 
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
+
 }

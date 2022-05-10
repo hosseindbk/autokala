@@ -29,6 +29,7 @@ class TechnicalunitController extends Controller
 
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
+
     public function subtechnical($slug){
 
         $technicals      = Technical_unit::leftjoin('markusers' , 'markusers.technical_id' , '=' , 'technical_units.id')
@@ -150,6 +151,7 @@ class TechnicalunitController extends Controller
 
         return Response::json(['ok' => $status ,'message' => $message ,'response'=>$response]);
     }
+
     public function store(technicalrequest $request)
     {
         $technical_user = Technical_unit::where('user_id', auth::user()->id)->first();
@@ -228,6 +230,7 @@ class TechnicalunitController extends Controller
             return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
         }
     }
+
     public function cartechnicalstore(Request $request)
     {
         if ($request->car_model_id != null) {
@@ -269,6 +272,7 @@ class TechnicalunitController extends Controller
         }
 
     }
+
     public function technicaldelete(){
         $supplier_id = Technical_unit::whereUser_id(auth::user()->id)->pluck('id');
         if(count($supplier_id) != 0){
@@ -289,6 +293,7 @@ class TechnicalunitController extends Controller
             return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
         }
     }
+
     public function bmptechnical(){
 
         $technicalgroups = Car_technical_group::
@@ -306,4 +311,5 @@ class TechnicalunitController extends Controller
 
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
+
 }

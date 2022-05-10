@@ -177,4 +177,5 @@ class OfferController extends Controller
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
 
     }
+
 }
