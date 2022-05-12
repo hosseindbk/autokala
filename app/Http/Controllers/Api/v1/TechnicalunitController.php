@@ -36,12 +36,11 @@ class TechnicalunitController extends Controller
         ->select('markusers.id as mark_id'  , 'technical_units.id'          , 'technical_units.title'       , 'technical_units.slug'    , 'technical_units.address' , 'technical_units.manager' , 'technical_units.phone'
             ,'technical_units.image'        , 'technical_units.image2'      , 'technical_units.image3'      , 'technical_units.mobile'  , 'technical_units.website'
             , 'technical_units.email'       , 'technical_units.whatsapp'    , 'technical_units.autokala'    , 'technical_units.lat'     , 'technical_units.lng'     , 'technical_units.autokala' )
-            ->whereStatus(4)
-            ->whereSlug($slug)
+            ->where('technical_units.status','=' , 4)
+            ->where('technical_units.slug'  ,'=' , $slug)
             ->get();
         if ($technicals != []) {
             $image = [$technicals[0]['image'], $technicals[0]['image2'], $technicals[0]['image3']];
-
 
         $technical_id      = Technical_unit::whereSlug($slug)->pluck('id');
 

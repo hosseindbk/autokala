@@ -21,13 +21,24 @@ use Illuminate\Support\Facades\Redirect;
 class SupplierController extends Controller
 {
     public function index(){
-        $menus              = Menu::whereStatus(4)->get();
+        $menus              = Menu::select('id' , 'title' , 'slug')->whereStatus(4)->get();
         $countState         = null;
         $suppliers          = Supplier::select('id')->whereStatus(4)->get();
-        $newsuppliers       = Supplier::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+
+//        $ratesuppliers         = DB::select("select s.id , s.title , s.slug , s.manager , s.image , s.city_id , s.address , rate.commentable_id from suppliers as s left JOIN (select commentable_id , floor((avg(approved) + avg(quality) + avg(value) + avg(innovation) + avg(ability) + avg(design) + avg(comfort))/6) as avg from commentrates where commentable_type = 'App/Supplier' GROUP BY commentable_id ORDER BY avg DESC) as rate ON s.id = rate.commentable_id");
+//        $newsuppliers       = new Paginator($ratesuppliers, 16);
+//
+//        $csuppliers         = DB::select("select s.id , s.title , s.slug , s.manager , s.image , s.city_id , s.address , rate.commentable_id from suppliers as s left JOIN (select commentable_id , floor((avg(approved) + avg(quality) + avg(value) + avg(innovation) + avg(ability) + avg(design) + avg(comfort))/6) as avg from commentrates where commentable_type = 'App/Supplier' GROUP BY commentable_id ORDER BY avg DESC) as rate ON s.id = rate.commentable_id");
+//        $clicksuppliers       = new Paginator($csuppliers, 16);
+
+        $newsuppliers       = Supplier::select('id' , 'title' , 'slug' , 'image' , 'manager' , 'address' , 'city_id')->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+
         $clicksuppliers     = Supplier::whereStatus(4)->orderBy('click')->paginate(16);
+
         $goodsuppliers      = Supplier::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+
         $oldsuppliers       = Supplier::whereStatus(4)->orderBy('id')->paginate(16);
+
         $productgroups      = Product_group::whereStatus(4)->get();
         $carbrands          = Car_brand::whereStatus(4)->get();
         $brands             = Brand::whereStatus(4)->get();

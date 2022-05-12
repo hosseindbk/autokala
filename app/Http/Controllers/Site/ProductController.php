@@ -52,9 +52,7 @@ class ProductController extends Controller
             left join (SELECT product_id , COUNT(id) as count_v FROM product_brand_varieties GROUP BY product_id )
             AS v on p.id = v.product_id ORDER BY v.count_v DESC;");
 
-        $maxPage = 16;
-
-        $oldproducts = new Paginator($productvars, $maxPage);
+        $oldproducts = new Paginator($productvars, 16);
 
         $productgroups  = Product_group::whereStatus(4)->get();
         $carbrands      = Car_brand::whereStatus(4)->get();

@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->namespace('Api\v1')->group(function (){
-
     Route::get('/index'                             , 'IndexController@index');
     Route::post('/login'                            , 'UserController@login');
     Route::post('/register'                         , 'UserController@register');
@@ -15,10 +14,12 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('/product/{slug}'                    , 'ProductController@subproduct');
     Route::get('/supplier'                          , 'SupplierController@index');
     Route::get('/supplier/{slug}'                   , 'SupplierController@subsupplier');
+    Route::get('/market/{slug}'                     , 'MarketController@submarket');
     Route::get('/technicalunit'                     , 'TechnicalunitController@index');
     Route::get('/technicalunit/{slug}'              , 'TechnicalunitController@subtechnical');
     Route::get('/market/sell'                       , 'MarketController@sell');
     Route::get('/market/buy'                        , 'MarketController@buy');
+    Route::get('/market/{slug}'                     , 'MarketController@submarket');
     Route::post('remember'                          , 'UserController@remember');
     Route::post('/token'                            , 'UserController@token');
     Route::get('/search/unicode'                    , 'SearchController@searchunicode');
@@ -57,6 +58,7 @@ Route::middleware('auth:api')->group(function (){
     Route::delete('/supplier/delete'                , 'SupplierController@supplierdelete');
     Route::delete('/technical/delete'               , 'TechnicalunitController@technicaldelete');
     Route::post('/mark'                             , 'IndexController@markusercreate');
+    Route::delete('/unmark/{id}'                    , 'IndexController@markdelete');
     Route::get('/mark'                              , 'IndexController@markuser');
 
 

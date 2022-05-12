@@ -135,11 +135,11 @@ class ProductController extends Controller
                 ->select('markusers.id as mark_id' , 'products.unicode as unicode'          , 'products.slug as slug'           , 'products.hs as hs',
                     'products.title_bazar_fa as title_bazar'    , 'products.oem as oem'             , 'products.title_specific1' ,
                     'products.code_fani_company as company_code', 'products.title_specific2'        , 'products.title_specific3' ,
-                    'products.description as description'       , 'products.products.image as image', 'products.specific3',
+                    'products.description as description'       , 'products.image as image'         , 'products.specific3',
                     'product_groups.title_fa as productgroup'   , 'products.title_en as title_en'   , 'products.specific1',
                     'product_groups.id as productgroup_id'      , 'products.title_fa as title'      , 'products.specific2',
                     'products.created_at as created_at'  )
-                ->whereSlug($slug)
+                ->where('products.slug' ,'=',$slug)
                 ->get();
             foreach ($products as $product) {
                 if ($product->title_specific1 != null) {
