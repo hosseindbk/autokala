@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Brand;
+use App\Car_brand;
+use App\Car_model;
+use App\Car_product;
+use App\Car_type;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\productbrandvarietyrequest;
 use App\Media;
@@ -36,7 +40,6 @@ class ProductbrandvarietyController extends Controller
             ->with(compact('products'));
     }
 
-
     public function create()
     {
         $productbrandvarieties  = Product_brand_variety::all();
@@ -45,13 +48,21 @@ class ProductbrandvarietyController extends Controller
         $statuses               = Status::select('id' , 'title')->get();
         $menudashboards         = Menudashboard::whereStatus(4)->get();
         $submenudashboards      = Submenudashboard::whereStatus(4)->get();
+        $carbrands              = Car_brand::select('id' , 'title_fa')->get();
+        $carproducts            = Car_product::whereStatus(4)->get();
+        $carmodels              = Car_model::whereStatus(4)->get();
+        $cartypes               = Car_type::whereStatus(4)->get();
 
         return view('Admin.productbrandvarieties.create')
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'))
             ->with(compact('statuses'))
+            ->with(compact('carbrands'))
             ->with(compact('productbrandvarieties'))
             ->with(compact('brands'))
+            ->with(compact('carproducts'))
+            ->with(compact('carmodels'))
+            ->with(compact('cartypes'))
             ->with(compact('products'));
     }
 
@@ -76,7 +87,7 @@ class ProductbrandvarietyController extends Controller
         $productbrandvarieties->weakness2            = $request->input('weakness2');
         $productbrandvarieties->weakness3            = $request->input('weakness3');
         $productbrandvarieties->weakness4            = $request->input('weakness4');
-        $productbrandvarieties->status               = '4';
+        $productbrandvarieties->status               = '1';
         $productbrandvarieties->description          = $request->input('description');
         $productbrandvarieties->date                 = jdate()->format('Ymd ');
         $productbrandvarieties->date_handle          = jdate()->format('Ymd ');
@@ -137,8 +148,6 @@ class ProductbrandvarietyController extends Controller
             ->with(compact('brands'))
             ->with(compact('products'));
     }
-
-
 
     public function update(productbrandvarietyrequest $request , Product_brand_variety $productbrandvariety)
     {
@@ -208,6 +217,7 @@ class ProductbrandvarietyController extends Controller
         $productbrandvariety->update();
         return Redirect::back();
     }
+
     public function img2update($id)
     {
         $productbrandvariety = Product_brand_variety::findOrfail($id);
@@ -215,6 +225,7 @@ class ProductbrandvarietyController extends Controller
         $productbrandvariety->update();
         return Redirect::back();
     }
+
     public function img3update($id)
     {
         $productbrandvariety = Product_brand_variety::findOrfail($id);

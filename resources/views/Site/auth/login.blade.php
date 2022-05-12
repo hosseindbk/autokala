@@ -30,11 +30,13 @@
                                                 <input type="text" name="phone" required value=" " class="form-control text-left @error('phone') is-invalid @enderror" >
                                             </div>
                                             <div class="form-account-title">
+
                                                 <label for="phone" class="float-right">رمز عبور</label>
-                                                <input type="password" name="password" required autocomplete="new-password" class="form-control text-left @error('password') is-invalid @enderror" >
+                                                <input type="password" id="pass" required name="password" autocomplete="new-password" class="form-control @error('password') is-invalid @enderror" />
+                                                <i class="fa fa-eye-slash" style="float: left;margin-top: -25px;margin-left: 15px;" onclick="togglePassword()"></i>
                                             </div>
                                             <div class="form-account-title ">
-                                                <a href="{{route('remember')}}" class="account-link-password float-right">بازیابی / دریافت رمز عبور</a>
+                                                <a  href="{{route('remember')}}" class="account-link-password float-right">بازیابی / دریافت رمز عبور</a>
                                             </div>
                                             <br>
                                             <div class="form-row-account">
@@ -45,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div >
                 </section>
             </div>
         </div>
@@ -64,4 +66,17 @@
          });
      });
      </script>
+    <script type="text/javascript">
+        function togglePassword(){
+            x = document.getElementById("togglePassword")
+            y = document.getElementById("pass")
+
+            if (y.type ==="password") {
+                y.type = 'text';
+            } else{
+                y.type="password";
+                y.innerHTML = "Show"
+            }
+        }
+    </script>
 @endsection

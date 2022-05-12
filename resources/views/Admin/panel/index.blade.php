@@ -25,23 +25,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-lg-12 col-xl-12">
-                        <div class="card custom-card overflow-hidden">
-                            <div class="card-header border-bottom-0">
-                                <div>
-                                    <label class="main-content-label mb-2">نرخ بازدید وبسایت </label>
-                                    <span class="d-block tx-12 mb-0 text-muted">نرخ بازدید وب سایت بصورت ماهانه می باشد</span>
-                                </div>
-                            </div>
-                            <div class="card-body pl-0">
-                                <div class="">
-                                    <div class="container">
-                                        <canvas id="chartLine" class="chart-dropshadow2 ht-250"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="col-sm-12 col-lg-12 col-xl-12">--}}
+{{--                        <div class="card custom-card overflow-hidden">--}}
+{{--                            <div class="card-header border-bottom-0">--}}
+{{--                                <div>--}}
+{{--                                    <label class="main-content-label mb-2">نرخ بازدید وبسایت </label>--}}
+{{--                                    <span class="d-block tx-12 mb-0 text-muted">نرخ بازدید وب سایت بصورت ماهانه می باشد</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="card-body pl-0">--}}
+{{--                                <div class="">--}}
+{{--                                    <div class="container">--}}
+{{--                                        <canvas id="chartLine" class="chart-dropshadow2 ht-250"></canvas>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     @foreach($submenudashboards as $submenudashboard)
                         @if($submenudashboard->title == 'users')
                             @can($submenudashboard->namayesh)

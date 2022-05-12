@@ -57,7 +57,7 @@ class OfferController extends Controller
             ->with(compact('productbrandvarieties'));
     }
 
-    public function offerproduct($id){
+    public function offerproduct($id , $slug){
         $cities                 = City::all();
         $states                 = State::all();
         $carbrands              = Car_brand::all();
@@ -69,7 +69,7 @@ class OfferController extends Controller
         $products               = Product::whereStatus(4)->whereId($id)->get();
         $product_id             = Product::whereStatus(4)->whereId($id)->pluck('id');
         $kalagroup_id           = Product::whereStatus(4)->whereId($id)->pluck('kala_group_id');
-        $brand_varietis         = Product_brand_variety::whereIn('product_id' ,$product_id)->get();
+        $brand_varietis         = Product_brand_variety::whereId($slug)->get();
         $productgroups          = Product_group::whereIn('id' , $kalagroup_id)->get();
         $carproducts            = Car_product::whereIn('product_id' , $product_id)->get();
         $brands                 = Brand::all();

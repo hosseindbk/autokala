@@ -29,7 +29,8 @@
                                         </div>
                                         <div class="form-group text-right">
                                             <label>رمز عبور</label>
-                                            <input type="password" name="password" required class="text-left form-control  @error('password') is-invalid @enderror">
+                                            <input type="password" id="pass" required name="password" class="form-control @error('password') is-invalid @enderror" />
+                                            <i class="fa fa-eye-slash" style="float: left;margin-top: -25px;margin-left: 15px;" onclick="togglePassword()"></i>
                                         </div>
                                         <button class="btn ripple btn-main-primary btn-block">ورود</button>
                                     </form>
@@ -45,4 +46,17 @@
         </div>
     </div>
 </div>
+    <script type="text/javascript">
+        function togglePassword(){
+            x = document.getElementById("togglePassword")
+            y = document.getElementById("pass")
+
+            if (y.type ==="password") {
+                y.type = 'text';
+            } else{
+                y.type="password";
+                y.innerHTML = "Show"
+            }
+        }
+    </script>
 @endsection

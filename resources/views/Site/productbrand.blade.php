@@ -103,7 +103,7 @@
                                                 </a>
                                             </li>
                                             <li class="option-alarm mt-2">
-                                                <a href="{{route('offer-product' , $product->id)}}" target="_blank">
+                                                <a href="{{url('offer-product' .'/'. $product->id .'/'. $product_brand_variety->id)}}" target="_blank">
                                                     <button type="button" class="btn btn-outline-danger">  ثبت آگهی فروش  </button>
                                                 </a>
                                             </li>

@@ -180,7 +180,7 @@ Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , fu
     Route::get('profile-user/setmapuser/{id}'   , 'ProfileuserController@setmapuser' )->name('setmapuser');
     Route::get('profile-supplier'               , 'ProfilesupplierController@index' );
     Route::post('img'                           , 'ProfilebusinessController@imgupload')->name('img');
-    Route::get('offer-product/{id}'             , 'OfferController@offerproduct')->name('offer-product');
+    Route::get('offer-product/{id}/{slug}'      , 'OfferController@offerproduct');
     Route::post('offer-create'                  , 'OfferController@offercreate')->name('offer-create');
     Route::post('caroffercreate'                , 'OfferController@caroffercreate')->name('carofferstore');
     Route::get('offer/edit/{id}'                , 'OfferController@offeredit')->name('offer-edit');

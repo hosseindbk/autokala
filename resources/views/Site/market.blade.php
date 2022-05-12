@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    <title>بازارچه مجازی وبسایت اتوکالا</title>
+    <title>بازارچه قطعات وبسایت اتوکالا</title>
     <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('site/css/vendor/noUISlider.min.css')}}">
 
@@ -167,101 +167,6 @@
                                             </div>
                                         </div>
                                     </section>
-                                    <section class="widget-product-categories">
-                                        <header class="cat-header">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingfor" role="button" aria-expanded="false" aria-controls="headingOne">
-                                                    استان و شهرستان
-                                                    <i class="mdi mdi-chevron-down"></i>
-                                                </button>
-                                            </h2>
-                                        </header>
-                                        <div class="product-filter mt-3">
-                                            <div class="card">
-                                                <div class="collapse show" id="headingfor">
-                                                    <div class="card-main mb-lg-4">
-                                                        <div class="mb-lg-4 mg-lg-4">
-                                                            <select name="state_id" class="form-control select-lg select2" id="state_id">
-                                                                <option value="">انتخاب استان</option>
-                                                                @foreach($states as $state)
-                                                                    <option value="{{$state->id}}" {{request('state_id') == $state->id ? 'selected' : '' }}>{{$state->title}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-lg-4 mg-lg-4">
-                                                            <select multiple="multiple" name="city_id[]" id="city_id" class="form-control select2">
-                                                                @if($filter == 1)
-                                                                    @foreach($cities as $city)
-                                                                        <option value="{{$city->id}}" @if($filter == 1 && $city_id != null) @foreach($city_id as $y) {{$city->id == $y->id ? 'selected' : ''}} @endforeach @endif>{{$city->title}}</option>
-                                                                    @endforeach
-                                                                @endif
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-2 ">
-                                                        <button class="btn btn-range pr">
-                                                            اعمال فیلتر
-                                                        </button>
-                                                        @if($filter == 1)
-                                                            @if($sell == 1)
-                                                                <a href="{{url('market/sell')}}" class="btn btn-range pl">
-                                                                    پاک کردن فیلتر
-                                                                </a>
-                                                            @elseif($buy == 1)
-                                                                <a href="{{url('market/buy')}}" class="btn btn-range pl">
-                                                                    پاک کردن فیلتر
-                                                                </a>
-                                                            @endif
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-{{--                                    <section class="widget-product-categories">--}}
-{{--                                        <header class="cat-header">--}}
-{{--                                            <h2 class="mb-0">--}}
-{{--                                                <button class="btn btn-block text-right collapsed" type="button" data-toggle="collapse"--}}
-{{--                                                        href="#headingfor" role="button" aria-expanded="false"--}}
-{{--                                                        aria-controls="headingfor">--}}
-{{--                                                    محدوده قیمت--}}
-{{--                                                    <i class="mdi mdi-chevron-down"></i>--}}
-{{--                                                </button>--}}
-{{--                                            </h2>--}}
-{{--                                        </header>--}}
-{{--                                        <div class="product-filter">--}}
-{{--                                            <div class="card">--}}
-{{--                                                <div class="collapse show" id="headingfor">--}}
-{{--                                                    <div class="card-main mb-0">--}}
-{{--                                                        <div class="box-data">--}}
-{{--                                                            <div class="mt-5 mb-4" id="slider"></div>--}}
-
-{{--                                                            <div class="filter-range mt-2 mb-2 pr">--}}
-{{--                                                                <span>قیمت: </span>--}}
-{{--                                                                <span class="example-val" id="limitedPrice"></span> تومان--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="mt-2 pl ">--}}
-{{--                                                                <button class="btn btn-range pr" type="submit">--}}
-{{--                                                                    اعمال فیلتر--}}
-{{--                                                                </button>--}}
-{{--                                                                @if($filter == 1)--}}
-{{--                                                                    @if($sell == 1)--}}
-{{--                                                                        <a href="{{url('market/sell')}}" class="btn btn-range pl">--}}
-{{--                                                                            پاک کردن فیلتر--}}
-{{--                                                                        </a>--}}
-{{--                                                                    @elseif($buy == 1)--}}
-{{--                                                                        <a href="{{url('market/buy')}}" class="btn btn-range pl">--}}
-{{--                                                                            پاک کردن فیلتر--}}
-{{--                                                                        </a>--}}
-{{--                                                                    @endif--}}
-{{--                                                                @endif--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </section>--}}
                                     <section class="widget-product-categories">
                                         <header class="cat-header">
                                             <h2 class="mb-0">

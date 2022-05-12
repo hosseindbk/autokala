@@ -170,52 +170,6 @@
                                             </div>
                                         </div>
                                     </section>
-                                    <section class="widget-product-categories">
-                                    <header class="cat-header">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingfor" role="button" aria-expanded="false" aria-controls="headingOne">
-                                                استان و شهرستان
-                                                <i class="mdi mdi-chevron-down"></i>
-                                            </button>
-                                        </h2>
-                                    </header>
-                                    <div class="product-filter">
-                                        <div class="card">
-                                            <div class="collapse show" id="headingfor">
-                                                    <div class="card-main mb-lg-4">
-                                                        <div class="mb-lg-4 mg-lg-4">
-                                                            <select name="state_id" class="form-control select-lg select2" id="state_id">
-                                                                <option value="">انتخاب استان</option>
-                                                                @foreach($states as $state)
-
-                                                                    <option value="{{$state->id}}" {{request('state_id') == $state->id ? 'selected' : '' }}>{{$state->title}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-lg-4 mg-lg-4">
-                                                            <select multiple="multiple" name="city_id[]" id="city_id" class="form-control select2">
-                                                                @if($filter == 1)
-                                                                    @foreach($cities as $city)
-                                                                        <option value="{{$city->id}}" @if($filter == 1 && $city_id != null) @foreach($city_id as $y) {{$city->id == $y->id ? 'selected' : ''}} @endforeach @endif>{{$city->title}}</option>
-                                                                    @endforeach
-                                                                @endif
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                <div class="mt-2 ">
-                                                    <button class="btn btn-range pr">
-                                                        اعمال فیلتر
-                                                    </button>
-                                                    @if($filter == 1)
-                                                        <a href="{{url('supplier')}}" class="btn btn-range pl">
-                                                            پاک کردن فیلتر
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
                                 <section class="widget-product-categories">
                                     <header class="cat-header">
                                         <h2 class="mb-0">

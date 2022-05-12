@@ -128,7 +128,6 @@
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">برند قطعه</p>
                                                                 <select name="brand_id" class="form-control select2" id="brand_id_select">
-                                                                    <option value="">انتخاب برند</option>
                                                                     @foreach($brand_varietis as $Product_brand_variety)
                                                                         @foreach($brands as $brand)
                                                                             @if($brand->id == $Product_brand_variety->brand_id)
@@ -226,7 +225,15 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <p class="mg-b-10" id="inner-text"></p>
+                                                                <p class="mg-b-10" id="inner-text">
+                                                                    @foreach($brand_varietis as $Product_brand_variety)
+                                                                        @foreach($brands as $brand)
+                                                                            @if($brand->id == $Product_brand_variety->brand_id)
+                                                                                <option value="{{$Product_brand_variety->id}}">{{$brand->title_fa}}</option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endforeach
+                                                                </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
