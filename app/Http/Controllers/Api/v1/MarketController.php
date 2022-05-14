@@ -28,7 +28,7 @@ class MarketController extends Controller
             WHEN users.type_id = "4" THEN "شخصی"
             END) AS type'))
             ->where('offers.status' , '=', '4')
-            ->whereBuyorsell('sell')
+            ->where('offers' ,'=' , 'sell')
             ->where('offers.brand_id' , '<>' , null)
             ->filter()
             ->paginate(16);
@@ -52,8 +52,9 @@ class MarketController extends Controller
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
             WHEN users.type_id = "4" THEN "شخصی"
-            END) AS type'))            ->where('offers.status' , '=', '4')
-            ->whereBuyorsell('buy')
+            END) AS type'))
+            ->where('offers.status' , '=', '4')
+            ->where('offers' ,'=' , 'buy')
             ->filter()
             ->where('offers.brand_id' , '<>' , null)
             ->paginate(16);
