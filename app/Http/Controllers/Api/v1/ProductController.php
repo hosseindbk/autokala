@@ -132,7 +132,7 @@ class ProductController extends Controller
 
             $products = Product::leftjoin('markusers' , 'markusers.product_id' , '=' , 'products.id')
                 ->leftJoin('product_groups', 'product_groups.id', '=', 'products.kala_group_id')
-                ->select('markusers.id as mark_id' , 'products.unicode as unicode'          , 'products.slug as slug'           , 'products.hs as hs',
+                ->select('products.id as product_id', 'markusers.id as mark_id' , 'products.unicode as unicode'          , 'products.slug as slug'           , 'products.hs as hs',
                     'products.title_bazar_fa as title_bazar'    , 'products.oem as oem'             , 'products.title_specific1' ,
                     'products.code_fani_company as company_code', 'products.title_specific2'        , 'products.title_specific3' ,
                     'products.description as description'       , 'products.image as image'         , 'products.specific3',
@@ -144,6 +144,8 @@ class ProductController extends Controller
             foreach ($products as $product) {
                 if ($product->title_specific1 != null) {
                     $test = [
+                        'product_id'    => $product->product_id,
+                        'mark_id'       => $product->mark_id,
                         'unicode'       => $product->unicode,
                         'slug'          => $product->slug,
                         'hs'            => $product->hs,
