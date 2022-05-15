@@ -14,7 +14,6 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('/product/{slug}'                    , 'ProductController@subproduct');
     Route::get('/supplier'                          , 'SupplierController@index');
     Route::get('/supplier/{slug}'                   , 'SupplierController@subsupplier');
-    Route::get('/market/{slug}'                     , 'MarketController@submarket');
     Route::get('/technicalunit'                     , 'TechnicalunitController@index');
     Route::get('/technicalunit/{slug}'              , 'TechnicalunitController@subtechnical');
     Route::get('/market/sell'                       , 'MarketController@sell');
