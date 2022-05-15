@@ -71,12 +71,14 @@ class MarketController extends Controller
         $offers = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->leftJoin('product_groups', 'product_groups.id', '=', 'offers.product_group')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
             ->select('brands.title_fa as brand' ,'offers.total as number', 'offers.slug' , 'offers.image1', 'offers.image2', 'offers.image3' ,
                 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' ,
                 'offers.single_price as retailprice' ,'offers.unicode_product as unicode' ,'offers.description' , 'offers.phone', 'offers.mobile' , 'offers.address' ,
+                'offers.lat','offers.lng' ,'product_groups.title_fa' , 'offers.created_at' ,
 
                 DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
