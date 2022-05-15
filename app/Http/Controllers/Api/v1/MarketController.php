@@ -78,7 +78,7 @@ class MarketController extends Controller
             ->select('brands.title_fa as brand' ,'offers.total as number', 'offers.slug' , 'offers.image1', 'offers.image2', 'offers.image3' ,
                 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' ,
                 'offers.single_price as retailprice' ,'offers.unicode_product as unicode' ,'offers.description' , 'offers.phone', 'offers.mobile' , 'offers.address' ,
-                'offers.lat','offers.lng' ,'product_groups.title_fa' , 'offers.created_at' ,
+                'offers.lat','offers.lng' ,'product_groups.title_fa as product_group' , 'offers.created_at as created_at' ,
 
                 DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
@@ -88,6 +88,31 @@ class MarketController extends Controller
             ->where('offers.status' , '=', '4')
             ->where('offers.slug' , '=' , $slug)
             ->get();
+
+        foreach($offers as $offer){
+            $markets = [
+                'brand'             => $offer->brand,
+                'number'            => $offer->number,
+                'slug'              => $offer->slug,
+                'image1'            => $offer->image1,
+                'image2'            => $offer->image2,
+                'image3'            => $offer->image3,
+                'title'             => $offer->title,
+                'state'             => $offer->state,
+                'city'              => $offer->city,
+                'wholesaleprice'    => $offer->wholesaleprice,
+                'retailprice'       => $offer->retailprice,
+                'unicode'           => $offer->unicode,
+                'description'       => $offer->description,
+                'phone'             => $offer->phone,
+                'mobile'            => $offer->mobile,
+                'address'           => $offer->address,
+                'lat'               => $offer->lat,
+                'lng'               => $offer->lng,
+                'product_group'     => $offer->product_group,
+                'created_at'        => jdate($offer->created_at)->ago(),
+            ];
+        }
 
             $offer_id = Offer::whereSlug($slug)->pluck('id');
 
@@ -127,9 +152,9 @@ class MarketController extends Controller
         }
 
         $response = [
-            'offer'     =>  $offers,
+            'offer'     =>  $markets,
             'car'       =>  $cars,
-            'comment'   => $comt
+            'comment'   =>  $comt
 
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
