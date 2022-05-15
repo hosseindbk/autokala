@@ -171,6 +171,8 @@ class ProductController extends Controller
                 } elseif ($product->title_specific1 == null) {
 
                     $test = [
+                        'product_id'    => $product->product_id,
+                        'mark_id'       => $product->mark_id,
                         'unicode'       => $product->unicode,
                         'slug'          => $product->slug,
                         'hs'            => $product->hs,
