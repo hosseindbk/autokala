@@ -126,6 +126,7 @@
         </div>
     </div>
 </div>
+@endsection
 @section('end')
 <script src="{{asset('admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
@@ -135,6 +136,8 @@
 <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
 <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
 <script src="{{asset('admin/assets/js/table-data.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min-rtl.js')}}"></script>
 <script>
     $('input:checkbox').change(function(e) {
         e.preventDefault();
@@ -146,5 +149,5 @@
         });
     });
 </script>
-@endsection
+
 @endsection

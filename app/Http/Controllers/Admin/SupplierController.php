@@ -133,12 +133,12 @@ class SupplierController extends Controller
             ->addColumn('homeshow', function ($row) {
                 if ($row->homeshow == 1) {
                     $homeshow = '<label class="custom-switch">
-                              <input type="checkbox" name="homeshow" checked="checked" class="custom-switch-input" id="' . $row->sid . '" >
+                              <input type="checkbox" name="homeshow" checked="checked" onclick="handleClick(this);" class="custom-switch-input" id="' . $row->sid . '" >
                               <span class="custom-switch-indicator"></span></label>';
                     return $homeshow;
                 }else{
                     $homeshow = '<label class="custom-switch">
-                              <input type="checkbox" name="homeshow" class="custom-switch-input" id="' . $row->sid . '" >
+                              <input type="checkbox" name="homeshow" onclick="handleClick(this);" class="custom-switch-input" id="' . $row->sid . '" >
                               <span class="custom-switch-indicator"></span></label>';
                     return $homeshow;
                 }

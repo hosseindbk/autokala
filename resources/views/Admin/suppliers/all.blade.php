@@ -77,6 +77,8 @@
 @section('end')
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min-rtl.js')}}"></script>
     <script type="text/javascript">
         $(function () {
 
@@ -109,15 +111,14 @@
         });
     </script>
     <script>
-        $('input:checkbox').change(function(e) {
-            e.preventDefault();
-            var id = $(this).attr('id');
+        function handleClick(res) {
+            var id = $(res).attr('id');
             $.ajax({
                 type: 'POST',
-                url : '{{ route( 'supplierhomeshow' ) }}',
-                data: {"_token": "{{ csrf_token() }}", id:id }
+                url: '{{ route( 'supplierhomeshow' ) }}',
+                data: {"_token": "{{ csrf_token() }}", id: id}
             });
-        });
+        }
     </script>
 @endsection
 
