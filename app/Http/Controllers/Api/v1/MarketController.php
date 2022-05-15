@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Response;
 class MarketController extends Controller
 {
     public function sell(){
+
         $brandnames = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
@@ -28,7 +29,7 @@ class MarketController extends Controller
             WHEN users.type_id = "4" THEN "شخصی"
             END) AS type'))
             ->where('offers.status' , '=', '4')
-            ->where('offers' ,'=' , 'sell')
+            ->where('offers.buyorsell' ,'=' , 'sell')
             ->where('offers.brand_id' , '<>' , null)
             ->filter()
             ->paginate(16);
@@ -54,7 +55,7 @@ class MarketController extends Controller
             WHEN users.type_id = "4" THEN "شخصی"
             END) AS type'))
             ->where('offers.status' , '=', '4')
-            ->where('offers' ,'=' , 'buy')
+            ->where('offers.buyorsell' ,'=' , 'buy')
             ->filter()
             ->where('offers.brand_id' , '<>' , null)
             ->paginate(16);
@@ -149,5 +150,6 @@ class MarketController extends Controller
 
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
+
 
 }
