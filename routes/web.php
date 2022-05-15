@@ -106,7 +106,7 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('product'                    , 'ProductController@index' );
     Route::get('product/filter'             , 'ProductController@productfilter')->name('productfilter');
     Route::post('product/modeloption'       , 'ProductController@modeloption')->name('modeloption');
-    Route::get('product/{slug}'         , 'ProductController@subproduct' );
+    Route::get('product/{slug}'             , 'ProductController@subproduct' );
     Route::get('productbrand/{slug}/{id}'   , 'ProductController@productbrand' );
     /*brand*/
     Route::get('brand'                      , 'BrandController@index' );
@@ -181,6 +181,7 @@ Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , fu
     Route::get('profile-supplier'               , 'ProfilesupplierController@index' );
     Route::post('img'                           , 'ProfilebusinessController@imgupload')->name('img');
     Route::get('offer-product/{id}/{slug}'      , 'OfferController@offerproduct');
+    Route::get('offer-product/{id}'             , 'OfferController@offerproduct')->name('offer-product');
     Route::post('offer-create'                  , 'OfferController@offercreate')->name('offer-create');
     Route::post('caroffercreate'                , 'OfferController@caroffercreate')->name('carofferstore');
     Route::get('offer/edit/{id}'                , 'OfferController@offeredit')->name('offer-edit');
