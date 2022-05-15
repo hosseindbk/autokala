@@ -75,7 +75,8 @@ class MarketController extends Controller
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
-            ->select('brands.title_fa as brand' ,'offers.total as number', 'offers.slug' , 'offers.image1', 'offers.image2', 'offers.image3' ,
+            ->leftjoin('markusers' , 'markusers.offer_id' , '=' , 'offers.id')
+            ->select('offers.id as offer_id' , 'markusers.id as mark_id','brands.title_fa as brand' ,'offers.total as number', 'offers.slug' , 'offers.image1', 'offers.image2', 'offers.image3' ,
                 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' ,
                 'offers.single_price as retailprice' ,'offers.unicode_product as unicode' ,'offers.description' , 'offers.phone', 'offers.mobile' , 'offers.address' ,
                 'offers.lat','offers.lng' ,'product_groups.title_fa as product_group' , 'offers.created_at as created_at' ,
@@ -91,6 +92,8 @@ class MarketController extends Controller
 
         foreach($offers as $offer){
             $markets = [
+                'offer_id'          => $offer->offer_id,
+                'mark_id'           => $offer->mark_id,
                 'brand'             => $offer->brand,
                 'number'            => $offer->number,
                 'slug'              => $offer->slug,
