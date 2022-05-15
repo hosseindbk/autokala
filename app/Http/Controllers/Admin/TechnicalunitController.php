@@ -93,12 +93,29 @@ class TechnicalunitController extends Controller
                                 </form>';
                     return $actionBtn;
                 })
+
                 ->addColumn('homeshow', function ($row) {
-                    $homeshow = '<label class="custom-switch">
+                    if ($row->homeshow == 1) {
+                        $homeshow = '<label class="custom-switch">
+                              <input type="checkbox" name="homeshow" checked="checked" class="custom-switch-input" id="' . $row->tid . '" >
+                              <span class="custom-switch-indicator"></span></label>';
+                        return $homeshow;
+                    }else{
+                        $homeshow = '<label class="custom-switch">
                               <input type="checkbox" name="homeshow" class="custom-switch-input" id="' . $row->tid . '" >
                               <span class="custom-switch-indicator"></span></label>';
-                    return $homeshow;
+                        return $homeshow;
+                    }
                 })
+
+//                ->addColumn('homeshow', function ($row) {
+//
+//                        $homeshow = '<label class="custom-switch">
+//                              <input type="checkbox" name="homeshow" class="custom-switch-input" id="' . $row->tid . '" >
+//                              <span class="custom-switch-indicator"></span></label>';
+//                        return $homeshow;
+//                })
+
                 ->rawColumns(['action', 'image', 'homeshow' , 'location'])
                 ->make(true);
         }
