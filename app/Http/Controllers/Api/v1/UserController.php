@@ -235,4 +235,5 @@ class UserController extends Controller
 
         return Response::json(['ok' => true , 'message' => 'success' , 'response' => $response]);
     }
+
 }

@@ -170,22 +170,28 @@ class IndexController extends Controller
 
     }
 
-    public function markusercreate(Request $request){
+    public function markusercreate(Request $request)
+    {
 
         $markusers = new Markuser();
 
-        $markusers->supplier_id         = $request->input('supplier_id');
-        $markusers->technical_id        = $request->input('technical_id');
-        $markusers->offer_id            = $request->input('offer_id');
-        $markusers->product_id          = $request->input('product_id');
-        $markusers->user_id             = Auth::user()->id;
+        $markusers->supplier_id    = $request->input('supplier_id');
+        $markusers->technical_id   = $request->input('technical_id');
+        $markusers->offer_id       = $request->input('offer_id');
+        $markusers->product_id     = $request->input('product_id');
+        $markusers->user_id        = Auth::user()->id;
 
         $markusers->save();
+        $mark_id    = $markusers->id;
         $status     = true;
         $message    = 'success';
-        $response   = 'اطلاعات با موفقیت ثبت شد';
-        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+        $response   =
+            [
+                'response'  =>  'اطلاعات با موفقیت ثبت شد',
+                'mark_id'   =>  $mark_id
+            ];
 
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
 
     public function markdelete($id){
@@ -198,5 +204,4 @@ class IndexController extends Controller
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
 
     }
-
 }
