@@ -59,7 +59,6 @@
                                         <tr>
                                             <th class="wd-lg-10p">نام و نام خانوادگی</th>
                                             <th class="wd-lg-20p">شماره موبایل</th>
-                                            <th class="wd-lg-20p">ایمیل</th>
                                             <th class="wd-lg-20p">نوع همکاری</th>
                                             <th class="wd-lg-20p">زمان ثبت </th>
                                             <th class="wd-lg-20p">وضعیت</th>
@@ -71,22 +70,10 @@
                                             <tr>
                                                 <td class="text-primary">{{$user->name}}</td>
                                                 <td class="text-nowrap">{{$user->phone}}</td>
-                                                <td class="text-nowrap">
-                                                    @foreach($typeusers as $type_user)
-                                                        @if($type_user->id == $user->type_id)
-                                                            {{$type_user->title}}
-                                                        @endif
-                                                    @endforeach
-                                                </td>
+                                                <td class="text-nowrap">{{$user->type_title}}</td>
                                                 <td>{{jdate($user->created_at)->ago()}}</td>
                                                 <td class="text-nowrap">
-                                                    @if($user->status == 1)
-                                                        <button class="btn ripple btn-outline-info">ثبت نام اولیه</button>
-                                                    @elseif($user->status == 2)
-                                                        <button class="btn ripple btn-outline-success">تایید مدیر</button>
-                                                    @elseif($user->status == 0)
-                                                        <button class="btn ripple btn-outline-warning">غیر فعال</button>
-                                                    @endif
+                                                    <button class="btn ripple btn-outline-info">{{$user->status}}</button>
                                                 </td>
                                                 <td  class="text-nowrap">
                                                     <a href="{{ route('siteusers.edit' , $user->id) }}"  class="btn btn-outline-primary btn-xs">
@@ -121,7 +108,6 @@
                                             <th class="wd-lg-10p">نام و نام خانوادگی مدیر</th>
                                             <th class="wd-lg-10p">وضعیت کاربر</th>
                                             <th class="wd-lg-20p">شماره موبایل</th>
-                                            <th class="wd-lg-20p">ایمیل</th>
                                             <th class="wd-lg-20p">زمان ثبت</th>
                                             <th class="wd-lg-20p">وضعیت</th>
                                             <th class="wd-lg-20p">ویرایش اطلاعات</th>
@@ -133,39 +119,12 @@
                                                 <td class="text-primary">{{$supplier->title}}</td>
                                                 <td class="text-primary">{{$supplier->manager}}</td>
                                                 <td class="text-primary">
-                                                    @foreach($users as $user)
-                                                        @if($user->id == $supplier->user_id)
-                                                            @if($user->type_id == 1)
-                                                                <h6 class="text-success">کاربر فروشگاه</h6>
-                                                            @elseif($user->type_id == 3)
-                                                                <h6 class="text-warning">کاربر تعمیرگاه</h6>
-                                                            @elseif($user->type_id == 4)
-                                                                    <h6 class="text-danger">کاربر عادی</h6>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
+                                                    <h6 class="text-success">{{$supplier->type}}</h6>
                                                 </td>
                                                 <td class="text-nowrap">{{$supplier->mobile}}</td>
-                                                <td class="text-nowrap">{{$supplier->email}}</td>
                                                 <td>{{jdate($supplier->created_at)->ago()}}</td>
                                                 <td>
-                                                    @foreach($statuses as $status)
-                                                        @if($status->id == $supplier->status)
-                                                            @if($status->id == 1)
-                                                                <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
-                                                            @elseif($status->id == 2)
-                                                                <button class="btn ripple btn-outline-primary">{{$status->title}}</button>
-                                                            @elseif($status->id == 3)
-                                                                <button class="btn ripple btn-outline-info">{{$status->title}}</button>
-                                                            @elseif($status->id == 4)
-                                                                <button class="btn ripple btn-outline-success">{{$status->title}}</button>
-                                                            @elseif($status->id == 5)
-                                                                <button class="btn ripple btn-outline-light">{{$status->title}}</button>
-                                                            @elseif($status->id == 6)
-                                                                <button class="btn ripple btn-outline-danger">{{$status->title}}</button>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
+                                                    <button class="btn ripple btn-outline-info">{{$supplier->status}}</button>
                                                 </td>
                                                 <td  class="text-nowrap">
                                                     <a href="{{ route('suppliers.edit' , $supplier->id) }}"  class="btn btn-outline-primary btn-xs">
@@ -200,7 +159,6 @@
                                             <th class="wd-lg-10p">نام و نام خانوادگی مدیر</th>
                                             <th class="wd-lg-10p">وضعیت کاربر</th>
                                             <th class="wd-lg-20p">شماره موبایل</th>
-                                            <th class="wd-lg-20p">ایمیل</th>
                                             <th class="wd-lg-20p">زمان ثبت</th>
                                             <th class="wd-lg-20p">وضعیت</th>
                                             <th class="wd-lg-20p">ویرایش اطلاعات</th>
@@ -212,39 +170,13 @@
                                                 <td class="text-primary">{{$technical_unit->title}}</td>
                                                 <td class="text-primary">{{$technical_unit->manager}}</td>
                                                 <td class="text-primary">
-                                                @foreach($users as $user)
-                                                    @if($user->id == $technical_unit->user_id)
-                                                        @if($user->type_id == 1)
-                                                                <h6 class="text-warning">کاربر فروشگاه</h6>
-                                                            @elseif($user->type_id == 3)
-                                                                    <h6 class="text-success">کاربر تعمیرگاه</h6>
-                                                            @elseif($user->type_id == 4)
-                                                                    <h6 class="text-danger">کاربر عادی</h6>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
+                                                    <h6 class="text-success">{{$technical_unit->type}}</h6>
                                                 </td>
                                                 <td class="text-nowrap">{{$technical_unit->mobile}}</td>
-                                                <td class="text-nowrap">{{$technical_unit->email}}</td>
                                                 <td>{{jdate($technical_unit->created_at)->ago()}}</td>
                                                 <td>
-                                                    @foreach($statuses as $status)
-                                                        @if($status->id == $technical_unit->status)
-                                                            @if($status->id == 1)
-                                                                <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
-                                                            @elseif($status->id == 2)
-                                                                <button class="btn ripple btn-outline-primary">{{$status->title}}</button>
-                                                            @elseif($status->id == 3)
-                                                                <button class="btn ripple btn-outline-info">{{$status->title}}</button>
-                                                            @elseif($status->id == 4)
-                                                                <button class="btn ripple btn-outline-success">{{$status->title}}</button>
-                                                            @elseif($status->id == 5)
-                                                                <button class="btn ripple btn-outline-light">{{$status->title}}</button>
-                                                            @elseif($status->id == 6)
-                                                                <button class="btn ripple btn-outline-danger">{{$status->title}}</button>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
+
+                                                                <button class="btn ripple btn-outline-info">{{$technical_unit->status}}</button>
                                                 </td>
                                                 <td  class="text-nowrap">
                                                     <a href="{{ route('technicalunits.edit' , $technical_unit->id) }}"  class="btn btn-outline-primary btn-xs">
