@@ -449,8 +449,13 @@
                                                                 <h3>{{ \Illuminate\Support\Str::limit($offer->title_offer, 21, $end='...') }}</h3>
                                                             </div>
                                                             <div class="title">
-                                                        <span class="amount">{{number_format($offer->single_price)}}
-                                                            <span>تومان</span>
+                                                        <span class="amount">
+                                                            @if($offer->single_price == 0)
+                                                                توافقی
+                                                            @else
+                                                                {{number_format($offer->single_price)}}
+                                                                <span>تومان</span>
+                                                            @endif
                                                         </span>
                                                             </div>
                                                             <div class="title">
@@ -492,9 +497,14 @@
                                                                     <h3>{{ \Illuminate\Support\Str::limit($offer->title_offer, 21, $end='...') }}</h3>
                                                                 </div>
                                                                 <div class="title">
-                                                            <span class="amount">{{number_format($offer->single_price)}}
-                                                                <span>تومان</span>
-                                                            </span>
+                                                            <span class="amount">
+                                                            @if($offer->single_price == 0)
+                                                                    توافقی
+                                                                @else
+                                                                    {{number_format($offer->single_price)}}
+                                                                    <span>تومان</span>
+                                                                @endif
+                                                        </span>
                                                                 </div>
                                                                 <div class="title">
                                                                     @if($offer->brand_id != null)
@@ -547,8 +557,13 @@
                                                             <h3>{{ \Illuminate\Support\Str::limit($offer->title_offer, 21, $end='...') }}</h3>
                                                         </div>
                                                         <div class="title">
-                                                        <span class="amount">{{number_format($offer->single_price)}}
-                                                            <span>تومان</span>
+                                                        <span class="amount">
+                                                            @if($offer->single_price == 0)
+                                                                توافقی
+                                                            @else
+                                                                {{number_format($offer->single_price)}}
+                                                                <span>تومان</span>
+                                                            @endif
                                                         </span>
                                                         </div>
                                                         <div class="title">

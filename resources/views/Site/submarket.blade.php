@@ -256,13 +256,21 @@
                                                     @if($offer->single = 1)
                                                         <li>
                                                             <span>قیمت : </span>
+                                                            @if($offer->single_price == 0)
+                                                                <span>توافقی</span>
+                                                            @else
                                                             <span>{{number_format($offer->single_price)}} تومان</span>
+                                                            @endif
                                                         </li>
                                                     @endif
                                                     @if(Auth::check() && Auth::user()->type_id == 1)
                                                         <li>
                                                             <span>قیمت عمده فروشی: </span>
-                                                            <span>{{number_format($offer->price)}} تومان</span>
+                                                            @if($offer->price == 0)
+                                                                <span>توافقی</span>
+                                                            @else
+                                                                <span>{{number_format($offer->price)}} تومان</span>
+                                                            @endif
                                                         </li>
                                                         <li>
                                                             <span>حداقل تعداد سفارش : </span>
