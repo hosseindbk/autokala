@@ -89,6 +89,7 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
 Route::group(['namespace' => 'Site'] , function (){
     /*index*/
     Route::get('/'                          , 'IndexController@index')->name('/');
+    Route::get('/company/{slug}'            , 'IndexController@company')->name('company');
     Route::get('/filterstate'               , 'IndexController@indexstate')->name('filterstate');
     /*market*/
     Route::get('market/sell'                , 'MarketController@sell')->name('sell');

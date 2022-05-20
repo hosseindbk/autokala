@@ -7,12 +7,15 @@ use App\City;
 use App\Http\Controllers\Controller;
 use App\Menu;
 use App\Offer;
+use App\Representative_supplier;
 use App\Slide;
 use App\State;
 use App\Supplier;
 use App\Technical_unit;
+use App\User;
 use App\Visitor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class IndexController extends Controller
 {
@@ -85,5 +88,51 @@ class IndexController extends Controller
             ->with(compact('left_top_slides'))
             ->with(compact('left_bottom_slides'))
             ->with(compact('menus'));
+    }
+
+    public function company($slug)
+    {
+        $suppliers = Supplier::wherePageurl($slug)->get();
+        if (trim($suppliers) == '[]') {
+            return Redirect::to('/');
+
+        } else {
+            $cities         = City::select('id', 'title')->get();
+            $states         = State::select('id', 'title')->get();
+            $countState     = null;
+            $menus          = Menu::select('title', 'slug')->whereStatus(4)->get();
+            $user_id    = Supplier::wherePageurl($slug)->pluck('user_id');
+            $brands         = Brand::whereStatus(4)->whereUser_id($user_id)->get();
+            $supplier_id    = Supplier::wherePageurl($slug)->pluck('id');
+            $offers         = Offer::whereStatus(4)->whereSupplier_id($supplier_id)->get();
+            $users          = User::select('id', 'type_id')->get();
+
+            $brandnames = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+                ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
+                ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+                ->select('offers.brand_id as brand_offer_id', 'offers.id as offer_id', 'product_brand_varieties.brand_id as brand_variety_id', 'product_brand_varieties.product_id', 'brands.title_fa')
+                ->where('offers.status', '=', '4')
+                ->whereBuyorsell('sell')
+                ->where('offers.brand_id', '<>', null)
+                ->get();
+            $visitors = new Visitor();
+
+            $visitors->ip = request()->ip();
+            $visitors->datetime = jdate();
+            $visitors->page_id = '/';
+
+            $visitors->save();
+
+            return view('Site.companyindex')
+                ->with(compact('brandnames'))
+                ->with(compact('cities'))
+                ->with(compact('users'))
+                ->with(compact('countState'))
+                ->with(compact('states'))
+                ->with(compact('offers'))
+                ->with(compact('suppliers'))
+                ->with(compact('brands'))
+                ->with(compact('menus'));
+        }
     }
 }
