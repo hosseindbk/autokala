@@ -112,7 +112,7 @@ class BrandController extends Controller
         $brands                     = Brand::whereId($id)->get();
         $brand_id                   = Brand::whereId($id)->pluck('id');
         $suppliers                  = Supplier::whereStatus(4)->get();
-        $representetivesuppliers    = Representative_supplier::whereBrand_id($brand_id)->whereStatus(4)->get();
+        $representetivesuppliers    = Representative_supplier::whereBrand_id($brand_id)->get();
         $menudashboards             = Menudashboard::whereStatus(4)->get();
         $submenudashboards          = Submenudashboard::whereStatus(4)->get();
 
