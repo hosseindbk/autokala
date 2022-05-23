@@ -32,6 +32,7 @@ class RepresentativesupplierController extends Controller
             }
 
             Representative_supplier::insert($supplier);
+
             return Redirect::back();
         }
     }
