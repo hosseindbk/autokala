@@ -192,9 +192,19 @@
                                     <input type="hidden" name="brand_id" value="@foreach($brands as $brand) {{$brand->id}} @endforeach">
                                     <div class="row row-sm">
                                         <div class="col-md-4">
+{{--                                            <div class="form-group">--}}
+{{--                                                <p class="mg-b-10">انتخاب تامین کننده</p>--}}
+{{--                                                <select multiple="multiple" name="supplier_id[]" onchange="console.log($(this).children(':selected').length)" class="selectsum2">--}}
+{{--                                                    @foreach($suppliers as $supplier)--}}
+{{--                                                        <option value="{{$supplier->id}}">{{$supplier->title}}</option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+
                                             <div class="form-group">
                                                 <p class="mg-b-10">انتخاب تامین کننده</p>
-                                                <select multiple="multiple" name="supplier_id[]" onchange="console.log($(this).children(':selected').length)" class="selectsum2">
+                                                <select name="supplier_id[]" multiple="multiple" class="form-control select-lg select2">
+                                                    <option value="">انتخاب تامین کننده</option>
                                                     @foreach($suppliers as $supplier)
                                                         <option value="{{$supplier->id}}">{{$supplier->title}}</option>
                                                     @endforeach
