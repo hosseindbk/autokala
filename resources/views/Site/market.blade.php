@@ -400,6 +400,8 @@
                                                                 <span class="amount">{{number_format($offer->single_price)}}
                                                                     <span>تومان</span>
                                                                 </span>
+                                                            @elseif($offer->price < 100 && $offer->single_price < 100)
+                                                                <span>توافقی</span>
                                                             @endif
                                                         </div>
                                                         @if($offer->total > 1)
@@ -451,7 +453,7 @@
                                                             <div class="title">
                                                         <span class="amount">
                                                             @if($offer->single_price == 0)
-                                                                توافقی
+                                                                <span>توافقی</span>
                                                             @else
                                                                 {{number_format($offer->single_price)}}
                                                                 <span>تومان</span>
@@ -499,7 +501,7 @@
                                                                 <div class="title">
                                                             <span class="amount">
                                                             @if($offer->single_price == 0)
-                                                                    توافقی
+                                                                    <span>توافقی</span>
                                                                 @else
                                                                     {{number_format($offer->single_price)}}
                                                                     <span>تومان</span>
@@ -559,7 +561,7 @@
                                                         <div class="title">
                                                         <span class="amount">
                                                             @if($offer->single_price == 0)
-                                                                توافقی
+                                                                <span>توافقی</span>
                                                             @else
                                                                 {{number_format($offer->single_price)}}
                                                                 <span>تومان</span>

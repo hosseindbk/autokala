@@ -401,6 +401,7 @@ class SupplierController extends Controller
             }
         }
 
+        $supplier->pageurl      = $request->input('pageurl');
         $supplier->title        = $request->input('title');
         $supplier->manager      = $request->input('manager');
         $supplier->phone        = $request->input('phone');

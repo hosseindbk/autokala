@@ -172,6 +172,12 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <p class="mg-b-10">نام صفحه فروشگاه</p>
+                                                        <input type="text" name="pageurl" value="{{$Supplier->pageurl}}"  class="form-control" />
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -475,42 +481,6 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row-sm">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card custom-card">
-                            <div class="card-body">
-                                <div>
-                                    <h3 class="text-center mb-5"><span class="badge badge-light">   @foreach($suppliers as $supplier) بارگذاری تصاویر {{$supplier->title}} @endforeach</span></h3>
-                                </div>
-                                <div class="mg-t-10">
-                                    <input id="demo" type="file" name="files" accept=".jpg, .png, image/jpeg, image/png," multiple="">
-                                </div>
-                                <div class="mg-t-10">
-                                    <ul id="lightgallery" class="list-unstyled row mb-0">
-                                        @foreach($medias as $media)
-                                            <li class="col-xs-4 col-sm-3 col-md-3 col-xl-3 mb-3" data-responsive="{{asset($media->image)}}" data-src="{{asset($media->image)}}" >
-                                                <div style="position: relative;">
-                                                    <img class="img-responsive" height="150" src="{{asset($media->image)}}">
-                                                </div>
-                                                <div style="position: absolute;bottom: 0px;margin: 0 40%;">
-                                                    <form action="{{ route('medias.destroy', $media->id)}}" method="post">
-                                                        {{ method_field('delete') }}
-                                                        {{csrf_field()}}
-                                                        <div class="btn-group btn-group-xs">
-                                                            <button type="submit" class="btn btn-danger btn-xs">
-                                                                <i class="fe fe-trash-2 "></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
                                 </div>
                             </div>
                         </div>
