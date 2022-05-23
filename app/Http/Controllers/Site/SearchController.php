@@ -30,7 +30,7 @@ class SearchController extends Controller
         $products               = Product::search($keywords)->whereStatus(4)->latest()->paginate(12);
         $product_id             = Product::search($keywords)->pluck('id');
         if ($product_id == '[]'){
-            SweetAlert::info('خطا', 'کلمه مورد نظر یافت نشد');
+            alert()->danger('خطا', 'کلمه مورد نظر یافت نشد');
             return Redirect::back();
         }
         $menus                  = Menu::whereStatus(4)->get();
