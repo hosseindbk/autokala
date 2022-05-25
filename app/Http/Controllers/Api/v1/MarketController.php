@@ -118,7 +118,11 @@ class MarketController extends Controller
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
             WHEN users.type_id = "4" THEN "شخصی"
-            END) AS type'))
+            END) AS type') ,
+                DB::raw( '(CASE
+            WHEN offers.noe = "old" THEN "کارکرده"
+            WHEN offers.noe = "new" THEN "نو"
+            END) AS noe'))
             ->where('offers.status' , '=', '4')
             ->where('offers.slug' , '=' , $slug)
             ->get();
@@ -135,6 +139,8 @@ class MarketController extends Controller
                 'image3'            => $offer->image3,
                 'title'             => $offer->title,
                 'state'             => $offer->state,
+                'type'              => $offer->type,
+                'noe'               => $offer->noe,
                 'city'              => $offer->city,
                 'wholesaleprice'    => $offer->wholesaleprice,
                 'retailprice'       => $offer->retailprice,
