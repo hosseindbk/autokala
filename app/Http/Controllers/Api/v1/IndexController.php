@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Api\v1;
 use App\Brand;
 use App\Car_brand;
 use App\Car_model;
+use App\comment;
+use App\commentrate;
 use App\Http\Controllers\Controller;
 use App\Markuser;
 use App\Product_group;
+use App\Representative_supplier;
 use App\Slide;
+use App\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +23,7 @@ class IndexController extends Controller
     public function index(){
 
         $brands             = Brand::select('title_fa as title' , 'slug' , 'image')->whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
-        $orginal_slides     = Slide::select('image as images')->whereStatus(4)->wherePosition(1)->latest()->get();
+        $orginal_slides     = Slide::select('image as images' , 'link')->whereStatus(4)->wherePosition(1)->inRandomOrder()->get();
 
         $offers = DB::table('offers')
             ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
@@ -79,7 +83,10 @@ class IndexController extends Controller
             ->get();
 
         foreach($orginal_slides as $orginal_slide) {
-            $slide [] = $orginal_slide->images;
+            $slide [] = [
+                $orginal_slide->images,
+                $orginal_slide->link,
+            ];
         }
 
         $response = [
@@ -125,6 +132,90 @@ class IndexController extends Controller
 
         $response = [
             'brand' => $brands
+        ];
+        return Response::json(['ok'=>true , 'message' =>'success','response'=>$response ]);
+    }
+
+    public function subbrand($slug){
+        $brands = Brand::leftjoin('countries' , 'countries.id' , '=' ,  'brands.country_id')
+            ->select('brands.id' , 'brands.title_fa', 'brands.title_en' , 'brands.abstract_title' , 'brands.slug' , 'brands.image' , 'brands.phone' ,
+            'brands.mobile' , 'brands.email' , 'brands.whatsapp' , 'brands.website' , 'brands.address', 'brands.description' , 'countries.name as country')
+            ->where('brands.slug' ,'=' ,$slug)
+            ->get();
+
+        $brand_id               = Brand::whereStatus(4)->whereSlug($slug)->pluck('id');
+        $supplier_id            = Representative_supplier::whereBrand_id($brand_id)->pluck('supplier_id');
+        $suppliers              = Supplier::select('suppliers.title as supplier_title' , 'suppliers.slug as supplier_slug' , 'suppliers.manager as supplier_manager' ,'suppliers.phone as supplier_phone' ,
+            'suppliers.mobile as supplier_mobile' , 'suppliers.state_id as supplier_stateID' , 'suppliers.city_id as supplier_cityID' , 'suppliers.address as supplier_address')
+            ->whereIn('id' , $supplier_id)->get();
+
+        $comments               = comment::whereCommentable_type('App\Brand')->whereIn('Commentable_id'   ,$brand_id)->select('name','phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
+        $subcomments            = comment::whereCommentable_type('App\Brand')->whereIn('Commentable_id'   ,$brand_id)->select('name','phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
+        $commentrates           = commentrate::whereCommentable_type('App\Brand')->whereIn('Commentable_id' ,$brand_id)->select('name' , 'phone' , 'quality' , 'value' , 'innovation' , 'ability' , 'design' , 'comfort' ,'comment' , 'created_at')->whereApproved(1)->latest()->get();
+        if (trim($commentrates) != '[]') {
+            foreach ($commentrates as $commentrate) {
+                $comentratin[] = [
+                    'name' => $commentrate->name,
+                    'phone' => $commentrate->phone,
+                    'quality' => $commentrate->quality,
+                    'value' => $commentrate->value,
+                    'innovation' => $commentrate->innovation,
+                    'ability' => $commentrate->ability,
+                    'design' => $commentrate->design,
+                    'comfort' => $commentrate->comfort,
+                    'comment' => $commentrate->comment,
+                    'avgcommentrate' => ((int)$commentrate->quality + (int)$commentrate->value + (int)$commentrate->innovation + (int)$commentrate->ability + (int)$commentrate->design + (int)$commentrate->comfort) / 6,
+                    'created_at' => jdate($commentrate->created_at)->ago()
+                ];
+            }
+        }else{
+            $comentratin = [] ;
+        }
+        $commentratecount       = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->count();
+        $commentratequality     = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('quality');
+        $commentratevalue       = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('value');
+        $commentrateinnovation  = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('innovation');
+        $commentrateability     = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('ability');
+        $commentratedesign      = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('design');
+        $commentratecomfort     = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('comfort');
+
+        if (trim($comments) != '[]') {
+            foreach ($comments as $comment) {
+                $answer = [];
+                foreach ($subcomments as  $subcomment) {
+                    if ($subcomment->parent_id == $comment->id) {
+                        $answer[] = [
+                            'name'          => $subcomment->name,
+                            'phone'         => $subcomment->phone,
+                            'comment'       => $subcomment->comment,
+                            'created_at'    => jdate($subcomment->created_at)->ago(),
+                        ];
+                    }
+                }
+                $comt[] = [
+                    'name'          => $comment->name,
+                    'phone'         => $comment->phone,
+                    'comment'       => $comment->comment,
+                    'created_at'    => jdate($comment->created_at)->ago(),
+                    'answer'        => $answer
+                ];
+            }
+        }else{
+            $comt= [];
+        }
+
+        $response = [
+            'brand'                     => $brands
+            ,'representative_supplier'  => $suppliers
+            , 'comment'                 => $comt
+            , 'commentrates'            => $comentratin
+            , 'commentratecount'        => $commentratecount
+            , 'commentratequality'      => $commentratequality
+            , 'commentratevalue'        => $commentratevalue
+            , 'commentrateinnovation'   => $commentrateinnovation
+            , 'commentrateability'      => $commentrateability
+            , 'commentratedesign'       => $commentratedesign
+            , 'commentratecomfort'      => $commentratecomfort
         ];
         return Response::json(['ok'=>true , 'message' =>'success','response'=>$response ]);
     }
