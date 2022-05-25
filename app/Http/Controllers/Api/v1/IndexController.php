@@ -86,8 +86,8 @@ class IndexController extends Controller
 
         foreach($orginal_slides as $orginal_slide) {
             $slide [] = [
-                $orginal_slide->images,
-                $orginal_slide->link,
+               'image' => $orginal_slide->images,
+               'link' => $orginal_slide->link,
             ];
         }
 
