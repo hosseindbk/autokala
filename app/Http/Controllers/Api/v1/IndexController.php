@@ -41,9 +41,9 @@ class IndexController extends Controller
             WHEN users.type_id = "4" THEN "شخصی"
             END) AS type'),
                 DB::raw( '(CASE
-            WHEN offers.buyorsell = "sell" THEN "پیشنهاد فروش"
-            WHEN offers.buyorsell = "buy" THEN "پیشنهاد خرید"
-            END) AS type'))
+            WHEN offers.buyorsell = "sell" THEN "آگهی فروش"
+            WHEN offers.buyorsell = "buy" THEN "آگهی خرید"
+            END) AS buyorsell'))
             ->where('offers.status' , '=', '4')
             ->where('offers.homeshow' , '=', '1')
             ->inRandomOrder()
@@ -56,6 +56,8 @@ class IndexController extends Controller
             'slug'              => $offer->slug,
             'image'             => $offer->image,
             'title'             => $offer->title,
+            'buyorsell'         => $offer->buyorsell,
+            'type'              => $offer->type,
             'state'             => $offer->state,
             'city'              => $offer->city,
             'wholesaleprice'    => $offer->wholesaleprice,
@@ -232,22 +234,29 @@ class IndexController extends Controller
     public function markuser(){
 
         $suppliers       = Markuser::leftjoin('suppliers'  , 'suppliers.id' , '=' , 'markusers.supplier_id')
-            ->select('suppliers.title as supplier' , 'suppliers.id' , 'suppliers.image')
+            ->select('markusers.id as markID' , 'suppliers.id as supplierID' , 'suppliers.title as supplier_title'  , 'suppliers.image' , 'suppliers.address')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
         $offers          = Markuser::leftjoin('offers'     , 'offers.id'     , '=' , 'markusers.offer_id')
-            ->select('offers.id' , 'offers.title_offer as offer' , 'offers.image1')
+            ->leftJoin('users', 'users.id', '=', 'offers.user_id')
+            ->select('markusers.id as markID' ,'offers.id as offerID','offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
+
+                DB::raw( '(CASE
+            WHEN users.type_id = "1" THEN "فروشگاه"
+            WHEN users.type_id = "3" THEN "شخصی"
+            WHEN users.type_id = "4" THEN "شخصی"
+            END) AS type'))
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
         $products        = Markuser::leftjoin('products'   , 'products.id'    , '=' , 'markusers.product_id')
-            ->select('products.title_fa as product' , 'products.id' , 'products.image')
+            ->select('markusers.id as markID' ,'products.title_fa as product_title' , 'products.id as productID' , 'products.image' , 'products.unicode')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
         $technical_units = Markuser::leftjoin('technical_units' , 'technical_units.id'  , '=' , 'markusers.technical_id')
-            ->select('technical_units.id' , 'technical_units.title as technical' , 'technical_units.image')
+            ->select('markusers.id as markID' ,'technical_units.id as technicalID' , 'technical_units.title as technical_title' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 

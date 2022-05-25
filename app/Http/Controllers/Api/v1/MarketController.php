@@ -122,7 +122,11 @@ class MarketController extends Controller
                 DB::raw( '(CASE
             WHEN offers.noe = "old" THEN "کارکرده"
             WHEN offers.noe = "new" THEN "نو"
-            END) AS noe'))
+            END) AS noe'),
+                DB::raw( '(CASE
+            WHEN offers.buyorsell = "sell" THEN "آگهی فروش"
+            WHEN offers.buyorsell = "buy" THEN "آگهی خرید"
+            END) AS buyorsell'))
             ->where('offers.status' , '=', '4')
             ->where('offers.slug' , '=' , $slug)
             ->get();
@@ -141,6 +145,7 @@ class MarketController extends Controller
                 'state'             => $offer->state,
                 'type'              => $offer->type,
                 'noe'               => $offer->noe,
+                'buyorsell'         => $offer->buyorsell,
                 'city'              => $offer->city,
                 'wholesaleprice'    => $offer->wholesaleprice,
                 'retailprice'       => $offer->retailprice,
