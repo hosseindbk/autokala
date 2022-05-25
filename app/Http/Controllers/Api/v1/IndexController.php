@@ -240,6 +240,8 @@ class IndexController extends Controller
 
         $offers          = Markuser::leftjoin('offers'     , 'offers.id'     , '=' , 'markusers.offer_id')
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
+            ->leftJoin('states', 'states.id', '=', 'offers.state_id')
+            ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
             ->select('markusers.id as markID' ,'offers.id as offerID','offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
 
                 DB::raw( '(CASE
