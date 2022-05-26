@@ -85,8 +85,8 @@
                                         <ul class="footer-menu-ul">
                                             <li class="menu-item-type-custom">
                                                 <a href="#">
-                                                    {{$supplier->state_id}}
-                                                    {{$supplier->city_id}}
+                                                    {{$supplier->state}}
+                                                    {{$supplier->city}}
                                                 </a>
                                             </li>
                                         </ul>

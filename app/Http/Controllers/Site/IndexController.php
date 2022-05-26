@@ -96,7 +96,7 @@ class IndexController extends Controller
           leftjoin('states' , 'states.id' , '=' ,'suppliers.state_id')
         ->leftjoin('cities' , 'cities.id' ,'=' ,'suppliers.city_id')
         ->select('suppliers.id' ,'suppliers.logo' ,'suppliers.title' ,'suppliers.description' ,'suppliers.lat' ,'suppliers.lng' ,
-            'suppliers.phone' ,'suppliers.mobile' ,'suppliers.whatsapp' ,'suppliers.address' ,'states.title' ,'cities.title')
+            'suppliers.phone' ,'suppliers.mobile' ,'suppliers.whatsapp' ,'suppliers.address' ,'states.title as state' ,'cities.title as city')
         ->where('suppliers.pageurl' , $slug)->get();
         if (trim($suppliers) == '[]') {
             return Redirect::to('/');
