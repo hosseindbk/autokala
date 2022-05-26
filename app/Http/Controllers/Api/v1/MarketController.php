@@ -34,24 +34,9 @@ class MarketController extends Controller
             ->where('offers.brand_id' , '<>' , null)
             ->filter()
             ->paginate(16);
-        foreach ($brandnames as $brandname)
-        {
-            $brandname = [
-                'brand' => $brandname->brand,
-                'numberofsell'      => $brandname->numberofsell,
-                'slug'              => $brandname->slug,
-                'image'             => $brandname->image,
-                'title'             => $brandname->title,
-                'state'             => $brandname->state,
-                'city'              => $brandname->city,
-                'wholesaleprice'    => $brandname->wholesaleprice,
-                'retailprice'       => $brandname->retailprice,
-                'type'              => $brandname->type,
-                'noeoffer'          => 'آگهی فروش',
-            ];
-        }
+
         $response = [
-            'selloffer'=>$brandname,
+            'selloffer'=>$brandnames,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
@@ -77,25 +62,9 @@ class MarketController extends Controller
             ->where('offers.brand_id' , '<>' , null)
             ->paginate(16);
 
-        foreach ($brandnames as $brandname)
-        {
-            $brandname = [
-                'brand' => $brandname->brand,
-                'numberofsell'      => $brandname->numberofsell,
-                'slug'              => $brandname->slug,
-                'image'             => $brandname->image,
-                'title'             => $brandname->title,
-                'state'             => $brandname->state,
-                'city'              => $brandname->city,
-                'wholesaleprice'    => $brandname->wholesaleprice,
-                'retailprice'       => $brandname->retailprice,
-                'type'              => $brandname->type,
-                'noeoffer'          => 'آگهی خرید',
-            ];
-        }
 
         $response = [
-            'buyoffer'=>$brandname,
+            'buyoffer'=>$brandnames,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
