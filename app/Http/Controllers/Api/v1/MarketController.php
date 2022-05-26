@@ -7,6 +7,7 @@ use App\Car_offer;
 use App\comment;
 use App\Http\Controllers\Controller;
 use App\Offer;
+use App\Product_brand_variety;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -101,16 +102,18 @@ class MarketController extends Controller
 
     public function submarket($slug){
 
-        $offers = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
-            ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
-            ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
-            ->leftJoin('product_groups', 'product_groups.id', '=', 'offers.product_group')
-            ->leftJoin('states', 'states.id', '=', 'offers.state_id')
-            ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
-            ->leftJoin('users', 'users.id', '=', 'offers.user_id')
-            ->leftjoin('markusers' , 'markusers.offer_id' , '=' , 'offers.id')
-            ->select('offers.id as offer_id' , 'markusers.id as mark_id','brands.title_fa as brand' ,'offers.total as number', 'offers.slug' , 'offers.image1', 'offers.image2', 'offers.image3' ,
-                'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' ,
+        $offers = Offer::
+              leftJoin('products'               , 'products.unicode'            , '=' , 'offers.unicode_product')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.id'  , '=' , 'offers.brand_id')
+            ->leftJoin('brands'                 , 'brands.id'                   , '=' , 'product_brand_varieties.brand_id')
+            ->leftJoin('product_groups'         , 'product_groups.id'           , '=' , 'offers.product_group')
+            ->leftJoin('states'                 , 'states.id'                   , '=' , 'offers.state_id')
+            ->leftJoin('cities'                 , 'cities.id'                   , '=' , 'offers.city_id')
+            ->leftJoin('users'                  , 'users.id'                    , '=' , 'offers.user_id')
+            ->leftjoin('markusers'              , 'markusers.offer_id'          , '=' , 'offers.id')
+
+            ->select('offers.id as offer_id' , 'markusers.id as mark_id','brands.title_fa as brand' ,'offers.total as number', 'offers.slug' , 'offers.image1',
+                'offers.image2', 'offers.image3' ,'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' ,
                 'offers.single_price as retailprice' ,'offers.unicode_product as unicode' ,'offers.description' , 'offers.phone', 'offers.mobile' , 'offers.address' ,
                 'offers.lat','offers.lng' ,'product_groups.title_fa as product_group' , 'offers.created_at as created_at' ,
 
@@ -161,6 +164,20 @@ class MarketController extends Controller
             ];
         }
 
+        $productvarietis = Offer::
+          leftJoin('products'               , 'products.unicode'                    , '=' , 'offers.unicode_product')
+        ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id'  , '=' , 'products.id')
+            ->select('product_brand_varieties.item1','product_brand_varieties.value_item1','product_brand_varieties.item2','product_brand_varieties.value_item2','product_brand_varieties.item3','product_brand_varieties.value_item3',
+                'product_brand_varieties.strength1','product_brand_varieties.strength2','product_brand_varieties.strength3','product_brand_varieties.weakness1','product_brand_varieties.weakness2','product_brand_varieties.weakness3'
+                ,
+                DB::raw( '(CASE
+            WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
+            WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
+            END) AS guarantee'))
+            ->where('offers.slug' , '=' , $slug)
+            ->get();
+
+
             $offer_id = Offer::whereSlug($slug)->pluck('id');
 
             $cars = Car_offer::
@@ -199,9 +216,10 @@ class MarketController extends Controller
         }
 
         $response = [
-            'offer'     =>  $markets,
-            'car'       =>  $cars,
-            'comment'   =>  $comt
+            'offer'             =>  $markets,
+            'productvarietis'   =>  $productvarietis,
+            'car'               =>  $cars,
+            'comment'           =>  $comt
 
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
