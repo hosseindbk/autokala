@@ -92,11 +92,11 @@
                                     <div class="gallery-item">
                                         <div>
                                             <ul class="gallery-actions">
-                                                <?php $x = number_format(($commentratequality + $commentratevalue + $commentrateinnovation + $commentrateability + $commentratedesign) /6 , 1) ?>
+                                                <?php $x = number_format(($commentratequality + $commentratevalue + $commentrateinnovation + $commentrateability + $commentratedesign + $commentratecomfort) /6 , 1) ?>
                                                 @if($x == 0)
                                                     <p> هنوز امتیازی ثبت نشده است.</p>
                                                 @else
-                                                    <h5> امتیاز کاربران : {{number_format(($commentratequality + $commentratevalue + $commentrateinnovation + $commentrateability + $commentratedesign) / 6 , 1)}} از 5</h5>
+                                                    <h5> امتیاز کاربران : {{number_format(($commentratequality + $commentratevalue + $commentrateinnovation + $commentrateability + $commentratedesign + $commentratecomfort) / 6 , 1)}} از 5</h5>
                                                 @endif
 
                                                 <div class="product-rate">
@@ -317,10 +317,10 @@
                                 <div class="comments">
                                     <div>
                                         <h2 class="params-headline"> امتیاز کاربران به {{$brand->title_fa}} </h2>
-                                        <h2>{{number_format(($commentratequality + $commentratevalue + $commentrateinnovation + $commentrateability + $commentratedesign) / 6 , 1)}} از 5</h2>
+                                        <h2>{{number_format(($commentratequality + $commentratevalue + $commentrateinnovation + $commentrateability + $commentratedesign + $commentratecomfort) / 6 , 1)}} از 5</h2>
                                         <div class="product-config">
                                             <div class="product-rate">
-                                                <?php $x = number_format(($commentratequality + $commentratevalue + $commentrateinnovation + $commentrateability + $commentratedesign) /6 , 1) ?>
+                                                <?php $x = number_format(($commentratequality + $commentratevalue + $commentrateinnovation + $commentrateability + $commentratedesign + $commentratecomfort) /6 , 1) ?>
                                                 <i class="fa fa-star @if($x > 0) active @endif"></i>
                                                 <i class="fa fa-star @if($x >= 1) active @endif"></i>
                                                 <i class="fa fa-star @if($x >= 2) active @endif"></i>
