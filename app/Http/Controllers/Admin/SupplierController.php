@@ -422,14 +422,23 @@ class SupplierController extends Controller
         $supplier->date_handle  = jdate()->format('Ymd ');
 
 
-        if ($request->file('image') != null) {
-            $file = $request->file('image');
+        if ($request->file('logo') != null) {
+            $file = $request->file('logo');
             $img = Image::make($file);
             $imagePath ="image/suppliers/";
             $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $supplier->image = $file->move($imagePath, $imageName);
+            $supplier->logo = $file->move($imagePath, $imageName);
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
+        }
+        if ($request->file('image') != null) {
+        $file = $request->file('image');
+        $img = Image::make($file);
+        $imagePath ="image/suppliers/";
+        $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+        $supplier->image = $file->move($imagePath, $imageName);
+        $img->save($imagePath.$imageName);
+        $img->encode('jpg');
         }
         if ($request->file('image2') != null) {
             $file = $request->file('image2');

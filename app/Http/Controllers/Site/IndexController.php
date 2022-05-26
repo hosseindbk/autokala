@@ -92,7 +92,12 @@ class IndexController extends Controller
 
     public function company($slug)
     {
-        $suppliers = Supplier::wherePageurl($slug)->get();
+        $suppliers = Supplier::
+          leftjoin('states' , 'states.id' , '=' ,'suppliers.state_id')
+        ->leftjoin('cities' , 'cities.id' ,'=' ,'suppliers.city_id')
+        ->select('suppliers.id' ,'suppliers.logo' ,'suppliers.title' ,'suppliers.description' ,'suppliers.lat' ,'suppliers.lng' ,
+            'suppliers.phone' ,'suppliers.mobile' ,'suppliers.whatsapp' ,'suppliers.address' ,'states.title' ,'cities.title')
+        ->where('suppliers.pageurl' , $slug)->get();
         if (trim($suppliers) == '[]') {
             return Redirect::to('/');
 
@@ -101,7 +106,7 @@ class IndexController extends Controller
             $states         = State::select('id', 'title')->get();
             $countState     = null;
             $menus          = Menu::select('title', 'slug')->whereStatus(4)->get();
-            $user_id    = Supplier::wherePageurl($slug)->pluck('user_id');
+            $user_id        = Supplier::wherePageurl($slug)->pluck('user_id');
             $brands         = Brand::whereStatus(4)->whereUser_id($user_id)->get();
             $supplier_id    = Supplier::wherePageurl($slug)->pluck('id');
             $offers         = Offer::whereStatus(4)->whereSupplier_id($supplier_id)->get();

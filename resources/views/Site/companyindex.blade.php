@@ -4,112 +4,7 @@
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <meta name="enamad" content="745189" />
 @endsection
-@section('top-header')
-    <section class="h-main-row">
-        <div class="col-lg-12 col-md-12 col-xs-12 pr">
-            <div class="header-right">
-                <div class="col-lg-4 pr">
-                    <div class="header-search row text-right">
-                        <div class="header-search-box">
-                            <form action="{{route('search')}}" method="get" class="form-search">
-                                <input type="search" class="header-search-input" name="search" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
-                                <div class="action-btns">
-                                    <button class="btn btn-search" type="submit">
-                                        <img src="{{asset('site/images/search.png')}}" alt="search">
-                                    </button>
-                                    <div class="search-filter">
-                                        <div class="form-ui">
-                                            <div class="custom-select-ui">
-                                                <select class="right" name="category_id">
-                                                    <option value="all">همه دسته ها</option>
-                                                    <option value="title_fa">نام کالا</option>
-                                                    <option value="title_bazar_fa">عنوان رایج در بازار</option>
-                                                    <option value="title_fani_fa">نام فنی فارسی</option>
-                                                    <option value="title_fani_en">نام فنی لاتین</option>
-                                                    <option value="code_fani_company">کد فنی کارخانه</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            {{--                            <div class="search-result">--}}
-                            {{--                                <ul class="search-result-list mb-0">--}}
-
-                            {{--                                </ul>--}}
-                            {{--                                <div class="localSearchSimple"></div>--}}
-                            {{--                            </div>--}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center">
-                <div class="col-lg-4 pr">
-                    <a href="{{url('/')}}"> <img src="{{asset('site/images/logo.png')}}" alt="اتوکالا"> </a>
-                    <h2 style="padding: 2px 0px 0px 0px;font-size: 12px;">اتوکالا سامانه جامع قطعات و خدمات خودرو</h2>
-                </div>
-            </div>
-            <div class="header-left">
-                <div class="col-lg-4 pl">
-                    <div class="header-search row text-right">
-                        <div class="header-search-box">
-                            <form action="{{route('unicode')}}" method="get" class="form-search">
-                                <input type="search" class="header-search-input-code green-place" name="unicode" placeholder="جستجوی یونیکد (شناسه 10 رقمی کالا)">
-                                <div class="action-btns">
-                                    <button class="btn btn-search btn-search-green" type="submit">
-                                        <img src="{{asset('site/images/search.png')}}" alt="search">
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-@endsection
 @section('main')
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">استان مورد نظر خود را انتخاب نمایید</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{route('filterstate')}}" method="get" class="form-search">
-
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="text-center">
-                                <label for="select-all" class="btn btn-outline-secondary" style="width: 80%;margin: 10px 25px">
-                                انتخاب همه
-                                    @if($countState && count($countState) == 31)
-                                        <input type="checkbox"  name="select-all" id="select-all" checked/>
-                                        @else
-                                        <input type="checkbox"  name="select-all" id="select-all" />
-                                    @endif
-                                </label>
-                            </div>
-                        </div>
-                        @foreach($states as $state)
-                            <div class="col-md-4 col-sm-12">
-                                <button type="button" for="radio{{$state->id}}" class="btn btn-outline-secondary" style="width: 80%;margin: 10px 25px">
-                                    {{$state->title}}
-                                    <input type="checkbox" multiple="multiple" name="state_id[]" id="radio{{$state->id}}" value="{{$state->id}}" @if($countState) @foreach($countState as $stateselect) {{$state->id == $stateselect->id ? 'checked' : ''}} @endforeach @endif class="btn btn-outline-secondary">
-                                </button>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="modal-footer" style=" align-items: center !important; justify-content: center; ">
-                        <button type="submit" class="btn btn-primary" style="margin: 0 20px">تایید استان</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin: 0 20px">بازگشت</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="container-main">
         @include('sweet::alert')
         <div class="d-block">
@@ -120,10 +15,10 @@
                             @foreach($suppliers as $supplier)
                                 <div class="carousel-item active" style="text-align: center;">
                                     <a href="#" class="adplacement-item"  target="_blank">
-                                        @if($supplier->image == null)
+                                        @if($supplier->logo == null)
                                             <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$supplier->title}}">
                                         @else
-                                            <img src="{{asset($supplier->image)}}" class="d-block w-100" alt="{{$supplier->title}}">
+                                            <img src="{{asset($supplier->logo)}}" class="d-block w-100" alt="{{$supplier->title}}">
                                         @endif
                                     </a>
                                 </div>
@@ -337,6 +232,76 @@
 </div>
     @endsection
 @section('script')
+    <script src="{{asset('site/js/vendor/bootstrap-slider.min.js')}}"></script>
+    <script src="{{asset('site/js/mapp.env.js')}}"></script>
+    <script src="{{asset('site/js/mapp.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            var crosshairIcon = {
+                iconUrl: '{{asset('site/assets/images/icon-marker.svg')}}',
+                iconSize:     [40, 50], // size of the icon
+                iconAnchor:   [20, 55], // point of the icon which will correspond to marker's location
+            };
+            var app = new Mapp({
+                element: '#app',
+                @if($supplier->lat != null && $supplier->lng != null)
+                presets: {
+                    latlng: {
+                        lat: {{$supplier->lat}},
+                        lng: {{$supplier->lng}},
+                    },
+                    icon: crosshairIcon,
+                    zoom: 20,
+                    popup: {
+                        title: {
+                            i18n: 'موقعیت مکانی',
+                        },
+                        description: {
+                            i18n: 'توضیحات',
+                        },
+                        class: 'marker-class',
+                        open: false,
+                    },
+                },
+                @else
+                presets: {
+                    latlng: {
+                        lat: 35.73249,
+                        lng: 51.42268,
+                    },
+                    zoom: 14
+                },
+                @endif
+                apiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2In0.eyJhdWQiOiIxNTQ5NCIsImp0aSI6IjI0OTE4ZjYzNjQ0ZmUxNTNjMWNiY2Y1NzcyNTJlOTkzNGNkZWZhMmQyM2ZhZjBjMzdkOWViNmUzZDgyYjJmMGQ4ZjU1MDY1ZjgyY2EyNWE2IiwiaWF0IjoxNjMxNzc5MjQ0LCJuYmYiOjE2MzE3NzkyNDQsImV4cCI6MTYzNDQ2MTI0NCwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.VsRI2wiG_IvFVkVKXt_XnOBpzyjMIygnv6s_s81u9WVC_Z-stANinKYH_6iJPuJ3lRdAX8SdtHwYCr2DZVF2hi6WiTu-BSvMuXPb6sg0iYXgYREKQjzsWU4NPf2kOwd4q6aj1R6UOT_EA7GIrJQ5FPYDceAmeT8va1VdK6xYp-Ypstja-clURippQKEk0mDe9Z_ABYWQNAWfqUt_ubYEZrETjnDoSQHbJxJc46vxWvYmwoK1sIZ4NoXaQbRrAb0QKZ_7Lnh3H3_vHqQGMB0vJELzwSJEmiNxr_h7uIvugtRAUneAa878lOJuv03976YNjIoepK_aWhxzrP-RmE4O5A",
+            });
+            app.addLayers();
+            app.addZoomControls();
+            app.addGeolocation({
+                history: false,
+                onLoad: false,
+                onLoadCallback: function(){
+                    console.log(app.states.user.latlng);
+                },
+            });
+            app.addLogo({
+                url: '{{asset('site/images/maplogo.png')}}',
+            });
+
+            @if($supplier->lat != null && $supplier->lng != null)
+
+            app.markReverseGeocode({
+                state: {
+                    latlng: {
+                        lat: {{$supplier->lat}},
+                        lng: {{$supplier->lng}},
+                    },
+                    zoom: 14,
+                    icon: crosshairIcon,
+                },
+            });
+            @endif
+        });
+    </script>
     <script>
         $('#select-all').click(function(event) {
             if(this.checked) {

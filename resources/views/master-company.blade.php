@@ -19,104 +19,6 @@
 </head>
 
 <body>
-<header class="header-main">
-    <div class="container-main">
-        <div class="d-block">
-            @yield('top-header')
-            <div>
-                <nav class="header-main-nav">
-                    <div class="d-block">
-
-
-                        <div class="align-items-center">
-                            <ul class="menu-ul mega-menu-level-one">
-                                @foreach($menus as $menu)
-                                <li  class="menu-item active">
-                                    <a href="{{url($menu->slug)}}" class="current-link-menu">
-                                        {{$menu->title}}
-                                    </a>
-                                </li>
-                                @endforeach
-                                <div class="col-lg-3 pl">
-                                    <div class="header-account text-left">
-                                        <div class="d-block">
-
-
-                                            @if(! Auth::check())
-                                                <div class="account-box">
-                                                    <div class="nav-account d-block pl">
-                                                        <a href="{{url('login')}}" class="btn btn-outline-info"><b class="fa fa-user"></b> ورود به حساب کاربری </a>
-                                                    </div>
-                                                </div>
-                                            @elseif(Auth::check())
-
-                                                <div class="account-box" style="margin-left: 20px">
-                                                    <div class="nav-account d-block pl">
-                                                        <span class="icon-account">
-                                                            @if(Auth::user()->image)
-                                                                <img src="{{asset(Auth::user()->image)}}" class="avator">
-                                                            @else
-                                                                <img src="{{asset('site/images/man.png')}}" class="avator">
-                                                            @endif
-                                                        </span>
-                                                        <span class="title-account">{{Auth::user()->name}}</span>
-                                                        <div class="dropdown-menu">
-                                                            <ul class="account-uls mb-0">
-                                                                <li class="account-item">
-                                                                    <a href="{{url('profile-user')}}" class="account-link">تنظیمات حساب</a>
-                                                                </li>
-                                                                <li class="account-item">
-                                                                    <a href="{{url('logout')}}" class="account-link">خروج</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                                <div class="account-box">
-                                                    <div class="nav-account d-block pl">
-                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg"><b class="fa fa-map-marker"></b>@if($countState && count($countState) > 1 && count($countState) < 10) {{count($countState)}} استان  @elseif($countState && count($countState) == 1) @foreach($countState as $state) استان {{$state->title}}  @endforeach @else  تمام استان ها @endif </button>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ul>
-                        </div>
-                        <div class="align-items-center">
-                            @if(auth::check() && auth::user()->phone_verify == 0)
-                                <div class="alert alert-danger text-right" role="alert">
-                                    شماره موبایل شما هنوز تایید نشده است لطفا جهت تایید شماره تلفن <a href="{{route('setphone') , auth::user()->phone}}">کلیک</a> نمایید
-                                </div>
-                            @endif
-                        </div>
-                        <nav class="sidebar">
-                            <div class="nav-header">
-                                <div class="header-cover"></div>
-                                <div class="logo-wrap">
-                                    <a class="logo-icon" href="#"><img alt="logo-icon" src="{{asset('site/images/logo.png')}}" style="width: 50px;"></a>
-                                </div>
-                            </div>
-                            <ul class="nav-categories ul-base">
-                                @foreach($menus as $menu)
-                                    <li><a href="{{url($menu->slug)}}">{{$menu->title}}</a></li>
-                                @endforeach
-                            </ul>
-                        </nav>
-                        <div class="nav-btn nav-slider">
-                            <span class="linee1"></span>
-                            <span class="linee2"></span>
-                            <span class="linee3"></span>
-                        </div>
-                        <div class="overlay"></div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-<div class="nav-categories-overlay"></div>
-
 @yield('main')
 
 <footer class="footer-main-site">
@@ -131,13 +33,23 @@
                                     <section class="footer-links-col">
                                         <div class="headline-links">
                                             <a href="#">
-                                                تماس باما
+                                                راه های ارتباطی
                                             </a>
                                         </div>
                                         <ul class="footer-menu-ul">
                                             <li class="menu-item-type-custom">
                                                 <a href="tel:{{$supplier->phone}}">
-                                                    {{$supplier->phone}}
+                                                تلفن ثابت :     {{$supplier->phone}}
+                                                </a>
+                                            </li>
+                                            <li class="menu-item-type-custom">
+                                                <a href="tel:{{$supplier->mobile}}">
+                                                    تلفن همراه :   {{$supplier->mobile}}
+                                                </a>
+                                            </li>
+                                            <li class="menu-item-type-custom">
+                                                <a href="tel:{{$supplier->whatsapp}}">
+                                                    شبکه اجتماعی :   {{$supplier->whatsapp}}
                                                 </a>
                                             </li>
                                         </ul>
@@ -167,13 +79,14 @@
                                     <section class="footer-links-col">
                                         <div class="headline-links">
                                             <a href="#">
-                                                تلفن
+                                                استان و شهرستان
                                             </a>
                                         </div>
                                         <ul class="footer-menu-ul">
                                             <li class="menu-item-type-custom">
                                                 <a href="#">
-                                                    {{$supplier->phone}}
+                                                    {{$supplier->state_id}}
+                                                    {{$supplier->city_id}}
                                                 </a>
                                             </li>
                                         </ul>
@@ -185,15 +98,11 @@
                                     <section class="footer-links-col">
                                         <div class="headline-links">
                                             <a href="#">
-                                                لوکیشن
+                                                موقعیت نقشه
                                             </a>
                                         </div>
                                         <ul class="footer-menu-ul">
-                                            <li class="menu-item-type-custom">
-                                                <a href="#">
-
-                                                </a>
-                                            </li>
+                                             <div id="app" style="width: 100%; height: 400px;"></div>
                                         </ul>
                                     </section>
                                 </div>

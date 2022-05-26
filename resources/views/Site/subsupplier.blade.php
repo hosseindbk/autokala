@@ -96,6 +96,11 @@
                                             <div>
                                                 <ul class="" style="float: left;">
                                                     <li class="unic_code">
+                                                        @if($supplier->pageurl)
+                                                            <a href="{{'https://my-autokala.ir/company/'.$supplier->pageurl}}" class="btn btn-outline-success">
+                                                                <span> سایت فروشگاه </span>
+                                                            </a>
+                                                        @endif
                                                         <a href="#" class="btn btn-outline-success">
                                                             <span>سابقه عضویت {{jdate($supplier->created_at)->ago()}}</span>
                                                         </a>
