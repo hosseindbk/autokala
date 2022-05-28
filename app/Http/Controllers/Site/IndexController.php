@@ -106,10 +106,9 @@ class IndexController extends Controller
             $states         = State::select('id', 'title')->get();
             $countState     = null;
             $menus          = Menu::select('title', 'slug')->whereStatus(4)->get();
-            $user_id        = Supplier::wherePageurl($slug)->pluck('user_id');
             $supplier_id    = Supplier::wherePageurl($slug)->pluck('id');
             $representative_suppliers = Representative_supplier::whereSupplier_id($supplier_id)->pluck('brand_id');
-            $brands         = Brand::whereStatus(4)->whereId($representative_suppliers)->get();
+            $brands         = Brand::whereStatus(4)->whereIn('id' , $representative_suppliers)->get();
 
             $offers         = Offer::whereStatus(4)->whereSupplier_id($supplier_id)->get();
             $users          = User::select('id', 'type_id')->get();
