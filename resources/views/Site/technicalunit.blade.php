@@ -11,7 +11,7 @@
                 <div class="col-lg-4 pr">
                     <div class="header-search row text-right">
                         <div class="header-search-box">
-                            <form action="{{route('technicalsearch')}}" method="get" class="form-search">
+                            <form action="{{route('technicalsearchandfilter')}}" method="get" class="form-search">
                                 <input type="text" class="header-search-input" name="technicalsearch" value="{{request('technicalsearch')}}" placeholder="نام تعمیرگاه یا واحد خدمات فنی جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
@@ -124,7 +124,7 @@
                             </ol>
                         </nav>
                     </div>
-                    <form action="{{route('technicalfilter')}}" method="get">
+                    <form action="{{route('technicalsearchandfilter')}}" method="get">
                     <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">

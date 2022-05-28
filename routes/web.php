@@ -105,7 +105,8 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('market'                     , 'MarketController@index' );
     /*product*/
     Route::get('product'                    , 'ProductController@index' );
-    Route::get('product/filter'             , 'ProductController@productfilter')->name('productfilter');
+    Route::get('product'                    , 'ProductController@index')->name('productsearchandfilter');
+//    Route::get('product'                    , 'ProductController@index')->name('productfilter');
     Route::post('product/modeloption'       , 'ProductController@modeloption')->name('modeloption');
     Route::get('product/{slug}'             , 'ProductController@subproduct' );
     Route::get('productbrand/{slug}/{id}'   , 'ProductController@productbrand' );
@@ -117,23 +118,22 @@ Route::group(['namespace' => 'Site'] , function (){
 
     /*technical*/
     Route::get('technical'                  , 'TechnicalunitController@index' );
-    Route::get('technicalsearch'            , 'SearchController@technicalsearch')->name('technicalsearch');
-    Route::get('technical/filter'           , 'TechnicalunitController@technicalfilter' )->name('technicalfilter');
+    Route::get('technical'                  , 'TechnicalunitController@index')->name('technicalsearchandfilter');
+//    Route::get('technical/filter'           , 'TechnicalunitController@technicalfilter' )->name('technicalfilter');
     Route::get('technical/sub/{slug}'       , 'TechnicalunitController@subtechnical' )->name('subtechnical');
     Route::get('technical/filterstate'      , 'TechnicalunitController@filterstate')->name('technicalfilterstate');
     Route::patch('technical/updatetechimg/{id}', 'TechnicalunitController@updatetechimg')->name('updatetechimg');
 
     /*supplier*/
     Route::get('supplier'                   , 'SupplierController@index' );
-    Route::get('suppliersearch'             , 'SearchController@suppliersearch')->name('suppliersearch');
-    Route::get('supplier/filter'            , 'SupplierController@supplierfilter' )->name('supplierfilter');
+    Route::get('supplier'                   , 'SupplierController@index')->name('suppliersearchandfilter');
+//    Route::get('supplier'                   , 'SupplierController@index')->name('supplierfilter');
     Route::get('supplier/sub/{slug}'        , 'SupplierController@subsupplier' );
     Route::get('supplier/state'             , 'SupplierController@indexstate')->name('supplierfilterstate');
     Route::patch('suppliers/updatesupimg/{id}', 'SupplierController@updatesupimg')->name('updatesupimg');
 
     /*search-filter*/
     Route::post('state'                     , 'StateController@state')->name('state');
-    Route::get('search'                     , 'SearchController@search')->name('search');
     Route::get('offersearch'                , 'SearchController@offersearch')->name('offersearch');
     Route::get('unicode'                    , 'UnicodeController@unicode')->name('unicode');
     /*commant*/

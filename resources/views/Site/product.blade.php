@@ -11,7 +11,7 @@
                 <div class="col-lg-4 pr">
                     <div class="header-search row text-right">
                         <div class="header-search-box">
-                            <form action="{{route('search')}}" method="get" class="form-search">
+                            <form action="{{route('productsearchandfilter')}}" method="get" class="form-search">
                                 <input type="search" class="header-search-input" name="search" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
@@ -88,7 +88,7 @@
                     <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">
-                                <form action="{{route('productfilter')}}" method="get">
+                                <form action="{{route('productsearchandfilter')}}" method="get">
                                 <section class="widget-product-categories">
                                     <header class="cat-header">
                                         <h2 class="mb-0">
@@ -108,7 +108,7 @@
                                                     @foreach($productgroups as $product_group)
                                                     <div class="form-auth-row">
                                                         <label for="{{$product_group->id}}" class="ui-checkbox">
-                                                            <input type="checkbox" name="productgroup_id[]" id="{{$product_group->id}}"  @if($filter == 1 && $productgroup_id != null) @foreach($productgroup_id as $p) {{$product_group->id == $p->id ? 'checked' : ''}} @endforeach @endif value="{{$product_group->id}}"   >
+                                                            <input type="checkbox" name="productgroup_id[]" id="{{$product_group->id}}"  @if($productgroup_id != null) @foreach($productgroup_id as $p) {{$product_group->id == $p->id ? 'checked' : ''}} @endforeach @endif value="{{$product_group->id}}"   >
                                                             <span class="ui-checkbox-check"></span>
                                                         </label>
                                                         <label for="{{$product_group->id}}"  class="remember-me">{{$product_group->title_fa}}</label>
@@ -153,7 +153,7 @@
                                                         <select multiple="multiple" name="car_model_id[]" id="car_model_id" class="form-control select2">
                                                             @if($filter == 1)
                                                                 @foreach($carmodels as $car_model)
-                                                                    <option value="{{$car_model->id}}" @if($filter == 1 && $carmodel_id != null) @foreach($carmodel_id as $c) {{$car_model->id == $c->id ? 'selected' : ''}} @endforeach @endif>{{$car_model->title_fa}}</option>
+                                                                    <option value="{{$car_model->id}}" @if($carmodel_id != null) @foreach($carmodel_id as $c) {{$car_model->id == $c->id ? 'selected' : ''}} @endforeach @endif>{{$car_model->title_fa}}</option>
                                                                 @endforeach
                                                             @endif
                                                         </select>
@@ -189,7 +189,7 @@
                                                         @foreach($brands as $brand)
                                                             <div class="form-auth-row">
                                                                 <label for="{{$brand->id *999999}}" class="ui-checkbox">
-                                                                    <input type="checkbox" value="{{$brand->id}}" name="brand_id[]"  @if($filter == 1 && $brand_id != null) @foreach($brand_id as $b)  {{$brand->id == $b->id ? 'checked' : ''}} @endforeach @endif   id="{{$brand->id *999999}}">
+                                                                    <input type="checkbox" value="{{$brand->id}}" name="brand_id[]"  @if($brand_id != null) @foreach($brand_id as $b)  {{$brand->id == $b->id ? 'checked' : ''}} @endforeach @endif   id="{{$brand->id *999999}}">
                                                                     <span class="ui-checkbox-check"></span>
                                                                 </label>
                                                                 <label for="{{$brand->id * 999999}}"  class="remember-me">{{$brand->title_fa}}</label>

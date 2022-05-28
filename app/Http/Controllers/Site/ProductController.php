@@ -25,64 +25,11 @@ use Illuminate\Support\Facades\Redirect;
 class ProductController extends Controller
 {
     public function index(){
-//        $products = Product::whereNotnull('image')->select('id','image' , 'unicode')->get();
-//        foreach ($products as $product){
-//
-//            $imagePath =base_path()."/public/$product->image";
-//            $newname = "images/products/$product->unicode/".md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-//            $imageName =base_path()."/public/".$newname;
-//            $productes = Product::findOrfail($product->id);
-//            $productes->image = $newname ;
-//            $productes->update();
-//            $productname =  File::move($imagePath, $imageName);
-//        }
-
+        $keywords       = request('search');
+        $carbrandset      = request('car_brand_id');
 
         $menus          = Menu::select('id' , 'title' , 'slug')->whereStatus(4)->get();
         $countState     = null;
-
-        $newproducts    = Product::select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
-            ->whereStatus(4)
-            ->orderBy('id' , 'DESC')
-            ->paginate(16);
-
-        $clickproducts  = Product::select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')->whereStatus(4)->orderBy('click' , 'DESC')->paginate(16);
-
-        $productvars  = DB::select("SELECT p.id , p.slug , p.title_fa , p.image , p.title_en , v.count_v from products as p
-            left join (SELECT product_id , COUNT(id) as count_v FROM product_brand_varieties GROUP BY product_id )
-            AS v on p.id = v.product_id ORDER BY v.count_v DESC;");
-
-        $oldproducts = new Paginator($productvars, 16);
-
-        $productgroups  = Product_group::whereStatus(4)->get();
-        $carbrands      = Car_brand::whereStatus(4)->get();
-        $carmodels      = Car_model::whereStatus(4)->get();
-        $brands         = Brand::whereStatus(4)->get();
-        $filter         = 0;
-        $states         = State::all();
-
-        $carproducts = DB::table('car_products')
-            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
-            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
-            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
-            ->get();
-
-        return view('Site.product')
-            ->with(compact('countState'))
-            ->with(compact('filter'))
-            ->with(compact('states'))
-            ->with(compact('brands'))
-            ->with(compact('carbrands'))
-            ->with(compact('productgroups'))
-            ->with(compact('menus'))
-            ->with(compact('carproducts'))
-            ->with(compact('carmodels'))
-            ->with(compact('newproducts'))
-            ->with(compact('clickproducts'))
-            ->with(compact('oldproducts'));
-    }
-
-    public function productfilter(){
 
         $productgroup = request('productgroup_id');
         if(isset($productgroup)  && $productgroup != '') {
@@ -98,20 +45,48 @@ class ProductController extends Controller
         if(isset($brand)  && $brand != '') {
             $brand_id = Brand::whereIn('id', $brand)->get();
         }else{$brand_id = null;}
-        $countState     = null;
 
-        $menus              = Menu::whereStatus(4)->get();
-        $count              = Product::filter()->whereStatus(4)->count();
-        $newproducts        = Product::filter()->whereStatus(4)->paginate(16);
-        $clickproducts      = Product::filter()->whereStatus(4)->orderBy('click')->paginate(16);
-        $oldproducts        = Product::filter()->whereStatus(4)->orderBy('id')->paginate(16);
-        $states             = State::all();
-        $productgroups      = Product_group::whereStatus(4)->get();
-        $carproducts        = Car_product::whereStatus(4)->get();
-        $carmodels          = Car_model::whereStatus(4)->get();
-        $carbrands          = Car_brand::whereStatus(4)->get();
-        $brands             = Brand::whereStatus(4)->get();
-        $filter             = 1;
+        $count              = Product::search($keywords)
+            ->filter()
+            ->whereStatus(4)
+            ->count();
+
+        $newproducts    = Product::search($keywords)
+            ->filter()
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->whereStatus(4)
+            ->orderBy('id' , 'DESC')
+            ->paginate(16);
+
+        $clickproducts  = Product::search($keywords)
+            ->filter()
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->whereStatus(4)
+            ->orderBy('click' , 'DESC')
+            ->paginate(16);
+
+        $productvars  = DB::select("SELECT p.id , p.slug , p.title_fa , p.image , p.title_en , v.count_v from products as p
+            left join (SELECT product_id , COUNT(id) as count_v FROM product_brand_varieties GROUP BY product_id )
+            AS v on p.id = v.product_id ORDER BY v.count_v DESC;");
+
+        $oldproducts = new Paginator($productvars, 16);
+
+        $productgroups  = Product_group::whereStatus(4)->get();
+        $carbrands      = Car_brand::whereStatus(4)->get();
+        $carmodels      = Car_model::whereStatus(4)->get();
+        $brands         = Brand::whereStatus(4)->get();
+        $states         = State::all();
+
+        $carproducts = DB::table('car_products')
+            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
+            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
+            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
+            ->get();
+        if(isset($productgroup) || isset($brand) || isset($carmodel) || isset($carbrandset)) {
+            $filter = 1;
+        }else{
+            $filter = 0;
+        }
         return view('Site.product')
             ->with(compact('countState'))
             ->with(compact('count'))
@@ -129,8 +104,57 @@ class ProductController extends Controller
             ->with(compact('productgroups'))
             ->with(compact('menus'))
             ->with(compact('newproducts'));
-
     }
+
+//    public function productfilter(){
+//
+//        $productgroup = request('productgroup_id');
+//        if(isset($productgroup)  && $productgroup != '') {
+//            $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
+//        }else{$productgroup_id = null;}
+//
+//        $carmodel = request('car_model_id');
+//        if(isset($carmodel)  && $carmodel != '') {
+//            $carmodel_id = Car_model::whereIn('id', $carmodel)->get();
+//        }else{$carmodel_id = null;}
+//
+//        $brand = request('brand_id');
+//        if(isset($brand)  && $brand != '') {
+//            $brand_id = Brand::whereIn('id', $brand)->get();
+//        }else{$brand_id = null;}
+//        $countState     = null;
+//
+//        $menus              = Menu::whereStatus(4)->get();
+//        $count              = Product::filter()->whereStatus(4)->count();
+//        $newproducts        = Product::filter()->whereStatus(4)->paginate(16);
+//        $clickproducts      = Product::filter()->whereStatus(4)->orderBy('click')->paginate(16);
+//        $oldproducts        = Product::filter()->whereStatus(4)->orderBy('id')->paginate(16);
+//        $states             = State::all();
+//        $productgroups      = Product_group::whereStatus(4)->get();
+//        $carproducts        = Car_product::whereStatus(4)->get();
+//        $carmodels          = Car_model::whereStatus(4)->get();
+//        $carbrands          = Car_brand::whereStatus(4)->get();
+//        $brands             = Brand::whereStatus(4)->get();
+//        $filter             = 1;
+//        return view('Site.product')
+//            ->with(compact('countState'))
+//            ->with(compact('count'))
+//            ->with(compact('brand_id'))
+//            ->with(compact('filter'))
+//            ->with(compact('carmodel_id'))
+//            ->with(compact('productgroup_id'))
+//            ->with(compact('brands'))
+//            ->with(compact('states'))
+//            ->with(compact('clickproducts'))
+//            ->with(compact('oldproducts'))
+//            ->with(compact('carbrands'))
+//            ->with(compact('carproducts'))
+//            ->with(compact('carmodels'))
+//            ->with(compact('productgroups'))
+//            ->with(compact('menus'))
+//            ->with(compact('newproducts'));
+//
+//    }
 
     public function subproduct($slug){
 

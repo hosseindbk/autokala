@@ -25,49 +25,49 @@ use UxWeb\SweetAlert\SweetAlert;
 
 class SearchController extends Controller
 {
-    public function search(){
-        $keywords               = request('search');
-        $products               = Product::search($keywords)->whereStatus(4)->latest()->paginate(12);
-        $product_id             = Product::search($keywords)->pluck('id');
-        if ($product_id == '[]'){
-            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
-            return Redirect::back();
-        }
-        $menus                  = Menu::whereStatus(4)->get();
-        $states                 = State::all();
-        $countState         = null;
-
-        $carmodels              = Car_model::whereStatus(4)->get();
-        $cartypes               = Car_type::whereStatus(4)->get();
-        //$carproducts            = Car_product::whereStatus(4)->get();
-        $productgroups          = Product_group::whereStatus(4)->get();
-        $carbrands              = Car_brand::whereStatus(4)->get();
-        $brands                 = Brand::whereStatus(4)->get();
-        if (trim($product_id) != '[]') {
-            $productbrandvarieties = Product_brand_variety::whereProduct_id($product_id)->get();
-        }else{
-            $productbrandvarieties = null;
-        }
-
-        $carproducts = DB::table('car_products')
-            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
-            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
-            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
-            ->get();
-
-        return view('Site.search')
-            ->with(compact('carmodels'))
-            ->with(compact('countState'))
-            ->with(compact('carproducts'))
-            ->with(compact('cartypes'))
-            ->with(compact('productbrandvarieties'))
-            ->with(compact('states'))
-            ->with(compact('menus'))
-            ->with(compact('productgroups'))
-            ->with(compact('carbrands'))
-            ->with(compact('brands'))
-            ->with(compact('products'));
-    }
+//    public function search(){
+//        $keywords               = request('search');
+//        $products               = Product::search($keywords)->whereStatus(4)->latest()->paginate(12);
+//        $product_id             = Product::search($keywords)->pluck('id');
+//        if ($product_id == '[]'){
+//            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
+//            return Redirect::back();
+//        }
+//        $menus                  = Menu::whereStatus(4)->get();
+//        $states                 = State::all();
+//        $countState         = null;
+//
+//        $carmodels              = Car_model::whereStatus(4)->get();
+//        $cartypes               = Car_type::whereStatus(4)->get();
+//        //$carproducts            = Car_product::whereStatus(4)->get();
+//        $productgroups          = Product_group::whereStatus(4)->get();
+//        $carbrands              = Car_brand::whereStatus(4)->get();
+//        $brands                 = Brand::whereStatus(4)->get();
+//        if (trim($product_id) != '[]') {
+//            $productbrandvarieties = Product_brand_variety::whereProduct_id($product_id)->get();
+//        }else{
+//            $productbrandvarieties = null;
+//        }
+//
+//        $carproducts = DB::table('car_products')
+//            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
+//            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
+//            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
+//            ->get();
+//
+//        return view('Site.search')
+//            ->with(compact('carmodels'))
+//            ->with(compact('countState'))
+//            ->with(compact('carproducts'))
+//            ->with(compact('cartypes'))
+//            ->with(compact('productbrandvarieties'))
+//            ->with(compact('states'))
+//            ->with(compact('menus'))
+//            ->with(compact('productgroups'))
+//            ->with(compact('carbrands'))
+//            ->with(compact('brands'))
+//            ->with(compact('products'));
+//    }
 
     public function technicalsearch(){
 
@@ -107,41 +107,41 @@ class SearchController extends Controller
             ->with(compact('technicalunits'));
     }
 
-    public function suppliersearch(){
-        $keywords               = request('suppliersearch');
-        $suppliers              = Supplier::suppliersearch($keywords)->whereStatus(4)->orderBy('id' , 'DESC')->paginate(12);
-        $menus                  = Menu::whereStatus(4)->get();
-        $carmodels              = Car_model::whereStatus(4)->get();
-        $states                 = State::all();
-        $cities                 = City::all();
-        $countState             = null;
-        $filter                 =   0;
-        $cartypes               = Car_type::whereStatus(4)->get();
-        $carproducts            = Car_product::whereStatus(4)->get();
-        $product_id             = Supplier::suppliersearch($keywords)->pluck('id');
-        $productgroups          = Product_group::whereStatus(4)->get();
-        $carbrands              = Car_brand::whereStatus(4)->get();
-        $brands                 = Brand::whereStatus(4)->get();
-        if (trim($product_id) != '[]') {
-            $productbrandvarieties = Product_brand_variety::whereProduct_id($product_id)->get();
-        }else{
-            $productbrandvarieties = null;
-        }
-        return view('Site.suppliersearch')
-            ->with(compact('filter'))
-            ->with(compact('countState'))
-            ->with(compact('carmodels'))
-            ->with(compact('carproducts'))
-            ->with(compact('cartypes'))
-            ->with(compact('states'))
-            ->with(compact('cities'))
-            ->with(compact('productbrandvarieties'))
-            ->with(compact('menus'))
-            ->with(compact('productgroups'))
-            ->with(compact('carbrands'))
-            ->with(compact('brands'))
-            ->with(compact('suppliers'));
-    }
+//    public function suppliersearch(){
+//        $keywords               = request('suppliersearch');
+//        $suppliers              = Supplier::suppliersearch($keywords)->whereStatus(4)->orderBy('id' , 'DESC')->paginate(12);
+//        $menus                  = Menu::whereStatus(4)->get();
+//        $carmodels              = Car_model::whereStatus(4)->get();
+//        $states                 = State::all();
+//        $cities                 = City::all();
+//        $countState             = null;
+//        $filter                 =   0;
+//        $cartypes               = Car_type::whereStatus(4)->get();
+//        $carproducts            = Car_product::whereStatus(4)->get();
+//        $product_id             = Supplier::suppliersearch($keywords)->pluck('id');
+//        $productgroups          = Product_group::whereStatus(4)->get();
+//        $carbrands              = Car_brand::whereStatus(4)->get();
+//        $brands                 = Brand::whereStatus(4)->get();
+//        if (trim($product_id) != '[]') {
+//            $productbrandvarieties = Product_brand_variety::whereProduct_id($product_id)->get();
+//        }else{
+//            $productbrandvarieties = null;
+//        }
+//        return view('Site.suppliersearch')
+//            ->with(compact('filter'))
+//            ->with(compact('countState'))
+//            ->with(compact('carmodels'))
+//            ->with(compact('carproducts'))
+//            ->with(compact('cartypes'))
+//            ->with(compact('states'))
+//            ->with(compact('cities'))
+//            ->with(compact('productbrandvarieties'))
+//            ->with(compact('menus'))
+//            ->with(compact('productgroups'))
+//            ->with(compact('carbrands'))
+//            ->with(compact('brands'))
+//            ->with(compact('suppliers'));
+//    }
 
     public function brandsearch(){
         $keywords           = request('brandsearch');
