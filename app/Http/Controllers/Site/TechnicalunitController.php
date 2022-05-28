@@ -74,7 +74,11 @@ class TechnicalunitController extends Controller
             $city_id = City::whereIn('id', $city)->get();
         }else{$city_id = null;}
         $countState    = null;
-
+        $technical_id         = Technical_unit::technicalsearch($keywords)->whereStatus(4)->pluck('id');
+        if ($technical_id == '[]'){
+            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
+            return Redirect::back();
+        }
         $menus              = Menu::whereStatus(4)->get();
         $technicals         = Technical_unit::filter()->technicalsearch($keywords)->select('id')->whereStatus(4)->get();
         $newtechnicals      = Technical_unit::filter()->technicalsearch($keywords)->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);

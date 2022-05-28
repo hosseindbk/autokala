@@ -41,6 +41,12 @@ class SupplierController extends Controller
 
         $countState         = null;
 
+        $supplier_id        = Supplier::suppliersearch($keywords)->whereStatus(4)->pluck('id');
+        if ($supplier_id == '[]'){
+            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
+            return Redirect::back();
+        }
+
         $suppliers          = Supplier::suppliersearch($keywords)->filter()->select('id')->whereStatus(4)->get();
         $newsuppliers       = Supplier::suppliersearch($keywords)->filter()->select('id' , 'title' , 'slug' , 'image' , 'manager' , 'address' , 'city_id')->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
         $clicksuppliers     = Supplier::suppliersearch($keywords)->filter()->whereStatus(4)->orderBy('click')->paginate(16);

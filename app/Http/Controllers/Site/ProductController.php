@@ -31,6 +31,13 @@ class ProductController extends Controller
         $menus          = Menu::select('id' , 'title' , 'slug')->whereStatus(4)->get();
         $countState     = null;
 
+
+        $product_id     = Product::search($keywords)->pluck('id');
+        if ($product_id == '[]'){
+            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
+            return Redirect::back();
+        }
+
         $productgroup = request('productgroup_id');
         if(isset($productgroup)  && $productgroup != '') {
             $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
