@@ -234,7 +234,7 @@ class IndexController extends Controller
     public function markuser(){
 
         $suppliers       = Markuser::join('suppliers'  , 'suppliers.id' , '=' , 'markusers.supplier_id')
-            ->select('markusers.id as markID' , 'suppliers.id as supplierID' , 'suppliers.title as supplier_title'  , 'suppliers.image' , 'suppliers.address')
+            ->select('markusers.id as markID' , 'suppliers.id as supplierID' , 'suppliers.title as supplier_title' , 'suppliers.manager' , 'suppliers.image' , 'suppliers.address')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
@@ -242,8 +242,8 @@ class IndexController extends Controller
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
-            ->select('markusers.id as markID' ,'offers.id as offerID','offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
-
+            ->select('markusers.id as markID' ,'offers.id as offerID','offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' ,
+                'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice' ,'offers.created_at' ,
                 DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
@@ -251,6 +251,24 @@ class IndexController extends Controller
             END) AS type'))
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
+
+        foreach ($offers as $offer)
+        {
+            $offe = [
+                'markID' => $offer->markID,
+                'offerID' => $offer->offerID,
+                'numberofsell' => $offer->numberofsell,
+                'slug' => $offer->slug,
+                'image' => $offer->image,
+                'title' => $offer->title,
+                'state' => $offer->state,
+                'city' => $offer->city,
+                'wholesaleprice' => $offer->wholesaleprice,
+                'retailprice' => $offer->retailprice,
+                'type' => $offer->type,
+                'date' => jdate($offer->created_at)->ago(),
+            ];
+        }
 
         $products        = Markuser::join('products'   , 'products.id'    , '=' , 'markusers.product_id')
             ->select('markusers.id as markID' ,'products.title_fa as product_title' , 'products.id as productID' , 'products.image' , 'products.unicode')
@@ -264,7 +282,7 @@ class IndexController extends Controller
 
         $response = [
             'supplier'          => $suppliers,
-            'offer'             => $offers,
+            'offer'             => $offe,
             'product'           => $products,
             'technical_unit'    => $technical_units
         ];
