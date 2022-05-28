@@ -111,6 +111,7 @@
             </div>
         </div>
     </div>
+    @include('sweet::alert')
     <div class="container-main">
         <div class="d-block">
             <div class="page-content page-row">
