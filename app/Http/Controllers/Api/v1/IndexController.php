@@ -254,19 +254,19 @@ class IndexController extends Controller
 
         foreach ($offers as $offer)
         {
-            $offe = [
-                'markID' => $offer->markID,
-                'offerID' => $offer->offerID,
-                'numberofsell' => $offer->numberofsell,
-                'slug' => $offer->slug,
-                'image' => $offer->image,
-                'title' => $offer->title,
-                'state' => $offer->state,
-                'city' => $offer->city,
-                'wholesaleprice' => $offer->wholesaleprice,
-                'retailprice' => $offer->retailprice,
-                'type' => $offer->type,
-                'date' => jdate($offer->created_at)->ago(),
+            $offe[] = [
+                'markID'            => $offer->markID,
+                'offerID'           => $offer->offerID,
+                'numberofsell'      => $offer->numberofsell,
+                'slug'              => $offer->slug,
+                'image'             => $offer->image,
+                'title'             => $offer->title,
+                'state'             => $offer->state,
+                'city'              => $offer->city,
+                'wholesaleprice'    => $offer->wholesaleprice,
+                'retailprice'       => $offer->retailprice,
+                'type'              => $offer->type,
+                'date'              => jdate($offer->created_at)->ago(),
             ];
         }
 
