@@ -233,12 +233,12 @@ class IndexController extends Controller
 
     public function markuser(){
 
-        $suppliers       = Markuser::leftjoin('suppliers'  , 'suppliers.id' , '=' , 'markusers.supplier_id')
+        $suppliers       = Markuser::join('suppliers'  , 'suppliers.id' , '=' , 'markusers.supplier_id')
             ->select('markusers.id as markID' , 'suppliers.id as supplierID' , 'suppliers.title as supplier_title'  , 'suppliers.image' , 'suppliers.address')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
-        $offers          = Markuser::leftjoin('offers'     , 'offers.id'     , '=' , 'markusers.offer_id')
+        $offers          = Markuser::join('offers'     , 'offers.id'     , '=' , 'markusers.offer_id')
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
@@ -252,12 +252,12 @@ class IndexController extends Controller
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
-        $products        = Markuser::leftjoin('products'   , 'products.id'    , '=' , 'markusers.product_id')
+        $products        = Markuser::join('products'   , 'products.id'    , '=' , 'markusers.product_id')
             ->select('markusers.id as markID' ,'products.title_fa as product_title' , 'products.id as productID' , 'products.image' , 'products.unicode')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
-        $technical_units = Markuser::leftjoin('technical_units' , 'technical_units.id'  , '=' , 'markusers.technical_id')
+        $technical_units = Markuser::join('technical_units' , 'technical_units.id'  , '=' , 'markusers.technical_id')
             ->select('markusers.id as markID' ,'technical_units.id as technicalID' , 'technical_units.title as technical_title' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
