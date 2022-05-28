@@ -234,7 +234,7 @@ class IndexController extends Controller
     public function markuser(){
 
         $suppliers       = Markuser::join('suppliers'  , 'suppliers.id' , '=' , 'markusers.supplier_id')
-            ->select('markusers.id as markID' , 'suppliers.id as supplierID' , 'suppliers.title as supplier_title' , 'suppliers.manager' , 'suppliers.image' , 'suppliers.address')
+            ->select('markusers.id as markID' , 'suppliers.id as supplierID' , 'suppliers.title as supplier_title' , 'suppliers.manager' , 'suppliers.slug',  'suppliers.image' , 'suppliers.address')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
@@ -271,12 +271,12 @@ class IndexController extends Controller
         }
 
         $products        = Markuser::join('products'   , 'products.id'    , '=' , 'markusers.product_id')
-            ->select('markusers.id as markID' ,'products.title_fa as product_title' , 'products.id as productID' , 'products.image' , 'products.unicode')
+            ->select('markusers.id as markID' ,'products.title_fa as product_title' , 'products.id as productID' , 'products.slug' ,'products.image' , 'products.unicode')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
         $technical_units = Markuser::join('technical_units' , 'technical_units.id'  , '=' , 'markusers.technical_id')
-            ->select('markusers.id as markID' ,'technical_units.id as technicalID' , 'technical_units.title as technical_title' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address')
+            ->select('markusers.id as markID' ,'technical_units.id as technicalID' , 'technical_units.title as technical_title' , 'technical_units.slug' ,  'technical_units.image' , 'technical_units.manager' , 'technical_units.address')
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
 
