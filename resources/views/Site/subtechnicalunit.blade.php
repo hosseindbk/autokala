@@ -14,7 +14,7 @@
                 <div class="col-lg-4 pr">
                     <div class="header-search row text-right">
                         <div class="header-search-box">
-                            <form action="{{route('technicalsearch')}}" method="get" class="form-search">
+                            <form action="{{route('technicalsearchandfilter')}}" method="get" class="form-search">
                                 <input type="text" class="header-search-input" value="{{request('technicalsearch')}}" name="technicalsearch" placeholder="نام تعمیرگاه یا واحد خدمات فنی جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
