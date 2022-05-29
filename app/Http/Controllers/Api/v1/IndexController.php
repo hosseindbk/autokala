@@ -251,23 +251,25 @@ class IndexController extends Controller
             END) AS type'))
             ->where('markusers.user_id' , Auth::user()->id)
             ->get();
-
-        foreach ($offers as $offer)
-        {
-            $offer[] = [
-                'markID'            => $offer->markID,
-                'offerID'           => $offer->offerID,
-                'numberofsell'      => $offer->numberofsell,
-                'slug'              => $offer->slug,
-                'image'             => $offer->image,
-                'title'             => $offer->title,
-                'state'             => $offer->state,
-                'city'              => $offer->city,
-                'wholesaleprice'    => $offer->wholesaleprice,
-                'retailprice'       => $offer->retailprice,
-                'type'              => $offer->type,
-                'date'              => jdate($offer->created_at)->ago(),
-            ];
+        if (trim($offers) != '[]') {
+            foreach ($offers as $offer) {
+                $offer[] = [
+                    'markID' => $offer->markID,
+                    'offerID' => $offer->offerID,
+                    'numberofsell' => $offer->numberofsell,
+                    'slug' => $offer->slug,
+                    'image' => $offer->image,
+                    'title' => $offer->title,
+                    'state' => $offer->state,
+                    'city' => $offer->city,
+                    'wholesaleprice' => $offer->wholesaleprice,
+                    'retailprice' => $offer->retailprice,
+                    'type' => $offer->type,
+                    'date' => jdate($offer->created_at)->ago(),
+                ];
+            }
+        }else{
+            $offer[] = null;
         }
 
         $products        = Markuser::join('products'   , 'products.id'    , '=' , 'markusers.product_id')
