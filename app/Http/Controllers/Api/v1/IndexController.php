@@ -254,7 +254,7 @@ class IndexController extends Controller
 
         foreach ($offers as $offer)
         {
-            $offe[] = [
+            $offer[] = [
                 'markID'            => $offer->markID,
                 'offerID'           => $offer->offerID,
                 'numberofsell'      => $offer->numberofsell,
@@ -282,7 +282,7 @@ class IndexController extends Controller
 
         $response = [
             'supplier'          => $suppliers,
-            'offer'             => $offe,
+            'offer'             => $offer,
             'product'           => $products,
             'technical_unit'    => $technical_units
         ];
