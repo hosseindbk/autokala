@@ -14,7 +14,7 @@
                 <div class="col-lg-4 pr">
                     <div class="header-search row text-right">
                         <div class="header-search-box">
-                            <form action="{{route('suppliersearch')}}" method="get" class="form-search">
+                            <form action="{{route('suppliersearchandfilter')}}" method="get" class="form-search">
                                 <input type="search" class="header-search-input" value="{{request('suppliersearch')}}" name="suppliersearch" placeholder="نام فروشگاه یا تامین کننده مورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
