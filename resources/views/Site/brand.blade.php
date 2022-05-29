@@ -11,8 +11,8 @@
                 <div class="col-lg-4 pr">
                     <div class="header-search row text-right">
                         <div class="header-search-box">
-                            <form action="{{route('brandsearch')}}" method="get" class="form-search">
-                                <input type="search" class="header-search-input" name="brandsearch" placeholder="نام برند قطعات مورد نظر خود را جستجو کنید…">
+                            <form action="{{route('brandsearchandfilter')}}" method="get" class="form-search">
+                                <input type="search" class="header-search-input" value="{{request('brandsearch')}}" name="brandsearch" placeholder="نام برند قطعات مورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
                                         <img src="{{asset('site/images/search.png')}}" alt="search">
@@ -68,6 +68,7 @@
     </section>
 @endsection
 @section('main')
+    @include('sweet::alert')
     <div class="container-main">
         <div class="d-block">
             <div class="page-content page-row">
@@ -99,7 +100,7 @@
                                     <div class="product-filter">
                                         <div class="card">
                                             <div class="collapse show" id="headingOne">
-                                                <form action="{{route('brandfilter')}}" method="get">
+                                                <form action="{{route('brandsearchandfilter')}}" method="get">
                                                 <div class="card-main mb-0" style="height: 100px;overflow: auto;">
                                                     <div class="mb-lg-4 mg-lg-4 mt-4">
                                                         <select multiple="multiple" name="country_id[]" id="country_id" class="form-control select2">

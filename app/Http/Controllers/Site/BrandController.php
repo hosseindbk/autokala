@@ -27,15 +27,22 @@ class BrandController extends Controller
     public function index(){
         $menus              = Menu::whereStatus(4)->get();
         $states             = State::all();
+        $keywords           = request('brandsearch');
         $countState         = null;
         $countries          = Country::all();
         $productgroups      = Product_group::whereStatus(4)->get();
         $carbrands          = Car_brand::whereStatus(4)->get();
-        $newbrands          = Brand::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $clickbrands        = Brand::whereStatus(4)->orderBy('click')->paginate(16);
-        $goodbrands         = Brand::whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $oldbrands          = Brand::whereStatus(4)->orderBy('id')->paginate(16);
-        $brands             = Brand::whereStatus(4)->get();
+        $brand_id           = Brand::brandsearch($keywords)->whereStatus(4)->pluck('id');
+        if ($brand_id == '[]'){
+            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
+            return Redirect::back();
+        }
+
+        $newbrands          = Brand::brandsearch($keywords)->filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $clickbrands        = Brand::brandsearch($keywords)->filter()->whereStatus(4)->orderBy('click')->paginate(16);
+        $goodbrands         = Brand::brandsearch($keywords)->filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+        $oldbrands          = Brand::brandsearch($keywords)->filter()->whereStatus(4)->orderBy('id')->paginate(16);
+        $brands             = Brand::brandsearch($keywords)->filter()->whereStatus(4)->get();
         return view('Site.brand')
             ->with(compact('countries'))
             ->with(compact('countState'))
@@ -50,31 +57,31 @@ class BrandController extends Controller
             ->with(compact('menus'));
     }
 
-    public function brandfilter(){
-        $menus              = Menu::whereStatus(4)->get();
-        $states             = State::all();
-        $countState         = null;
-        $countries          = Country::all();
-        $productgroups      = Product_group::whereStatus(4)->get();
-        $carbrands          = Car_brand::whereStatus(4)->get();
-        $newbrands          = Brand::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $clickbrands        = Brand::filter()->whereStatus(4)->orderBy('click')->paginate(16);
-        $goodbrands         = Brand::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $oldbrands          = Brand::filter()->whereStatus(4)->orderBy('id')->paginate(16);
-        $brands             = Brand::filter()->whereStatus(4)->get();
-        return view('Site.brand')
-            ->with(compact('countries'))
-            ->with(compact('countState'))
-            ->with(compact('newbrands'))
-            ->with(compact('states'))
-            ->with(compact('clickbrands'))
-            ->with(compact('goodbrands'))
-            ->with(compact('brands'))
-            ->with(compact('oldbrands'))
-            ->with(compact('carbrands'))
-            ->with(compact('productgroups'))
-            ->with(compact('menus'));
-    }
+//    public function brandfilter(){
+//        $menus              = Menu::whereStatus(4)->get();
+//        $states             = State::all();
+//        $countState         = null;
+//        $countries          = Country::all();
+//        $productgroups      = Product_group::whereStatus(4)->get();
+//        $carbrands          = Car_brand::whereStatus(4)->get();
+//        $newbrands          = Brand::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+//        $clickbrands        = Brand::filter()->whereStatus(4)->orderBy('click')->paginate(16);
+//        $goodbrands         = Brand::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
+//        $oldbrands          = Brand::filter()->whereStatus(4)->orderBy('id')->paginate(16);
+//        $brands             = Brand::filter()->whereStatus(4)->get();
+//        return view('Site.brand')
+//            ->with(compact('countries'))
+//            ->with(compact('countState'))
+//            ->with(compact('newbrands'))
+//            ->with(compact('states'))
+//            ->with(compact('clickbrands'))
+//            ->with(compact('goodbrands'))
+//            ->with(compact('brands'))
+//            ->with(compact('oldbrands'))
+//            ->with(compact('carbrands'))
+//            ->with(compact('productgroups'))
+//            ->with(compact('menus'));
+//    }
 
     public function brandindex(){
         $id                     = request('state_id');

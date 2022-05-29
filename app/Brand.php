@@ -9,7 +9,7 @@ class Brand extends Model
     public function scopeBrandSearch($query , $keywords)
     {
         $category = request('category_id');
-        if ($category == 'all')
+        if ($category == 'all' || $category == null)
         {
             $query->where('title_fa' , 'LIKE' , '%' .$keywords. '%')
                 ->orwhere('title_en' , 'LIKE' , '%' .$keywords. '%')

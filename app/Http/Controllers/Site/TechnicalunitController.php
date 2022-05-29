@@ -59,7 +59,7 @@ class TechnicalunitController extends Controller
 //        }
         $keywords        = request('technicalsearch');
         $productgroup    = request('productgroup_id');
-        $carbrandset      = request('car_brand_id');
+        $carbrandset     = request('car_brand_id');
         if(isset($productgroup)  && $productgroup != '') {
             $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
         }else{$productgroup_id = null;}

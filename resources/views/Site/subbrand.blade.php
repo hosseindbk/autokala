@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    <title> وبسایت اتوکالا</title>
+    <title>@foreach($brands as $brand) {{$brand->title_fa}} @endforeach | برند ها در وبسایت اتوکالا </title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/noUISlider.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/bootstrap-slider.min.css')}}">
@@ -12,7 +12,7 @@
                 <div class="col-lg-4 pr">
                     <div class="header-search row text-right">
                         <div class="header-search-box">
-                            <form action="{{route('brandsearch')}}" method="get" class="form-search">
+                            <form action="{{route('brandsearchandfilter')}}" method="get" class="form-search">
                                 <input type="text" class="header-search-input" value="{{request('brandsearch')}}" name="brandsearch" placeholder="نام برندمورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">

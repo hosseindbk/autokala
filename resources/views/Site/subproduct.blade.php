@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    <title>@foreach($products as $product) {{$product->title_fa}} @endforeach در وبسایت اتوکالا </title>
+    <title>@foreach($products as $product) {{$product->title_fa}} @endforeach |  قطعات خودرو در وبسایت اتوکالا </title>
 
     <link rel="stylesheet" href="{{asset('site/css/vendor/noUISlider.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/bootstrap-slider.min.css')}}">

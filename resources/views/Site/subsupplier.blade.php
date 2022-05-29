@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    <title> وبسایت اتوکالا</title>
+    <title>@foreach($suppliers as $supplier) {{$supplier->title}} @endforeach | فروشگاه لوازم یدکی در اتوکالا </title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/noUISlider.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/bootstrap-slider.min.css')}}">

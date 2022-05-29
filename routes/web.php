@@ -112,9 +112,9 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('productbrand/{slug}/{id}'   , 'ProductController@productbrand' );
     /*brand*/
     Route::get('brand'                      , 'BrandController@index' );
+    Route::get('brand'                      , 'BrandController@index')->name('brandsearchandfilter');
     Route::get('brand/{slug}'               , 'BrandController@subbrand' );
-    Route::get('brandsearch'                , 'SearchController@brandsearch')->name('brandsearch');
-    Route::get('brand/filter/country'       , 'BrandController@brandfilter' )->name('brandfilter');
+//    Route::get('brand/filter/country'       , 'BrandController@brandfilter' )->name('brandfilter');
 
     /*technical*/
     Route::get('technical'                  , 'TechnicalunitController@index' );
