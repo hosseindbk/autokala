@@ -128,7 +128,7 @@
                     <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">
-                                <form action="{{route('supplierfilter')}}" method="get">
+                                <form action="{{route('suppliersearchandfilter')}}" method="get">
                                     <section class="widget-product-categories">
                                         <header class="cat-header">
                                             <h2 class="mb-0">
