@@ -255,7 +255,7 @@ class IndexController extends Controller
 
         if (trim($offers) != '[]') {
             foreach ($offers as $offer) {
-                $offer[] = [
+                $offeri[] = [
                     'markID'        => $offer->markID,
                     'offerID'       => $offer->offerID,
                     'numberofsell'  => $offer->numberofsell,
@@ -286,7 +286,7 @@ class IndexController extends Controller
 
         $response = [
             'supplier'          => $suppliers,
-            'offer'             => $offer,
+            'offer'             => $offeri,
             'product'           => $products,
             'technical_unit'    => $technical_units
         ];
