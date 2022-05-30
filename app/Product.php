@@ -71,7 +71,7 @@ class Product extends Model
 
         $brandvarity = request('brandvarity');
         if (isset($brandvarity) && $brandvarity == 1) {
-            $query->sort('countvarity' , 'DESC');
+            $query->orderBy('countvarity' , 'DESC');
         }
     }
     public function productgroup(){
