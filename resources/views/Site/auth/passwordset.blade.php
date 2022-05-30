@@ -20,11 +20,11 @@
                                             <h4>رمز عبور جدید خود را وارد نمایید</h4>
                                             <div class="form-account-title">
                                                 <label>رمز عبور</label>
-                                                <input type="password" name="password" class="form-control" />
+                                                <input type="password" name="password" placeholder="حداقل 8 کارکتر یا عدد" class="form-control" />
                                             </div>
                                             <div class="form-account-title">
                                                 <label>تکرار رمز عبور</label>
-                                                <input type="password" name="password_confirmation" class="form-control" />
+                                                <input type="password" name="password_confirmation" placeholder="رمز وارد شده را تکرار کنید" class="form-control" />
                                             </div>
                                             <br>
                                             <div class="form-row-account">
