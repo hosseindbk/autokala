@@ -250,22 +250,24 @@ class IndexController extends Controller
             WHEN users.type_id = "4" THEN "شخصی"
             END) AS type'))
             ->where('markusers.user_id' , Auth::user()->id)
+            ->where('offers.status' , 4)
             ->get();
+
         if (trim($offers) != '[]') {
             foreach ($offers as $offer) {
                 $offer[] = [
-                    'markID' => $offer->markID,
-                    'offerID' => $offer->offerID,
-                    'numberofsell' => $offer->numberofsell,
-                    'slug' => $offer->slug,
-                    'image' => $offer->image,
-                    'title' => $offer->title,
-                    'state' => $offer->state,
-                    'city' => $offer->city,
-                    'wholesaleprice' => $offer->wholesaleprice,
-                    'retailprice' => $offer->retailprice,
-                    'type' => $offer->type,
-                    'date' => jdate($offer->created_at)->ago(),
+                    'markID'        => $offer->markID,
+                    'offerID'       => $offer->offerID,
+                    'numberofsell'  => $offer->numberofsell,
+                    'slug'          => $offer->slug,
+                    'image'         => $offer->image,
+                    'title'         => $offer->title,
+                    'state'         => $offer->state,
+                    'city'          => $offer->city,
+                    'wholesaleprice'=> $offer->wholesaleprice,
+                    'retailprice'   => $offer->retailprice,
+                    'type'          => $offer->type,
+                    'date'          => jdate($offer->created_at)->ago(),
                 ];
             }
         }else{
