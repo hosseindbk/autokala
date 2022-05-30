@@ -77,6 +77,13 @@ class Technical_unit extends Model
             $query->whereIn('id' , $product_id);
         }
     }
+    public function scopeSort($query)
+    {
+        $state_id = request('state_id');
+        if (isset($state_id) &&  $state_id != null) {
+            $query->whereState_id($state_id);
+        }
+    }
     public  function comment(){
 
         return $this->morphMany(comment::class, 'commentable');

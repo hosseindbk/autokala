@@ -22,8 +22,7 @@ class TechnicalunitController extends Controller
             ->whereStatus(4)
             ->filter()
             ->orderBy('id' , 'DESC')
-            ->paginate(10)
-            ->toArray();
+            ->paginate(10);
 
         $response = ['technical_unit' => $technicals];
 

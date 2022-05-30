@@ -20,8 +20,8 @@ class ProductController extends Controller
     public function index(){
         $products       = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
             ->whereStatus(4)
+            ->sort()
             ->filter()
-            ->latest()
             ->paginate(10);
 
         $response = [

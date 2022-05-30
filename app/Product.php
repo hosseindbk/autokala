@@ -57,6 +57,23 @@ class Product extends Model
                 $query->whereIn('id' , $product_id);
         }
     }
+    public function scopeSort($query)
+    {
+        $newest = request('newest');
+        if (isset($newest) && $newest == 1) {
+            $query->orderBy('id' , 'DESC');
+        }
+
+        $click = request('click');
+        if (isset($click) && $click == 1) {
+            $query->orderBy('click' , 'DESC');
+        }
+
+        $brandvarity = request('brandvarity');
+        if (isset($brandvarity) && $brandvarity == 1) {
+            $query->sort('id' , 'DESC');
+        }
+    }
     public function productgroup(){
 
         return $this->belongsToMany(Product_group::class);
