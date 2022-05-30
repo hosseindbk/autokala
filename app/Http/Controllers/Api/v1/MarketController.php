@@ -137,8 +137,6 @@ class MarketController extends Controller
           leftJoin('products'               , 'products.unicode'                    , '=' , 'offers.unicode_product')
         ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id'  , '=' , 'products.id')
             ->select('product_brand_varieties.item1','product_brand_varieties.value_item1','product_brand_varieties.item2','product_brand_varieties.value_item2','product_brand_varieties.item3','product_brand_varieties.value_item3',
-                'product_brand_varieties.strength1','product_brand_varieties.strength2','product_brand_varieties.strength3','product_brand_varieties.weakness1','product_brand_varieties.weakness2','product_brand_varieties.weakness3'
-                ,
                 DB::raw( '(CASE
             WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
             WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
