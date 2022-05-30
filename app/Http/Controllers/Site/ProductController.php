@@ -113,56 +113,6 @@ class ProductController extends Controller
             ->with(compact('newproducts'));
     }
 
-//    public function productfilter(){
-//
-//        $productgroup = request('productgroup_id');
-//        if(isset($productgroup)  && $productgroup != '') {
-//            $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
-//        }else{$productgroup_id = null;}
-//
-//        $carmodel = request('car_model_id');
-//        if(isset($carmodel)  && $carmodel != '') {
-//            $carmodel_id = Car_model::whereIn('id', $carmodel)->get();
-//        }else{$carmodel_id = null;}
-//
-//        $brand = request('brand_id');
-//        if(isset($brand)  && $brand != '') {
-//            $brand_id = Brand::whereIn('id', $brand)->get();
-//        }else{$brand_id = null;}
-//        $countState     = null;
-//
-//        $menus              = Menu::whereStatus(4)->get();
-//        $count              = Product::filter()->whereStatus(4)->count();
-//        $newproducts        = Product::filter()->whereStatus(4)->paginate(16);
-//        $clickproducts      = Product::filter()->whereStatus(4)->orderBy('click')->paginate(16);
-//        $oldproducts        = Product::filter()->whereStatus(4)->orderBy('id')->paginate(16);
-//        $states             = State::all();
-//        $productgroups      = Product_group::whereStatus(4)->get();
-//        $carproducts        = Car_product::whereStatus(4)->get();
-//        $carmodels          = Car_model::whereStatus(4)->get();
-//        $carbrands          = Car_brand::whereStatus(4)->get();
-//        $brands             = Brand::whereStatus(4)->get();
-//        $filter             = 1;
-//        return view('Site.product')
-//            ->with(compact('countState'))
-//            ->with(compact('count'))
-//            ->with(compact('brand_id'))
-//            ->with(compact('filter'))
-//            ->with(compact('carmodel_id'))
-//            ->with(compact('productgroup_id'))
-//            ->with(compact('brands'))
-//            ->with(compact('states'))
-//            ->with(compact('clickproducts'))
-//            ->with(compact('oldproducts'))
-//            ->with(compact('carbrands'))
-//            ->with(compact('carproducts'))
-//            ->with(compact('carmodels'))
-//            ->with(compact('productgroups'))
-//            ->with(compact('menus'))
-//            ->with(compact('newproducts'));
-//
-//    }
-
     public function subproduct($slug){
 
         $menus                  = Menu::whereStatus(4)->get();

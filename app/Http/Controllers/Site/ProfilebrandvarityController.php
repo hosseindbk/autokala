@@ -95,6 +95,12 @@ class ProfilebrandvarityController extends Controller
         }
         $productbrandvarieties->save();
 
+        $productcount   = Product::whereId($productbrandvarieties->product_id)->pluck('countvarity');
+
+        $product        = Product::findOrFail($productbrandvarieties->product_id);
+        $product->countvarity = $productcount[0] + 1;
+        $product->update();
+
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return Redirect::back();
 
