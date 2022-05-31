@@ -94,17 +94,17 @@ class Offer extends Model
 
         $newest = request('newest');
         if (isset($newest) && $newest == 1) {
-            $query->orderBy('id' , 'DESC');
+            $query->orderBy('offers.id' , 'DESC');
         }
 
         $click = request('click');
         if (isset($click) && $click == 1) {
-            $query->orderBy('click' , 'DESC');
+            $query->orderBy('offers.click' , 'DESC');
         }
 
         $brandvarity = request('brandvarity');
         if (isset($brandvarity) && $brandvarity == 1) {
-            $query->orderBy('countvarity' , 'DESC');
+            $query->orderBy('offers.countvarity' , 'DESC');
         }
 
     }
