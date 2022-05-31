@@ -6,6 +6,7 @@ use App\Brand;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\productbrandvarietyrequest;
 use App\Menu;
+use App\Offer;
 use App\Product;
 use App\Product_brand_variety;
 use App\Product_group;
@@ -39,6 +40,7 @@ class ProfilebrandvarityController extends Controller
 
     public function store(productbrandvarietyrequest $request)
     {
+
         $productbrandvarieties = new Product_brand_variety();
 
         $productbrandvarieties->brand_id             = $request->input('brand_id');
@@ -95,11 +97,21 @@ class ProfilebrandvarityController extends Controller
         }
         $productbrandvarieties->save();
 
-        $productcount   = Product::whereId($productbrandvarieties->product_id)->pluck('countvarity');
+        $productcount           = Product_brand_variety::whereProduct_id($request->input('product_id'))->count();
 
-        $product        = Product::findOrFail($productbrandvarieties->product_id);
-        $product->countvarity = $productcount[0] + 1;
+        $product                = Product::findOrFail($productbrandvarieties->product_id);
+        $product->countvarity   = $productcount;
         $product->update();
+
+        $productunicode         = Product::whereId($request->input('product_id'))->pluck('unicode');
+        $offer_id               = Offer::whereUnicode_product($productunicode)->pluck('id');
+        $offers                  = Offer::whereIn('id' , $offer_id)->get();
+
+        foreach ($offers as $offer) {
+            $offer = $offer->findOrfail($offer->id);
+            $offer->countvarity     = $productcount;
+            $offer->update();
+        }
 
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return Redirect::back();
