@@ -443,6 +443,13 @@ class MarketController extends Controller
         $caroffers              = Car_offer::all();
         $filter                 = 0;
 
+        $offer_click            = Offer::whereSlug($slug)->pluck('click');
+        $offer_new_click        = $offer_click[0] + 1;
+        $offes                  = Offer::findOrfail($offer_id)->first();
+        $offes->click           = $offer_new_click;
+        $offes->update();
+
+
         return view('Site.submarket')
             ->with(compact('brand_varietis'))
             ->with(compact('users'))
