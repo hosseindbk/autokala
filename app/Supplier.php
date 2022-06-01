@@ -99,12 +99,12 @@ class Supplier extends Model
 
         $user_rate = request('user_rate');
         if (isset($user_rate) &&  $user_rate = 1) {
-            $query->orderby($user_rate , 'DESC');
+            $query->orderby('avgrate' , 'DESC');
         }
 
-        $autokala = request('autokala');
-        if (isset($autokala) &&  $autokala = 1) {
-            $query->whereState_id($autokala);
+        $autokala_rate = request('autokala_rate');
+        if (isset($autokala_rate) &&  $autokala_rate = 1) {
+            $query->orderby('autokala' , 'DESC');
         }
 
     }
