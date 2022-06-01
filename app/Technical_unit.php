@@ -79,10 +79,17 @@ class Technical_unit extends Model
     }
     public function scopeSort($query)
     {
-        $state_id = request('state_id');
-        if (isset($state_id) &&  $state_id != null) {
-            $query->whereState_id($state_id);
+
+        $user_rate = request('user_rate');
+        if (isset($user_rate) &&  $user_rate = 1) {
+            $query->orderby($user_rate , 'DESC');
         }
+
+        $autokala = request('autokala');
+        if (isset($autokala) &&  $autokala = 1) {
+            $query->whereState_id($autokala);
+        }
+
     }
     public  function comment(){
 

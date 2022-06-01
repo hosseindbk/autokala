@@ -19,7 +19,7 @@ class SupplierController extends Controller
         $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->whereStatus(4)
             ->filter()
-            ->orderBy('id' , 'DESC')
+            ->sort()
             ->paginate(10);
 
         $response = ['supplier' => $suppliers];

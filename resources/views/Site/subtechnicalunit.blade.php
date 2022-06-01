@@ -237,11 +237,11 @@
                                 </div>
                             </div>
                                 <div class="col-lg-6 col-md-6 col-xs-12 pl text-center">
-                                    @if($technical_unit->autokala == 1)
+                                    @if($technical_unit->autokala == 3)
                                         <img src="{{asset('images/autokala1.jpg')}}" alt="نشان طلایی اتوکالا">
                                     @elseif($technical_unit->autokala == 2)
                                         <img src="{{asset('images/autokala2.jpg')}}" alt="نشان نقره ای توکالا">
-                                    @elseif($technical_unit->autokala == 3)
+                                    @elseif($technical_unit->autokala == 1)
                                         <img src="{{asset('images/autokala3.jpg')}}" alt="نشان برنزی اتوکالا">
                                     @endif
                                 </div>

@@ -94,6 +94,20 @@ class Supplier extends Model
         }
         return $query;
     }
+    public function scopeSort($query)
+    {
+
+        $user_rate = request('user_rate');
+        if (isset($user_rate) &&  $user_rate = 1) {
+            $query->orderby($user_rate , 'DESC');
+        }
+
+        $autokala = request('autokala');
+        if (isset($autokala) &&  $autokala = 1) {
+            $query->whereState_id($autokala);
+        }
+
+    }
     public  function comment(){
 
         return $this->morphMany(comment::class, 'commentable');
