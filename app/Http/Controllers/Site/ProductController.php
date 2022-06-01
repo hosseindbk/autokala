@@ -55,11 +55,13 @@ class ProductController extends Controller
 
         $count              = Product::search($keywords)
             ->filter()
+            ->unicode()
             ->whereStatus(4)
             ->count();
 
         $newproducts    = Product::search($keywords)
             ->filter()
+            ->unicode()
             ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
             ->whereStatus(4)
             ->orderBy('id' , 'DESC')
@@ -67,6 +69,7 @@ class ProductController extends Controller
 
         $clickproducts  = Product::search($keywords)
             ->filter()
+            ->unicode()
             ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
             ->whereStatus(4)
             ->orderBy('click' , 'DESC')

@@ -74,6 +74,13 @@ class Product extends Model
             $query->orderBy('countvarity' , 'DESC');
         }
     }
+    public function scopeUnicode($query)
+    {
+        $unicode = request('unicode');
+        if (isset($unicode) && $unicode != null) {
+            $query->where('unicode', 'LIKE', '%' . $unicode . '%');
+        }
+    }
     public function productgroup(){
 
         return $this->belongsToMany(Product_group::class);

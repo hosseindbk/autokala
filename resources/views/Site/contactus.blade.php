@@ -53,7 +53,7 @@
                 <div class="col-lg-4 pl">
                     <div class="header-search row text-right">
                         <div class="header-search-box">
-                            <form action="{{route('unicode')}}" method="get" class="form-search">
+                            <form action="{{route('productsearchandfilter')}}" value="{{request('unicode')}}" method="get" class="form-search">
                                 <input type="search" class="header-search-input-code green-place" name="unicode" placeholder="جستجوی یونیکد (شناسه 10 رقمی کالا)">
                                 <div class="action-btns">
                                     <button class="btn btn-search btn-search-green" type="submit">
