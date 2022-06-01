@@ -107,6 +107,12 @@ class Supplier extends Model
             $query->orderby('autokala' , 'DESC');
         }
 
+        $lat = request('lat');
+        $lng = request('lng');
+        if ($lat != null && $lng) {
+            $query->orderByRaw("(POW((lat-$lng),2) + POW((lng-$lat),2))");
+        }
+
     }
     public  function comment(){
 
