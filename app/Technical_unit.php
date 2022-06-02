@@ -92,8 +92,8 @@ class Technical_unit extends Model
 
         $lat = request('lat');
         $lng = request('lng');
-        if ($lat != null && $lng) {
-            $query->orderByRaw("(POW((lat-$lng),2) + POW((lng-$lat),2))");
+        if ($lat != null && $lng != null) {
+            $query->orderByRaw("(POW((lat-$lat),2) + POW((lng-$lng),2))");
         }
 
     }
