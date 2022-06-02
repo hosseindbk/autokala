@@ -109,10 +109,9 @@ class Offer extends Model
 
         $lat = request('lat');
         $lng = request('lng');
-        if ($lat != null && $lng) {
+        if ($lat != null && $lng != null) {
             $query->orderByRaw("(POW((offers.lat-$lat),2) + POW((offers.lng-$lng),2))");
         }
-
     }
     public  function comment(){
 
