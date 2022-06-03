@@ -310,4 +310,70 @@ class TechnicalunitController extends Controller
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
 
+    public function updatetechnical(Request $request,$id)
+    {
+        $technical_unit = Technical_unit::findOrfail($id);
+
+        $technical_unit->title          = $request->input('title');
+        $technical_unit->manager        = $request->input('manager');
+        $technical_unit->state_id       = $request->input('state_id');
+        $technical_unit->city_id        = $request->input('city_id');
+        if ($request->input('lat') != null){
+            $technical_unit->lat          = $request->input('lat');
+        }
+        if ($request->input('lng') != null){
+            $technical_unit->lng          = $request->input('lng');
+        }
+        $technical_unit->phone          = $request->input('phone');
+        $technical_unit->phone2         = $request->input('phone2');
+        $technical_unit->phone3         = $request->input('phone3');
+        $technical_unit->mobile         = $request->input('mobile');
+        $technical_unit->mobile2        = $request->input('mobile2');
+        $technical_unit->whatsapp       = $request->input('whatsapp');
+        $technical_unit->status         = 1;
+        $technical_unit->email          = $request->input('email');
+        $technical_unit->website        = $request->input('site');
+        $technical_unit->address        = $request->input('address');
+        $technical_unit->description    = $request->input('description');
+        $technical_unit->user_id        = Auth::user()->id;
+
+        if ($request->file('image') != null) {
+            $file = $request->file('image');
+            $img = Image::make($file);
+            $imagePath ="image/technicals/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $technical_unit->image = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath ="image/technicals/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $technical_unit->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath ="image/technicals/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $technical_unit->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        $technical_unit->update();
+
+        $status = true;
+        $message = 'success';
+        $response = 'اطلاعات با موفقیت ثبت شد';
+        $id = $technical_unit->id;
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response , 'technical_id' => $id]);
+    }
+
+
 }

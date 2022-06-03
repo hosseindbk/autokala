@@ -47,11 +47,14 @@ Route::middleware('auth:api')->group(function (){
     Route::get('bmpsell'                            , 'MarketController@bmpsell');
     Route::get('bmpmarket'                          , 'MarketController@bmpmarket');
     Route::post('/supplier/store'                   , 'SupplierController@store');
+    Route::post('/supplier/edit/{id}'               , 'SupplierController@update');
     Route::post('/supplier/carsupplierstore'        , 'SupplierController@carsupplierstore');
     Route::post('/technicalunit/store'              , 'TechnicalunitController@store');
+    Route::post('/technicalunit/edit/{id}'          , 'TechnicalunitController@update');
     Route::post('/technicalunit/cartechnicalstore'  , 'TechnicalunitController@cartechnicalstore');
     Route::post('/product/createproductvariety'     , 'ProductController@createproductvariety');
     Route::post('/offer/store'                      , 'OfferController@store');
+    Route::post('/offer/edit/{id}'                  , 'OfferController@update');
     Route::post('/offer/carofferstore'              , 'OfferController@carofferstore');
     Route::post('/user/update'                      , 'UserController@update');
     Route::post('/technicalunit/delete'             , 'TechnicalunitController@technicaldelete');

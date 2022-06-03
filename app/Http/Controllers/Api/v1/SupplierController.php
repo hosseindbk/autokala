@@ -315,4 +315,88 @@ class SupplierController extends Controller
                 return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
             }
 
+    public function updatesupplier(Request $request, $id)
+    {
+
+        $supplier = Supplier::findOrfail($id);
+
+        if($request->input('manufacturer') == 'on'){
+            $supplier->manufacturer = 1;
+        }
+        if($request->input('manufacturer') == null) {
+            $supplier->manufacturer = 0;
+        }
+        if($request->input('importer') == 'on'){
+            $supplier->importer = 1;
+        }
+        if($request->input('importer') == null) {
+            $supplier->importer = 0;
+        }
+        if($request->input('whole_seller') == 'on'){
+            $supplier->whole_seller = 1;
+        }
+        if($request->input('whole_seller') == null) {
+            $supplier->whole_seller = 0;
+        }
+        if($request->input('retail_seller') == 'on'){
+            $supplier->retail_seller = 1;
+        }
+        if($request->input('retail_seller') == null) {
+            $supplier->retail_seller = 0;
+        }
+        $supplier->title        = $request->input('title');
+        $supplier->manager      = $request->input('manager');
+        $supplier->phone        = $request->input('phone');
+        $supplier->mobile       = $request->input('mobile');
+        $supplier->whatsapp     = $request->input('whatsapp');
+        $supplier->email        = $request->input('email');
+        if ($request->input('lat') != null){
+            $supplier->lat          = $request->input('lat');
+        }
+        if ($request->input('lng') != null){
+            $supplier->lng          = $request->input('lng');
+        }
+        $supplier->website      = $request->input('website');
+        $supplier->state_id     = $request->input('state_id');
+        $supplier->city_id      = $request->input('city_id');
+        $supplier->address      = $request->input('address');
+        $supplier->status       = 2;
+        $supplier->description  = $request->input('description');
+        $supplier->user_id      = Auth::user()->id;
+
+        if ($request->file('image') != null) {
+            $file = $request->file('image');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $supplier->image = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $supplier->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $supplier->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        $supplier->update();
+        $status = true;
+        $message = 'success';
+        $response = 'اطلاعات با موفقیت ثبت شد';
+        $id = $supplier->id;
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response , 'technical_id' => $id]);
+    }
+
 }

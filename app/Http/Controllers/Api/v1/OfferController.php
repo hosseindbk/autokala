@@ -178,4 +178,78 @@ class OfferController extends Controller
 
     }
 
+    public function update(Request $request , $id)
+    {
+        $offer = Offer::findOrfail($id);
+
+        $offer->title_offer        = $request->input('title_offer');
+        $offer->product_group      = $request->input('product_group');
+        $offer->noe                = $request->input('noe');
+        $offer->state_id           = $request->input('state_id');
+        $offer->buyorsell          = $request->input('buyorsell');
+        if ($request->input('unicode_product') != null) {
+            $offer->unicode_product = $request->input('unicode_product');
+        }
+        $offer->product_name       = $request->input('product_name');
+        if($request->input('single_price')) {
+            $offer->single_price = str_replace(',', '', $request->input('single_price'));
+        }
+        $offer->city_id            = $request->input('city_id');
+        $offer->mobile             = $request->input('mobile');
+        $offer->brand_id           = $request->input('brand_id');
+        $offer->brand_name         = $request->input('brand_name');
+        $offer->total              = $request->input('total');
+        $offer->lat                = $request->input('lat');
+        $offer->lng                = $request->input('lng');
+        $offer->description        = $request->input('description');
+        $offer->address            = $request->input('address');
+        $offer->phone              = $request->input('phone');
+        if ($request->input('single') != null) {
+            $offer->single = $request->input('single');
+        }
+        if($request->input('price')) {
+            $offer->price = str_replace(',', '', $request->input('price'));
+        }
+        $offer->supplier_id        = $request->input('supplier_id');
+        $offer->permanent_supplier = $request->input('permanent_supplier');
+        $offer->status             = '1';
+
+        if ($request->file('image1') != null) {
+            $file = $request->file('image1');
+            $img = Image::make($file);
+            $imagePath ="images/offer";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $offer->image1 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image2') != null) {
+            $file = $request->file('image2');
+            $img = Image::make($file);
+            $imagePath ="images/offer";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $offer->image2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+
+        if ($request->file('image3') != null) {
+            $file = $request->file('image3');
+            $img = Image::make($file);
+            $imagePath ="images/offer";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $offer->image3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        $offer->update();
+
+        $status     = true;
+        $message    = 'success';
+        $response   = 'اطلاعات با موفقیت ثبت شد';
+
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+    }
+
 }
