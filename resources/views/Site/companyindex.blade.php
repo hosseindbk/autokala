@@ -8,7 +8,7 @@
     <div class="container-main">
         @include('sweet::alert')
         <div class="d-block">
-            <div class="col-lg-3 col-xs-6" style="margin: 0 auto;">
+            <div class="col-lg-1 col-xs-6" style="margin: 0 auto;">
                 <div class="slider-main-container d-block">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -29,13 +29,47 @@
             </div>
         </div>
         <div class="d-block">
-            <div class="col-lg-6 col-xs-6" style="margin: 0 auto;">
+
+            <div class="col-lg-8 col-xs-12 pr mt-3">
                 <div class="slider-main-container d-block">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach($suppliers as $supplier)
-                                <div class="p-4" style="line-height: 40px;">{!! $supplier->description !!}</div>
+                        <ol class="carousel-indicators">
+                            @foreach($orginal_slides as $slide)
+                                <li data-target="#carouselExampleIndicators" data-slide-to="{{$slide->id}}" class="@if($slide->id == $minid) active @endif"></li>
                             @endforeach
+                        </ol>
+                        <div class="carousel-inner">
+                            @foreach($orginal_slides as $slide)
+                                <div class="carousel-item @if($slide->id == $minid) active @endif">
+                                    <a href="{{$slide->link}}" class="adplacement-item"  target="_blank">
+                                        <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                           data-slide="prev">
+                            <span class="fa fa-angle-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                           data-slide="next">
+                            <span class="fa fa-angle-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-xs-12 pl mt-1">
+                <div class="adplacement-container-column">
+                    <div class="slider-main-container d-block">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach($suppliers as $supplier)
+                                    <div class="p-4" style="line-height: 40px;">{!! $supplier->description !!}</div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

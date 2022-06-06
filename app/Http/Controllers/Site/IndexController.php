@@ -121,17 +121,15 @@ class IndexController extends Controller
                 ->whereBuyorsell('sell')
                 ->where('offers.brand_id', '<>', null)
                 ->get();
-            $visitors = new Visitor();
 
-            $visitors->ip = request()->ip();
-            $visitors->datetime = jdate();
-            $visitors->page_id = '/';
-
-            $visitors->save();
+            $orginal_slides     = Slide::whereStatus(4)->wherePosition(1)->latest()->get();
+            $minid              = Slide::whereStatus(4)->wherePosition(1)->min('id');
 
             return view('Site.companyindex')
                 ->with(compact('brandnames'))
                 ->with(compact('cities'))
+                ->with(compact('orginal_slides'))
+                ->with(compact('minid'))
                 ->with(compact('users'))
                 ->with(compact('countState'))
                 ->with(compact('states'))
