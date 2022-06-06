@@ -27,10 +27,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-11 col-xs-6">
+            <div class="col-lg-10 col-xs-6">
                 <div class="carousel-inner">
                     @foreach($suppliers as $supplier)
-                        <ul class="footer-menu-ul">
+                        <ul style="text-align: left;direction: ltr">
                             <li class="menu-item-type-custom">
                                 <a href="tel:{{$supplier->phone}}">
                                     تلفن ثابت :     {{$supplier->phone}}
