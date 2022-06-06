@@ -7,6 +7,8 @@
 @section('main')
     <div class="container-main">
         @include('sweet::alert')
+        <div class="d-block">
+
         <div class="slider-main-container d-block">
                     <div class="col-lg-1 col-md-1 col-xs-4">
                         <div class="slider-main-container d-block">
@@ -53,6 +55,7 @@
                             @endforeach
                         </div>
                     </div>
+        </div>
         </div>
         <div class="d-block">
 
