@@ -27,31 +27,27 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-xs-6">
-                <div class="slider-main-container d-block">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach($suppliers as $supplier)
-                                    <ul class="footer-menu-ul">
-                                        <li class="menu-item-type-custom">
-                                            <a href="tel:{{$supplier->phone}}">
-                                                تلفن ثابت :     {{$supplier->phone}}
-                                            </a>
-                                        </li>
-                                        <li class="menu-item-type-custom">
-                                            <a href="tel:{{$supplier->mobile}}">
-                                                تلفن همراه :   {{$supplier->mobile}}
-                                            </a>
-                                        </li>
-                                        <li class="menu-item-type-custom">
-                                            <a href="tel:{{$supplier->whatsapp}}">
-                                                شبکه اجتماعی :   {{$supplier->whatsapp}}
-                                            </a>
-                                        </li>
-                                    </ul>
-                            @endforeach
-                        </div>
-                    </div>
+            <div class="col-lg-11 col-xs-6">
+                <div class="carousel-inner">
+                    @foreach($suppliers as $supplier)
+                        <ul class="footer-menu-ul">
+                            <li class="menu-item-type-custom">
+                                <a href="tel:{{$supplier->phone}}">
+                                    تلفن ثابت :     {{$supplier->phone}}
+                                </a>
+                            </li>
+                            <li class="menu-item-type-custom">
+                                <a href="tel:{{$supplier->mobile}}">
+                                    تلفن همراه :   {{$supplier->mobile}}
+                                </a>
+                            </li>
+                            <li class="menu-item-type-custom">
+                                <a href="tel:{{$supplier->whatsapp}}">
+                                    شبکه اجتماعی :   {{$supplier->whatsapp}}
+                                </a>
+                            </li>
+                        </ul>
+                    @endforeach
                 </div>
             </div>
         </div>
