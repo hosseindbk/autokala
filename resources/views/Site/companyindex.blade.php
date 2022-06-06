@@ -7,10 +7,8 @@
 @section('main')
     <div class="container-main">
         @include('sweet::alert')
-        <div class="d-block">
             <div class="row">
-                <div class="container-fluid">
-                    <div class="col-lg-1 col-xs-6">
+                    <div class="col-lg-1 col-md-1 col-xs-4">
                         <div class="slider-main-container d-block">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
@@ -29,10 +27,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-xs-6">
+                    <div class="col-lg-3 col-md-3 col-xs-4">
                         <h3>{{$supplier->title}}</h3>
                     </div>
-                    <div class="col-lg-8 col-xs-6">
+                    <div class="col-lg-8 col-md-8 col-xs-4">
                         <div class="carousel-inner">
                             @foreach($suppliers as $supplier)
                                 <ul style="text-align: left;direction: ltr">
@@ -55,9 +53,7 @@
                             @endforeach
                         </div>
                     </div>
-                </div>
             </div>
-        </div>
         <div class="d-block">
 
             <div class="col-lg-8 col-xs-12 pr mt-3 mb-3">
