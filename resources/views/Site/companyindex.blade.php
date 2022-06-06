@@ -30,12 +30,12 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-xs-4">
-                        <h3>{{$supplier->title}}</h3>
+                        <h3 style="margin: 50px">{{$supplier->title}}</h3>
                     </div>
                     <div class="col-lg-8 col-md-8 col-xs-4">
                         <div class="carousel-inner">
                             @foreach($suppliers as $supplier)
-                                <ul style="text-align: left;direction: ltr">
+                                <ul style="text-align: left;direction: ltr;margin: 30px">
                                     <li class="menu-item-type-custom">
                                         <a href="tel:{{$supplier->phone}}">
                                             تلفن ثابت :     {{$supplier->phone}}
