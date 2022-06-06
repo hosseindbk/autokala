@@ -8,7 +8,7 @@
     <div class="container-main">
         @include('sweet::alert')
         <div class="d-block">
-            <div class="col-lg-1 col-xs-6" style="margin: 0 auto;">
+            <div class="col-lg-1 col-xs-6">
                 <div class="slider-main-container d-block">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -22,6 +22,33 @@
                                         @endif
                                     </a>
                                 </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xs-6">
+                <div class="slider-main-container d-block">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach($suppliers as $supplier)
+                                    <ul class="footer-menu-ul">
+                                        <li class="menu-item-type-custom">
+                                            <a href="tel:{{$supplier->phone}}">
+                                                تلفن ثابت :     {{$supplier->phone}}
+                                            </a>
+                                        </li>
+                                        <li class="menu-item-type-custom">
+                                            <a href="tel:{{$supplier->mobile}}">
+                                                تلفن همراه :   {{$supplier->mobile}}
+                                            </a>
+                                        </li>
+                                        <li class="menu-item-type-custom">
+                                            <a href="tel:{{$supplier->whatsapp}}">
+                                                شبکه اجتماعی :   {{$supplier->whatsapp}}
+                                            </a>
+                                        </li>
+                                    </ul>
                             @endforeach
                         </div>
                     </div>
@@ -47,10 +74,10 @@
                                 </div>
                             @endforeach
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                        <a class="carousel-control-prev"  href="#carouselExampleIndicators" role="button"
                            data-slide="prev">
                             <span class="fa fa-angle-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
+                            <span class="sr-only">Previous </span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
                            data-slide="next">
