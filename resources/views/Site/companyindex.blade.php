@@ -30,7 +30,7 @@
         </div>
         <div class="d-block">
 
-            <div class="col-lg-8 col-xs-12 pr mt-3">
+            <div class="col-lg-8 col-xs-12 pr mt-3 mb-3">
                 <div class="slider-main-container d-block">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-xs-12 pl mt-1">
+            <div class="col-lg-4 col-md-4 col-xs-12 pl mt-3">
                 <div class="adplacement-container-column">
                     <div class="slider-main-container d-block">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
