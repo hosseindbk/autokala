@@ -8,46 +8,51 @@
     <div class="container-main">
         @include('sweet::alert')
         <div class="d-block">
-            <div class="col-lg-1 col-xs-6">
-                <div class="slider-main-container d-block">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach($suppliers as $supplier)
-                                <div class="carousel-item active" style="text-align: center;">
-                                    <a href="#" class="adplacement-item"  target="_blank">
-                                        @if($supplier->logo == null)
-                                            <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$supplier->title}}">
-                                        @else
-                                            <img src="{{asset($supplier->logo)}}" class="d-block w-100" alt="{{$supplier->title}}">
-                                        @endif
-                                    </a>
-                                </div>
-                            @endforeach
+            <div class="row">
+                <div class="col-lg-1 col-xs-6">
+                    <div class="slider-main-container d-block">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach($suppliers as $supplier)
+                                    <div class="carousel-item active" style="text-align: center;">
+                                        <a href="#" class="adplacement-item"  target="_blank">
+                                            @if($supplier->logo == null)
+                                                <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$supplier->title}}">
+                                            @else
+                                                <img src="{{asset($supplier->logo)}}" class="d-block w-100" alt="{{$supplier->title}}">
+                                            @endif
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-10 col-xs-6">
-                <div class="carousel-inner">
-                    @foreach($suppliers as $supplier)
-                        <ul style="text-align: left;direction: ltr">
-                            <li class="menu-item-type-custom">
-                                <a href="tel:{{$supplier->phone}}">
-                                    تلفن ثابت :     {{$supplier->phone}}
-                                </a>
-                            </li>
-                            <li class="menu-item-type-custom">
-                                <a href="tel:{{$supplier->mobile}}">
-                                    تلفن همراه :   {{$supplier->mobile}}
-                                </a>
-                            </li>
-                            <li class="menu-item-type-custom">
-                                <a href="tel:{{$supplier->whatsapp}}">
-                                    شبکه اجتماعی :   {{$supplier->whatsapp}}
-                                </a>
-                            </li>
-                        </ul>
-                    @endforeach
+                <div class="col-lg-1 col-xs-6">
+                    <h3>{{$supplier->title}}</h3>
+                </div>
+                <div class="col-lg-10 col-xs-6">
+                    <div class="carousel-inner">
+                        @foreach($suppliers as $supplier)
+                            <ul style="text-align: left;direction: ltr">
+                                <li class="menu-item-type-custom">
+                                    <a href="tel:{{$supplier->phone}}">
+                                        تلفن ثابت :     {{$supplier->phone}}
+                                    </a>
+                                </li>
+                                <li class="menu-item-type-custom">
+                                    <a href="tel:{{$supplier->mobile}}">
+                                        تلفن همراه :   {{$supplier->mobile}}
+                                    </a>
+                                </li>
+                                <li class="menu-item-type-custom">
+                                    <a href="tel:{{$supplier->whatsapp}}">
+                                        شبکه اجتماعی :   {{$supplier->whatsapp}}
+                                    </a>
+                                </li>
+                            </ul>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
