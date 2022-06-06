@@ -175,7 +175,7 @@
                                                 @elseif($offer->price < 100 && $offer->single_price < 100)
                                                     <span>توافقی</span>
                                                 @endif
-                                            </div>
+                                            </div >
                                             @if($offer->total > 1)
                                                 <div class="title">
                                                     <span class="amount">
@@ -262,8 +262,8 @@
                                             <div class="title">
                                                 <h3>{{ \Illuminate\Support\Str::limit($offer->title_offer, 21, $end='...') }}</h3>
                                             </div>
-                                            <div class="title">
-                                                <span class="amount">@if($offer->single_price == 0)
+                                            <div  class="title">
+                                                <span  class="amount">@if($offer->single_price == 0)
                                                         <span>توافقی</span>
                                                     @else
                                                         {{number_format($offer->single_price)}}
