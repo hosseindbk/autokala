@@ -67,6 +67,7 @@
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach($suppliers as $supplier)
+                                    <h2>{{$supplier->title}}</h2>
                                     <div class="p-4" style="line-height: 40px;">{!! $supplier->description !!}</div>
                                 @endforeach
                             </div>
