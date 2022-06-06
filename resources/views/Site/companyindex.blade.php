@@ -9,7 +9,7 @@
         @include('sweet::alert')
         <div class="d-block">
             <div class="row">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="col-lg-1 col-xs-6">
                         <div class="slider-main-container d-block">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
