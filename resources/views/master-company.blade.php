@@ -36,23 +36,39 @@
                                                 راه های ارتباطی
                                             </a>
                                         </div>
-                                        <ul class="footer-menu-ul">
-                                            <li class="menu-item-type-custom">
-                                                <a href="tel:{{$supplier->phone}}">
-                                                تلفن ثابت :     {{$supplier->phone}}
-                                                </a>
-                                            </li>
-                                            <li class="menu-item-type-custom">
-                                                <a href="tel:{{$supplier->mobile}}">
-                                                    تلفن همراه :   {{$supplier->mobile}}
-                                                </a>
-                                            </li>
-                                            <li class="menu-item-type-custom">
-                                                <a href="tel:{{$supplier->whatsapp}}">
-                                                    شبکه اجتماعی :   {{$supplier->whatsapp}}
-                                                </a>
-                                            </li>
-                                        </ul>
+                                        <div class="post-content" style="">
+                                            <i class="fa fa-phone" style="color: #0cc745" ></i>
+                                            <a href="Tel:{{$supplier->phone}}" style="color: #716f6f;font-size: 20px" target="_blank">{{$supplier->phone}}</a> - <a href="Tel:{{$supplier->phone}}" target="_blank" style="color: #716f6f;font-size: 20px">{{$supplier->phone}}</a>
+                                        </div>
+                                        <div class="post-content">
+                                            <i class="fa fa-telegram" style="color: #0ab2e6"></i>
+                                            <a href="telegram:{{$supplier->mobile}}" style="color: #716f6f;font-size: 20px" target="_blank"> {{$supplier->mobile}} </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <i class="fa fa-whatsapp" style="color: #0cc745">  </i>
+                                            <a href="whatsapp:{{$supplier->whatsapp}}" style="color: #716f6f;font-size: 20px" target="_blank"> {{$supplier->whatsapp}} </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <i class="fa fa-map-pin" style="color: #ff3d00"></i>
+                                            <a href="" style="color: #716f6f;font-size: 20px"> {{$supplier->address}} </a>
+                                        </div>
+{{--                                        <ul class="footer-menu-ul">--}}
+{{--                                            <li class="menu-item-type-custom">--}}
+{{--                                                <a href="tel:{{$supplier->phone}}">--}}
+{{--                                                تلفن ثابت :     {{$supplier->phone}}--}}
+{{--                                                </a>--}}
+{{--                                            </li>--}}
+{{--                                            <li class="menu-item-type-custom">--}}
+{{--                                                <a href="tel:{{$supplier->mobile}}">--}}
+{{--                                                    تلفن همراه :   {{$supplier->mobile}}--}}
+{{--                                                </a>--}}
+{{--                                            </li>--}}
+{{--                                            <li class="menu-item-type-custom">--}}
+{{--                                                <a href="tel:{{$supplier->whatsapp}}">--}}
+{{--                                                    شبکه اجتماعی :   {{$supplier->whatsapp}}--}}
+{{--                                                </a>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
                                     </section>
                                 </div>
                             </div>
