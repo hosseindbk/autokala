@@ -12,7 +12,9 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         @foreach($suppliers as $supplier)
-                            <img src="{{asset($supplier->banner)}}" class="d-block w-100" alt="{{$supplier->title}}">
+                            <div style="height: 200px">
+                                <img src="{{asset($supplier->banner)}}" class="d-block w-100" alt="{{$supplier->title}}">
+                            </div>
                         @endforeach
                     </div>
                 </div>
