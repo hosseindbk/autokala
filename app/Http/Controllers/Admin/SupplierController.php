@@ -431,6 +431,15 @@ class SupplierController extends Controller
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
         }
+        if ($request->file('banner') != null) {
+            $file = $request->file('banner');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $supplier->banner = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
         if ($request->file('image') != null) {
             $file = $request->file('image');
             $img = Image::make($file);

@@ -10,50 +10,10 @@
         <div class="d-block">
             <div class="slider-main-container d-block">
                 <div class="row">
-                    <div class="col-lg-1 col-md-1 col-xs-4">
-                        <div class="slider-main-container d-block">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach($suppliers as $supplier)
-                                        <div class="carousel-item active" style="text-align: center;">
-                                            <a href="#" class="adplacement-item"  target="_blank">
-                                                @if($supplier->logo == null)
-                                                    <img src="{{asset('images/supplier_defult.png')}}" style="height: 235px;" alt="{{$supplier->title}}">
-                                                @else
-                                                    <img src="{{asset($supplier->logo)}}" class="d-block w-100" alt="{{$supplier->title}}">
-                                                @endif
-                                            </a>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-xs-4">
-                        <h3 style="margin: 50px">{{$supplier->title}}</h3>
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-xs-4">
-                        <div class="carousel-inner">
-                            @foreach($suppliers as $supplier)
-                                <ul style="text-align: left;direction: ltr;margin: 30px">
-                                    <li class="menu-item-type-custom">
-                                        <a href="tel:{{$supplier->phone}}">
-                                            تلفن ثابت :     {{$supplier->phone}}
-                                        </a>
-                                    </li>
-                                    <li class="menu-item-type-custom">
-                                        <a href="tel:{{$supplier->mobile}}">
-                                            تلفن همراه :   {{$supplier->mobile}}
-                                        </a>
-                                    </li>
-                                    <li class="menu-item-type-custom">
-                                        <a href="tel:{{$supplier->whatsapp}}">
-                                            شبکه اجتماعی :   {{$supplier->whatsapp}}
-                                        </a>
-                                    </li>
-                                </ul>
-                            @endforeach
-                        </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        @foreach($suppliers as $supplier)
+                            <img src="{{asset($supplier->banner)}}" class="d-block w-100" alt="{{$supplier->title}}">
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -63,30 +23,23 @@
             <div class="col-lg-8 col-xs-12 pr mt-3 mb-3">
                 <div class="slider-main-container d-block">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            @foreach($orginal_slides as $slide)
-                                <li data-target="#carouselExampleIndicators" data-slide-to="{{$slide->id}}" class="@if($slide->id == $minid) active @endif"></li>
-                            @endforeach
-                        </ol>
                         <div class="carousel-inner">
-                            @foreach($orginal_slides as $slide)
-                                <div class="carousel-item @if($slide->id == $minid) active @endif">
-                                    <a href="{{$slide->link}}" class="adplacement-item"  target="_blank">
-                                        <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
-                                    </a>
+                            @foreach($suppliers as $supplier)
+                                <div class="carousel-item active">
+                                    <img src="{{asset($supplier->slide1)}}" class="d-block w-100" alt="{{$supplier->title}}">
                                 </div>
+                            @if($supplier->slide2)
+                                <div class="carousel-item">
+                                    <img src="{{asset($supplier->slide2)}}" class="d-block w-100" alt="{{$supplier->title}}">
+                                </div>
+                                @endif
+                            @if($supplier->slide3)
+                                <div class="carousel-item">
+                                    <img src="{{asset($supplier->slide3)}}" class="d-block w-100" alt="{{$supplier->title}}">
+                                </div>
+                                @endif
                             @endforeach
                         </div>
-                        <a class="carousel-control-prev"  href="#carouselExampleIndicators" role="button"
-                           data-slide="prev">
-                            <span class="fa fa-angle-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous </span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                           data-slide="next">
-                            <span class="fa fa-angle-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
                 </div>
             </div>

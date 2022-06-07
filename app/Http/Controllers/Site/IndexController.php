@@ -95,7 +95,7 @@ class IndexController extends Controller
         $suppliers = Supplier::
           leftjoin('states' , 'states.id' , '=' ,'suppliers.state_id')
         ->leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')
-        ->select('suppliers.id' ,'suppliers.logo' ,'suppliers.title' ,'suppliers.description' ,'suppliers.lat' ,'suppliers.lng' ,
+        ->select('suppliers.id' ,'suppliers.logo' ,'suppliers.title','suppliers.slide1','suppliers.slide2','suppliers.slide3' ,'suppliers.description' ,'suppliers.lat' ,'suppliers.lng' ,
             'suppliers.phone' ,'suppliers.mobile' ,'suppliers.whatsapp' ,'suppliers.address' ,'states.title as state' ,'cities.title as city')
         ->where('suppliers.pageurl' , $slug)->get();
         if (trim($suppliers) == '[]') {

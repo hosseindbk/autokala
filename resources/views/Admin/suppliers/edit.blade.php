@@ -269,9 +269,18 @@
                                                     <input type="file" name="logo" class="dropify" data-height="200">
                                                 </div>
                                                 @if($supplier->logo)
+                                                    <div class="form-group">
+                                                        <img src="{{asset($supplier->logo)}}" height="200px" alt="">
+                                                    </div>
+                                                @endif
                                                 <div class="form-group">
-                                                    <img src="{{asset($supplier->logo)}}" height="200px" alt="">
+                                                    <p class="mg-b-10">بنر فروشگاه</p>
+                                                    <input type="file" name="banner" class="dropify" data-height="200">
                                                 </div>
+                                                @if($supplier->banner)
+                                                    <div class="form-group">
+                                                        <img src="{{asset($supplier->banner)}}" height="200px" alt="">
+                                                    </div>
                                                 @endif
                                             </div>
                                             <div class="col-md-4">
