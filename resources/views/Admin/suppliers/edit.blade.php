@@ -268,6 +268,12 @@
                                                     <p class="mg-b-10">لوگو فروشگاه</p>
                                                     <input type="file" name="logo" class="dropify" data-height="200">
                                                 </div>
+                                                @if($supplier->logo)
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">لوگو فروشگاه</p>
+                                                    <img src="{{asset($supplier->logo)}}" height="200px" alt="">
+                                                </div>
+                                                @endif
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
