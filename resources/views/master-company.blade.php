@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="{{asset('site/css/vendor/materialdesignicons.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/vendor/nice-select.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/vendor/jquery.jqZoom.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/responsive.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/vendor/sweetalert.css')}}">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="{{asset('site/css/vendor/bootstrap-slider.min.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
 
 </head>
 
