@@ -297,18 +297,33 @@
                                                     <p class="mg-b-10">تصویر اصلی اسلاید</p>
                                                     <input type="file" name="slide1" class="dropify" data-height="200">
                                                 </div>
+                                                @if($supplier->slide1)
+                                                    <div class="form-group">
+                                                        <img src="{{asset($supplier->slide1)}}" height="200px" alt="">
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تصویر دوم اسلاید</p>
                                                     <input type="file" name="slide2" class="dropify" data-height="200">
                                                 </div>
+                                                @if($supplier->slide2)
+                                                    <div class="form-group">
+                                                        <img src="{{asset($supplier->slide2)}}" height="200px" alt="">
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تصویر سوم اسلاید</p>
                                                     <input type="file" name="slide3" class="dropify" data-height="200">
                                                 </div>
+                                                @if($supplier->slide3)
+                                                    <div class="form-group">
+                                                        <img src="{{asset($supplier->slide3)}}" height="200px" alt="">
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
