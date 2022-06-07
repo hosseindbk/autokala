@@ -119,16 +119,6 @@
 <script src="{{asset('site/js/vendor/jquery-3.2.1.min.js')}}"></script>
 <script src="{{asset('site/js/vendor/bootstrap.js')}}"></script>
 <script src="{{asset('site/js/vendor/owl.carousel.min.js')}}"></script>
-<script src="{{asset('site/js/vendor/jquery.countdown.js')}}"></script>
-<script src="{{asset('site/js/vendor/ResizeSensor.min.js')}}"></script>
-<script src="{{asset('site/js/vendor/theia-sticky-sidebar.min.js')}}"></script>
-<script src="{{asset('site/js/vendor/wNumb.js')}}"></script>
-<script src="{{asset('site/js/vendor/nouislider.min.js')}}"></script>
-<script src="{{asset('site/js/vendor/jquery.nice-select.min.js')}}"></script>
-<script src="{{asset('site/js/vendor/lightgallery-all.js')}}"></script>
-<script src="{{asset('site/js/vendor/jquery.jqZoom.js')}}"></script>
-<script src="{{asset('site/js/vendor/jquery.ez-plus.js')}}"></script>
-<script src="{{asset('site/js/vendor/sweetalert.min.js')}}"></script>
 <script src="{{asset('site/js/main.js')}}"></script>
 <script src="{{asset('site/js/vendor/bootstrap-slider.min.js')}}"></script>
 <script src="{{asset('site/js/mapp.env.js')}}"></script>
@@ -214,8 +204,11 @@
         }
     });
 </script>
-@yield('script')
-
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
 
 <script>
     window.onscroll = function() {
