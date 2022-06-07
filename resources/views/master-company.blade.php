@@ -48,10 +48,7 @@
                                             <i class="fa fa-whatsapp" style="color: #0cc745">  </i>
                                             <a href="whatsapp:{{$supplier->whatsapp}}" style="color: #716f6f;font-size: 20px" target="_blank"> {{$supplier->whatsapp}} </a>
                                         </div>
-                                        <div class="post-content">
-                                            <i class="fa fa-map-pin" style="color: #ff3d00"></i>
-                                            <a href="" style="color: #716f6f;font-size: 20px"> {{$supplier->address}} </a>
-                                        </div>
+
 {{--                                        <ul class="footer-menu-ul">--}}
 {{--                                            <li class="menu-item-type-custom">--}}
 {{--                                                <a href="tel:{{$supplier->phone}}">--}}
@@ -80,13 +77,10 @@
                                                 آدرس
                                             </a>
                                         </div>
-                                        <ul class="footer-menu-ul">
-                                            <li class="menu-item-type-custom">
-                                                <a href="#">
-                                                   {{$supplier->address}}
-                                                </a>
-                                            </li>
-                                        </ul>
+                                        <div class="post-content">
+                                            <i class="fa fa-map-pin" style="color: #ff3d00"></i>
+                                            <a href="" style="color: #716f6f;font-size: 20px"> {{$supplier->address}} </a>
+                                        </div>
                                     </section>
                                 </div>
                             </div>
@@ -98,13 +92,14 @@
                                                 استان و شهرستان
                                             </a>
                                         </div>
-                                        <ul class="footer-menu-ul">
-                                            <li class="menu-item-type-custom">
-                                                <a href="#">
-                                                    {{$supplier->state}} - {{$supplier->city}}
-                                                </a>
-                                            </li>
-                                        </ul>
+                                        <div class="post-content">
+                                            <i class="fa fa-map-pin" style="color: #ff3d00"></i>
+                                            <a href="" style="color: #716f6f;font-size: 20px"> استان : {{$supplier->state}} </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <i class="fa fa-map-pin" style="color: #ff3d00"></i>
+                                            <a href="" style="color: #716f6f;font-size: 20px"> شهرستان : {{$supplier->city}} </a>
+                                        </div>
                                     </section>
                                 </div>
                             </div>
