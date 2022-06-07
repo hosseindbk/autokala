@@ -13,7 +13,7 @@
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         @foreach($suppliers as $supplier)
                             <div style="height: 200px">
-                                <img src="{{asset($supplier->banner)}}" class="d-block w-100" alt="{{$supplier->title}}">
+                                <img src="{{asset($supplier->banner)}}" class="d-block w-100" height="200px" alt="{{$supplier->title}}">
                             </div>
                         @endforeach
                     </div>
