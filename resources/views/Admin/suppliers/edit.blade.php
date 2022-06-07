@@ -270,7 +270,6 @@
                                                 </div>
                                                 @if($supplier->logo)
                                                 <div class="form-group">
-                                                    <p class="mg-b-10">لوگو فروشگاه</p>
                                                     <img src="{{asset($supplier->logo)}}" height="200px" alt="">
                                                 </div>
                                                 @endif
@@ -291,6 +290,24 @@
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تصویر سوم فروشگاه</p>
                                                     <input type="file" name="image3" class="dropify" data-height="200">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">تصویر اصلی اسلاید</p>
+                                                    <input type="file" name="slide1" class="dropify" data-height="200">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">تصویر دوم اسلاید</p>
+                                                    <input type="file" name="slide2" class="dropify" data-height="200">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">تصویر سوم اسلاید</p>
+                                                    <input type="file" name="slide3" class="dropify" data-height="200">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

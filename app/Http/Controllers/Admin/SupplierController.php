@@ -432,13 +432,13 @@ class SupplierController extends Controller
             $img->encode('jpg');
         }
         if ($request->file('image') != null) {
-        $file = $request->file('image');
-        $img = Image::make($file);
-        $imagePath ="image/suppliers/";
-        $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-        $supplier->image = $file->move($imagePath, $imageName);
-        $img->save($imagePath.$imageName);
-        $img->encode('jpg');
+            $file = $request->file('image');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $supplier->image = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
         }
         if ($request->file('image2') != null) {
             $file = $request->file('image2');
@@ -458,7 +458,33 @@ class SupplierController extends Controller
             $img->save($imagePath.$imageName);
             $img->encode('jpg');
         }
-
+        if ($request->file('slide1') != null) {
+            $file = $request->file('slide1');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $supplier->slide1 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('slide2') != null) {
+            $file = $request->file('slide2');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $supplier->slide2 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
+        if ($request->file('slide3') != null) {
+            $file = $request->file('slide3');
+            $img = Image::make($file);
+            $imagePath ="image/suppliers/";
+            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+            $supplier->slide3 = $file->move($imagePath, $imageName);
+            $img->save($imagePath.$imageName);
+            $img->encode('jpg');
+        }
 
         $supplier->update();
 
