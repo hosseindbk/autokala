@@ -25,6 +25,7 @@
             <div class="col-lg-8 col-xs-12 pr mt-3 mb-3">
                 <div class="slider-main-container d-block">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
                         <div class="carousel-inner">
                             @foreach($suppliers as $supplier)
                                 <div class="carousel-item active">
@@ -42,6 +43,14 @@
                                 @endif
                             @endforeach
                         </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="z-index: 1">
+                            <span class="fa fa-angle-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="z-index: 1">
+                            <span class="fa fa-angle-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -53,7 +62,17 @@
                             <div class="carousel-inner">
                                 @foreach($suppliers as $supplier)
                                     <h2 style="text-align: center;padding: 20px;">{{$supplier->title}}</h2>
-                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 535px;">{!! $supplier->description !!}</div>
+{{--                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 535px;">{!! $supplier->description !!}</div>--}}
+                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 535px;overflow: auto;">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur dignissimos eligendi
+                                        explicabo hic nemo possimus rerum. Architecto culpa, delectus distinctio laborum odit omnis quae qui ratione saepe voluptates?
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur dignissimos eligendi
+                                        explicabo hic nemo possimus rerum. Architecto culpa, delectus distinctio laborum odit omnis quae qui ratione saepe voluptates?
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur dignissimos eligendi
+                                        explicabo hic nemo possimus rerum. Architecto culpa, delectus distinctio laborum odit omnis quae qui ratione saepe voluptates?
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur dignissimos eligendi
+                                        explicabo hic nemo possimus rerum. Architecto culpa, delectus distinctio laborum odit omnis quae qui ratione saepe voluptates?
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -62,7 +81,7 @@
             </div>
         </div>
         <div class="d-block">
-            <div class="col-lg-12 col-md-12 col-xs-12 order-1 d-block mt-4">
+            <div class="col-lg-12 col-md-12 col-xs-12 order-1 d-block mt-4" style="z-index: -1">
                 <div class="slider-widget-products">
                     <div class="widget widget-product card mb-0">
                         <div class="product-carousel-brand owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
@@ -91,17 +110,6 @@
                                 @if(Auth::check() && Auth::user()->type_id == 1)
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
                                         <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
-                                            <div style="float: right">
-                                                @foreach($users as $user)
-                                                    @if($offer->user_id == $user->id)
-                                                        @if($user->type_id == 1 )
-                                                            <button class="btn btn-danger">فروشگاه</button>
-                                                        @elseif($user->type_id != 1)
-                                                            <button class="btn btn-success">شخصی</button>
-                                                        @endif
-                                                    @endif
-                                                @endforeach
-                                            </div>
                                             <div class="thumb">
                                                 <a href="{{url('market'.'/'.$offer->slug)}}" target="_blank" class="d-block">
                                                     @if($offer->image1)
@@ -157,17 +165,6 @@
                                 @elseif(Auth::check() && Auth::user()->type_id != 1 && $offer->single == 1)
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
                                         <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
-                                            <div style="float: right">
-                                                @foreach($users as $user)
-                                                    @if($offer->user_id == $user->id)
-                                                        @if($user->type_id == 1 )
-                                                            <button class="btn btn-danger">فروشگاه</button>
-                                                        @elseif($user->type_id == 4 || $user->type_id == 3)
-                                                            <button class="btn btn-success">شخصی</button>
-                                                        @endif
-                                                    @endif
-                                                @endforeach
-                                            </div>
                                             <div class="thumb">
                                                 <a href="{{url('market'.'/'.$offer->slug)}}" target="_blank" class="d-block">
                                                     <img src="{{asset($offer->image1)}}" style="height: 235px;" alt="{{$offer->title_offer}}">
@@ -198,17 +195,6 @@
                                 @elseif(! Auth::check() && $offer->single == 1)
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
                                         <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
-                                            <div style="float: right">
-                                                @foreach($users as $user)
-                                                    @if($offer->user_id == $user->id)
-                                                        @if($user->type_id == 1 )
-                                                            <button class="btn btn-danger">فروشگاه</button>
-                                                        @elseif($user->type_id == 4 || $user->type_id == 3)
-                                                            <button class="btn btn-success">شخصی</button>
-                                                        @endif
-                                                    @endif
-                                                @endforeach
-                                            </div>
                                             <div class="thumb">
                                                 <a href="{{url('market'.'/'.$offer->slug)}}" target="_blank" class="d-block">
                                                     <img src="{{asset($offer->image1)}}" style="height: 235px;" alt="{{$offer->title_offer}}">
