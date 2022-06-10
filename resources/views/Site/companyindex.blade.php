@@ -62,17 +62,7 @@
                             <div class="carousel-inner">
                                 @foreach($suppliers as $supplier)
                                     <h2 style="text-align: center;padding: 20px;">{{$supplier->title}}</h2>
-{{--                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 535px;">{!! $supplier->description !!}</div>--}}
-                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 535px;overflow: auto;">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur dignissimos eligendi
-                                        explicabo hic nemo possimus rerum. Architecto culpa, delectus distinctio laborum odit omnis quae qui ratione saepe voluptates?
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur dignissimos eligendi
-                                        explicabo hic nemo possimus rerum. Architecto culpa, delectus distinctio laborum odit omnis quae qui ratione saepe voluptates?
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur dignissimos eligendi
-                                        explicabo hic nemo possimus rerum. Architecto culpa, delectus distinctio laborum odit omnis quae qui ratione saepe voluptates?
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur dignissimos eligendi
-                                        explicabo hic nemo possimus rerum. Architecto culpa, delectus distinctio laborum odit omnis quae qui ratione saepe voluptates?
-                                    </div>
+                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 535px;">{!! $supplier->description !!}</div>
                                 @endforeach
                             </div>
                         </div>
