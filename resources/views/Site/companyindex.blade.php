@@ -55,20 +55,16 @@
 
             <div class="col-lg-4 col-xs-12 pl mt-3">
                 <div class="adplacement-container-column">
-                    <div class="adplacement-sponsored-box">
-                        <h2 style="text-align: center;padding: 20px;">{{$supplier->title}}</h2>
-                        <div class="p-4" style="line-height: 40px;text-align: justify;">{!! $supplier->description !!}</div>
+                    <div class="slider-main-container d-block">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach($suppliers as $supplier)
+                                    <h2 style="text-align: center;padding: 20px;">{{$supplier->title}}</h2>
+                                    <div class="p-4" style="line-height: 40px;text-align: justify;">{!! $supplier->description !!}</div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
-{{--                    <div class="slider-main-container d-block">--}}
-{{--                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">--}}
-{{--                            <div class="carousel-inner">--}}
-{{--                                @foreach($suppliers as $supplier)--}}
-{{--                                    <h2 style="text-align: center;padding: 20px;">{{$supplier->title}}</h2>--}}
-{{--                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 535px;">{!! $supplier->description !!}</div>--}}
-{{--                                @endforeach--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
         </div>
