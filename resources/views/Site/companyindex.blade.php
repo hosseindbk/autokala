@@ -60,7 +60,7 @@
                             <div class="carousel-inner">
                                 @foreach($suppliers as $supplier)
                                     <h2 style="text-align: center;padding: 20px;">{{$supplier->title}}</h2>
-                                    <div class="p-4" style="line-height: 40px;text-align: justify;">{!! $supplier->description !!}</div>
+                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 27.6vmax;overflow: auto;">{!! $supplier->description !!}</div>
                                 @endforeach
                             </div>
                         </div>
