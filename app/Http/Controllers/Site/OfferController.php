@@ -148,7 +148,7 @@ class OfferController extends Controller
         if ($request->input('price')) {
             $offers->price      = str_replace(',', '', $request->input('price'));
         }
-        $offers->supplier_id        = $supplier_id;
+        $offers->supplier_id        = trim($supplier_id);
         $offers->permanent_supplier = $request->input('permanent_supplier');
         $offers->slug               = 'OFFER-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
         $offers->status             = '1';
