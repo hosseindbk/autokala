@@ -53,20 +53,21 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-xs-12 pl mt-3">
+            <div class="col-lg-4 col-xs-12 pl mt-3 mb-3">
                 <div class="adplacement-container-column">
                     <div class="slider-main-container d-block">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner" style="overflow: auto;">
                                 @foreach($suppliers as $supplier)
                                     <h1 style="text-align: center;padding: 20px;font-size: 1.5rem;">{{$supplier->title}}</h1>
-                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 27.6vmax;">{!! $supplier->description !!}</div>
+                                    <div class="p-4" style="line-height: 40px;text-align: justify;height: 28.2vmax;">{!! $supplier->description !!}</div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="d-block">
             <div class="col-lg-12 col-md-12 col-xs-12 order-1 d-block mt-4" style="z-index: -1">
