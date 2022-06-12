@@ -100,8 +100,7 @@ class OfferController extends Controller
 
     public function offercreate(offerrequest $request)
     {
-        $user_id = auth::user()->id;
-        $supplier_id = Supplier::whereUser_id($user_id)->pluck('id');
+
 
         $offers = new Offer();
 
@@ -148,6 +147,8 @@ class OfferController extends Controller
         if ($request->input('price')) {
             $offers->price      = str_replace(',', '', $request->input('price'));
         }
+        $user_id = auth::user()->id;
+        $supplier_id = Supplier::whereUser_id($user_id)->pluck('id');
         $offers->supplier_id        = $supplier_id[0];
         $offers->permanent_supplier = $request->input('permanent_supplier');
         $offers->slug               = 'OFFER-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
