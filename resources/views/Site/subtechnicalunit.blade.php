@@ -217,8 +217,8 @@
                                                 <span>{{$technical_unit->mobile}}</span>
                                             </li>
                                             <li>
-                                                <span>وب سایت : </span>
-                                                <span>@if($technical_unit->website) <a href="{{'https://'.$technical_unit->website}}" target="_blank">لینک وبسایت</a> @endif</span>
+                                                <span>اینستاگرام : </span>
+                                                <span>@if($technical_unit->website) <a href="{{'https://'.$technical_unit->website}}" target="_blank">لینک </a> @endif</span>
                                             </li>
                                             <li>
                                                 <span>ایمیل : </span>

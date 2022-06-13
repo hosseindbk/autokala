@@ -228,8 +228,8 @@
                                                             <span>{{$supplier->mobile}}</span>
                                                         </li>
                                                         <li>
-                                                            <span>وب سایت : </span>
-                                                            <span>@if($supplier->website) <a href="{{'https://'.$supplier->website}}" target="_blank">لینک وبسایت</a> @endif</span>
+                                                            <span>اینستاگرام : </span>
+                                                            <span>@if($supplier->website) <a href="{{'https://'.$supplier->website}}" target="_blank">لینک </a> @endif</span>
                                                         </li>
                                                         <li>
                                                             <span>ایمیل : </span>
