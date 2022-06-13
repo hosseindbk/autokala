@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         @foreach($suppliers as $supplier)
-                            <div style="height: 10.8vmax;background-image: url({{asset($supplier->banner)}});background-size: cover;"></div>
+                            <div style="height: 18.8vmax;background-image: url({{asset($supplier->banner)}});background-size: cover;"></div>
                         @endforeach
                     </div>
                 </div>
