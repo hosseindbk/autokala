@@ -57,7 +57,7 @@
                 <div class="adplacement-container-column">
                     <div class="slider-main-container d-block">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner" style="overflow: auto;">
+                            <div class="carousel-inner" style="overflow: auto;z-index: 1">
                                 @foreach($suppliers as $supplier)
                                     <h1 style="text-align: center;padding: 20px;font-size: 1.5rem;">{{$supplier->title}}</h1>
                                     <div class="p-4" style="line-height: 40px;text-align: justify;height: 28.2vmax;">{!! $supplier->description !!}</div>
