@@ -250,7 +250,6 @@ class OfferController extends Controller
         if($request->input('price')) {
             $offer->price           = str_replace(',', '', $request->input('price'));
         }
-        $offer->supplier_id         = $request->input('supplier_id');
         $offer->permanent_supplier  = $request->input('permanent_supplier');
         $offer->status              = $request->input('status_id');
         $offer->user_handle         = Auth::user()->id;
