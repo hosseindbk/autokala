@@ -256,7 +256,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="title">
-                                                            <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}} {{$product->title_en}}</a>
+                                                            <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}}</a>
                                                         </div>
                                                         <div class="price">
                                                         <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereProduct_id($product->id)->count()}}</span>
@@ -296,7 +296,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="title">
-                                                            <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}} {{$product->title_en}}</a>
+                                                            <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}}</a>
                                                         </div>
                                                         <div class="price">
                                                             <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereProduct_id($product->id)->count()}}</span>
@@ -336,7 +336,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="title">
-                                                            <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}} {{$product->title_en}}</a>
+                                                            <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}}</a>
                                                         </div>
                                                         <div class="price">
                                                             <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereProduct_id($product->id)->count()}}</span>
