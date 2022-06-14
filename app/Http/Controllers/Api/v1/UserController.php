@@ -164,6 +164,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->input('password'));
             $user->update();
         }
+
         $response = 'رمز شما با موفقیت ثبت شد' ;
 
         return Response::json(['ok' => true , 'message' => 'success' , 'response' => $response]);
