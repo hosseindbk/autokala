@@ -155,10 +155,15 @@ class UserController extends Controller
     public function recoverpass(Request $request)
     {
         $user = User::findOrfail(auth::user()->id);
-        $request->validate(['password' => 'required|string|min:8|confirmed']);
-        $user->password = Hash::make($request->input('password'));
-        $user->update();
-
+        if ($request->input('password_old') != null && auth::user()->password = Hash::make($request->input('password_old'))){
+            $request->validate(['password' => 'required|string|min:8|confirmed']);
+            $user->password = Hash::make($request->input('password'));
+            $user->update();
+        }else {
+            $request->validate(['password' => 'required|string|min:8|confirmed']);
+            $user->password = Hash::make($request->input('password'));
+            $user->update();
+        }
         $response = 'رمز شما با موفقیت ثبت شد' ;
 
         return Response::json(['ok' => true , 'message' => 'success' , 'response' => $response]);
