@@ -337,6 +337,16 @@ class TechnicalunitController extends Controller
         $technical_unit->description    = $request->input('description');
         $technical_unit->user_id        = Auth::user()->id;
 
+        if ($request->input('imagedelete') == 1){
+            $technical_unit->image = '';
+        }
+        if ($request->input('imagedelete2') == 1){
+            $technical_unit->image2 = '';
+        }
+        if ($request->input('imagedelete3') == 1){
+            $technical_unit->image3 = '';
+        }
+
         if ($request->file('image') != null) {
             $file = $request->file('image');
             $img = Image::make($file);

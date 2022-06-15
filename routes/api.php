@@ -50,7 +50,7 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/supplier/edit/{id}'               , 'SupplierController@updatesupplier');
     Route::post('/supplier/carsupplierstore'        , 'SupplierController@carsupplierstore');
     Route::post('/technicalunit/store'              , 'TechnicalunitController@store');
-    Route::post('/technicalunit/edit/{id}'          , 'TechnicalunitController@update');
+    Route::post('/technicalunit/edit/{id}'          , 'TechnicalunitController@updatetechnical');
     Route::post('/technicalunit/cartechnicalstore'  , 'TechnicalunitController@cartechnicalstore');
     Route::post('/product/createproductvariety'     , 'ProductController@createproductvariety');
     Route::post('/offer/store'                      , 'OfferController@store');
