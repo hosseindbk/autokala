@@ -319,7 +319,6 @@ class SupplierController extends Controller
     {
 
         $supplier = Supplier::findOrfail($id);
-        dd($supplier);
 
         if($request->input('manufacturer') == 'on'){
             $supplier->manufacturer = 1;
