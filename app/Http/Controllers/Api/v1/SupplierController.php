@@ -319,6 +319,7 @@ class SupplierController extends Controller
     {
 
         $supplier = Supplier::findOrfail($id);
+        dd($supplier);
 
         if($request->input('manufacturer') == 'on'){
             $supplier->manufacturer = 1;
@@ -363,6 +364,16 @@ class SupplierController extends Controller
         $supplier->status       = 2;
         $supplier->description  = $request->input('description');
         $supplier->user_id      = Auth::user()->id;
+
+        if ($request->input('imagedelete') == 1){
+            $supplier->image = '';
+        }
+        if ($request->input('imagedelete2') == 1){
+            $supplier->image2 = '';
+        }
+        if ($request->input('imagedelete3') == 1){
+            $supplier->image3 = '';
+        }
 
         if ($request->file('image') != null) {
             $file = $request->file('image');
