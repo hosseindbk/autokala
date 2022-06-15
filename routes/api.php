@@ -47,7 +47,7 @@ Route::middleware('auth:api')->group(function (){
     Route::get('bmpsell'                            , 'MarketController@bmpsell');
     Route::get('bmpmarket'                          , 'MarketController@bmpmarket');
     Route::post('/supplier/store'                   , 'SupplierController@store');
-    Route::post('/supplier/edit/{id}'               , 'SupplierController@update');
+    Route::post('/supplier/edit/{id}'               , 'SupplierController@updatesupplier');
     Route::post('/supplier/carsupplierstore'        , 'SupplierController@carsupplierstore');
     Route::post('/technicalunit/store'              , 'TechnicalunitController@store');
     Route::post('/technicalunit/edit/{id}'          , 'TechnicalunitController@update');
