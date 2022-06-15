@@ -215,16 +215,20 @@ class UserController extends Controller
                 ->get();
 
             $technicals      = Technical_unit::leftjoin('markusers' , 'markusers.technical_id' , '=' , 'technical_units.id')
+                ->leftjoin('states' , 'states.id' , '=' , 'technical_units.state_id')
+                ->leftjoin('cities' , 'cities.id' , '=' , 'technical_units.city_id')
                 ->select('markusers.id as mark_id'  , 'technical_units.id'          , 'technical_units.title'       , 'technical_units.slug'    , 'technical_units.address' , 'technical_units.manager' , 'technical_units.phone'
                     ,'technical_units.image'        , 'technical_units.image2'      , 'technical_units.image3'      , 'technical_units.mobile'  , 'technical_units.website'
-                    , 'technical_units.email'       , 'technical_units.whatsapp'    , 'technical_units.autokala'    , 'technical_units.lat'     , 'technical_units.lng'     , 'technical_units.autokala' )
+                    , 'technical_units.email'       , 'technical_units.whatsapp'    , 'technical_units.autokala'    , 'technical_units.lat'     , 'technical_units.lng'     , 'technical_units.autokala' ,'states.title','cities.title')
                 ->where('technical_units.user_id'  ,'=' , auth::user()->id)
                 ->get();
 
             $suppliers       = Supplier::leftjoin('markusers' , 'markusers.supplier_id' , '=' , 'suppliers.id')
+                ->leftjoin('states' , 'states.id' , '=' , 'suppliers.state_id')
+                ->leftjoin('cities' , 'cities.id' , '=' , 'suppliers.city_id')
                 ->select('markusers.id as mark_id'  ,'suppliers.id'         , 'suppliers.title'         , 'suppliers.slug'          , 'suppliers.address'   , 'suppliers.manager'   , 'suppliers.image'
                     , 'suppliers.manufacturer'      , 'suppliers.importer'  , 'suppliers.whole_seller'  , 'suppliers.retail_seller' , 'suppliers.phone'     , 'suppliers.mobile'    , 'suppliers.image2' , 'suppliers.image3'
-                    , 'suppliers.website'           , 'suppliers.email'     , 'suppliers.whatsapp'      , 'suppliers.lat'           , 'suppliers.lng'       , 'suppliers.state_id'  , 'suppliers.city_id' ,'suppliers.autokala')
+                    , 'suppliers.website'           , 'suppliers.email'     , 'suppliers.whatsapp'      , 'suppliers.lat'           , 'suppliers.lng'       , 'suppliers.state_id'  , 'suppliers.city_id' ,'suppliers.autokala','states.title','cities.title')
                 ->where('suppliers.user_id' , '=', auth::user()->id)
                 ->get();
 
