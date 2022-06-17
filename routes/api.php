@@ -64,6 +64,9 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/mark'                             , 'IndexController@markusercreate');
     Route::delete('/unmark/{id}'                    , 'IndexController@markdelete');
 
+    Route::delete('/supplier/carsupplierdelete/{id}'        , 'SupplierController@carsupplierdelete' )->name('carsupplierdelete');
+    Route::delete('/technicalunit/cartechnicaldelete/{id}'  , 'TechnicalunitController@cartechnicaldelete' )->name('cartechnicaldelete');
+    Route::delete('/offer/carofferdelete/{id}'              , 'OfferController@carofferdelete')->name('carofferdelete');
 
 });
 

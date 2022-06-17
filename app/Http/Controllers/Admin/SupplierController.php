@@ -45,73 +45,73 @@ class SupplierController extends Controller
                     , 'cities.title as ctitle' , 'suppliers.homeshow as homeshow', 'suppliers.status as status')
                 ->get();
 
-        return Datatables::of($data)
-            ->editColumn('sid', function ($data) {
-                return ($data->sid);
-            })
-            ->editColumn('stitle', function ($data) {
-                return ($data->stitle);
-            })
-            ->editColumn('manager', function ($data) {
-                return ($data->manager);
-            })
-            ->editColumn('statetitle', function ($data) {
-                return ($data->statetitle);
-            })
-            ->editColumn('ctitle', function ($data) {
-                return ($data->ctitle);
-            })
-            ->editColumn('phone', function ($data) {
-                return ($data->phone);
-            })
-            ->editColumn('status', function ($data) {
-                if ($data->status == "1") {
-                    return 'پیش نویس';
-                } elseif ($data->status == "2") {
-                    return 'درحال بررسی';
-                } elseif ($data->status == "3") {
-                    return 'تایید مدیر';
-                } elseif ($data->status == "4") {
-                    return 'درحال نمایش';
-                } elseif ($data->status == "5") {
-                    return 'معلق شده';
-                } elseif ($data->status == "6") {
-                    return 'حذف شده';
-                }
-            })
-            ->editColumn('noe', function ($data) {
-                if ($data->manufacturer == "1") {
-                    $manufacturer   = 'تولید کننده';
-                }else{
-                    $manufacturer = null;
-                } if ($data->importer == "1") {
-                    $importer       = 'وارد کننده';
-                }
-                else{
-                    $importer = null;
-                }
-                if ($data->whole_seller == "1") {
-                    $whole_seller   =  'عمده فروش';
-                }else{
-                    $whole_seller = null;
-                }  if ($data->retail_seller == "1") {
-                    $retail_seller  =  'خرده فروش';
-                }else{
-                    $retail_seller = null;
-                }
-                return ([$manufacturer , $importer, $whole_seller,$retail_seller]);
-            })
-            ->addColumn('image', function ($row) {
-                return '<img src="' . asset($row->image) . '"  width="50" class="img-rounded" align="center" />';
+            return Datatables::of($data)
+                ->editColumn('sid', function ($data) {
+                    return ($data->sid);
+                })
+                ->editColumn('stitle', function ($data) {
+                    return ($data->stitle);
+                })
+                ->editColumn('manager', function ($data) {
+                    return ($data->manager);
+                })
+                ->editColumn('statetitle', function ($data) {
+                    return ($data->statetitle);
+                })
+                ->editColumn('ctitle', function ($data) {
+                    return ($data->ctitle);
+                })
+                ->editColumn('phone', function ($data) {
+                    return ($data->phone);
+                })
+                ->editColumn('status', function ($data) {
+                    if ($data->status == "1") {
+                        return 'پیش نویس';
+                    } elseif ($data->status == "2") {
+                        return 'درحال بررسی';
+                    } elseif ($data->status == "3") {
+                        return 'تایید مدیر';
+                    } elseif ($data->status == "4") {
+                        return 'درحال نمایش';
+                    } elseif ($data->status == "5") {
+                        return 'معلق شده';
+                    } elseif ($data->status == "6") {
+                        return 'حذف شده';
+                    }
+                })
+                ->editColumn('noe', function ($data) {
+                    if ($data->manufacturer == "1") {
+                        $manufacturer   = 'تولید کننده';
+                    }else{
+                        $manufacturer = null;
+                    } if ($data->importer == "1") {
+                        $importer       = 'وارد کننده';
+                    }
+                    else{
+                        $importer = null;
+                    }
+                    if ($data->whole_seller == "1") {
+                        $whole_seller   =  'عمده فروش';
+                    }else{
+                        $whole_seller = null;
+                    }  if ($data->retail_seller == "1") {
+                        $retail_seller  =  'خرده فروش';
+                    }else{
+                        $retail_seller = null;
+                    }
+                    return ([$manufacturer , $importer, $whole_seller,$retail_seller]);
+                })
+                ->addColumn('image', function ($row) {
+                    return '<img src="' . asset($row->image) . '"  width="50" class="img-rounded" align="center" />';
 
-            })
-            ->addColumn('location', function ($row) {
-                return '<a href="'. route('suppliers.address' , $row->sid) .'"  class="btn btn-outline-primary btn-xs"><i class="fe fe-map-pin"></i></a>';
-            })
+                })
+                ->addColumn('location', function ($row) {
+                    return '<a href="'. route('suppliers.address' , $row->sid) .'"  class="btn btn-outline-primary btn-xs"><i class="fe fe-map-pin"></i></a>';
+                })
 
 
-            ->addColumn('action', function ($row) {
-                $actionBtn = '<a href="' . route('suppliers.edit', $row->sid) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<a href="' . route('suppliers.edit', $row->sid) . '" class="btn ripple btn-outline-info btn-sm">Edit</a>
                                 <form action="' . route('suppliers.destroy' ,$row->sid) .'" method="post"  style="display: inline;">
                                     '.csrf_field().'
                                     '.method_field("DELETE").'
@@ -119,8 +119,8 @@ class SupplierController extends Controller
                                              <i class="fe fe-trash-2 "></i>
                                          </button>
                                 </form>';
-                return $actionBtn;
-            })
+                    return $actionBtn;
+                })
 
 
 //            ->addColumn('homeshow', function ($row) {
@@ -130,22 +130,22 @@ class SupplierController extends Controller
 //                return $homeshow;
 //            })
 
-            ->addColumn('homeshow', function ($row) {
-                if ($row->homeshow == 1) {
-                    $homeshow = '<label class="custom-switch">
+                ->addColumn('homeshow', function ($row) {
+                    if ($row->homeshow == 1) {
+                        $homeshow = '<label class="custom-switch">
                               <input type="checkbox" name="homeshow" checked="checked" onclick="handleClick(this);" class="custom-switch-input" id="' . $row->sid . '" >
                               <span class="custom-switch-indicator"></span></label>';
-                    return $homeshow;
-                }else{
-                    $homeshow = '<label class="custom-switch">
+                        return $homeshow;
+                    }else{
+                        $homeshow = '<label class="custom-switch">
                               <input type="checkbox" name="homeshow" onclick="handleClick(this);" class="custom-switch-input" id="' . $row->sid . '" >
                               <span class="custom-switch-indicator"></span></label>';
-                    return $homeshow;
-                }
-            })
+                        return $homeshow;
+                    }
+                })
 
-            ->rawColumns(['action', 'image', 'homeshow' , 'location' , 'noe'])
-            ->make(true);
+                ->rawColumns(['action', 'image', 'homeshow' , 'location' , 'noe'])
+                ->make(true);
         }
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
@@ -501,14 +501,14 @@ class SupplierController extends Controller
         return Redirect::back();
     }
     public function supplierhomeshow(Request $request){
-       $supplier = Supplier::findOrfail($request->input('id'));
+        $supplier = Supplier::findOrfail($request->input('id'));
 
         if($supplier->homeshow == 1){
             $supplier->homeshow = 0;
         }elseif($supplier->homeshow == 0){
             $supplier->homeshow = 1;
         }
-       $supplier->update();
+        $supplier->update();
 
     }
     public function destroy(Supplier $supplier)

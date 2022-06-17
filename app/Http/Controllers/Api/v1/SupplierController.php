@@ -409,4 +409,14 @@ class SupplierController extends Controller
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response , 'technical_id' => $id]);
     }
 
+    public function carsupplierdelete($id)
+    {
+        $carsuppliergroup = Supplier_product_group::findOrfail($id);
+        $carsuppliergroup->delete();
+        $status     = true;
+        $message    = 'success';
+        $response   = 'اطلاعات با موفقیت پاک شد';
+
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+    }
 }

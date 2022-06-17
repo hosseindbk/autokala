@@ -385,5 +385,14 @@ class TechnicalunitController extends Controller
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response , 'technical_id' => $id]);
     }
 
+    public function cartechnicaldelete($id)
+    {
+        $cartechnicalgroup = Car_technical_group::findOrfail($id);
+        $cartechnicalgroup->delete();
+        $status     = true;
+        $message    = 'success';
+        $response   = 'اطلاعات با موفقیت پاک شد';
 
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+    }
 }
