@@ -320,30 +320,10 @@ class SupplierController extends Controller
 
         $supplier = Supplier::findOrfail($id);
 
-        if($request->input('manufacturer') == 'on'){
-            $supplier->manufacturer = 1;
-        }
-        if($request->input('manufacturer') == null) {
-            $supplier->manufacturer = 0;
-        }
-        if($request->input('importer') == 'on'){
-            $supplier->importer = 1;
-        }
-        if($request->input('importer') == null) {
-            $supplier->importer = 0;
-        }
-        if($request->input('whole_seller') == 'on'){
-            $supplier->whole_seller = 1;
-        }
-        if($request->input('whole_seller') == null) {
-            $supplier->whole_seller = 0;
-        }
-        if($request->input('retail_seller') == 'on'){
-            $supplier->retail_seller = 1;
-        }
-        if($request->input('retail_seller') == null) {
-            $supplier->retail_seller = 0;
-        }
+        $supplier->manufacturer = $request->input('manufacturer');
+        $supplier->importer     = $request->input('importer');
+        $supplier->whole_seller = $request->input('whole_seller');
+        $supplier->retail_seller= $request->input('retail_seller');
         $supplier->title        = $request->input('title');
         $supplier->manager      = $request->input('manager');
         $supplier->phone        = $request->input('phone');
