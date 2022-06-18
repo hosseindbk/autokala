@@ -304,7 +304,7 @@ class SupplierController extends Controller
             ->leftJoin('car_brands'                         , 'car_brands.id'       , '=', 'supplier_product_groups.car_brand_id')
             ->leftJoin('car_models'                         , 'car_models.id'       , '=', 'supplier_product_groups.car_model_id')
             ->leftJoin('product_groups'                     , 'product_groups.id'   , '=', 'supplier_product_groups.kala_group_id')
-            ->select('car_brands.title_fa as brand_title'   , 'car_models.title_fa as model_title' , 'product_groups.title_fa as product_group')
+            ->select('supplier_product_groups.id' ,'car_brands.title_fa as brand_title'   , 'car_models.title_fa as model_title' , 'product_groups.title_fa as product_group')
             ->where('supplier_product_groups.user_id'   , Auth::user()->id)
             ->get();
 
