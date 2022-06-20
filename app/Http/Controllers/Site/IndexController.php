@@ -27,12 +27,31 @@ class IndexController extends Controller
         $menus              = Menu::whereStatus(4)->get();
         $offers             = Offer::whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
         $brands             = Brand::whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
-        $technicalunits     = Technical_unit::whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
-        $suppliers          = Supplier::whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
+
         $orginal_slides     = Slide::whereStatus(4)->wherePosition(1)->latest()->get();
         $left_top_slides    = Slide::whereStatus(4)->wherePosition(2)->limit(1)->get();
         $left_bottom_slides = Slide::whereStatus(4)->wherePosition(3)->limit(1)->get();
         $minid              = Slide::whereStatus(4)->wherePosition(1)->min('id');
+
+
+        $technicalunits     = Technical_unit::
+            leftjoin('states' , 'states.id','=' ,'technical_units.state_id' )
+          ->leftjoin('cities' , 'cities.id','=' ,'technical_units.city_id' )
+            ->select('technical_units.slug','technical_units.image','technical_units.title','states.title as statetitle','cities.title as citytitle')
+            ->where('technical_units.status' , 4)
+            ->where('technical_units.homeshow' ,1)
+            ->inRandomOrder()
+            ->get();
+
+        $suppliers          = Supplier::
+              leftjoin('states' , 'states.id','=' ,'suppliers.state_id' )
+            ->leftjoin('cities' , 'cities.id','=' ,'suppliers.city_id' )
+            ->select('suppliers.slug','suppliers.image','suppliers.title','states.title as statetitle','cities.title as citytitle')
+            ->where('suppliers.status' , 4)
+            ->where('suppliers.homeshow' ,1)
+            ->inRandomOrder()
+            ->get();
+
 
         $visitors = new Visitor();
 

@@ -305,9 +305,9 @@
                                                 <a href="{{url('technical/sub/'.$technical_unit->slug)}}" target="_blank">{{$technical_unit->title}}</a>
                                             </h2>
                                             <p class="post-title">
-                                                @foreach($states as $state) @if($technical_unit->state_id == $state->id ) استان :  {{$state->title}} @endif @endforeach
+                                                 استان :  {{$technical_unit->statetitle}}
                                                 |
-                                                @foreach($cities as $city) @if($technical_unit->city_id == $city->id ) شهر :  {{$city->title}} @endif @endforeach
+                                                 شهر :  {{$technical_unit->citytitle}}
                                             </p>
                                         </div>
                                     </div>
@@ -339,10 +339,9 @@
                                                     <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank"> {{$supplier->title}} </a>
                                                 </h2>
                                                 <p class="post-title">
-                                                    @foreach($states as $state) @if($supplier->state_id == $state->id ) استان :  {{$state->title}} @endif @endforeach
+                                                     استان :  {{$supplier->statetitle}}
                                                         |
-                                                    @foreach($cities as $city) @if($supplier->city_id == $city->id ) شهر :  {{$city->title}} @endif @endforeach
-
+                                                     شهر :  {{$supplier->citytitle}}
                                                </p>
                                             </div>
                                         </div>
