@@ -2,7 +2,7 @@
 @section('title')
     <title>
         @foreach($suppliers as $supplier)
-            - فروشگاه {{$supplier->title}}
+             فروشگاه - {{$supplier->title}}
         @endforeach
     </title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
