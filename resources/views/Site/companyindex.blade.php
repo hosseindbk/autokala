@@ -62,7 +62,7 @@
                                     <h1 style="text-align: center;padding: 20px;font-size: 1.5rem;">{{$supplier->title}}</h1>
 
                                     <div class="p-4" style="line-height: 40px;text-align: justify;height: 28.2vmax;">
-                                        @if($supplier->manager)
+                                        @if($supplier->manager != null)
                                             <p> با مدیریت {{$supplier->manager}}</p>
                                         @endif
                                         {!! $supplier->description !!}
