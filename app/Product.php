@@ -6,32 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public function scopeSearch($query , $keywords)
-    {
-        $category = request('category_id');
-        if ($category == 'all' || $category == null)
-        {
-            $query->where('title_fa'            , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_bazar_fa'      , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_fani_fa'       , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_fani_en'       , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('code_fani_company'   , 'LIKE' , '%' .$keywords. '%');
-        }else {
-            $query->where($category, 'LIKE', '%' . $keywords . '%');
-        }
-        return $query;
-    }
+
     public function scopeFilter($query)
     {
-
+        $category = request('category_id');
         $keywords = request('productsearch');
+
         if (isset($keywords) && $keywords != null)
         {
-            $query->where('title_fa'            , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_bazar_fa'      , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_fani_fa'       , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('title_fani_en'       , 'LIKE' , '%' .$keywords. '%')
-                ->orwhere('code_fani_company'   , 'LIKE' , '%' .$keywords. '%');
+            if ($category == 'all' || $category == null)
+                {
+                    $query->where('title_fa'            , 'LIKE' , '%' .$keywords. '%')
+                        ->orwhere('title_bazar_fa'      , 'LIKE' , '%' .$keywords. '%')
+                        ->orwhere('title_fani_fa'       , 'LIKE' , '%' .$keywords. '%')
+                        ->orwhere('title_fani_en'       , 'LIKE' , '%' .$keywords. '%')
+                        ->orwhere('code_fani_company'   , 'LIKE' , '%' .$keywords. '%');
+                }
+            else
+                {
+                    $query->where($category, 'LIKE', '%' . $keywords . '%');
+                }
         }
 
         $productgroup_id    = request('productgroup_id');

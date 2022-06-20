@@ -12,7 +12,7 @@
                     <div class="header-search row text-right">
                         <div class="header-search-box">
                             <form action="{{route('productsearchandfilter')}}" method="get" class="form-search">
-                                <input type="search" class="header-search-input" name="search" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+                                <input type="search" class="header-search-input" name="productsearch" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
                                         <img src="{{asset('site/images/search.png')}}" alt="search">
@@ -283,7 +283,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="oldproduct" role="tabpanel" aria-labelledby="oldproduct-tab">
                                         <div class="row">
-                                            @foreach($oldproducts as $product)
+                                            @foreach($productvars as $product)
                                                 <div class="col-lg-3 col-md-3 col-xs-12 order-1 d-block mb-3">
                                                     <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
                                                         <div class="thumb">
@@ -317,7 +317,7 @@
                                         </div>
                                         <div class="pagination-product">
                                             <nav aria-label="Page navigation example">
-                                                {{$oldproducts->appends(request()->all())->links()}}
+                                                {{$productvars->appends(request()->all())->links()}}
                                             </nav>
                                         </div>
                                     </div>
