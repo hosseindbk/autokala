@@ -372,7 +372,7 @@
                                                             <span class="amount"><b style="color: #fff;">.</b> @if($supplier->manager) مدیریت : {{$supplier->manager}} @endif</span>
                                                         </div>
                                                         <div class="title">
-                                                            <p>@foreach($cities as $city) @if($city->id == $supplier->city_id) {{$city->title}} : {{ \Illuminate\Support\Str::limit($supplier->address, 25, $end='...') }} @endif @endforeach</p>
+                                                            <p> {{$supplier->citytitle}} : {{ \Illuminate\Support\Str::limit($supplier->address, 25, $end='...') }}</p>
                                                         </div>
                                                     </section>
                                                 </div>
@@ -405,7 +405,7 @@
                                                             <span class="amount"><b style="color: #fff;">.</b> @if($supplier->manager) مدیریت : {{$supplier->manager}} @endif</span>
                                                         </div>
                                                         <div class="title">
-                                                            <p>@foreach($cities as $city) @if($city->id == $supplier->city_id) {{$city->title}} : {{ \Illuminate\Support\Str::limit($supplier->address, 25, $end='...') }} @endif @endforeach</p>
+                                                            <p> {{$supplier->citytitle}} : {{ \Illuminate\Support\Str::limit($supplier->address, 25, $end='...') }}</p>
                                                         </div>
                                                     </section>
                                                 </div>

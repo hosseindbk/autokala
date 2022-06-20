@@ -136,7 +136,6 @@
                                                         href="#headingOne" role="button" aria-expanded="false"
                                                         aria-controls="headingOne">
                                                     دسته بندی قطعات خودرو
-                                                    {{$technicals->count()}}
                                                     <i class="mdi mdi-chevron-down"></i>
                                                 </button>
                                             </h2>
@@ -274,14 +273,7 @@
                                                                 @endif
                                                         </div>
                                                         <div class="title">
-                                                            <p>@foreach($cities as $city)
-                                                                    @if($city->id == $technical_unit->city_id)
-                                                                        {{$city->title}} :
-                                                                        {{ \Illuminate\Support\Str::limit($technical_unit->address, 25, $end='...') }}
-                                                                    @endif
-                                                                @endforeach
-                                                                <b style="color: #fff;">.</b>
-                                                            </p>
+                                                            <p>{{$technical_unit->citytitle}} : {{ \Illuminate\Support\Str::limit($technical_unit->address, 25, $end='...') }}<b style="color: #fff;">.</b></p>
                                                         </div>
                                                     </section>
                                                 </div>
@@ -316,7 +308,7 @@
                                                             @endif
                                                         </div>
                                                         <div class="title">
-                                                            <p>@foreach($cities as $city) @if($city->id == $technical_unit->city_id) {{$city->title}} : {{ \Illuminate\Support\Str::limit($technical_unit->address, 25, $end='...') }} @endif @endforeach</p>
+                                                            <p>{{$technical_unit->citytitle}} : {{ \Illuminate\Support\Str::limit($technical_unit->address, 25, $end='...') }}<b style="color: #fff;">.</b></p>
                                                         </div>
                                                     </section>
                                                 </div>
@@ -351,7 +343,7 @@
                                                             @endif
                                                         </div>
                                                         <div class="title">
-                                                            <p>@foreach($cities as $city) @if($city->id == $technical_unit->city_id) {{$city->title}} : {{ \Illuminate\Support\Str::limit($technical_unit->address, 25, $end='...') }} @endif @endforeach</p>
+                                                            <p>{{$technical_unit->citytitle}} : {{ \Illuminate\Support\Str::limit($technical_unit->address, 25, $end='...') }}<b style="color: #fff;">.</b></p>
                                                         </div>
                                                     </section>
                                                 </div>
