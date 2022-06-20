@@ -1,6 +1,10 @@
 @extends('master-company')
 @section('title')
-    <title>اتوکالا سامانه جامع قطعات و خدمات خودرو</title>
+    <title>
+        @foreach($suppliers as $supplier)
+            {{$supplier->title}}
+        @endforeach
+    </title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <meta name="enamad" content="745189" />
 @endsection
