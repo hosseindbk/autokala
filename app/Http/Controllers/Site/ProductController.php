@@ -25,20 +25,50 @@ use Illuminate\Support\Facades\Redirect;
 class ProductController extends Controller
 {
     public function index(){
-        $keywords       = request('search');
-        $carbrandset      = request('car_brand_id');
 
         $menus          = Menu::select('id' , 'title' , 'slug')->whereStatus(4)->get();
+        $productgroups  = Product_group::whereStatus(4)->get();
+        $carbrands      = Car_brand::whereStatus(4)->get();
+        $carmodels      = Car_model::whereStatus(4)->get();
+        $brands         = Brand::whereStatus(4)->get();
+        $states         = State::all();
         $countState     = null;
+        $count          = Product::filter()->unicode()->whereStatus(4)->count();
+
+        $newproducts    = Product::filter()->unicode()
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->whereStatus(4)
+            ->orderBy('id' , 'DESC')
+            ->paginate(16);
+
+        $clickproducts  = Product::filter()->unicode()
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->whereStatus(4)
+            ->orderBy('click' , 'DESC')
+            ->paginate(16);
+
+        $productvars    = Product::filter()->unicode()
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->whereStatus(4)
+            ->orderBy('countvarity' , 'DESC')
+            ->paginate(16);
+
+        $carbrandset    = request('car_brand_id');
 
 
-        $product_id     = Product::search($keywords)->pluck('id');
+        $product_id     = Product::pluck('id');
         if ($product_id == '[]'){
             alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
             return Redirect::back();
         }
 
-        $productgroup = request('productgroup_id');
+        $carproducts    = Car_product::
+        leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
+            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
+            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
+            ->get();
+
+        $productgroup   = request('productgroup_id');
         if(isset($productgroup)  && $productgroup != '') {
             $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
         }else{$productgroup_id = null;}
@@ -53,45 +83,6 @@ class ProductController extends Controller
             $brand_id = Brand::whereIn('id', $brand)->get();
         }else{$brand_id = null;}
 
-        $count              = Product::search($keywords)
-            ->filter()
-            ->unicode()
-            ->whereStatus(4)
-            ->count();
-
-        $newproducts    = Product::search($keywords)
-            ->filter()
-            ->unicode()
-            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
-            ->whereStatus(4)
-            ->orderBy('id' , 'DESC')
-            ->paginate(16);
-
-        $clickproducts  = Product::search($keywords)
-            ->filter()
-            ->unicode()
-            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
-            ->whereStatus(4)
-            ->orderBy('click' , 'DESC')
-            ->paginate(16);
-
-        $productvars  = DB::select("SELECT p.id , p.slug , p.title_fa , p.image , p.title_en , v.count_v from products as p
-            left join (SELECT product_id , COUNT(id) as count_v FROM product_brand_varieties GROUP BY product_id )
-            AS v on p.id = v.product_id ORDER BY v.count_v DESC;");
-
-        $oldproducts = new Paginator($productvars, 16);
-
-        $productgroups  = Product_group::whereStatus(4)->get();
-        $carbrands      = Car_brand::whereStatus(4)->get();
-        $carmodels      = Car_model::whereStatus(4)->get();
-        $brands         = Brand::whereStatus(4)->get();
-        $states         = State::all();
-
-        $carproducts = DB::table('car_products')
-            ->leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
-            ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
-            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title' , 'car_products.product_id')
-            ->get();
         if(isset($productgroup) || isset($brand) || isset($carmodel) || isset($carbrandset)) {
             $filter = 1;
         }else{
@@ -104,10 +95,10 @@ class ProductController extends Controller
             ->with(compact('filter'))
             ->with(compact('carmodel_id'))
             ->with(compact('productgroup_id'))
+            ->with(compact('productvars'))
             ->with(compact('brands'))
             ->with(compact('states'))
             ->with(compact('clickproducts'))
-            ->with(compact('oldproducts'))
             ->with(compact('carbrands'))
             ->with(compact('carproducts'))
             ->with(compact('carmodels'))
