@@ -64,7 +64,7 @@
                                     <div class="p-4" style="line-height: 40px;text-align: justify;height: 28.2vmax;">
                                         @if($supplier->manager)
                                             <p> با مدیریت {{$supplier->manager}}</p>
-                                        @elseif
+                                        @endif
                                         {!! $supplier->description !!}
                                     </div>
                                 @endforeach
