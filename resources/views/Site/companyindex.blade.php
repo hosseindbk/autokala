@@ -60,6 +60,7 @@
                             <div class="carousel-inner" style="overflow: auto;z-index: 1">
                                 @foreach($suppliers as $supplier)
                                     <h1 style="text-align: center;padding: 20px;font-size: 1.5rem;">{{$supplier->title}}</h1>
+                                    <p> با مدیریت {{$supplier->manager}}</p>
                                     <div class="p-4" style="line-height: 40px;text-align: justify;height: 28.2vmax;">{!! $supplier->description !!}</div>
                                 @endforeach
                             </div>
