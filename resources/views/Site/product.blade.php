@@ -12,7 +12,7 @@
                     <div class="header-search row text-right">
                         <div class="header-search-box">
                             <form action="{{route('productsearchandfilter')}}" method="get" class="form-search">
-                                <input type="search" class="header-search-input" name="productsearch" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+                                <input type="search" class="header-search-input" name="productsearch" value="{{request('productsearch')}}" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
                                         <img src="{{asset('site/images/search.png')}}" alt="search">

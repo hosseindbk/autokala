@@ -23,8 +23,38 @@ class SupplierController extends Controller
     public function index(){
         $menus              = Menu::select('id' , 'title' , 'slug')->whereStatus(4)->get();
         $productgroup       = request('productgroup_id');
-        $keywords           = request('suppliersearch');
-        $carbrandset      = request('car_brand_id');
+        $carbrandset        = request('car_brand_id');
+        $countState         = null;
+        $suppliers          = Supplier::filter()->select('id')->whereStatus(4)->get();
+        $productgroups      = Product_group::whereStatus(4)->get();
+        $carbrands          = Car_brand::whereStatus(4)->get();
+        $brands             = Brand::whereStatus(4)->get();
+        $carmodels          = Car_model::whereStatus(4)->get();
+        $states             = State::all();
+        $cities             = City::all();
+
+        $newsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()
+            ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
+            ->where('suppliers.status', 4)
+            ->orderBy('id' , 'DESC')
+            ->paginate(16);
+        $clicksuppliers     = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()
+            ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
+            ->where('suppliers.status', 4)
+            ->orderBy('click')
+            ->paginate(16);
+        $goodsuppliers      = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()
+            ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
+            ->where('suppliers.status', 4)
+            ->orderBy('id' , 'DESC')
+            ->paginate(16);
+        $oldsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()
+            ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
+            ->where('suppliers.status', 4)
+            ->orderBy('id')
+            ->paginate(16);
+
+
         if(isset($productgroup)  && $productgroup != '') {
             $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
         }else{$productgroup_id = null;}
@@ -39,25 +69,11 @@ class SupplierController extends Controller
             $carmodel_id = Car_model::whereIn('id', $carmodel)->get();
         }else{$carmodel_id = null;}
 
-        $countState         = null;
-
-        $supplier_id        = Supplier::suppliersearch($keywords)->whereStatus(4)->pluck('id');
+        $supplier_id        = Supplier::filter()->whereStatus(4)->pluck('id');
         if ($supplier_id == '[]'){
             alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
             return Redirect::back();
         }
-
-        $suppliers          = Supplier::suppliersearch($keywords)->filter()->select('id')->whereStatus(4)->get();
-        $newsuppliers       = Supplier::suppliersearch($keywords)->filter()->select('id' , 'title' , 'slug' , 'image' , 'manager' , 'address' , 'city_id')->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $clicksuppliers     = Supplier::suppliersearch($keywords)->filter()->whereStatus(4)->orderBy('click')->paginate(16);
-        $goodsuppliers      = Supplier::suppliersearch($keywords)->filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-        $oldsuppliers       = Supplier::suppliersearch($keywords)->filter()->whereStatus(4)->orderBy('id')->paginate(16);
-        $productgroups      = Product_group::whereStatus(4)->get();
-        $carbrands          = Car_brand::whereStatus(4)->get();
-        $brands             = Brand::whereStatus(4)->get();
-        $carmodels          = Car_model::whereStatus(4)->get();
-        $states             = State::all();
-        $cities             = City::all();
 
         if(isset($productgroup) || isset($carmodel) || isset($carbrandset)){
             $filter = 1;
@@ -123,60 +139,6 @@ class SupplierController extends Controller
             ->with(compact('goodsuppliers'))
             ->with(compact('oldsuppliers'));
     }
-
-//    public function supplierfilter(){
-//
-//        $productgroup = request('productgroup_id');
-//        if(isset($productgroup)  && $productgroup != '') {
-//            $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
-//        }else{$productgroup_id = null;}
-//
-//        $city = request('city_id');
-//        if(isset($city)  && $city != '') {
-//            $city_id = City::whereIn('id', $city)->get();
-//        }else{$city_id = null;}
-//
-//        $carmodel = request('car_model_id');
-//        if(isset($carmodel)  && $carmodel != '') {
-//            $carmodel_id = Car_model::whereIn('id', $carmodel)->get();
-//        }else{$carmodel_id = null;}
-//        $countState         = null;
-//
-//        $menus              = Menu::whereStatus(4)->get();
-//        $suppliers          = Supplier::filter()->select('id')->whereStatus(4)->get();
-//        $newsuppliers       = Supplier::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-//        $clicksuppliers     = Supplier::filter()->whereStatus(4)->orderBy('click')->paginate(16);
-//        $goodsuppliers      = Supplier::filter()->whereStatus(4)->orderBy('id' , 'DESC')->paginate(16);
-//        $oldsuppliers       = Supplier::filter()->whereStatus(4)->orderBy('id')->paginate(16);
-//        $productgroups      = Product_group::whereStatus(4)->get();
-//        $carbrands          = Car_brand::whereStatus(4)->get();
-//        $brands             = Brand::whereStatus(4)->get();
-//        $carmodels          = Car_model::whereStatus(4)->get();
-//         $states            = State::all();
-//        $cities             = City::all();
-//        $filter             = 1;
-//
-//        return view('Site.supplier')
-//            ->with(compact('countState'))
-//            ->with(compact('carmodel_id'))
-//            ->with(compact('city_id'))
-//            ->with(compact('productgroup_id'))
-//            ->with(compact('suppliers'))
-//            ->with(compact('filter'))
-//            ->with(compact('carmodels'))
-//            ->with(compact('states'))
-//            ->with(compact('cities'))
-//            ->with(compact('brands'))
-//            ->with(compact('carbrands'))
-//            ->with(compact('productgroups'))
-//            ->with(compact('menus'))
-//            ->with(compact('newsuppliers'))
-//            ->with(compact('clicksuppliers'))
-//            ->with(compact('goodsuppliers'))
-//            ->with(compact('oldsuppliers'));
-//
-//
-//    }
 
     public function subsupplier($slug){
 

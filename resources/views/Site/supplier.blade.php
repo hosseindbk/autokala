@@ -339,7 +339,7 @@
 
                                                         </div>
                                                         <div class="title">
-                                                            <p>@foreach($cities as $city) @if($city->id == $supplier->city_id) {{$city->title}} : {{ \Illuminate\Support\Str::limit($supplier->address, 25, $end='...') }} @endif @endforeach</p>
+                                                            <p> {{$supplier->citytitle}} : {{ \Illuminate\Support\Str::limit($supplier->address, 25, $end='...') }}</p>
                                                         </div>
                                                     </section>
                                                 </div>
