@@ -337,7 +337,9 @@
                                                     <li>
                                                         <span class="cell-title">کیفیت کالا:</span>
                                                         <span class="cell-value">
-                                                            @if($commentratequality * 100 / 5 <= 20)
+                                                            @if($commentratequality * 100 / 5 == 0)
+                                                                فاقد امتیاز
+                                                            @elseif($commentratequality * 100 / 5 <= 20)
                                                                 خیلی بد
                                                             @elseif($commentratequality * 100 / 5 <= 40 && $commentratequality * 100 / 5 > 20)
                                                                 بد
@@ -356,7 +358,9 @@
                                                     <li>
                                                         <span class="cell-title">تناسب قیمت با کیفیت:</span>
                                                         <span class="cell-value">
-                                                            @if($commentratevalue * 100 / 5 <= 20)
+                                                            @if($commentratevalue * 100 / 5 == 0)
+                                                                فاقد امتیاز
+                                                            @elseif($commentratevalue * 100 / 5 <= 20)
                                                                 خیلی بد
                                                             @elseif($commentratevalue * 100 / 5 <= 40 && $commentratevalue * 100 / 5 > 20)
                                                                 بد
@@ -375,7 +379,9 @@
                                                     <li>
                                                         <span class="cell-title">دردسترس بودن در بازار:</span>
                                                         <span class="cell-value">
-                                                            @if($commentrateinnovation * 100 / 5 <= 20)
+                                                            @if($commentrateinnovation * 100 / 5 == 0)
+                                                                فاقد امتیاز
+                                                            @elseif($commentrateinnovation * 100 / 5 <= 20)
                                                                 خیلی بد
                                                             @elseif($commentrateinnovation * 100 / 5 <= 40 && $commentrateinnovation * 100 / 5 > 20)
                                                                 بد
@@ -394,7 +400,9 @@
                                                     <li>
                                                         <span class="cell-title">بسته بندی:</span>
                                                         <span class="cell-value">
-                                                            @if($commentrateability * 100 / 5 <= 20)
+                                                            @if($commentrateability * 100 / 5 == 0)
+                                                                فاقد امتیاز
+                                                            @elseif($commentrateability * 100 / 5 <= 20)
                                                                 خیلی بد
                                                             @elseif($commentrateability * 100 / 5 <= 40 && $commentrateability * 100 / 5 > 20)
                                                                 بد
@@ -413,7 +421,9 @@
                                                     <li>
                                                         <span class="cell-title">گارانتی و ضمانت:</span>
                                                         <span class="cell-value">
-                                                            @if($commentratedesign * 100 / 5 <= 20)
+                                                            @if($commentratedesign * 100 / 5 == 0)
+                                                                فاقد امتیاز
+                                                            @elseif($commentratedesign * 100 / 5 <= 20)
                                                                 خیلی بد
                                                             @elseif($commentratedesign * 100 / 5 <= 40 && $commentratedesign * 100 / 5 > 20)
                                                                 بد
@@ -432,7 +442,9 @@
                                                     <li>
                                                         <span class="cell-title">ملحقات شامل (پیچ ، واشر ، بروشور ، راهنما، و..):</span>
                                                         <span class="cell-value">
-                                                            @if($commentratecomfort * 100 / 5 <= 20)
+                                                            @if($commentratecomfort * 100 / 5 == 0)
+                                                                فاقد امتیاز
+                                                            @elseif($commentratecomfort * 100 / 5 <= 20)
                                                                 خیلی بد
                                                             @elseif($commentratecomfort * 100 / 5 <= 40 && $commentratecomfort * 100 / 5 > 20)
                                                                 بد
