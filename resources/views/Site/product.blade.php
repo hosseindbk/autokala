@@ -259,7 +259,7 @@
                                                             <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}}</a>
                                                         </div>
                                                         <div class="price">
-                                                        <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereProduct_id($product->id)->count()}}</span>
+                                                        <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereStatus(4)->whereProduct_id($product->id)->count()}}</span>
                                                         </div>
                                                         <div class="title">
                                                             <p><a href="">مناسب برای :
@@ -299,7 +299,7 @@
                                                             <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}}</a>
                                                         </div>
                                                         <div class="price">
-                                                            <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereProduct_id($product->id)->count()}}</span>
+                                                            <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereStatus(4)->whereProduct_id($product->id)->count()}}</span>
                                                         </div>
                                                         <div class="title">
                                                             <p><a href="">مناسب برای :
@@ -339,7 +339,7 @@
                                                             <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}}</a>
                                                         </div>
                                                         <div class="price">
-                                                            <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereProduct_id($product->id)->count()}}</span>
+                                                            <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereStatus(4)->whereProduct_id($product->id)->count()}}</span>
                                                         </div>
                                                         <div class="title">
                                                             <p><a href="">مناسب برای :

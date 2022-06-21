@@ -126,15 +126,16 @@ class ProductController extends Controller
         $productbrandvarieties  = Product_brand_variety::whereStatus(4)->get();
         $productvarieties       = Product_brand_variety::whereIn('Product_id' , $product_id)->whereStatus(4)->get();
 
-        $brandvarietis = DB::table('product_brand_varieties')
-            ->LeftJoin('products', 'products.id', '=', 'product_brand_varieties.product_id')
+        $brandvarietis = Product_brand_variety::
+            LeftJoin('products', 'products.id', '=', 'product_brand_varieties.product_id')
             ->LeftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->LeftJoin('countries' , 'countries.id' , '=', 'brands.country_id')
             ->select('products.slug as product_slug' , 'product_brand_varieties.id as brand_id' , 'brands.image as brand_image' , 'brands.title_fa as brand_title'
             ,'brands.abstract_title as brand_abstract_title' , 'brands.title_en as brand_title_en' , 'countries.name as country_name' ,'product_brand_varieties.id as brand_vareity_id',
             'product_brand_varieties.item1 as item1'  , 'product_brand_varieties.item2 as item2' , 'product_brand_varieties.item3 as item3',
             'product_brand_varieties.value_item1 as value1' , 'product_brand_varieties.value_item2 as value2' , 'product_brand_varieties.value_item3 as value3')
-            ->whereProduct_id($product_id)->get();
+            ->where('product_brand_varieties.product_id' , $product_id)
+            ->where('product_brand_varieties.status' , 4)->get();
 
 
 
