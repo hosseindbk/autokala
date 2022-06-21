@@ -67,7 +67,7 @@
 
                                     <div class="p-4" style="line-height: 40px;text-align: justify;height: 28.2vmax;">
                                         @if($supplier->manager != null)
-                                            <p> با مدیریت {{$supplier->manager}}</p>
+                                            <p style="color: #cf2a2a;font-size: 1.6rem;"> با مدیریت {{$supplier->manager}}</p>
                                         @endif
                                         {!! $supplier->description !!}
                                     </div>
