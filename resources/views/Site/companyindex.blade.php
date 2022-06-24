@@ -12,18 +12,19 @@
     <div class="container-main">
         @include('sweet::alert')
         <div class="d-block">
-            <div class="slider-main-container d-block">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-xs-12">
-                        @foreach($suppliers as $supplier)
-                            <div style="height: 18.8vmax;background-image: url({{asset($supplier->banner)}});background-size: cover;"></div>
-                        @endforeach
+            <div class="col-lg-12 col-xs-12 pl mb-3">
+                <div class="adplacement-container-column">
+                    <div class="slider-main-container d-block">
+                        <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div>
+                                    <img src="{{asset($supplier->banner)}}" class="d-block w-100" alt="{{$service->title}}">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="d-block">
-
             <div class="col-lg-8 col-xs-12 pr mt-3 mb-3">
                 <div class="slider-main-container d-block">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
