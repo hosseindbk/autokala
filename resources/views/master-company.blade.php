@@ -48,6 +48,7 @@
                                             <a href="whatsapp:{{$supplier->whatsapp}}" style="color: #716f6f;font-size: 20px" target="_blank"> {{$supplier->whatsapp}} </a>
                                         </div>
                                         <div class="post-content">
+                                            <i class="fa fa-instagram" style="color: #e81a1a"></i>
                                             <a href="{{$supplier->website}}" style="color: #716f6f;font-size: 20px" target="_blank"> اینستاگرام </a>
                                         </div>
                                         <div class="post-content">
