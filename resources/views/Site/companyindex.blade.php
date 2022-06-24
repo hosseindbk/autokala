@@ -18,7 +18,7 @@
                         <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div>
-                                    <img src="{{asset($supplier->banner)}}" class="d-block w-100" alt="{{$service->title}}">
+                                    <img src="{{asset($supplier->banner)}}" class="d-block w-100" alt="{{$supplier->title}}">
                                 </div>
                             </div>
                         </div>
