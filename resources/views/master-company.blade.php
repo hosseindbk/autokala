@@ -89,7 +89,7 @@
                         <div class="footer-copyright">
                             <div class="footer-copyright-text">
                                 <p>کلیه حقوق این وبسایت به اتوکالا نیک آراد (سامانه جامع قطعات و خدمات خودرو) تعلق دارد</p>
-                                <p class="text-left">Developed By <a href="https://bestagroup.ir">Bestagroup</a> </p>
+                                <p class="text-left">Developed By <a href="https://bestagroup.ir" target="_blank">Bestagroup</a> </p>
                             </div>
                         </div>
                     </div>
