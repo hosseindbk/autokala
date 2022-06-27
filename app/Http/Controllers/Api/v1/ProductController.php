@@ -255,63 +255,69 @@ class ProductController extends Controller
 
     public function createproductvariety(productbrandvarietyrequest $request)
     {
-        $productbrandvarieties = new Product_brand_variety();
+        if (Auth::user()->type_id == 1) {
+            $productbrandvarieties = new Product_brand_variety();
 
-        $productbrandvarieties->brand_id             = $request->input('brand_id');
-        $productbrandvarieties->product_id           = $request->input('product_id');
-        $productbrandvarieties->guarantee            = $request->input('guarantee');
-        $productbrandvarieties->item1                = $request->input('item1');
-        $productbrandvarieties->item2                = $request->input('item2');
-        $productbrandvarieties->item3                = $request->input('item3');
-        $productbrandvarieties->value_item1          = $request->input('value_item1');
-        $productbrandvarieties->value_item2          = $request->input('value_item2');
-        $productbrandvarieties->value_item3          = $request->input('value_item3');
-        $productbrandvarieties->strength1            = $request->input('strength1');
-        $productbrandvarieties->strength2            = $request->input('strength2');
-        $productbrandvarieties->strength3            = $request->input('strength3');
-        $productbrandvarieties->weakness1            = $request->input('weakness1');
-        $productbrandvarieties->weakness2            = $request->input('weakness2');
-        $productbrandvarieties->weakness3            = $request->input('weakness3');
-        $productbrandvarieties->status               = '1';
-        $productbrandvarieties->description          = $request->input('description');
-        $productbrandvarieties->date                 = jdate()->format('Ymd ');
-        $productbrandvarieties->date_handle          = jdate()->format('Ymd ');
-        $productbrandvarieties->user_id              = Auth::user()->id;
+            $productbrandvarieties->brand_id = $request->input('brand_id');
+            $productbrandvarieties->product_id = $request->input('product_id');
+            $productbrandvarieties->guarantee = $request->input('guarantee');
+            $productbrandvarieties->item1 = $request->input('item1');
+            $productbrandvarieties->item2 = $request->input('item2');
+            $productbrandvarieties->item3 = $request->input('item3');
+            $productbrandvarieties->value_item1 = $request->input('value_item1');
+            $productbrandvarieties->value_item2 = $request->input('value_item2');
+            $productbrandvarieties->value_item3 = $request->input('value_item3');
+            $productbrandvarieties->strength1 = $request->input('strength1');
+            $productbrandvarieties->strength2 = $request->input('strength2');
+            $productbrandvarieties->strength3 = $request->input('strength3');
+            $productbrandvarieties->weakness1 = $request->input('weakness1');
+            $productbrandvarieties->weakness2 = $request->input('weakness2');
+            $productbrandvarieties->weakness3 = $request->input('weakness3');
+            $productbrandvarieties->status = '1';
+            $productbrandvarieties->description = $request->input('description');
+            $productbrandvarieties->date = jdate()->format('Ymd ');
+            $productbrandvarieties->date_handle = jdate()->format('Ymd ');
+            $productbrandvarieties->user_id = Auth::user()->id;
 
-        if ($request->file('image1') != null) {
-            $file = $request->file('image1');
-            $img = Image::make($file);
-            $imagePath ="images/productbrandvarieties/";
-            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $productbrandvarieties->image1 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
+            if ($request->file('image1') != null) {
+                $file = $request->file('image1');
+                $img = Image::make($file);
+                $imagePath = "images/productbrandvarieties/";
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+                $productbrandvarieties->image1 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+
+            if ($request->file('image2') != null) {
+                $file = $request->file('image2');
+                $img = Image::make($file);
+                $imagePath = "images/productbrandvarieties/";
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+                $productbrandvarieties->image2 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+
+            if ($request->file('image3') != null) {
+                $file = $request->file('image3');
+                $img = Image::make($file);
+                $imagePath = "images/productbrandvarieties/";
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+                $productbrandvarieties->image3 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            $productbrandvarieties->save();
+
+            $response = 'اطلاعات با موفقیت ثبت شد';
+
+            return Response::json(['ok' => true, 'message' => 'success', 'response' => $response]);
+        }else{
+            $response = 'شما دسترسی لازم جهت ثبت را ندارید';
+
+            return Response::json(['ok' => false, 'message' => 'failed', 'response' => $response]);
         }
-
-        if ($request->file('image2') != null) {
-            $file = $request->file('image2');
-            $img = Image::make($file);
-            $imagePath ="images/productbrandvarieties/";
-            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $productbrandvarieties->image2 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
-        }
-
-        if ($request->file('image3') != null) {
-            $file = $request->file('image3');
-            $img = Image::make($file);
-            $imagePath ="images/productbrandvarieties/";
-            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $productbrandvarieties->image3 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
-        }
-        $productbrandvarieties->save();
-
-        $response = 'اطلاعات با موفقیت ثبت شد' ;
-
-        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
 
