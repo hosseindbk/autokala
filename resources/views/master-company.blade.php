@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{asset('site/css/vendor/bootstrap-slider.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
-
 </head>
 
 <body>
@@ -49,7 +48,7 @@
                                         </div>
                                         <div class="post-content">
                                             <i class="fa fa-instagram" style="color: #e81a1a"></i>
-                                            <a href="{{$supplier->website}}" style="color: #716f6f;font-size: 20px" target="_blank"> اینستاگرام </a>
+                                            <a href="{{'https://'.$supplier->website}}" style="color: #716f6f;font-size: 20px" target="_blank"> اینستاگرام </a>
                                         </div>
                                         <div class="post-content">
                                             <i class="fa fa-map-pin" style="color: #ff3d00"></i>
@@ -90,6 +89,7 @@
                         <div class="footer-copyright">
                             <div class="footer-copyright-text">
                                 <p>کلیه حقوق این وبسایت به اتوکالا نیک آراد (سامانه جامع قطعات و خدمات خودرو) تعلق دارد</p>
+                                <p class="text-left">Developed By <a href="https://bestagroup.ir">Bestagroup</a> </p>
                             </div>
                         </div>
                     </div>
