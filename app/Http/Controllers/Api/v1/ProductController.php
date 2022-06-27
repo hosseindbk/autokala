@@ -269,11 +269,9 @@ class ProductController extends Controller
         $productbrandvarieties->strength1            = $request->input('strength1');
         $productbrandvarieties->strength2            = $request->input('strength2');
         $productbrandvarieties->strength3            = $request->input('strength3');
-        $productbrandvarieties->strength4            = $request->input('strength4');
         $productbrandvarieties->weakness1            = $request->input('weakness1');
         $productbrandvarieties->weakness2            = $request->input('weakness2');
         $productbrandvarieties->weakness3            = $request->input('weakness3');
-        $productbrandvarieties->weakness4            = $request->input('weakness4');
         $productbrandvarieties->status               = '1';
         $productbrandvarieties->description          = $request->input('description');
         $productbrandvarieties->date                 = jdate()->format('Ymd ');
