@@ -3,10 +3,14 @@
     <title>
         @foreach($suppliers as $supplier)
              فروشگاه - {{$supplier->title}}
+
         @endforeach
     </title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <meta name="enamad" content="745189" />
+
+    <meta name="keywords" content="@foreach($suppliers as $supplier){{$supplier->keyword}} @endforeach" />
+
 @endsection
 @section('main')
     <div class="container-main">
