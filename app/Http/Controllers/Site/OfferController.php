@@ -57,7 +57,7 @@ class OfferController extends Controller
             ->with(compact('productbrandvarieties'));
     }
 
-    public function offerproduct($id){
+    public function offerproduct($id , $slug){
         $cities                 = City::all();
         $states                 = State::all();
         $carbrands              = Car_brand::all();
@@ -69,18 +69,29 @@ class OfferController extends Controller
         $products               = Product::whereStatus(4)->whereId($id)->get();
         $product_id             = Product::whereStatus(4)->whereId($id)->pluck('id');
         $kalagroup_id           = Product::whereStatus(4)->whereId($id)->pluck('kala_group_id');
-        $brand_varietis         = Product_brand_variety::whereIn('product_id' , $product_id)->get();
+        if (!$slug) {
+            $brand_varietis = Product_brand_variety::whereIn('product_id', $product_id)->get();
+        }else{
+            $brand_varietis = Product_brand_variety::whereId($slug)->get();
+        }
         $productgroups          = Product_group::whereIn('id' , $kalagroup_id)->get();
         $carproducts            = Car_product::whereIn('product_id' , $product_id)->get();
         $brands                 = Brand::all();
         $offers                 = Offer::whereUser_id(Auth::user()->id)->get();
 
-
-        $kalabrands = Product_brand_variety::leftjoin('brands' , 'brands.id' , '=' ,'product_brand_varieties.brand_id')
-            ->select('product_brand_varieties.id' , 'product_brand_varieties.item1' , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' ,
-                'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3' , 'brands.title_fa')
-            ->whereIn('product_brand_varieties.product_id' , $product_id)
-            ->get();
+        if (!$slug) {
+            $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+                ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
+                    'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3', 'brands.title_fa')
+                ->whereIn('product_brand_varieties.product_id', $product_id)
+                ->get();
+        }else{
+            $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+                ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
+                    'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3', 'brands.title_fa')
+                ->where('product_brand_varieties.id', $slug)
+                ->get();
+        }
 //        $shares = DB::table('brands')
 //            ->leftjoin('car_models', 'car_models.vehicle_brand_id', '=', 'car_brands.id')
 //            ->leftjoin('car_types', 'car_types.car_model_id', '=', 'car_models.id')
@@ -153,8 +164,9 @@ class OfferController extends Controller
         if ($request->input('price')) {
             $offers->price      = str_replace(',', '', $request->input('price'));
         }
-        $user_id = auth::user()->id;
-        $supplier_id = Supplier::whereUser_id($user_id)->pluck('id');
+
+        $supplier_id = Supplier::whereUser_id(auth::user()->id)->pluck('id');
+
         $offers->supplier_id        = $supplier_id[0];
         $offers->permanent_supplier = $request->input('permanent_supplier');
         $offers->slug               = 'OFFER-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
