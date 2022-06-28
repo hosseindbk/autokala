@@ -128,36 +128,32 @@
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">برند قطعه</p>
                                                                 <select name="brand_id" class="form-control select2" id="brand_id_select">
-                                                                    @foreach($brand_varietis as $Product_brand_variety)
-                                                                        @foreach($brands as $brand)
-                                                                            @if($brand->id == $Product_brand_variety->brand_id)
-                                                                                <option value="{{$Product_brand_variety->id}}">{{$brand->title_fa}}
-                                                                                    @if($Product_brand_variety->item1 != null)
+                                                                    @foreach($kalabrands as $kalabrand)
+                                                                                <option value="{{$kalabrand->id}}">{{$kalabrand->title_fa}}
+                                                                                    @if($kalabrand->item1 != null)
                                                                                         -
                                                                                         <li>
-                                                                                            <span>{{$Product_brand_variety->item1}}</span>
-                                                                                            <span>{{$Product_brand_variety->value_item1}}</span>
+                                                                                            <span>{{$kalabrand->item1}}</span>
+                                                                                            <span>{{$kalabrand->value_item1}}</span>
                                                                                         </li>
 
                                                                                     @endif
-                                                                                    @if($Product_brand_variety->item2 != null)
+                                                                                    @if($kalabrand->item2 != null)
                                                                                         ,
                                                                                         <li>
-                                                                                            <span>{{$Product_brand_variety->item2}}</span>
-                                                                                            <span>{{$Product_brand_variety->value_item2}}</span>
+                                                                                            <span>{{$kalabrand->item2}}</span>
+                                                                                            <span>{{$kalabrand->value_item2}}</span>
                                                                                         </li>
 
                                                                                     @endif
-                                                                                    @if($Product_brand_variety->item3 != null)
+                                                                                    @if($kalabrand->item3 != null)
                                                                                         ,
                                                                                         <li>
-                                                                                            <span>{{$Product_brand_variety->item3}}</span>
-                                                                                            <span>{{$Product_brand_variety->value_item3}}</span>
+                                                                                            <span>{{$kalabrand->item3}}</span>
+                                                                                            <span>{{$kalabrand->value_item3}}</span>
                                                                                         </li>
                                                                                     @endif
                                                                                 </option>
-                                                                            @endif
-                                                                        @endforeach
                                                                     @endforeach
                                                                 </select>
                                                                 <style>
@@ -318,19 +314,19 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">قیمت خرده فروشی (تومان)</p>
-                                                                <input type="text"  name="single_price" id="single_price" placeholder="قیمت خرده فروشی را وارد کنید" class="form-control number1" />
+                                                                <input type="text"  name="single_price" id="single_price" placeholder="قیمت خرده فروشی را وارد کنید" class="form-control loan_max_amount" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">قیمت عمده فروشی (تومان)</p>
-                                                                <input type="text" name="price" id="number2" placeholder="قیمت عمده فروشی را وارد کنید" class="form-control" />
+                                                                <input type="text" name="price" placeholder="قیمت عمده فروشی را وارد کنید" class="form-control loan_max_amount" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">حداقل تعداد عمده فروشی</p>
-                                                                <input type="text" name="total" placeholder="حداقل تعداد عمده فروشی را وارد کنید" class="form-control" />
+                                                                <input type="text" name="total" placeholder="حداقل تعداد عمده فروشی را وارد کنید" class="form-control loan_max_amount" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12" >
@@ -425,36 +421,32 @@
                                                                 <p class="mg-b-10">برند قطعه</p>
                                                                 <select name="brand_id" class="form-control select2" id="brand_id_select">
                                                                     <option value="">انتخاب برند</option>
-                                                                    @foreach($brand_varietis as $Product_brand_variety)
-                                                                        @foreach($brands as $brand)
-                                                                            @if($brand->id == $Product_brand_variety->brand_id)
-                                                                                <option value="{{$Product_brand_variety->id}}">{{$brand->title_fa}}
-                                                                                    @if($Product_brand_variety->item1 != null)
-                                                                                        -
-                                                                                        <li>
-                                                                                            <span>{{$Product_brand_variety->item1}}</span>
-                                                                                            <span>{{$Product_brand_variety->value_item1}}</span>
-                                                                                        </li>
+                                                                    @foreach($kalabrands as $kalabrand)
+                                                                        <option value="{{$kalabrand->id}}">{{$kalabrand->title_fa}}
+                                                                            @if($kalabrand->item1 != null)
+                                                                                -
+                                                                                <li>
+                                                                                    <span>{{$kalabrand->item1}}</span>
+                                                                                    <span>{{$kalabrand->value_item1}}</span>
+                                                                                </li>
 
-                                                                                    @endif
-                                                                                    @if($Product_brand_variety->item2 != null)
-                                                                                        ,
-                                                                                        <li>
-                                                                                            <span>{{$Product_brand_variety->item2}}</span>
-                                                                                            <span>{{$Product_brand_variety->value_item2}}</span>
-                                                                                        </li>
-
-                                                                                    @endif
-                                                                                    @if($Product_brand_variety->item3 != null)
-                                                                                        ,
-                                                                                        <li>
-                                                                                            <span>{{$Product_brand_variety->item3}}</span>
-                                                                                            <span>{{$Product_brand_variety->value_item3}}</span>
-                                                                                        </li>
-                                                                                    @endif
-                                                                                </option>
                                                                             @endif
-                                                                        @endforeach
+                                                                            @if($kalabrand->item2 != null)
+                                                                                ,
+                                                                                <li>
+                                                                                    <span>{{$kalabrand->item2}}</span>
+                                                                                    <span>{{$kalabrand->value_item2}}</span>
+                                                                                </li>
+
+                                                                            @endif
+                                                                            @if($kalabrand->item3 != null)
+                                                                                ,
+                                                                                <li>
+                                                                                    <span>{{$kalabrand->item3}}</span>
+                                                                                    <span>{{$kalabrand->value_item3}}</span>
+                                                                                </li>
+                                                                            @endif
+                                                                        </option>
                                                                     @endforeach
                                                                 </select>
                                                                 <style>
@@ -558,7 +550,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">قیمت (تومان)</p>
-                                                                <input type="text"  name="single_price" id=" single_price" placeholder="قیمت را وارد کنید" class="form-control number4" />
+                                                                <input type="text"  name="single_price" id=" single_price" placeholder="قیمت را وارد کنید" class="form-control loan_max_amount" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12" >
@@ -670,6 +662,14 @@
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
     <script  src="{{asset('site/js/mapp.env.js')}}"></script>
     <script src="{{asset('site/js/mapp.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.5.3/dist/cleave.min.js"></script>
+
+    <script>
+        document.querySelectorAll('.loan_max_amount').forEach(inp => new Cleave(inp, {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        }));
+    </script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor1' ) )
@@ -767,17 +767,6 @@
 
             })
         });
-    </script>
-    <script>
-        $(function () { $('.number1').change(function () { var x = $('.number1').val(); $('.number1').val(addCommas(x)); }); });
-        $(function () { $('.number4').change(function () { var f = $('.number4').val(); $('.number4').val(addCommas(f)); }); });
-        $(function () { $('#number2').change(function () { var y = $('#number2').val(); $('#number2').val(addCommas(y)); }); });
-        $(function () { $('#number3').change(function () { var z = $('#number3').val(); $('#number3').val(addCommas(z)); }); });
-
-        function addCommas(z) { return z.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
-        function addCommas(y) { return y.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
-        function addCommas(x) { return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
-        function addCommas(f) { return f.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); }
     </script>
     <script type="text/javascript">
         $(function(){
