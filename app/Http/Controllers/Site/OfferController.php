@@ -127,19 +127,12 @@ class OfferController extends Controller
         $brands                 = Brand::all();
         $offers                 = Offer::whereUser_id(Auth::user()->id)->get();
         $varity                 = 1;
-        if (!$slug) {
-            $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
-                ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
-                    'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3', 'brands.title_fa')
-                ->whereIn('product_brand_varieties.product_id', $product_id)
-                ->get();
-        }else{
-            $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
-                ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
-                    'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3', 'product_brand_varieties.image1', 'brands.title_fa')
-                ->where('product_brand_varieties.id', $slug)
-                ->get();
-        }
+        $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
+                'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3', 'product_brand_varieties.image1', 'brands.title_fa')
+            ->where('product_brand_varieties.id', $slug)
+            ->get();
+
 //        $shares = DB::table('brands')
 //            ->leftjoin('car_models', 'car_models.vehicle_brand_id', '=', 'car_brands.id')
 //            ->leftjoin('car_types', 'car_types.car_model_id', '=', 'car_models.id')
