@@ -69,10 +69,11 @@ class OfferController extends Controller
         $products               = Product::whereStatus(4)->whereId($id)->get();
         $product_id             = Product::whereStatus(4)->whereId($id)->pluck('id');
         $kalagroup_id           = Product::whereStatus(4)->whereId($id)->pluck('kala_group_id');
-        $brand_varietis = Product_brand_variety::whereIn('product_id', $product_id)->get();
+        $brand_varietis         = Product_brand_variety::whereIn('product_id', $product_id)->get();
         $productgroups          = Product_group::whereIn('id' , $kalagroup_id)->get();
         $carproducts            = Car_product::whereIn('product_id' , $product_id)->get();
         $brands                 = Brand::all();
+        $varity                 = 0;
         $offers                 = Offer::whereUser_id(Auth::user()->id)->get();
          $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
                 ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
@@ -87,6 +88,7 @@ class OfferController extends Controller
 //            whereIn('id' , $brand_id)->get();
 
         return view('Site.offerproduct')
+            ->with(compact('varity'))
             ->with(compact('brand_varietis'))
             ->with(compact('car_offers'))
             ->with(compact('cartypes'))
@@ -124,7 +126,7 @@ class OfferController extends Controller
         $carproducts            = Car_product::whereIn('product_id' , $product_id)->get();
         $brands                 = Brand::all();
         $offers                 = Offer::whereUser_id(Auth::user()->id)->get();
-
+        $varity                 = 1;
         if (!$slug) {
             $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
                 ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
@@ -134,7 +136,7 @@ class OfferController extends Controller
         }else{
             $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
                 ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
-                    'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3', 'brands.title_fa')
+                    'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3', 'product_brand_varieties.image1', 'brands.title_fa')
                 ->where('product_brand_varieties.id', $slug)
                 ->get();
         }
@@ -145,6 +147,7 @@ class OfferController extends Controller
 //            whereIn('id' , $brand_id)->get();
 
         return view('Site.offerproduct')
+            ->with(compact('varity'))
             ->with(compact('brand_varietis'))
             ->with(compact('car_offers'))
             ->with(compact('cartypes'))

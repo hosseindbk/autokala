@@ -531,8 +531,13 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تصویر اصلی قطعه</p>
-                                                                <input type="file" name="image1" @foreach($products as $product)  @if($product->image)  value="{{$product->image}}"  data-default-file="{{url($product->image)}}" @endif @endforeach class="dropify" data-height="200">
-                                                                <input type="hidden" name="image1" @foreach($products as $product)  @if($product->image)  value="{{$product->image}}"  @endif @endforeach>
+                                                                @if($varity = 0 )
+                                                                <input type="file" name="image1"    @foreach($products as $product)  @if($product->image)  value="{{$product->image}}"  data-default-file="{{url($product->image)}}" @endif @endforeach class="dropify" data-height="200">
+                                                                <input type="hidden" name="image1"  @foreach($products as $product)  @if($product->image)  value="{{$product->image}}"  @endif @endforeach>
+                                                                    @elseif($varity = 1)
+                                                                <input type="file" name="image1"    @foreach($kalabrands as $kalabrand)  @if($kalabrand->image1)  value="{{$kalabrand->image1}}"  data-default-file="{{url($kalabrand->image1)}}" @endif @endforeach class="dropify" data-height="200">
+                                                                <input type="hidden" name="image1"  @foreach($kalabrands as $kalabrand)  @if($kalabrand->image1)  value="{{$kalabrand->image1}}"  @endif @endforeach>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
