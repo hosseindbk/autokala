@@ -57,7 +57,53 @@ class OfferController extends Controller
             ->with(compact('productbrandvarieties'));
     }
 
-    public function offerproduct($id , $slug){
+    public function offerproduct($id){
+        $cities                 = City::all();
+        $states                 = State::all();
+        $carbrands              = Car_brand::all();
+        $carmodels              = Car_model::all();
+        $cartypes               = Car_type::all();
+        $car_offers             = Car_offer::all();
+        $menus                  = Menu::whereStatus(4)->get();
+        $suppliers              = Supplier::whereStatus(4)->get();
+        $products               = Product::whereStatus(4)->whereId($id)->get();
+        $product_id             = Product::whereStatus(4)->whereId($id)->pluck('id');
+        $kalagroup_id           = Product::whereStatus(4)->whereId($id)->pluck('kala_group_id');
+        $brand_varietis = Product_brand_variety::whereIn('product_id', $product_id)->get();
+        $productgroups          = Product_group::whereIn('id' , $kalagroup_id)->get();
+        $carproducts            = Car_product::whereIn('product_id' , $product_id)->get();
+        $brands                 = Brand::all();
+        $offers                 = Offer::whereUser_id(Auth::user()->id)->get();
+         $kalabrands = Product_brand_variety::leftjoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+                ->select('product_brand_varieties.id', 'product_brand_varieties.item1', 'product_brand_varieties.item2', 'product_brand_varieties.item3',
+                    'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3', 'brands.title_fa')
+                ->whereIn('product_brand_varieties.product_id', $product_id)
+                ->get();
+
+//        $shares = DB::table('brands')
+//            ->leftjoin('car_models', 'car_models.vehicle_brand_id', '=', 'car_brands.id')
+//            ->leftjoin('car_types', 'car_types.car_model_id', '=', 'car_models.id')
+//            ->select('car_brands.title_fa as brand' , 'car_models.title_fa as model' , 'car_types.title_fa as type' ,'car_brands.id as id' )->
+//            whereIn('id' , $brand_id)->get();
+
+        return view('Site.offerproduct')
+            ->with(compact('brand_varietis'))
+            ->with(compact('car_offers'))
+            ->with(compact('cartypes'))
+            ->with(compact('kalabrands'))
+            ->with(compact('carproducts'))
+            ->with(compact('carmodels'))
+            ->with(compact('cities'))
+            ->with(compact('states'))
+            ->with(compact('carbrands'))
+            ->with(compact('productgroups'))
+            ->with(compact('offers'))
+            ->with(compact('menus'))
+            ->with(compact('brands'))
+            ->with(compact('products'))
+            ->with(compact('suppliers'));
+    }
+    public function offerproductvarity($id , $slug){
         $cities                 = City::all();
         $states                 = State::all();
         $carbrands              = Car_brand::all();
