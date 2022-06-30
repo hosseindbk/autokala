@@ -53,7 +53,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
         Route::post('/technicalunit/edit/{id}'          , 'TechnicalunitController@updatetechnical');
         Route::post('/technicalunit/cartechnicalstore'  , 'TechnicalunitController@cartechnicalstore');
         Route::post('/product/create/productvariety'    , 'ProductController@createproductvariety');
-        Route::get('/product/productvariety'            , 'ProductController@productvariety');
+        Route::get('productvariety'                     , 'ProductController@productvariety');
         Route::post('/offer/store'                      , 'OfferController@store');
         Route::post('/offer/edit/{id}'                  , 'OfferController@update');
         Route::post('/offer/carofferstore'              , 'OfferController@carofferstore');
