@@ -258,26 +258,26 @@ class ProductController extends Controller
         if (Auth::user()->type_id == 1) {
             $productbrandvarieties = new Product_brand_variety();
 
-            $productbrandvarieties->brand_id = $request->input('brand_id');
-            $productbrandvarieties->product_id = $request->input('product_id');
-            $productbrandvarieties->guarantee = $request->input('guarantee');
-            $productbrandvarieties->item1 = $request->input('item1');
-            $productbrandvarieties->item2 = $request->input('item2');
-            $productbrandvarieties->item3 = $request->input('item3');
+            $productbrandvarieties->brand_id    = $request->input('brand_id');
+            $productbrandvarieties->product_id  = $request->input('product_id');
+            $productbrandvarieties->guarantee   = $request->input('guarantee');
+            $productbrandvarieties->item1       = $request->input('item1');
+            $productbrandvarieties->item2       = $request->input('item2');
+            $productbrandvarieties->item3       = $request->input('item3');
             $productbrandvarieties->value_item1 = $request->input('value_item1');
             $productbrandvarieties->value_item2 = $request->input('value_item2');
             $productbrandvarieties->value_item3 = $request->input('value_item3');
-            $productbrandvarieties->strength1 = $request->input('strength1');
-            $productbrandvarieties->strength2 = $request->input('strength2');
-            $productbrandvarieties->strength3 = $request->input('strength3');
-            $productbrandvarieties->weakness1 = $request->input('weakness1');
-            $productbrandvarieties->weakness2 = $request->input('weakness2');
-            $productbrandvarieties->weakness3 = $request->input('weakness3');
-            $productbrandvarieties->status = '1';
+            $productbrandvarieties->strength1   = $request->input('strength1');
+            $productbrandvarieties->strength2   = $request->input('strength2');
+            $productbrandvarieties->strength3   = $request->input('strength3');
+            $productbrandvarieties->weakness1   = $request->input('weakness1');
+            $productbrandvarieties->weakness2   = $request->input('weakness2');
+            $productbrandvarieties->weakness3   = $request->input('weakness3');
+            $productbrandvarieties->status      = '1';
             $productbrandvarieties->description = $request->input('description');
-            $productbrandvarieties->date = jdate()->format('Ymd ');
+            $productbrandvarieties->date        = jdate()->format('Ymd ');
             $productbrandvarieties->date_handle = jdate()->format('Ymd ');
-            $productbrandvarieties->user_id = Auth::user()->id;
+            $productbrandvarieties->user_id     = Auth::user()->id;
 
             if ($request->file('image1') != null) {
                 $file = $request->file('image1');
@@ -321,4 +321,15 @@ class ProductController extends Controller
 
     }
 
+    public function productvariety(){
+        $productvarietis       = Product_brand_variety::select('brand_id' , 'product_id' , 'guarantee' , 'item1'  , 'item2' , 'item3' , 'value_item1', 'value_item2', 'value_item3'
+            , 'strength1' , 'strength2'  , 'strength3' , 'weakness1' , 'weakness2' , 'weakness3')
+            ->whereUser_id(auth::user()->id)
+            ->get();
+
+        $response = [
+            'productvarietis'=>$productvarietis,
+        ];
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+    }
 }

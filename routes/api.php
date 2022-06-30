@@ -38,36 +38,37 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('productgroup'                       , 'IndexController@productgroup');
 
 
-Route::middleware('auth:api')->group(function (){
+    Route::middleware('auth:api')->group(function (){
 
-    Route::post('/recoverpass'                      , 'UserController@recoverpass');
-    Route::get('/profile'                           , 'UserController@profile');
-    Route::get('bmpsupplier'                        , 'SupplierController@bmpsupplier');
-    Route::get('bmptechnical'                       , 'TechnicalunitController@bmptechnical');
-    Route::get('bmpsell'                            , 'MarketController@bmpsell');
-    Route::get('bmpmarket'                          , 'MarketController@bmpmarket');
-    Route::post('/supplier/store'                   , 'SupplierController@store');
-    Route::post('/supplier/edit/{id}'               , 'SupplierController@updatesupplier');
-    Route::post('/supplier/carsupplierstore'        , 'SupplierController@carsupplierstore');
-    Route::post('/technicalunit/store'              , 'TechnicalunitController@store');
-    Route::post('/technicalunit/edit/{id}'          , 'TechnicalunitController@updatetechnical');
-    Route::post('/technicalunit/cartechnicalstore'  , 'TechnicalunitController@cartechnicalstore');
-    Route::post('/product/create/productvariety'    , 'ProductController@createproductvariety');
-    Route::post('/offer/store'                      , 'OfferController@store');
-    Route::post('/offer/edit/{id}'                  , 'OfferController@update');
-    Route::post('/offer/carofferstore'              , 'OfferController@carofferstore');
-    Route::post('/user/update'                      , 'UserController@update');
-    Route::post('/technicalunit/delete'             , 'TechnicalunitController@technicaldelete');
-    Route::delete('/supplier/delete'                , 'SupplierController@supplierdelete');
-    Route::delete('/technical/delete'               , 'TechnicalunitController@technicaldelete');
-    Route::get('/mark'                              , 'IndexController@markuser');
-    Route::post('/mark'                             , 'IndexController@markusercreate');
-    Route::delete('/unmark/{id}'                    , 'IndexController@markdelete');
+        Route::post('/recoverpass'                      , 'UserController@recoverpass');
+        Route::get('/profile'                           , 'UserController@profile');
+        Route::get('bmpsupplier'                        , 'SupplierController@bmpsupplier');
+        Route::get('bmptechnical'                       , 'TechnicalunitController@bmptechnical');
+        Route::get('bmpsell'                            , 'MarketController@bmpsell');
+        Route::get('bmpmarket'                          , 'MarketController@bmpmarket');
+        Route::post('/supplier/store'                   , 'SupplierController@store');
+        Route::post('/supplier/edit/{id}'               , 'SupplierController@updatesupplier');
+        Route::post('/supplier/carsupplierstore'        , 'SupplierController@carsupplierstore');
+        Route::post('/technicalunit/store'              , 'TechnicalunitController@store');
+        Route::post('/technicalunit/edit/{id}'          , 'TechnicalunitController@updatetechnical');
+        Route::post('/technicalunit/cartechnicalstore'  , 'TechnicalunitController@cartechnicalstore');
+        Route::post('/product/create/productvariety'    , 'ProductController@createproductvariety');
+        Route::get('/product/productvariety'            , 'ProductController@productvariety');
+        Route::post('/offer/store'                      , 'OfferController@store');
+        Route::post('/offer/edit/{id}'                  , 'OfferController@update');
+        Route::post('/offer/carofferstore'              , 'OfferController@carofferstore');
+        Route::post('/user/update'                      , 'UserController@update');
+        Route::post('/technicalunit/delete'             , 'TechnicalunitController@technicaldelete');
+        Route::delete('/supplier/delete'                , 'SupplierController@supplierdelete');
+        Route::delete('/technical/delete'               , 'TechnicalunitController@technicaldelete');
+        Route::get('/mark'                              , 'IndexController@markuser');
+        Route::post('/mark'                             , 'IndexController@markusercreate');
+        Route::delete('/unmark/{id}'                    , 'IndexController@markdelete');
 
-    Route::delete('/supplier/carsupplierdelete/{id}'        , 'SupplierController@carsupplierdelete' )->name('carsupplierdelete');
-    Route::delete('/technicalunit/cartechnicaldelete/{id}'  , 'TechnicalunitController@cartechnicaldelete' )->name('cartechnicaldelete');
-    Route::delete('/offer/carofferdelete/{id}'              , 'OfferController@carofferdelete')->name('carofferdelete');
+        Route::delete('/supplier/carsupplierdelete/{id}'        , 'SupplierController@carsupplierdelete' )->name('carsupplierdelete');
+        Route::delete('/technicalunit/cartechnicaldelete/{id}'  , 'TechnicalunitController@cartechnicaldelete' )->name('cartechnicaldelete');
+        Route::delete('/offer/carofferdelete/{id}'              , 'OfferController@carofferdelete')->name('carofferdelete');
 
-});
+    });
 
 });
