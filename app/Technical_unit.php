@@ -34,7 +34,7 @@ class Technical_unit extends Model
             }
             else
             {
-                $query->where($category, 'LIKE', '%' . $keywords . '%');
+                $query->where($category, 'LIKE', '%' . $keywords . '%')->where('technical_units.status' , 4);
             }
         }
 

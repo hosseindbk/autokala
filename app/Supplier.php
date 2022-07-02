@@ -34,7 +34,7 @@ class Supplier extends Model
             }
             else
                 {
-                    $query->where($category, 'LIKE', '%' . $keywords . '%')->whereStatus(4);
+                    $query->where($category, 'LIKE', '%' . $keywords . '%')->where('suppliers.status' , 4);
                 }
         }
 
