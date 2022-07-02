@@ -365,8 +365,47 @@ class ProductController extends Controller
             ->where('product_brand_varieties.user_id' , auth::user()->id)
             ->get();
 
+        $productvarity_id               = Product_brand_variety::where('slug', $slug)->pluck('id');
+        $commentratequality     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('quality');
+        $commentratevalue       = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('value');
+        $commentrateinnovation  = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('innovation');
+        $commentrateability     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('ability');
+        $commentratedesign      = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('design');
+        $commentratecomfort     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('comfort');
+
+        $avgcommentrate = ((int)$commentratequality + (int)$commentratevalue + (int)$commentrateinnovation + (int)$commentrateability + (int)$commentratedesign + (int)$commentratecomfort) / 6;
+
+        $comments       = comment::whereCommentable_type('App\Product_brand_variety')->where('Commentable_id', $productvarity_id)->select('name', 'phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
+        $subcomments    = comment::whereCommentable_type('App\Product_brand_variety')->where('Commentable_id', $productvarity_id)->select('name','phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
+
+        if (trim($comments) != '[]') {
+            foreach ($comments as $comment) {
+                $answer = [];
+                foreach ($subcomments as $subcomment) {
+                    if ($subcomment->parent_id == $comment->id) {
+                        $answer[] = [
+                            'name'          => $subcomment->name,
+                            'phone'         => $subcomment->phone,
+                            'comment'       => $subcomment->comment,
+                            'created_at'    => jdate($subcomment->created_at)->ago(),
+                        ];
+                    }
+                }
+                $comt[] = [
+                    'name'          => $comment->name,
+                    'phone'         => $comment->phone,
+                    'comment'       => $comment->comment,
+                    'created_at'    => jdate($comment->created_at)->ago(),
+                    'answer'        => $answer
+                ];
+            }
+        } else {
+            $comt = [];
+        }
         $response = [
-            'productvarietis'=>$productvarietis,
+            'productvarietis'   =>$productvarietis,
+            'avgcommentrate'    =>$avgcommentrate ,
+            'comment'           =>$comt
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
