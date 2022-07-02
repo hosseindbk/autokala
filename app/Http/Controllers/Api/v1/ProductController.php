@@ -328,7 +328,7 @@ class ProductController extends Controller
             ->leftjoin('brands'     , 'brands.id'     , '=' , 'product_brand_varieties.brand_id')
             ->leftjoin('countries'  , 'countries.id'  , '=' , 'brands.country_id')
             ->select('brands.title_fa as brandtitle' ,'brands.image as brandimage' , 'products.title_fa as producttitle' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
-                , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,'countries.name as country' ,
+                , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,'countries.name as country' , 'products.slug as product_slug' , 'brands.id as brand_id',
                 DB::raw( '(CASE
             WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
             WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
