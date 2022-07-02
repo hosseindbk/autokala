@@ -64,6 +64,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
         Route::get('/mark'                              , 'IndexController@markuser');
         Route::post('/mark'                             , 'IndexController@markusercreate');
         Route::delete('/unmark/{id}'                    , 'IndexController@markdelete');
+        Route::delete('/productvariety/delete/{id}'     , 'ProductController@productbrandvaritydelete');
 
         Route::delete('/supplier/carsupplierdelete/{id}'        , 'SupplierController@carsupplierdelete' )->name('carsupplierdelete');
         Route::delete('/technicalunit/cartechnicaldelete/{id}'  , 'TechnicalunitController@cartechnicaldelete' )->name('cartechnicaldelete');
