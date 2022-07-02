@@ -37,7 +37,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('brand/{slug}'                       , 'IndexController@subbrand');
     Route::get('productgroup'                       , 'IndexController@productgroup');
     Route::get('productvariety'                     , 'ProductController@productvariety');
-    Route::get('productvariety/{id}/{slug}'         , 'ProductController@subproductvariety');
+    //Route::get('productvariety/{id}/{slug}'         , 'ProductController@subproductvariety');
 
     Route::middleware('auth:api')->group(function (){
 
