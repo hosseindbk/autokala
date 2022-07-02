@@ -325,15 +325,40 @@ class ProductController extends Controller
     public function productvariety(){
         $productvarietis       = Product_brand_variety::
         leftjoin('products' , 'products.id' , '=' , 'product_brand_varieties.product_id')
-        ->leftjoin('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
-        ->leftjoin('countries' , 'countries.id' , '=' , 'brands.country_id')
+            ->leftjoin('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
+            ->leftjoin('countries' , 'countries.id' , '=' , 'brands.country_id')
             ->select('brands.title_fa' , 'products.title_fa' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
-            , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,'countries.name' ,
-            DB::raw( '(CASE
+                , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,'countries.name as country' ,
+                DB::raw( '(CASE
             WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
             WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
             END) AS guarantee'),
-            DB::raw( '(CASE
+                DB::raw( '(CASE
+            WHEN product_brand_varieties.status < "4" THEN "false"
+            WHEN product_brand_varieties.status = "4" THEN "true"
+            END) AS status'))
+            ->where('product_brand_varieties.user_id' , auth::user()->id)
+            ->get();
+
+        $response = [
+            'productvarietis'=>$productvarietis,
+        ];
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+    }
+
+    public function subproductvariety($id , $slug){
+        $productvarietis       = Product_brand_variety::
+            leftjoin('products' , 'products.id' , '=' , 'product_brand_varieties.product_id')
+            ->leftjoin('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
+            ->leftjoin('countries' , 'countries.id' , '=' , 'brands.country_id')
+            ->select('brands.title_fa' , 'products.title_fa' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
+                , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1', 'product_brand_varieties.image2', 'product_brand_varieties.image3'
+                ,'countries.name as country', 'product_brand_varieties.description' , 'products.title_bazar_fa', 'products.title_en', 'products.code_fani_company'
+                 ,DB::raw( '(CASE
+            WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
+            WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
+            END) AS guarantee'),
+                DB::raw( '(CASE
             WHEN product_brand_varieties.status < "4" THEN "false"
             WHEN product_brand_varieties.status = "4" THEN "true"
             END) AS status'))
