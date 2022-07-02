@@ -332,7 +332,7 @@ class ProductController extends Controller
             DB::raw( '(CASE
             WHEN status < "4" THEN "غیر فعال"
             WHEN status = "4" THEN "فعال"
-            END) AS guarantee'))
+            END) AS status'))
             ->whereUser_id(auth::user()->id)
             ->get();
 
