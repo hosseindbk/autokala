@@ -12,6 +12,7 @@ use App\Media;
 use App\Product;
 use App\Product_brand_variety;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Facades\Image;
 
@@ -323,7 +324,15 @@ class ProductController extends Controller
 
     public function productvariety(){
         $productvarietis       = Product_brand_variety::select('brand_id' , 'product_id' , 'guarantee' , 'item1'  , 'item2' , 'item3' , 'value_item1', 'value_item2', 'value_item3'
-            , 'strength1' , 'strength2'  , 'strength3' , 'weakness1' , 'weakness2' , 'weakness3' , 'image1' , 'image2' ,'image3' , 'guarantee')
+            , 'strength1' , 'strength2'  , 'strength3' , 'weakness1' , 'weakness2' , 'weakness3' , 'image1' , 'image2' ,'image3' ,
+            DB::raw( '(CASE
+            WHEN guarantee = "0" THEN "ندارد"
+            WHEN guarantee = "1" THEN "دارد"
+            END) AS guarantee'),
+            DB::raw( '(CASE
+            WHEN status < "4" THEN "غیر فعال"
+            WHEN status = "4" THEN "فعال"
+            END) AS guarantee'))
             ->whereUser_id(auth::user()->id)
             ->get();
 
