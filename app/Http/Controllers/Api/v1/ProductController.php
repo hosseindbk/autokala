@@ -336,7 +336,7 @@ class ProductController extends Controller
             WHEN product_brand_varieties.status < "4" THEN "غیر فعال"
             WHEN product_brand_varieties.status = "4" THEN "فعال"
             END) AS status'))
-            ->whereUser_id(auth::user()->id)
+            ->where('product_brand_varieties.user_id' , auth::user()->id)
             ->get();
 
         $response = [
