@@ -326,15 +326,15 @@ class ProductController extends Controller
         $productvarietis       = Product_brand_variety::
         leftjoin('products' , 'products.id' , '=' , 'product_brand_varieties.product_id')
         ->leftjoin('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
-            ->select('brands.title_fa' , 'products.title_fa' , 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
+            ->select('brands.title_fa' , 'products.title_fa' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
             , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,
             DB::raw( '(CASE
             WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
             WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
             END) AS guarantee'),
             DB::raw( '(CASE
-            WHEN product_brand_varieties.status < "4" THEN "غیر فعال"
-            WHEN product_brand_varieties.status = "4" THEN "فعال"
+            WHEN product_brand_varieties.status < "4" THEN "false"
+            WHEN product_brand_varieties.status = "4" THEN "true"
             END) AS status'))
             ->where('product_brand_varieties.user_id' , auth::user()->id)
             ->get();
@@ -343,5 +343,16 @@ class ProductController extends Controller
             'productvarietis'=>$productvarietis,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+    }
+
+    public function productbrandvaritydelete($id)
+    {
+        $productvarity = Product_brand_variety::findOrfail($id);
+        $productvarity->delete();
+        $status     = true;
+        $message    = 'success';
+        $response   = 'اطلاعات با موفقیت پاک شد';
+
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
 }
