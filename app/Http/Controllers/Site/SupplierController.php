@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Redirect;
 class SupplierController extends Controller
 {
     public function index(){
-        $menus              = Menu::select('id' , 'title' , 'slug' , 'keyword')->whereStatus(4)->get();
+        $menus              = Menu::select('id' , 'title' , 'slug' , 'keyword' ,'keycheck')->whereStatus(4)->get();
         $productgroup       = request('productgroup_id');
         $carbrandset        = request('car_brand_id');
         $countState         = null;

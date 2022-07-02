@@ -26,7 +26,7 @@ class ProductController extends Controller
 {
     public function index(){
 
-        $menus          = Menu::select('id' , 'title' , 'slug' , 'keyword')->whereStatus(4)->get();
+        $menus          = Menu::select('id' , 'title' , 'slug' , 'keyword' , 'keycheck')->whereStatus(4)->get();
         $productgroups  = Product_group::whereStatus(4)->get();
         $carbrands      = Car_brand::whereStatus(4)->get();
         $carmodels      = Car_model::whereStatus(4)->get();
