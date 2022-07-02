@@ -17,7 +17,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <meta name="description" content="">
-    <meta name="keywords" content="@foreach($menus as $menu) @if($menu->slug == Request::segment(1)) {{Request::segment(1)}} @endif @endforeach">
+    <meta name="keywords" content="@foreach($menus as $menu) {{$menu->slug}} @endforeach">
     <meta name="author" content="Bestagroup">
 </head>
 
