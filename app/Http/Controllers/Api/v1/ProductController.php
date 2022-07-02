@@ -327,7 +327,7 @@ class ProductController extends Controller
         leftjoin('products' , 'products.id' , '=' , 'product_brand_varieties.product_id')
             ->leftjoin('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
             ->leftjoin('countries' , 'countries.id' , '=' , 'brands.country_id')
-            ->select('brands.title_fa' , 'products.title_fa' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
+            ->select('brands.title_fa as brandtitle' , 'products.title_fa as producttitle' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
                 , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,'countries.name as country' ,
                 DB::raw( '(CASE
             WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
