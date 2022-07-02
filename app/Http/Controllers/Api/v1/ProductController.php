@@ -324,16 +324,16 @@ class ProductController extends Controller
 
     public function productvariety(){
         $productvarietis       = Product_brand_variety::
-        leftjoin('products'                 , 'products.id'     , '=' , 'product_brand_varieties.product_id')
-            ->leftjoin('brands'             , 'brands.id'       , '=' , 'product_brand_varieties.brand_id')
-            ->leftjoin('countries'          , 'countries.id'    , '=' , 'brands.country_id')
-            ->select('brands.title_fa as brandtitle' , 'products.title_fa as producttitle' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
-                , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,'countries.name as country' ,
-                DB::raw( '(CASE
+        leftjoin('products' , 'products.id' , '=' , 'product_brand_varieties.product_id')
+        ->leftjoin('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
+        ->leftjoin('countries' , 'countries.id' , '=' , 'brands.country_id')
+            ->select('brands.title_fa' , 'products.title_fa' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
+            , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,'countries.name' ,
+            DB::raw( '(CASE
             WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
             WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
             END) AS guarantee'),
-                DB::raw( '(CASE
+            DB::raw( '(CASE
             WHEN product_brand_varieties.status < "4" THEN "false"
             WHEN product_brand_varieties.status = "4" THEN "true"
             END) AS status'))
@@ -346,78 +346,14 @@ class ProductController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
 
-//    public function subproductvariety($id , $slug){
-//        $productvarietis       = Product_brand_variety::
-//            leftjoin('products' , 'products.id' , '=' , 'product_brand_varieties.product_id')
-//            ->leftjoin('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
-//            ->leftjoin('countries' , 'countries.id' , '=' , 'brands.country_id')
-//            ->select('brands.title_fa' , 'products.title_fa' , 'product_brand_varieties.id', 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
-//                , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1', 'product_brand_varieties.image2', 'product_brand_varieties.image3'
-//                ,'countries.name as country', 'product_brand_varieties.description' , 'products.title_bazar_fa', 'products.title_en', 'products.code_fani_company'
-//                 ,DB::raw( '(CASE
-//            WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
-//            WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
-//            END) AS guarantee'),
-//                DB::raw( '(CASE
-//            WHEN product_brand_varieties.status < "4" THEN "false"
-//            WHEN product_brand_varieties.status = "4" THEN "true"
-//            END) AS status'))
-//            ->where('product_brand_varieties.user_id' , auth::user()->id)
-//            ->get();
-//
-//        $productvarity_id               = Product_brand_variety::where('slug', $slug)->pluck('id');
-//        $commentratequality     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('quality');
-//        $commentratevalue       = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('value');
-//        $commentrateinnovation  = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('innovation');
-//        $commentrateability     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('ability');
-//        $commentratedesign      = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('design');
-//        $commentratecomfort     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('comfort');
-//
-//        $avgcommentrate = ((int)$commentratequality + (int)$commentratevalue + (int)$commentrateinnovation + (int)$commentrateability + (int)$commentratedesign + (int)$commentratecomfort) / 6;
-//
-//        $comments       = comment::whereCommentable_type('App\Product_brand_variety')->where('Commentable_id', $productvarity_id)->select('name', 'phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
-//        $subcomments    = comment::whereCommentable_type('App\Product_brand_variety')->where('Commentable_id', $productvarity_id)->select('name','phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
-//
-//        if (trim($comments) != '[]') {
-//            foreach ($comments as $comment) {
-//                $answer = [];
-//                foreach ($subcomments as $subcomment) {
-//                    if ($subcomment->parent_id == $comment->id) {
-//                        $answer[] = [
-//                            'name'          => $subcomment->name,
-//                            'phone'         => $subcomment->phone,
-//                            'comment'       => $subcomment->comment,
-//                            'created_at'    => jdate($subcomment->created_at)->ago(),
-//                        ];
-//                    }
-//                }
-//                $comt[] = [
-//                    'name'          => $comment->name,
-//                    'phone'         => $comment->phone,
-//                    'comment'       => $comment->comment,
-//                    'created_at'    => jdate($comment->created_at)->ago(),
-//                    'answer'        => $answer
-//                ];
-//            }
-//        } else {
-//            $comt = [];
-//        }
-//        $response = [
-//            'productvarietis'   =>$productvarietis,
-//            'avgcommentrate'    =>$avgcommentrate ,
-//            'comment'           =>$comt
-//        ];
-//        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
-//    }
+    public function productbrandvaritydelete($id)
+    {
+        $productvarity = Product_brand_variety::findOrfail($id);
+        $productvarity->delete();
+        $status     = true;
+        $message    = 'success';
+        $response   = 'اطلاعات با موفقیت پاک شد';
 
-//    public function productbrandvaritydelete($id)
-//    {
-//        $productvarity = Product_brand_variety::findOrfail($id);
-//        $productvarity->delete();
-//        $status     = true;
-//        $message    = 'success';
-//        $response   = 'اطلاعات با موفقیت پاک شد';
-//
-//        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
-//    }
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+    }
 }
