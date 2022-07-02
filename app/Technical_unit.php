@@ -8,13 +8,7 @@ class Technical_unit extends Model
 {
 
     public function scopeState($query){
-        $state_id = request('state_id');
-        if (isset($state_id) && $state_id == ''){
-            $state_id = State::pluck('id');
-            $query->whereIn('State_id' , $state_id);
-        }elseif(isset($state_id) && $state_id != '') {
-            $query->whereIn('State_id' , $state_id);
-        }
+
     }
     public function scopeFilter($query)
     {
@@ -36,6 +30,14 @@ class Technical_unit extends Model
             {
                 $query->where($category, 'LIKE', '%' . $keywords . '%')->where('technical_units.status' , 4);
             }
+        }
+
+        $state_id = request('state_id');
+        if (isset($state_id) && $state_id == ''){
+            $state_id = State::pluck('id');
+            $query->whereIn('technical_units.state_id' , $state_id);
+        }elseif(isset($state_id) && $state_id != '') {
+            $query->whereIn('technical_units.state_id' , $state_id);
         }
 
         $productgroup_id    = request('productgroup_id');

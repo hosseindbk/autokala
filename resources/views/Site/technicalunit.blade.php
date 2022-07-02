@@ -79,7 +79,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{route('technicalfilterstate')}}" method="get" class="form-search">
+                <form action="{{route('technicalsearchandfilter')}}" method="get" class="form-search">
 
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
