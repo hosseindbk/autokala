@@ -346,7 +346,7 @@ class ProductController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
 
-    public function subproductvariety($id , $slug){
+    public function subproductvariety($slug , $id){
         $productvarietis       = Product_brand_variety::
         leftjoin('products'             , 'products.id'     , '=' , 'product_brand_varieties.product_id')
             ->leftjoin('brands'         , 'brands.id'       , '=' , 'product_brand_varieties.brand_id')
@@ -363,20 +363,21 @@ class ProductController extends Controller
             WHEN product_brand_varieties.status = "4" THEN "true"
             END) AS status'))
             ->where('product_brand_varieties.user_id' , auth::user()->id)
+            ->where('products.slug' , $slug)
+            ->where('brands.id' , $id)
             ->get();
 
-        $productvarity_id               = Product_brand_variety::where('slug', $slug)->pluck('id');
-        $commentratequality     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('quality');
-        $commentratevalue       = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('value');
-        $commentrateinnovation  = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('innovation');
-        $commentrateability     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('ability');
-        $commentratedesign      = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('design');
-        $commentratecomfort     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id', $productvarity_id)->whereApproved(1)->avg('comfort');
+        $commentratequality     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('quality');
+        $commentratevalue       = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('value');
+        $commentrateinnovation  = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('innovation');
+        $commentrateability     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('ability');
+        $commentratedesign      = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('design');
+        $commentratecomfort     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('comfort');
 
         $avgcommentrate = ((int)$commentratequality + (int)$commentratevalue + (int)$commentrateinnovation + (int)$commentrateability + (int)$commentratedesign + (int)$commentratecomfort) / 6;
 
-        $comments       = comment::whereCommentable_type('App\Product_brand_variety')->where('Commentable_id', $productvarity_id)->select('name', 'phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
-        $subcomments    = comment::whereCommentable_type('App\Product_brand_variety')->where('Commentable_id', $productvarity_id)->select('name','phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
+        $comments       = comment::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->select('name', 'phone', 'comment', 'id', 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
+        $subcomments    = comment::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->select('name','phone', 'comment', 'parent_id')->where('parent_id', '>', 0)->whereApproved(1)->latest()->get();
 
         if (trim($comments) != '[]') {
             foreach ($comments as $comment) {
