@@ -323,15 +323,18 @@ class ProductController extends Controller
     }
 
     public function productvariety(){
-        $productvarietis       = Product_brand_variety::select('brand_id' , 'product_id' , 'guarantee' , 'item1'  , 'item2' , 'item3' , 'value_item1', 'value_item2', 'value_item3'
-            , 'strength1' , 'strength2'  , 'strength3' , 'weakness1' , 'weakness2' , 'weakness3' , 'image1' , 'image2' ,'image3' ,
+        $productvarietis       = Product_brand_variety::
+        leftjoin('products' , 'products.id' , '=' , 'product_brand_varieties.product_id')
+        ->leftjoin('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
+            ->select('brands.title_fa' , 'products.title_fa' , 'product_brand_varieties.item1'  , 'product_brand_varieties.item2' , 'product_brand_varieties.item3' , 'product_brand_varieties.value_item1', 'product_brand_varieties.value_item2', 'product_brand_varieties.value_item3'
+            , 'product_brand_varieties.strength1' , 'product_brand_varieties.strength2'  , 'product_brand_varieties.strength3' , 'product_brand_varieties.weakness1' , 'product_brand_varieties.weakness2' , 'product_brand_varieties.weakness3' , 'product_brand_varieties.image1' ,
             DB::raw( '(CASE
-            WHEN guarantee = "0" THEN "ندارد"
-            WHEN guarantee = "1" THEN "دارد"
+            WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
+            WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
             END) AS guarantee'),
             DB::raw( '(CASE
-            WHEN status < "4" THEN "غیر فعال"
-            WHEN status = "4" THEN "فعال"
+            WHEN product_brand_varieties.status < "4" THEN "غیر فعال"
+            WHEN product_brand_varieties.status = "4" THEN "فعال"
             END) AS status'))
             ->whereUser_id(auth::user()->id)
             ->get();
