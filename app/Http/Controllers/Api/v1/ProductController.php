@@ -333,8 +333,8 @@ class ProductController extends Controller
             WHEN product_brand_varieties.guarantee = "1" THEN "دارد"
             END) AS guarantee'),
             DB::raw( '(CASE
-            WHEN product_brand_varieties.status < "4" THEN "false"
-            WHEN product_brand_varieties.status = "4" THEN "true"
+            WHEN product_brand_varieties.status < "4" THEN false
+            WHEN product_brand_varieties.status = "4" THEN true
             END) AS status'))
             ->where('product_brand_varieties.user_id' , auth::user()->id)
             ->get();
