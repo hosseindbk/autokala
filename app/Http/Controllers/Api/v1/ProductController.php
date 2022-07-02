@@ -323,7 +323,7 @@ class ProductController extends Controller
 
     public function productvariety(){
         $productvarietis       = Product_brand_variety::select('brand_id' , 'product_id' , 'guarantee' , 'item1'  , 'item2' , 'item3' , 'value_item1', 'value_item2', 'value_item3'
-            , 'strength1' , 'strength2'  , 'strength3' , 'weakness1' , 'weakness2' , 'weakness3')
+            , 'strength1' , 'strength2'  , 'strength3' , 'weakness1' , 'weakness2' , 'weakness3' , 'image1' , 'image2' ,'image3' , 'guarantee')
             ->whereUser_id(auth::user()->id)
             ->get();
 
