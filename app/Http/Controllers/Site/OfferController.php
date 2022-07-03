@@ -161,55 +161,58 @@ class OfferController extends Controller
     public function offercreate(offerrequest $request)
     {
 
+
         $offers = new Offer();
 
-        $offers->title              = $request->input('title');
-        $offers->title_offer        = $request->input('title_offer');
-        $offers->product_group      = $request->input('product_group');
-        $offers->noe                = $request->input('noe');
-        if ($request->input('lat') != null){
-            $offers->lat                = $request->input('lat');
-        }else{
+        $offers->title = $request->input('title');
+        $offers->title_offer = $request->input('title_offer');
+        $offers->product_group = $request->input('product_group');
+        $offers->noe = $request->input('noe');
+        if ($request->input('lat') != null) {
+            $offers->lat = $request->input('lat');
+        } else {
             $offers->lat = auth::user()->lat;
         }
-        if ($request->input('lng') != null){
-            $offers->lng                = $request->input('lng');
-        }else{
+        if ($request->input('lng') != null) {
+            $offers->lng = $request->input('lng');
+        } else {
             $offers->lng = auth::user()->lng;
         }
-        $offers->state_id           = $request->input('state_id');
-        $offers->buyorsell          = $request->input('buyorsell');
+        $offers->state_id = $request->input('state_id');
+        $offers->buyorsell = $request->input('buyorsell');
         if ($request->input('unicode_product') != null) {
             $offers->unicode_product = $request->input('unicode_product');
         }
-        $offers->product_name       = $request->input('product_name');
+        $offers->product_name = $request->input('product_name');
         if ($request->input('single_price')) {
-            $offers->single_price   = str_replace(',', '', $request->input('single_price'));
+            $offers->single_price = str_replace(',', '', $request->input('single_price'));
         }
-        $offers->city_id            = $request->input('city_id');
-        $offers->mobile             = $request->input('mobile');
-        $offers->brand_id           = $request->input('brand_id');
-        $offers->brand_name         = $request->input('brand_name');
-        $offers->total              = $request->input('total');
-        $offers->description        = $request->input('description');
-        $offers->address            = $request->input('address');
-        $offers->phone              = $request->input('phone');
-        $offers->mobile             = $request->input('mobile');
+        $offers->city_id = $request->input('city_id');
+        $offers->mobile = $request->input('mobile');
+        $offers->brand_id = $request->input('brand_id');
+        $offers->brand_name = $request->input('brand_name');
+        $offers->total = $request->input('total');
+        $offers->description = $request->input('description');
+        $offers->address = $request->input('address');
+        $offers->phone = $request->input('phone');
+        $offers->mobile = $request->input('mobile');
         if ($request->input('image1')) {
             $offers->image1 = $request->input('image1');
         }
-        if (auth::user()->type_id == 4 || auth::user()->type_id == 3){
+        if (auth::user()->type_id == 4 || auth::user()->type_id == 3) {
             $offers->single = 1;
-        }elseif (auth::user()->type_id == 1) {
-            $offers->single         = $request->input('single');
+        } elseif (auth::user()->type_id == 1) {
+            $offers->single = $request->input('single');
         }
         if ($request->input('price')) {
-            $offers->price      = str_replace(',', '', $request->input('price'));
+            $offers->price = str_replace(',', '', $request->input('price'));
         }
 
         $supplier_id = Supplier::whereUser_id(auth::user()->id)->pluck('id');
-
-        $offers->supplier_id        = $supplier_id[0];
+        if (trim($supplier_id) != '[]')
+        {
+            $offers->supplier_id = $supplier_id[0];
+        }
         $offers->permanent_supplier = $request->input('permanent_supplier');
         $offers->slug               = 'OFFER-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
         $offers->status             = '1';
@@ -279,18 +282,42 @@ class OfferController extends Controller
         $suppliers              = Supplier::whereStatus(4)->get();
         $unicode                = Offer::whereUser_id(Auth::user()->id)->whereId($id)->pluck('unicode_product');
         $unicode_product        = Product::whereStatus(4)->whereUnicode($unicode)->get();
-        $products               = Product::whereStatus(4)->get();
-        $brands                 = Brand::whereStatus(4)->get();
+        $products               = Product::select('unicode' , 'title_fa')->whereStatus(4)->get();
+        $brands                 = Brand::select('id' , 'title_fa')->whereStatus(4)->get();
         $carbrands              = Car_brand::whereStatus(4)->get();
         $carmodels              = Car_model::all();
         $cartypes               = Car_type::all();
         $car_offers             = Car_offer::all();
-        $states                 = State::all();
-        $cities                 = City::all();
-        $productgroups          = Product_group::all();
-        $productbrandvarieties  = Product_brand_variety::whereStatus(4)->get();
-        $offers                 = Offer::whereUser_id(Auth::user()->id)->whereId($id)->get();
+        $states                 = State::select('id' , 'title')->get();
+        $cities                 = City::select('id' , 'title')->get();
+        $productgroups          = Product_group::select('id','title_fa')->get();
         $alloffers              = Offer::whereUser_id(Auth::user()->id)->get();
+
+
+        $offers = Offer::select('offers.id' , 'offers.buyorsell' , 'offers.unicode_product' , 'offers.product_name' , 'offers.brand_id' , 'offers.brand_name' , 'offers.product_group' , 'offers.title_offer'
+        ,'offers.permanent_supplier' , 'offers.description' , 'offers.image1', 'offers.image2', 'offers.image3', 'offers.single', 'offers.single_price', 'offers.price', 'offers.total' , 'offers.address', 'offers.noe', 'offers.lat', 'offers.lng')
+            ->where('offers.user_id' , Auth::user()->id)
+            ->where('offers.id' , $id)
+            ->get();
+
+
+//        $brands = Brand::
+//            leftjoin('product_brand_varieties' ,'product_brand_varieties.brand_id' ,'=' , 'brands.id')
+//            ->leftjoin('offers' ,'offers.brand_id' ,'=' , 'product_brand_varieties.id')
+//            ->select('product_brand_varieties.id' , 'product_brand_varieties.brand_id' , 'product_brand_varieties.item1', 'product_brand_varieties.value_item1', 'product_brand_varieties.item2', 'product_brand_varieties.value_item2'
+//                , 'product_brand_varieties.item3', 'product_brand_varieties.value_item3' , 'brands.id as brand_id' , 'brands.title_fa as brand_title')
+//            ->where('brands.status' , 4)
+//            ->get();
+
+
+        $productbrandvarieties = Product_brand_variety::
+            leftjoin('offers' ,'offers.brand_id' ,'=' , 'product_brand_varieties.id')
+            ->leftjoin('brands' ,'brands.id' ,'=' , 'product_brand_varieties.id')
+            ->select('product_brand_varieties.id' , 'product_brand_varieties.brand_id' , 'product_brand_varieties.item1', 'product_brand_varieties.value_item1', 'product_brand_varieties.item2', 'product_brand_varieties.value_item2'
+                , 'product_brand_varieties.item3', 'product_brand_varieties.value_item3')
+            ->where('product_brand_varieties.status' , 4)
+            ->get();
+
 
         return view('Site.offeredit')
             ->with(compact('carmodels'))

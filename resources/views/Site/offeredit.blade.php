@@ -87,7 +87,6 @@
                                             </h3>
                                         </div>
                                         @foreach($offers as $offer)
-                                            @if($offer->user_id == Auth::user()->id)
                                                 <form action="{{route('offer-update' , $offer->id)}}" method="post" class="form-checkout" enctype="multipart/form-data">
                                                     {{method_field('PATCH')}}
                                                     @csrf
@@ -132,40 +131,23 @@
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">برند قطعه</p>
                                                                         @if($offer->brand_id != null)
-                                                                        <select name="brand_id" class="form-control select2" id="brand_id_select">
-                                                                            <option value="">انتخاب برند</option>
-                                                                            @foreach($productbrandvarieties as $Product_brand_variety)
-                                                                                @if($offer->brand_id == $Product_brand_variety->id)
-                                                                                    @foreach($brands as $brand)
-                                                                                        <option value="{{$Product_brand_variety->id}}" {{$brand->id == $Product_brand_variety->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}
-                                                                                            @if($Product_brand_variety->item1 != null)
-                                                                                                -
-                                                                                                <li>
-                                                                                                    <span>{{$Product_brand_variety->item1}}</span>
-                                                                                                    <span>{{$Product_brand_variety->value_item1}}</span>
-                                                                                                </li>
-                                                                                            @endif
-                                                                                            @if($Product_brand_variety->item2 != null)
-                                                                                                ,
-                                                                                                <li>
-                                                                                                    <span>{{$Product_brand_variety->item2}}</span>
-                                                                                                    <span>{{$Product_brand_variety->value_item2}}</span>
-                                                                                                </li>
-                                                                                            @endif
-                                                                                            @if($Product_brand_variety->item3 != null)
-                                                                                                ,
-                                                                                                <li>
-                                                                                                    <span>{{$Product_brand_variety->item3}}</span>
-                                                                                                    <span>{{$Product_brand_variety->value_item3}}</span>
-                                                                                                </li>
-                                                                                            @endif
-                                                                                        </option>
-                                                                                    @endforeach
-                                                                                @endif
-                                                                            @endforeach
-                                                                        </select>
+                                                                            <select name="brand_id" class="form-control select2" id="brand_id_select">
+                                                                                <option value="">انتخاب برند</option>
+                                                                                @foreach($brands as $brand)
+                                                                                    <option value="{{$brand->id}}" {{$brand->id == $offer->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
+                                                                                @endforeach
+                                                                            </select>
+
                                                                         @elseif($offer->brand_name != null)
                                                                             <input type="text" name="brand_name" value="{{$offer->brand_name}}" class="form-control">
+                                                                        @else
+                                                                            <select name="brand_id" class="form-control select2" id="brand_id_select">
+                                                                                <option value="">انتخاب برند</option>
+                                                                                @foreach($brands as $brand)
+                                                                                    <option value="{{$brand->id}}" {{$brand->id == $offer->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
+
+                                                                                @endforeach
+                                                                            </select>
                                                                         @endif
                                                                     </div>
                                                                 </div>
@@ -353,38 +335,21 @@
                                                                         @if($offer->brand_id != null)
                                                                         <select name="brand_id" class="form-control select2" id="brand_id_select">
                                                                             <option value="">انتخاب برند</option>
-                                                                            @foreach($productbrandvarieties as $Product_brand_variety)
-                                                                                    @if($offer->brand_id == $Product_brand_variety->id)
                                                                                         @foreach($brands as $brand)
-                                                                                            <option value="{{$Product_brand_variety->id}}" {{$brand->id == $Product_brand_variety->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}
-                                                                                                @if($Product_brand_variety->item1 != null)
-                                                                                                    -
-                                                                                                    <li>
-                                                                                                        <span>{{$Product_brand_variety->item1}}</span>
-                                                                                                        <span>{{$Product_brand_variety->value_item1}}</span>
-                                                                                                    </li>
-                                                                                                @endif
-                                                                                                @if($Product_brand_variety->item2 != null)
-                                                                                                    ,
-                                                                                                    <li>
-                                                                                                        <span>{{$Product_brand_variety->item2}}</span>
-                                                                                                        <span>{{$Product_brand_variety->value_item2}}</span>
-                                                                                                    </li>
-                                                                                                @endif
-                                                                                                @if($Product_brand_variety->item3 != null)
-                                                                                                    ,
-                                                                                                    <li>
-                                                                                                        <span>{{$Product_brand_variety->item3}}</span>
-                                                                                                        <span>{{$Product_brand_variety->value_item3}}</span>
-                                                                                                    </li>
-                                                                                                @endif
-                                                                                            </option>
-                                                                                    @endforeach
-                                                                                    @endif
+                                                                                <option value="{{$brand->id}}" {{$brand->id == $offer->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
+
                                                                             @endforeach
                                                                         </select>
                                                                         @elseif($offer->brand_name != null)
                                                                             <input type="text" name="brand_name" value="{{$offer->brand_name}}" class="form-control">
+                                                                        @else
+                                                                            <select name="brand_id" class="form-control select2" id="brand_id_select">
+                                                                                <option value="">انتخاب برند</option>
+                                                                                @foreach($brands as $brand)
+                                                                                    <option value="{{$brand->id}}" {{$brand->id == $offer->brand_id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
+
+                                                                                @endforeach
+                                                                            </select>
                                                                         @endif
                                                                     </div>
                                                                 </div>
@@ -523,7 +488,6 @@
                                                             </div>
                                                         </div>
                                                     </form>
-                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
