@@ -64,13 +64,16 @@ class ProductController extends Controller
         if ($product_id != []) {
             $brand_id = Product_brand_variety::whereIn('product_id', $product_id)->pluck('brand_id');
 
-            $brandvarieties = Product_brand_variety::whereIn('product_id', $product_id)
-                ->select('product_brand_varieties.item1 as item1'
+            $brandvarieties = Product_brand_variety::
+                leftjoin('brands' , 'brands.id' , '=', 'product_brand_varieties.brand_id')
+
+                ->select('brands.title_fa as title_fa' ,'brands.title_en as title_en', 'brands.abstract_title' , 'brands.image as image', 'countries.name as country' , 'product_brand_varieties.item1 as item1'
                     , 'product_brand_varieties.item2 as item2', 'product_brand_varieties.item3 as item3'
                     , 'product_brand_varieties.value_item1 as value1'
                     , 'product_brand_varieties.value_item2 as value2', 'product_brand_varieties.value_item3 as value3'
                     , 'product_brand_varieties.brand_id as brand_id')
-                ->whereStatus(4)
+                ->where('product_brand_varieties.status' , 4)
+                ->whereIn('product_brand_varieties.product_id', $product_id)
                 ->get();
 
 //            $brands = Brand::leftJoin('countries', 'countries.id', '=', 'brands.country_id')
