@@ -93,6 +93,7 @@ class ProductController extends Controller
                     foreach ($brands as $brand) {
                         if ($brandvariety->brandid == $brand->id) {
                             $brandi[] = [
+                                'brand_id'        => $brand->id,
                                 'brand_name'        => $brand->title_fa,
                                 'guarantee'         => $brandvariety->guarantee,
                                 'country'           => $brand->country,
@@ -111,6 +112,7 @@ class ProductController extends Controller
             } elseif (trim($brands) != '[]' && trim($brandvarieties) == '[]') {
                 foreach ($brands as $brand) {
                     $brandi[] = [
+                        'brand_id'        => $brand->id,
                         'brand_name'        => $brand->title_fa,
                         'country'           => $brand->country,
                         'guarantee'         => null,
