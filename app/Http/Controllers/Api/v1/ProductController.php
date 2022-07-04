@@ -69,15 +69,15 @@ class ProductController extends Controller
                     , 'product_brand_varieties.item2 as item2', 'product_brand_varieties.item3 as item3'
                     , 'product_brand_varieties.value_item1 as value1'
                     , 'product_brand_varieties.value_item2 as value2', 'product_brand_varieties.value_item3 as value3'
-                    , 'product_brand_varieties.brand_id as brandid')
+                    , 'product_brand_varieties.brand_id as brand_id')
                 ->whereStatus(4)
                 ->get();
 
-            $brands = Brand::leftJoin('countries', 'countries.id', '=', 'brands.country_id')
-                ->select('brands.id as id', 'brands.title_fa as title_fa', 'brands.slug as slug'
-                    , 'brands.image as image', 'countries.name as country')
-                ->whereIn('brands.id', $brand_id)
-                ->get();
+//            $brands = Brand::leftJoin('countries', 'countries.id', '=', 'brands.country_id')
+//                ->select('brands.id as id', 'brands.title_fa as title_fa', 'brands.slug as slug'
+//                    , 'brands.image as image', 'countries.name as country')
+//                ->whereIn('brands.id', $brand_id)
+//                ->get();
 
             $commentratequality     = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('quality');
             $commentratevalue       = commentrate::whereCommentable_type('App\Product')->whereIn('Commentable_id', $brand_id)->whereApproved(1)->avg('value');
@@ -88,43 +88,43 @@ class ProductController extends Controller
 
             $avgcommentrate = ((int)$commentratequality + (int)$commentratevalue + (int)$commentrateinnovation + (int)$commentrateability + (int)$commentratedesign + (int)$commentratecomfort) / 6;
 
-            if (trim($brandvarieties) != '[]' && trim($brands) != '[]') {
-                foreach ($brandvarieties as $brandvariety) {
-                    foreach ($brands as $brand) {
-                        if ($brandvariety->brandid == $brand->id) {
-                            $brandi[] = [
-                                'brand_id'        => $brand->id,
-                                'brand_name'        => $brand->title_fa,
-                                'guarantee'         => $brandvariety->guarantee,
-                                'country'           => $brand->country,
-                                'avgcommentrate'    => $avgcommentrate,
-                                'slug'              => $brand->slug,
-                                'brand_image'       => $brand->image,
-//                                'brand_variety' => [
-//                                    $brand_variety[] = ['key' => $brandvariety->item1, 'value' => $brandvariety->value1],
-//                                    $brand_variety[] = ['key' => $brandvariety->item2, 'value' => $brandvariety->value2],
-//                                    $brand_variety[] = ['key' => $brandvariety->item3, 'value' => $brandvariety->value3]
-//                                ]
-                            ];
-                        }
-                    }
-                }
-            } elseif (trim($brands) != '[]' && trim($brandvarieties) == '[]') {
-                foreach ($brands as $brand) {
-                    $brandi[] = [
-                        'brand_id'        => $brand->id,
-                        'brand_name'        => $brand->title_fa,
-                        'country'           => $brand->country,
-                        'guarantee'         => null,
-                        'avgcommentrate'    => $avgcommentrate,
-                        'slug'              => $brand->slug,
-                        'brand_image'       => $brand->image,
-                        'brand_variety'     => []
-                    ];
-                }
-            } else {
-                $brandi = [];
-            }
+//            if (trim($brandvarieties) != '[]' && trim($brands) != '[]') {
+//                foreach ($brandvarieties as $brandvariety) {
+//                    foreach ($brands as $brand) {
+//                        if ($brandvariety->brandid == $brand->id) {
+//                            $brandi[] = [
+//                                'brand_id'        => $brand->id,
+//                                'brand_name'        => $brand->title_fa,
+//                                'guarantee'         => $brandvariety->guarantee,
+//                                'country'           => $brand->country,
+//                                'avgcommentrate'    => $avgcommentrate,
+//                                'slug'              => $brand->slug,
+//                                'brand_image'       => $brand->image,
+////                                'brand_variety' => [
+////                                    $brand_variety[] = ['key' => $brandvariety->item1, 'value' => $brandvariety->value1],
+////                                    $brand_variety[] = ['key' => $brandvariety->item2, 'value' => $brandvariety->value2],
+////                                    $brand_variety[] = ['key' => $brandvariety->item3, 'value' => $brandvariety->value3]
+////                                ]
+//                            ];
+//                        }
+//                    }
+//                }
+//            } elseif (trim($brands) != '[]' && trim($brandvarieties) == '[]') {
+//                foreach ($brands as $brand) {
+//                    $brandi[] = [
+//                        'brand_id'        => $brand->id,
+//                        'brand_name'        => $brand->title_fa,
+//                        'country'           => $brand->country,
+//                        'guarantee'         => null,
+//                        'avgcommentrate'    => $avgcommentrate,
+//                        'slug'              => $brand->slug,
+//                        'brand_image'       => $brand->image,
+//                        'brand_variety'     => []
+//                    ];
+//                }
+//            } else {
+//                $brandi = [];
+//            }
 
             $cars = Car_product::leftJoin('car_brands', 'car_brands.id', '=', 'car_products.car_brand_id')
                 ->leftJoin('car_models', 'car_models.id', '=', 'car_products.car_model_id')
@@ -167,7 +167,7 @@ class ProductController extends Controller
                         'description'       => $product->description,
                         'productgroup'      => $product->productgroup,
                         'productgroup_id'   => $product->productgroup_id,
-                        'brand'             => $brandi,
+                        'brandvarieties'    => $brandvarieties,
 
                     ];
 
@@ -190,7 +190,7 @@ class ProductController extends Controller
                         'description'       => $product->description,
                         'productgroup'      => $product->productgroup,
                         'productgroup_id'   => $product->productgroup_id,
-                        'brand'             => $brandi,
+                        'brandvarieties'    => $brandvarieties,
 
                     ];
                 }
