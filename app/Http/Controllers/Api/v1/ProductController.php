@@ -367,8 +367,8 @@ class ProductController extends Controller
             WHEN product_brand_varieties.status < "4" THEN "false"
             WHEN product_brand_varieties.status = "4" THEN "true"
             END) AS status'))
-            ->where('products.slug' , $slug)
-            ->where('brands.id' , $id)
+            //->where('products.slug' , $slug)
+            ->where('product_brand_varieties.brand_id' , $id)
             ->get();
 
         $commentratequality     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('quality');

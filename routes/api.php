@@ -36,6 +36,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('brand'                              , 'IndexController@brand');
     Route::get('brand/{slug}'                       , 'IndexController@subbrand');
     Route::get('productgroup'                       , 'IndexController@productgroup');
+    Route::get('productvariety/{slug}/{id}'         , 'ProductController@subproductvariety');
 
 
     Route::middleware('auth:api')->group(function (){
@@ -54,7 +55,6 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
         Route::post('/technicalunit/cartechnicalstore'  , 'TechnicalunitController@cartechnicalstore');
         Route::post('/product/create/productvariety'    , 'ProductController@createproductvariety');
         Route::get('productvariety'                     , 'ProductController@productvariety');
-        Route::get('productvariety/{slug}/{id}'         , 'ProductController@subproductvariety');
         Route::post('/offer/store'                      , 'OfferController@store');
         Route::post('/offer/edit/{id}'                  , 'OfferController@update');
         Route::post('/offer/carofferstore'              , 'OfferController@carofferstore');
