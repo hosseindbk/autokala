@@ -391,7 +391,7 @@ class ProductController extends Controller
         }else{
             $comentratin = [] ;
         }
-
+        $commentratecount       = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->count();
         $commentratequality     = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('quality');
         $commentratevalue       = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('value');
         $commentrateinnovation  = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->whereApproved(1)->avg('innovation');
@@ -429,10 +429,17 @@ class ProductController extends Controller
             $comt = [];
         }
         $response = [
-            'productvarietis'   =>$productvarietis,
-            'avgcommentrate'    =>$avgcommentrate ,
-            'comment'           =>$comt,
-            'commentrates'      =>$comentratin
+            'productvarietis'       =>  $productvarietis        ,
+            'avgcommentrate'        =>  $avgcommentrate         ,
+            'comment'               =>  $comt                   ,
+            'commentrates'          =>  $comentratin            ,
+            'commentratecount'      =>  $commentratecount       ,
+            'commentratequality'    =>  $commentratequality     ,
+            'commentratevalue'      =>  $commentratevalue       ,
+            'commentrateinnovation' =>  $commentrateinnovation  ,
+            'commentrateability'    =>  $commentrateability     ,
+            'commentratedesign'     =>  $commentratedesign      ,
+            'commentratecomfort'    =>  $commentratecomfort     ,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
