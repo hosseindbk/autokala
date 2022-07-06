@@ -371,19 +371,19 @@ class ProductController extends Controller
             ->where('product_brand_varieties.brand_id' , $id)
             ->get();
 
-        $commentrates           = commentrate::whereCommentable_type('App\Product_brand_variety')->whereIn('Commentable_id' ,$id)->select('name' , 'phone' , 'quality' , 'value' , 'innovation' , 'ability' , 'design' , 'comfort' ,'comment' , 'created_at')->whereApproved(1)->latest()->get();
+        $commentrates           = commentrate::whereCommentable_type('App\Product_brand_variety')->whereCommentable_id($id)->select('name' , 'phone' , 'quality' , 'value' , 'innovation' , 'ability' , 'design' , 'comfort' ,'comment' , 'created_at')->whereApproved(1)->latest()->get();
         if (trim($commentrates) != '[]') {
             foreach ($commentrates as $commentrate) {
                 $comentratin[] = [
-                    'name' => $commentrate->name,
-                    'phone' => $commentrate->phone,
-                    'quality' => $commentrate->quality,
-                    'value' => $commentrate->value,
-                    'innovation' => $commentrate->innovation,
-                    'ability' => $commentrate->ability,
-                    'design' => $commentrate->design,
-                    'comfort' => $commentrate->comfort,
-                    'comment' => $commentrate->comment,
+                    'name'          => $commentrate->name,
+                    'phone'         => $commentrate->phone,
+                    'quality'       => $commentrate->quality,
+                    'value'         => $commentrate->value,
+                    'innovation'    => $commentrate->innovation,
+                    'ability'       => $commentrate->ability,
+                    'design'        => $commentrate->design,
+                    'comfort'       => $commentrate->comfort,
+                    'comment'       => $commentrate->comment,
                     'avgcommentrate' => ((int)$commentrate->quality + (int)$commentrate->value + (int)$commentrate->innovation + (int)$commentrate->ability + (int)$commentrate->design + (int)$commentrate->comfort) / 6,
                     'created_at' => jdate($commentrate->created_at)->ago()
                 ];
