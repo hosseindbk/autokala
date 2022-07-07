@@ -250,7 +250,7 @@
                                                                 <div class="col-md-12" >
                                                                     <h3 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h3>
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">انتخاب استان</p>
                                                                         <select name="state_id" class="form-control select-lg select2" id="state_id">
@@ -260,9 +260,6 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
-
-                                                                </div>
-                                                                <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">انتخاب شهرستان</p>
                                                                         <select name="city_id" id="city_id" class="form-control select-lg select2">
@@ -273,25 +270,36 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
+                                                                    <div class="form-group">
+                                                                        <p class="mg-b-10">طول جغرافیایی</p>
+                                                                        <input type="text" name="lat" id="latelement" class="form-control"/>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <p class="mg-b-10">آدرس</p>
+                                                                        <textarea name="address" cols="30" rows="1" class="form-control" >{{Auth::user()->address}}</textarea>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-md-3">
+
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">تلفن موبایل</p>
                                                                         <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
-                                                                        <input type="hidden" name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
+                                                                        <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">تلفن ثابت</p>
                                                                         <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-7">
                                                                     <div class="form-group">
-                                                                        <p class="mg-b-10">آدرس</p>
-                                                                        <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{$offer->address}}</textarea>
+                                                                        <p class="mg-b-10">عرض جغرافیایی</p>
+                                                                        <input type="text" name="lng" id="lngelement" class="form-control"/>
                                                                     </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
+                                                                    <div id="app" style="width: 100%; height: 325px;"></div>
                                                                 </div>
 
                                                                 <input type="hidden" name="supplier_id" @foreach($suppliers as $supplier) @if($supplier->user_id == Auth::user()->id) value="{{$supplier->id}}" @endif @endforeach >
@@ -501,9 +509,9 @@
                                     <div class="middle-container">
 
                                         <div class="col-md-12" >
-                                            <h5 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 450px;margin-top: 20px;">حوزه فعالیت (انواع خودرو)</h5>
-                                        </div>
-                                        <div class="col-md-12">
+                                            <h5 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 450px;margin-top: 20px;" >حوزه فعالیت (انواع خودرو)</h5>
+                                        </div >
+                                        <div  class="col-md-12" >
                                             <div style="background-color: #0ab2e699; border-radius: 15px; padding: 20px; margin: 20px 0px 40px 0px;">
                                                 <ul>
                                                     <li><p>* ابتدا خودرو و مدل آن را انتخاب نمایید و در انتها بر روی کلید ثبت خودرو کلیک نمایید </p></li>
@@ -628,17 +636,13 @@
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('site/js/mapp.env.js')}}"></script>
     <script src="{{asset('site/js/mapp.min.js')}}"></script>
-    <script type="text/javascript">
-        $(function(){
-            $('#single1').click(function() {
-                $('#single_price').attr("disabled", false);
-            })
-        });
-        $(function(){
-            $('#single2').click(function() {
-                $('#single_price').attr("disabled", true);
-            })
-        });
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.5.3/dist/cleave.min.js"></script>
+
+    <script>
+        document.querySelectorAll('.loan_max_amount').forEach(inp => new Cleave(inp, {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        }));
     </script>
     <script>
         $(document).ready(function () {

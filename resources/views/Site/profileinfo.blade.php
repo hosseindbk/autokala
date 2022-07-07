@@ -209,7 +209,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div class="value"> توضیحات : {{$technical_unit->description}}</div>
+                                            <div class="value"> توضیحات : {!! $technical_unit->description !!}</div>
                                         </td>
                                     </tr>
                                     </tbody>
