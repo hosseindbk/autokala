@@ -325,6 +325,7 @@ class TechnicalunitController extends Controller
         return Redirect::back();
 
     }
+
     public function updatetechimg(Request $request , $id)
     {
         $technicaslunits = Technical_unit::findOrfail($id);
@@ -362,6 +363,7 @@ class TechnicalunitController extends Controller
 
         return $output;
     }
+
     public function modeloption(Request $request){
         $carmodels = Car_model::whereVehicle_brand_id($request->input('id'))->get();
         $output = [];
@@ -373,6 +375,7 @@ class TechnicalunitController extends Controller
 
         return $output;
     }
+
     public function technicalhomeshow(Request $request){
         $technicalunit = Technical_unit::findOrfail($request->input('id'));
 
@@ -396,12 +399,26 @@ class TechnicalunitController extends Controller
             ->with(compact('submenudashboards'))
             ->with('id' , $id);
     }
+
     public function mapset(Request $request){
         $technicalunit = Technical_unit::findOrfail($request->input('id'));
         $technicalunit->lat = $request->input('lat');
         $technicalunit->lng = $request->input('lng');
 
         $technicalunit->update();
+
+    }
+
+    public function techkeyword(Request $request,$id)
+    {
+
+        $technical_unit = Technical_unit::findOrfail($id);
+        $technical_unit->tech_keyword   = $request->input('tech_keyword');
+
+        $technical_unit->update();
+
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+        return Redirect::back();
 
     }
 }

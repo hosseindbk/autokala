@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     Route::post('technicalunits/option'                     , 'TechnicalunitController@option')->name('option');
     Route::post('technicalunits/technicalhomeshow'          , 'TechnicalunitController@technicalhomeshow')->name('technicalhomeshow');
     Route::patch('technicalunits/updatetechimg/{id}'        , 'TechnicalunitController@updatetechimg')->name('updatetechimg');
+    Route::patch('technicalunits/techkeyword/{id}'          , 'TechnicalunitController@techkeyword')->name('techkeyword');
 
     Route::resource('products'                            , 'ProductController');
     Route::get('product-brand-variety/{id}'                 , 'ProductbrandvarietyController@create')->name('product-brand-variety');
@@ -54,6 +55,7 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     Route::post('suppliers/option'                          , 'SupplierController@option')->name('option');
     Route::post('suppliers/supplierhomeshow'                , 'SupplierController@supplierhomeshow')->name('supplierhomeshow');
     Route::patch('suppliers/updatesupimg/{id}'              , 'SupplierController@updatesupimg')->name('updatesupimg');
+    Route::patch('suppliers/supplierkeyword/{id}'           , 'SupplierController@supplierkeyword')->name('supplierkeyword');
 
     Route::resource('brands'                              , 'BrandController');
     Route::post('brands/brandhomeshow'                      , 'BrandController@brandhomeshow')->name('brandhomeshow');

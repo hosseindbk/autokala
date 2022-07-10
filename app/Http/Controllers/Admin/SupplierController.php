@@ -155,7 +155,6 @@ class SupplierController extends Controller
             ->with(compact('submenudashboards'));
     }
 
-
     public function create()
     {
         $cities             = City::all();
@@ -171,7 +170,6 @@ class SupplierController extends Controller
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'));
     }
-
 
     public function store(supplierrequest $request , Supplier $suppliers)
     {
@@ -252,6 +250,7 @@ class SupplierController extends Controller
         return redirect(route('suppliers.index'));
 
     }
+
     public function map($id){
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
@@ -302,6 +301,7 @@ class SupplierController extends Controller
         return Response::json(['success'=>true,'result'=>$medias]);
 
     }
+
     public function mapset(Request $request){
         $supplier = Supplier::findOrfail($request->input('id'));
         $supplier->lat = $request->input('lat');
@@ -346,6 +346,7 @@ class SupplierController extends Controller
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'));
     }
+
     public function updatesupimg(Request $request ,$id)
     {
         $suppliers = Supplier::findOrfail($id);
@@ -500,6 +501,7 @@ class SupplierController extends Controller
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return Redirect::back();
     }
+
     public function supplierhomeshow(Request $request){
         $supplier = Supplier::findOrfail($request->input('id'));
 
@@ -511,12 +513,14 @@ class SupplierController extends Controller
         $supplier->update();
 
     }
+
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
         return Redirect::back();
     }
+
     public function option(Request $request){
         $cities = City::whereState_id($request->input('id'))->get();
         $output = [];
@@ -526,6 +530,19 @@ class SupplierController extends Controller
             $output[$City->id] = $City->title;
         }
         return $output;
+    }
+
+    public function supplierkeyword(Request $request,$id)
+    {
+
+        $supplier = Supplier::findOrfail($id);
+        $supplier->supplier_keyword   = $request->input('supplier_keyword');
+
+        $supplier->update();
+
+        alert()->success('عملیات موفق', 'اطلاعات با موفقیت پاک شد');
+        return Redirect::back();
+
     }
 
 }

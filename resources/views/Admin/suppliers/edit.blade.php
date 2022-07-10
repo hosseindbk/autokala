@@ -537,6 +537,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="row row-sm">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div>
+                                    <h3 class="text-center mb-5"><span class="badge badge-light">افزودن کلمات کلیدی</span></h3>
+                                </div>
+                                <form action="{{route('suppliers.supplierkeyword', $Supplier->id)}}" method="POST" enctype="multipart/form-data">
+                                    {{csrf_field()}}
+                                    {{ method_field('PATCH') }}
+                                    <div class="row row-sm">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">توضیحات</p>
+                                                <textarea name="supplier_keyword" cols="30" rows="2" class="form-control">@if(!$Supplier->tech_keyword) کلمه کلیدی 1 ، کلمه کلیدی 2 ، کلمه کلیدی 3 و... @else  {{$Supplier->supplier_keyword}}@endif</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-info m-r-20 text-center">ذخیره اطلاعات</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
