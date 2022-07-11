@@ -236,7 +236,7 @@ class TechnicalunitController extends Controller
         $users              = User::select('id' , 'name' , 'phone')->where('id' , '!=' ,1)->get();
         $statuses           = Status::select('id' , 'title')->get();
         $medias             = Media::select('id' , 'image')->whereTechnical_id($id)->whereStatus(1)->get();
-        $technicalunits    = Technical_unit::whereId($id)->get();
+        $technicalunits     = Technical_unit::whereId($id)->get();
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
         $cartechnicalgroups = Car_technical_group::whereTechnical_id($id)->get();
