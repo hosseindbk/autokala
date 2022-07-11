@@ -23,7 +23,7 @@ class IndexController extends Controller
     public function index(){
 
         $brands             = Brand::select('title_fa as title' , 'slug' , 'image')->whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
-        $orginal_slides     = Slide::select('image as images' , 'link')->whereStatus(4)->wherePosition(1)->inRandomOrder()->get();
+        $orginal_slides     = Slide::select('image as images' , 'link' , 'type' , 'type_id')->whereStatus(4)->wherePosition(1)->inRandomOrder()->get();
 
         $offers = DB::table('offers')
             ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')

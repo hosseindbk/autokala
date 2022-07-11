@@ -86,6 +86,9 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     Route::post('cars/create/storecartype'                  , 'CarController@storecartype')->name('storecartype');
     Route::delete('cars/create/destroycartype/{id}'         , 'CarController@destroycartype')->name('destroycartype');
 
+    Route::post('slidetype'                                 , 'SlideController@slidetype')->name('slidetype');
+
+
 });
 
 Route::group(['namespace' => 'Site'] , function (){

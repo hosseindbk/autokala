@@ -43,15 +43,19 @@
                                         <div class="col-md-12">
                                             @include('error')
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <p class="mg-b-10">عنوان اسلاید</p>
                                                 <input type="text" name="title" data-required="1" placeholder="عنوان اسلاید را وارد کنید" class="form-control" />
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <p class="mg-b-10">انتخاب مکان اسلاید</p>
+                                            <p class="mg-b-10">لینک اسلاید</p>
+                                            <input type="text" name="link" data-required="1" placeholder="لینک اسلاید را وارد کنید" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <p class="mg-b-10">انتخاب موقعیت اسلاید</p>
                                                 <select name="position" class="form-control select-lg select2" id="position">
                                                     <option value="1">اسلاید اصلی</option>
                                                     <option value="2">اسلاید تبلیغاتی چپ بالا</option>
@@ -59,10 +63,24 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
-                                                <p class="mg-b-10">لینک اسلاید</p>
-                                                <input type="text" name="link" data-required="1" placeholder="لینک اسلاید را وارد کنید" class="form-control" />
+                                                <p class="mg-b-10">انتخاب نوع اسلاید</p>
+                                                <select name="type" class="form-control select-lg select2" id="type">
+                                                    <option value="">انتخاب کنید</option>
+                                                    <option value="external">لینک خارجی</option>
+                                                    <option value="technical">تعمیرگاه</option>
+                                                    <option value="supplier">فروشگاه</option>
+                                                    <option value="offer">آگهی</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                    <p class="mg-b-10">ارتباط اسلاید</p>
+                                                    <select name="type_id" class="form-control select-lg select2" id="type_id">
+
+                                                    </select>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -90,7 +108,7 @@
         </div>
     </div>
 </div>
-
+@endsection
 @section('end')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
@@ -117,5 +135,34 @@
                 console.error( error );
             } );
     </script>
-@endsection
+    <script>
+        $(function(){
+            $('#type').change(function(){
+                $("#type_id option").remove();
+                var id = $('#type').val();
+
+                $.ajax({
+                    url : '{{ route( 'slidetype' ) }}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function( result )
+                    {
+                        $.each( result, function(k, v) {
+                            $('#type_id').append($('<option>', {value:k, text:v}));
+                        });
+                    },
+                    error: function()
+                    {
+                        //handle errors
+                        alert('error...');
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection

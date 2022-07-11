@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\sliderequest;
 use App\Menudashboard;
+use App\Offer;
 use App\Slide;
 use App\Submenudashboard;
+use App\Supplier;
+use App\Technical_unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -93,6 +96,8 @@ class SlideController extends Controller
         $slides->title      = $request->input('title');
         $slides->position   = $request->input('position');
         $slides->link       = $request->input('link');
+        $slides->type       = $request->input('type');
+        $slides->type_id    = $request->input('type_id');
         $slides->status     = 4;
         $slides->user_id    = Auth::user()->id;
 
@@ -148,6 +153,47 @@ class SlideController extends Controller
         $slide = Slide::findOrfail($id);
         $slide->delete();
         return redirect(route('slides.index'));
+    }
+
+    public function slidetype(Request $request){
+
+        if ($request->input('id') == 'external'){
+
+           $output[] = 'external';
+
+            return $output;
+        }elseif ($request->input('id') == 'technical'){
+            $cities = Technical_unit::whereStatus(4)->get();
+            $output = [];
+
+            foreach($cities as $City )
+            {
+                $output[$City->id] = $City->title;
+            }
+
+            return $output;
+        }elseif ($request->input('id') == 'supplier'){
+            $cities = Supplier::whereStatus(4)->get();
+            $output = [];
+
+            foreach($cities as $City )
+            {
+                $output[$City->id] = $City->title;
+            }
+
+            return $output;
+        }elseif ($request->input('id') == 'offer'){
+            $cities = Offer::whereStatus(4)->get();
+            $output = [];
+
+            foreach($cities as $City )
+            {
+                $output[$City->id] = $City->title;
+            }
+
+            return $output;
+        }
+
     }
 
 }
