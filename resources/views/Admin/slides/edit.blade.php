@@ -91,13 +91,17 @@
                                             <div class="col-md-12">
                                                 @include('error')
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">نام اسلاید</p>
                                                     <input type="text" name="title" value="{{$slide->title}}"  class="form-control" />
                                                 </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">لینک اسلاید</p>
+                                                    <input type="text" name="link" value="{{$slide->link}}" class="form-control" />
+                                                </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخاب مکان اسلاید</p>
                                                     <select name="position" class="form-control select-lg select2" id="position">
@@ -108,10 +112,25 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <p class="mg-b-10">لینک اسلاید</p>
-                                                    <input type="text" name="link" value="{{$slide->link}}"  class="form-control" />
+                                                    <p class="mg-b-10">انتخاب نوع اسلاید</p>
+                                                    <select name="type" class="form-control select-lg select2" id="type">
+                                                        <option value="">انتخاب کنید</option>
+                                                        <option value="external"  {{$slide->type == 'external' ? 'selected' : ''}}  >لینک خارجی</option>
+                                                        <option value="technical" {{$slide->type == 'technical'? 'selected' : ''}}  >تعمیرگاه</option>
+                                                        <option value="supplier"  {{$slide->type == 'supplier' ? 'selected' : ''}}  >فروشگاه</option>
+                                                        <option value="product"   {{$slide->type == 'product'  ? 'selected' : ''}}  >کالا</option>
+                                                        <option value="offer"     {{$slide->type == 'offer'    ? 'selected' : ''}}  >آگهی</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">ارتباط اسلاید</p>
+                                                    <select name="type_id" class="form-control select-lg select2" id="type_id">
+
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">

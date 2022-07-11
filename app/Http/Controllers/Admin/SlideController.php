@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\sliderequest;
 use App\Menudashboard;
 use App\Offer;
+use App\Product;
 use App\Slide;
 use App\Submenudashboard;
 use App\Supplier;
@@ -134,6 +135,8 @@ class SlideController extends Controller
         $slide->title           = $request->input('title');
         $slide->position        = $request->input('position');
         $slide->link            = $request->input('link');
+        $slide->type            = $request->input('type');
+        $slide->type_id         = $request->input('type_id');
         if ($request->file('image') != null) {
             $file = $request->file('image');
             $img = Image::make($file);
@@ -184,6 +187,17 @@ class SlideController extends Controller
             return $output;
         }elseif ($request->input('id') == 'offer'){
             $cities = Offer::whereStatus(4)->get();
+            $output = [];
+
+            foreach($cities as $City )
+            {
+                $output[$City->id] = $City->title;
+            }
+
+            return $output;
+        }
+        elseif ($request->input('id') == 'product'){
+            $cities = Product::whereStatus(4)->get();
             $output = [];
 
             foreach($cities as $City )

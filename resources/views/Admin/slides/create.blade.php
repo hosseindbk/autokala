@@ -46,11 +46,11 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <p class="mg-b-10">عنوان اسلاید</p>
-                                                <input type="text" name="title" data-required="1" placeholder="عنوان اسلاید را وارد کنید" class="form-control" />
+                                                <input type="text" name="title" placeholder="عنوان اسلاید را وارد کنید" class="form-control" />
                                             </div>
                                             <div class="form-group">
                                             <p class="mg-b-10">لینک اسلاید</p>
-                                            <input type="text" name="link" data-required="1" placeholder="لینک اسلاید را وارد کنید" class="form-control" />
+                                            <input type="text" name="link" placeholder="لینک اسلاید را وارد کنید" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -71,6 +71,7 @@
                                                     <option value="external">لینک خارجی</option>
                                                     <option value="technical">تعمیرگاه</option>
                                                     <option value="supplier">فروشگاه</option>
+                                                    <option value="product">کالا</option>
                                                     <option value="offer">آگهی</option>
                                                 </select>
                                             </div>
