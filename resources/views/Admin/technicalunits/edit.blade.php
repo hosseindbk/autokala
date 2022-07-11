@@ -420,7 +420,6 @@
                                 <div>
                                     <h3 class="text-center mb-5"><span class="badge badge-light">افزودن کلمات کلیدی</span></h3>
                                 </div>
-                                @dd($Technical_unit->id)
                                 <form action="{{route('techkeyword', $Technical_unit->id)}}" method="POST" enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     {{ method_field('PATCH') }}
