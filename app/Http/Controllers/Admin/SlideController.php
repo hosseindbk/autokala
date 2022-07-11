@@ -171,7 +171,7 @@ class SlideController extends Controller
 
             foreach($cities as $City )
             {
-                $output[$City->id] = $City->title;
+                $output[$City->slug] = $City->title;
             }
 
             return $output;
@@ -181,7 +181,7 @@ class SlideController extends Controller
 
             foreach($cities as $City )
             {
-                $output[$City->id] = $City->title;
+                $output[$City->slug] = $City->title;
             }
 
             return $output;
@@ -191,7 +191,7 @@ class SlideController extends Controller
 
             foreach($cities as $City )
             {
-                $output[$City->id] = $City->title;
+                $output[$City->slug] = $City->title;
             }
 
             return $output;
@@ -202,7 +202,7 @@ class SlideController extends Controller
 
             foreach($cities as $City )
             {
-                $output[$City->id] = $City->title;
+                $output[$City->slug] = $City->title;
             }
 
             return $output;
