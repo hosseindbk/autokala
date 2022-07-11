@@ -408,6 +408,7 @@ class SupplierController extends Controller
         $supplier->phone        = $request->input('phone');
         $supplier->mobile       = $request->input('mobile');
         $supplier->whatsapp     = $request->input('whatsapp');
+        $supplier->supplier_keyword     = $request->input('supplier_keyword');
         $supplier->email        = $request->input('email');
         $supplier->website      = $request->input('website');
         $supplier->state_id     = $request->input('state_id');
@@ -536,7 +537,7 @@ class SupplierController extends Controller
     {
 
         $supplier = Supplier::findOrfail($id);
-        $supplier->supplier_keyword   = $request->input('supplier_keyword');
+        $supplier->keyword   = $request->input('keyword');
 
         $supplier->update();
 

@@ -426,7 +426,7 @@
                                     <div class="row row-sm">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <p class="mg-b-10">توضیحات</p>
+                                                <p class="mg-b-10">کلمات کلیدی</p>
                                                 <textarea name="tech_keyword" cols="30" rows="2" class="form-control">@if(!$Technical_unit->tech_keyword) کلمه کلیدی 1 ، کلمه کلیدی 2 ، کلمه کلیدی 3 و... @else  {{$Technical_unit->tech_keyword}}@endif</textarea>
                                             </div>
                                         </div>

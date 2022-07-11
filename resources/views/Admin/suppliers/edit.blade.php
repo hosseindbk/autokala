@@ -214,6 +214,10 @@
                                                         <option value="1" {{$Supplier->autokala == 1 ? 'selected' : ''}}>نشان برنزی اتوکالا</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">کلمات کلیدی</p>
+                                                    <textarea name="supplier_keyword" cols="30" rows="2" class="form-control">@if(!$Supplier->supplier_keyword) کلمه کلیدی 1 ، کلمه کلیدی 2 ، کلمه کلیدی 3 و... @else  {{$Supplier->supplier_keyword}}@endif</textarea>
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -550,8 +554,8 @@
                                     <div class="row row-sm">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <p class="mg-b-10">توضیحات</p>
-                                                <textarea name="supplier_keyword" cols="30" rows="2" class="form-control">@if(!$Supplier->supplier_keyword) کلمه کلیدی 1 ، کلمه کلیدی 2 ، کلمه کلیدی 3 و... @else  {{$Supplier->supplier_keyword}}@endif</textarea>
+                                                <p class="mg-b-10">کلمات کلیدی</p>
+                                                <textarea name="keyword" cols="30" rows="2" class="form-control">@if(!$Supplier->keyword) کلمه کلیدی 1 ، کلمه کلیدی 2 ، کلمه کلیدی 3 و... @else  {{$Supplier->keyword}}@endif</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
