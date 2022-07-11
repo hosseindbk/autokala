@@ -544,7 +544,7 @@
                                 <div>
                                     <h3 class="text-center mb-5"><span class="badge badge-light">افزودن کلمات کلیدی</span></h3>
                                 </div>
-                                <form action="{{route('suppliers.supplierkeyword', $Supplier->id)}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{route('supplierkeyword', $Supplier->id)}}" method="POST" enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     {{ method_field('PATCH') }}
                                     <div class="row row-sm">
