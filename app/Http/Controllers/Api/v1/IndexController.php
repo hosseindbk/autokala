@@ -88,6 +88,8 @@ class IndexController extends Controller
             $slide [] = [
                'image' => $orginal_slide->images,
                'link' => $orginal_slide->link,
+               'type' => $orginal_slide->type,
+               'type_id' => $orginal_slide->type_id,
             ];
         }
 
