@@ -25,7 +25,7 @@ class SupplierController extends Controller
         $productgroup       = request('productgroup_id');
         $carbrandset        = request('car_brand_id');
         $countState         = null;
-        $suppliers          = Supplier::filter()->select('id')->whereStatus(4)->get();
+        $suppliers          = Supplier::filter()->state()->select('id')->whereStatus(4)->get();
         $productgroups      = Product_group::whereStatus(4)->get();
         $carbrands          = Car_brand::whereStatus(4)->get();
         $brands             = Brand::whereStatus(4)->get();

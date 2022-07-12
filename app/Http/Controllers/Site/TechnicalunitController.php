@@ -81,9 +81,9 @@ class TechnicalunitController extends Controller
             return Redirect::back();
         }
         $menus              = Menu::whereStatus(4)->get();
-        $technicals         = Technical_unit::filter()->select('id')->whereStatus(4)->get();
-        $oldtechnicals      = Technical_unit::filter()->whereStatus(4)->orderBy('id')->paginate(16);
-        $count              = Technical_unit::filter()->whereStatus(4)->count();
+        $technicals         = Technical_unit::filter()->state()->select('id')->whereStatus(4)->get();
+        //$oldtechnicals      = Technical_unit::filter()->state()->whereStatus(4)->orderBy('id')->paginate(16);
+        $count              = Technical_unit::filter()->state()->whereStatus(4)->count();
         $productgroups      = Product_group::whereStatus(4)->get();
         $carbrands          = Car_brand::whereStatus(4)->get();
         $brands             = Brand::whereStatus(4)->get();
