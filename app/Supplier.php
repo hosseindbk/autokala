@@ -3,9 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Supplier extends Model
 {
+    public function scopeState($query){
+        if(auth::check() && auth::user()->state_id != null) {
+
+            $query->where('suppliers.state_id', auth::user()->state_id);
+
+            $state_id = request('state_id');
+            if (isset($state_id) && $state_id == '') {
+                $state_id = State::pluck('id');
+                $query->where('suppliers.state_id', $state_id);
+            } elseif (isset($state_id) && $state_id != '') {
+                $query->where('suppliers.state_id', $state_id);
+            }
+        }else{
+            $query->where('suppliers.state_id', '8');
+        }
+    }
 
     public function scopeFilter($query)
     {
@@ -87,6 +104,7 @@ class Supplier extends Model
         }
         return $query;
     }
+
     public function scopeSort($query)
     {
 
@@ -107,6 +125,7 @@ class Supplier extends Model
         }
 
     }
+
     public  function comment(){
 
         return $this->morphMany(comment::class, 'commentable');

@@ -3,32 +3,28 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Offer extends Model
 {
-    public function scopeOffersearchsell($query , $keywords)
-    {
-        $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
-//            ->orwhere('description' , 'LIKE' , '%' .$keywords. '%');
 
-        return $query;
-    }
-    public function scopeOffersearchbuy($query , $keywords)
-    {
-        $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
-//            ->orwhere('description' , 'LIKE' , '%' .$keywords. '%');
-
-        return $query;
-    }
     public function scopeState($query){
-        $state_id = request('state_id');
-        if (isset($state_id) && $state_id == ''){
-            $state_id = State::pluck('id');
-            $query->whereIn('State_id' , $state_id);
-        }elseif(isset($state_id) && $state_id != '') {
-            $query->whereIn('State_id' , $state_id);
+        if(auth::check() && auth::user()->state_id != null) {
+
+            $query->where('offers.state_id', auth::user()->state_id);
+
+            $state_id = request('offers.state_id');
+            if (isset($state_id) && $state_id == '') {
+                $state_id = State::pluck('id');
+                $query->where('offers.state_id', $state_id);
+            } elseif (isset($state_id) && $state_id != '') {
+                $query->where('offers.state_id', $state_id);
+            }
+        }else{
+            $query->where('offers.state_id', '8');
         }
     }
+
     public function scopeFilter($query){
 
         $keywords = request('offersellsearch');
@@ -90,6 +86,7 @@ class Offer extends Model
         }
 
     }
+
     public function scopeSort($query){
 
         $newest = request('newest');
@@ -113,6 +110,7 @@ class Offer extends Model
             $query->orderByRaw("(POW((offers.lat-$lat),2) + POW((offers.lng-$lng),2))");
         }
     }
+
     public  function comment(){
 
         return $this->morphMany(comment::class, 'commentable');

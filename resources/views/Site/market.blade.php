@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    <title>بازارچه قطعات وبسایت اتوکالا</title>
+    <title>بازارچه قطعات و لوازم یدکی خودرو</title>
     <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('site/css/vendor/noUISlider.min.css')}}">
 

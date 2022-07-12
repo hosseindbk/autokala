@@ -179,7 +179,7 @@
                                         <div class="owl-item active" style="width: 50px;">
                                             <div class="item">
                                                 <a href="{{url('brand/'.$brand->slug)}}" target="_blank" class="d-block hover-img-link">
-                                                    <img src="{{asset($brand->image)}}" class="img-fluid img-brand" style="width: 130px;margin: 0 auto;" alt="{{$brand->name}}">
+                                                    <img src="{{asset($brand->image)}}" class="img-fluid img-brand" style="width: 130px;margin: 0 auto;" alt="{{$brand->title_fa}}">
                                                 </a>
                                             </div>
                                         </div>
@@ -207,7 +207,7 @@
                                 </header>
                                 <div class="product-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
                                     <div class="owl-stage-outer">
-                                        @if(Auth::check() && Auth::user()->type_id == 1)
+
                                             <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 2s; width: 2234px;">
                                             @foreach($offers as $offer)
                                                 <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
@@ -218,52 +218,18 @@
                                                             <button class="btn btn-success">آگهی خرید</button>
                                                         @endif
                                                     </div>
-                                                <div class="item">
-                                                    <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="d-block">
-                                                        <img src="{{asset($offer->image1)}}" class="img-fluid" style="width: 200px;margin: 0 auto;" alt="{{$offer->title_offer}}">
-                                                    </a>
-                                                    <h2 class="post-title pt-4">
-                                                        <a href="{{url('market/'.$offer->slug)}}" target="_blank">{{$offer->title_offer}}</a>
-                                                    </h2>
-                                                    <div class="price">
-                                                        @if($offer->price > 1)
-                                                        <ins>
-                                                            <span>{{number_format($offer->price)}}<span> تومان </span></span>
-                                                        </ins>
-                                                        @else
-                                                            <ins style="color: #fff !important;">0</ins>
-                                                        @endif
-                                                    </div>
-                                                    <div class="post-title">
-                                                        <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="btn btn-outline-warning">مشاهده آگهی</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                        @else
-                                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 2s; width: 2234px;">
-                                                @foreach($offers as $offer)
-                                                    <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                                        <div>
-                                                            @if($offer->buyorsell == 'sell')
-                                                                <button class="btn btn-danger">آگهی فروش</button>
-                                                            @elseif($offer->buyorsell == 'buy')
-                                                                <button class="btn btn-success">آگهی خرید</button>
-                                                            @endif
-                                                        </div>
+                                                    @if(Auth::check() && Auth::user()->type_id == 1)
                                                         <div class="item">
-                                                            <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="d-block hover-img-link" data-toggle="modal"
-                                                               data-target="#exampleModal">
+                                                            <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="d-block">
                                                                 <img src="{{asset($offer->image1)}}" class="img-fluid" style="width: 200px;margin: 0 auto;" alt="{{$offer->title_offer}}">
                                                             </a>
                                                             <h2 class="post-title pt-4">
                                                                 <a href="{{url('market/'.$offer->slug)}}" target="_blank">{{$offer->title_offer}}</a>
                                                             </h2>
                                                             <div class="price">
-                                                                @if($offer->single_price > 1)
+                                                                @if($offer->price > 1)
                                                                 <ins>
-                                                                    <span>{{number_format($offer->single_price)}}<span> تومان </span></span>
+                                                                    <span>{{number_format($offer->price)}}<span> تومان </span></span>
                                                                 </ins>
                                                                 @else
                                                                     <ins style="color: #fff !important;">0</ins>
@@ -273,10 +239,32 @@
                                                                 <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="btn btn-outline-warning">مشاهده آگهی</a>
                                                             </div>
                                                         </div>
+                                                    @else
+                                                    <div class="item">
+                                                        <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="d-block hover-img-link" data-toggle="modal"
+                                                           data-target="#exampleModal">
+                                                            <img src="{{asset($offer->image1)}}" class="img-fluid" style="width: 200px;margin: 0 auto;" alt="{{$offer->title_offer}}">
+                                                        </a>
+                                                        <h2 class="post-title pt-4">
+                                                            <a href="{{url('market/'.$offer->slug)}}" target="_blank">{{$offer->title_offer}}</a>
+                                                        </h2>
+                                                        <div class="price">
+                                                            @if($offer->single_price > 1)
+                                                                <ins>
+                                                                    <span>{{number_format($offer->single_price)}}<span> تومان </span></span>
+                                                                </ins>
+                                                            @else
+                                                                <ins style="color: #fff !important;">0</ins>
+                                                            @endif
+                                                        </div>
+                                                        <div class="post-title">
+                                                            <a href="{{url('market/'.$offer->slug)}}" target="_blank" class="btn btn-outline-warning">مشاهده آگهی</a>
+                                                        </div>
                                                     </div>
-                                                @endforeach
-                                            </div>
-                                        @endif
+                                                    @endif
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +318,7 @@
                             <div class="owl-stage-outer">
                                 <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2234px;">
                                     @foreach($suppliers as $supplier)
-                                        <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
+                                        <div  class="owl-item active" style="width: 309.083px; margin-left: 10px;" >
                                             <div class="item">
                                                 <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank" class="d-block hover-img-link">
                                                     <img src="{{asset($supplier->image)}}" class="img-fluid" alt="">

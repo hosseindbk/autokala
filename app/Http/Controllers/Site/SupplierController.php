@@ -33,22 +33,22 @@ class SupplierController extends Controller
         $states             = State::all();
         $cities             = City::all();
 
-        $newsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()
+        $newsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()->state()
             ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
             ->where('suppliers.status', 4)
             ->orderBy('id' , 'DESC')
             ->paginate(16);
-        $clicksuppliers     = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()
+        $clicksuppliers     = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()->state()
             ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
             ->where('suppliers.status', 4)
             ->orderBy('click')
             ->paginate(16);
-        $goodsuppliers      = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()
+        $goodsuppliers      = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()->state()
             ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
             ->where('suppliers.status', 4)
             ->orderBy('id' , 'DESC')
             ->paginate(16);
-        $oldsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()
+        $oldsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()->state()
             ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
             ->where('suppliers.status', 4)
             ->orderBy('id')

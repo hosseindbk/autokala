@@ -31,7 +31,7 @@ class MarketController extends Controller
         $buy                    = 0;
         $countState             = null;
         $users                  = User::select('id' , 'type_id')->get();
-        $selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->paginate('16');
+        $selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->state()->paginate('16');
         $max_price              = Offer::whereStatus(4)->max('single_price');
         $min_price              = Offer::whereStatus(4)->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -46,14 +46,15 @@ class MarketController extends Controller
         $caroffers              = Car_offer::all();
         $filter                 = 0;
 
-        $brandnames = DB::table('offers')
-            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+        $brandnames = Offer::
+              leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->select('offers.brand_id as brand_offer_id' , 'offers.id as offer_id' , 'product_brand_varieties.brand_id as brand_variety_id' , 'product_brand_varieties.product_id' ,'brands.title_fa')
             ->where('offers.status' , '=', '4')
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
+            ->state()
             ->get();
 
         return view('Site.market')
@@ -205,7 +206,7 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $users                  = User::select('id' , 'type_id')->get();
-        $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->paginate('16');
+        $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->state()->paginate('16');
         $max_price              = Offer::whereStatus(4)->max('single_price');
         $min_price              = Offer::whereStatus(4)->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -217,14 +218,15 @@ class MarketController extends Controller
         $brands                 = Brand::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $filter                 = 0;
-        $brandnames = DB::table('offers')
-            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+        $brandnames = Offer::
+              leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->select('offers.brand_id as brand_offer_id' , 'offers.id as offer_id' , 'product_brand_varieties.brand_id as brand_variety_id' , 'product_brand_varieties.product_id' ,'brands.title_fa')
             ->where('offers.status' , '=', '4')
             ->whereBuyorsell('buy')
             ->where('offers.brand_id' , '<>' , null)
+            ->state()
             ->get();
         return view('Site.market')
             ->with(compact('brandnames'))

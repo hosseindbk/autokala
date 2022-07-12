@@ -33,6 +33,7 @@ class MarketController extends Controller
             ->where('offers.buyorsell' ,'=' , 'sell')
             ->where('offers.brand_id' , '<>' , null)
             ->filter()
+            ->state()
             ->sort()
             ->paginate(16);
 
@@ -60,6 +61,7 @@ class MarketController extends Controller
             ->where('offers.status' , '=', '4')
             ->where('offers.buyorsell' ,'=' , 'buy')
             ->filter()
+            ->state()
             ->sort()
             ->where('offers.brand_id' , '<>' , null)
             ->paginate(16);

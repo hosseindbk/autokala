@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    <title> وبسایت اتوکالا</title>
+   <title> @foreach($offers as $offer) {{$offer->title_offer}} @endforeach</title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/noUISlider.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/bootstrap-slider.min.css')}}">
@@ -75,7 +75,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{url('/')}}">خانه</a></li>
                             <li class="breadcrumb-item"><a href="{{url('market')}}">آگهی</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">@foreach($offers as $offer) {{$offer->title}} @endforeach</li>
+                            <li class="breadcrumb-item active" aria-current="page">@foreach($offers as $offer) {{$offer->title_offer}} @endforeach</li>
                         </ol>
                     </nav>
                 </div>

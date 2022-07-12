@@ -3,13 +3,28 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Technical_unit extends Model
 {
 
     public function scopeState($query){
+        if(auth::check() && auth::user()->state_id != null) {
 
+            $query->where('technical_units.state_id', auth::user()->state_id);
+
+            $state_id = request('state_id');
+            if (isset($state_id) && $state_id == '') {
+                $state_id = State::pluck('id');
+                $query->where('technical_units.state_id', $state_id);
+            } elseif (isset($state_id) && $state_id != '') {
+                $query->where('technical_units.state_id', $state_id);
+            }
+        }else{
+            $query->where('technical_units.State_id', '8');
+        }
     }
+
     public function scopeFilter($query)
     {
 
@@ -74,6 +89,7 @@ class Technical_unit extends Model
             $query->whereIn('technical_units.id' , $product_id);
         }
     }
+
     public function scopeSort($query)
     {
 
@@ -94,6 +110,7 @@ class Technical_unit extends Model
         }
 
     }
+
     public  function comment(){
 
         return $this->morphMany(comment::class, 'commentable');

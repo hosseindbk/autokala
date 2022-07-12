@@ -91,25 +91,25 @@ class TechnicalunitController extends Controller
         $states             = State::all();
         $cities             = City::all();
 
-        $newtechnicals      = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()
+        $newtechnicals      = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()->state()
             ->select('technical_units.id' , 'technical_units.title' , 'technical_units.slug' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address' , 'cities.title as citytitle')
             ->where('technical_units.status', 4)
             ->orderBy('id' , 'DESC')
             ->paginate(16);
 
-        $clicktechnicals    = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()
+        $clicktechnicals    = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()->state()
             ->select('technical_units.id' , 'technical_units.title' , 'technical_units.slug' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address' , 'cities.title as citytitle')
             ->where('technical_units.status', 4)
             ->orderBy('click')
             ->paginate(16);
 
-        $goodtechnicals     = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()
+        $goodtechnicals     = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()->state()
             ->select('technical_units.id' , 'technical_units.title' , 'technical_units.slug' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address' , 'cities.title as citytitle')
             ->where('technical_units.status', 4)
             ->orderBy('id' , 'DESC')
             ->paginate(16);
 
-        $oldtechnicals     = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()
+        $oldtechnicals     = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()->state()
             ->select('technical_units.id' , 'technical_units.title' , 'technical_units.slug' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address' , 'cities.title as citytitle')
             ->where('technical_units.status', 4)
             ->orderBy('id')

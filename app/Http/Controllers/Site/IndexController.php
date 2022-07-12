@@ -22,17 +22,17 @@ class IndexController extends Controller
 
     public function index(){
         $cities             = City::all();
-        $states             = State::all();
+        $states             = State::select('id' , 'title')->get();
         $countState         = null;
         $menus              = Menu::whereStatus(4)->get();
-        $offers             = Offer::whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
-        $brands             = Brand::whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
 
-        $orginal_slides     = Slide::whereStatus(4)->wherePosition(1)->latest()->get();
-        $left_top_slides    = Slide::whereStatus(4)->wherePosition(2)->limit(1)->get();
-        $left_bottom_slides = Slide::whereStatus(4)->wherePosition(3)->limit(1)->get();
+        $brands             = Brand::select('slug' , 'image' , 'title_fa')->whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
+        $orginal_slides     = Slide::select('id' , 'link' , 'image' , 'title')->whereStatus(4)->wherePosition(1)->latest()->get();
+        $left_top_slides    = Slide::select('link' , 'image')->whereStatus(4)->wherePosition(2)->limit(1)->get();
+        $left_bottom_slides = Slide::select('link' , 'image')->whereStatus(4)->wherePosition(3)->limit(1)->get();
         $minid              = Slide::whereStatus(4)->wherePosition(1)->min('id');
 
+        $offers             = Offer::select('buyorsell' , 'title_offer' , 'slug' , 'image1' , 'single_price' , 'price')->state()->whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
 
         $technicalunits     = Technical_unit::
             leftjoin('states' , 'states.id','=' ,'technical_units.state_id' )
@@ -41,6 +41,7 @@ class IndexController extends Controller
             ->where('technical_units.status' , 4)
             ->where('technical_units.homeshow' ,1)
             ->inRandomOrder()
+            ->state()
             ->get();
 
         $suppliers          = Supplier::
@@ -50,6 +51,7 @@ class IndexController extends Controller
             ->where('suppliers.status' , 4)
             ->where('suppliers.homeshow' ,1)
             ->inRandomOrder()
+            ->state()
             ->get();
 
 
