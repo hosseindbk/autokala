@@ -59,8 +59,8 @@ class Offer extends Model
         }
 
         $city_id = request('city_id');
-        if (isset($city_id) &&  array_values($city_id)[0] != null) {
-            $query->whereIn('offers.city_id' , $city_id);
+        if (isset($city_id) &&  $city_id != null) {
+            $query->where('offers.city_id' , $city_id);
         }
 
         $productgroup_id    = request('productgroup_id');

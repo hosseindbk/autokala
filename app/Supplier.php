@@ -46,14 +46,6 @@ class Supplier extends Model
                 }
         }
 
-        $state_id = request('state_id');
-        if (isset($state_id) && $state_id == ''){
-            $state_id = State::pluck('id');
-            $query->whereIn('suppliers.state_id' , $state_id);
-        }elseif(isset($state_id) && $state_id != '') {
-            $query->whereIn('suppliers.state_id' , $state_id);
-        }
-
         $productgroup_id    = request('productgroup_id');
         if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null) {
             $supplier_id = Supplier_product_group::whereIn('kala_group_id', $productgroup_id)->pluck('supplier_id');
@@ -66,8 +58,8 @@ class Supplier extends Model
         }
 
         $city_id = request('city_id');
-        if (isset($city_id) &&  array_values($city_id)[0] != null) {
-            $query->whereIn('suppliers.city_id' , $city_id);
+        if (isset($city_id) &&  $city_id != null) {
+            $query->where('suppliers.city_id' , $city_id);
         }
 
         $whole_seller = request('whole_seller');
