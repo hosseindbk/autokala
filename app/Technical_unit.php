@@ -9,7 +9,7 @@ class Technical_unit extends Model
 {
 
     public function scopeState($query){
-        if(auth::check() && auth::user()->state_id != null) {
+        if(auth::check() && auth::user()->state_id != null && auth::user()->level != 'admin') {
 
             $query->where('technical_units.state_id', auth::user()->state_id);
 
