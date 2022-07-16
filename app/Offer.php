@@ -10,16 +10,7 @@ class Offer extends Model
 
     public function scopeState($query){
         if(auth::check() && auth::user()->state_id != null && auth::user()->state_status != 1) {
-
             $query->where('offers.state_id', auth::user()->state_id);
-
-//            $state_id = request('offers.state_id');
-//            if (isset($state_id) && $state_id == '') {
-//                $state_id = State::pluck('id');
-//                $query->where('offers.state_id', $state_id);
-//            } elseif (isset($state_id) && $state_id != '') {
-//                $query->where('offers.state_id', $state_id);
-//            }
         }else{
             $query->where('offers.state_id', '8');
         }
