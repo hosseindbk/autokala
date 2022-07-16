@@ -8,12 +8,15 @@ use Illuminate\Support\Facades\Auth;
 class Technical_unit extends Model
 {
 
-    public function scopeState($query){
-        if(auth::check() && auth::user()->state_id != null && auth::user()->state_status != 1) {
+    public function scopeState($query)
+    {
+
+        if (auth::check() && auth::user()->state_id != null && auth::user()->state_status != 1) {
 
             $query->where('technical_units.state_id', auth::user()->state_id);
 
-        }else{
+        }elseif(!auth::check()){
+
             $query->where('technical_units.State_id', '8');
         }
     }
