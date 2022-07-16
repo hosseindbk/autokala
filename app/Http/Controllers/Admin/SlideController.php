@@ -8,6 +8,7 @@ use App\Menudashboard;
 use App\Offer;
 use App\Product;
 use App\Slide;
+use App\Status;
 use App\Submenudashboard;
 use App\Supplier;
 use App\Technical_unit;
@@ -135,6 +136,7 @@ class SlideController extends Controller
         $slide->title           = $request->input('title');
         $slide->position        = $request->input('position');
         $slide->link            = $request->input('link');
+        $slide->status          = $request->input('status_id');
         $slide->type            = $request->input('type');
         $slide->type_id         = $request->input('type_id');
         if ($request->file('image') != null) {

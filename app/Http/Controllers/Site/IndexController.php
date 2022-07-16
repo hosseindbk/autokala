@@ -25,7 +25,6 @@ class IndexController extends Controller
         $states             = State::select('id' , 'title')->get();
         $countState         = null;
         $menus              = Menu::whereStatus(4)->get();
-
         $brands             = Brand::select('slug' , 'image' , 'title_fa')->whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
         $orginal_slides     = Slide::select('id' , 'link' , 'image' , 'title')->whereStatus(4)->wherePosition(1)->latest()->get();
         $left_top_slides    = Slide::select('link' , 'image')->whereStatus(4)->wherePosition(2)->limit(1)->get();
