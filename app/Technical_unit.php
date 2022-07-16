@@ -13,13 +13,13 @@ class Technical_unit extends Model
 
             $query->where('technical_units.state_id', auth::user()->state_id);
 
-            $state_id = request('state_id');
-            if (isset($state_id) && $state_id == '') {
-                $state_id = State::pluck('id');
-                $query->where('technical_units.state_id', $state_id);
-            } elseif (isset($state_id) && $state_id != '') {
-                $query->where('technical_units.state_id', $state_id);
-            }
+//            $state_id = request('state_id');
+//            if (isset($state_id) && $state_id == '') {
+//                $state_id = State::pluck('id');
+//                $query->where('technical_units.state_id', $state_id);
+//            } elseif (isset($state_id) && $state_id != '') {
+//                $query->where('technical_units.state_id', $state_id);
+//            }
         }else{
             $query->where('technical_units.State_id', '8');
         }

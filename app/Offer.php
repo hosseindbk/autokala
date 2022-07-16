@@ -13,13 +13,13 @@ class Offer extends Model
 
             $query->where('offers.state_id', auth::user()->state_id);
 
-            $state_id = request('offers.state_id');
-            if (isset($state_id) && $state_id == '') {
-                $state_id = State::pluck('id');
-                $query->where('offers.state_id', $state_id);
-            } elseif (isset($state_id) && $state_id != '') {
-                $query->where('offers.state_id', $state_id);
-            }
+//            $state_id = request('offers.state_id');
+//            if (isset($state_id) && $state_id == '') {
+//                $state_id = State::pluck('id');
+//                $query->where('offers.state_id', $state_id);
+//            } elseif (isset($state_id) && $state_id != '') {
+//                $query->where('offers.state_id', $state_id);
+//            }
         }else{
             $query->where('offers.state_id', '8');
         }

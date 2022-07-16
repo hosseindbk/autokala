@@ -12,13 +12,13 @@ class Supplier extends Model
 
             $query->where('suppliers.state_id', auth::user()->state_id);
 
-            $state_id = request('state_id');
-            if (isset($state_id) && $state_id == '') {
-                $state_id = State::pluck('id');
-                $query->where('suppliers.state_id', $state_id);
-            } elseif (isset($state_id) && $state_id != '') {
-                $query->where('suppliers.state_id', $state_id);
-            }
+//            $state_id = request('state_id');
+//            if (isset($state_id) && $state_id == '') {
+//                $state_id = State::pluck('id');
+//                $query->where('suppliers.state_id', $state_id);
+//            } elseif (isset($state_id) && $state_id != '') {
+//                $query->where('suppliers.state_id', $state_id);
+//            }
         }else{
             $query->where('suppliers.state_id', '8');
         }
