@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class Supplier extends Model
 {
     public function scopeState($query){
-        if(auth::check() && auth::user()->state_id != null && auth::user()->level != 'admin') {
+        if(auth::check() && auth::user()->state_id != null && auth::user()->state_status != 1) {
 
             $query->where('suppliers.state_id', auth::user()->state_id);
 
