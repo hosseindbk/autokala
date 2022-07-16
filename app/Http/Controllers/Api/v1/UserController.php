@@ -181,7 +181,7 @@ class UserController extends Controller
             $users = User::
             leftJoin('states', 'states.id', '=', 'users.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'users.city_id')
-            ->select('users.name' , 'users.email' , 'users.image' , 'users.phone' , 'users.phone_number' , 'users.state_id' , 'users.city_id' , 'users.address' ,
+            ->select('users.name' , 'users.email' , 'users.image' , 'users.phone' , 'users.phone_number' , 'users.state_id' , 'users.city_id' , 'users.address', 'users.type_id' ,
                 'states.title as state' , 'cities.title as city',
                 DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه و تامین کننده"
