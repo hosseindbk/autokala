@@ -58,9 +58,9 @@
                                                     <div class="nav-account d-block pl">
                                                         <span class="icon-account">
                                                             @if(Auth::user()->image)
-                                                                <img src="{{asset(Auth::user()->image)}}" class="avator">
+                                                                <img src="{{asset(Auth::user()->image)}}" class="avator" alt="کاربر اتوکالا">
                                                             @else
-                                                                <img src="{{asset('site/images/man.png')}}" class="avator">
+                                                                <img src="{{asset('site/images/man.png')}}" class="avator" alt="کاربر اتوکالا">
                                                             @endif
                                                         </span>
                                                         <span class="title-account">{{Auth::user()->name}}</span>
@@ -98,7 +98,7 @@
                             <div class="nav-header">
                                 <div class="header-cover"></div>
                                 <div class="logo-wrap">
-                                    <a class="logo-icon" href="#"><img alt="logo-icon" src="{{asset('site/images/logo.png')}}" style="width: 50px;"></a>
+                                    <a class="logo-icon" href="#"><img alt="logo-icon" src="{{asset('site/images/logo.png')}}" style="width: 50px;" alt="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات"></a>
                                 </div>
                             </div>
                             <ul class="nav-categories ul-base">
@@ -242,7 +242,7 @@
                                     <div class="item">
                                         <span>
                                             <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" class="d-block hover-img-link mt-0">
-                                                <img referrerpolicy="origin" src="https://trustseal.enamad.ir/Content/Images/Star/star1.png?v=5.0.0.47" alt="" style="cursor:pointer;width: 100px" id="dfxWaqnQkjgkX5PcBJnK">
+                                                <img referrerpolicy="origin" src="https://trustseal.enamad.ir/Content/Images/Star/star1.png?v=5.0.0.47" alt="اینماد" style="cursor:pointer;width: 100px" id="dfxWaqnQkjgkX5PcBJnK">
                                             </a>
                                         </span>
                                     </div>

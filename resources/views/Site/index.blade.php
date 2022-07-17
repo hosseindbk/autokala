@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    <title> سامانه جامع قطعات خودرو و ماشین آلات </title>
+    <title>اتوکالا سامانه جامع قطعات خودرو و ماشین آلات </title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <meta name="enamad" content="745189" />
 @endsection
