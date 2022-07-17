@@ -16,7 +16,14 @@
     <link rel="stylesheet" href="{{asset('site/css/vendor/sweetalert.css')}}">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <meta name="description" content="">
+    <meta name="description" content="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات راهسازی و کشاورزی،
+لیست معتبرترین فروشگاههای لوازم یدکی در سراسر کشور ، نزدیکترین تعمیرگاه ، معتبرترین برندهای قطعات خودرو
+مشخصات فنی لوازم یدکی و جانبی خودرو و ماشین آلات راهسازی و کشاورزی
+یونیکد و تصاویر کلیه قطعات
+لیست تامین کنندگان تولید کنندگان و واردکنندگان و صادر کنندگان قطعات و لوازم اتومبیل سواری ، سنگین و ماشین آلات راهسازی و کشاورزی
+عضویت رایگان
+کسب اطلاعات و پشتیبانی: 02177903628 -02177956875
+واتساپ : 09197703428">
     <meta name="keywords" content="@foreach($menus as $menu) @if(count(Request::segments()) <= 1) @if($menu->keycheck == Request::segment(1)) {{$menu->keyword}} @endif @endif @endforeach">
     <meta name="author" content="Bestagroup">
 </head>

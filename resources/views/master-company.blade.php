@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
 
-    <meta name="description" content="">
+    <meta name="description" content="@foreach($suppliers as $supplier){!! $supplier->description !!}@endforeach">
     <meta name="keywords" content="@foreach($menus as $menu) @if(count(Request::segments()) <= 1) @if($menu->keycheck == Request::segment(1)) {{$menu->keyword}} @endif @endif @endforeach">
     <meta name="author" content="Bestagroup">
 </head>
