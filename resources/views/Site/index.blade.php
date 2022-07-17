@@ -15,7 +15,7 @@
                                 <input type="search" class="header-search-input" name="search" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">
                                     <button class="btn btn-search" type="submit">
-                                        <img src="{{asset('site/images/search.png')}}" alt="search">
+                                        <img src="{{asset('site/images/search.png')}}" alt="جستجو در اتوکالا">
                                     </button>
                                     <div class="search-filter">
                                         <div class="form-ui">
@@ -45,8 +45,8 @@
             </div>
             <div class="text-center">
                 <div class="col-lg-4 pr">
-                    <a href="{{url('/')}}"> <img src="{{asset('site/images/logo.png')}}" alt="اتوکالا"> </a>
-                    <h2 style="padding: 2px 0px 0px 0px;font-size: 12px;">سامانه جامع قطعات خودرو و ماشین آلات</h2>
+                    <a href="{{url('/')}}"> <img src="{{asset('site/images/logo.png')}}" alt="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات"> </a>
+                    <h1 style="padding: 2px 0px 0px 0px;font-size: 12px;">سامانه جامع قطعات خودرو و ماشین آلات (اتوکالا)</h1>
                 </div>
             </div>
             <div class="header-left">
@@ -57,7 +57,7 @@
                                 <input type="search" class="header-search-input-code green-place" value="{{request('unicode')}}" name="unicode" placeholder="جستجوی یونیکد (شناسه 10 رقمی کالا)">
                                 <div class="action-btns">
                                     <button class="btn btn-search btn-search-green" type="submit">
-                                        <img src="{{asset('site/images/search.png')}}" alt="search">
+                                        <img src="{{asset('site/images/search.png')}}" alt="جستجو در اتوکالا">
                                     </button>
                                 </div>
                             </form>
@@ -154,7 +154,7 @@
                         @foreach($left_top_slides as $slide)
                             <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
                                 <div class="adplacement-sponsored-box">
-                                    <img src="{{asset($slide->image)}}">
+                                    <img src="{{asset($slide->image)}}" alt="{{$slide->title}}">
                                 </div>
                             </a>
                         @endforeach
@@ -162,7 +162,7 @@
                         @foreach($left_bottom_slides as $slide)
                             <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
                                 <div class="adplacement-sponsored-box">
-                                    <img src="{{asset($slide->image)}}">
+                                    <img src="{{asset($slide->image)}}" alt="{{$slide->title}}">
                                 </div>
                             </a>
                         @endforeach
@@ -287,7 +287,7 @@
                                         <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
                                         <div class="item">
                                             <a href="{{url('technical/sub/'.$technical_unit->slug)}}" target="_blank" class="d-block hover-img-link">
-                                                <img src="{{asset($technical_unit->image)}}" class="img-fluid" alt="">
+                                                <img src="{{asset($technical_unit->image)}}" class="img-fluid" alt="{{$technical_unit->title}}">
                                             </a>
                                             <h2 class="post-title">
                                                 <a href="{{url('technical/sub/'.$technical_unit->slug)}}" target="_blank">{{$technical_unit->title}}</a>
@@ -321,7 +321,7 @@
                                         <div  class="owl-item active" style="width: 309.083px; margin-left: 10px;" >
                                             <div class="item">
                                                 <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank" class="d-block hover-img-link">
-                                                    <img src="{{asset($supplier->image)}}" class="img-fluid" alt="">
+                                                    <img src="{{asset($supplier->image)}}" class="img-fluid" alt="{{$supplier->title}}">
                                                 </a>
                                                 <h2 class="post-title">
                                                     <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank"> {{$supplier->title}} </a>
