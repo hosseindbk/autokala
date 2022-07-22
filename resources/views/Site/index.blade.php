@@ -306,5 +306,4 @@
 @section('script')
     <script  src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
-
 @endsection
