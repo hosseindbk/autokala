@@ -81,8 +81,11 @@
                                                     <div class="nav-account d-block pl">
                                                         <select name="state_id" class="form-control select2" id="state_id">
                                                             @foreach($states as $state)
-                                                                <option value="{{$state->id}}" @if(auth::check()) {{Auth::user()->state_id == $state->id ? 'selected' : 'disabled="disabled"'}} @else {{ $state->id == 8 ? 'selected' : 'disabled="disabled"'}} @endif >{{$state->title}}</option>
-
+                                                                @if(auth::check())
+                                                                    <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : 'disabled="disabled"'}}>{{$state->title}}</option>
+                                                                @else
+                                                                    <option value="{{$state->id}}" {{ $state->id == 8 ? 'selected' : 'disabled="disabled"'}}  >{{$state->title}}</option>
+                                                                @endif
                                                             @endforeach
                                                         </select>
                                                     </div>
