@@ -17,7 +17,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="icon" type="image/x-icon" href="{{asset('site/images/favicon.png')}}">
 
-    <meta name="description" content="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات راهسازی کشاورزی لیست فروشگاههای لوازم یدکی ، نزدیکترین تعمیرگاه ، برندهای قطعات خودرو مشخصات فنی لوازم یدکی جانبی خودرو ماشین آلات راهسازی  کشاورزی لیست تامین کنندگان تولید کنندگان واردکنندگان صادر کنندگان قطعات لوازم اتومبیل ماشین آلات راهسازی کشاورزی">
+    <meta name="description" content="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات راهسازی کشاورزی فروشگاهای لوازم یدکی ، نزدیکترین تعمیرگاه ، برندهای قطعات خودرو مشخصات فنی لوازم یدکی خودرو لیست تامین کنندگان تولیدکنندگان واردکنندگان صادرکنندگان لوازم اتومبیل ماشین آلات راهسازی کشاورزی">
     <meta name="keywords" content="@foreach($menus as $menu) @if(count(Request::segments()) <= 1) @if($menu->keycheck == Request::segment(1)) {{$menu->keyword}} @endif @endif @endforeach">
     <meta name="author" content="Bestagroup">
 </head>
