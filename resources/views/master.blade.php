@@ -49,7 +49,7 @@
                                             @if(! Auth::check())
                                                 <div class="account-box">
                                                     <div class="nav-account d-block pl">
-                                                        <a href="{{url('login')}}" class="btn btn-outline-info"><b class="fa fa-user"></b> ورود به حساب کاربری </a>
+                                                        <a href="{{url('login')}}" class="btn btn-outline-info"><b class="fa fa-user"></b> ورود به حساب </a>
                                                     </div>
                                                 </div>
                                             @elseif(Auth::check())
@@ -79,7 +79,12 @@
                                             @endif
                                                 <div class="account-box">
                                                     <div class="nav-account d-block pl">
-                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg"><b class="fa fa-map-marker"></b>@if($countState && count($countState) > 1 && count($countState) < 10) {{count($countState)}} استان  @elseif($countState && count($countState) == 1) @foreach($countState as $state) استان {{$state->title}}  @endforeach @else  تمام استان ها @endif </button>
+                                                        <select name="state_id" class="form-control select2" id="state_id">
+                                                            @foreach($states as $state)
+                                                                <option value="{{$state->id}}" @if(auth::check()) {{Auth::user()->state_id == $state->id ? 'selected' : 'disabled="disabled"'}} @else {{ $state->id == 8 ? 'selected' : 'disabled="disabled"'}} @endif >{{$state->title}}</option>
+
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                         </div>
@@ -326,5 +331,6 @@
         }
     }
 </script>
+
 </body>
 </html>

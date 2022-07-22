@@ -50,7 +50,7 @@
                                             @if(! Auth::check())
                                                 <div class="account-box">
                                                     <div class="nav-account d-block pl">
-                                                        <a href="{{url('login')}}" class="btn btn-outline-info"><b class="fa fa-user"></b> ورود به حساب کاربری </a>
+                                                        <a href="{{url('login')}}" class="btn btn-outline-info"><b class="fa fa-user"></b> ورود به حساب </a>
                                                     </div>
                                                 </div>
                                             @elseif(Auth::check())
