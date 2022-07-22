@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('site/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/vendor/sweetalert.css')}}">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{asset('site/js/sweetalert.min.js')}}"></script>
     <link rel="icon" type="image/x-icon" href="{{asset('site/images/favicon.png')}}">
 
     <meta name="description" content="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات راهسازی کشاورزی فروشگاهای لوازم یدکی ، نزدیکترین تعمیرگاه ، برندهای قطعات خودرو مشخصات فنی لوازم یدکی خودرو لیست تامین کنندگان تولیدکنندگان واردکنندگان صادرکنندگان لوازم اتومبیل ماشین آلات راهسازی کشاورزی">
@@ -80,7 +80,17 @@
                                             @endif
                                                 <div class="account-box">
                                                     <div class="nav-account d-block pl">
-                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg"><b class="fa fa-map-marker"></b> تهران </button>
+                                                        <select name="state_id" class="form-control select2" id="state_id">
+                                                            @foreach($states as $state)
+                                                                @if(auth::check() && auth::user()->state_status == 1)
+                                                                    <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
+                                                                @elseif(auth::check()&& auth::user()->state_status != 1)
+                                                                    <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : 'disabled="disabled"'}}>{{$state->title}}</option>
+                                                                @elseif(!auth::check())
+                                                                    <option value="{{$state->id}}" {{ $state->id == 8 ? 'selected' : 'disabled'}}  >{{$state->title}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                         </div>
