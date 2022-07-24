@@ -43,14 +43,6 @@ class Technical_unit extends Model
             }
         }
 
-        $state_id = request('state_id');
-        if (isset($state_id) && $state_id == ''){
-            $state_id = State::pluck('id');
-            $query->where('technical_units.state_id' , $state_id);
-        }elseif(isset($state_id) && $state_id != '') {
-            $query->where('technical_units.state_id' , $state_id);
-        }
-
         $productgroup_id    = request('productgroup_id');
         if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null) {
             $technical_id = Car_technical_group::whereIn('kala_group_id', $productgroup_id)->pluck('technical_id');
@@ -62,10 +54,6 @@ class Technical_unit extends Model
             $query->where('technical_units.state_id' , $state_id);
         }
 
-        $state_id = request('state_id');
-            if (isset($state_id) && $state_id != '') {
-                $query->where('technical_units.state_id', $state_id);
-            }
 
         $city_id = request('city_id');
         if (isset($city_id) && $city_id != null) {
