@@ -214,6 +214,7 @@ class ProductController extends Controller
         $product->code_fani_company = $request->input('code_fani_company');
         $product->status            = $request->input('status_id');
         $product->description       = $request->input('description');
+        $product->review            = $request->input('review');
         $product->title_specific1   = $request->input('title_specific1');
         $product->title_specific2   = $request->input('title_specific2');
         $product->title_specific3   = $request->input('title_specific3');

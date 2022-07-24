@@ -202,6 +202,12 @@
                                                             <textarea name="description" id="editor" cols="30" data-required="1" rows="5" class="form-control" >{{$product->description}}</textarea>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">نقد و بررسی</p>
+                                                            <textarea name="review" id="editor2" cols="30" data-required="1" rows="5" class="form-control" >{{$product->review}}</textarea>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-lg-12 mg-b-10 text-center">
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
