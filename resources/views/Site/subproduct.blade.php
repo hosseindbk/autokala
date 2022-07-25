@@ -460,7 +460,7 @@
                                 <h2 class="params-headline">نقد و بررسی </h2>
                                 <section class="content-expert-summary">
                                     <div class="mask pm-3">
-                                        <div class="mask-text"> <p></p></div>
+                                        <div class="mask-text"> {!! $product->review !!}</div>
                                         <a href="#" class="mask-handler">
                                             <span class="show-more">+ ادامه مطلب</span>
                                             <span class="show-less">- بستن</span>
