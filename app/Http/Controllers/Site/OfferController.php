@@ -105,6 +105,7 @@ class OfferController extends Controller
             ->with(compact('products'))
             ->with(compact('suppliers'));
     }
+
     public function offerproductvarity($id , $slug){
         $cities                 = City::all();
         $states                 = State::all();

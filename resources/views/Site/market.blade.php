@@ -13,7 +13,7 @@
                     <div class="header-search row text-right">
                         <div class="header-search-box">
 
-                                <form  @if($sell == 1) action="{{route('offer-search-sell')}}" @elseif($buy == 1) action="{{route('offer-search-buy')}}"  @endif method="get" class="form-search">
+                                <form  @if($sell == 1) action="{{route('market-sell-filter')}}" @elseif($buy == 1) action="{{route('market-sell-filter')}}"  @endif method="get" class="form-search">
 
                                 <input type="text" class="header-search-input" name="offersearch" placeholder="نام کالای مورد نظر خود را جستجو کنید…">
                                 <div class="action-btns">

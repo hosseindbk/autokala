@@ -99,14 +99,14 @@ Route::group(['namespace' => 'Site'] , function (){
     /*market*/
     Route::get('market/sell'                , 'MarketController@sell')->name('sell');
     Route::get('market/buy'                 , 'MarketController@buy')->name('buy');
-    Route::get('market/sell/filter'         , 'MarketController@marketsellfilter')->name('market-sell-filter');
-    Route::get('market/buy/filter'          , 'MarketController@marketbuyfilter')->name('market-buy-filter');
+    Route::get('market/sell/filter'         , 'MarketController@sellfilter')->name('market-sell-filter');
+    Route::get('market/buy/filter'          , 'MarketController@buyfilter')->name('market-buy-filter');
     Route::post('market/option'             , 'MarketController@option')->name('marketoption');
     Route::get('market/{slug}'              , 'MarketController@submarket');
     Route::get('market/sell/state'          , 'MarketController@sellstate')->name('sellfilterstate');
     Route::get('market/buy/state'           , 'MarketController@buystate')->name('buyfilterstate');
-    Route::get('market/sell/search'         , 'MarketController@marketsellfilter')->name('offer-search-sell');
-    Route::get('market/buy/search'          , 'MarketController@marketbuyfilter')->name('offer-search-buy');
+    //Route::get('market/sell/'               , 'MarketController@sell')->name('offer-search-sell');
+    //Route::get('market/buy/'                , 'MarketController@buy')->name('offer-search-buy');
     Route::get('market'                     , 'MarketController@index' );
     /*product*/
     Route::get('product'                    , 'ProductController@index' );

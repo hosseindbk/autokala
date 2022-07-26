@@ -18,15 +18,15 @@ class Offer extends Model
 
     public function scopeFilter($query){
 
-        $keywords = request('offersellsearch');
+        $keywords = request('offersearch');
         if (isset($keywords) && $keywords != null) {
             $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
         }
 
-        $keywords = request('offerbuysearch');
-        if (isset($keywords) && $keywords != null) {
-            $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
-        }
+//        $keywords = request('offerbuysearch');
+//        if (isset($keywords) && $keywords != null) {
+//            $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
+//        }
 
         $type = request('type');
 
