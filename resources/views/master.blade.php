@@ -79,7 +79,7 @@
                                             @endif
                                                 <div class="account-box">
                                                     <div class="nav-account d-block pl">
-                                                        <select name="state_id" class="form-control select2" id="state_id">
+                                                        <select name="state_id" class="form-control select2" id="state_filter">
                                                             @foreach($states as $state)
                                                                 @if(auth::check() && auth::user()->state_status == 1)
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>

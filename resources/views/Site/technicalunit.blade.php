@@ -70,47 +70,6 @@
     </section>
 @endsection
 @section('main')
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">استان مورد نظر خود را انتخاب نمایید</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{route('technicalsearchandfilter')}}" method="get" class="form-search">
-
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="text-center">
-                                <label for="select-all" class="btn btn-outline-secondary" style="width: 80%;margin: 10px 25px">
-                                    انتخاب همه
-                                    @if($countState && count($countState) == 31)
-                                        <input type="checkbox"  name="select-all" id="select-all" checked/>
-                                    @else
-                                        <input type="checkbox"  name="select-all" id="select-all" />
-                                    @endif
-                                </label>
-                            </div>
-                        </div>
-                        @foreach($states as $state)
-                            <div class="col-md-4 col-sm-12">
-                                <button type="button" for="radio{{$state->id}}" class="btn btn-outline-secondary" style="width: 80%;margin: 10px 25px">
-                                    {{$state->title}}
-                                    <input type="checkbox" multiple="multiple" name="state_id[]" id="radio{{$state->id}}" value="{{$state->id}}" @if($countState) @foreach($countState as $stateselect) {{$state->id == $stateselect->id ? 'checked' : ''}} @endforeach @endif class="btn btn-outline-secondary">
-                                </button>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="modal-footer" style=" align-items: center !important; justify-content: center; ">
-                        <button type="submit" class="btn btn-primary" style="margin: 0 20px">تایید استان</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin: 0 20px">بازگشت</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     @include('sweet::alert')
     <div class="container-main">
         <div class="d-block">
@@ -125,7 +84,8 @@
                             </ol>
                         </nav>
                     </div>
-                    <form action="{{route('technicalsearchandfilter')}}" method="get">
+                    <form action="{{route('technicalsearchandfilter')}}" method="get" id="filter_state">
+                    <input type="hidden" id="state_id_filter" name="state_id" size="5" value="">
                     <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">
@@ -370,6 +330,13 @@
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
     <script src="{{asset('site/js/popper.min.js')}}"></script>
     <script src="{{asset('site/js/bootstrap.min.js')}}"></script>
+    <script>
+        $('#state_filter').change(function(){
+            var id = $('#state_filter').val();
+            document.getElementById("state_id_filter").value = id;
+            $('#filter_state').closest('form').submit();
+        })
+    </script>
     <script>
         $(document).ready(function(){
             $("#newproduct").click(function(){
