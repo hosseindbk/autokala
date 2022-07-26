@@ -98,7 +98,6 @@
                                                         href="#headingOne" role="button" aria-expanded="false"
                                                         aria-controls="headingOne">
                                                     دسته بندی قطعات خودرو
-                                                     {{$suppliers->count()}} فروشگاه
                                                     <i class="mdi mdi-chevron-down"></i>
                                                 </button>
                                             </h2>
@@ -243,7 +242,7 @@
                         <div class="shop-archive-content mt-3 d-block">
                             <div class="archive-header">
                                 <div class="sort-tabs mt-0 d-inline-block pr">
-                                        <h4> مرتب ‌سازی  {{$suppliers->count()}}   فروشگاه بر اساس : </h4>
+                                        <h4> تعداد نتیجه  {{$suppliers->count()}}   فروشگاه : </h4>
                                 </div>
                                 <div class="nav-sort-tabs-res">
                                     <ul class="nav sort-tabs-options" id="myTab" role="tablist">
