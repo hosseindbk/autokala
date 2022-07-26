@@ -238,8 +238,14 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">توضیحات</p>
-                                                        <textarea name="description" id="" cols="30" data-required="1" rows="9" class="form-control" >{{$Product_brand_variety->description}}</textarea>
-                                                     </div>
+                                                        <textarea name="description" id="editor" cols="30" data-required="1" rows="5" class="form-control" >{{$Product_brand_variety->description}}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <p class="mg-b-10">نقد و بررسی</p>
+                                                        <textarea name="review" id="editor2" cols="30" data-required="1" rows="5" class="form-control" >{{$Product_brand_variety->review}}</textarea>
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-12 mg-b-10 text-center">
                                                     <div class="form-group">
@@ -257,7 +263,7 @@
         </div>
     </div>
 </div>
-
+@endsection
 @section('end')
     <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
@@ -276,5 +282,20 @@
     <script src="{{asset('admin/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-@endsection
+    <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor2' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
 @endsection

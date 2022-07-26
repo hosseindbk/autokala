@@ -170,6 +170,7 @@ class ProductbrandvarietyController extends Controller
         $productbrandvariety->weakness4            = $request->input('weakness4');
         $productbrandvariety->status               = $request->input('status_id');
         $productbrandvariety->description          = $request->input('description');
+        $productbrandvariety->review               = $request->input('review');
         $productbrandvariety->date                 = jdate()->format('Ymd ');
         $productbrandvariety->date_handle          = jdate()->format('Ymd ');
         $productbrandvariety->user_handle          = Auth::user()->id;
