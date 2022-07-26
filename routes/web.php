@@ -105,8 +105,8 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('market/{slug}'              , 'MarketController@submarket');
     Route::get('market/sell/state'          , 'MarketController@sellstate')->name('sellfilterstate');
     Route::get('market/buy/state'           , 'MarketController@buystate')->name('buyfilterstate');
-    Route::get('market/sell/search'         , 'SearchController@offersearchsell')->name('offer-search-sell');
-    Route::get('market/buy/search'          , 'SearchController@offersearchbuy')->name('offer-search-buy');
+    Route::get('market/sell/search'         , 'MarketController@offersearchsell')->name('offer-search-sell');
+    Route::get('market/buy/search'          , 'MarketController@offersearchbuy')->name('offer-search-buy');
     Route::get('market'                     , 'MarketController@index' );
     /*product*/
     Route::get('product'                    , 'ProductController@index' );
