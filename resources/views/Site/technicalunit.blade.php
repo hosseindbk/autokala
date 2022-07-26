@@ -181,7 +181,7 @@
                         <div class="shop-archive-content mt-3 d-block">
                             <div class="archive-header">
                                 <div class="sort-tabs mt-0 d-inline-block pr">
-                                        <h4 style="color: #3bd571"> تعداد نتایج {{$technicals->count()}}  تعمیرگاه  : </h4>
+                                        <h4 style="color: #3bd571"> تعداد نتایج {{$technicals->count()}}  تعمیرگاه  </h4>
                                 </div>
                                 <div class="nav-sort-tabs-res">
                                     <ul class="nav sort-tabs-options" id="myTab" role="tablist">
