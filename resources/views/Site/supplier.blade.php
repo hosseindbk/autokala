@@ -242,7 +242,7 @@
                         <div class="shop-archive-content mt-3 d-block">
                             <div class="archive-header">
                                 <div class="sort-tabs mt-0 d-inline-block pr">
-                                        <h4> تعداد نتیجه  {{$suppliers->count()}}   فروشگاه : </h4>
+                                        <h4 style="color: #3bd571"> تعداد نتیجه  {{$suppliers->count()}}   فروشگاه : </h4>
                                 </div>
                                 <div class="nav-sort-tabs-res">
                                     <ul class="nav sort-tabs-options" id="myTab" role="tablist">
