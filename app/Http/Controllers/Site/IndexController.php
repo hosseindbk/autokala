@@ -31,16 +31,22 @@ class IndexController extends Controller
         $left_bottom_slides = Slide::select('link' , 'image', 'title')->whereStatus(4)->wherePosition(3)->limit(1)->get();
         $minid              = Slide::whereStatus(4)->wherePosition(1)->min('id');
 
-        $offers             = Offer::select('buyorsell' , 'title_offer' , 'slug' , 'image1' , 'single_price' , 'price')->state()->whereStatus(4)->whereHomeshow(1)->inRandomOrder()->get();
+        $offers             = Offer::
+            select('buyorsell' , 'title_offer' , 'slug' , 'image1' , 'single_price' , 'price')
+            ->filter()
+            ->whereStatus(4)
+            ->whereHomeshow(1)
+            ->inRandomOrder()
+            ->get();
 
         $technicalunits     = Technical_unit::
             leftjoin('states' , 'states.id','=' ,'technical_units.state_id' )
-          ->leftjoin('cities' , 'cities.id','=' ,'technical_units.city_id' )
+            ->leftjoin('cities' , 'cities.id','=' ,'technical_units.city_id' )
             ->select('technical_units.slug','technical_units.image','technical_units.title','states.title as statetitle','cities.title as citytitle')
             ->where('technical_units.status' , 4)
             ->where('technical_units.homeshow' ,1)
             ->inRandomOrder()
-            ->state()
+            ->filter()
             ->get();
 
         $suppliers          = Supplier::
@@ -50,7 +56,7 @@ class IndexController extends Controller
             ->where('suppliers.status' , 4)
             ->where('suppliers.homeshow' ,1)
             ->inRandomOrder()
-            ->state()
+            ->filter()
             ->get();
 
 
