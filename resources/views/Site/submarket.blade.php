@@ -18,7 +18,7 @@
                                 @if($offer->buyorsell == 'sell')
                                     <form action="{{route('market-sell-filter')}}" method="get" class="form-search">
                                 @elseif($offer->buyorsell == 'buy')
-                                    <form action="{{route('market-buy-filter')}}" method="get" class="form-search">
+                                    <form action="{{route('market-sell-filter')}}" method="get" class="form-search">
                                 @endif
                             @endforeach
                                     <input type="text" class="header-search-input" name="offersearch" placeholder="نام کالای مورد نظر خود را جستجو کنید…">
