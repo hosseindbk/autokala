@@ -30,8 +30,8 @@
                                 <div>
                                     <h6 class="main-content-label text-center mb-5">ویرایش منو داشبورد</h6>
                                 </div>
-                                @foreach($menus as $menu)
-                                    <form action="{{route('menus.update', $menu->id)}}" method="POST" enctype="multipart/form-data">
+                                @foreach($sitemenus as $sitemenu)
+                                    <form action="{{route('sitemenus.update', $sitemenu->id)}}" method="POST" enctype="multipart/form-data">
                                         <div class="row row-sm">
                                             {{csrf_field()}}
                                             {{ method_field('PATCH') }}
@@ -39,22 +39,16 @@
                                             <div class="col-md-12">
                                                 @include('error')
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <p class="mg-b-10">نام منو</p>
-                                                    <input type="text" name="title" data-required="1" value="{{$menu->title}}"  class="form-control" />
-                                                </div>
-                                            </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">توضیحات</p>
-                                                    <textarea name="description" id="editor" cols="30" data-required="1" rows="5" class="form-control" >{{$product->description}}</textarea>
+                                                    <textarea name="description" id="editor" cols="30" data-required="1" rows="5" class="form-control" >{{$sitemenu->description}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">متن</p>
-                                                    <textarea name="review" id="editor2" cols="30" data-required="1" rows="5" class="form-control" >{{$product->review}}</textarea>
+                                                    <textarea name="textpage" id="editor2" cols="30" data-required="1" rows="5" class="form-control" >{{$sitemenu->textpage}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mg-b-10 text-center">
