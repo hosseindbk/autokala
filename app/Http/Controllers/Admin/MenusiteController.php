@@ -29,7 +29,7 @@ class MenusiteController extends Controller
         $submenus               = Submenudashboard::whereId($id)->get();
         $menudashboards         = Menudashboard::whereStatus(4)->get();
         $submenudashboards      = Submenudashboard::whereStatus(4)->get();
-        $sitemenus              = Menu::whereId($id)->select('id' , 'title')->orderBy('id')->get();
+        $sitemenus              = Menu::whereId($id)->get();
 
         return view('Admin.sitemenus.edit')
             ->with(compact('sitemenus'))
