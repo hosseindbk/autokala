@@ -28,7 +28,7 @@
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div>
-                                    <h6 class="main-content-label text-center mb-5">ویرایش منو داشبورد</h6>
+                                    <h6 class="main-content-label text-center mb-5">ویرایش منو سایت</h6>
                                 </div>
                                 @foreach($sitemenus as $sitemenu)
                                     <form action="{{route('sitemenus.update', $sitemenu->id)}}" method="POST" enctype="multipart/form-data">

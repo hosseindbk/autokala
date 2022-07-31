@@ -7,6 +7,7 @@ use App\Menu;
 use App\Menudashboard;
 use App\Submenudashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class MenusiteController extends Controller
 {
@@ -37,5 +38,17 @@ class MenusiteController extends Controller
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'));
 
+    }
+
+    public function update(Request $request , $id)
+    {
+        $sitemenus = Menu::findOrfail($id);
+
+        $sitemenus->description     = $request->input('description');
+        $sitemenus->textpage        = $request->input('textpage');
+
+        $sitemenus->update();
+
+        return Redirect::back();
     }
 }
