@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     Route::resource('comments'                            , 'CommentController');
     Route::resource('commentrates'                        , 'CommentrateController');
     Route::resource('offers'                              , 'OfferController');
+    Route::resource('sitemenus'                           , 'MenusiteController');
     Route::post('offers'                                    , 'OfferController@createcar')->name('caroffers-create');
     Route::post('offers/offerhomeshow'                      , 'OfferController@offerhomeshow')->name('offerhomeshow');
     Route::delete('offers/edit/{id}'                        , 'OfferController@deletecar')->name('caroffers-delete');
