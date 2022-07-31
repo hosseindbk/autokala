@@ -320,6 +320,27 @@
                         </div>
                     </div>
                     </form>
+                    <div class="tabs m-0">
+                        <div class="col-lg">
+                            <div class="tabs-content">
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="Review" role="tabpanel" aria-labelledby="Review-tab">
+                                        <h2 class="params-headline">اتوکالا سامانه جامع قطعات خودرو و ماشین آلات </h2>
+                                        <section class="content-expert-summary">
+                                            <div class="mask pm-3">
+                                                <div class="mask-text">@foreach($menus as $menu) {!! $menu->textpage !!} @endforeach</div>
+                                                <a href="#" class="mask-handler">
+                                                    <span class="show-more">+ ادامه مطلب</span>
+                                                    <span class="show-less">- بستن</span>
+                                                </a>
+                                                <div class="shadow-box"></div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
