@@ -307,7 +307,7 @@
                                 <h2 class="params-headline">اتوکالا سامانه جامع قطعات خودرو و ماشین آلات </h2>
                                 <section class="content-expert-summary">
                                     <div class="mask pm-3">
-                                        <div class="mask-text">@foreach($menus as $menu) {!! $menu->textpage !!} @endforeach</div>
+                                        <div class="mask-text">@foreach($menus as $menu) @if($menu->id == 1) {!! $menu->textpage !!} @endif @endforeach</div>
                                         <a href="#" class="mask-handler">
                                             <span class="show-more">+ ادامه مطلب</span>
                                             <span class="show-less">- بستن</span>
