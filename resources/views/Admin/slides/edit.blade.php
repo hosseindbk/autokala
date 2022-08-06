@@ -100,13 +100,7 @@
                                                     <p class="mg-b-10">لینک اسلاید</p>
                                                     <input type="text" name="link" value="{{$slide->link}}" class="form-control" />
                                                 </div>
-                                                <div class="form-group">
-                                                    <p class="mg-b-10">انتخاب وضعیت نمایش</p>
-                                                    <select name="status_id" class="form-control select-lg select2">
-                                                            <option value="0" {{$slide->status == 0 ? 'selected' : '' }}>عدم نمایش</option>
-                                                            <option value="1" {{$slide->status == 1 ? 'selected' : '' }}>در حال نمایش</option>
-                                                    </select>
-                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -119,11 +113,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <p class="mg-b-10">انتخب استان</p>
-                                                    <select multiple="multiple" name="state_id[]" onchange="console.log($(this).children(':selected').length)" class="selectsum2">
-                                                        @foreach(\App\State::all() as $state)
-                                                            <option value="{{ $state->id }}" {{ in_array(trim($state->id) , DB::table('slide_state')->pluck('state_id')->toArray()) ? 'selected' : ''  }}>{{ $state->title }}</option>
-                                                        @endforeach
+                                                    <p class="mg-b-10">ارتباط اسلاید</p>
+                                                    <select name="type_id" class="form-control select-lg select2" id="type_id">
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -139,14 +131,24 @@
                                                         <option value="offer"     {{$slide->type == 'offer'    ? 'selected' : ''}}  >آگهی</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">انتخاب وضعیت نمایش</p>
+                                                    <select name="status_id" class="form-control select-lg select2">
+                                                        <option value="0" {{$slide->status == 0 ? 'selected' : '' }}>عدم نمایش</option>
+                                                        <option value="1" {{$slide->status == 1 ? 'selected' : '' }}>در حال نمایش</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <p class="mg-b-10">ارتباط اسلاید</p>
-                                                    <select name="type_id" class="form-control select-lg select2" id="type_id">
-
+                                                    <p class="mg-b-10">انتخب استان</p>
+                                                    <select multiple="multiple" name="state_id[]" onchange="console.log($(this).children(':selected').length)" class="selectsum2">
+                                                        @foreach(\App\State::all() as $state)
+                                                            <option value="{{ $state->id }}" {{ in_array(trim($state->id) , DB::table('slide_state')->pluck('state_id')->toArray()) ? 'selected' : ''  }}>{{ $state->title }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
+
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
