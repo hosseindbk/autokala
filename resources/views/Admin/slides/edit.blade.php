@@ -145,7 +145,7 @@
                                                     <p class="mg-b-10">انتخب استان</p>
                                                     <select multiple="multiple" name="state_id[]" onchange="console.log($(this).children(':selected').length)" class="selectsum2">
                                                         @foreach(\App\State::all() as $state)
-                                                            <option value="{{ $state->id }}" {{ in_array(trim($state->id) , DB::table('slide_state')->pluck('state_id')->toArray()) ? 'selected' : ''  }}>{{ $state->title }}</option>
+                                                            <option value="{{ $state->id }}" {{ in_array(trim($state->id) , $slide->stateslide->pluck('id')->toArray()) ? 'selected' : ''  }}>{{ $state->title }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
