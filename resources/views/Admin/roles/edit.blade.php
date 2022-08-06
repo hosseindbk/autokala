@@ -49,6 +49,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخب دسترسی</p>
+                                                    @dd($role->permissions->pluck('id')->toArray());
                                                     <select multiple="multiple" name="permission_id[]" onchange="console.log($(this).children(':selected').length)" class="selectsum2">
                                                         @foreach(\App\Permission::latest()->get() as $permission)
                                                             <option value="{{ $permission->id }}" {{ in_array(trim($permission->id) , $role->permissions->pluck('id')->toArray()) ? 'selected' : ''  }}>{{ $permission->label }}</option>
