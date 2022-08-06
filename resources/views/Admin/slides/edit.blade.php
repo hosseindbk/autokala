@@ -107,6 +107,12 @@
                                                         <option value="1" {{$slide->status == 1 ? 'selected' : '' }}>در حال نمایش</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">ارتباط اسلاید</p>
+                                                    <select name="type_id" class="form-control select-lg select2" id="type_id">
+
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -118,12 +124,7 @@
                                                         <option value="3" {{$slide->position == 3 ? 'selected' : ''}}>اسلاید تبلیغاتی چپ پایین</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group">
-                                                    <p class="mg-b-10">ارتباط اسلاید</p>
-                                                    <select name="type_id" class="form-control select-lg select2" id="type_id">
 
-                                                    </select>
-                                                </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
