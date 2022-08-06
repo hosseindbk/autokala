@@ -86,7 +86,7 @@
                     </div>
                     <form action="{{route('technicalsearchandfilter')}}" method="get" id="filter_state">
                     <input type="hidden" id="state_id_filter" name="state_id" size="5" value="">
-                    <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
+                    <div class="col-lg-3 col-md-3 col-xs-12 pr">
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">
                                     <section class="widget-product-categories">

@@ -85,7 +85,7 @@
                         </nav>
                     </div>
                     @include('sweet::alert')
-                    <div class="col-lg-3 col-md-3 col-xs-12 pr sticky-sidebar">
+                    <div class="col-lg-3 col-md-3 col-xs-12 pr">
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">
                                 <form action="{{route('productsearchandfilter')}}" method="get">
