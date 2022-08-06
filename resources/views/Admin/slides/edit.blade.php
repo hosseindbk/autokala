@@ -120,10 +120,9 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخب استان</p>
-                                                    @dd($slide->stateslide->get()->toArray())
                                                     <select multiple="multiple" name="state_id[]" onchange="console.log($(this).children(':selected').length)" class="selectsum2">
                                                         @foreach(\App\State::all() as $state)
-                                                            <option value="{{ $state->id }}" {{ in_array(trim($state->id) , $slide->stateslide->pluck('id')->toArray()) ? 'selected' : ''  }}>{{ $state->title }}</option>
+                                                            <option value="{{ $state->id }}" {{ in_array(trim($state->id) , DB::table('state_slide')->pluck('state_id')->toArray()) ? 'selected' : ''  }}>{{ $state->title }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
