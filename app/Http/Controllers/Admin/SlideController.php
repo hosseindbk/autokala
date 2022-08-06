@@ -150,6 +150,8 @@ class SlideController extends Controller
         }
 
         $slide->update();
+        $slide->states()->sync($request->input('state_id'));
+        dd($request->input('state_id') , $slide);
         return redirect(route('slides.index'));
     }
 
