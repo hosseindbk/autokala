@@ -150,9 +150,9 @@ class SlideController extends Controller
         }
 
         $slide->update();
-        dd($request->input('state_id'));
-
-        $slide->state_slide()->sync($request->input('state_id'));
+        //dd();
+        $slide->states()->syncWithPivotValues($request->input('state_id'), ['active' => true]);
+        //$slide->state_slide()->sync($request->input('state_id'));
         return redirect(route('slides.index'));
     }
 
