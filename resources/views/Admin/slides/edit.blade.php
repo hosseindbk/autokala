@@ -104,7 +104,7 @@
                                                     <p class="mg-b-10">انتخاب وضعیت نمایش</p>
                                                     <select name="status_id" class="form-control select-lg select2">
                                                         <option value="0" {{$slide->status == 0 ? 'selected' : '' }}>عدم نمایش</option>
-                                                        <option value="1" {{$slide->status == 1 ? 'selected' : '' }}>در حال نمایش</option>
+                                                        <option value="1" {{$slide->status == 4 ? 'selected' : '' }}>در حال نمایش</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">

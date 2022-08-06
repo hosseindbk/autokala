@@ -107,8 +107,6 @@ class RoleController extends Controller
         ]);
 
         $role->update($request->all());
-
-        dd($request->input('permission_id'));
         $role->permissions()->sync($request->input('permission_id'));
         alert()->success('عملیات موفق', 'اطلاعات با موفقیت ثبت شد');
         return redirect(route('roles.index'));
