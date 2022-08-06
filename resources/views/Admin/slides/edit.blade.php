@@ -118,7 +118,7 @@
                                                         <option value="3" {{$slide->position == 3 ? 'selected' : ''}}>اسلاید تبلیغاتی چپ پایین</option>
                                                     </select>
                                                 </div>
-                                                @dd($slide->states->pluck('id')->toArray());
+                                                @dd(DB::table('state_slide')->pluck('id')->toArray());
                                                 <div class="form-group">
                                                     <p class="mg-b-10">انتخب استان</p>
                                                     <select multiple="multiple" name="state_id[]" onchange="console.log($(this).children(':selected').length)" class="selectsum2">
