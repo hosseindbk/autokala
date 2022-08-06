@@ -78,21 +78,23 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                                <div class="account-box">
-                                                    <div class="nav-account d-block pl">
-                                                        <select name="state_id" class="form-control select2" id="state_id">
-                                                            @foreach($states as $state)
-                                                                @if(auth::check() && auth::user()->state_status == 1)
-                                                                    <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
-                                                                @elseif(auth::check()&& auth::user()->state_status != 1)
-                                                                    <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : 'disabled="disabled"'}}>{{$state->title}}</option>
-                                                                @elseif(!auth::check())
-                                                                    <option value="{{$state->id}}" {{ $state->id == 8 ? 'selected' : 'disabled'}}  >{{$state->title}}</option>
-                                                                @endif
-                                                            @endforeach
-                                                        </select>
+                                                @if(Request::segment(1) == 'supplier' || Request::segment(1) == 'technical' || Request::segment(1) == null)
+                                                    <div class="account-box">
+                                                        <div class="nav-account d-block pl">
+                                                            <select name="state_id" class="form-control select2" id="state_filter">
+                                                                @foreach($states as $state)
+                                                                    @if(auth::check() && auth::user()->state_status == 1)
+                                                                        <option value="{{$state->id}}" @if(request('state_id') != null) {{request('state_id') == $state->id ? 'selected' : ''}} @else {{Auth::user()->state_id == $state->id ? 'selected' : ''}} @endif>{{$state->title}} </option>
+                                                                    @elseif(auth::check()&& auth::user()->state_status != 1)
+                                                                        <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : 'disabled="disabled"'}}>{{$state->title}}</option>
+                                                                    @elseif(!auth::check())
+                                                                        <option value="{{$state->id}}" {{ $state->id == 8 ? 'selected' : 'disabled'}}  >{{$state->title}}</option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                         </div>
                                     </div>
                                 </div>

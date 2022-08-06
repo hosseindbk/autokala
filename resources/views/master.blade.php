@@ -77,6 +77,7 @@
                                                     </div>
                                                 </div>
                                             @endif
+                                            @if(Request::segment(1) == 'supplier' || Request::segment(1) == 'technical' || Request::segment(1) == null)
                                                 <div class="account-box">
                                                     <div class="nav-account d-block pl">
                                                         <select name="state_id" class="form-control select2" id="state_filter">
@@ -92,6 +93,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
