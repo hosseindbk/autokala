@@ -79,18 +79,28 @@
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             @foreach($orginal_slides as $slide)
-                            <li data-target="#carouselExampleIndicators" data-slide-to="{{$slide->id}}" class="@if($slide->id == $minid) active @endif"></li>
+                                @if(Auth::check() && in_array(Auth::user()->state_id ,$slide->stateslide->pluck('id')->toArray()))
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$slide->id}}" class="@if($slide->id == $minid) active @endif"></li>
+                                @elseif(in_array(8 ,$slide->stateslide->pluck('id')->toArray()))
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$slide->id}}" class="@if($slide->id == $minid) active @endif"></li>
+                                @endif
                             @endforeach
                         </ol>
                         <div class="carousel-inner">
                             @foreach($orginal_slides as $slide)
-
+                                @if(Auth::check() && in_array(Auth::user()->state_id ,$slide->stateslide->pluck('id')->toArray()))
                                     <div class="carousel-item @if($slide->id == $minid) active @endif">
                                         <a href="{{$slide->link}}" class="adplacement-item"  target="_blank">
                                             <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
                                         </a>
                                     </div>
-
+                                @elseif(in_array(8 ,$slide->stateslide->pluck('id')->toArray()))
+                                    <div class="carousel-item @if($slide->id == $minid) active @endif">
+                                        <a href="{{$slide->link}}" class="adplacement-item"  target="_blank">
+                                            <img src="{{asset($slide->image)}}" class="d-block w-100" alt="{{$slide->title}}">
+                                        </a>
+                                    </div>
+                                @endif
                             @endforeach
 
                         </div>
@@ -112,19 +122,35 @@
                 <div class="adplacement-container-column">
 
                         @foreach($left_top_slides as $slide)
-                            <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
-                                <div class="adplacement-sponsored-box">
-                                    <img src="{{asset($slide->image)}}" alt="{{$slide->title}}">
-                                </div>
-                            </a>
+                            @if(Auth::check() && in_array(Auth::user()->state_id ,$slide->stateslide->pluck('id')->toArray()))
+                                <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
+                                    <div class="adplacement-sponsored-box">
+                                        <img src="{{asset($slide->image)}}" alt="{{$slide->title}}">
+                                    </div>
+                                </a>
+                        @elseif(in_array(8 ,$slide->stateslide->pluck('id')->toArray()))
+                                <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
+                                    <div class="adplacement-sponsored-box">
+                                        <img src="{{asset($slide->image)}}" alt="{{$slide->title}}">
+                                    </div>
+                                </a>
+                            @endif
                         @endforeach
 
                         @foreach($left_bottom_slides as $slide)
-                            <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
-                                <div class="adplacement-sponsored-box">
-                                    <img src="{{asset($slide->image)}}" alt="{{$slide->title}}">
-                                </div>
-                            </a>
+                            @if(Auth::check() && in_array(Auth::user()->state_id ,$slide->stateslide->pluck('id')->toArray()))
+                                <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
+                                    <div class="adplacement-sponsored-box">
+                                        <img src="{{asset($slide->image)}}" alt="{{$slide->title}}">
+                                    </div>
+                                </a>
+                            @elseif(in_array(8 ,$slide->stateslide->pluck('id')->toArray()))
+                                <a href="{{$slide->link}}" class="adplacement-item" target="_blank">
+                                    <div class="adplacement-sponsored-box">
+                                        <img src="{{asset($slide->image)}}" alt="{{$slide->title}}">
+                                    </div>
+                                </a>
+                            @endif
                         @endforeach
                 </div>
             </div>
