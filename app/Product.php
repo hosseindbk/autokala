@@ -27,6 +27,10 @@ class Product extends Model
                     $query->where($category, 'LIKE', '%' . $keywords . '%');
                 }
         }
+        $unicode = request('unicodesearch');
+        if (isset($unicode) && $unicode != null) {
+            $query->where('unicode', 'LIKE', '%' . $unicode . '%');
+        }
 
         $productgroup_id    = request('productgroup_id');
         if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null){
