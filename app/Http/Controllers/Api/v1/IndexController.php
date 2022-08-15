@@ -36,9 +36,9 @@ class IndexController extends Controller
                             ,'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice','offers.created_at as time' ,
 
             DB::raw( '(CASE
-            WHEN users.type_id = "1" THEN "فروشگاه"
-            WHEN users.type_id = "3" THEN "شخصی"
-            WHEN users.type_id = "4" THEN "شخصی"
+            WHEN users.type_id = "1" THEN "supplier"
+            WHEN users.type_id = "3" THEN "technical"
+            WHEN users.type_id = "4" THEN "personal"
             END) AS type'),
                 DB::raw( '(CASE
             WHEN offers.buyorsell = "sell" THEN "آگهی فروش"
