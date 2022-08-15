@@ -11,7 +11,6 @@ class SearchController extends Controller
 {
     public function searchunicode(){
         $keywords      = request('unicodesearch');
-        dd($keywords);
         $products      = Product::select('unicode' , 'slug' , 'image' , 'title_fa as title')
             ->where('unicode', 'LIKE', '%' . $keywords . '%')
             ->whereStatus(4)
