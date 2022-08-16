@@ -108,7 +108,7 @@
                         <div class="shop-archive-sidebar">
                             <div class="sidebar-archive mb-3">
 
-                                <form @if($sell == 1) action="{{route('market-sell-filter')}}"  @elseif($buy == 1) action="{{route('market-buy-filter')}}" @endif method="get">
+                                <form @if($sell == 1) action="{{route('market-sell-filter')}}" id="filter_sell_state"  @elseif($buy == 1) action="{{route('market-buy-filter')}}" id="filter_buy_state" @endif method="get" >
 
                                     <section class="widget-product-categories">
                                         <header class="cat-header">
@@ -611,7 +611,7 @@
         $('#state_filter').change(function(){
             var id = $('#state_filter').val();
             document.getElementById("state_id_filter").value = id;
-            $('#filter_state').closest('form').submit();
+            @if($sell == 1) $('#filter_sell_state').closest('form').submit();  @elseif($buy == 1) $('#filter_buy_state').closest('form').submit();  @endif
         })
     </script>
     <script>
