@@ -656,7 +656,7 @@
             connect: true,
             range: {
                'min': 0,
-               'max': {{$max_price}}
+               'max': {{$max_price}},
             },
 
             step: 1000,
