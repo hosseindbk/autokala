@@ -21,6 +21,7 @@ use App\State;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class MarketController extends Controller
 {
@@ -55,8 +56,12 @@ class MarketController extends Controller
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
             ->filter()
-            ->state()
             ->get();
+
+        if ($brandnames == '[]'){
+            alert()->warning('خطا', 'نتیجه ای  یافت نشد');
+            return Redirect::back();
+        }
 
         return view('Site.market')
             ->with(compact('brandnames'))
@@ -111,8 +116,12 @@ class MarketController extends Controller
             ->whereBuyorsell('sell')
             ->where('offers.brand_id' , '<>' , null)
             ->filter()
-            ->state()
             ->get();
+
+        if ($brandnames == '[]'){
+            alert()->warning('خطا', 'نتیجه ای  یافت نشد');
+            return Redirect::back();
+        }
 
         return view('Site.market')
             ->with(compact('brandnames'))
