@@ -10,6 +10,7 @@ use App\State;
 use App\Type_user;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
 class ProfileuserController extends Controller
@@ -45,6 +46,7 @@ class ProfileuserController extends Controller
         $usermap->lng          = $request->input('lng');
 
         $usermap->update();
+        return Redirect::back();
     }
 
     public function update(profileuserrequest $request,$id)
@@ -58,6 +60,12 @@ class ProfileuserController extends Controller
         $user->address      = $request->input('address');
         $user->state_id     = $request->input('state_id');
         $user->city_id      = $request->input('city_id');
+        if ($request->input('lat') != null) {
+            $user->lat = $request->input('lat');
+        }
+        if ($request->input('lng') != null) {
+            $user->lng = $request->input('lng');
+        }
         $user->status       = 2;
 
 

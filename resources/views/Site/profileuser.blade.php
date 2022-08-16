@@ -102,21 +102,6 @@
                                                             <p class="mg-b-10"> نام و نام خانوادگی<span style="color: #ff3d00">*</span></p>
                                                             <input type="text" name="name" value="{{Auth::user()->name}}" class="form-control" />
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">شماره موبایل<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" name="phone" disabled value="{{Auth::user()->phone}}" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">شماره ثابت<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" name="phone_number" value="{{Auth::user()->phone_number}}" class="form-control" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان<span style="color: #ff3d00">*</span></p>
                                                             <select name="state_id" class="form-control select2" id="state_id">
@@ -125,9 +110,16 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">طول جغرافیایی<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" name="lat" value="{{Auth::user()->lat}}" class="form-control" />
+                                                        </div>
                                                     </div>
-
                                                     <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">شماره موبایل<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" name="phone" disabled value="{{Auth::user()->phone}}" class="form-control" />
+                                                        </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب شهرستان<span style="color: #ff3d00">*</span></p>
                                                             <select name="city_id" class="form-control select2" id="city_id">
@@ -136,13 +128,22 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">عرض جغرافیایی<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" name="lng" value="{{Auth::user()->lng}}" class="form-control" />
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">شماره ثابت<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" name="phone_number" value="{{Auth::user()->phone_number}}" class="form-control" />
+                                                        </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس ایمیل<span style="color: #ff3d00">*</span></p>
                                                             <input type="text" name="email" value="{{Auth::user()->email}}" class="form-control" />
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تصویر کاربر</p>
