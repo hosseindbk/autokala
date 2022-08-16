@@ -58,7 +58,7 @@ class ProductController extends Controller
 
         $product_id     = Product::pluck('id');
         if ($product_id == '[]'){
-            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
+            alert()->warning('خطا', 'نتیجه ای  یافت نشد');
             return Redirect::back();
         }
 

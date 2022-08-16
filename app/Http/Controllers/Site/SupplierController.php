@@ -71,7 +71,7 @@ class SupplierController extends Controller
 
         $supplier_id        = Supplier::filter()->whereStatus(4)->pluck('id');
         if ($supplier_id == '[]'){
-            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
+            alert()->warning('خطا', 'نتیجه ای  یافت نشد');
             return Redirect::back();
         }
 

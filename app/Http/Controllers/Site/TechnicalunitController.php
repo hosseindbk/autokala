@@ -77,7 +77,7 @@ class TechnicalunitController extends Controller
         $countState    = null;
         $technical_id         = Technical_unit::filter()->state()->whereStatus(4)->pluck('id');
         if ($technical_id == '[]'){
-            alert()->warning('خطا', 'کلمه مورد نظر یافت نشد');
+            alert()->warning('خطا', 'نتیجه ای  یافت نشد');
             return Redirect::back();
         }
         $menus              = Menu::whereStatus(4)->get();
