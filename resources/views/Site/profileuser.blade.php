@@ -112,7 +112,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">طول جغرافیایی<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" name="lat" value="{{Auth::user()->lat}}" class="form-control" />
+                                                            <input type="text" id="latelement" name="lat" value="{{Auth::user()->lat}}" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -130,7 +130,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">عرض جغرافیایی<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" name="lng" value="{{Auth::user()->lng}}" class="form-control" />
+                                                            <input type="text" id="lngelement" name="lng" value="{{Auth::user()->lng}}" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -280,6 +280,8 @@
                         open: false,
                     },
                 });
+                document.getElementById("latelement").setAttribute('value', e.latlng.lat);
+                document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
                 $.ajax({
                     url: '{{ route( 'usermap' ) }}',
                     headers: {
