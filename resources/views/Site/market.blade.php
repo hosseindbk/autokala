@@ -608,6 +608,13 @@
     <script src="{{asset('site/js/popper.min.js')}}"></script>
     <script src="{{asset('site/js/bootstrap.min.js')}}"></script>
     <script>
+        $('#state_filter').change(function(){
+            var id = $('#state_filter').val();
+            document.getElementById("state_id_filter").value = id;
+            $('#filter_state').closest('form').submit();
+        })
+    </script>
+    <script>
         $(function(){
             $('#car_brand_id').change(function(){
                 $("#car_model_id option").remove();
