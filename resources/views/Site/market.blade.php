@@ -613,62 +613,62 @@
             });
         });
     </script>
-    <script>
-        $(function(){
-            $('#state_id').change(function(){
-                $("#city_id option").remove();
-                var id = $('#state_id').val();
+{{--    <script>--}}
+{{--        $(function(){--}}
+{{--            $('#state_id').change(function(){--}}
+{{--                $("#city_id option").remove();--}}
+{{--                var id = $('#state_id').val();--}}
 
-                $.ajax({
-                    url : '{{ route( 'marketoption' ) }}',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "id": id
-                    },
-                    type: 'post',
-                    dataType: 'json',
-                    success: function( result )
-                    {
-                        $.each( result, function(k, v) {
-                            $('#city_id').append($('<option>', {value:k, text:v}));
-                        });
-                    },
-                    error: function()
-                    {
-                        //handle errors
-                        alert('error...');
-                    }
-                });
-            });
-        });
-    </script>
+{{--                $.ajax({--}}
+{{--                    url : '{{ route( 'marketoption' ) }}',--}}
+{{--                    data: {--}}
+{{--                        "_token": "{{ csrf_token() }}",--}}
+{{--                        "id": id--}}
+{{--                    },--}}
+{{--                    type: 'post',--}}
+{{--                    dataType: 'json',--}}
+{{--                    success: function( result )--}}
+{{--                    {--}}
+{{--                        $.each( result, function(k, v) {--}}
+{{--                            $('#city_id').append($('<option>', {value:k, text:v}));--}}
+{{--                        });--}}
+{{--                    },--}}
+{{--                    error: function()--}}
+{{--                    {--}}
+{{--                        //handle errors--}}
+{{--                        alert('error...');--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
     <script>
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
-    <script>
-        var slider = document.getElementById('slider');
-        var limitedPrices = document.getElementById('limitedPrice');
+{{--    <script>--}}
+{{--        var slider = document.getElementById('slider');--}}
+{{--        var limitedPrices = document.getElementById('limitedPrice');--}}
 
-        noUiSlider.create(slider, {
-            start: [0, {{$max_price}}],
-            connect: true,
-            range: {
-               'min': 0,
-               'max': {{$max_price}},
-            },
+{{--        noUiSlider.create(slider, {--}}
+{{--            start: [0, {{$max_price}}],--}}
+{{--            connect: true,--}}
+{{--            range: {--}}
+{{--               'min': 0,--}}
+{{--               'max': {{$max_price}},--}}
+{{--            },--}}
 
-            step: 1000,
-            direction: 'rtl',
-            behaviour: 'tap-drag',
-            tooltips: [true, wNumb({decimals: 0})],
+{{--            step: 1000,--}}
+{{--            direction: 'rtl',--}}
+{{--            behaviour: 'tap-drag',--}}
+{{--            tooltips: [true, wNumb({decimals: 0})],--}}
 
-        });
-        slider.noUiSlider.on('update', function (values) {
-            limitedPrices.innerHTML = values.join(' - ');
-        });
+{{--        });--}}
+{{--        slider.noUiSlider.on('update', function (values) {--}}
+{{--            limitedPrices.innerHTML = values.join(' - ');--}}
+{{--        });--}}
 
-    </script>
+{{--    </script>--}}
 
 @endsection
