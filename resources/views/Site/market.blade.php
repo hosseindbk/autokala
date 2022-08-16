@@ -59,6 +59,7 @@
     </section>
 @endsection
 @section('main')
+    @include('sweet::alert')
     <div class="container-main">
         <div class="d-block">
             <div class="page-content page-row">
