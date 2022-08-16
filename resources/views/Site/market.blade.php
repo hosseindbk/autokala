@@ -59,36 +59,6 @@
     </section>
 @endsection
 @section('main')
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">استان مورد نظر خود را انتخاب نمایید</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                    <form @if($sell == 1) action="{{route('sellfilterstate')}}"  @elseif($buy == 1) action="{{route('buyfilterstate')}}"  @endif method="get" class="form-search">
-
-                    <div class="row">
-                        @foreach($states as $state)
-                            <div class="col-md-4 col-sm-12">
-                                <button type="button" for="radio{{$state->id}}" class="btn btn-outline-secondary" style="width: 80%;margin: 10px 25px">
-                                    {{$state->title}}
-                                    <input type="checkbox" multiple="multiple" name="state_id[]" id="radio{{$state->id}}" value="{{$state->id}}" @if($countState) @foreach($countState as $stateselect) {{$state->id == $stateselect->id ? 'checked' : ''}} @endforeach @endif class="btn btn-outline-secondary">
-                                </button>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="modal-footer" style=" align-items: center !important; justify-content: center; ">
-                        <button type="submit" class="btn btn-primary" style="margin: 0 20px">تایید استان</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin: 0 20px">بازگشت</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="container-main">
         <div class="d-block">
             <div class="page-content page-row">
@@ -109,6 +79,7 @@
                             <div class="sidebar-archive mb-3">
 
                                 <form @if($sell == 1) action="{{route('market-sell-filter')}}" id="filter_sell_state"  @elseif($buy == 1) action="{{route('market-buy-filter')}}" id="filter_buy_state" @endif method="get" >
+                                    <input type="hidden" id="state_id_filter" name="state_id" size="5" value="">
 
                                     <section class="widget-product-categories">
                                         <header class="cat-header">
