@@ -325,7 +325,7 @@
                             <div class="tabs-content">
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="Review" role="tabpanel" aria-labelledby="Review-tab">
-                                        <h2 class="params-headline">اتوکالا سامانه جامع قطعات خودرو و ماشین آلات </h2>
+                                        <h2 class="params-headline">اتوکالا بازار مجازی قطعات خودرو و ماشین آلات</h2>
                                         <section class="content-expert-summary">
                                             <div class="mask pm-3">
                                                 <div class="mask-text">@foreach($menus as $menu) @if($menu->id == 5) {!! $menu->textpage !!} @endif @endforeach</div>

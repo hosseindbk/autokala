@@ -47,7 +47,7 @@
             <div class="text-center">
                 <div class="col-lg-4 pr">
                     <a href="{{url('/')}}"> <img src="{{asset('site/images/logo.png')}}" alt="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات"> </a>
-                    <h1 style="padding: 2px 0px 0px 0px;font-size: 12px;">سامانه جامع قطعات خودرو و ماشین آلات (اتوکالا)</h1>
+                    <h1 style="padding: 2px 0px 0px 0px;font-size: 12px;">اتوکالا بازار مجازی قطعات خودرو و ماشین آلات</h1>
                 </div>
             </div>
             <div class="header-left">
