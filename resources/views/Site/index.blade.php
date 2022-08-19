@@ -347,8 +347,18 @@
             </div>
         </div>
     </div>
+    <form action="{{route('indexfilter')}}" method="get" id="filter_state">
+        <input type="hidden" id="state_id_filter" name="state_id" size="5" value="">
+    </form>
     @endsection
 @section('script')
     <script  src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/select2.js')}}"></script>
+    <script>
+        $('#state_filter').change(function(){
+            var id = $('#state_filter').val();
+            document.getElementById("state_id_filter").value = id;
+            $('#filter_state').closest('form').submit();
+        })
+    </script>
 @endsection

@@ -95,6 +95,7 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
 Route::group(['namespace' => 'Site'] , function (){
     /*index*/
     Route::get('/'                          , 'IndexController@index')->name('/');
+    Route::get('/'                          , 'IndexController@index')->name('indexfilter');
     Route::get('/company/{slug}'            , 'IndexController@company')->name('company');
     Route::get('/filterstate'               , 'IndexController@indexstate')->name('filterstate');
     /*market*/
@@ -106,13 +107,10 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('market/{slug}'              , 'MarketController@submarket');
     Route::get('market/sell/state'          , 'MarketController@sellstate')->name('sellfilterstate');
     Route::get('market/buy/state'           , 'MarketController@buystate')->name('buyfilterstate');
-    //Route::get('market/sell/'               , 'MarketController@sell')->name('offer-search-sell');
-    //Route::get('market/buy/'                , 'MarketController@buy')->name('offer-search-buy');
     Route::get('market'                     , 'MarketController@index' );
     /*product*/
     Route::get('product'                    , 'ProductController@index' );
     Route::get('product'                    , 'ProductController@index')->name('productsearchandfilter');
-//    Route::get('product'                    , 'ProductController@index')->name('productfilter');
     Route::post('product/modeloption'       , 'ProductController@modeloption')->name('modeloption');
     Route::get('product/{slug}'             , 'ProductController@subproduct' );
     Route::get('productbrand/{slug}/{id}'   , 'ProductController@productbrand' );
@@ -120,12 +118,10 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('brand'                      , 'BrandController@index' );
     Route::get('brand'                      , 'BrandController@index')->name('brandsearchandfilter');
     Route::get('brand/{slug}'               , 'BrandController@subbrand' );
-//    Route::get('brand/filter/country'       , 'BrandController@brandfilter' )->name('brandfilter');
 
     /*technical*/
     Route::get('technical'                  , 'TechnicalunitController@index' );
     Route::get('technical'                  , 'TechnicalunitController@index')->name('technicalsearchandfilter');
-//    Route::get('technical/filter'           , 'TechnicalunitController@technicalfilter' )->name('technicalfilter');
     Route::get('technical/sub/{slug}'       , 'TechnicalunitController@subtechnical' )->name('subtechnical');
     Route::get('technical/filterstate'      , 'TechnicalunitController@filterstate')->name('technicalfilterstate');
     Route::patch('technical/updatetechimg/{id}', 'TechnicalunitController@updatetechimg')->name('updatetechimg');
@@ -133,7 +129,6 @@ Route::group(['namespace' => 'Site'] , function (){
     /*supplier*/
     Route::get('supplier'                   , 'SupplierController@index' );
     Route::get('supplier'                   , 'SupplierController@index')->name('suppliersearchandfilter');
-//    Route::get('supplier'                   , 'SupplierController@index')->name('supplierfilter');
     Route::get('supplier/sub/{slug}'        , 'SupplierController@subsupplier' );
     Route::get('supplier/state'             , 'SupplierController@indexstate')->name('supplierfilterstate');
     Route::patch('suppliers/updatesupimg/{id}', 'SupplierController@updatesupimg')->name('updatesupimg');
