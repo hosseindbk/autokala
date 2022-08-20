@@ -23,24 +23,16 @@ class Offer extends Model
             $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
         }
 
-//        $keywords = request('offerbuysearch');
-//        if (isset($keywords) && $keywords != null) {
-//            $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
-//        }
-
         $type = request('type');
 
         if (isset($type) && $type == 'all') {
             $user_id = User::pluck('id');
             $query->whereIn('offers.user_id' ,$user_id);
-
         }elseif(isset($type) && $type == 1){
-
             $user_id = User::whereType_id('1')->pluck('id');
             $query->whereIn('offers.user_id' ,$user_id);
-
-        }elseif(isset($type) && $type == 4){
-            $user_id = User::whereType_id('4')->pluck('id');
+        }elseif(isset($type) && $type != 1 && $type != 'all'){
+            $user_id = User::whereType_id('4')->whereType_id('3')->pluck('id');
             $query->whereIn('offers.user_id' ,$user_id);
         }
 
