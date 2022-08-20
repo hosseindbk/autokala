@@ -32,7 +32,7 @@ class MarketController extends Controller
         $buy                    = 0;
         $countState             = null;
         $users                  = User::select('id' , 'type_id')->get();
-        $selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->filter()->state()->paginate('16');
+        //$selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->filter()->state()->paginate('16');
         $max_price              = Offer::whereStatus(4)->filter()->max('single_price');
         $min_price              = Offer::whereStatus(4)->filter()->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -47,7 +47,7 @@ class MarketController extends Controller
         $caroffers              = Car_offer::all();
         $filter                 = 0;
 
-        $brandnames = Offer::
+        $selloffers = Offer::
         leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
@@ -58,13 +58,13 @@ class MarketController extends Controller
             ->filter()
             ->get();
 
-        if ($brandnames == '[]'){
+        if ($selloffers == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
             return Redirect::back();
         }
 
         return view('Site.market')
-            ->with(compact('brandnames'))
+            //->with(compact('brandnames'))
             ->with(compact('products'))
             ->with(compact('brand_varietis'))
             ->with(compact('users'))
@@ -92,7 +92,7 @@ class MarketController extends Controller
         $buy                    = 0;
         $countState             = null;
         $users                  = User::select('id' , 'type_id')->get();
-        $selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->filter()->state()->paginate('16');
+        //$selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->filter()->state()->paginate('16');
         $max_price              = Offer::whereStatus(4)->filter()->max('single_price');
         $min_price              = Offer::whereStatus(4)->filter()->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -107,7 +107,7 @@ class MarketController extends Controller
         $caroffers              = Car_offer::all();
         $filter                 = 0;
 
-        $brandnames = Offer::
+        $selloffers = Offer::
         leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
@@ -118,13 +118,13 @@ class MarketController extends Controller
             ->filter()
             ->get();
 
-        if ($brandnames == '[]'){
+        if ($selloffers == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
             return Redirect::back();
         }
 
         return view('Site.market')
-            ->with(compact('brandnames'))
+            //->with(compact('brandnames'))
             ->with(compact('products'))
             ->with(compact('brand_varietis'))
             ->with(compact('users'))
@@ -154,7 +154,7 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $users                  = User::select('id' , 'type_id')->get();
-        $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->filter()->state()->paginate('16');
+        //$buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->filter()->state()->paginate('16');
         $max_price              = Offer::whereStatus(4)->max('single_price');
         $min_price              = Offer::whereStatus(4)->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -166,7 +166,7 @@ class MarketController extends Controller
         $brands                 = Brand::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $filter                 = 0;
-        $brandnames = Offer::
+        $buyoffers = Offer::
         leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
@@ -177,12 +177,12 @@ class MarketController extends Controller
             ->filter()
             ->get();
 
-        if ($brandnames == '[]'){
+        if ($buyoffers == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
             return Redirect::back();
         }
         return view('Site.market')
-            ->with(compact('brandnames'))
+            //->with(compact('brandnames'))
             ->with(compact('products'))
             ->with(compact('brand_varietis'))
             ->with(compact('users'))
@@ -193,7 +193,7 @@ class MarketController extends Controller
             ->with(compact('max_price'))
             ->with(compact('min_price'))
             ->with(compact('caroffers'))
-            ->with(compact('buyoffers'))
+            //->with(compact('buyoffers'))
             ->with(compact('cities'))
             ->with(compact('filter'))
             ->with(compact('states'))
@@ -212,7 +212,7 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $users                  = User::select('id' , 'type_id')->get();
-        $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->filter()->state()->paginate('16');
+        //$buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->filter()->state()->paginate('16');
         $max_price              = Offer::whereStatus(4)->max('single_price');
         $min_price              = Offer::whereStatus(4)->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -224,7 +224,7 @@ class MarketController extends Controller
         $brands                 = Brand::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $filter                 = 0;
-        $brandnames = Offer::
+        $buyoffers = Offer::
         leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
@@ -235,13 +235,13 @@ class MarketController extends Controller
             ->filter()
             ->get();
 
-        if ($brandnames == '[]'){
+        if ($buyoffers == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
             return Redirect::back();
         }
 
         return view('Site.market')
-            ->with(compact('brandnames'))
+            //->with(compact('brandnames'))
             ->with(compact('products'))
             ->with(compact('brand_varietis'))
             ->with(compact('users'))

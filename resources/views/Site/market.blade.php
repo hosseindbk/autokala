@@ -332,7 +332,7 @@
                                     @if($sell == 1)
                                         <div class="tab-pane fade  show active" id="newoffer" role="tabpanel" aria-labelledby="newoffer-tab">
                                         <div class="row">
-                                            @foreach($selloffers as $offer)
+                                            @foreach($brandnames as $offer)
                                                 @if(Auth::check() && Auth::user()->type_id == 1)
                                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
                                                     <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
