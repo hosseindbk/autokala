@@ -17,7 +17,7 @@
     <script src="{{asset('site/js/sweetalert.min.js')}}"></script>
     <link rel="icon" type="image/x-icon" href="{{asset('site/images/favicon.png')}}">
 
-    <meta name="description" content="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات راهسازی کشاورزی فروشگاهای لوازم یدکی ، نزدیکترین تعمیرگاه ، برندهای قطعات خودرو مشخصات فنی لوازم یدکی خودرو لیست تامین کنندگان تولیدکنندگان واردکنندگان صادرکنندگان لوازم اتومبیل ماشین آلات راهسازی کشاورزی">
+    <meta name="description" content="اتوکالا بازار مجازی قطعات خودرو و ماشین آلات راهسازی کشاورزی فروشگاهای لوازم یدکی ، نزدیکترین تعمیرگاه ، برندهای قطعات خودرو مشخصات فنی لوازم یدکی خودرو لیست تامین کنندگان تولیدکنندگان واردکنندگان صادرکنندگان لوازم اتومبیل ماشین آلات راهسازی کشاورزی">
     <meta name="keywords" content="@foreach($menus as $menu) @if(count(Request::segments()) <= 1) @if($menu->keycheck == Request::segment(1)) {{$menu->keyword}} @endif @endif @endforeach">
     <meta name="author" content="Bestagroup">
     <meta name="ahrefs-site-verification" content="e5bdc4237b9279451f858b3634055780eacaf15aa74e195dfe71a09939865f5f">

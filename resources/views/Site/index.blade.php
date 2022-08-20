@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    <title>اتوکالا سامانه جامع قطعات خودرو و ماشین آلات </title>
+    <title>اتوکالا بازار مجازی قطعات خودرو و ماشین آلات </title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" >
     <meta name="enamad" content="745189" />
@@ -46,7 +46,7 @@
             </div>
             <div class="text-center">
                 <div class="col-lg-4 pr">
-                    <a href="{{url('/')}}"> <img src="{{asset('site/images/logo.png')}}" alt="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات"> </a>
+                    <a href="{{url('/')}}"> <img src="{{asset('site/images/logo.png')}}" alt="اتوکالا بازار مجازی قطعات خودرو و ماشین آلات"> </a>
                     <h1 style="padding: 2px 0px 0px 0px;font-size: 12px;">اتوکالا بازار مجازی قطعات خودرو و ماشین آلات</h1>
                 </div>
             </div>
