@@ -20,6 +20,15 @@
     <meta name="description" content="اتوکالا سامانه جامع قطعات خودرو و ماشین آلات راهسازی کشاورزی فروشگاهای لوازم یدکی ، نزدیکترین تعمیرگاه ، برندهای قطعات خودرو مشخصات فنی لوازم یدکی خودرو لیست تامین کنندگان تولیدکنندگان واردکنندگان صادرکنندگان لوازم اتومبیل ماشین آلات راهسازی کشاورزی">
     <meta name="keywords" content="@foreach($menus as $menu) @if(count(Request::segments()) <= 1) @if($menu->keycheck == Request::segment(1)) {{$menu->keyword}} @endif @endif @endforeach">
     <meta name="author" content="Bestagroup">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TV0J9DXFL1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-TV0J9DXFL1');
+    </script>
 </head>
 
 <body>
