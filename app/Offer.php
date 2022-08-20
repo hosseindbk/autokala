@@ -29,10 +29,10 @@ class Offer extends Model
             $user_id = User::pluck('id');
             $query->whereIn('offers.user_id' ,$user_id);
         }elseif(isset($type) && $type == 1){
-            $user_id = User::whereType_id('1')->pluck('id');
+            $user_id = User::whereType_id($type)->pluck('id');
             $query->whereIn('offers.user_id' ,$user_id);
         }elseif(isset($type) && $type != 1 && $type != 'all'){
-            $user_id = User::whereType_id('4')->whereType_id('3')->pluck('id');
+            $user_id = User::whereType_id($type)->pluck('id');
             $query->whereIn('offers.user_id' ,$user_id);
         }
 
