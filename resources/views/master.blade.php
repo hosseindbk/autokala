@@ -291,7 +291,7 @@
                     <div class="footer-more-info">
                         <div class="footer-copyright">
                             <div class="footer-copyright-text">
-                                <p>کلیه حقوق این وبسایت به اتوکالا نیک آراد (سامانه جامع قطعات و خدمات خودرو) تعلق دارد</p>
+                                <p>کلیه حقوق این وبسایت به اتوکالا نیک آراد (اتوکالا بازار مجازی قطعات خودرو و ماشین آلات) تعلق دارد</p>
                                 <p class="text-left">Developed By <a href="https://bestagroup.ir" target="_blank">Bestagroup</a> </p>
                             </div>
                         </div>
