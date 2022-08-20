@@ -94,13 +94,13 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">نام تعمیرگاه</p>
-                                                                <input type="text" name="title" value="{{$technical_unit->title}}" class="form-control" />
+                                                                <input type="text" required name="title" value="{{$technical_unit->title}}" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">نام مدیر</p>
-                                                                <input type="text" name="manager" value="{{$technical_unit->manager}}" class="form-control" />
+                                                                <input type="text" required name="manager" value="{{$technical_unit->manager}}" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">

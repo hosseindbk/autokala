@@ -94,13 +94,13 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">نام فروشگاه / شرکت</p>
-                                                            <input type="text" name="title" data-required="1" value="{{$Supplier->title}}" class="form-control" />
+                                                            <input type="text" name="title" required value="{{$Supplier->title}}" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">نام مدیر</p>
-                                                            <input type="text" name="manager" data-required="1" value="{{$Supplier->manager}}"  class="form-control" />
+                                                            <input type="text" name="manager" required value="{{$Supplier->manager}}"  class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12" >
@@ -232,7 +232,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
-                                                            <input type="text" name="mobile" value="{{$Supplier->mobile}}" class="form-control" />
+                                                            <input type="text" name="mobile" required value="{{$Supplier->mobile}}" class="form-control" />
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">وبسایت</p>
