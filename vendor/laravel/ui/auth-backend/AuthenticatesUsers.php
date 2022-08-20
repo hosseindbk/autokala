@@ -85,7 +85,7 @@ trait AuthenticatesUsers
                 if (Hash::check($request->input('password'), $user->password)) {
                     Auth::loginUsingId($user->id);
                     alert()->success($user->name.' به وبسایت اتوکالا ' , 'خوش آمدید' );
-                    return Redirect::route('/');
+                    return Redirect::route('indexfilter');
                 } else {
                     alert()->error('عملیات ناموفق', 'شماره تلفن و یا رمز عبور اشتباه است');
                     return Redirect::back();
