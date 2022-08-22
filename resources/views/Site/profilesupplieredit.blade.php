@@ -94,13 +94,17 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">نام فروشگاه / شرکت</p>
-                                                            <input type="text" name="title" required value="{{$Supplier->title}}" class="form-control" />
+                                                            <input type="text" name="title" required value="{{$Supplier->title}}" class="form-control"
+                                                                   oninvalid="this.setCustomValidity('لطفا نام فروشگاه را وارد کنید')"
+                                                                   oninput="setCustomValidity('')"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">نام مدیر</p>
-                                                            <input type="text" name="manager" required value="{{$Supplier->manager}}"  class="form-control" />
+                                                            <input type="text" name="manager" required value="{{$Supplier->manager}}"  class="form-control"
+                                                                   oninvalid="this.setCustomValidity('لطفا نام مدیر را وارد کنید')"
+                                                                   oninput="setCustomValidity('')"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12" >
@@ -232,7 +236,9 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
-                                                            <input type="text" name="mobile" required value="{{$Supplier->mobile}}" class="form-control" />
+                                                            <input type="text" name="mobile" required value="{{$Supplier->mobile}}" class="form-control"
+                                                                   oninvalid="this.setCustomValidity('لطفا موبایل را وارد کنید')"
+                                                                   oninput="setCustomValidity('')"/>
                                                         </div>
                                                         <div class="form-group">
                                                             <p class="mg-b-10">وبسایت</p>

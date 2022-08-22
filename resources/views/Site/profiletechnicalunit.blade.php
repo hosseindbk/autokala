@@ -93,13 +93,17 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">نام تعمیرگاه</p>
-                                                            <input type="text" name="title" required placeholder="نام تعمیرگاه را وارد کنید" class="form-control" />
+                                                            <input type="text" name="title" required placeholder="نام تعمیرگاه را وارد کنید" class="form-control"
+                                                                   oninvalid="this.setCustomValidity('لطفا نام تعمیرگاه را وارد کنید')"
+                                                                   oninput="setCustomValidity('')"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">نام مدیر</p>
-                                                            <input type="text" name="manager" required value="{{Auth::user()->name}}" class="form-control" />
+                                                            <input type="text" name="manager" required value="{{Auth::user()->name}}" class="form-control"
+                                                                   oninvalid="this.setCustomValidity('لطفا نام مدیر را وارد کنید')"
+                                                                   oninput="setCustomValidity('')"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -164,22 +168,30 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
-                                                            <input type="text" name="mobile" required value="{{Auth::user()->phone}}" class="form-control" />
+                                                            <input type="text" name="mobile" required value="{{Auth::user()->phone}}" class="form-control"
+                                                                   oninvalid="this.setCustomValidity('لطفا موبایل را وارد کنید')"
+                                                                   oninput="setCustomValidity('')"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت</p>
-                                                            <input type="text" name="phone" required @if(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control" />
+                                                            <input type="text" name="phone" required @if(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control"
+                                                                   oninvalid="this.setCustomValidity('لطفا تلفن ثابت را وارد کنید')"
+                                                                   oninput="setCustomValidity('')"/>
                                                         </div>
 
                                                     <div class="form-group">
                                                         <p class="mg-b-10">طول جغرافیایی</p>
-                                                        <input type="text" name="lat" required id="latelement" class="form-control"/>
+                                                        <input type="text" name="lat" required id="latelement" class="form-control"
+                                                               oninvalid="this.setCustomValidity('لطفا طول جغرافیایی را وارد کنید')"
+                                                               oninput="setCustomValidity('')"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <p class="mg-b-10">عرض جغرافیایی</p>
-                                                        <input type="text" name="lng" required id="lngelement" class="form-control"/>
+                                                        <input type="text" name="lng" required id="lngelement" class="form-control"
+                                                               oninvalid="this.setCustomValidity('لطفا عرض جغرافیایی را وارد کنید')"
+                                                               oninput="setCustomValidity('')"/>
                                                     </div>
 
                                                     </div>
