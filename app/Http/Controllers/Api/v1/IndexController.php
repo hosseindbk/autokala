@@ -150,8 +150,12 @@ class IndexController extends Controller
 
         $brand_id               = Brand::whereStatus(4)->whereSlug($slug)->pluck('id');
         $supplier_id            = Representative_supplier::whereBrand_id($brand_id)->pluck('supplier_id');
-        $suppliers              = Supplier::select('suppliers.title as supplier_title' , 'suppliers.slug as supplier_slug' , 'suppliers.manager as supplier_manager' ,'suppliers.phone as supplier_phone' ,
-            'suppliers.mobile as supplier_mobile' , 'suppliers.state_id as supplier_stateID' , 'suppliers.city_id as supplier_cityID' , 'suppliers.address as supplier_address', 'suppliers.image as supplier_image')
+        $suppliers              = Supplier::
+                  leftJoin('states' , 'states.id' , '=' , 'suppliers.state_id')
+                ->leftJoin('cities' , 'cities.id' , '=' , 'suppliers.city_id')
+                ->select('suppliers.title as supplier_title' , 'suppliers.slug as supplier_slug' , 'suppliers.manager as supplier_manager' ,'suppliers.phone as supplier_phone' ,
+            'suppliers.mobile as supplier_mobile' , 'suppliers.state_id as supplier_stateID' , 'suppliers.city_id as supplier_cityID' , 'suppliers.address as supplier_address', 'suppliers.image as supplier_image',
+                'states.title as state_name' , 'cities.title as city_name')
             ->whereIn('id' , $supplier_id)->get();
 
         $comments               = comment::whereCommentable_type('App\Brand')->whereIn('Commentable_id'   ,$brand_id)->select('name','phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
