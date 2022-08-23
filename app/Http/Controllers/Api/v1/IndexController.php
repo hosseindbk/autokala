@@ -151,7 +151,7 @@ class IndexController extends Controller
         $brand_id               = Brand::whereStatus(4)->whereSlug($slug)->pluck('id');
         $supplier_id            = Representative_supplier::whereBrand_id($brand_id)->pluck('supplier_id');
         $suppliers              = Supplier::select('suppliers.title as supplier_title' , 'suppliers.slug as supplier_slug' , 'suppliers.manager as supplier_manager' ,'suppliers.phone as supplier_phone' ,
-            'suppliers.mobile as supplier_mobile' , 'suppliers.state_id as supplier_stateID' , 'suppliers.city_id as supplier_cityID' , 'suppliers.address as supplier_address')
+            'suppliers.mobile as supplier_mobile' , 'suppliers.state_id as supplier_stateID' , 'suppliers.city_id as supplier_cityID' , 'suppliers.address as supplier_address', 'suppliers.image as supplier_image')
             ->whereIn('id' , $supplier_id)->get();
 
         $comments               = comment::whereCommentable_type('App\Brand')->whereIn('Commentable_id'   ,$brand_id)->select('name','phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
@@ -176,13 +176,13 @@ class IndexController extends Controller
         }else{
             $comentratin = [] ;
         }
-        $commentratecount       = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->count();
-        $commentratequality     = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('quality');
-        $commentratevalue       = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('value');
-        $commentrateinnovation  = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('innovation');
-        $commentrateability     = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('ability');
-        $commentratedesign      = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('design');
-        $commentratecomfort     = commentrate::whereCommentable_type('App\Brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('comfort');
+        $commentratecount       = commentrate::whereCommentable_type('App\brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->count();
+        $commentratequality     = commentrate::whereCommentable_type('App\brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('quality');
+        $commentratevalue       = commentrate::whereCommentable_type('App\brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('value');
+        $commentrateinnovation  = commentrate::whereCommentable_type('App\brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('innovation');
+        $commentrateability     = commentrate::whereCommentable_type('App\brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('ability');
+        $commentratedesign      = commentrate::whereCommentable_type('App\brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('design');
+        $commentratecomfort     = commentrate::whereCommentable_type('App\brand')->where('Commentable_id' ,$brand_id)->whereApproved(1)->avg('comfort');
 
         if (trim($comments) != '[]') {
             foreach ($comments as $comment) {
