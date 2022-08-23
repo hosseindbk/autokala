@@ -156,7 +156,7 @@ class IndexController extends Controller
                 ->select('suppliers.title as supplier_title' , 'suppliers.slug as supplier_slug' , 'suppliers.manager as supplier_manager' ,'suppliers.phone as supplier_phone' ,
             'suppliers.mobile as supplier_mobile' , 'suppliers.state_id as supplier_stateID' , 'suppliers.city_id as supplier_cityID' , 'suppliers.address as supplier_address', 'suppliers.image as supplier_image',
                 'states.title as state_name' , 'cities.title as city_name')
-            ->whereIn('id' , $supplier_id)->get();
+            ->whereIn('suppliers.id' , $supplier_id)->get();
 
         $comments               = comment::whereCommentable_type('App\Brand')->whereIn('Commentable_id'   ,$brand_id)->select('name','phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
         $subcomments            = comment::whereCommentable_type('App\Brand')->whereIn('Commentable_id'   ,$brand_id)->select('name','phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
