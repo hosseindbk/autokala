@@ -32,7 +32,7 @@ class MarketController extends Controller
         $buy                    = 0;
         $countState             = null;
         $users                  = User::select('id' , 'type_id')->get();
-        $selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->filter()->where('offers.brand_id' , '<>' , null)->paginate('16');
+        $selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->filter()->paginate('16');
         $max_price              = Offer::whereStatus(4)->filter()->max('single_price');
         $min_price              = Offer::whereStatus(4)->filter()->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -91,7 +91,7 @@ class MarketController extends Controller
         $buy                    = 0;
         $countState             = null;
         $users                  = User::select('id' , 'type_id')->get();
-        $selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->filter()->where('offers.brand_id' , '<>' , null)->paginate('16');
+        $selloffers             = Offer::whereStatus(4)->whereBuyorsell('sell')->latest()->filter()->paginate('16');
         $max_price              = Offer::whereStatus(4)->filter()->max('single_price');
         $min_price              = Offer::whereStatus(4)->filter()->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -152,7 +152,7 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $users                  = User::select('id' , 'type_id')->get();
-        $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->filter()->where('offers.brand_id' , '<>' , null)->paginate('16');
+        $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->filter()->paginate('16');
         $max_price              = Offer::whereStatus(4)->max('single_price');
         $min_price              = Offer::whereStatus(4)->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
@@ -209,7 +209,7 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $users                  = User::select('id' , 'type_id')->get();
-        $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->filter()->where('offers.brand_id' , '<>' , null)->paginate('16');
+        $buyoffers              = Offer::whereStatus(4)->whereBuyorsell('buy')->latest()->filter()->paginate('16');
         $max_price              = Offer::whereStatus(4)->max('single_price');
         $min_price              = Offer::whereStatus(4)->min('single_price');
         $carproducts            = Car_product::whereStatus(4)->get();
