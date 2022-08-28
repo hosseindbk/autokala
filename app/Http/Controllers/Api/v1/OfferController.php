@@ -252,6 +252,17 @@ class OfferController extends Controller
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
 
+    public function offerdelete($id)
+    {
+        $offer = Offer::findOrfail($id);
+        $offer->delete();
+        $status     = true;
+        $message    = 'success';
+        $response   = 'اطلاعات با موفقیت پاک شد';
+
+        return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+    }
+
     public function carofferdelete($id)
     {
         $caroffer = Car_offer::findOrfail($id);
