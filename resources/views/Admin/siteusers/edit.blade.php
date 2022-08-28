@@ -67,6 +67,22 @@
                                                         <option value="1" {{$user->phone_verify == 1 ? 'selected' : ''}}> تایید شماره</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group">
+                                                            <p class="mg-b-10">انتخاب استان<span style="color: #ff3d00">*</span></p>
+                                                            <select name="state_id" class="form-control select2" id="state_id">
+                                                                @foreach($states as $state)
+                                                                    <option value="{{$state->id}}" {{$state->id == Auth::user()->state_id ? 'selected' : ''}}>{{$state->title}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                                                                        <div class="form-group">
+                                                            <p class="mg-b-10">انتخاب شهرستان<span style="color: #ff3d00">*</span></p>
+                                                            <select name="city_id" class="form-control select2" id="city_id">
+                                                                @foreach($cities as $city)
+                                                                    <option value="{{$city->id}}" {{$city->id == Auth::user()->city_id ? 'selected' : ''}}>{{$city->title}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
