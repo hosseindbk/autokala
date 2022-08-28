@@ -278,7 +278,7 @@ class IndexController extends Controller
                 ];
             }
         }else{
-            $offer[] = null;
+            $offeri[] = null;
         }
 
         $products        = Markuser::join('products'   , 'products.id'    , '=' , 'markusers.product_id')
