@@ -52,6 +52,8 @@
                                             <th class="wd-10p"> نوع همکاری </th>
                                             <th class="wd-10p"> وضعیت شماره </th>
                                             <th class="wd-10p"> وضعیت </th>
+                                            <th class="wd-10p"> استان </th>
+                                            <th class="wd-10p"> شهرستان </th>
                                             <th class="wd-10p">ویرایش / حذف </th>
                                         </tr>
                                         </thead>
@@ -85,6 +87,8 @@
                     {data: 'typetitle'          , name: 'typetitle'},
                     {data: 'userphoneverify'    , name: 'userphoneverify'},
                     {data: 'userstatus'         , name: 'userstatus'},
+                    {data: 'cityname'           , name: 'cityname'},
+                    {data: 'statename'          , name: 'statename'},
                     {
                         data: 'action',
                         name: 'action',
