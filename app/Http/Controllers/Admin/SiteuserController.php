@@ -55,7 +55,7 @@ class SiteuserController extends Controller
                         return \Morilog\Jalali\Jalalian::forge($data->usercreated)->format('%Y/%m/%d');
                     })
                     ->editColumn('userphoneverify', function ($data) {
-                        if ($data->userphoneverify == "0") {
+                        if ($data->userphoneverify != "1") {
                             return "تایید نشده";
                         }
                         elseif ($data->userphoneverify == "1") {
