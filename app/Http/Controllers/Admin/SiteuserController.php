@@ -24,8 +24,8 @@ class SiteuserController extends Controller
 
         if ($request->ajax()) {
             $data = DB::table('users')->LeftJoin('type_users', 'type_users.id', '=', 'users.type_id')
-                ->eftjoin('states' , 'states.id' , '=' , 'users.state_id')
-                ->eftjoin('cities' , 'cities.id' , '=' , 'users.city_id')
+                ->leftjoin('states' , 'states.id' , '=' , 'users.state_id')
+                ->leftjoin('cities' , 'cities.id' , '=' , 'users.city_id')
                 ->select('users.name as username' , 'users.id as userid' , 'users.phone as userphone'
                     , 'users.phone_verify as userphoneverify' , 'users.status as userstatus' , 'users.created_at as usercreated' ,'states.title as statename','cities.title as cityname' , 'type_users.title as typetitle')
                 ->where('users.level','=',null)
