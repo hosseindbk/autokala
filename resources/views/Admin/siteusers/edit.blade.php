@@ -94,15 +94,15 @@
                                                     <p class="mg-b-10">انتخاب وضعیت کاربر</p>
                                                     <select name="status" class="form-control select-lg select2">
                                                         @if($user->status == 1)
-                                                            <option value="1">در حال بررسی </option>
+                                                            <option value="1" selected>در حال بررسی </option>
                                                             <option value="2">تایید </option>
                                                             <option value="0">غیرفعال </option>
                                                             @elseif($user->status == 0)
-                                                              <option value="0">غیرفعال </option>
+                                                              <option value="0" selected>غیرفعال </option>
                                                             <option value="2"> فعال </option>
                                                             <option value="1">در حال بررسی</option>
                                                         @elseif($user->status == 2)
-                                                            <option value="2">تایید </option>
+                                                            <option value="2" selected>تایید </option>
                                                             <option value="1">در حال بررسی</option>
                                                              <option value="0">غیرفعال </option>
 
@@ -115,7 +115,13 @@
                                                     <i class="fa fa-eye-slash" style="float: left;margin-top: -25px;margin-left: 15px;" onclick="togglePassword()"></i>
 
                                                 </div>
-
+                                                <div class="form-group">
+                                                            <p class="mg-b-10">دسترسی گلد<span style="color: #ff3d00">*</span></p>
+                                                            <select name="state_status" class="form-control select2" id="city_id">
+                                                                 <option value="1" {{$user->state_status == 1 ? 'selected' : ''}}>دارد </option>
+                                                            <option value="0" {{$user->state_status == 0 ? 'selected' : ''}}>ندارد </option>
+                                                            </select>
+                                                        </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
