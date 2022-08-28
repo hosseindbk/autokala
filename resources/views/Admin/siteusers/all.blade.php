@@ -87,8 +87,9 @@
                     {data: 'typetitle'          , name: 'typetitle'},
                     {data: 'userphoneverify'    , name: 'userphoneverify'},
                     {data: 'userstatus'         , name: 'userstatus'},
-                    {data: 'cityname'           , name: 'cityname'},
                     {data: 'statename'          , name: 'statename'},
+                    {data: 'cityname'           , name: 'cityname'},
+                    
                     {
                         data: 'action',
                         name: 'action',
