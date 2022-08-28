@@ -37,7 +37,7 @@ class Offer extends Model
         }
 
         $state_id = request('state_id');
-        if (isset($state_id) && $state_id != null) {
+        if (isset($state_id) && $state_id != null  && auth::user()->state_status == 1) {
             $query->where('offers.state_id' , $state_id);
         }
 
