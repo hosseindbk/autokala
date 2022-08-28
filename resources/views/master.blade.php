@@ -95,7 +95,7 @@
                                                                 @if(auth::check() && auth::user()->state_status == 1)
                                                                     <option value="{{$state->id}}" @if(request('state_id') != null) {{request('state_id') == $state->id ? 'selected' : ''}} @else {{Auth::user()->state_id == $state->id ? 'selected' : ''}} @endif>{{$state->title}} </option>
                                                                 @elseif(auth::check()&& auth::user()->state_status != 1)
-                                                                    <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : 'disabled="disabled"'}}>{{$state->title}}</option>
+                                                                    <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @elseif(!auth::check())
                                                                     <option value="{{$state->id}}" @if(request('state_id') != null) {{request('state_id') == $state->id ? 'selected' : ''}} @else {{ $state->id == 8 ? 'selected' : ''}} @endif>{{$state->title}} </option>
 
