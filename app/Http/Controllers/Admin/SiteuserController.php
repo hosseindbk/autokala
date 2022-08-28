@@ -90,11 +90,15 @@ class SiteuserController extends Controller
         $typeusers = Type_user::all();
         $menudashboards = Menudashboard::whereStatus(4)->get();
         $submenudashboards = Submenudashboard::whereStatus(4)->get();
+        $states = State::all();
+        $cities= City::all();
 
         return view('Admin.siteusers.edit')
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'))
             ->with(compact('typeusers'))
+            ->with(compact('states'))
+            ->with(compact('cities'))
             ->with(compact('users'));
     }
 
