@@ -52,7 +52,7 @@
                                                     <input type="text" name="name" data-required="1" value="{{$user->name}}" class="form-control" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <p class="mg-b-10">انتخاب وضعیت کاربر</p>
+                                                    <p class="mg-b-10">انتخاب نوع کاربر</p>
                                                     <select name="type_id" class="form-control select-lg select2">
                                                         @foreach($typeusers as $type_user)
                                                                 <option value="{{$type_user->id}}" {{$user->type_id == $type_user->id ? 'selected' : ''}}>{{$type_user->title}}</option>
@@ -96,9 +96,16 @@
                                                         @if($user->status == 1)
                                                             <option value="1">در حال بررسی </option>
                                                             <option value="2">تایید </option>
+                                                            <option value="0">غیرفعال </option>
+                                                            @elseif($user->status == 0)
+                                                              <option value="0">غیرفعال </option>
+                                                            <option value="2"> فعال </option>
+                                                            <option value="1">در حال بررسی</option>
                                                         @elseif($user->status == 2)
                                                             <option value="2">تایید </option>
                                                             <option value="1">در حال بررسی</option>
+                                                             <option value="0">غیرفعال </option>
+
                                                         @endif
                                                     </select>
                                                 </div>
