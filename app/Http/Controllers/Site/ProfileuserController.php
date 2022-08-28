@@ -66,7 +66,7 @@ class ProfileuserController extends Controller
         if ($request->input('lng') != null) {
             $user->lng = $request->input('lng');
         }
-        $user->status       = 2;
+        $user->status       = 0;
 
 
         if ($request->file('image') != null) {
