@@ -118,6 +118,7 @@ class SiteuserController extends Controller
         $user->name         = $request->input('name');
         $user->type_id      = $request->input('type_id');
         $user->status       = $request->input('status');
+         $user->state_status       = $request->input('state_status');
         $user->phone        = $request->input('phone');
         $user->phone_verify = $request->input('phone_verify');
         $user->phone_number = $request->input('phone_number');
