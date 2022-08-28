@@ -46,6 +46,8 @@ class Supplier extends Model
         $state_id = request('state_id');
         if (isset($state_id) && $state_id != null && auth::user()->state_status == 1) {
             $query->where('suppliers.state_id',$state_id);
+        }elseif(isset($state_id)){
+            alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان');
         }
 
         $city_id = request('city_id');
