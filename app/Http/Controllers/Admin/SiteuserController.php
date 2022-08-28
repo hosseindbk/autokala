@@ -7,6 +7,8 @@ use App\Menudashboard;
 use App\Submenudashboard;
 use App\Type_user;
 use App\User;
+use App\State;
+use App\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
