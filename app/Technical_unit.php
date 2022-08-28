@@ -53,7 +53,7 @@ class Technical_unit extends Model
         if (isset($state_id) &&  $state_id != null && auth::user()->state_status == 1) {
             $query->where('technical_units.state_id' , $state_id);
         }elseif(isset($state_id)){
-            alert()->danger('خطا', 'شما دسترسی ندارید');
+            alert()->warning('خطا', 'شما دسترسی ندارید');
         }
 
 
