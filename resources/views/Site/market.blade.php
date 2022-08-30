@@ -322,9 +322,11 @@
                                                aria-selected="false">پربازدیدترین</a>
                                         </li>
                                     </ul>
+                                    @if(!Auth::check())
                                     <div class="float-left">
-                                            <a href="{{url('offer')}}" class="btn btn-outline-danger" target="_blank" data-toggle="tooltip" data-placement="right" title="در صورت تمایل به درج آگهی کالای خود با کلیک روی این کلید ابتدا ثبت نام و سپس آگهی خود را تکمیل نمایید">ثبت آگهی</a>
+                                            <a href="{{url('offer')}}" class="btn btn-outline-danger" target="_blank" data-toggle="tooltip" data-placement="right" title="در صورت تمایل به درج آگهی ابتدا وارد حساب کاربری خود شوید">ثبت آگهی</a>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="product-items">
