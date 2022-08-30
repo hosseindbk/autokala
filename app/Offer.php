@@ -40,7 +40,7 @@ class Offer extends Model
         if (isset($state_id) && $state_id != null && auth::check() && auth::user()->state_status == 1 ) {
             $query->where('offers.state_id' , $state_id);
         }elseif(isset($state_id)){
-            alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان');
+            alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان')->autoclose(5000);
         }
 
         $city_id = request('city_id');
