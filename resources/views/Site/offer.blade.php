@@ -862,8 +862,8 @@
             app.markReverseGeocode({
                 state: {
                     latlng: {
-                        lat: {{$offer->lat}},
-                        lng: {{$offer->lng}},
+                        lat: 35.7573682,
+                        lng: 51.4132338,
                     },
                     zoom: 14,
                     icon: crosshairIcon,
