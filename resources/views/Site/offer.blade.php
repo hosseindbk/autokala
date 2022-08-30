@@ -297,7 +297,10 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">طول جغرافیایی</p>
+                                                            <input type="text" name="lat" id="latelement" class="form-control"/>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -309,6 +312,10 @@
                                                                     <option value="{{$city->id}}" {{Auth::user()->city_id == $city->id ? 'selected' : ''}}>{{$city->title}}</option>
                                                                 @endforeach
                                                             </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">عرض جغرافیایی</p>
+                                                            <input type="text" name="lng" id="lngelement" class="form-control"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
