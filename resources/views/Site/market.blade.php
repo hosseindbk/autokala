@@ -326,6 +326,10 @@
                                     <div class="float-left">
                                             <a href="{{url('offer')}}" class="btn btn-outline-danger" target="_blank" data-toggle="tooltip" data-placement="right" title="در صورت تمایل به درج آگهی ابتدا وارد حساب کاربری خود شوید">ثبت آگهی</a>
                                     </div>
+                                    @elseif(Auth::check())
+                                        <div class="float-left">
+                                            <a href="{{url('offer')}}" class="btn btn-outline-danger" target="_blank" >ثبت آگهی</a>
+                                        </div>
                                     @endif
                                 </div>
                             </div>
