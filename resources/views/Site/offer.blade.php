@@ -912,7 +912,6 @@
                         "_token": "{{ csrf_token() }}",
                         lat     : e.latlng.lat,
                         lng     : e.latlng.lng,
-                        'id'    :{{$offer->id}},
                     },
                     type: 'patch',
                     dataType: 'json',
