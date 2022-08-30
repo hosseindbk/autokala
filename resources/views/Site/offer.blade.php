@@ -327,6 +327,12 @@
                                                             <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">آدرس</p>
+                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
@@ -339,12 +345,7 @@
                                                         <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
-                                                    <div class="col-md-7">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">آدرس</p>
-                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
-                                                        </div>
-                                                    </div>
+
 
                                                     <input type="hidden" name="supplier_id" @foreach($suppliers as $supplier) @if($supplier->user_id == Auth::user()->id) value="{{$supplier->id}}" @endif @endforeach >
 
