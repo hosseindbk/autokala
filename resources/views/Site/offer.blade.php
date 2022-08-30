@@ -9,6 +9,8 @@
 <link href="{{asset('admin/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
 <link href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 <link href="{{asset('admin/assets/css-rtl/colors/default.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
+<link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
 
 @endsection
 @section('main')
@@ -653,6 +655,8 @@
     <script src="{{asset('admin/assets/plugins/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('site/js/popper.min.js')}}"></script>
     <script src="{{asset('site/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('site/js/mapp.env.js')}}"></script>
+    <script src="{{asset('site/js/mapp.min.js')}}"></script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor1' ) )
