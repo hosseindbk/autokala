@@ -46,7 +46,7 @@
                             <ul class="menu-ul mega-menu-level-one">
                                 @foreach($menus as $menu)
                                 <li  class="menu-item active">
-                                    <a href="{{url($menu->slug)}}" class="current-link-menu">
+                                    <a href="{{url($menu->slug)}}" @if(Request::segment(1) == $menu->keycheck) style="color: #06d0e8" @endif class="current-link-menu">
                                         {{$menu->title}}
                                     </a>
                                 </li>
@@ -87,13 +87,12 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            @if(Request::segment(1) == 'supplier' ||Request::segment(1) == 'market' || Request::segment(1) == 'technical' || Request::segment(1) == null)
                                                 <div class="account-box">
                                                     <div class="nav-account d-block pl">
                                                         <select name="state_id" class="form-control select2" id="state_filter">
                                                             @foreach($states as $state)
                                                                 @if(auth::check() && auth::user()->state_status == 1)
-                                                                    <option value="{{$state->id}}" @if(request('state_id') != null) {{request('state_id') == $state->id ? 'selected' : ''}} @else {{Auth::user()->state_id == $state->id ? 'selected' : ''}} @endif>{{$state->title}} </option>
+                                                                    <option value="{{$state->id}}" @if(Session::get('state_id') != null) {{Session::get('state_id') == $state->id ? 'selected' : ''}} @else {{Auth::user()->state_id == $state->id ? 'selected' : ''}} @endif>{{$state->title}} </option>
                                                                 @elseif(auth::check()&& auth::user()->state_status != 1)
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @elseif(!auth::check())
@@ -105,7 +104,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>

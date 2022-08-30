@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Technical_unit extends Model
 {
@@ -51,7 +52,10 @@ class Technical_unit extends Model
 
         $state_id = request('state_id');
         if (isset($state_id) &&  $state_id != null && auth::check() && auth::user()->state_status == 1 ) {
-            $query->where('technical_units.state_id' , $state_id);
+            session(['state_id' => $state_id]);
+            $query->where('technical_units.state_id', $state_id);
+        }elseif (auth::check() && auth::user()->state_status == 1 && Session::get('state_id') != null){
+            $query->where('technical_units.state_id', Session::get('state_id'));
         }elseif(isset($state_id)){
             alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان')->autoclose(5000);
         }
