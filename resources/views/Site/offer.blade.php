@@ -290,7 +290,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان</p>
-                                                            <select name="state_id" class="form-control select-lg select2" id="state_id">
+                                                            <select name="state_id" class="form-control select-lg select2" disabled>
                                                                 <option value="">انتخاب استان</option>
                                                                 @foreach($states as $state)
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
@@ -302,7 +302,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب شهرستان</p>
-                                                            <select name="city_id" id="city_id" class="form-control select-lg select2">
+                                                            <select name="city_id" id="city_id" class="form-control select-lg select2" disabled>
                                                                 <option value="">انتخاب شهرستان</option>
                                                                 @foreach($cities as $city)
                                                                     <option value="">انتخاب شهرستان</option>
@@ -538,7 +538,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان</p>
-                                                            <select name="state_id" class="form-control select-lg select2" id="state_id">
+                                                            <select name="state_id" class="form-control select-lg select2" disabled>
                                                                 <option value="">انتخاب استان</option>
                                                                 @foreach($states as $state)
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
@@ -550,7 +550,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب شهرستان</p>
-                                                            <select name="city_id" id="city_id" class="form-control select-lg select2">
+                                                            <select name="city_id" id="city_id" class="form-control select-lg select2" disabled>
                                                                 <option value="">انتخاب شهرستان</option>
                                                                 @foreach($cities as $city)
                                                                     <option value="">انتخاب شهرستان</option>
@@ -700,35 +700,35 @@
             });
         });
     </script>
-    <script>
-        $(function(){
-            $('#state_id').change(function(){
-                $("#city_id option").remove();
-                var id = $('#state_id').val();
+{{--    <script>--}}
+{{--        $(function(){--}}
+{{--            $('#state_id').change(function(){--}}
+{{--                $("#city_id option").remove();--}}
+{{--                var id = $('#state_id').val();--}}
 
-                $.ajax({
-                    url : '{{ route( 'state' ) }}',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "id": id
-                    },
-                    type: 'post',
-                    dataType: 'json',
-                    success: function( result )
-                    {
-                        $.each( result, function(k, v) {
-                            $('#city_id').append($('<option>', {value:k, text:v}));
-                        });
-                    },
-                    error: function()
-                    {
-                        //handle errors
-                        alert('error...');
-                    }
-                });
-            });
-        });
-    </script>
+{{--                $.ajax({--}}
+{{--                    url : '{{ route( 'state' ) }}',--}}
+{{--                    data: {--}}
+{{--                        "_token": "{{ csrf_token() }}",--}}
+{{--                        "id": id--}}
+{{--                    },--}}
+{{--                    type: 'post',--}}
+{{--                    dataType: 'json',--}}
+{{--                    success: function( result )--}}
+{{--                    {--}}
+{{--                        $.each( result, function(k, v) {--}}
+{{--                            $('#city_id').append($('<option>', {value:k, text:v}));--}}
+{{--                        });--}}
+{{--                    },--}}
+{{--                    error: function()--}}
+{{--                    {--}}
+{{--                        //handle errors--}}
+{{--                        alert('error...');--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
     <script>
         $(function(){
             $('#titleproduct').change(function(){
