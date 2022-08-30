@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{asset('site/css/vendor/bootstrap-slider.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/mapp.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/fa/style.css')}}" data-locale="true">
+   <link rel="stylesheet"  href="{{asset('admin/assets/plugins/select2/css/select2.min.css')}}" >
+
 @endsection
 @section('top-header')
     <section class="h-main-row">
