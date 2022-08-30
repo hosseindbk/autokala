@@ -772,6 +772,8 @@
 @endsection
     @section('script')
         <script src="{{asset('site/js/vendor/bootstrap-slider.min.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/select2/js/select2.min.js')}}"></script>
+        <script src="{{asset('admin/assets/js/select2.js')}}"></script>
         <script src="{{asset('site/js/mapp.env.js')}}"></script>
         <script src="{{asset('site/js/mapp.min.js')}}"></script>
         <script>
