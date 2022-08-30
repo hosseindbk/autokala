@@ -335,6 +335,10 @@
                                                             <input type="hidden" name="lng" class="form-control" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
+                                                        <div id="app" style="width: 100%; height: 325px;"></div>
+                                                    </div>
                                                     <div class="col-md-7">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
@@ -590,6 +594,10 @@
                                                             <input type="hidden" name="lat" class="form-control" />
                                                             <input type="hidden" name="lng" class="form-control" />
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
+                                                        <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
                                                     <div class="col-md-7">
                                                         <div class="form-group">
