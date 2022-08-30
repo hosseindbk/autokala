@@ -581,6 +581,12 @@
                                                             <input type="text" name="lng" id="lngelement" class="form-control"/>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-7">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">آدرس</p>
+                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
@@ -600,12 +606,7 @@
                                                         <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
-                                                    <div class="col-md-7">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">آدرس</p>
-                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
-                                                        </div>
-                                                    </div>
+
 
                                                 @endif
                                                 <div class="col-lg-12 mg-b-10 text-center">
