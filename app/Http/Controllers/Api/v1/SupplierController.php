@@ -28,6 +28,20 @@ class SupplierController extends Controller
 
     }
 
+    public function supplierselection(){
+        $suppliers       = Supplier::select('title' , 'slug' , 'address' , 'manager' , 'image')
+            ->whereStatus(4)
+            ->whereHomeshow(1)
+            ->filter()
+            ->sort()
+            ->paginate(10);
+
+        $response = ['supplier' => $suppliers];
+
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+
+    }
+
     public function subsupplier($slug){
 
         $suppliers       = Supplier::leftjoin('markusers' , 'markusers.supplier_id' , '=' , 'suppliers.id')

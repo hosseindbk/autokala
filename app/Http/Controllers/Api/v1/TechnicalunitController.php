@@ -30,6 +30,20 @@ class TechnicalunitController extends Controller
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
 
+    public function technicalselection(){
+
+        $technicals      = Technical_unit::select('title' , 'slug' , 'address' , 'manager' , 'image')
+            ->whereStatus(4)
+            ->filter()
+            ->state()
+            ->sort()
+            ->paginate(10);
+
+        $response = ['technical_unit' => $technicals];
+
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+    }
+
     public function subtechnical($slug){
 
         $technicals      = Technical_unit::leftjoin('markusers' , 'markusers.technical_id' , '=' , 'technical_units.id')
