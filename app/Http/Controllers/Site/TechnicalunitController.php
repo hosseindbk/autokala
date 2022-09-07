@@ -15,6 +15,7 @@ use App\Product_group;
 use App\State;
 use App\Technical_unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -89,7 +90,12 @@ class TechnicalunitController extends Controller
         $brands             = Brand::whereStatus(4)->get();
         $carmodels          = Car_model::whereStatus(4)->get();
         $states             = State::all();
-        $cities             = City::all();
+
+        $stats = State::whereId(auth::user()->state_id)->get();
+        foreach ($stats as $state){
+            $state_id = $state->id;
+        }
+        $cities             = City::whereState_id($state_id)->get();
 
         $newtechnicals      = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()->state()
             ->select('technical_units.id' , 'technical_units.title' , 'technical_units.slug' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address' , 'cities.title as citytitle')

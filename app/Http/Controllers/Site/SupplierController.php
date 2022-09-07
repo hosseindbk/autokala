@@ -15,6 +15,7 @@ use App\Product_group;
 use App\State;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -31,7 +32,11 @@ class SupplierController extends Controller
         $brands             = Brand::whereStatus(4)->get();
         $carmodels          = Car_model::whereStatus(4)->get();
         $states             = State::all();
-        $cities             = City::all();
+        $stats = State::whereId(auth::user()->state_id)->get();
+        foreach ($stats as $state){
+            $state_id = $state->id;
+        }
+        $cities             = City::whereState_id($state_id)->get();
 
         $newsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()->state()
             ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')

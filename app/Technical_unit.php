@@ -60,7 +60,6 @@ class Technical_unit extends Model
             alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان')->autoclose(5000);
         }
 
-
         $city_id = request('city_id');
         if (isset($city_id) && $city_id != null) {
             $query->where('technical_units.city_id' , $city_id);

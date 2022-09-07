@@ -20,6 +20,7 @@ use App\Product_group;
 use App\State;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -42,7 +43,11 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $states                 = State::all();
-        $cities                 = City::all();
+        $stats = State::whereId(auth::user()->state_id)->get();
+        foreach ($stats as $state){
+            $state_id = $state->id;
+        }
+        $cities             = City::whereState_id($state_id)->get();
         $brands                 = Brand::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $filter                 = 0;
@@ -160,7 +165,11 @@ class MarketController extends Controller
         $carmodels              = Car_model::whereStatus(4)->get();
         $productgroups          = Product_group::whereStatus(4)->get();
         $states                 = State::all();
-        $cities                 = City::all();
+        $stats = State::whereId(auth::user()->state_id)->get();
+        foreach ($stats as $state){
+            $state_id = $state->id;
+        }
+        $cities             = City::whereState_id($state_id)->get();
         $brands                 = Brand::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $filter                 = 0;
