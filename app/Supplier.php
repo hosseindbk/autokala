@@ -50,9 +50,10 @@ class Supplier extends Model
             $query->where('suppliers.state_id',$state_id);
         }elseif (auth::check() && auth::user()->state_status == 1 && Session::get('state_id') != null){
             $query->where('suppliers.state_id', Session::get('state_id'));
-        }elseif(isset($state_id)){
-            alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان')->autoclose(5000);
         }
+//        elseif(isset($state_id)){
+//            alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان')->autoclose(5000);
+//        }
 
         $city_id = request('city_id');
         if (isset($city_id) &&  $city_id != null) {

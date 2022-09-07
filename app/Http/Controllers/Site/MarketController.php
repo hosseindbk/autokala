@@ -76,7 +76,6 @@ class MarketController extends Controller
 
         if ($brandnames == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-            return Redirect::back();
         }
 
         return view('Site.market')
@@ -208,7 +207,6 @@ class MarketController extends Controller
 
         if ($brandnames == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-            return Redirect::back();
         }
         return view('Site.market')
             ->with(compact('brandnames'))
@@ -265,7 +263,6 @@ class MarketController extends Controller
 
         if ($brandnames == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-            return Redirect::back();
         }
 
         return view('Site.market')

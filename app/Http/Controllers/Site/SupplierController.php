@@ -89,7 +89,6 @@ class SupplierController extends Controller
         $supplier_id        = Supplier::filter()->whereStatus(4)->pluck('id');
         if ($supplier_id == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-            return Redirect::back();
         }
 
         if(isset($productgroup) || isset($carmodel) || isset($carbrandset)){
