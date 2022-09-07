@@ -43,10 +43,15 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $states                 = State::all();
-        $stats = State::whereId(auth::user()->state_id)->get();
-        foreach ($stats as $state){
-            $state_id = $state->id;
+        if (Auth::check()) {
+            $stats = State::whereId(Auth::user()->state_id)->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }else{
+            $state_id = 8 ;
         }
+
         $cities             = City::whereState_id($state_id)->get();
         $brands                 = Brand::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
