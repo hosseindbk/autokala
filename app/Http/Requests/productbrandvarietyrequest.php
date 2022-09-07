@@ -23,8 +23,12 @@ class productbrandvarietyrequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        if ($this->method() == 'POST') {
+            return [
+                'brand_id'    => 'required',
+                'image1' => 'mimes:jpeg,jpg,png|required|max:10000',
+
+            ];
+        }
     }
 }

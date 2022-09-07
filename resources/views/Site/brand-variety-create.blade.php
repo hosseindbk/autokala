@@ -185,10 +185,8 @@
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">انتخاب وضعیت ضمانت و گارانتی</p>
                                                                                 <select name="guarantee" class="form-control select-lg select2" id="guarantee">
-
                                                                                     <option value="0">ندارد</option>
                                                                                     <option value="1">دارد</option>
-
                                                                                 </select>
                                                                         </div>
                                                                     </div>
@@ -199,38 +197,38 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">نقطه قوت1</p>
-                                                                            <input type="text" name="strength1"  placeholder="نقطه قوت1 را وارد کنید" class="form-control" />
+                                                                            <input type="text" name="strength1" value="{{ old('strength1') }}"  placeholder="نقطه قوت1 را وارد کنید" class="form-control" />
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">نقطه ضعف1</p>
-                                                                            <input type="text" name="weakness1" placeholder="نقطه ضعف1 را وارد کنید" class="form-control" />
+                                                                            <input type="text" name="weakness1" value="{{ old('weakness1') }}" placeholder="نقطه ضعف1 را وارد کنید" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">نقطه قوت2</p>
-                                                                            <input type="text" name="strength2" placeholder="نقطه قوت2 را وارد کنید" class="form-control" />
+                                                                            <input type="text" name="strength2" value="{{ old('strength2') }}" placeholder="نقطه قوت2 را وارد کنید" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">نقطه ضعف2</p>
-                                                                            <input type="text" name="weakness2" placeholder="نقطه ضعف2 را وارد کنید" class="form-control" />
+                                                                            <input type="text" name="weakness2" value="{{ old('weakness2') }}" placeholder="نقطه ضعف2 را وارد کنید" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">نقطه قوت3</p>
-                                                                            <input type="text" name="strength3" placeholder="نقطه قوت3 را وارد کنید" class="form-control" />
+                                                                            <input type="text" name="strength3" value="{{ old('strength3') }}" placeholder="نقطه قوت3 را وارد کنید" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">نقطه ضعف3</p>
-                                                                            <input type="text" name="weakness3" placeholder="نقطه ضعف3 را وارد کنید" class="form-control" />
+                                                                            <input type="text" name="weakness3" value="{{ old('weakness3') }}" placeholder="نقطه ضعف3 را وارد کنید" class="form-control" />
                                                                         </div>
                                                                     </div>
 
@@ -241,7 +239,7 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">عنوان عامل1</p>
-                                                                            <input type="text" name="item1" id="text-input1"  onkeyup="fn1();" placeholder="عنوان عامل1 را وارد کنید" class="form-control" />
+                                                                            <input type="text" name="item1" id="text-input1"   onkeyup="fn1();" placeholder="عنوان عامل1 را وارد کنید" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
@@ -326,9 +324,6 @@
                                                                             <input type="file" name="image3" class="dropify" data-height="200">
                                                                         </div>
                                                                     </div>
-
-
-
                                                                     <div class="col-lg-12 mg-b-10 text-center">
                                                                         <div class="form-group">
                                                                             <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>

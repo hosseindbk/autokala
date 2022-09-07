@@ -97,29 +97,23 @@
                                                         <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin: 20px 0px;">مشخصات فردی</h4>
                                                     </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10"> نام و نام خانوادگی<span style="color: #ff3d00">*</span></p>
                                                             <input type="text" name="name" value="{{Auth::user()->name}}" class="form-control" />
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان<span style="color: #ff3d00">*</span></p>
-                                                            <select name="state_id" class="form-control select2" id="state_id">
+                                                            <select name="state_id" class="form-control select2" id="state_id" disabled>
                                                                 @foreach($states as $state)
                                                                     <option value="{{$state->id}}" {{$state->id == Auth::user()->state_id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">طول جغرافیایی<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" id="latelement" name="lat" value="{{Auth::user()->lat}}" class="form-control" />
-                                                        </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">شماره موبایل<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" name="phone" disabled value="{{Auth::user()->phone}}" class="form-control" />
-                                                        </div>
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب شهرستان<span style="color: #ff3d00">*</span></p>
                                                             <select name="city_id" class="form-control select2" id="city_id">
@@ -128,41 +122,59 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">عرض جغرافیایی<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" id="lngelement" name="lng" value="{{Auth::user()->lng}}" class="form-control" />
-                                                        </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">شماره ثابت<span style="color: #ff3d00">*</span></p>
-                                                            <input type="text" name="phone_number" value="{{Auth::user()->phone_number}}" class="form-control" />
-                                                        </div>
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس ایمیل<span style="color: #ff3d00">*</span></p>
                                                             <input type="text" name="email" value="{{Auth::user()->email}}" class="form-control" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">طول جغرافیایی<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" id="latelement" name="lat" value="{{Auth::user()->lat}}" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">عرض جغرافیایی<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" id="lngelement" name="lng" value="{{Auth::user()->lng}}" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">شماره موبایل<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" name="phone" disabled value="{{Auth::user()->phone}}" class="form-control" />
+                                                        </div>
+                                                    </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">شماره ثابت<span style="color: #ff3d00">*</span></p>
+                                                            <input type="text" name="phone_number" value="{{Auth::user()->phone_number}}" class="form-control" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">آدرس<span style="color: #ff3d00">*</span></p>
+                                                            <textarea name="address" id="address" class="form-control" cols="30" rows="1">{{Auth::user()->address}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تصویر کاربر</p>
                                                             <input type="file" name="image" class="dropify" data-height="200">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">آدرس<span style="color: #ff3d00">*</span></p>
-                                                            <textarea name="address" id="address" class="form-control" cols="30" rows="8">{{Auth::user()->address}}</textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
+
+                                                    <div class="col-md-12">
                                                         <p class="mg-b-10">برای جستجو موقعیت مکانی خود <a href="{{route('setmapuser' , Auth::user()->id)}}">کلیک</a> نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
 
                                                 </div>
-                                                <div class="col-lg-12 mg-b-10 text-center">
+                                                <div class="col-lg-12 mg-b-10 text-center mt-2">
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
                                                     </div>
@@ -202,7 +214,7 @@
             };
             var app = new Mapp({
                 element: '#app',
-                    @if(Auth::user()->lat == '' && Auth::user()->lng == '')
+                    @if(Auth::user()->lat === null && Auth::user()->lng === null)
                 presets: {
                     latlng: {
                         lat: 35.73249,
@@ -247,12 +259,22 @@
             });
 
             @if(Auth::user()->lat != '' && Auth::user()->lng != '')
-
             app.markReverseGeocode({
                 state: {
                     latlng: {
                         lat: {{Auth::user()->lat}},
                         lng: {{Auth::user()->lng}},
+                    },
+                    zoom: 14,
+                    icon: crosshairIcon,
+                },
+            });
+            @elseif(Auth::user()->lat == '' && Auth::user()->lng == '')
+            app.markReverseGeocode({
+                state: {
+                    latlng: {
+                       lat: 35.73249,
+                       lng: 51.42268,
                     },
                     zoom: 14,
                     icon: crosshairIcon,

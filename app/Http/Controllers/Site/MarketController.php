@@ -20,8 +20,10 @@ use App\Product_group;
 use App\State;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class MarketController extends Controller
 {
@@ -42,7 +44,22 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $states                 = State::all();
-        $cities                 = City::all();
+        if (Auth::check() && Session::get('state_id') != null) {
+            $stats = State::whereId(Session::get('state_id'))->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }
+        elseif (Auth::check() && Session::get('state_id') == null) {
+            $stats = State::whereId(Auth::user()->state_id)->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }else{
+            $state_id = 8 ;
+        }
+
+        $cities             = City::whereState_id($state_id)->get();
         $brands                 = Brand::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $filter                 = 0;
@@ -59,7 +76,6 @@ class MarketController extends Controller
 
         if ($brandnames == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-            return Redirect::back();
         }
 
         return view('Site.market')
@@ -160,7 +176,22 @@ class MarketController extends Controller
         $carmodels              = Car_model::whereStatus(4)->get();
         $productgroups          = Product_group::whereStatus(4)->get();
         $states                 = State::all();
-        $cities                 = City::all();
+        if (Auth::check() && Session::get('state_id') != null) {
+            $stats = State::whereId(Session::get('state_id'))->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }
+        elseif (Auth::check() && Session::get('state_id') == null) {
+            $stats = State::whereId(Auth::user()->state_id)->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }else{
+            $state_id = 8 ;
+        }
+
+        $cities             = City::whereState_id($state_id)->get();
         $brands                 = Brand::whereStatus(4)->get();
         $caroffers              = Car_offer::all();
         $filter                 = 0;
@@ -176,7 +207,6 @@ class MarketController extends Controller
 
         if ($brandnames == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-            return Redirect::back();
         }
         return view('Site.market')
             ->with(compact('brandnames'))
@@ -233,7 +263,6 @@ class MarketController extends Controller
 
         if ($brandnames == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-            return Redirect::back();
         }
 
         return view('Site.market')

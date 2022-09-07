@@ -67,6 +67,15 @@ trait RegistersUsers
     {
         $user = User::wherePhone($request->input('phone'))->first();
         if ($user === null) {
+            $states = State::whereId($request->input('state_id'))->select('lat' , 'lng')->get();
+            foreach($states as $state){
+               $s1  = $state->lat;
+               $s2  = $state->lng;
+            }
+
+            $lat = (float)$s1;
+            $lng = (float)$s2;
+
             $users = new \App\User();
 
             $users->phone       = $request->input('phone');
@@ -74,6 +83,8 @@ trait RegistersUsers
             $users->password    = Hash::make($request->input('password'));
             $users->state_id    = $request->input('state_id');
             $users->city_id     = $request->input('city_id');
+            $users->lat         = $lat;
+            $users->lng         = $lng;
             $users->type_id      = 4;
 
             $users->save();

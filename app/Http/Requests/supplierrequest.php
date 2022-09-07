@@ -26,6 +26,8 @@ class supplierrequest extends FormRequest
         if($this->method() == 'POST') {
             return [
                 'title' => 'required|max:250',
+                'manager' => 'required|max:250',
+                'image1'        => 'mimes:jpeg,jpg,png|required|max:10000',
 
             ];
         }else {

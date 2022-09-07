@@ -131,7 +131,7 @@
                                             </div>
                                         </div>
                                     </section>
-                                <section class="widget-product-categories">
+                                    <section class="widget-product-categories">
                                     <header class="cat-header">
                                         <h2 class="mb-0">
                                             <button class="btn btn-block text-right" type="button" data-toggle="collapse"
@@ -189,7 +189,7 @@
                                         </div>
                                     </div>
                                 </section>
-                                <section class="widget-product-categories">
+                                    <section class="widget-product-categories">
                                     <header class="cat-header">
                                         <h2 class="mb-0">
                                             <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingTwo" role="button" aria-expanded="false" aria-controls="headingOne">
@@ -234,6 +234,43 @@
                                         </div>
                                     </div>
                                 </section>
+                                    <section class="widget-product-categories">
+                                        <header class="cat-header">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-block text-right" type="button" data-toggle="collapse" href="#headingTwo" role="button" aria-expanded="false" aria-controls="headingOne">
+                                                    شهرستان
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                            </h2>
+                                        </header>
+                                        <div class="product-filter mt-3">
+                                            <div class="card">
+                                                <div class="collapse show" id="headingTwo">
+                                                    <div class="card-main mb-lg-4">
+                                                        <div class="mb-lg-4 mg-lg-4">
+                                                            <select name="city_id[]" class="form-control select-lg select2" id="car_brand_id">
+                                                                <option value="">شهرستان</option>
+
+                                                            @foreach($cities as $city)
+                                                                    <option value="{{$city->id}}" {{request('city_id') == $city->id ? 'selected' : '' }} >{{$city->title}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2 ">
+                                                        <button class="btn btn-range pr">
+                                                            اعمال فیلتر
+                                                        </button>
+                                                        @if($filter == 1)
+                                                            <a href="{{url('supplier')}}" class="btn btn-range pl">
+                                                                پاک کردن فیلتر
+                                                            </a>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
                                 </form>
                             </div>
                         </div>

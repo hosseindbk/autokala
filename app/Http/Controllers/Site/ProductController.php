@@ -36,21 +36,21 @@ class ProductController extends Controller
         $count          = Product::filter()->unicode()->whereStatus(4)->count();
 
         $newproducts    = Product::filter()->unicode()
-            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en' , 'unicode')
             ->whereStatus(4)
-            ->orderBy('id' , 'DESC')
+            ->inRandomOrder()
             ->paginate(16);
 
         $clickproducts  = Product::filter()->unicode()
-            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en' , 'unicode')
             ->whereStatus(4)
-            ->orderBy('click' , 'DESC')
+            ->inRandomOrder()
             ->paginate(16);
 
         $productvars    = Product::filter()->unicode()
-            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en' , 'unicode')
             ->whereStatus(4)
-            ->orderBy('countvarity' , 'DESC')
+            ->inRandomOrder()
             ->paginate(16);
 
         $carbrandset    = request('car_brand_id');

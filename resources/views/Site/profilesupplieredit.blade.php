@@ -217,33 +217,52 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان</p>
-                                                            <select name="state_id" class="form-control select-lg select2" id="state_id">
+                                                            <select name="state_id" class="form-control select-lg select2" id="state_id" disabled>
                                                                 <option value="">انتخاب استان</option>
                                                                 @foreach($states as $state)
                                                                     <option value="{{$state->id}}" {{$Supplier->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب شهرستان</p>
                                                             <select name="city_id" id="city_id" class="form-control select-lg select2">
                                                                 <option value="">انتخاب شهرستان</option>
                                                                 @foreach($cities as $city)
-                                                                    <option value="">انتخاب شهرستان</option>
                                                                     <option value="{{$city->id}}" {{$Supplier->city_id == $city->id ? 'selected' : ''}}>{{$city->title}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
                                                             <input type="text" name="mobile" required value="{{$Supplier->mobile}}" class="form-control"
                                                                    oninvalid="this.setCustomValidity('لطفا موبایل را وارد کنید')"
                                                                    oninput="setCustomValidity('')"/>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">طول جغرافیایی</p>
+                                                            <input type="text" id="latelement"  name="lat" @if(strlen($Supplier->lat) > 1) value="{{$Supplier->lat}}" @elseif(strlen(Auth::user()->lat) > 1) value="{{Auth::user()->lat}}" @endif class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">عرض جغرافیایی</p>
+                                                            <input type="text" id="lngelement"  name="lng" @if(strlen($Supplier->lng) > 1) value="{{$Supplier->lng}}" @elseif(strlen(Auth::user()->lng) > 1) value="{{Auth::user()->lng}}" @endif class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">وبسایت</p>
                                                             <input type="text" name="website" value="{{$Supplier->website}}" class="form-control" />
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">ایمیل</p>
                                                             <input type="text" name="email" value="{{$Supplier->email}}" class="form-control" />
@@ -254,26 +273,21 @@
                                                             <p class="mg-b-10">شماره واتس اپ</p>
                                                             <input type="text" name="whatsapp" @if(strlen($Supplier->whatsapp) > 1) value="{{$Supplier->whatsapp}}" @elseif(strlen(Auth::user()->whatsapp) > 1) value="{{Auth::user()->whatsapp}}" @endif class="form-control" />
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت</p>
                                                             <input type="text" name="phone" @if(strlen($Supplier->phone) > 1 )  value="{{$Supplier->phone}}" @elseif(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control" />
                                                         </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">طول جغرافیایی</p>
-                                                            <input type="text" id="latelement"  name="lat" @if(strlen($Supplier->lat) > 1) value="{{$Supplier->lat}}" @elseif(strlen(Auth::user()->lat) > 1) value="{{Auth::user()->lat}}" @endif class="form-control"/>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">عرض جغرافیایی</p>
-                                                            <input type="text" id="lngelement"  name="lng" @if(strlen($Supplier->lng) > 1) value="{{$Supplier->lng}}" @elseif(strlen(Auth::user()->lng) > 1) value="{{Auth::user()->lng}}" @endif class="form-control"/>
-                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
-
                                                             <textarea name="address" cols="30" rows="3" class="form-control" >@if(strlen($Supplier->address) > 1){{$Supplier->address}}@elseif(strlen(Auth::user()->address) > 1){{Auth::user()->address}}@endif</textarea>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-12">
                                                         <p class="mg-b-10">برای جستجو موقعیت مکانی خود <a href="{{route('setmapsupplier' , $Supplier->id)}}">کلیک</a> نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
@@ -443,7 +457,7 @@
         };
         var app = new Mapp({
             element: '#app',
-            @if(strlen($Supplier->lat) > 1)
+            @if($Supplier->lat != null )
             presets: {
                 latlng: {
                     lat: {{$Supplier->lat}},
@@ -463,7 +477,7 @@
 
                 },
             },
-            @elseif(strlen(Auth::user()->lat) > 1)
+            @elseif(Auth::user()->lat != null)
             presets: {
                 latlng: {
                     lat: {{Auth::user()->lat}},
@@ -518,7 +532,7 @@
         app.addLogo({
             url: '{{asset('site/images/maplogo.png')}}',
         });
-        @if(strlen($Supplier->lat) > 1 )
+        @if($Supplier->lat != null )
         app.markReverseGeocode({
             state: {
                 latlng: {
@@ -529,7 +543,7 @@
                 icon: crosshairIcon,
             },
         });
-        @elseif(strlen(Auth::user()->lat) > 1)
+        @elseif(Auth::user()->lat != null)
 
         app.markReverseGeocode({
             state: {

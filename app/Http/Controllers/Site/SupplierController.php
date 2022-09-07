@@ -15,8 +15,10 @@ use App\Product_group;
 use App\State;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class SupplierController extends Controller
 {
@@ -31,7 +33,22 @@ class SupplierController extends Controller
         $brands             = Brand::whereStatus(4)->get();
         $carmodels          = Car_model::whereStatus(4)->get();
         $states             = State::all();
-        $cities             = City::all();
+        if (Auth::check() && Session::get('state_id') != null) {
+            $stats = State::whereId(Session::get('state_id'))->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }
+        elseif (Auth::check() && Session::get('state_id') == null) {
+            $stats = State::whereId(Auth::user()->state_id)->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }else{
+            $state_id = 8 ;
+        }
+
+        $cities             = City::whereState_id($state_id)->get();
 
         $newsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()->state()
             ->select('suppliers.id' , 'suppliers.title' , 'suppliers.slug' , 'suppliers.image' , 'suppliers.manager' , 'suppliers.address' , 'cities.title as citytitle')
@@ -72,7 +89,6 @@ class SupplierController extends Controller
         $supplier_id        = Supplier::filter()->whereStatus(4)->pluck('id');
         if ($supplier_id == '[]'){
             alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-            return Redirect::back();
         }
 
         if(isset($productgroup) || isset($carmodel) || isset($carbrandset)){

@@ -66,7 +66,7 @@ class ProfilebrandvarityController extends Controller
         $productbrandvarieties->date_handle          = jdate()->format('Ymd ');
         $productbrandvarieties->user_id              = Auth::user()->id;
 
-        if ($request->file('image1') != null) {
+        if ($request->hasfile('image1')) {
             $file = $request->file('image1');
             $img = Image::make($file);
             $imagePath ="images/productbrandvarieties/";

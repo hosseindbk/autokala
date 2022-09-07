@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin
     Route::resource('menudashboards'                      , 'MenudashboardController');
     Route::resource('submenudashboards'                   , 'SubmenudashboardController');
     Route::resource('productbrandvarieties'               , 'ProductbrandvarietyController');
+    Route::patch('productbrandvarieties/update/{id}'   , 'ProductbrandvarietyController@pupdate')->name('pupdate');
     Route::resource('siteusers'                           , 'SiteuserController');
     Route::resource('comments'                            , 'CommentController');
     Route::resource('commentrates'                        , 'CommentrateController');

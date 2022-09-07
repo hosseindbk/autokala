@@ -337,19 +337,36 @@
                                                         <div class="col-md-12" >
                                                             <h3 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h3>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تلفن موبایل</p>
+                                                                <input type="text" disabled  value="{{Auth::user()->phone}}" class="form-control text-left" />
+                                                                <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
+                                                                <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
+                                                                <input type="hidden" name="lat" class="form-control" />
+                                                                <input type="hidden" name="lng" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">انتخاب استان</p>
-                                                                <select name="state_id" class="form-control select-lg select2" id="state_id">
+                                                                <select name="state_id" class="form-control select-lg select2" disabled>
                                                                     <option value="">انتخاب استان</option>
                                                                     @foreach($states as $state)
                                                                         <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">انتخاب شهرستان</p>
-                                                                <select name="city_id" id="city_id" class="form-control select-lg select2">
+                                                                <select name="city_id" id="city_id" class="form-control select-lg select2" disabled>
                                                                     <option value="">انتخاب شهرستان</option>
                                                                     @foreach($cities as $city)
                                                                         <option value="">انتخاب شهرستان</option>
@@ -357,34 +374,26 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">طول جغرافیایی</p>
-                                                                <input type="text" name="lat" id="latelement" class="form-control"/>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">آدرس</p>
-                                                                <textarea name="address" cols="30" rows="1" class="form-control" >{{Auth::user()->address}}</textarea>
+                                                                <input type="text" name="lat" id="latelement" value="{{Auth::user()->lat}}" class="form-control"/>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">تلفن موبایل</p>
-                                                                <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
-                                                                <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">تلفن ثابت</p>
-                                                                <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
-                                                            </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">عرض جغرافیایی</p>
-                                                                <input type="text" name="lng" id="lngelement" class="form-control"/>
+                                                                <input type="text" name="lng" id="lngelement" value="{{Auth::user()->lng}}" class="form-control"/>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">آدرس</p>
+                                                                <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
                                                             <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
                                                             <div id="app" style="width: 100%; height: 325px;"></div>
                                                         </div>
@@ -566,19 +575,36 @@
                                                         <div class="col-md-12" >
                                                             <h3 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h3>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تلفن موبایل</p>
+                                                                <input type="text" disabled  value="{{Auth::user()->phone}}" class="form-control text-left" />
+                                                                <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
+                                                                <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
+                                                                <input type="hidden" name="lat" class="form-control" />
+                                                                <input type="hidden" name="lng" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">انتخاب استان</p>
-                                                                <select name="state_id" class="form-control select-lg select2" id="state_id">
+                                                                <select name="state_id" class="form-control select-lg select2" disabled>
                                                                     <option value="">انتخاب استان</option>
                                                                     @foreach($states as $state)
                                                                         <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">انتخاب شهرستان</p>
-                                                                <select name="city_id" id="city_id" class="form-control select-lg select2">
+                                                                <select name="city_id" id="city_id" class="form-control select-lg select2" disabled>
                                                                     <option value="">انتخاب شهرستان</option>
                                                                     @foreach($cities as $city)
                                                                         <option value="">انتخاب شهرستان</option>
@@ -586,40 +612,32 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">طول جغرافیایی</p>
-                                                                <input type="text" name="lat" id="latelement" class="form-control"/>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">آدرس</p>
-                                                                <textarea name="address" cols="30" rows="1" class="form-control" >{{Auth::user()->address}}</textarea>
+                                                                <input type="text" name="lat" id="latelement" value="{{Auth::user()->lat}}" class="form-control"/>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">تلفن موبایل</p>
-                                                                <input type="text" disabled value="{{Auth::user()->phone}}" class="form-control" />
-                                                                <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control text-left" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <p class="mg-b-10">تلفن ثابت</p>
-                                                                <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control" />
-                                                            </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">عرض جغرافیایی</p>
-                                                                <input type="text" name="lng" id="lngelement" class="form-control"/>
+                                                                <input type="text" name="lng" id="lngelement" value="{{Auth::user()->lng}}" class="form-control"/>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <p class="mg-b-10">آدرس</p>
+                                                                <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
                                                             <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
                                                             <div id="app" style="width: 100%; height: 325px;"></div>
                                                         </div>
 
                                                     @endif
-                                                    <div class="col-lg-12 mg-b-10 text-center">
+                                                    <div class="col-lg-12 mg-b-10 text-center mt-2">
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
                                                         </div>

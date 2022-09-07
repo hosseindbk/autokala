@@ -141,10 +141,10 @@
                                                     <div class="col-md-12" >
                                                         <h4 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h4>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان</p>
-                                                            <select name="state_id" class="form-control select-lg select2" id="state_id">
+                                                            <select name="state_id" class="form-control select-lg select2" id="state_id" disabled>
                                                                 <option value="">انتخاب استان</option>
                                                                 @foreach($states as $state)
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
@@ -152,73 +152,73 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب شهرستان</p>
                                                             <select name="city_id" id="city_id" class="form-control select-lg select2">
                                                                 <option value="">انتخاب شهرستان</option>
                                                                 @foreach($cities as $city)
-                                                                    <option value="">انتخاب شهرستان</option>
                                                                     <option value="{{$city->id}}" {{Auth::user()->city_id == $city->id ? 'selected' : ''}}>{{$city->title}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
-                                                            <input type="text" name="mobile" required value="{{Auth::user()->phone}}" class="form-control"
-                                                                   oninvalid="this.setCustomValidity('لطفا موبایل را وارد کنید')"
-                                                                   oninput="setCustomValidity('')"/>
+                                                            <input type="text" name="mobile" required value="{{Auth::user()->phone}}" class="form-control" disabled/>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت</p>
-                                                            <input type="text" name="phone" required @if(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control"
-                                                                   oninvalid="this.setCustomValidity('لطفا تلفن ثابت را وارد کنید')"
-                                                                   oninput="setCustomValidity('')"/>
+                                                            <input type="text" name="phone" required @if(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control"/>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">طول جغرافیایی</p>
+                                                            <input type="text" name="lat" required id="latelement" value="{{auth::user()->lat}}" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">عرض جغرافیایی</p>
+                                                            <input type="text" name="lng" required id="lngelement" value="{{auth::user()->lng}}" class="form-control"/>
+                                                        </div>
+                                                    </div>
 
-                                                    <div class="form-group">
-                                                        <p class="mg-b-10">طول جغرافیایی</p>
-                                                        <input type="text" name="lat" required id="latelement" class="form-control"
-                                                               oninvalid="this.setCustomValidity('لطفا طول جغرافیایی را وارد کنید')"
-                                                               oninput="setCustomValidity('')"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <p class="mg-b-10">عرض جغرافیایی</p>
-                                                        <input type="text" name="lng" required id="lngelement" class="form-control"
-                                                               oninvalid="this.setCustomValidity('لطفا عرض جغرافیایی را وارد کنید')"
-                                                               oninput="setCustomValidity('')"/>
-                                                    </div>
-
-                                                    </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شماره واتس اپ</p>
                                                             <input type="text" name="whatsapp" @if(strlen(Auth::user()->whatsapp) > 1) value="{{Auth::user()->whatsapp}}" @endif class="form-control" />
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">ایمیل</p>
                                                             <input type="text" name="email" placeholder="ایمیل را وارد کنید" class="form-control" />
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-9">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
                                                             <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">@if(strlen(Auth::user()->address) > 1) {{Auth::user()->address}} @endif</textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">وبسایت</p>
                                                             <input type="text" name="site" placeholder="وبسایت را وارد کنید" class="form-control" />
                                                         </div>
-                                                        <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                    <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
 
-                                                    <div class="col-lg-12 mg-b-10 text-center">
+                                                    <div class="col-lg-12 mg-b-10 text-center mt-2">
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
                                                         </div>
@@ -268,7 +268,15 @@
             };
             var app = new Mapp({
                 element: '#app',
-                @if(Auth::user()->lat != null && Auth::user()->lng != null)
+                @if(Auth::user()->lat === null && Auth::user()->lng === null)
+                presets: {
+                    latlng: {
+                        lat: 35.73249,
+                        lng: 51.42268,
+                    },
+                    zoom: 14
+                },
+                @else
                 presets: {
                     latlng: {
                         lat: {{Auth::user()->lat}},
@@ -304,8 +312,7 @@
                 url: '{{asset('site/images/maplogo.png')}}',
             });
 
-
-            @if(Auth::user()->lat != null && Auth::user()->lng != null)
+            @if(Auth::user()->lat != '' && Auth::user()->lng != '')
             app.markReverseGeocode({
                 state: {
                     latlng: {
@@ -316,7 +323,19 @@
                     icon: crosshairIcon,
                 },
             });
+            @elseif(Auth::user()->lat == '' && Auth::user()->lng == '')
+            app.markReverseGeocode({
+                state: {
+                    latlng: {
+                        lat: 35.73249,
+                        lng: 51.42268,
+                    },
+                    zoom: 14,
+                    icon: crosshairIcon,
+                },
+            });
             @endif
+
             app.map.on('click', function (e) {
 
                 var marker = app.addMarker({
@@ -339,7 +358,22 @@
                 });
                 document.getElementById("latelement").setAttribute('value', e.latlng.lat);
                 document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
-
+                $.ajax({
+                    url: '{{ route( 'usermap' ) }}',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        lat     : e.latlng.lat,
+                        lng     : e.latlng.lng,
+                        'id'    :{{Auth::user()->id}},
+                    },
+                    type: 'patch',
+                    dataType: 'json',
+                }).done(function (data) {
+                    console.log(data);
+                });
             })
         });
     </script>
