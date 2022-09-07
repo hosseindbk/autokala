@@ -158,6 +158,10 @@
                                                         <option value="buy"  {{$offer->buyorsell == 'buy' ? 'selected' : ''}}>پیشنهاد خرید</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">طول جغرافیایی</p>
+                                                    <input type="text" name="lat" value="{{$offer->lat}}"  class="form-control" />
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -234,6 +238,10 @@
                                                             <option value="new" {{$offer->noe == 'new' ? 'selected' : ''}}>نو</option>
                                                             <option value="old" {{$offer->noe == 'old' ? 'selected' : ''}}>کارکرده</option>
                                                     </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">عرض جغرافیایی</p>
+                                                    <input type="text" name="lng" value="{{$offer->lng}}"  class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
