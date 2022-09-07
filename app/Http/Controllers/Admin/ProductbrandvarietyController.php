@@ -93,7 +93,7 @@ class ProductbrandvarietyController extends Controller
         $productbrandvarieties->date_handle          = jdate()->format('Ymd ');
         $productbrandvarieties->user_id              = Auth::user()->id;
 
-        if ($request->file('image1') != null) {
+        if ($request->hasfile('image1') ) {
             $file = $request->file('image1');
             $img = Image::make($file);
             $imagePath ="images/productbrandvarieties/";
@@ -103,7 +103,7 @@ class ProductbrandvarietyController extends Controller
             $img->encode('jpg');
         }
 
-        if ($request->file('image2') != null) {
+        if ($request->hasfile('image2')) {
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="images/productbrandvarieties/";
@@ -113,7 +113,7 @@ class ProductbrandvarietyController extends Controller
             $img->encode('jpg');
         }
 
-        if ($request->file('image3') != null) {
+        if ($request->hasfile('image3')) {
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="images/productbrandvarieties/";
@@ -149,8 +149,9 @@ class ProductbrandvarietyController extends Controller
             ->with(compact('products'));
     }
 
-    public function update(productbrandvarietyrequest $request , Product_brand_variety $productbrandvariety)
+    public function pupdate(productbrandvarietyrequest $request , Product_brand_variety $productbrandvariety)
     {
+
         $productbrandvariety->brand_id             = $request->input('brand_id');
         $productbrandvariety->product_id           = $request->input('product_id');
         $productbrandvariety->guarantee            = $request->input('guarantee');
@@ -175,7 +176,7 @@ class ProductbrandvarietyController extends Controller
         $productbrandvariety->date_handle          = jdate()->format('Ymd ');
         $productbrandvariety->user_handle          = Auth::user()->id;
 
-        if ($request->file('image1') != null) {
+        if ($request->hasfile('image1') ) {
             $file = $request->file('image1');
             $img = Image::make($file);
             $imagePath ="images/productbrandvarieties/";
@@ -185,7 +186,7 @@ class ProductbrandvarietyController extends Controller
             $img->encode('jpg');
         }
 
-        if ($request->file('image2') != null) {
+        if ($request->hasfile('image2')) {
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="images/productbrandvarieties/";
@@ -195,7 +196,7 @@ class ProductbrandvarietyController extends Controller
             $img->encode('jpg');
         }
 
-        if ($request->file('image3') != null) {
+        if ($request->hasfile('image3')) {
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="images/productbrandvarieties/";

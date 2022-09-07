@@ -35,61 +35,60 @@
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div class="row row-sm">
-                    @foreach($productbrandvarieties as $Product_brand_variety)
-
-                    <div class="col-md-4">
-                        @if($Product_brand_variety->image1 != null)
-                        <div style="width: 250px;float: right;border: 2px solid #dad8d8;border-radius: 15px;">
-                            <img src="{{asset($Product_brand_variety->image1)}}" class="img-responsive" style="padding: 20px;" alt="">
-                            <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
-                                <form action="{{ route('img1update', $Product_brand_variety->id)}}" method="post">
-                                    {{csrf_field()}}
-                                    <div class="btn-group btn-group-xs">
-                                        <button type="submit" class="btn btn-outline-danger btn-xs">
-                                            <i class="fe fe-trash-2 "></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="col-md-4">
-                        @if($Product_brand_variety->image2 != null)
-                        <div style="width: 250px;margin: 0 auto;border: 2px solid #dad8d8;border-radius: 15px;">
-                            <img src="{{asset($Product_brand_variety->image2)}}" class="img-responsive" style="padding: 20px;" alt="">
-                            <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
-                                <form action="{{ route('img2update', $Product_brand_variety->id)}}" method="post">
-                                    {{csrf_field()}}
-                                    <div class="btn-group btn-group-xs">
-                                        <button type="submit" class="btn btn-outline-danger btn-xs">
-                                            <i class="fe fe-trash-2 "></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="col-md-4">
-                        @if($Product_brand_variety->image3 != null)
-                        <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
-                            <img src="{{asset($Product_brand_variety->image3)}}" class="img-responsive" style="padding: 20px;" alt="">
-                            <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
-                                <form action="{{ route('img3update', $Product_brand_variety->id)}}" method="post">
-                                    {{csrf_field()}}
-                                    <div class="btn-group btn-group-xs">
-                                        <button type="submit" class="btn btn-outline-danger btn-xs">
-                                            <i class="fe fe-trash-2 "></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                    @endforeach
-                </div>
+                                    @foreach($productbrandvarieties as $Product_brand_variety)
+                                        <div class="col-md-4">
+                                            @if($Product_brand_variety->image1 != null)
+                                            <div style="width: 250px;float: right;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                <img src="{{asset($Product_brand_variety->image1)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                    <form action="{{ route('img1update', $Product_brand_variety->id)}}" method="post">
+                                                        {{csrf_field()}}
+                                                        <div class="btn-group btn-group-xs">
+                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                <i class="fe fe-trash-2 "></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-4">
+                                            @if($Product_brand_variety->image2 != null)
+                                                <div style="width: 250px;margin: 0 auto;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                <img src="{{asset($Product_brand_variety->image2)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                    <form action="{{ route('img2update', $Product_brand_variety->id)}}" method="post">
+                                                        {{csrf_field()}}
+                                                        <div class="btn-group btn-group-xs">
+                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                <i class="fe fe-trash-2 "></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-4">
+                                            @if($Product_brand_variety->image3 != null)
+                                                <div style="width: 250px;float: left;border: 2px solid #dad8d8;border-radius: 15px;">
+                                                    <img src="{{asset($Product_brand_variety->image3)}}" class="img-responsive" style="padding: 20px;" alt="">
+                                                    <div style="background: #efefef;text-align: center;padding: 5px;border-radius: 0px 0px 15px 15px;">
+                                                        <form action="{{ route('img3update', $Product_brand_variety->id)}}" method="post">
+                                                            {{csrf_field()}}
+                                                            <div class="btn-group btn-group-xs">
+                                                                <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                    <i class="fe fe-trash-2 "></i>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -102,8 +101,7 @@
                                         <h3 class="text-center mb-5"><span class="badge badge-light">ویرایش اطلاعات کالا برند تنوع </span></h3>
                                     </div>
                                     @foreach($productbrandvarieties as $Product_brand_variety)
-
-                                        <form action="{{route('productbrandvarieties.update', $Product_brand_variety->id)}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('pupdate', $Product_brand_variety->id)}}" method="POST" enctype="multipart/form-data">
                                             <div class="row row-sm">
                                                 {{csrf_field()}}
                                                 {{ method_field('PATCH') }}
@@ -111,18 +109,12 @@
                                                 <div class="col-md-12">
                                                     @include('error')
                                                 </div>
-
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">انتخاب برند قطعات</p>
                                                         <select name="brand_id" class="form-control select-lg select2" id="brand_id">
                                                             @foreach($brands as $brand)
-                                                                @if($brand->id == $Product_brand_variety->brand_id)
-                                                                    <option value="{{$brand->id}}">{{$brand->title_fa}}</option>
-                                                                @endif
-                                                            @endforeach
-                                                            @foreach($brands as $brand)
-                                                                <option value="{{$brand->id}}">{{$brand->title_fa}}</option>
+                                                                <option value="{{$brand->id}}" {{$Product_brand_variety->brand_id = $brand->id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -159,13 +151,8 @@
                                                     <div class="form-group">
                                                         <p class="mg-b-10">انتخاب وضعیت ضمانت و گارانتی</p>
                                                         <select name="guarantee" class="form-control select-lg select2" id="guarantee">
-                                                            @if($Product_brand_variety->guarantee == 0)
-                                                                <option value="0">ندارد</option>
-                                                                <option value="1">دارد</option>
-                                                            @elseif($Product_brand_variety->guarantee == 1)
-                                                                <option value="1">دارد</option>
-                                                                <option value="0">ندارد</option>
-                                                            @endif
+                                                                <option value="0" {{$Product_brand_variety->guarantee == 0 ? 'selected' : ''}}>ندارد</option>
+                                                                <option value="1" {{$Product_brand_variety->guarantee == 1 ? 'selected' : ''}}>دارد</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
