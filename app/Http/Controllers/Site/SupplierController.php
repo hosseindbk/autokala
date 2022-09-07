@@ -32,10 +32,15 @@ class SupplierController extends Controller
         $brands             = Brand::whereStatus(4)->get();
         $carmodels          = Car_model::whereStatus(4)->get();
         $states             = State::all();
-        $stats = State::whereId(auth::user()->state_id)->get();
-        foreach ($stats as $state){
-            $state_id = $state->id;
+        if (Auth::check()) {
+            $stats = State::whereId(Auth::user()->state_id)->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }else{
+            $state_id = 8 ;
         }
+
         $cities             = City::whereState_id($state_id)->get();
 
         $newsuppliers       = Supplier::leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')->filter()->state()
