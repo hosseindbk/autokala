@@ -74,7 +74,7 @@ class TechnicalunitController extends Controller
 
         $city = request('city_id');
         if(isset($city)  && $city != '') {
-            $city_id = City::whereIn('id', $city)->get();
+            $city_id = City::whereId($city)->get();
         }else{$city_id = null;}
         $countState    = null;
         $technical_id         = Technical_unit::filter()->state()->whereStatus(4)->pluck('id');
