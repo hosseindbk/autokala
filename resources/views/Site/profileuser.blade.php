@@ -202,7 +202,7 @@
             };
             var app = new Mapp({
                 element: '#app',
-                    @if(Auth::user()->lat == '' && Auth::user()->lng == '')
+                    @if(Auth::user()->lat === null && Auth::user()->lng === null)
                 presets: {
                     latlng: {
                         lat: 35.73249,
@@ -247,7 +247,6 @@
             });
 
             @if(Auth::user()->lat != '' && Auth::user()->lng != '')
-
             app.markReverseGeocode({
                 state: {
                     latlng: {
