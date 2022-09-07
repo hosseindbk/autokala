@@ -259,7 +259,7 @@
                                                             <a href="{{url('product'.'/'.$product->slug)}}" target="_blank">{{$product->title_fa}}</a>
                                                         </div>
                                                         <div class="title">
-                                                            <h5>{{$product->title_fa}}</h5>
+                                                            <p>{{$product->unicode}}</p>
                                                         </div>
                                                         <div class="price">
                                                         <span class="amount"> برند :  {{$Product_brand_variety = \App\Product_brand_variety::whereStatus(4)->whereProduct_id($product->id)->count()}}</span>
