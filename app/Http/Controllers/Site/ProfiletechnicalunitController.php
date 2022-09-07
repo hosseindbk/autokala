@@ -31,8 +31,11 @@ class ProfiletechnicalunitController extends Controller
 
     public function profiletechnicaledit(){
         $menus                  = Menu::whereStatus(4)->get();
-        $states                 = State::all();
-        $cities                 = city::all();
+        $states                 = State::whereId(auth::user()->id)->get();
+        foreach ($states as $state) {
+           $state_id = $state->id;
+        }
+        $cities                 = city::whereState_id($state_id)->get();
         $carbrands              = Car_brand::all();
         $carmodels              = Car_model::all();
         $supplierproductgroups  = Supplier_product_group::all();
