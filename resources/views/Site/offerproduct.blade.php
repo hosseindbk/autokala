@@ -637,7 +637,7 @@
                                                         </div>
 
                                                     @endif
-                                                    <div class="col-lg-12 mg-b-10 text-center">
+                                                    <div class="col-lg-12 mg-b-10 text-center mt-2">
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
                                                         </div>
