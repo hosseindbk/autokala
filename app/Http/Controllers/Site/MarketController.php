@@ -23,6 +23,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class MarketController extends Controller
 {
@@ -43,7 +44,13 @@ class MarketController extends Controller
         $products               = Product::whereStatus(4)->get();
         $brand_varietis         = Product_brand_variety::all();
         $states                 = State::all();
-        if (Auth::check()) {
+        if (Auth::check() && Session::get('state_id') != null) {
+            $stats = State::whereId(Session::get('state_id'))->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }
+        elseif (Auth::check() && Session::get('state_id') == null) {
             $stats = State::whereId(Auth::user()->state_id)->get();
             foreach ($stats as $state){
                 $state_id = $state->id;
@@ -170,7 +177,13 @@ class MarketController extends Controller
         $carmodels              = Car_model::whereStatus(4)->get();
         $productgroups          = Product_group::whereStatus(4)->get();
         $states                 = State::all();
-        if (Auth::check()) {
+        if (Auth::check() && Session::get('state_id') != null) {
+            $stats = State::whereId(Session::get('state_id'))->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }
+        elseif (Auth::check() && Session::get('state_id') == null) {
             $stats = State::whereId(Auth::user()->state_id)->get();
             foreach ($stats as $state){
                 $state_id = $state->id;

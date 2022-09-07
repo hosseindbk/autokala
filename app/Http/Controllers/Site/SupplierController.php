@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class SupplierController extends Controller
 {
@@ -32,7 +33,13 @@ class SupplierController extends Controller
         $brands             = Brand::whereStatus(4)->get();
         $carmodels          = Car_model::whereStatus(4)->get();
         $states             = State::all();
-        if (Auth::check()) {
+        if (Auth::check() && Session::get('state_id') != null) {
+            $stats = State::whereId(Session::get('state_id'))->get();
+            foreach ($stats as $state){
+                $state_id = $state->id;
+            }
+        }
+        elseif (Auth::check() && Session::get('state_id') == null) {
             $stats = State::whereId(Auth::user()->state_id)->get();
             foreach ($stats as $state){
                 $state_id = $state->id;
