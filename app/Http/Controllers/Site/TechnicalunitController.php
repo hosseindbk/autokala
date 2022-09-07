@@ -91,7 +91,7 @@ class TechnicalunitController extends Controller
         $carmodels          = Car_model::whereStatus(4)->get();
         $states             = State::all();
 
-        $stats = State::whereId(auth::user()->state_id)->get();
+        $stats = State::whereId(Auth::user()->state_id)->get();
         foreach ($stats as $state){
             $state_id = $state->id;
         }
