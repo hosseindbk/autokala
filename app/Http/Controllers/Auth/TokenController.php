@@ -45,7 +45,7 @@ class TokenController extends Controller
             $user->activeCode()->delete();
             $user->phone_verify = 1;
             $user->update();
-            return redirect(route('/'));
+            return redirect(route('indexfilter'));
         } else {
             if (auth()->loginUsingId($user->id)) {
                 $user->activeCode()->delete();
