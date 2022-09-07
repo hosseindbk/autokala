@@ -114,7 +114,7 @@
                                                         <p class="mg-b-10">انتخاب برند قطعات</p>
                                                         <select name="brand_id" class="form-control select-lg select2" id="brand_id">
                                                             @foreach($brands as $brand)
-                                                                <option value="{{$brand->id}}" {{$Product_brand_variety->brand_id = $brand->id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
+                                                                <option value="{{$brand->id}}" {{$Product_brand_variety->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->title_fa}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
