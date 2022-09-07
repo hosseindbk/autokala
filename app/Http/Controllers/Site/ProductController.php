@@ -36,19 +36,19 @@ class ProductController extends Controller
         $count          = Product::filter()->unicode()->whereStatus(4)->count();
 
         $newproducts    = Product::filter()->unicode()
-            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en' , 'unicode')
             ->whereStatus(4)
             ->inRandomOrder()
             ->paginate(16);
 
         $clickproducts  = Product::filter()->unicode()
-            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en' , 'unicode')
             ->whereStatus(4)
             ->inRandomOrder()
             ->paginate(16);
 
         $productvars    = Product::filter()->unicode()
-            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en')
+            ->select('id' , 'slug' , 'title_fa' , 'image' , 'title_en' , 'unicode')
             ->whereStatus(4)
             ->inRandomOrder()
             ->paginate(16);
