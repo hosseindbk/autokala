@@ -161,8 +161,6 @@ class OfferController extends Controller
 
     public function offercreate(offerrequest $request)
     {
-
-
         $offers = new Offer();
 
         $offers->title                  = $request->input('title');
@@ -220,7 +218,7 @@ class OfferController extends Controller
         $offers->user_id            = Auth::user()->id;
 
 
-        if ($request->file('image1') != null) {
+        if ($request->hasFile('image1')) {
             $file = $request->file('image1');
             $img = Image::make($file);
             $imagePath = "images/offer";

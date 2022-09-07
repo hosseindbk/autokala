@@ -23,8 +23,30 @@ class offerrequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        if($this->method() == 'POST') {
+            return [
+                'phone'         => 'required|min:11|numeric',
+                'noe'           => 'required',
+                'title_offer'   => 'required|min:3|max:255',
+                'buyorsell'     => 'required',
+                'lat'           => 'required',
+                'lng'           => 'required',
+                'description'   => 'required|min:3',
+                'address'       => 'required|min:3',
+                'image1'        => 'mimes:jpeg,jpg,png|required|max:10000',
+            ];
+        }else {
+            return [
+                'phone'         => 'required|min:11|numeric',
+                'noe'           => 'required',
+                'title_offer'   => 'required|min:3|max:255',
+                'buyorsell'     => 'required',
+                'lat'           => 'required',
+                'lng'           => 'required',
+                'description'   => 'required|min:3',
+                'address'       => 'required|min:3',
+                'image1'        => 'mimes:jpeg,jpg,png|required|max:10000',
+            ];
+        }
     }
 }
