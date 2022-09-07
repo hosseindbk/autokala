@@ -264,7 +264,15 @@
             };
             var app = new Mapp({
                 element: '#app',
-                @if(Auth::user()->lat != null && Auth::user()->lng != null)
+                @if(Auth::user()->lat === null && Auth::user()->lng === null)
+                presets: {
+                    latlng: {
+                        lat: 35.73249,
+                        lng: 51.42268,
+                    },
+                    zoom: 14
+                },
+                @else
                 presets: {
                     latlng: {
                         lat: {{Auth::user()->lat}},
@@ -300,7 +308,7 @@
                 url: '{{asset('site/images/maplogo.png')}}',
             });
 
-            @if(Auth::user()->lat != null && Auth::user()->lng != null)
+            @if(Auth::user()->lat != '' && Auth::user()->lng != '')
             app.markReverseGeocode({
                 state: {
                     latlng: {
@@ -311,7 +319,19 @@
                     icon: crosshairIcon,
                 },
             });
+            @elseif(Auth::user()->lat == '' && Auth::user()->lng == '')
+            app.markReverseGeocode({
+                state: {
+                    latlng: {
+                        lat: 35.73249,
+                        lng: 51.42268,
+                    },
+                    zoom: 14,
+                    icon: crosshairIcon,
+                },
+            });
             @endif
+
             app.map.on('click', function (e) {
 
                 var marker = app.addMarker({
@@ -334,7 +354,22 @@
                 });
                 document.getElementById("latelement").setAttribute('value', e.latlng.lat);
                 document.getElementById("lngelement").setAttribute('value', e.latlng.lng);
-
+                $.ajax({
+                    url: '{{ route( 'usermap' ) }}',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        lat     : e.latlng.lat,
+                        lng     : e.latlng.lng,
+                        'id'    :{{Auth::user()->id}},
+                    },
+                    type: 'patch',
+                    dataType: 'json',
+                }).done(function (data) {
+                    console.log(data);
+                });
             })
         });
     </script>
