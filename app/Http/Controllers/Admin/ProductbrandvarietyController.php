@@ -15,6 +15,8 @@ use App\Product;
 use App\Product_brand_variety;
 use App\Status;
 use App\Submenudashboard;
+use App\Technical_unit;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
@@ -149,32 +151,33 @@ class ProductbrandvarietyController extends Controller
             ->with(compact('products'));
     }
 
-    public function pupdate(productbrandvarietyrequest $request , Product_brand_variety $productbrandvariety)
+    public function pupdate(Request $request,$id)
     {
+        $productbrandvariety = Product_brand_variety::findOrfail($id);
 
-        $productbrandvariety->brand_id             = $request->input('brand_id');
-        $productbrandvariety->product_id           = $request->input('product_id');
-        $productbrandvariety->guarantee            = $request->input('guarantee');
-        $productbrandvariety->item1                = $request->input('item1');
-        $productbrandvariety->item2                = $request->input('item2');
-        $productbrandvariety->item3                = $request->input('item3');
-        $productbrandvariety->value_item1          = $request->input('value_item1');
-        $productbrandvariety->value_item2          = $request->input('value_item2');
-        $productbrandvariety->value_item3          = $request->input('value_item3');
-        $productbrandvariety->strength1            = $request->input('strength1');
-        $productbrandvariety->strength2            = $request->input('strength2');
-        $productbrandvariety->strength3            = $request->input('strength3');
-        $productbrandvariety->strength4            = $request->input('strength4');
-        $productbrandvariety->weakness1            = $request->input('weakness1');
-        $productbrandvariety->weakness2            = $request->input('weakness2');
-        $productbrandvariety->weakness3            = $request->input('weakness3');
-        $productbrandvariety->weakness4            = $request->input('weakness4');
-        $productbrandvariety->status               = $request->input('status_id');
-        $productbrandvariety->description          = $request->input('description');
-        $productbrandvariety->review               = $request->input('review');
-        $productbrandvariety->date                 = jdate()->format('Ymd ');
-        $productbrandvariety->date_handle          = jdate()->format('Ymd ');
-        $productbrandvariety->user_handle          = Auth::user()->id;
+        $productbrandvariety->brand_id       = $request->input('brand_id');
+        $productbrandvariety->product_id     = $request->input('product_id');
+        $productbrandvariety->guarantee      = $request->input('guarantee');
+        $productbrandvariety->item1          = $request->input('item1');
+        $productbrandvariety->item2          = $request->input('item2');
+        $productbrandvariety->item3          = $request->input('item3');
+        $productbrandvariety->value_item1    = $request->input('value_item1');
+        $productbrandvariety->value_item2    = $request->input('value_item2');
+        $productbrandvariety->value_item3    = $request->input('value_item3');
+        $productbrandvariety->strength1      = $request->input('strength1');
+        $productbrandvariety->strength2      = $request->input('strength2');
+        $productbrandvariety->strength3      = $request->input('strength3');
+        $productbrandvariety->strength4      = $request->input('strength4');
+        $productbrandvariety->weakness1      = $request->input('weakness1');
+        $productbrandvariety->weakness2      = $request->input('weakness2');
+        $productbrandvariety->weakness3      = $request->input('weakness3');
+        $productbrandvariety->weakness4      = $request->input('weakness4');
+        $productbrandvariety->status         = $request->input('status_id');
+        $productbrandvariety->description    = $request->input('description');
+        $productbrandvariety->review         = $request->input('review');
+        $productbrandvariety->date           = jdate()->format('Ymd ');
+        $productbrandvariety->date_handle    = jdate()->format('Ymd ');
+        $productbrandvariety->user_handle    = Auth::user()->id;
 
         if ($request->hasfile('image1') ) {
             $file = $request->file('image1');

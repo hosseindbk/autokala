@@ -185,10 +185,8 @@
                                                                         <div class="form-group">
                                                                             <p class="mg-b-10">انتخاب وضعیت ضمانت و گارانتی</p>
                                                                                 <select name="guarantee" class="form-control select-lg select2" id="guarantee">
-
                                                                                     <option value="0">ندارد</option>
                                                                                     <option value="1">دارد</option>
-
                                                                                 </select>
                                                                         </div>
                                                                     </div>
