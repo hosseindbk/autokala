@@ -43,7 +43,6 @@ class offerrequest extends FormRequest
                 'lng'           => 'required',
                 'description'   => 'required|min:3',
                 'address'       => 'required|min:3',
-                'image1'        => 'mimes:jpeg,jpg,png|required|max:10000',
             ];
         }
     }
