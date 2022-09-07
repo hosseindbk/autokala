@@ -62,7 +62,7 @@ class Technical_unit extends Model
 //        }
 
         $city_id = request('city_id');
-        if (isset($city_id) && $city_id != null) {
+        if (isset($city_id) && $city_id != null && $city_id!= '') {
             $query->where('technical_units.city_id' , $city_id);
         }
 
