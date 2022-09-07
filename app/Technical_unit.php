@@ -61,6 +61,12 @@ class Technical_unit extends Model
 //            alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان')->autoclose(5000);
 //        }
 
+        if (isset($state_id) && $state_id != null && auth::check() && auth::user()->state_status == 1 ) {
+            $city_id = null;
+        }elseif (auth::check() && auth::user()->state_status == 1 && Session::get('state_id') != null) {
+            $city_id = null;
+        }
+
         $city_id = request('city_id');
         if (isset($city_id) && $city_id != null) {
             $query->where('technical_units.city_id' , $city_id);
