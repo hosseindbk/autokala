@@ -26,7 +26,6 @@ class offerrequest extends FormRequest
         if($this->method() == 'POST') {
             return [
                 'phone'         => 'required|min:11|numeric',
-                'noe'           => 'required',
                 'title_offer'   => 'required|min:3|max:255',
                 'buyorsell'     => 'required',
                 'lat'           => 'required',
@@ -38,7 +37,6 @@ class offerrequest extends FormRequest
         }else {
             return [
                 'phone'         => 'required|min:11|numeric',
-                'noe'           => 'required',
                 'title_offer'   => 'required|min:3|max:255',
                 'buyorsell'     => 'required',
                 'lat'           => 'required',
