@@ -258,6 +258,17 @@
                     icon: crosshairIcon,
                 },
             });
+            @elseif(Auth::user()->lat == '' && Auth::user()->lng == '')
+            app.markReverseGeocode({
+                state: {
+                    latlng: {
+                       lat: 35.73249,
+                       lng: 51.42268,
+                    },
+                    zoom: 14,
+                    icon: crosshairIcon,
+                },
+            });
             @endif
 
             app.map.on('click', function (e) {
