@@ -190,6 +190,7 @@
                                                     <div class="mb-lg-4 mg-lg-4">
                                                         <select name="city_id[]" class="form-control select-lg select2" id="car_brand_id">
                                                             @foreach($cities as $city)
+                                                                <option value=""></option>
                                                                 <option value="{{$city->id}}" {{request('city_id') == $city->id ? 'selected' : '' }} >{{$city->title}}</option>
                                                             @endforeach
                                                         </select>
