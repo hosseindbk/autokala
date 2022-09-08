@@ -37,8 +37,8 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('brand/{slug}'                       , 'IndexController@subbrand');
     Route::get('productgroup'                       , 'IndexController@productgroup');
     Route::get('offerselection'                     , 'MarketController@offerselection');
-    Route::get('technicalselection'                 , 'TechnicalunitController@offerselection');
-    Route::get('supplierselection'                  , 'SupplierController@offerselection');
+    Route::get('technicalselection'                 , 'TechnicalunitController@technicalselection');
+    Route::get('supplierselection'                  , 'SupplierController@supplierselection');
     Route::get('productvariety/{slug}/{id}'         , 'ProductController@subproductvariety');
 
 
