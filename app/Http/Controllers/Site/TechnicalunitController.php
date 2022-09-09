@@ -91,20 +91,12 @@ class TechnicalunitController extends Controller
         $carmodels          = Car_model::whereStatus(4)->get();
         $states             = State::all();
         if (Auth::check() && Session::get('state_id') != null) {
-            $stats = State::whereId(Session::get('state_id'))->get();
-            foreach ($stats as $state){
-                $state_id = $state->id;
-            }
-        }
-        elseif (Auth::check() && Session::get('state_id') == null) {
-            $stats = State::whereId(Auth::user()->state_id)->get();
-            foreach ($stats as $state){
-                $state_id = $state->id;
-            }
+            $cities             = City::whereState_id(Session::get('state_id'))->get();
+        }elseif (Auth::check() && Session::get('state_id') == null) {
+            $cities             = City::whereState_id(Auth::user()->state_id)->get();
         }else{
-            $state_id = 8 ;
+            $cities             = City::whereState_id(8)->get();
         }
-        $cities             = City::whereState_id($state_id)->get();
 
         $newtechnicals      = Technical_unit::leftjoin('cities' , 'cities.id' , '=' ,'technical_units.city_id')->filter()->state()
             ->select('technical_units.id' , 'technical_units.title' , 'technical_units.slug' , 'technical_units.image' , 'technical_units.manager' , 'technical_units.address' , 'cities.title as citytitle')

@@ -188,7 +188,7 @@
                                             <div class="collapse show" id="headingTwo">
                                                 <div class="card-main mb-lg-4">
                                                     <div class="mb-lg-4 mg-lg-4">
-                                                        <select name="city_id" class="form-control select-lg select2" id="car_brand_id">
+                                                        <select name="city_id" class="form-control select-lg select2" id="city_id">
                                                             <option value="">شهرستان</option>
                                                         @foreach($cities as $city)
                                                                 <option value="{{$city->id}}" {{request('city_id') == $city->id ? 'selected' : '' }} >{{$city->title}}</option>

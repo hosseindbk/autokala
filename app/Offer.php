@@ -49,7 +49,7 @@ class Offer extends Model
         }
 
         $city_id = request('city_id');
-        if (isset($city_id) &&  $city_id != null) {
+        if (isset($city_id)) {
             $query->where('offers.city_id' , $city_id);
         }
 

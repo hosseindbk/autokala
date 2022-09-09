@@ -56,7 +56,7 @@ class Supplier extends Model
         }
 
         $city_id = request('city_id');
-        if (isset($city_id) &&  $city_id != null) {
+        if (isset($city_id)) {
             $query->where('suppliers.city_id' , $city_id);
         }
 
