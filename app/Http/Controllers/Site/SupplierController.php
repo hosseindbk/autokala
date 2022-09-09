@@ -23,6 +23,28 @@ use Illuminate\Support\Facades\Session;
 class SupplierController extends Controller
 {
     public function index(){
+
+        $productgroup       = request('productgroup_id');
+        $carmodel           = request('car_model_id');
+        $city               = request('city_id');
+
+        if(isset($productgroup)  && $productgroup != '') {
+            $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
+        }else{$productgroup_id = null;}
+
+        if(isset($carmodel)  && $carmodel != '') {
+            $carmodel_id = Car_model::whereIn('id', $carmodel)->get();
+        }else{$carmodel_id = null;}
+
+        if(isset($city)  && $city != '') {
+            $city_id = City::whereId($city)->get();
+        }else{$city_id = null;}
+
+        $supplier_id        = Supplier::filter()->whereStatus(4)->pluck('id');
+        if ($supplier_id == '[]'){
+            alert()->warning('خطا', 'نتیجه ای  یافت نشد');
+        }
+
         $menus              = Menu::select('id' , 'title' , 'slug' , 'keyword' ,'keycheck', 'textpage')->whereStatus(4)->get();
         $productgroup       = request('productgroup_id');
         $carbrandset        = request('car_brand_id');
@@ -61,26 +83,6 @@ class SupplierController extends Controller
             ->where('suppliers.status', 4)
             ->orderBy('id')
             ->paginate(16);
-
-
-        if(isset($productgroup)  && $productgroup != '') {
-            $productgroup_id = Product_group::whereIn('id', $productgroup)->get();
-        }else{$productgroup_id = null;}
-
-        $city = request('city_id');
-        if(isset($city)  && $city != '') {
-            $city_id = City::whereIn('id', $city)->get();
-        }else{$city_id = null;}
-
-        $carmodel = request('car_model_id');
-        if(isset($carmodel)  && $carmodel != '') {
-            $carmodel_id = Car_model::whereIn('id', $carmodel)->get();
-        }else{$carmodel_id = null;}
-
-        $supplier_id        = Supplier::filter()->whereStatus(4)->pluck('id');
-        if ($supplier_id == '[]'){
-            alert()->warning('خطا', 'نتیجه ای  یافت نشد');
-        }
 
         if(isset($productgroup) || isset($carmodel) || isset($carbrandset)){
             $filter = 1;
