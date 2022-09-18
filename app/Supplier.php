@@ -33,9 +33,9 @@ class Supplier extends Model
                     ->orwhere('suppliers.address' , 'LIKE' , '%' .$keywords. '%');
             }
             else
-                {
-                    $query->where($category, 'LIKE', '%' . $keywords . '%')->where('suppliers.status' , 4);
-                }
+            {
+                $query->where($category, 'LIKE', '%' . $keywords . '%')->where('suppliers.status' , 4);
+            }
         }
 
         $productgroup_id    = request('productgroup_id');
@@ -46,6 +46,85 @@ class Supplier extends Model
 
         $state_id = request('state_id');
         if (isset($state_id) && $state_id != null && auth::check() && auth::user()->state_status == 1 ) {
+            session(['state_id' => $state_id]);
+            $query->where('suppliers.state_id',$state_id);
+        }elseif (auth::check() && auth::user()->state_status == 1 && Session::get('state_id') != null){
+            $query->where('suppliers.state_id', Session::get('state_id'));
+        }
+        elseif(isset($state_id)){
+            alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان')->autoclose(5000);
+        }
+
+        $city_id = request('city_id');
+        if (isset($city_id)) {
+            $query->where('suppliers.city_id' , $city_id);
+        }
+
+        $whole_seller = request('whole_seller');
+        if (isset($whole_seller) && $whole_seller == 1) {
+            $query->where('suppliers.whole_seller',1);
+        }
+
+        $retail_seller = request('retail_seller');
+        if (isset($retail_seller) && $retail_seller == 1) {
+            $query->where('suppliers.retail_seller',1);
+        }
+
+        $manufacturer = request('manufacturer');
+        if (isset($manufacturer) && $manufacturer == 1) {
+            $query->where('suppliers.manufacturer',1);
+        }
+
+        $importer = request('importer');
+        if (isset($importer) && $importer == 1) {
+            $query->where('suppliers.importer',1);
+        }
+
+        $carbrands = request('car_brand_id');
+        if (isset($carbrands) && $carbrands != null) {
+            $supplier_id = Supplier_product_group::whereCar_brand_id($carbrands)->pluck('supplier_id');
+            $query->whereIn('suppliers.id',$supplier_id);
+        }
+
+        $carmodels = request('car_model_id');
+        if (isset($carmodels) && array_values($carmodels)[0] != null) {
+            $supplier_id = Supplier_product_group::whereIn('car_model_id',$carmodels)->pluck('supplier_id');
+            $query->whereIn('suppliers.id',$supplier_id);
+
+        }
+        return $query;
+    }
+
+    public function scopeApi($query)
+    {
+
+        $keywords   = request('suppliersearch');
+        $category   = request('category_id');
+
+        if(isset($keywords) && $keywords != null)
+        {
+            if ($category == 'all' || $category == null)
+            {
+                $query->where('suppliers.title'   , 'LIKE' , '%' .$keywords. '%')
+                    ->orwhere('suppliers.manager' , 'LIKE' , '%' .$keywords. '%')
+                    ->orwhere('suppliers.phone'   , 'LIKE' , '%' .$keywords. '%')
+                    ->orwhere('suppliers.mobile'  , 'LIKE' , '%' .$keywords. '%')
+                    ->orwhere('suppliers.address' , 'LIKE' , '%' .$keywords. '%');
+            }
+            else
+            {
+                $query->where($category, 'LIKE', '%' . $keywords . '%')->where('suppliers.status' , 4);
+            }
+        }
+
+        $productgroup_id    = request('productgroup_id');
+        if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null) {
+            $supplier_id = Supplier_product_group::whereIn('kala_group_id', $productgroup_id)->pluck('supplier_id');
+            $query->whereIn('suppliers.id', $supplier_id);
+        }
+
+        $state_id = request('state_id');
+        if (isset($state_id) && $state_id != null && Auth::guard('api')->check() && Auth::guard('api')->user()->state_status == 1 ) {
             session(['state_id' => $state_id]);
             $query->where('suppliers.state_id',$state_id);
         }elseif (auth::check() && auth::user()->state_status == 1 && Session::get('state_id') != null){

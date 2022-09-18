@@ -20,8 +20,7 @@ class TechnicalunitController extends Controller
 
         $technicals      = Technical_unit::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->whereStatus(4)
-            ->filter()
-            ->state()
+            ->api()
             ->sort()
             ->paginate(10);
 
@@ -34,7 +33,7 @@ class TechnicalunitController extends Controller
 
         $technicals      = Technical_unit::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->whereStatus(4)
-            ->filter()
+            ->api()
             ->sort()
             ->paginate(10);
 
