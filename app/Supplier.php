@@ -139,6 +139,11 @@ class Supplier extends Model
             $query->where('suppliers.city_id' , $city_id);
         }
 
+        $selected = request('selected');
+        if (isset($selected) && $selected == 1) {
+            $query->where('suppliers.homeshow' , 1);
+        }
+
         $whole_seller = request('whole_seller');
         if (isset($whole_seller) && $whole_seller == 1) {
             $query->where('suppliers.whole_seller',1);

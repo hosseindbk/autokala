@@ -131,6 +131,11 @@ class Technical_unit extends Model
             $query->where('technical_units.city_id' , $city_id);
         }
 
+        $selected = request('selected');
+        if (isset($selected) && $selected == 1) {
+            $query->where('technical_units.homeshow' , 1);
+        }
+
         $carbrands = request('car_brand_id');
         if (isset($carbrands) && $carbrands != null) {
             $product_id = Car_product::whereCar_brand_id($carbrands)->pluck('product_id');

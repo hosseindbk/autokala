@@ -77,6 +77,69 @@ class Offer extends Model
 
     }
 
+    public function scopeApi($query){
+
+        $keywords = request('offersearch');
+        if (isset($keywords) && $keywords != null) {
+            $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
+        }
+
+        $type = request('type');
+
+        if (isset($type) && $type == 'all') {
+            $user_id = User::pluck('id');
+            $query->whereIn('offers.user_id' ,$user_id);
+        }elseif(isset($type) && $type == 1){
+            $user_id = User::whereType_id($type)->pluck('id');
+            $query->whereIn('offers.user_id' ,$user_id);
+        }elseif(isset($type) && $type != 1 && $type != 'all'){
+            $user_id = User::whereType_id($type)->pluck('id');
+            $query->whereIn('offers.user_id' ,$user_id);
+        }
+
+        $state_id = request('state_id');
+        if (isset($state_id) && $state_id != null && Auth::guard('api')->check() && Auth::guard('api')->user()->state_status == 1 ) {
+            session(['state_id' => $state_id]);
+            $query->where('offers.state_id' , $state_id);
+        }elseif (auth::check() && auth::user()->state_status == 1 && Session::get('state_id') != null){
+            $query->where('offers.state_id', Session::get('state_id'));
+        }
+        elseif(isset($state_id)){
+            alert()->warning('جهت اطلاع بیشتر با پشتیبانی تماس حاصل فرمایید', 'عدم دسترسی تغییر استان')->autoclose(5000);
+        }
+        $selected = request('selected');
+        if (isset($selected) && $selected == 1) {
+            $query->where('offers.homeshow' , 1);
+        }
+        $city_id = request('city_id');
+        if (isset($city_id)) {
+            $query->where('offers.city_id' , $city_id);
+        }
+
+        $productgroup_id    = request('productgroup_id');
+        if(isset($productgroup_id)  && array_values($productgroup_id)[0] != null){
+            $query->whereIn('product_group' , $productgroup_id);
+        }
+
+        $carbrands = request('car_brand_id');
+        if (isset($carbrands) && $carbrands != null) {
+            $offer_id = Car_offer::whereCar_brand_id($carbrands)->pluck('offer_id');
+            $query->whereIn('offers.id',$offer_id);
+        }
+
+        $car_model_id    = request('car_model_id');
+        if(isset($car_model_id)  &&  array_values($car_model_id)[0] != null){
+            $offer_id  = Car_offer::whereIn('car_model_id',$car_model_id)->pluck('offer_id');
+            $query->whereIn('offers.id',$offer_id);
+        }
+
+        $brand_id    = request('brand_id');
+        if(isset($brand_id)  && array_values($brand_id)[0] != null){
+            $query->whereIn('offers.brand_id' , $brand_id);
+        }
+
+    }
+
     public function scopeSort($query){
 
         $newest = request('newest');
