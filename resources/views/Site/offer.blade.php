@@ -119,7 +119,7 @@
                                                         <div class="form-group">
                                                             <p class="mg-b-10">نام قطعه</p>
                                                             <select name="unicode_product" class="form-control select2">
-
+                                                                <option value="">انتخاب قطعه</option>
                                                             </select>
                                                             <a href="{{url('product')}}" class="btn btn-info fa fa-search" style="position: absolute;"></a>
                                                         </div>
@@ -291,21 +291,6 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">تلفن موبایل</p>
-                                                            <input type="text" disabled  value="{{Auth::user()->phone}}" class="form-control text-left" />
-                                                            <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
-                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
-                                                            <input type="hidden" name="lat" class="form-control" />
-                                                            <input type="hidden" name="lng" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان</p>
                                                             <select name="state_id" class="form-control select-lg select2" disabled>
                                                                 <option value="">انتخاب استان</option>
@@ -313,10 +298,6 @@
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @endforeach
                                                             </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">طول جغرافیایی</p>
-                                                            <input type="text" name="lat" id="latelement" class="form-control"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -330,10 +311,6 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">عرض جغرافیایی</p>
-                                                            <input type="text" name="lng" id="lngelement" class="form-control"/>
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -342,25 +319,34 @@
                                                             <input type="hidden"  name="mobile" value="{{Auth::user()->phone}}" class="form-control" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
+                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">طول جغرافیایی</p>
+                                                            <input type="text" name="lat" id="latelement" value="{{Auth::user()->lat}}"  class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">عرض جغرافیایی</p>
+                                                            <input type="text" name="lng" id="lngelement" value="{{Auth::user()->lng}}" class="form-control"/>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
                                                             <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
-                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
-                                                            <input type="hidden" name="lat" class="form-control" />
-                                                            <input type="hidden" name="lng" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-12">
                                                         <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
-
 
                                                     <input type="hidden" name="supplier_id" @foreach($suppliers as $supplier) @if($supplier->user_id == Auth::user()->id) value="{{$supplier->id}}" @endif @endforeach >
 
@@ -514,6 +500,12 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
+                                                            <p class="mg-b-10">قیمت (تومان)</p>
+                                                            <input type="text"  name="single_price" id="single_price" placeholder="قیمت را وارد کنید" class="form-control number4" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
                                                             <p class="mg-b-10">وضعیت قطعه </p>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input"  type="radio" checked name="noe" id="noe" value="new">
@@ -525,6 +517,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شرح آگهی</p>
@@ -555,12 +548,7 @@
                                                             <input type="file" name="image3" class="dropify" data-height="200">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">قیمت (تومان)</p>
-                                                            <input type="text"  name="single_price" id="single_price" placeholder="قیمت را وارد کنید" class="form-control number4" />
-                                                        </div>
-                                                    </div>
+
                                                     <div class="col-md-12" >
                                                         <h3 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h3>
                                                     </div>
@@ -574,11 +562,6 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">طول جغرافیایی</p>
-                                                            <input type="text" name="lat" id="latelement" class="form-control"/>
-                                                        </div>
-
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -590,16 +573,6 @@
                                                                     <option value="{{$city->id}}" {{Auth::user()->city_id == $city->id ? 'selected' : ''}}>{{$city->title}}</option>
                                                                 @endforeach
                                                             </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">عرض جغرافیایی</p>
-                                                            <input type="text" name="lng" id="lngelement" class="form-control"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-7">
-                                                        <div class="form-group">
-                                                            <p class="mg-b-10">آدرس</p>
-                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -617,14 +590,33 @@
                                                             <input type="hidden" name="lng" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">طول جغرافیایی</p>
+                                                            <input type="text" name="lat" id="latelement" value="{{Auth::user()->lat}}" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">عرض جغرافیایی</p>
+                                                            <input type="text" name="lng" id="lngelement" value="{{Auth::user()->lng}}" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">آدرس</p>
+                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
                                                         <p>جهت ثبت موقعیت خود بر روی نقشه کلیک نمایید</p>
                                                         <div id="app" style="width: 100%; height: 325px;"></div>
                                                     </div>
 
 
                                                 @endif
-                                                <div class="col-lg-12 mg-b-10 text-center">
+                                                <div class="col-lg-12 mg-b-10 text-center mt-2">
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-info  btn-lg m-r-20">ذخیره اطلاعات</button>
                                                     </div>
