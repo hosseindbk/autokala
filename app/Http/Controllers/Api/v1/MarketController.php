@@ -31,7 +31,7 @@ class MarketController extends Controller
             END) AS type'))
             ->where('offers.status' , '=', '4')
             ->where('offers.buyorsell' ,'=' , 'sell')
-            ->filter()
+            ->api()
             ->sort()
             ->paginate(16);
 
@@ -58,7 +58,7 @@ class MarketController extends Controller
             END) AS type') )
             ->where('offers.status' , '=', '4')
             ->where('offers.buyorsell' ,'=' , 'buy')
-            ->filter()
+            ->api()
             ->sort()
             ->paginate(16);
 
