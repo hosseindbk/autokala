@@ -35,7 +35,6 @@ class TechnicalunitController extends Controller
         $technicals      = Technical_unit::select('title' , 'slug' , 'address' , 'manager' , 'image')
             ->whereStatus(4)
             ->filter()
-            ->state()
             ->sort()
             ->paginate(10);
 
