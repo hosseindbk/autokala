@@ -67,12 +67,18 @@ class UserController extends Controller
         $user = User::wherePhone($request->input('phone'))->first();
         if ($user === null) {
 
+            $states = State::where('id' , $request->input('state_id'))->get();
+            foreach ($states as $state){
+                $lat = $state->lat;
+                $lng = $state->lng;
+            }
+
             $validData = $this->validate($request, [
-                'phone' => 'required',
-                'name' => 'required|string',
-                'password' => 'required|string|min:8|confirmed',
-                'state_id' => 'required',
-                'city_id' => 'required',
+                'phone'     => 'required',
+                'name'      => 'required|string',
+                'password'  => 'required|string|min:8|confirmed',
+                'state_id'  => 'required',
+                'city_id'   => 'required',
             ]);
 
             $user = User::create([
@@ -82,7 +88,9 @@ class UserController extends Controller
                 'password'  => bcrypt($validData['password']),
                 'state_id'  => $validData['state_id'],
                 'city_id'   => $validData['city_id'],
-                'type_id'   => 4
+                'type_id'   => 4,
+                'lng'       => $lng,
+                'lat'       => $lat,
             ]);
 
             $user->update([
@@ -182,7 +190,7 @@ class UserController extends Controller
             leftJoin('states', 'states.id', '=', 'users.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'users.city_id')
             ->select('users.name' , 'users.email' , 'users.state_status' ,  'users.image' , 'users.phone' , 'users.phone_number' , 'users.state_id' , 'users.city_id' , 'users.address', 'users.type_id' ,
-                'states.title as state' , 'cities.title as city',
+                'states.title as state' , 'cities.title as city', 'users.lat' , 'users.lng' ,
                 DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه و تامین کننده"
             WHEN users.type_id = "3" THEN "تعمیرگاه و خدمات فنی"
@@ -255,6 +263,8 @@ class UserController extends Controller
         $user->name             = $request->input('name');
         $user->state_id         = $request->input('state_id');
         $user->city_id          = $request->input('city_id');
+        $user->lat              = $request->input('lat');
+        $user->lng              = $request->input('lng');
         if ($request->file('image') != null) {
             $file = $request->file('image');
             $img = Image::make($file);
