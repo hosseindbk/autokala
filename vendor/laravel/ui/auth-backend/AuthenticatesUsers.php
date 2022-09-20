@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Notifications\ActiveCode as ActiveCodeNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use UxWeb\SweetAlert\SweetAlert;
@@ -36,7 +37,8 @@ trait AuthenticatesUsers
         if (Auth::check()){
             return Redirect::url()->previous();
         }
-        session()->flash('url' , url()->previous());
+        session(['url' => url()->previous()]);
+        //session()->flash('url' , url()->previous());
         return view('Site.auth.login');
     }
     public function showLoginrememberForm()
@@ -85,7 +87,10 @@ trait AuthenticatesUsers
                 if (Hash::check($request->input('password'), $user->password)) {
                     Auth::loginUsingId($user->id);
                     alert()->success($user->name.' به وبسایت اتوکالا ' , 'خوش آمدید' );
-                    return Redirect::route('indexfilter');
+                    //dd(url()->previous());
+                    $url  = Session::get('url');
+                    return Redirect::to($url);
+                    //return Redirect::route('indexfilter');
                 } else {
                     alert()->error('عملیات ناموفق', 'شماره تلفن و یا رمز عبور اشتباه است');
                     return Redirect::back();

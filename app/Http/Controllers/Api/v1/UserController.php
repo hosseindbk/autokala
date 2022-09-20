@@ -11,6 +11,7 @@ use App\State;
 use App\Supplier;
 use App\Technical_unit;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,9 +39,17 @@ class UserController extends Controller
 
         }
 
+//        $date = auth::user()->updated_at;
+//        if ($date <= Carbon::today()->subDays( 1 )){
+//            auth()->user()->update([
+//                'api_token' => ''
+//            ]);
+//        }
+
         auth()->user()->update([
                 'api_token' => Str::random(100)
             ]);
+
         $response = [
             'api_token'=>auth()->user()->api_token,
         ];

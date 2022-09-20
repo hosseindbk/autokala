@@ -54,7 +54,7 @@ class Technical_unit extends Model
 
         if (isset($state_id) &&  $state_id != null && auth::check() && auth::user()->state_status == 1 ) {
             session(['state_id' => $state_id]);
-            dd($state_id);
+            //dd($state_id);
             $query->where('technical_units.state_id', $state_id);
         }elseif (auth::check() && auth::user()->state_status == 1 && Session::get('state_id') != null){
             $query->where('technical_units.state_id', Session::get('state_id'));
