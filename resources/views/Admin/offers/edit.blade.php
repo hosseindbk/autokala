@@ -264,13 +264,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تلفن موبایل</p>
-                                                    <input type="text" disabled @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone}}" @endif @endforeach class="form-control" />
-                                                    <input type="hidden"  name="mobile" @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone}}" @endif @endforeach class="form-control" />
+                                                    <input type="text" disabled @if($offer->mobile) value="{{$offer->mobile}}" @else @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone}}" @endif @endforeach @endif class="form-control" />
+                                                    <input type="hidden"  name="mobile" @if($offer->mobile) value="{{$offer->mobile}}"  @else @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone}}" @endif @endforeach @endif class="form-control" />
                                                 </div>
                                                 <div class="form-group">
                                                     <p class="mg-b-10">تلفن ثابت</p>
-                                                    <input type="text" disabled @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone_number}}" @endif @endforeach class="form-control" />
-                                                    <input type="hidden" name="phone" @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone_number}}" @endif @endforeach class="form-control" />
+                                                    <input type="text" disabled @if($offer->phone) value="{{$offer->phone}}"  @else @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone_number}}" @endif @endforeach @endif class="form-control" />
+                                                    <input type="hidden" name="phone" @if($offer->phone) value="{{$offer->phone}}" @else @foreach($users as $user) @if($user->id == $offer->user_id) value="{{$user->phone_number}}" @endif @endforeach @endif class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
