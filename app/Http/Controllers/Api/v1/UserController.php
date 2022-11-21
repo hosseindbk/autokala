@@ -235,18 +235,24 @@ class UserController extends Controller
             $technicals      = Technical_unit::leftjoin('markusers' , 'markusers.technical_id' , '=' , 'technical_units.id')
                 ->leftjoin('states' , 'states.id' , '=' , 'technical_units.state_id')
                 ->leftjoin('cities' , 'cities.id' , '=' , 'technical_units.city_id')
+                ->leftJoin('statuses', 'statuses.id', '='   , 'technical_units.status')
+
                 ->select('markusers.id as mark_id'  , 'technical_units.id'          , 'technical_units.title'       , 'technical_units.slug'    , 'technical_units.address' , 'technical_units.manager' , 'technical_units.phone'
                     ,'technical_units.image'        , 'technical_units.image2'      , 'technical_units.image3'      , 'technical_units.mobile'  , 'technical_units.website' , 'technical_units.state_id'  , 'technical_units.city_id'
-                    , 'technical_units.email'       , 'technical_units.whatsapp'    , 'technical_units.autokala'    , 'technical_units.lat'     , 'technical_units.lng'     , 'technical_units.autokala', 'technical_units.description as description' ,'states.title as state_name','cities.title as city_name')
+                    , 'technical_units.email'       , 'technical_units.whatsapp'    , 'technical_units.autokala'    , 'technical_units.lat'     , 'technical_units.lng'     , 'technical_units.autokala', 'technical_units.description as description'
+                    ,'states.title as state_name','cities.title as city_name' , 'statuses.title as status')
                 ->where('technical_units.user_id'  ,'=' , auth::user()->id)
                 ->get();
 
             $suppliers       = Supplier::leftjoin('markusers' , 'markusers.supplier_id' , '=' , 'suppliers.id')
                 ->leftjoin('states' , 'states.id' , '=' , 'suppliers.state_id')
                 ->leftjoin('cities' , 'cities.id' , '=' , 'suppliers.city_id')
+                ->leftJoin('statuses','statuses.id', '=', 'suppliers.status')
+
                 ->select('markusers.id as mark_id'  ,'suppliers.id'         , 'suppliers.title'         , 'suppliers.slug'          , 'suppliers.address'   , 'suppliers.manager'   , 'suppliers.image'
                     , 'suppliers.manufacturer'      , 'suppliers.importer'  , 'suppliers.whole_seller'  , 'suppliers.retail_seller' , 'suppliers.phone'     , 'suppliers.mobile'    , 'suppliers.image2' , 'suppliers.image3'
-                    , 'suppliers.website'           , 'suppliers.email'     , 'suppliers.whatsapp'      , 'suppliers.lat'           , 'suppliers.lng'       , 'suppliers.state_id'  , 'suppliers.city_id' ,'suppliers.autokala','suppliers.description as description','states.title as state_name','cities.title as city_name')
+                    , 'suppliers.website'           , 'suppliers.email'     , 'suppliers.whatsapp'      , 'suppliers.lat'           , 'suppliers.lng'       , 'suppliers.state_id'  , 'suppliers.city_id' ,'suppliers.autokala'
+                    ,'suppliers.description as description','states.title as state_name','cities.title as city_name','statuses.title as status')
                 ->where('suppliers.user_id' , '=', auth::user()->id)
                 ->get();
 
