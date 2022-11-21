@@ -84,7 +84,7 @@ class MarketController extends Controller
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
             WHEN users.type_id = "4" THEN "شخصی"
-            END) AS type'), 'statuses.title')
+            END) AS type'), 'statuses.title as status')
             ->where('offers.status' , '=', '4')
             ->where('offers.homeshow' , '=', '1')
             ->filter()
