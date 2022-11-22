@@ -225,7 +225,7 @@ class MarketController extends Controller
         leftjoin('offers', 'offers.id'  , '=' , 'car_offers.offer_id')
             ->leftJoin('car_brands'     , 'car_brands.id'       , '=' , 'car_offers.car_brand_id')
             ->leftJoin('car_models'     , 'car_models.id'       , '=' , 'car_offers.car_model_id')
-            ->select('car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title')
+            ->select('car_offers.id as id' , 'car_brands.title_fa as brand_title' , 'car_models.title_fa as model_title')
             ->where('offers.user_id' , Auth::user()->id)
             ->where('car_offers.offer_id' , request('offer_id'))
             ->get();
