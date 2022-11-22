@@ -281,7 +281,7 @@ class OfferController extends Controller
             ->where('offers.id' , $id)
             ->get();
 
-        $response = ['technical_unit' => $offers];
+        $response = ['offers' => $offers];
 
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
