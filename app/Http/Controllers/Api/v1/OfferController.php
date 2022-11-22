@@ -273,4 +273,16 @@ class OfferController extends Controller
 
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
+
+    public function editoffer($id){
+        $offers = Offer::select('offers.id' , 'offers.buyorsell' , 'offers.unicode_product' , 'offers.product_name' , 'offers.brand_id' , 'offers.brand_name' , 'offers.product_group' , 'offers.title_offer'
+            ,'offers.permanent_supplier' , 'offers.description' , 'offers.image1', 'offers.image2', 'offers.image3', 'offers.single', 'offers.single_price', 'offers.price', 'offers.total' , 'offers.address', 'offers.noe', 'offers.lat', 'offers.lng')
+            ->where('offers.user_id' , Auth::user()->id)
+            ->where('offers.id' , $id)
+            ->get();
+
+        $response = ['technical_unit' => $offers];
+
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+    }
 }

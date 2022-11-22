@@ -58,6 +58,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
         Route::delete('/technicalunit/cartechnicaldelete/{id}'  , 'TechnicalunitController@cartechnicaldelete' )->name('cartechnicaldelete');
 
         Route::post('/offer/store'                      , 'OfferController@store');
+        Route::get('/offer/edit/{id}'                   , 'OfferController@editoffer');
         Route::post('/offer/edit/{id}'                  , 'OfferController@update');
         Route::post('/offer/carofferstore'              , 'OfferController@carofferstore');
         Route::delete('/offer/offerdelete/{id}'         , 'OfferController@offerdelete')->name('offerdelete');
