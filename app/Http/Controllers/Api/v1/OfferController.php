@@ -247,7 +247,7 @@ class OfferController extends Controller
 
         $status     = true;
         $message    = 'success';
-        $response   = 'اطلاعات با موفقیت ثبت شد';
+        $response   = $offer->id;
 
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
