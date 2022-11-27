@@ -180,6 +180,7 @@ class OfferController extends Controller
 
     public function update(Request $request , $id)
     {
+
         $offer = Offer::findOrfail($id);
 
         $offer->title_offer        = $request->input('title_offer');
@@ -214,7 +215,7 @@ class OfferController extends Controller
         $offer->permanent_supplier = $request->input('permanent_supplier');
         $offer->status             = '1';
 
-        if ($request->file('image1') != null) {
+        if ($request->file('image1') != null && $request->file('image1') != 'null') {
             $file = $request->file('image1');
             $img = Image::make($file);
             $imagePath ="images/offer";
@@ -224,7 +225,7 @@ class OfferController extends Controller
             $img->encode('jpg');
         }
 
-        if ($request->file('image2') != null) {
+        if ($request->file('image2') != null && $request->file('image2') != 'null') {
             $file = $request->file('image2');
             $img = Image::make($file);
             $imagePath ="images/offer";
@@ -234,7 +235,7 @@ class OfferController extends Controller
             $img->encode('jpg');
         }
 
-        if ($request->file('image3') != null) {
+        if ($request->file('image3') != null && $request->file('image3') != 'null') {
             $file = $request->file('image3');
             $img = Image::make($file);
             $imagePath ="images/offer";
