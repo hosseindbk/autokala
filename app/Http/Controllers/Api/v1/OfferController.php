@@ -252,12 +252,13 @@ class OfferController extends Controller
                 $img->save($imagePath . $imageName);
                 $img->encode('jpg');
             }
+        }
             $offer->update();
 
             $status = true;
             $message = 'success';
             $response = $offer->id;
-        }
+
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
 
