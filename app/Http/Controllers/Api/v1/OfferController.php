@@ -180,7 +180,25 @@ class OfferController extends Controller
 
     public function update(Request $request , $id)
     {
-
+        dd($request->input('title_offer'),
+        $request->input('product_group'),
+        $request->input('noe'),
+        $request->input('state_id'),
+        $request->input('buyorsell'),
+        $request->input('product_name'),
+        $request->input('city_id'),
+        $request->input('mobile'),
+        $request->input('brand_id'),
+        $request->input('brand_name'),
+        $request->input('total'),
+        $request->input('lat'),
+        $request->input('lng'),
+        $request->input('description'),
+        $request->input('address'),
+        $request->input('phone'),
+        $request->file('image1'),
+        $request->file('image2'),
+        $request->file('image3'));
         $offer = Offer::findOrfail($id);
 
         $offer->title_offer        = $request->input('title_offer');
