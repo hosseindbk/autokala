@@ -180,25 +180,6 @@ class OfferController extends Controller
 
     public function update(Request $request , $id)
     {
-//        dd($request->input('title_offer'),
-//        $request->input('product_group'),
-//        $request->input('noe'),
-//        $request->input('state_id'),
-//        $request->input('buyorsell'),
-//        $request->input('product_name'),
-//        $request->input('city_id'),
-//        $request->input('mobile'),
-//        $request->input('brand_id'),
-//        $request->input('brand_name'),
-//        $request->input('total'),
-//        $request->input('lat'),
-//        $request->input('lng'),
-//        $request->input('description'),
-//        $request->input('address'),
-//        $request->input('phone'),
-//        $request->file('image1'),
-//        $request->file('image2'),
-//        $request->file('image3'));
         $offer = Offer::findOrfail($id);
 
         $offer->title_offer        = $request->input('title_offer');
@@ -233,41 +214,50 @@ class OfferController extends Controller
         $offer->permanent_supplier = $request->input('permanent_supplier');
         $offer->status             = '1';
 
-        if ($request->file('image1') != null && $request->file('image1') != 'null') {
-            $file = $request->file('image1');
-            $img = Image::make($file);
-            $imagePath ="images/offer";
-            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $offer->image1 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
+        if($request->input('image1')){
+            $offer->image1        = null;
+        }else {
+            if ($request->file('image1') != null && $request->file('image1') != 'null') {
+                $file = $request->file('image1');
+                $img = Image::make($file);
+                $imagePath = "images/offer";
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+                $offer->image1 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
         }
-
-        if ($request->file('image2') != null && $request->file('image2') != 'null') {
-            $file = $request->file('image2');
-            $img = Image::make($file);
-            $imagePath ="images/offer";
-            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $offer->image2 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
+        if($request->input('image2')){
+            $offer->image2        = null;
+        }else {
+            if ($request->file('image2') != null && $request->file('image2') != 'null') {
+                $file = $request->file('image2');
+                $img = Image::make($file);
+                $imagePath = "images/offer";
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+                $offer->image2 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
         }
+        if($request->input('image3')){
+            $offer->image3        = null;
+        }else {
+            if ($request->file('image3') != null && $request->file('image3') != 'null') {
+                $file = $request->file('image3');
+                $img = Image::make($file);
+                $imagePath = "images/offer";
+                $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
+                $offer->image3 = $file->move($imagePath, $imageName);
+                $img->save($imagePath . $imageName);
+                $img->encode('jpg');
+            }
+            $offer->update();
 
-        if ($request->file('image3') != null && $request->file('image3') != 'null') {
-            $file = $request->file('image3');
-            $img = Image::make($file);
-            $imagePath ="images/offer";
-            $imageName = md5(uniqid(rand(), true)) . md5(uniqid(rand(), true)) . '.jpg';
-            $offer->image3 = $file->move($imagePath, $imageName);
-            $img->save($imagePath.$imageName);
-            $img->encode('jpg');
+            $status = true;
+            $message = 'success';
+            $response = $offer->id;
         }
-        $offer->update();
-
-        $status     = true;
-        $message    = 'success';
-        $response   = $offer->id;
-
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
     }
 
