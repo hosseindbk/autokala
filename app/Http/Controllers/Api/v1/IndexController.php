@@ -339,13 +339,35 @@ class IndexController extends Controller
 
     public function appversion(){
 
-        $versions = Versionapp::all();
 
-        $response = [
-            'version'          => $versions ,
+        $versions = Versionapp::select('force_update','has_update', 'url_update')->where('version' , request('current'))->first();
 
-        ];
-        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
+        if ($versions->force_update == 1)
+        {
+            $force_update = true;
+            $message = 'به علت تغییرات اساسی نیاز به بروز رسانی می باشد';
+
+        }else{
+            $force_update = false;
+            $message = '';
+        }
+
+        if ($versions->has_update == 1)
+        {
+            $has_update = true;
+            $message = 'نسخه جدید اپلیکیشن موجود می باشد';
+
+        }else{
+            $has_update = false;
+            $message = '';
+
+        }
+
+        $url_update    = $versions->url_update;
+
+
+
+        return Response::json(['message' => $message,'force_update'=>$force_update,'has_update'=>$has_update,'url_update'=>$url_update]);
 
     }
 }
