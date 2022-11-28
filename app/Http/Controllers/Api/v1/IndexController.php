@@ -13,6 +13,7 @@ use App\Product_group;
 use App\Representative_supplier;
 use App\Slide;
 use App\Supplier;
+use App\Versionapp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -333,6 +334,18 @@ class IndexController extends Controller
         $message    = 'success';
         $response   = 'اطلاعات با موفقیت حذف شد';
         return Response::json(['ok' => $status, 'message' => $message, 'response' => $response]);
+
+    }
+
+    public function appversion(){
+
+        $versions = Versionapp::all();
+
+        $response = [
+            'version'          => $versions ,
+
+        ];
+        return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
 
     }
 }
