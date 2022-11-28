@@ -342,6 +342,12 @@ class IndexController extends Controller
 
         $versions = Versionapp::select('force_update','has_update', 'url_update')->where('version' , request('current'))->first();
 
+        if ($versions == null)
+        {
+            return Response::json(['message' => 'ورژن انتخاب شده موجود نمی باشد']);
+
+        }
+
         if ($versions->force_update == 1)
         {
             $force_update = true;
