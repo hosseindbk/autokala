@@ -373,7 +373,7 @@ class IndexController extends Controller
 
 
 
-        return Response::json(['message' => $message,'force_update'=>$force_update,'has_update'=>$has_update,'url_update'=>$url_update]);
+        return Response::json(['ok' => true , 'message' => $message,'force_update'=>$force_update,'has_update'=>$has_update,'url_update'=>$url_update]);
 
     }
 }
