@@ -348,30 +348,19 @@ class IndexController extends Controller
 
         }
 
-        if ($versions->force_update == 1)
-        {
-            $force_update = true;
+        if ($versions->force_update == 1){$force_update = true;}else{$force_update = false;}
+
+        if ($versions->has_update == 1){$has_update = true;}else{$has_update = false;}
+
+        if ($versions->force_update == 1 ){
             $message = 'به علت تغییرات اساسی نیاز به بروز رسانی می باشد';
-
-        }else{
-            $force_update = false;
-            $message = '';
-        }
-
-        if ($versions->has_update == 1)
-        {
-            $has_update = true;
+        }elseif($versions->force_update == 0 && $versions->has_update == 1){
             $message = 'نسخه جدید اپلیکیشن موجود می باشد';
-
         }else{
-            $has_update = false;
             $message = '';
-
         }
 
         $url_update    = $versions->url_update;
-
-
 
         return Response::json(['ok' => true , 'message' => $message,'force_update'=>$force_update,'has_update'=>$has_update,'url_update'=>$url_update]);
 
