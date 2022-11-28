@@ -98,7 +98,6 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('/'                          , 'IndexController@index')->name('/');
     Route::get('/'                          , 'IndexController@index')->name('indexfilter');
     Route::get('/company/{slug}'            , 'IndexController@company')->name('company');
-    Route::get('/appversion'                , 'IndexController@appversion');
     Route::get('/filterstate'               , 'IndexController@indexstate')->name('filterstate');
     /*market*/
     Route::get('market/sell'                , 'MarketController@sell')->name('sell');
