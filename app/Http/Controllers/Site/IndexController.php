@@ -166,4 +166,9 @@ class IndexController extends Controller
                 ->with(compact('menus'));
         }
     }
+
+    public function privacy(){
+
+        return view('site.privacy');
+    }
 }
