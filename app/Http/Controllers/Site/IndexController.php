@@ -169,6 +169,6 @@ class IndexController extends Controller
 
     public function privacy(){
 
-        return view('site.privacy');
+        return view('Site.privacy');
     }
 }
