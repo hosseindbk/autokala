@@ -145,6 +145,7 @@ Route::group(['namespace' => 'Site'] , function (){
     Route::get('contact'                    , 'ContactusController@index' );
     Route::get('help'                       , 'HelpController@index' );
     Route::get('privacy'                    , 'IndexController@privacy' );
+    Route::get('terms'                    , 'IndexController@terms' );
 });
 
 Route::group(['middleware' => ['web' ,'checkUser'] , 'namespace' => 'Site'] , function(){
