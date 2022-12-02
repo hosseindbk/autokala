@@ -188,4 +188,25 @@ class IndexController extends Controller
             ->with(compact('states'))
             ->with(compact('menus'));
     }
+    public function terms(){
+        $cities             = City::all();
+        $states             = State::all();
+        $countState         = null;
+        $menus              = Menu::whereStatus(4)->get();
+
+
+        $visitors = new Visitor();
+
+        $visitors->ip       =   request()->ip();
+        $visitors->datetime =   jdate();
+        $visitors->page_id  =  '/';
+
+        $visitors->save();
+
+        return view('Site.terms')
+            ->with(compact('cities'))
+            ->with(compact('countState'))
+            ->with(compact('states'))
+            ->with(compact('menus'));
+    }
 }

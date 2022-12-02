@@ -1,7 +1,7 @@
 @extends('master')
 @section('title')
     <title>
-        اتوکالا - حریم خصوصی
+        اتوکالا - قوانین و حریم خصوصی
     </title>
     <link rel="stylesheet" href="{{asset('site/css/vendor/lightgallery.css')}}">
     <meta name="enamad" content="745189" />
