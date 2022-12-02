@@ -168,7 +168,24 @@ class IndexController extends Controller
     }
 
     public function privacy(){
+        $cities             = City::all();
+        $states             = State::all();
+        $countState         = null;
+        $menus              = Menu::whereStatus(4)->get();
 
-        return view('Site.privacy');
+
+        $visitors = new Visitor();
+
+        $visitors->ip       =   request()->ip();
+        $visitors->datetime =   jdate();
+        $visitors->page_id  =  '/';
+
+        $visitors->save();
+
+        return view('Site.privacy')
+            ->with(compact('cities'))
+            ->with(compact('countState'))
+            ->with(compact('states'))
+            ->with(compact('menus'));
     }
 }
