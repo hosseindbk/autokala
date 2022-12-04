@@ -38,7 +38,7 @@ if ($user != null){
         $phone = auth::user()->phone;
         return redirect(route('phone.token'))->with(['phone' => $phone]);
     }else{
-    return redirect(url('/'));
+    return redirect(url('indexfilter'));
     }
 }
 
@@ -47,6 +47,6 @@ if ($user != null){
         $request->validate(['password' => 'required|string|min:8|confirmed']);
         $user->password = Hash::make($request->input('password'));
         $user->update();
-        return redirect(route('/'));
+        return redirect(route('indexfilter'));
     }
 }
