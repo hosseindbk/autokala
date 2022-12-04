@@ -114,7 +114,7 @@ class MarketController extends Controller
             ->leftJoin('users'                  , 'users.id'                    , '=' , 'offers.user_id')
             ->leftjoin('markusers'              , 'markusers.offer_id'          , '=' , 'offers.id')
 
-            ->select('offers.id as offer_id' , 'markusers.id as mark_id','brands.title_fa as brand' ,'offers.total as number', 'offers.slug' , 'offers.image1',
+            ->select('offers.id as offer_id' , 'markusers.id as mark_id','brands.title_fa as brand' ,'offers.brand_name','offers.brand_id','offers.total as number', 'offers.slug' , 'offers.image1',
                 'offers.image2', 'offers.image3' ,'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' ,
                 'offers.single_price as retailprice' ,'offers.unicode_product as unicode' ,'offers.description' , 'offers.phone', 'offers.mobile' , 'offers.address' ,
                 'offers.lat','offers.lng' ,'product_groups.title_fa as product_group' , 'offers.created_at as created_at' ,
@@ -141,6 +141,8 @@ class MarketController extends Controller
                 'offer_id'          => $offer->offer_id,
                 'mark_id'           => $offer->mark_id,
                 'brand'             => $offer->brand,
+                'brand_name'             => $offer->brand_name,
+                'brand_id'             => $offer->brand_id,
                 'number'            => $offer->number,
                 'slug'              => $offer->slug,
                 'image1'            => $offer->image1,
