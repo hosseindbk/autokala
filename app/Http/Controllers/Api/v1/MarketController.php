@@ -22,8 +22,8 @@ class MarketController extends Controller
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
             ->leftJoin('users', 'users.id', '=', 'offers.user_id')
-            ->select('brands.title_fa as brand' ,'offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice',
-
+            ->select('brands.title_fa as brand' ,'offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' ,
+                    'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice','offers.created_at as date',
             DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
@@ -34,9 +34,12 @@ class MarketController extends Controller
             ->api()
             ->sort()
             ->paginate(16);
-
+        foreach ($brandnames as $brandname) {
+            $brandname['tarikh']  = jdate($brandname['date'])->ago();
+            $dataSet[] =   $brandname;
+            }
         $response = [
-            'selloffer'=>$brandnames,
+            'selloffer'=>$dataSet,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
@@ -61,10 +64,13 @@ class MarketController extends Controller
             ->api()
             ->sort()
             ->paginate(16);
-
+        foreach ($brandnames as $brandname) {
+            $brandname['tarikh']  = jdate($brandname['date'])->ago();
+            $dataSet[] =   $brandname;
+        }
 
         $response = [
-            'buyoffer'=>$brandnames,
+            'buyoffer'=>$dataSet,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
