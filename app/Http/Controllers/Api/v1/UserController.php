@@ -285,6 +285,7 @@ class UserController extends Controller
         $user->city_id          = $request->input('city_id');
         $user->lat              = $request->input('lat');
         $user->lng              = $request->input('lng');
+        $user->address          = $request->input('address');
         if ($request->file('image') != null) {
             $file = $request->file('image');
             $img = Image::make($file);
