@@ -122,6 +122,10 @@
                                                             <option value="0" {{$user->state_status == 0 ? 'selected' : ''}}>ندارد </option>
                                                             </select>
                                                         </div>
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">ادرس</p>
+                                                    <input type="text" name="address" value="{{$user->address}}" class="form-control" />
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">

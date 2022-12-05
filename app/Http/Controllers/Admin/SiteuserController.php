@@ -125,6 +125,7 @@ class SiteuserController extends Controller
         $user->phone_verify = $request->input('phone_verify');
         $user->phone_number = $request->input('phone_number');
         $user->email        = $request->input('email');
+        $user->address        = $request->input('address');
         if ($request->input('password') != null) {
             $user->password = Hash::make($request->input('password'));
         }
