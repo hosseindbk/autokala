@@ -317,9 +317,13 @@
                                                             <a href="{{route('offer-edit' , $offer->id)}}" class="btn btn-info">ویرایش</a>
                                                         </div>
                                                         <div class="thumb ">
+                                                            @if($offer->status == 4)
                                                             <a href="{{url('market'.'/'.$offer->slug)}}" target="_blank" class="d-block">
                                                                 <img src="{{asset($offer->image1)}}" class="mt-3" style="height: 235px;" alt="{{$offer->title_offer}}">
                                                             </a>
+                                                            @else
+                                                                <img src="{{asset($offer->image1)}}" class="mt-3" style="height: 235px;" alt="{{$offer->title_offer}}">
+                                                            @endif
                                                         </div>
                                                         <div class="title">
                                                             <h3>{{ \Illuminate\Support\Str::limit($offer->title_offer, 21, $end='...') }}</h3>
