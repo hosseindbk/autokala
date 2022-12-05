@@ -211,7 +211,6 @@ class OfferController extends Controller
 
         if (trim($supplier_id) != '[]')
         {
-            dd($supplier_id[0]);
             $offers->supplier_id = $supplier_id[0];
         }
         $offers->permanent_supplier = $request->input('permanent_supplier');
