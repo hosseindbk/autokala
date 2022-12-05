@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-xs-12 pl mt-3 mb-3" style="height: 770px;overflow: auto;">
+            <div class="col-lg-4 col-xs-12 pl mt-3 mb-3" >
                 <div class="adplacement-container-column">
                     <div class="slider-main-container d-block">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-xs-12 order-1 d-block">
+            <div class="col-lg-12 col-md-12 col-xs-12 order-1 d-block" style="height: 770px;overflow: auto;">
                 <div class="shop-archive-content mt-3 d-block">
                     <div class="product-items">
                         <div class="row">
