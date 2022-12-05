@@ -86,7 +86,7 @@
                                     <div class="profile-address">
                                         <div class="middle-container">
                                             <div class="card-body">
-                                                <div class="text-center"><h3 class="main-content-label text-center text-info">ورود اطلاعات آگهی</h3></div>
+                                                <div class="text-center"><h3 class="main-content-label text-center text-info">ورود اطلاعات آگهی جدید</h3></div>
                                                 <div class="float-left btn btn-outline-dark" style="margin-top: -45px;"><strong style="font-size: 12px;"> تاریخ ثبت آگهی </strong> {{jdate()->format('%Y/%m/%d')}} </div>
                                             </div>
                                             <form action="{{ route('offer-create')}}" method="POST" enctype="multipart/form-data">
