@@ -208,7 +208,7 @@ class OfferController extends Controller
         }
 
         $supplier_id = Supplier::whereUser_id(auth::user()->id)->pluck('id');
-        dd($supplier_id);
+        dd($supplier_id[0]);
         if (trim($supplier_id) != '[]')
         {
             $offers->supplier_id = $supplier_id[0];
