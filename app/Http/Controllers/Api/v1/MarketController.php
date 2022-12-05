@@ -34,12 +34,9 @@ class MarketController extends Controller
             ->api()
             ->sort()
             ->paginate(16);
-        foreach ($brandnames as $brandname) {
-            $brandname['tarikh']  = jdate($brandname['date'])->ago();
-            $dataSet[] =   $brandname;
-            }
+
         $response = [
-            'selloffer'=>$dataSet,
+            'selloffer'=>$brandnames,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
@@ -53,7 +50,7 @@ class MarketController extends Controller
             ->leftJoin('users'  , 'users.id'    , '='   , 'offers.user_id')
             ->select('brands.title_fa as brand' ,'offers.total as numberofsell', 'offers.slug' , 'offers.image1 as image'
                 , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice'
-                , 'offers.single_price as retailprice',
+                , 'offers.single_price as retailprice','offers.created_at as date',
             DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
@@ -64,13 +61,10 @@ class MarketController extends Controller
             ->api()
             ->sort()
             ->paginate(16);
-        foreach ($brandnames as $brandname) {
-            $brandname['tarikh']  = jdate($brandname['date'])->ago();
-            $dataSet[] =   $brandname;
-        }
+
 
         $response = [
-            'buyoffer'=>$dataSet,
+            'buyoffer'=>$brandnames,
         ];
         return Response::json(['ok' =>true ,'message' => 'success','response'=>$response]);
     }
