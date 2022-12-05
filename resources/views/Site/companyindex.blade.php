@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-xs-12 pl mt-3 mb-3">
+            <div class="col-lg-4 col-xs-12 pl mt-3 mb-3" style="height: 770px;overflow: auto;">
                 <div class="adplacement-container-column">
                     <div class="slider-main-container d-block">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
