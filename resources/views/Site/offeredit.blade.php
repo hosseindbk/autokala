@@ -232,7 +232,8 @@
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">قیمت خرده فروشی (تومان)</p>
-                                                                        <input type="text"  {{$offer->single == 0 ? 'disabled' : ''}}  name="single_price" id="single_price" value="{{number_format($offer->single_price)}}" class="form-control" />
+{{--                                                                        <input type="text"  {{$offer->single == 0 ? 'disabled' : ''}}  name="single_price" id="single_price" value="{{number_format($offer->single_price)}}" class="form-control" />--}}
+                                                                        <input type="text"  name="single_price" id="single_price" value="{{number_format($offer->single_price)}}" class="form-control" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3">
