@@ -67,6 +67,7 @@ class OfferController extends Controller
         $menus                  = Menu::whereStatus(4)->get();
         $suppliers              = Supplier::whereStatus(4)->get();
         $products               = Product::whereStatus(4)->whereId($id)->get();
+        dd($products);
         $product_id             = Product::whereStatus(4)->whereId($id)->pluck('id');
         $kalagroup_id           = Product::whereStatus(4)->whereId($id)->pluck('kala_group_id');
         $brand_varietis         = Product_brand_variety::whereIn('product_id', $product_id)->get();
