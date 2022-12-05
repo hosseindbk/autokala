@@ -137,7 +137,7 @@ class IndexController extends Controller
             $representative_suppliers = Representative_supplier::whereSupplier_id($supplier_id)->pluck('brand_id');
             $brands         = Brand::whereStatus(4)->whereIn('id' , $representative_suppliers)->get();
 
-            $offers         = Offer::whereStatus(4)->whereSupplier_id($supplier_id)->get();
+            $offers         = Offer::whereStatus(4)->whereSupplier_id($supplier_id)->orderBy('id' , 'DESC')->get();
             $users          = User::select('id', 'type_id')->get();
 
             $brandnames = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
@@ -147,7 +147,6 @@ class IndexController extends Controller
                 ->where('offers.status', '=', '4')
                 ->whereBuyorsell('sell')
                 ->where('offers.brand_id', '<>', null)
-                ->orderBy('offers.id' , 'DESC')
                 ->get();
 
             $orginal_slides     = Slide::whereStatus(4)->wherePosition(1)->latest()->get();
