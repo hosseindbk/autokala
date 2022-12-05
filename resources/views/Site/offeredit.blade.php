@@ -184,6 +184,19 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <p class="mg-b-10">وضعیت قطعه </p>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input"  type="radio" {{$offer->noe == 'new' ? 'checked' : ''}} name="noe" id="noe" value="new">
+                                                                            <label class="form-check-label" style="margin-right: 5px;" for="noe">  نو </label>
+                                                                        </div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input" type="radio" {{$offer->noe == 'old' ? 'checked' : ''}} name="noe" id="old" value="old">
+                                                                            <label class="form-check-label"  style="margin-right: 5px;" for="old">  کارکرده </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <p class="mg-b-10">شرح آگهی</p>
