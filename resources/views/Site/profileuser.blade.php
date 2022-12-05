@@ -106,7 +106,8 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان<span style="color: #ff3d00">*</span></p>
-                                                            <select name="state_id" class="form-control select2" id="state_id" disabled>
+                                                            <input type="hidden" name="state_id" value="{{Auth::user()->state_id }}">
+                                                            <select name="" class="form-control select2" id="state_id" disabled>
                                                                 @foreach($states as $state)
                                                                     <option value="{{$state->id}}" {{$state->id == Auth::user()->state_id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @endforeach
