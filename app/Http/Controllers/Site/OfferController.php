@@ -195,7 +195,6 @@ class OfferController extends Controller
         $offers->address            = $request->input('address');
         $offers->phone              = $request->input('phone');
         $offers->mobile             = $request->input('mobile');
-        $offers->supplier_id             = $request->input('supplier_id');
         if ($request->input('image1')) {
             $offers->image1         = $request->input('image1');
         }
@@ -208,11 +207,12 @@ class OfferController extends Controller
             $offers->price = str_replace(',', '', $request->input('price'));
         }
 
-//        $supplier_id = Supplier::whereUser_id(auth::user()->id)->pluck('id');
-//        if (trim($supplier_id) != '[]')
-//        {
-//            $offers->supplier_id = $supplier_id[0];
-//        }
+        $supplier_id = Supplier::whereUser_id(auth::user()->id)->pluck('id');
+        dd($supplier_id);
+        if (trim($supplier_id) != '[]')
+        {
+            $offers->supplier_id = $supplier_id[0];
+        }
         $offers->permanent_supplier = $request->input('permanent_supplier');
         $offers->slug               = 'OFFER-' . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999) . chr(rand(97, 122)) . rand(1, 999);
         $offers->status             = '1';
