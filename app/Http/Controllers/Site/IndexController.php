@@ -147,7 +147,7 @@ class IndexController extends Controller
                 ->where('offers.status', '=', '4')
                 ->whereBuyorsell('sell')
                 ->where('offers.brand_id', '<>', null)
-                ->orderBy('id' , 'DESC')
+                ->orderBy('offer_id' , 'DESC')
                 ->get();
 
             $orginal_slides     = Slide::whereStatus(4)->wherePosition(1)->latest()->get();
