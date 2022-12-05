@@ -280,6 +280,7 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">تصویر اصلی قطعه</p>
+                                                                @dd('salam')
                                                                 @if($varity = 0 )
 
                                                                     <input type="file" name="image1"    @foreach($products as $product) @dd($product->image)  value="{{$product->image}}"  data-default-file="{{url($product->image)}}" @endforeach class="dropify" data-height="200">
