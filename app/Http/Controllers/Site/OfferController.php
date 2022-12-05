@@ -344,7 +344,9 @@ class OfferController extends Controller
         $offer->title_offer        = $request->input('title_offer');
         $offer->product_group      = $request->input('product_group');
         $offer->noe                = $request->input('noe');
-        $offer->state_id           = $request->input('state_id');
+        $offer->state_id           = Auth::user()->state_id;
+        $offer->city_id            = Auth::user()->city_id;
+        $offer->mobile             = Auth::user()->mobile;
         $offer->buyorsell          = $request->input('buyorsell');
         if ($request->input('unicode_product') != null) {
             $offer->unicode_product = $request->input('unicode_product');
@@ -353,8 +355,6 @@ class OfferController extends Controller
         if($request->input('single_price')) {
             $offer->single_price = str_replace(',', '', $request->input('single_price'));
         }
-        $offer->city_id            = $request->input('city_id');
-        $offer->mobile             = $request->input('mobile');
         $offer->brand_id           = $request->input('brand_id');
         $offer->brand_name         = $request->input('brand_name');
         $offer->total              = $request->input('total');
