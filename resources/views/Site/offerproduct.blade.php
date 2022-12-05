@@ -96,7 +96,9 @@
                                                         @include('error')
                                                     </div>
 
-                                                    @dd($products)
+                                                    @foreach($products as $product)
+                                                        @dd($product->image)
+                                                    @endforeach
                                                     @if(Auth::user()->type_id == 1)
                                                         <div class="col-md-12">
                                                             <h3>نوع آگهی</h3>
