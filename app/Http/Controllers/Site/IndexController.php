@@ -124,7 +124,9 @@ class IndexController extends Controller
         ->leftjoin('cities' , 'cities.id' , '=' ,'suppliers.city_id')
         ->select('suppliers.id' ,'suppliers.logo','suppliers.keyword' ,'suppliers.title','suppliers.manager','suppliers.slide1','suppliers.banner','suppliers.slide2','suppliers.slide3' ,'suppliers.description' ,'suppliers.lat' ,'suppliers.lng' ,
             'suppliers.phone' ,'suppliers.mobile' ,'suppliers.whatsapp' ,'suppliers.address' ,'states.title as state' ,'cities.title as city')
-        ->where('suppliers.pageurl' , $slug)->get();
+        ->where('suppliers.pageurl' , $slug)
+            ->orderby('offers.id' , 'DESC')
+            ->get();
         if (trim($suppliers) == '[]') {
             return Redirect::to('/');
 
@@ -147,6 +149,7 @@ class IndexController extends Controller
                 ->where('offers.status', '=', '4')
                 ->whereBuyorsell('sell')
                 ->where('offers.brand_id', '<>', null)
+                ->orderby('offers.id' , 'DESC')
                 ->get();
 
             $orginal_slides     = Slide::whereStatus(4)->wherePosition(1)->latest()->get();
