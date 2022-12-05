@@ -58,6 +58,13 @@
                                             <i class="fa fa-map-pin" style="color: #ff3d00"></i>
                                             <a href="" style="color: #716f6f;font-size: 20px">استان {{$supplier->state}} شهرستان {{$supplier->city}} - {{$supplier->address}} </a>
                                         </div>
+                                        <div class="post-content">
+                                            <span>
+                                            <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=244309&amp;Code=dfxWaqnQkjgkX5PcBJnK" class="d-block hover-img-link mt-0">
+                                                <img referrerpolicy="origin" src="https://trustseal.enamad.ir/Content/Images/Star/star1.png?v=5.0.0.47" alt="اینماد" style="cursor:pointer;width: 100px" id="dfxWaqnQkjgkX5PcBJnK">
+                                            </a>
+                                        </span>
+                                        </div>
                                     </section>
                                 </div>
                             </div>
