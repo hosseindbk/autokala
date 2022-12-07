@@ -50,12 +50,12 @@
                                                 </li>
                                             @endif
                                             <li class="profile-account-nav-item navigation-link-dashboard">
-                                                <a href="{{url('profile-info')}}" class="active"><i class="mdi mdi-tooltip-text-outline"></i>
+                                                <a href="{{url('profile-info')}}" class=""><i class="mdi mdi-tooltip-text-outline"></i>
                                                     اطلاعات حساب
                                                 </a>
                                             </li>
                                             <li class="profile-account-nav-item navigation-link-dashboard">
-                                                <a href="{{url('profile-myoffer')}}" class=""><i class="mdi mdi-account-outline"></i>
+                                                <a href="{{url('profile-myoffer')}}" class="active"><i class="mdi mdi-account-outline"></i>
                                                     آگهی های من
                                                 </a>
                                             </li>
