@@ -55,8 +55,8 @@
                                                 </a>
                                             </li>
                                             <li class="profile-account-nav-item navigation-link-dashboard">
-                                                <a href="{{url('offer')}}" class=""><i class="mdi mdi-account-outline"></i>
-                                                    فرم آگهی
+                                                <a href="{{url('profile-myoffer')}}" class=""><i class="mdi mdi-account-outline"></i>
+                                                    آگهی های من
                                                 </a>
                                             </li>
                                             @if(Auth::user()->type_id != 4)
@@ -295,66 +295,6 @@
                             @endif
                         </div>
                     </div>
-                        <div class="col-lg-9 col-md-9 col-xs-12 pl">
-                            <div class="shop-archive-content mt-3">
-                                <h3 class="text-center text-dark">آگهی های ثبت شده</h3>
-                                <div class="product-items">
-                                    <div class="row">
-                            @foreach($offers as $offer)
-                                    @if($offer->user_id == Auth::user()->id)
-
-                                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
-                                                    <section class="product-box product product-type-simple" style="border: 1px solid #3fcee0;">
-                                                        <div style="float: right">
-                                                            @if($offer->status == 1)
-                                                                <button class="btn btn-warning">درحال بررسی </button>
-                                                            @elseif($offer->status == 4)
-                                                                <button class="btn btn-success">تایید مدیر</button>
-                                                            @endif
-
-                                                        </div>
-                                                        <div style="float: left">
-                                                            <a href="{{route('offer-edit' , $offer->id)}}" class="btn btn-info">ویرایش</a>
-                                                        </div>
-                                                        <div class="thumb ">
-                                                            @if($offer->status == 4)
-                                                            <a href="{{url('market'.'/'.$offer->slug)}}" target="_blank" class="d-block">
-                                                                <img src="{{asset($offer->image1)}}" class="mt-3" style="height: 235px;" alt="{{$offer->title_offer}}">
-                                                            </a>
-                                                            @else
-                                                                <img src="{{asset($offer->image1)}}" class="mt-3" style="height: 235px;" alt="{{$offer->title_offer}}">
-                                                            @endif
-                                                        </div>
-                                                        <div class="title">
-                                                            <h3>{{ \Illuminate\Support\Str::limit($offer->title_offer, 21, $end='...') }}</h3>
-                                                        </div>
-                                                        <div class="title">
-                                                                <span class="amount">{{number_format($offer->single_price)}}
-                                                                    <span>تومان</span>
-                                                                </span>
-                                                        </div>
-                                                        <div class="title">
-                                                            @if($offer->brand_id != null)
-                                                                @foreach($brandnames as $brandname)
-                                                                    @if($offer->id == $brandname->offer_id)
-                                                                        {{$brandname->title_fa}}
-                                                                    @endif
-                                                                @endforeach
-                                                            @elseif($offer->brand_id == null)
-                                                                {{$offer->brand_name}}
-                                                            @endif
-                                                        </div>
-                                                        <div class="price">
-                                                            <span class="amount">{{jdate($offer->created_at)->ago()}}</span>
-                                                        </div>
-                                                    </section>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>

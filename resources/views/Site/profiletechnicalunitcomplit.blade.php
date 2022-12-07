@@ -52,8 +52,8 @@
                                             </li>
                                             @if(Auth::user()->phone_verify == 1 && Auth::user()->type_id != 4)
                                                 <li class="profile-account-nav-item navigation-link-dashboard">
-                                                    <a href="{{url('offer')}}" class=""><i class="mdi mdi-account-outline"></i>
-                                                        فرم آگهی
+                                                    <a href="{{url('profile-myoffer')}}" class=""><i class="mdi mdi-account-outline"></i>
+                                                        آگهی های من
                                                     </a>
                                                 </li>
                                                 <li class="profile-account-nav-item navigation-link-dashboard">

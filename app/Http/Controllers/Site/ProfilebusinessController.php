@@ -179,7 +179,39 @@ class ProfilebusinessController extends Controller
             ->with(compact('states'))
             ->with(compact('menus'))
             ->with(compact('cities'));
-}
+    }
+
+    public function profilemyoffer(){
+        $menus                  =  Menu::whereStatus(4)->get();
+        $suppliers              =  Supplier::whereUser_id(Auth::user()->id)->get();
+        $technicalunits         =  Technical_unit::whereUser_id(Auth::user()->id)->get();
+        $typeusers              =  Type_user::whereId(auth::user()->type_id)->get();
+        $offers                 =  Offer::all();
+        $brands                 =  Brand::all();
+        $states                 =  State::all();
+        $cities                 =  City::all();
+
+        $brandnames = DB::table('offers')
+            ->leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
+            ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+            ->select('offers.brand_id as brand_offer_id' , 'offers.id as offer_id' , 'product_brand_varieties.brand_id as brand_variety_id' , 'product_brand_varieties.product_id' ,'brands.title_fa')
+            ->where('offers.status' , '=', '4')
+            ->whereBuyorsell('sell')
+            ->where('offers.brand_id' , '<>' , null)
+            ->get();
+
+        return view('Site.profilemyoffer')
+            ->with(compact('brandnames'))
+            ->with(compact('brands'))
+            ->with(compact('offers'))
+            ->with(compact('suppliers'))
+            ->with(compact('technicalunits'))
+            ->with(compact('typeusers'))
+            ->with(compact('states'))
+            ->with(compact('menus'))
+            ->with(compact('cities'));
+    }
 
     public function storesupplier(supplierrequest $request)
     {
