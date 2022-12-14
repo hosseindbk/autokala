@@ -220,7 +220,7 @@ class UserController extends Controller
                 ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
                 ->leftJoin('statuses', 'statuses.id', '='   , 'offers.status')
                 ->leftJoin('users', 'users.id', '=', 'offers.user_id')
-                ->select('offers.id' , 'offers.buyorsell' , 'offers.title_offer', 'offers.product_name', 'offers.unicode_product', 'offers.id', 'offers.brand_name as brand_name' ,'brands.title_fa as brand' , 'offers.brand_id as brand_id'
+                ->select('offers.id' , 'offers.buyorsell' , 'offers.title_offer', 'offers.product_name', 'offers.unicode_product', 'offers.id as product_id', 'offers.brand_name as brand_name' ,'brands.title_fa as brand' , 'offers.brand_id as brand_id'
                     , 'product_groups.id as product_group_id' , 'product_groups.title_fa as product_group_name' , 'offers.description' , 'offers.permanent_supplier', 'offers.image1 as image'
                     , 'offers.image2', 'offers.image3', 'offers.single_price as retailprice', 'offers.price as wholesaleprice', 'offers.total as numberofsell' , 'offers.mobile' , 'offers.phone' , 'states.title as state', 'states.id as state_id'
                     , 'cities.title as city' , 'cities.id as city_id', 'offers.address', 'offers.lat', 'offers.lng', 'offers.noe', 'offers.single',
