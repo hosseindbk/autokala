@@ -111,7 +111,7 @@ class MarketController extends Controller
             ->select('offers.id as offer_id' , 'markusers.id as mark_id','brands.title_fa as brand' ,'offers.brand_name','offers.brand_id','offers.total as number', 'offers.slug' , 'offers.image1',
                 'offers.image2', 'offers.image3' ,'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice' ,
                 'offers.single_price as retailprice' ,'offers.unicode_product as unicode' ,'offers.description' , 'offers.phone', 'offers.mobile' , 'offers.address' ,
-                'offers.lat','offers.lng' ,'product_groups.title_fa as product_group' , 'offers.created_at as created_at' ,
+                'offers.lat','offers.lng' ,'product_groups.title_fa as product_group' , 'offers.updated_at as created_at' ,
 
                 DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
