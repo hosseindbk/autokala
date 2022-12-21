@@ -235,6 +235,30 @@
                                     </section>
                                 </div>
                             </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12 pr">
+                                <div class="row">
+                                    <section class="footer-links-col">
+                                        <div class="headline-links">
+                                            <a href="#">
+                                                لینک دانلود اپلیکیشن
+                                            </a>
+                                        </div>
+                                        <ul class="footer-menu-ul">
+                                            <li class="menu-item-type-custom">
+                                                <a href="bazaar://details?id=my.autokala.ir&ref=https%3A%2F%2Fcafebazaar.ir%2Finstall">
+                                                    <img style = 'cursor:pointer;width: 70%;' src = "{{url('/site/images/bazar.png')}}" />
+                                                </a>
+                                            </li>
+                                            <br>
+                                            <li class="menu-item-type-custom">
+                                                <a href="{{url('/download/app.apk')}}">
+                                                    <img style = 'cursor:pointer;width: 70%;' src = "{{url('/site/images/download-app.png')}}" />
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 d-block pl">
