@@ -251,8 +251,8 @@
                                             </li>
                                             <br>
                                             <li class="menu-item-type-custom">
-                                                <a href="{{url('/download/app.apk')}}">
-                                                    <img style = 'cursor:pointer;width: 70%;' src = "{{url('/site/download/download-app.png')}}" />
+                                                <a href="{{url('/site/download/download-app.apk')}}">
+                                                    <img style = 'cursor:pointer;width: 70%;' src = "{{url('/site/images/download-app.png')}}" />
                                                 </a>
                                             </li>
                                         </ul>
