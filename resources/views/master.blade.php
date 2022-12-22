@@ -245,13 +245,13 @@
                                         </div>
                                         <ul class="footer-menu-ul">
                                             <li class="menu-item-type-custom">
-                                                <a href="bazaar://details?id=my.autokala.ir&ref=https%3A%2F%2Fcafebazaar.ir%2Finstall">
+                                                <a href="https://cafebazaar.ir/app/my.autokala.ir" target="_blank">
                                                     <img style = 'cursor:pointer;width: 70%;' src = "{{url('/site/images/bazar.png')}}" />
                                                 </a>
                                             </li>
                                             <br>
-                                            <li class="menu-item-type-custom">
-                                                <a href="{{url('/site/download/download-app.apk')}}">
+                                            <li class="menu-item-type-custom" >
+                                                <a href="{{url('/site/download/download-app.apk')}}" target="_blank">
                                                     <img style = 'cursor:pointer;width: 70%;' src = "{{url('/site/images/download-app.png')}}" />
                                                 </a>
                                             </li>
@@ -330,7 +330,7 @@
     </svg>
 </div>
 <div class="android active-progress">
-    <a href="bazaar://details?id=my.autokala.ir&ref=https%3A%2F%2Fcafebazaar.ir%2Finstall"><img src="{{asset('site/images/android.png')}}" width="140%" alt="اپلیکیشن اتوکالا"></a>
+    <a href="https://cafebazaar.ir/app/my.autokala.ir" target="_blank"><img src="{{asset('site/images/android.png')}}" width="140%" alt="اپلیکیشن اتوکالا"></a>
 </div>
 
 {{--<div class="P-loader">--}}
