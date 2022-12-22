@@ -330,7 +330,7 @@
     </svg>
 </div>
 <div class="android active-progress">
-    <img src="{{asset('site/images/android.png')}}" width="140%" alt="">
+    <a href="bazaar://details?id=my.autokala.ir&ref=https%3A%2F%2Fcafebazaar.ir%2Finstall"><img src="{{asset('site/images/android.png')}}" width="140%" alt="اپلیکیشن اتوکالا"></a>
 </div>
 
 {{--<div class="P-loader">--}}
