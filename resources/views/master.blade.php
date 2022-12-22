@@ -329,6 +329,12 @@
         <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
     </svg>
 </div>
+<style>
+
+</style>
+<div class="android active-progress">
+    <img src="{{'site/images/android.png'}}" width="140%" alt="">
+</div>
 
 {{--<div class="P-loader">--}}
 {{--    <div class="P-loader-content">--}}
