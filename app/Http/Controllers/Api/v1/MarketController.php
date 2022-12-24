@@ -158,7 +158,7 @@ class MarketController extends Controller
                 'lat'               => $offer->lat,
                 'lng'               => $offer->lng,
                 'product_group'     => $offer->product_group,
-                'created_at'        => jdate($offer->created_at)->ago(),
+                'created_at'        => jdate($offer->updated_at)->ago(),
             ];
         }
 
