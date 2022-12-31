@@ -79,7 +79,7 @@ class Offer extends Model
 
     public function scopeApi($query){
 
-        $keywords = request('offersearch');
+        $keywords = request('offersellsearch');
         if (isset($keywords) && $keywords != null) {
             $query->where('title_offer' , 'LIKE' , '%' .$keywords. '%');
         }

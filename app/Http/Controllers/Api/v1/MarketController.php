@@ -21,10 +21,10 @@ class MarketController extends Controller
             ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
             ->leftJoin('states', 'states.id', '=', 'offers.state_id')
             ->leftJoin('cities', 'cities.id', '=', 'offers.city_id')
-            ->leftJoin('users', 'users.id', '=', 'offers.user_id')
+            ->leftJoin('users' , 'users.id' , '=', 'offers.user_id')
             ->select('brands.title_fa as brand' ,'offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title' , 'states.title as state' ,
-                    'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice','offers.updated_at as date',
-            DB::raw( '(CASE
+                'cities.title as city' , 'offers.price as wholesaleprice' , 'offers.single_price as retailprice','offers.updated_at as date',
+                DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
             WHEN users.type_id = "4" THEN "شخصی"
@@ -51,7 +51,7 @@ class MarketController extends Controller
             ->select('brands.title_fa as brand' ,'offers.total as numberofsell', 'offers.slug' , 'offers.image1 as image'
                 , 'offers.title_offer as title' , 'states.title as state' , 'cities.title as city' , 'offers.price as wholesaleprice'
                 , 'offers.single_price as retailprice','offers.updated_at as date',
-            DB::raw( '(CASE
+                DB::raw( '(CASE
             WHEN users.type_id = "1" THEN "فروشگاه"
             WHEN users.type_id = "3" THEN "شخصی"
             WHEN users.type_id = "4" THEN "شخصی"
@@ -99,7 +99,7 @@ class MarketController extends Controller
     public function submarket($slug){
 
         $offers = Offer::
-              leftJoin('products'               , 'products.unicode'            , '=' , 'offers.unicode_product')
+        leftJoin('products'               , 'products.unicode'            , '=' , 'offers.unicode_product')
             ->leftJoin('product_brand_varieties', 'product_brand_varieties.id'  , '=' , 'offers.brand_id')
             ->leftJoin('brands'                 , 'brands.id'                   , '=' , 'product_brand_varieties.brand_id')
             ->leftJoin('product_groups'         , 'product_groups.id'           , '=' , 'offers.product_group')
@@ -163,8 +163,8 @@ class MarketController extends Controller
         }
 
         $productvarietis = Offer::
-          leftJoin('products'               , 'products.unicode'                    , '=' , 'offers.unicode_product')
-        ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id'  , '=' , 'products.id')
+        leftJoin('products'               , 'products.unicode'                    , '=' , 'offers.unicode_product')
+            ->leftJoin('product_brand_varieties', 'product_brand_varieties.product_id'  , '=' , 'products.id')
             ->select('product_brand_varieties.item1','product_brand_varieties.value_item1','product_brand_varieties.item2','product_brand_varieties.value_item2','product_brand_varieties.item3','product_brand_varieties.value_item3',
                 DB::raw( '(CASE
             WHEN product_brand_varieties.guarantee = "0" THEN "ندارد"
@@ -174,14 +174,14 @@ class MarketController extends Controller
             ->get();
 
 
-            $offer_id = Offer::whereSlug($slug)->pluck('id');
+        $offer_id = Offer::whereSlug($slug)->pluck('id');
 
-            $cars = Car_offer::
-                leftjoin('car_brands', 'car_brands.id', '=', 'car_offers.car_brand_id')
-                ->leftjoin('car_models', 'car_models.id', '=', 'car_offers.car_model_id')
-                ->where('car_offers.offer_id' , '=' , $offer_id)
-                ->select('car_brands.title_fa as brand', 'car_models.title_fa as model')
-                ->get();
+        $cars = Car_offer::
+        leftjoin('car_brands', 'car_brands.id', '=', 'car_offers.car_brand_id')
+            ->leftjoin('car_models', 'car_models.id', '=', 'car_offers.car_model_id')
+            ->where('car_offers.offer_id' , '=' , $offer_id)
+            ->select('car_brands.title_fa as brand', 'car_models.title_fa as model')
+            ->get();
 
         $comments               = comment::whereCommentable_type('App\Offer')->whereIn('Commentable_id'   ,$offer_id)->select('name','phone' , 'comment' , 'id' , 'created_at')->whereParent_id(0)->whereApproved(1)->latest()->get();
         $subcomments            = comment::whereCommentable_type('App\Offer')->whereIn('Commentable_id'   ,$offer_id)->select('name','phone' , 'comment' , 'parent_id')->where('parent_id' ,'>' ,  0)->whereApproved(1)->latest()->get();
