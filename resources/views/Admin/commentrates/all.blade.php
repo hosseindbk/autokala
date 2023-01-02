@@ -58,17 +58,17 @@
                                                 <td class="text-nowrap">{{$commentrate->design}}</td>
                                                 <td class="text-nowrap">{{$commentrate->comfort}}</td>
                                                 <td class="text-nowrap">
-                                                    @if($comment->commentable_type == 'App\Supplier')
+                                                    @if($commentrate->commentable_type == 'App\Supplier')
                                                         تامین کنندگان
-                                                    @elseif($comment->commentable_type == 'App\Technical_unit')
+                                                    @elseif($commentrate->commentable_type == 'App\Technical_unit')
                                                         تعمیرگاه ها
-                                                    @elseif($comment->commentable_type == 'App\Product_brand_variety')
+                                                    @elseif($commentrate->commentable_type == 'App\Product_brand_variety')
                                                         برند تنوع
-                                                    @elseif($comment->commentable_type == 'App\Product')
+                                                    @elseif($commentrate->commentable_type == 'App\Product')
                                                         کالا یا قطعات
                                                     @endif
                                                 </td>
-                                                <td class="text-nowrap">{{$comment->commentable_id}}</td>
+                                                <td class="text-nowrap">{{$commentrate->commentable_id}}</td>
                                                 <td>
                                                     @if($commentrate->approved == 0)
                                                         <button class="btn ripple btn-outline-warning">عدم نمایش پیام</button>
