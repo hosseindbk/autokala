@@ -190,10 +190,8 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <p class="mg-b-10">تلفن ثابت</p>
-                                                        <input type="text" name="phone" pattern="^0\d{2,3}\d{11}$" placeholder="02122334455"
-                                                               required @if(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control"
-                                                               oninvalid="this.setCustomValidity('لطفا تلفن ثابت را وارد کنید')"
-                                                               oninput="setCustomValidity('')"/>
+                                                        <input type="text" name="phone" pattern="^0\d{2}\d{8}$" placeholder="02122334455"
+                                                               required @if(strlen(Auth::user()->phone_number) > 1) value="{{Auth::user()->phone_number}}" @endif class="form-control"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
