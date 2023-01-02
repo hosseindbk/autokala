@@ -273,7 +273,7 @@
                                                     <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <p class="mg-b-10">قیمت خرده فروشی (تومان)</p>
-                                                                <input type="text"  name="single_price" id="single_price" placeholder="قیمت خرده فروشی را وارد کنید" class="form-control number1" />
+                                                                <input type="text"  name="single_price" required id="single_price" placeholder="قیمت خرده فروشی را وارد کنید" class="form-control number1" />
                                                             </div>
                                                         </div>
                                                     <div class="col-md-3">
@@ -345,7 +345,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
-                                                            <textarea  name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                            <textarea  name="address" cols="30" required rows="1" class="form-control" placeholder="آدرس را وارد کنید"oninvalid="this.setCustomValidity('لطفا آدرس را وارد کنید')"
+                                                                       oninput="setCustomValidity('')">{{Auth::user()->address}}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -507,7 +508,8 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">قیمت (تومان)</p>
-                                                            <input type="text"  name="single_price" id="single_price" placeholder="قیمت را وارد کنید" class="form-control number4" />
+                                                            <input type="text"  name="single_price" required id="single_price" placeholder="قیمت را وارد کنید" class="form-control number4" oninvalid="this.setCustomValidity('لطفا قیمت را وارد کنید')"
+                                                                   oninput="setCustomValidity('')"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -615,7 +617,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <p  class="mg-b-10">آدرس</p >
-                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                            <textarea name="address" cols="30" rows="1" required class="form-control" placeholder="آدرس را وارد کنید" oninvalid="this.setCustomValidity('لطفا آدرس را وارد کنید')"
+                                                                      oninput="setCustomValidity('')">{{Auth::user()->address}}</textarea>
                                                         </div>
                                                     </div>
 
