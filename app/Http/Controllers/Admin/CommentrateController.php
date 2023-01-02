@@ -16,7 +16,7 @@ class CommentrateController extends Controller
     public function index()
     {
         $products           = Product::all();
-        $commentrates        = commentrate::latest()->get();
+        $commentrates       = commentrate::latest()->get();
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
 

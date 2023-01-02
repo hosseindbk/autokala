@@ -36,6 +36,8 @@
                                             <th class="wd-lg-20p">قابلیت ها</th>
                                             <th class="wd-lg-20p">طراحی</th>
                                             <th class="wd-lg-20p">دردسترس بودن</th>
+                                            <th class="wd-lg-20p">صفحه پیام</th>
+                                            <th class="wd-lg-20p">شماره سریال</th>
                                             <th class="wd-lg-20p">وضعیت</th>
                                             <th class="wd-lg-20p">ویرایش پیام</th>
                                             <th class="wd-lg-20p">حذف پیام</th>
@@ -55,6 +57,18 @@
                                                 <td class="text-nowrap">{{$commentrate->ability}}</td>
                                                 <td class="text-nowrap">{{$commentrate->design}}</td>
                                                 <td class="text-nowrap">{{$commentrate->comfort}}</td>
+                                                <td class="text-nowrap">
+                                                    @if($comment->commentable_type == 'App\Supplier')
+                                                        تامین کنندگان
+                                                    @elseif($comment->commentable_type == 'App\Technical_unit')
+                                                        تعمیرگاه ها
+                                                    @elseif($comment->commentable_type == 'App\Product_brand_variety')
+                                                        برند تنوع
+                                                    @elseif($comment->commentable_type == 'App\Product')
+                                                        کالا یا قطعات
+                                                    @endif
+                                                </td>
+                                                <td class="text-nowrap">{{$comment->commentable_id}}</td>
                                                 <td>
                                                     @if($commentrate->approved == 0)
                                                         <button class="btn ripple btn-outline-warning">عدم نمایش پیام</button>
