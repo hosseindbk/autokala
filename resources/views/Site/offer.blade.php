@@ -239,7 +239,8 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تصویر اصلی قطعه</p>
-                                                            <input type="file" name="image1" class="dropify" data-height="200">
+                                                            <input type="file" name="image1" class="dropify" required data-height="200" oninvalid="this.setCustomValidity('لطفا تصویر را وارد کنید')"
+                                                                   oninput="setCustomValidity('')">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -536,8 +537,8 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تصویر اصلی قطعه</p>
-                                                            <input type="file" name="image1" required class="dropify" data-height="200">
-                                                        </div>
+                                                            <input type="file" name="image1" class="dropify" required data-height="200" oninvalid="this.setCustomValidity('لطفا تصویر را وارد کنید')"
+                                                                   oninput="setCustomValidity('')">                                                        </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
