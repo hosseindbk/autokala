@@ -27,6 +27,7 @@
                                         <thead>
                                         <tr>
                                             <th class="wd-lg-20p">ردیف</th>
+                                            <th class="wd-lg-20p">زمان ثبت</th>
                                             <th class="wd-lg-20p">شماره موبایل</th>
                                             <th class="wd-lg-20p">نام و نام خانوادگی</th>
                                             <th class="wd-lg-20p">متن پیام کاربر</th>
@@ -48,6 +49,7 @@
                                         @foreach($commentrates as $commentrate)
                                             <tr>
                                                 <td>{{$i++}}</td>
+                                                <td>{{jdate($commentrate->created_at)->format('date')}}</td>
                                                 <td class="text-primary"> {{$commentrate->phone}}</td>
                                                 <td class="text-primary"> {{$commentrate->name}}</td>
                                                 <td class="text-primary" style="max-width: 300px;overflow: auto;">{{$commentrate->comment}}</td>
