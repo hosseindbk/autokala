@@ -150,6 +150,7 @@
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <input type="hidden" name="state_id" value="{{Auth::user()->state_id}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -168,6 +169,8 @@
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن موبایل</p>
                                                             <input type="text" name="mobile" required value="{{Auth::user()->phone}}" class="form-control" disabled/>
+                                                            <input type="hidden" name="mobile" value="{{Auth::user()->phone}}">
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
