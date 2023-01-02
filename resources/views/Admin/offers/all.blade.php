@@ -42,6 +42,8 @@
                                             <th class="wd-10p"> قیمت تکی </th>
                                             <th class="wd-10p"> قیمت عمده </th>
                                             <th class="wd-10p"> نمایش صفحه اصلی </th>
+                                            <th class="wd-10p"> نام کاربر ثبت </th>
+                                            <th class="wd-10p"> نام فروشگاه  </th>
                                             <th class="wd-10p"> وضعیت </th>
                                             <th class="wd-10p"> ویرایش </th>
                                             <th class="wd-10p"> حذف </th>
@@ -88,6 +90,20 @@
                                                         <input type="checkbox" name="homeshow" class="custom-switch-input" id="{{$offer->id}}" {{$offer->homeshow == 1 ? 'checked' : ''}}>
                                                         <span class="custom-switch-indicator"></span>
                                                     </label>
+                                                </td>
+                                                <td>
+                                                    @foreach($users as $user)
+                                                        @if($user->id == $offer->user_id)
+                                                            {{$user->name}}
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach($suppliers as $supplier)
+                                                        @if($supplier->id == $offer->supplier_id)
+                                                            {{$supplier->title}}
+                                                        @endif
+                                                    @endforeach
                                                 </td>
                                                 <td>
                                                     @foreach($statuses as $status)

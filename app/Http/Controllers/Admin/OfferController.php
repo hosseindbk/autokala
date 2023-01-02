@@ -35,11 +35,13 @@ class OfferController extends Controller
         $statuses           =   Status::select('id','title')->get();
         $offers             =   Offer::all();
         $suppliers          =   Supplier::all();
+        $users              =   User::select('id' , 'name')->get();
         $medias             =   Media::select('technical_id' , 'image')->get();
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
 
         return view('Admin.offers.all')
+            ->with(compact('users'))
             ->with(compact('offers'))
             ->with(compact('medias'))
             ->with(compact('suppliers'))
