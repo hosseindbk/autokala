@@ -78,7 +78,7 @@
                                                     @elseif($commentrate->commentable_type == 'App\Technical_unit')
                                                         @foreach($technical_units as $technical_unit)
                                                             @if($technical_unit->id == $commentrate->commentable_id)
-                                                                <a href="{{url('technical_unit/sub/'.$technical_unit->slug)}}" target="_blank">{{$technical_unit->title}}</a>
+                                                                <a href="{{url('technical/sub/'.$technical_unit->slug)}}" target="_blank">{{$technical_unit->title}}</a>
                                                             @endif
                                                         @endforeach
                                                     @elseif($commentrate->commentable_type == 'App\Product_brand_variety')
