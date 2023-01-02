@@ -298,6 +298,7 @@
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <input type="hidden" name="state_id" value="{{Auth::user()->state_id}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -310,6 +311,8 @@
                                                                     <option value="{{$city->id}}" {{Auth::user()->city_id == $city->id ? 'selected' : ''}}>{{$city->title}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <input type="hidden" name="city_id" value="{{Auth::user()->state_id}}">
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -322,7 +325,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
-                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
+                                                            <input type="text" name="phone" pattern="^0\d{2}\d{8}$" placeholder="02122334455" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -340,7 +343,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">آدرس</p>
-                                                            <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
+                                                            <textarea  name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -385,11 +388,11 @@
 {{--                                                            </select>--}}
                                                         </div>
                                                         <div class="modal fade" id="product_name" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
+                                                            <div  class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <p class="modal-title text-danger">درصورت عدم وجود قطعه مورد نظر در سایت می توانید نام قطعه خود را در این قسمت وارد نمایید</p>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
@@ -435,7 +438,7 @@
                                                         </div>
                                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
+                                                                <div  class="modal-content" >
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="exampleModalLabel">افزودن برند </h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -506,11 +509,11 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">وضعیت قطعه </p>
-                                                            <div class="form-check form-check-inline">
+                                                            <p class="mg-b-10">وضعیت قطعه </p >
+                                                            <div  class="form-check form-check-inline">
                                                                 <input class="form-check-input"  type="radio" checked name="noe" id="noe" value="new">
                                                                 <label class="form-check-label" style="margin-right: 5px;" for="new">  نو </label>
-                                                            </div>
+                                                            </div >
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio" name="noe" id="noe" value="old">
                                                                 <label class="form-check-label" style="margin-right: 5px;" for="old">  کارکرده </label>
@@ -552,7 +555,7 @@
                                                     <div class="col-md-12" >
                                                         <h3 style="border-bottom: 2px solid #ff3d00;padding: 10px;width: 350px;margin-top: 20px;">مشخصات تماس</h3>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div  class="col-md-3">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">انتخاب استان</p>
                                                             <select name="state_id" class="form-control select-lg select2" disabled>
@@ -561,6 +564,8 @@
                                                                     <option value="{{$state->id}}" {{Auth::user()->state_id == $state->id ? 'selected' : ''}}>{{$state->title}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <input type="hidden" name="state_id" value="{{Auth::user()->state_id}}">
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -573,6 +578,8 @@
                                                                     <option value="{{$city->id}}" {{Auth::user()->city_id == $city->id ? 'selected' : ''}}>{{$city->title}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <input type="hidden" name="city_id" value="{{Auth::user()->state_id}}">
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -584,7 +591,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
+                                                            <p  class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p >
                                                             <input type="text" name="phone" value="{{Auth::user()->phone_number}}" placeholder="021-88556644" class="form-control text-left" />
                                                             <input type="hidden" name="lat" class="form-control" />
                                                             <input type="hidden" name="lng" class="form-control" />
@@ -598,13 +605,13 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">عرض جغرافیایی</p>
+                                                            <p class="mg-b-10">عرض جغرافیایی</p >
                                                             <input type="text" name="lng" id="lngelement" value="{{Auth::user()->lng}}" class="form-control"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <p class="mg-b-10">آدرس</p>
+                                                            <p  class="mg-b-10">آدرس</p >
                                                             <textarea name="address" cols="30" rows="1" class="form-control" placeholder="آدرس را وارد کنید">{{Auth::user()->address}}</textarea>
                                                         </div>
                                                     </div>
@@ -641,7 +648,7 @@
                                                             </div>
                                                         </form>
                                                     </div>
-                                                </div>
+                                                </div >
                                             </div>
                                         </div>
                                     </div>
