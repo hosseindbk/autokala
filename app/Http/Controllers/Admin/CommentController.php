@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Menudashboard;
 use App\Product;
 use App\Submenudashboard;
+use App\Supplier;
+use App\Technical_unit;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -19,11 +21,15 @@ class CommentController extends Controller
     {
         $products           = Product::all();
         $comments           = comment::latest()->get();
+        $technical_units    = Technical_unit::select('id'  , 'slug' , 'title')->get();
+        $suppliers          = Supplier::select('id' , 'slug' , 'title')->get();
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
 
         return view('Admin.comments.all')
             ->with(compact('menudashboards'))
+            ->with(compact('technical_units'))
+            ->with(compact('suppliers'))
             ->with(compact('submenudashboards'))
             ->with(compact('comments'))
             ->with(compact('products'));

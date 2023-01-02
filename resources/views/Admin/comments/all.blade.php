@@ -56,7 +56,33 @@
                                                         کالا یا قطعات
                                                     @endif
                                                 </td>
-                                                <td class="text-nowrap">{{$comment->commentable_id}}</td>
+                                                <td class="text-nowrap">
+                                                    @if($comment->commentable_type == 'App\Supplier')
+                                                        @foreach($suppliers as $supplier)
+                                                            @if($supplier->id == $comment->commentable_id)
+                                                                <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank">{{$supplier->title}}</a>
+                                                            @endif
+                                                        @endforeach
+                                                    @elseif($comment->commentable_type == 'App\Technical_unit')
+                                                        @foreach($technical_units as $technical_unit)
+                                                            @if($technical_unit->id == $comment->commentable_id)
+                                                                <a href="{{url('technical/sub/'.$technical_unit->slug)}}" target="_blank">{{$technical_unit->title}}</a>
+                                                            @endif
+                                                        @endforeach
+                                                    @elseif($comment->commentable_type == 'App\Product_brand_variety')
+                                                        @foreach($suppliers as $supplier)
+                                                            @if($supplier->id == $comment->commentable_id)
+                                                                <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank"></a>
+                                                            @endif
+                                                        @endforeach
+                                                    @elseif($comment->commentable_type == 'App\Product')
+                                                        @foreach($products as $product)
+                                                            @if($product->id == $comment->commentable_id)
+                                                                <a href="{{url('product/'.$product->unicode)}}" target="_blank">{{$product->title}}</a>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @if($comment->approved == 0)
                                                         <button class="btn ripple btn-outline-warning">عدم نمایش پیام</button>
