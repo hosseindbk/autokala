@@ -228,7 +228,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شرح آگهی</p>
-                                                            <textarea name="description" id="editor1" placeholder=" شرح آگهی را وارد کنید"></textarea>
+                                                            <textarea name="description" id="editor1" placeholder=" شرح آگهی را وارد کنید">آگهی</textarea>
                                                             <style>
                                                                 .ck-editor{
                                                                     direction: rtl;
@@ -529,7 +529,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">شرح آگهی</p>
-                                                            <textarea name="description" id="editor2" placeholder=" شرح آگهی را وارد کنید"></textarea>
+                                                            <textarea name="description" id="editor2" placeholder=" شرح آگهی را وارد کنید">آگهی</textarea>
                                                             <style>
                                                                 .ck-editor{
                                                                     direction: rtl;
@@ -597,7 +597,8 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <p  class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p >
-                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" pattern="^0\d{2}\d{8}$" placeholder="02188556644" class="form-control text-left" />
+                                                            <input type="text" name="phone" value="{{Auth::user()->phone_number}}" required pattern="^0\d{2}\d{8}$" oninvalid="this.setCustomValidity('لطفا تلفن را وارد کنید')"
+                                                                   oninput="setCustomValidity('')" placeholder="02188556644" class="form-control text-left" />
                                                             <input type="hidden" name="lat" class="form-control" />
                                                             <input type="hidden" name="lng" class="form-control" />
                                                         </div>
