@@ -328,7 +328,7 @@
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p>
                                                             <input type="text" name="phone" pattern="^0\d{2}\d{8}$" placeholder="02122334455" value="{{Auth::user()->phone_number}}" class="form-control text-left" />
-                                                            <p>مثل : 02122334455</p>
+                                                            <p>مثال : 02122334455</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -600,7 +600,7 @@
                                                             <p  class="mg-b-10">تلفن ثابت بهمراه کد شهرستان</p >
                                                             <input type="text" name="phone" value="{{Auth::user()->phone_number}}" required pattern="^0\d{2}\d{8}$" title="لطفا شماره تلفن را کامل وارد نمایید" oninvalid="this.setCustomValidity('لطفا تلفن را وارد کنید')"
                                                                    oninput="setCustomValidity('')" placeholder="02188556644" class="form-control text-left" />
-                                                            <p>مثل : 02122334455</p>
+                                                            <p>مثال : 02122334455</p>
 
                                                             <input type="hidden" name="lat" class="form-control" />
                                                             <input type="hidden" name="lng" class="form-control" />
