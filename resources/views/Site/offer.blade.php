@@ -536,7 +536,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <p class="mg-b-10">تصویر اصلی قطعه</p>
-                                                            <input type="file" name="image1" accept="image/*" class="dropify" data-height="200">
+                                                            <input type="file" name="image1" required class="dropify" data-height="200">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
