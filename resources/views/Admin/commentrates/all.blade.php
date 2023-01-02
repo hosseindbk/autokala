@@ -72,25 +72,25 @@
                                                     @if($commentrate->commentable_type == 'App\Supplier')
                                                         @foreach($suppliers as $supplier)
                                                             @if($supplier->id == $commentrate->commentable_id)
-                                                                <a href="{{url('supplier/sub/'.$supplier->slug)}}">{{$supplier->title}}</a>
+                                                                <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank">{{$supplier->title}}</a>
                                                             @endif
                                                         @endforeach
                                                     @elseif($commentrate->commentable_type == 'App\Technical_unit')
                                                         @foreach($technical_units as $technical_unit)
                                                             @if($technical_unit->id == $commentrate->commentable_id)
-                                                                <a href="{{url('technical_unit/sub/'.$technical_unit->slug)}}">{{$technical_unit->title}}</a>
+                                                                <a href="{{url('technical_unit/sub/'.$technical_unit->slug)}}" target="_blank">{{$technical_unit->title}}</a>
                                                             @endif
                                                         @endforeach
                                                     @elseif($commentrate->commentable_type == 'App\Product_brand_variety')
                                                         @foreach($suppliers as $supplier)
                                                             @if($supplier->id == $commentrate->commentable_id)
-                                                                <a href="{{url('supplier/sub/'.$supplier->slug)}}"></a>
+                                                                <a href="{{url('supplier/sub/'.$supplier->slug)}}" target="_blank"></a>
                                                             @endif
                                                         @endforeach
                                                     @elseif($commentrate->commentable_type == 'App\Product')
                                                         @foreach($products as $product)
                                                             @if($product->id == $commentrate->commentable_id)
-                                                                <a href="{{url('product/'.$product->unicode)}}">{{$product->title}}</a>
+                                                                <a href="{{url('product/'.$product->unicode)}}" target="_blank">{{$product->title}}</a>
                                                             @endif
                                                         @endforeach
                                                     @endif
