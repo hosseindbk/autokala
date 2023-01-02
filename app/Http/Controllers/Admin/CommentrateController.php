@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Menudashboard;
 use App\Product;
 use App\Submenudashboard;
+use App\Supplier;
+use App\Technical_unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,11 +18,15 @@ class CommentrateController extends Controller
     public function index()
     {
         $products           = Product::all();
+        $technical_units    = Technical_unit::select('id'  , 'slug' , 'title')->get();
+        $suppliers          = Supplier::select('id' , 'slug' , 'title')->get();
         $commentrates       = commentrate::latest()->get();
         $menudashboards     = Menudashboard::whereStatus(4)->get();
         $submenudashboards  = Submenudashboard::whereStatus(4)->get();
 
         return view('Admin.commentrates.all')
+            ->with(compact('technical_units'))
+            ->with(compact('suppliers'))
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'))
             ->with(compact('commentrates'))
