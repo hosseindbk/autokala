@@ -42,7 +42,7 @@
                                         @foreach($comments as $comment)
                                             <tr>
                                                 <td>{{$i++}}</td>
-                                                <td>{{jdate($comment->created_at)->format('date')}}</td>
+                                                <td>{{jdate($comment->created_at)->format('%Y %B، %d')}}</td>
                                                 <td class="text-primary">
                                                     {{$comment->phone}}
                                                 </td>

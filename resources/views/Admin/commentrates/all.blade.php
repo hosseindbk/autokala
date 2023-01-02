@@ -49,7 +49,7 @@
                                         @foreach($commentrates as $commentrate)
                                             <tr>
                                                 <td>{{$i++}}</td>
-                                                <td>{{jdate($commentrate->created_at)->format('date')}}</td>
+                                                <td>{{jdate($commentrate->created_at)->format('%Y %B، %d')}}</td>
                                                 <td class="text-primary"> {{$commentrate->phone}}</td>
                                                 <td class="text-primary"> {{$commentrate->name}}</td>
                                                 <td class="text-primary" style="max-width: 300px;overflow: auto;">{{$commentrate->comment}}</td>
