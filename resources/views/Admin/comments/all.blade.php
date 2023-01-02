@@ -78,7 +78,7 @@
                                                     @elseif($comment->commentable_type == 'App\Product')
                                                         @foreach($products as $product)
                                                             @if($product->id == $comment->commentable_id)
-                                                                <a href="{{url('product/'.$product->unicode)}}" target="_blank">{{$product->title}}</a>
+                                                                <a href="{{url('product/'.$product->unicode)}}" target="_blank">{{$product->title_fa}}</a>
                                                             @endif
                                                         @endforeach
                                                     @endif
