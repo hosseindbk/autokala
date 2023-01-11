@@ -205,5 +205,34 @@
                 console.error( error );
             } );
     </script>
+    <script>
+        $(function(){
+            $('#type').change(function(){
+                $("#type_id option").remove();
+                var id = $('#type').val();
+                $.ajax({
+                    url : '{{ route( 'slidetype' ) }}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function( result )
+                    {
+                        $.each( result, function(k, v) {
+                            $('#type_id').append($('<option>', {value:k, text:v}));
+                        });
+                    },
+                    error: function()
+                    {
+                        //handle errors
+                        alert('error...');
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection
 @endsection
