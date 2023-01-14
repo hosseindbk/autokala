@@ -128,13 +128,12 @@ class SlideController extends Controller
         $type_slide = $slide->type;
 
         if ($type_slide == 'supplier'){
-            $suppliers = Supplier::whereSlug($slide->type)->get();
+            $suppliers = Supplier::whereSlug($slide->type_id)->get();
             $technicals = null;
-            dd($suppliers);
 
         }elseif ($type_slide == 'technical_unit'){
             $suppliers = null;
-            $technicals = Technical_unit::whereSlug($slide->type)->get();
+            $technicals = Technical_unit::whereSlug($slide->type_id)->get();
         }
 
         return view('Admin.slides.edit')
