@@ -124,8 +124,21 @@ class SlideController extends Controller
         $slides             =   Slide::whereId($id)->get();
         $menudashboards     =   Menudashboard::whereStatus(4)->get();
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
+        $slide  = Slide::whereId($id)->first();
+        $type_slide = $slide->type;
+
+        if ($type_slide == 'supplier'){
+            $suppliers = Supplier::whereSlug($slide->type)->get();
+            $technicals = null;
+
+        }elseif ($type_slide == 'technical_unit'){
+            $suppliers = null;
+            $technicals = Technical_unit::whereSlug($slide->type)->get();
+        }
 
         return view('Admin.slides.edit')
+            ->with(compact('technicals'))
+            ->with(compact('suppliers'))
             ->with(compact('slides'))
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'));

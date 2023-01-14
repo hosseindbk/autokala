@@ -100,19 +100,6 @@
                                                     <p class="mg-b-10">لینک اسلاید</p>
                                                     <input type="text" name="link" value="{{$slide->link}}" class="form-control" />
                                                 </div>
-                                                <div class="form-group">
-                                                    <p class="mg-b-10">انتخاب وضعیت نمایش</p>
-                                                    <select name="status_id" class="form-control select-lg select2">
-                                                        <option value="0" {{$slide->status == 0 ? 'selected' : '' }}>عدم نمایش</option>
-                                                        <option value="4" {{$slide->status == 4 ? 'selected' : '' }}>در حال نمایش</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <p class="mg-b-10">ارتباط اسلاید</p>
-                                                    <select name="type_id" class="form-control select-lg select2" id="type_id">
-
-                                                    </select>
-                                                </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -124,7 +111,13 @@
                                                         <option value="3" {{$slide->position == 3 ? 'selected' : ''}}>اسلاید تبلیغاتی چپ پایین</option>
                                                     </select>
                                                 </div>
-
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">انتخاب وضعیت نمایش</p>
+                                                    <select name="status_id" class="form-control select-lg select2">
+                                                        <option value="0" {{$slide->status == 0 ? 'selected' : '' }}>عدم نمایش</option>
+                                                        <option value="4" {{$slide->status == 4 ? 'selected' : '' }}>در حال نمایش</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -138,7 +131,20 @@
                                                         <option value="offer"     {{$slide->type == 'offer'    ? 'selected' : ''}}  >آگهی</option>
                                                     </select>
                                                 </div>
-
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">ارتباط اسلاید</p>
+                                                    <select name="type_id" class="form-control select-lg select2" id="type_id">
+                                                        @if($slide->type == 'supplier')
+                                                            @foreach($suppliers as $supplier)
+                                                                <option value="{{ $supplier->id }}">{{ $supplier->title }}</option>
+                                                            @endforeach
+                                                        @elseif($slide->type == 'technical')
+                                                            @foreach($technicals as $technical_unit)
+                                                                <option value="{{ $technical_unit->id }}">{{ $technical_unit->title }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
