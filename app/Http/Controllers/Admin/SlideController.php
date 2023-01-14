@@ -126,11 +126,11 @@ class SlideController extends Controller
         $submenudashboards  =   Submenudashboard::whereStatus(4)->get();
         $slide  = Slide::whereId($id)->first();
         $type_slide = $slide->type;
-        dd($slide , $type_slide);
 
         if ($type_slide == 'supplier'){
             $suppliers = Supplier::whereSlug($slide->type)->get();
             $technicals = null;
+            dd($suppliers);
 
         }elseif ($type_slide == 'technical_unit'){
             $suppliers = null;
