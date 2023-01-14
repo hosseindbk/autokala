@@ -142,6 +142,14 @@
                                                             @foreach($technicals as $technical_unit)
                                                                 <option value="{{ $technical_unit->id }}">{{ $technical_unit->title }}</option>
                                                             @endforeach
+                                                        @elseif($slide->type == 'product')
+                                                            @foreach($products as $product)
+                                                                <option value="{{ $product->id }}">{{ $product->title }}</option>
+                                                            @endforeach
+                                                        @elseif($slide->type == 'offer')
+                                                            @foreach($offers as $offer)
+                                                                <option value="{{ $offer->id }}">{{ $offer->title }}</option>
+                                                            @endforeach
                                                         @endif
                                                     </select>
                                                 </div>
