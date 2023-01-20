@@ -382,7 +382,7 @@ class IndexController extends Controller
                 ->where('offers.status' , '=', '4')
                 ->where('offers.supplier_id' , '=', $supplier_id)
                 ->where('offers.buyorsell' ,'=' , 'sell')
-                ->where('offers.brand_id', '<>', null)
+                //->where('offers.brand_id', '<>', null)
                 ->orderBy('offers.id' , 'DESC')
                 ->get();
 
