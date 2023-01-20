@@ -41,7 +41,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
     Route::get('technicalselection'                 , 'TechnicalunitController@technicalselection');
     Route::get('supplierselection'                  , 'SupplierController@supplierselection');
     Route::get('productvariety/{slug}/{id}'         , 'ProductController@subproductvariety');
-
+    Route::get('/company/{slug}'                    , 'IndexController@company');
 
     Route::middleware('auth:api')->group(function (){
 

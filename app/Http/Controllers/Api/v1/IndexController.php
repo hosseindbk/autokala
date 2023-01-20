@@ -9,6 +9,7 @@ use App\comment;
 use App\commentrate;
 use App\Http\Controllers\Controller;
 use App\Markuser;
+use App\Offer;
 use App\Product_group;
 use App\Representative_supplier;
 use App\Slide;
@@ -363,6 +364,40 @@ class IndexController extends Controller
         $url_update    = $versions->url_update;
 
         return Response::json(['ok' => true , 'message' => $message,'force_update'=>$force_update,'has_update'=>$has_update,'url_update'=>$url_update]);
+
+    }
+
+    public function company($slug){
+        $suppliers = Supplier::select('id' ,'logo' ,'title','manager','banner','slide1','slide2','slide3' ,'description' ,'phone' ,'mobile' ,'whatsapp' ,'address')
+            ->where('pageurl' , $slug)->get();
+        if (trim($suppliers) == '[]') {
+            return Response::json(['ok'=>false , 'message' =>'مقداری یافت نشد']);
+        }else{
+            $supplier_id    = Supplier::wherePageurl($slug)->pluck('id');
+
+            $offers = Offer::leftJoin('products', 'products.unicode', '=', 'offers.unicode_product')
+                ->leftJoin('product_brand_varieties', 'product_brand_varieties.id', '=', 'offers.brand_id')
+                ->leftJoin('brands', 'brands.id', '=', 'product_brand_varieties.brand_id')
+                ->select('brands.title_fa as brand' ,'offers.total as numberofsell' , 'offers.slug' , 'offers.image1 as image' , 'offers.title_offer as title', 'offers.price as wholesaleprice' , 'offers.single_price as retailprice','offers.updated_at as date')
+                ->where('offers.status' , '=', '4')
+                ->where('offers.supplier_id' , '=', $supplier_id)
+                ->where('offers.buyorsell' ,'=' , 'sell')
+                ->where('offers.brand_id', '<>', null)
+                ->orderBy('offers.id' , 'DESC')
+                ->get();
+
+            $representative_suppliers = Representative_supplier::whereSupplier_id($supplier_id)->pluck('brand_id');
+            $brands         = Brand::select('id' , 'title_fa' , 'slug' , 'image')->whereStatus(4)->whereIn('id' , $representative_suppliers)->get();
+
+            $response = [
+                'supplier'         => $suppliers,
+                'brand'            => $brands,
+                'offer'            => $offers,
+            ];
+
+            return Response::json(['ok'=>true , 'message' =>'success','response'=>$response ]);
+
+        }
 
     }
 }

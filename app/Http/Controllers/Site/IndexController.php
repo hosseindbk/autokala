@@ -136,7 +136,6 @@ class IndexController extends Controller
             $supplier_id    = Supplier::wherePageurl($slug)->pluck('id');
             $representative_suppliers = Representative_supplier::whereSupplier_id($supplier_id)->pluck('brand_id');
             $brands         = Brand::whereStatus(4)->whereIn('id' , $representative_suppliers)->get();
-
             $offers         = Offer::whereStatus(4)->whereSupplier_id($supplier_id)->orderBy('id' , 'DESC')->get();
             $users          = User::select('id', 'type_id')->get();
 
@@ -188,6 +187,7 @@ class IndexController extends Controller
             ->with(compact('states'))
             ->with(compact('menus'));
     }
+
     public function terms(){
         $cities             = City::all();
         $states             = State::all();
