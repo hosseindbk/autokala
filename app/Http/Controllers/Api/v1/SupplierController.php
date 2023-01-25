@@ -48,7 +48,7 @@ class SupplierController extends Controller
             ->leftjoin('states' , 'states.id' , '=' , 'suppliers.state_id')
             ->leftjoin('cities' , 'cities.id' , '=' , 'suppliers.city_id')
         ->select('markusers.id as mark_id'  ,'suppliers.id'         , 'suppliers.title'         , 'suppliers.slug'          , 'suppliers.address'   , 'suppliers.manager'   , 'suppliers.image'  ,'suppliers.autokala'
-            , 'suppliers.manufacturer'      , 'suppliers.importer'  , 'suppliers.whole_seller'  , 'suppliers.retail_seller' , 'suppliers.phone'     , 'suppliers.mobile'    , 'suppliers.image2' , 'suppliers.image3'
+            , 'suppliers.manufacturer'      , 'suppliers.importer'  , 'suppliers.whole_seller'  , 'suppliers.retail_seller' , 'suppliers.phone'     , 'suppliers.mobile'    , 'suppliers.image2' , 'suppliers.image3' , 'suppliers.pageurl'
             , 'suppliers.website'           , 'suppliers.email'     , 'suppliers.whatsapp'      , 'suppliers.lat'           , 'suppliers.lng'       , 'suppliers.state_id'  , 'states.title as state_name' , 'suppliers.city_id' , 'cities.title as city_name'  )
             ->where('suppliers.status' , '=', 4)
             ->where('suppliers.slug' , '=', $slug)
