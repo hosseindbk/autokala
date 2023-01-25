@@ -368,7 +368,7 @@ class IndexController extends Controller
     }
 
     public function company($slug){
-        $suppliers = Supplier::select('id' ,'logo' ,'title','manager','banner','slide1','slide2','slide3' ,'description' ,'phone' ,'mobile' ,'whatsapp' ,'address')
+        $suppliers = Supplier::select('id' ,'logo' ,'title','manager','banner','slide1','slide2','slide3' ,'description' , 'website' ,'phone' ,'mobile' ,'whatsapp' , 'lat' , 'lng' ,'address')
             ->where('pageurl' , $slug)->get();
         if (trim($suppliers) == '[]') {
             return Response::json(['ok'=>false , 'message' =>'مقداری یافت نشد']);
