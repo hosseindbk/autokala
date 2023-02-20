@@ -33,7 +33,7 @@ class ProductbrandvarietyController extends Controller
         $menudashboards         = Menudashboard::whereStatus(4)->get();
         $submenudashboards      = Submenudashboard::whereStatus(4)->get();
 
-        $productbrandvarieties  = Product_brand_variety::join('products' , 'products.id' , '=' , 'product_brand_varieties.product.id')
+        $productbrandvarieties  = Product_brand_variety::join('products' , 'products.id' , '=' , 'product_brand_varieties.product_id')
             ->join('brands' , 'brands.id' , '=' , 'product_brand_varieties.brand_id')
             ->join('statuses' , 'statuses.id' , '=' , 'product_brand_varieties.status')
             ->select('product_brand_varieties.id' , 'products.title_fa as product_title' ,'brands.title_fa as brand_title' ,'statuses.title as status_title' ,'products.unicode' ,'product_brand_varieties.image1')
