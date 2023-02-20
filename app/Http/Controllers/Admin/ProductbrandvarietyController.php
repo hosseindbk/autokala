@@ -26,20 +26,26 @@ class ProductbrandvarietyController extends Controller
 
     public function index()
     {
-        $productbrandvarieties  = Product_brand_variety::all();
-        $products               = Product::select('id' , 'title_fa' , 'unicode')->get();
-        $brands                 = Brand::select('id' , 'title_fa')->get();
-        $statuses               = Status::select('id' , 'title')->get();
+//        $productbrandvarieties  = Product_brand_variety::all();
+//        $products               = Product::select('id' , 'title_fa' , 'unicode')->get();
+//        $brands                 = Brand::select('id' , 'title_fa')->get();
+//        $statuses               = Status::select('id' , 'title')->get();
         $menudashboards         = Menudashboard::whereStatus(4)->get();
         $submenudashboards      = Submenudashboard::whereStatus(4)->get();
+
+        $productbrandvarieties  = Product_brand_variety::join('products.id' , '=' , 'product_brand_varieties.product.id')
+            ->join('brands.id' , '=' , 'product_brand_varieties.brand_id')
+            ->join('statuses.id' , '=' , 'product_brand_varieties.status')
+            ->select('product_brand_varieties.id' , 'products.title_fa as product_title' ,'brands.title_fa as brand_title' ,'statuses.title as status_title' ,'products.unicode' ,'product_brand_varieties.image1')
+            ->get();
 
         return view('Admin.productbrandvarieties.all')
             ->with(compact('menudashboards'))
             ->with(compact('submenudashboards'))
-            ->with(compact('statuses'))
-            ->with(compact('productbrandvarieties'))
-            ->with(compact('brands'))
-            ->with(compact('products'));
+            ->with(compact('productbrandvarieties'));
+//            ->with(compact('statuses'))
+//            ->with(compact('brands'))
+//            ->with(compact('products'))
     }
 
     public function create()
