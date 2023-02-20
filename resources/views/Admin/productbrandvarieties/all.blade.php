@@ -53,46 +53,18 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @foreach($brands as $brand)
-                                                        @if($Product_brand_variety->brand_id == $brand->id)
-                                                            {{$brand->title_fa}}
-                                                        @endif
-                                                    @endforeach
+                                                    {{$Product_brand_variety->brand_title}}
                                                 </td>
                                                 <td>
-                                                    @foreach($products as $product)
-                                                        @if($Product_brand_variety->product_id == $product->id)
-                                                            {{$product->title_fa}}
-                                                        @endif
-                                                    @endforeach
+                                                    {{$Product_brand_variety->product_title}}
                                                 </td>
 
                                                 <td>
-                                                    @foreach($products as $product)
-                                                        @if($Product_brand_variety->product_id == $product->id)
-                                                            <span class="btn btn-light">{{$product->unicode}}</span>
-                                                        @endif
-                                                    @endforeach
+                                                    <span class="btn btn-light">{{$Product_brand_variety->unicode}}</span>
                                                 </td>
 
                                                 <td>
-                                                    @foreach($statuses as $status)
-                                                        @if($status->id == $Product_brand_variety->status)
-                                                            @if($status->id == 1)
-                                                                <button class="btn ripple btn-outline-warning">{{$status->title}}</button>
-                                                            @elseif($status->id == 2)
-                                                                <button class="btn ripple btn-outline-primary">{{$status->title}}</button>
-                                                            @elseif($status->id == 3)
-                                                                <button class="btn ripple btn-outline-info">{{$status->title}}</button>
-                                                            @elseif($status->id == 4)
-                                                                <button class="btn ripple btn-outline-success">{{$status->title}}</button>
-                                                            @elseif($status->id == 5)
-                                                                <button class="btn ripple btn-outline-light">{{$status->title}}</button>
-                                                            @elseif($status->id == 6)
-                                                                <button class="btn ripple btn-outline-danger">{{$status->title}}</button>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
+                                                    <button class="btn ripple btn-outline-warning">{{$Product_brand_variety->status_title}}</button>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('productbrandvarieties.edit' , $Product_brand_variety->id) }}"  class="btn btn-outline-primary btn-xs">
@@ -122,14 +94,14 @@
             </div>
         </div>
     </div>
+@endsection
 @section('end')
     <script src="{{asset('admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
+{{--    <script src="{{asset('admin/assets/plugins/datatable/fileexport/dataTables.buttons.min.js')}}"></script>--}}
+{{--    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.bootstrap4.min.js')}}"></script>--}}
+{{--    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>--}}
+{{--    <script src="{{asset('admin/assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>--}}
     <script src="{{asset('admin/assets/js/table-data.js')}}"></script>
-@endsection
 @endsection
