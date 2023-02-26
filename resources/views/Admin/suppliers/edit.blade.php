@@ -511,28 +511,30 @@
                                         </thead>
                                         <tbody>
                                         <?php $s = 1; ?>
-                                        @foreach($representatives as $Representative)
-                                            <tr class="odd gradeX">
-
-                                                <td>{{$s++}}</td>
-
-                                                @foreach($brands as $Brand)
-                                                    @if($Brand->id == $Representative->brand_id)
-                                                        <td>{{$Brand->title_fa}}</td>
-                                                    @endif
-                                                @endforeach
-                                                <td>
-                                                    <form action="{{ route('representatives.destroy' , $Representative->id) }}" method="post">
-                                                        {{ method_field('delete') }}
-                                                        {{ csrf_field() }}
-                                                        <div class="btn-group btn-group-xs">
-                                                            <button type="submit" class="btn btn-outline-danger btn-xs">
-                                                                <i class="fe fe-trash-2 "></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
+@foreach($representatives as $Representative)
+                                            @foreach($suppliers as $supplier)
+                                                @if($supplier->id == $Representative->supplier_id)
+                                                    @foreach($brands as $Brand)
+                                                        @if($Brand->id == $Representative->brand_id)
+                                                        <tr class="odd gradeX">
+                                                            <td>{{$s++}}</td>
+                                                            <td>{{$Brand->title_fa}}</td>
+                                                            <td>
+                                                                <form action="{{ route('representatives.destroy' , $Representative->id) }}" method="post">
+                                                                    {{ method_field('delete') }}
+                                                                    {{ csrf_field() }}
+                                                                    <div class="btn-group btn-group-xs">
+                                                                        <button type="submit" class="btn btn-outline-danger btn-xs">
+                                                                            <i class="fe fe-trash-2 "></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
                                         @endforeach
                                         </tbody>
                                     </table>
